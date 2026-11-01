@@ -47,3 +47,12 @@
 .regionCategory { margin: 0 0 6px; color: #6e6249; font-size: 16px; }
 @media(max-width: 680px) { .categoryList { grid-template-columns: minmax(0, 1fr); } .counts { gap: 12px 18px; } }
 @media(max-width: 680px) { .regionStarts { grid-template-columns: minmax(0, 1fr); } }
+.examGoalList { padding-left: 22px; margin: 14px 0 20px; }
+.examGoalList > .examGoal { border: 0; margin: 18px 0; padding: 0; }
+.examGoal h4 { margin: 0 0 8px; overflow-wrap: anywhere; }
+.examGoal p, .examCase p { margin: 8px 0; line-height: 1.65; }
+.examGoal .goalSelfCheck { color: #4b3d23; }
+.examGoal .goalLesson { font-size: 14px; color: #6e6249; }
+.examCase { border-left: 3px solid #c5a966; padding: 4px 14px; margin: 16px 0; }
+.examCase h4 { margin: 0 0 8px; }
+.examCategoryGoals { min-width: 0; }

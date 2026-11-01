@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "../styles/ExamStudyPlan.module.css";
+import { ExamLearningGoal } from "./ExamLearningGoals";
 
 const internalHref = value => typeof value === "string" && value.startsWith("/") && !value.startsWith("//") && !/[\\\s\u0000-\u001f\u007f]/.test(value);
 
@@ -16,8 +17,11 @@ export default function ExamRegionPreparation({ region, learningCatalog }) {
   const confirmed = region.status === "confirmed";
   const special = region.status === "special";
   const formats = confirmed ? region.formats || [] : [];
-  const focus = region.focus || [];
-  const starts = learningStarts(region, learningCatalog);
+  // Detailed subject goals already provide precise lesson starts. Avoid
+  // repeating the earlier general assignments beneath the same subject.
+  const detailed = Boolean(region.subjectAreas?.length);
+  const focus = detailed ? [] : region.focus || [];
+  const starts = detailed ? [] : learningStarts(region, learningCatalog);
 
   return <section className={styles.section} aria-labelledby="exam-plan-regional-exam">
     <h2 id="exam-plan-regional-exam">Deine Prüfung</h2>
@@ -27,6 +31,16 @@ export default function ExamRegionPreparation({ region, learningCatalog }) {
     {region.limits?.length > 0 && <div className={styles.regionLimits}>
       <h3>Umfang und Grenzen</h3>
       <ul>{region.limits.map(limit => <li key={limit}>{limit}</li>)}</ul>
+    </div>}
+
+    {region.subjectAreas?.length > 0 && <div className={styles.regionPreparation}>
+      <h3>Prüfungsstoff deiner Region</h3>
+      <p>Die folgenden Fachbezüge einschließlich ausgewählter Teilgebiete sind mit den bezeichneten Prüfungsunterlagen abgeglichen. Dazu stehen eigene Lernziele. Die Einträge sind keine Zählung amtlicher Hauptfächer und bilden weder den gesamten Stoff noch amtliche Bewertungsregeln ab.</p>
+      {region.subjectAreas.map(area => <section key={area.id} aria-labelledby={`exam-subject-${area.id}`}>
+        <h4 id={`exam-subject-${area.id}`}>{area.label}</h4>
+        <ol className={styles.examGoalList}>{area.goals.map(goal => <ExamLearningGoal key={goal.id} goal={goal} profile={region} />)}</ol>
+        <p className={styles.menuHint}>{area.limit}</p>
+      </section>)}
     </div>}
 
     {(focus.length > 0 || starts.length > 0) && <div className={styles.regionPreparation}>

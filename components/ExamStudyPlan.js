@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import ExamRegionPreparation from "./ExamRegionPreparation";
+import ExamLearningGoals from "./ExamLearningGoals";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import useExamProfile from "../lib/use-exam-profile";
@@ -16,12 +17,12 @@ const profileKey = profile => profile ? `${profile.country}:${profile.region}` :
 const resourceLabels = { "official-catalog": "Amtlicher Originalkatalog", "official-sample": "Amtliches Übungsangebot", "exam-rules": "Prüfungsregel oder Behördeninformation" };
 const formatDate = date => typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date.split("-").reverse().join(".") : "nicht angegeben";
 
-function Sources({ region, federal, alignment }) {
-  const groups = [{ name: region.name, sources: region.sources, resources: region.examResources }];
-  if (region.includesFederal && federal) groups.push({ name: federal.name, sources: federal.sources, resources: federal.examResources });
+function Sources({ region, federal, alignment, blueprint }) {
+  const groups = region ? [{ name: region.name, sources: region.sources, resources: region.examResources }] : [];
+  if (region?.includesFederal && federal) groups.push({ name: federal.name, sources: federal.sources, resources: federal.examResources });
   return <details className={styles.sources} id="exam-plan-sources">
-    <summary>Originalquellen und Prüfungsunterlagen · {region.name}</summary>
-    <p>Die Prüfstände stammen aus den bestehenden Rechtsnachweisen. Sie sind keine neue vollständige Prüfung der Unterlagen und keine Zusage künftiger Prüfungsfragen.</p>
+    <summary>Originalquellen und Prüfungsunterlagen{region ? ` · ${region.name}` : ""}</summary>
+    {region && <p>Die Prüfstände stammen aus den bestehenden Rechtsnachweisen. Sie sind keine neue vollständige Prüfung der Unterlagen und keine Zusage künftiger Prüfungsfragen.</p>}
     {alignment?.sources?.length > 0 && <section aria-labelledby="exam-plan-framework-sources">
       <h3 id="exam-plan-framework-sources">Nachweise zum Prüfungsrahmen</h3>
       <p>Am 1. November 2026 wurden die hier bezeichneten Abschnitte abgeglichen. Die Einordnung betrifft ausgewählte Prüfungsbausteine; sie ist keine vollständige Prüfung aller Zulassungs-, Bewertungs- und Anerkennungsregeln. Verbandsangaben sind eigenständig verfasste Erläuterungen und keine amtlichen Originalkataloge.</p>
@@ -30,6 +31,7 @@ function Sources({ region, federal, alignment }) {
         <small>{source.publisher} · {source.kind === "norm" ? "Originalregelung" : source.kind === "norm-copy" ? "Originalnorm in bereitgestellter Kopie" : source.kind === "independent-explanation" ? "Eigenständige Erläuterung" : source.kind === "official-explanation" ? "Behördeninformation" : "Ergänzende Einordnung"} · Abschnittsabgleich {formatDate(source.reviewedOn)}</small>
         <p>{source.section}</p>
         {alignment.formats.some(format => format.sourceIds.includes(source.id)) && <p>Zuordnung: {alignment.formats.filter(format => format.sourceIds.includes(source.id)).map(format => format.label).join(" · ")}</p>}
+        {alignment.subjectAreas?.some(area => area.sourceIds.includes(source.id)) && <p>Fachbezüge: {alignment.subjectAreas.filter(area => area.sourceIds.includes(source.id)).map(area => area.label).join(" · ")}. Die konkreten Lernziele sind eigene didaktische Vorschläge.</p>}
       </li>)}</ul>
     </section>}
     {groups.map(group => <section key={group.name} aria-label={group.name}>
@@ -37,13 +39,21 @@ function Sources({ region, federal, alignment }) {
       <ul>{group.sources.map(source => <li key={`${source.url}:${source.publisher}`}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a><small>{source.publisher} · übernommener Prüfstand {formatDate(source.reviewedOn)}</small></li>)}</ul>
       {group.resources.length > 0 && <><h3>Prüfungsunterlagen</h3><ul>{group.resources.map(resource => <li key={`${resource.url}:${resource.kind}`}><a href={resource.url} target="_blank" rel="noreferrer">{resource.title}</a><small>{resourceLabels[resource.kind]} · {resource.publisher} · übernommener Prüfstand {formatDate(resource.reviewedOn)}</small>{resource.notes && <p>{resource.notes}</p>}</li>)}</ul></>}
     </section>)}
+    {blueprint?.sources?.length > 0 && <section aria-labelledby="exam-plan-goal-sources">
+      <h3 id="exam-plan-goal-sources">Nachweise der Ausgangslektionen</h3>
+      <p>Die Lernziele und Selbstkontrollen sind eigene Lernhilfen, keine amtlichen Bewertungskriterien. Datumsangaben und Nachweise werden aus den Ausgangslektionen übernommen. Lektionszuordnungen stammen aus deren konkreten Evidenzabschnitten; Kursreferenzen aus dem allgemeinen Quellenverzeichnis des jeweiligen Kurses. Das ist keine neue externe Quellenlektüre oder vollständige Fachprüfung sämtlicher Lernziele.</p>
+      <ul>{blueprint.sources.map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a><small>Übernommener Prüfstand {formatDate(source.reviewedOn)}</small>{["lesson", "course"].map(scope => {
+        const titles = blueprint.categories.flatMap(category => category.goals).filter(goal => goal.sourceScope === scope && goal.sourceIds.includes(source.id)).map(goal => goal.title);
+        return titles.length > 0 ? <p key={scope}>{scope === "lesson" ? "Lektionszuordnung" : "Kursreferenz"}: {titles.join(" · ")}</p> : null;
+      })}</li>)}</ul>
+    </section>}
   </details>;
 }
 
-export default function ExamStudyPlan({ data, reviewCatalog, examAlignment }) {
+export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, examBlueprint }) {
   const { profile: storedProfile, ready, persistence, saveProfile, clearProfile, saving: accountSaving, error: accountError, accountKey } = useExamProfile();
   const progress = useExamReviewProgress(reviewCatalog);
-  const profile = normalizeExamProfile(storedProfile);
+  const profile = ready ? normalizeExamProfile(storedProfile) : null;
   const details = getExamProfileDetails(profile);
   const key = profileKey(profile);
   const [draft, setDraft] = useState(emptyDraft);
@@ -183,7 +193,18 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment }) {
     <section className={styles.section} aria-labelledby="exam-plan-learning">
       <h2 id="exam-plan-learning">Dein Lernweg</h2>
       <p>Die Kategorien entsprechen dem Menü. Wildbiologie und andere gemeinsame Grundlagen lernst du länderübergreifend; örtlich unterschiedliche Rechtsvorgaben prüfst du gesondert.</p>
-      <ol className={styles.steps}><li><strong>Verstehen:</strong> Lies den Lerntext und erkläre den Zusammenhang mit eigenen Worten.</li><li><strong>Anwenden:</strong> Löse die zugehörigen Fragen. Prüfe auch bei einem Treffer, warum die anderen Antworten nicht passen.</li><li><strong>Wiederholen:</strong> Kehre zu offenen Fragen zurück und verknüpfe das Wissen mit einem eigenen Prüfungsfall.</li></ol>
+      {examBlueprint && <p className={styles.note}>Prüfungslernziele: Erkennen, Erklären und Begründen. Bearbeite die folgenden eigenen Lernziele mit ihrer Selbstkontrolle. „Lektion lesen &amp; üben“ führt zum genauen Lerntext und dessen Lektionsübung; der Kurscheck umfasst auch andere Lektionen. Die Kriterien sind Lernhilfen und keine amtlichen Bestehensregeln.</p>}
+      {!examBlueprint && <ol className={styles.steps}><li><strong>Verstehen:</strong> Lies den Lerntext und erkläre den Zusammenhang mit eigenen Worten.</li><li><strong>Anwenden:</strong> Löse die zugehörigen Fragen. Prüfe auch bei einem Treffer, warum die anderen Antworten nicht passen.</li><li><strong>Wiederholen:</strong> Kehre zu offenen Fragen zurück und verknüpfe das Wissen mit einem eigenen Prüfungsfall.</li></ol>}
+
+      <ul className={styles.categoryList}>{data.categories.map(category => {
+        const status = progress.summary?.byCategory[category.slug];
+        return <li key={category.slug}>
+          <Link href={`/lernen/${category.slug}`} prefetch={false}>{category.title}</Link>
+          {examBlueprint?.categories?.find(item => item.slug === category.slug) ? <ExamLearningGoals category={examBlueprint.categories.find(item => item.slug === category.slug)} profile={ready ? profile : null} /> : <p>{category.focus.join(" · ")}</p>}
+          {status && <><p className={styles.reviewCount}>{status.answered ? `${status.answered} beantwortet · ${status.due} fällig · ${status.mistakes} zuletzt falsch` : "Noch keine Antworten im Wiederholungsverlauf"}</p>
+            <div className={styles.links}>{status.due > 0 && <Link href={examReviewHref("faellig", category.slug)} prefetch={false} aria-label={`Fällige Fragen: ${category.title}`}>Wiederholen</Link>}{status.mistakes > 0 && <Link href={examReviewHref("fehler", category.slug)} prefetch={false} aria-label={`Fehler üben: ${category.title}`}>Fehler</Link>}</div></>}
+        </li>;
+      })}</ul>
       <section aria-labelledby="exam-plan-progress" className={styles.progress}>
         <h3 id="exam-plan-progress">Deine Wiederholung</h3>
         {progress.phase === "loading" ? <p role="status">Dein lokaler Wiederholungsstand wird geladen …</p> : progress.phase === "unavailable" ? <p role="status">Dein Wiederholungsstand ist hier gerade nicht lesbar. Du kannst die Lernkategorien weiterhin öffnen.</p> : <>
@@ -192,14 +213,6 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment }) {
         </>}
         <p className={styles.menuHint}>Hier zählen unterschiedliche Fragen aus dem gemeinsamen Wiederholungskatalog, die du in diesem Browser beantwortet hast. Fällige und zuletzt falsche Fragen können sich überschneiden. Frühere Kursabschlüsse, Lernkarten und regionale Rechtsübungen werden nicht hinzugerechnet. Die Zahlen zeigen keine vollständige Prüfungsabdeckung oder Prüfungsreife. Der Verlauf bleibt auf diesem Gerät und wird beim Abmelden entfernt.</p>
       </section>
-      <ul className={styles.categoryList}>{data.categories.map(category => {
-        const status = progress.summary?.byCategory[category.slug];
-        return <li key={category.slug}>
-          <Link href={`/lernen/${category.slug}`} prefetch={false}>{category.title}</Link><p>{category.focus.join(" · ")}</p>
-          {status && <><p className={styles.reviewCount}>{status.answered ? `${status.answered} beantwortet · ${status.due} fällig · ${status.mistakes} zuletzt falsch` : "Noch keine Antworten im Wiederholungsverlauf"}</p>
-            <div className={styles.links}>{status.due > 0 && <Link href={examReviewHref("faellig", category.slug)} prefetch={false} aria-label={`Fällige Fragen: ${category.title}`}>Wiederholen</Link>}{status.mistakes > 0 && <Link href={examReviewHref("fehler", category.slug)} prefetch={false} aria-label={`Fehler üben: ${category.title}`}>Fehler</Link>}</div></>}
-        </li>;
-      })}</ul>
     </section>
 
     <section className={styles.section} aria-labelledby="exam-plan-practice">
@@ -211,7 +224,13 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment }) {
     <section className={styles.section} aria-labelledby="exam-plan-field">
       <h2 id="exam-plan-field">Praxis und örtliche Vorgaben</h2>
       <p>Praktische Ausbildung, betreute Waffenhandhabung, Schießnachweise, Erste-Hilfe-Ausbildung und örtliche Prüfungsanforderungen klärst du mit deiner Ausbildungs- und Prüfungsstelle. Digitales Lernen ersetzt diese Nachweise nicht. Ein gespeichertes Ziel und richtige Quizantworten sind weder eine Prüfungszulassung noch eine Jagdberechtigung.</p>
+      {examBlueprint && <><h3>Mit deiner Ausbildungsstelle klären</h3><ul>
+        <li><strong>Prüfungsjahr und Ablauf:</strong> Welche Fassung und welche praktischen Teilprüfungen gelten für deinen konkreten Weg? Notiere die amtliche Fundstelle und offene Rückfragen.</li>
+        <li><strong>Betreutes Üben:</strong> Welche Handhabungs- und Schießaufgaben müssen unter qualifizierter Anleitung geübt werden? Lass dir deinen Stand praktisch rückmelden; ein erklärter Papierfall ist kein Leistungsnachweis.</li>
+        <li><strong>Unterlagen:</strong> Welche Nachweise sind erforderlich, wer bestätigt sie und welche Stelle entscheidet über die Zulassung? Übertrage keine Unterlagenliste aus einer anderen Region.</li>
+        <li><strong>Offene Lernziele:</strong> Benenne vor dem nächsten betreuten Termin eine konkrete Unsicherheit und den Teil, den du erneut zeigen oder erklären möchtest.</li>
+      </ul></>}
     </section>
-    {regionData && <Sources region={regionData} federal={countryData.federal} alignment={alignment} />}
+    {(regionData || examBlueprint) && <Sources region={regionData} federal={countryData?.federal} alignment={alignment} blueprint={examBlueprint} />}
   </LearningToolLayout>;
 }

@@ -59,9 +59,245 @@
           "title": "Aus- und Weiterbildung",
           "url": "https://www.jagdzuerich.ch/themen/aus-weiterbildung/",
           "publisher": "JagdZürich",
-          "section": "Ausbildung zur Jägerin / zum Jäger; Ablauf Anwärterprüfung, Revierlernen und Jagdprüfung",
+          "section": "Ausbildung zur Jägerin / zum Jäger; Theoriekursthemen 2026/27 und praktische Veranstaltungen (teils Jahrgang 2027: Nachsuchen, Jagdlehrpfad, Reviergang/Wildschaden, Gemeinschaftsjagd, Wildbrethygiene). Nur Fachbezüge, keine Termine oder neue Teilnahmepflichten übernommen.",
           "kind": "independent-explanation",
           "reviewedOn": "2026-11-01"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "ch-zh-wildkunde",
+          "label": "Wildkunde",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-zh-wildkunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Beschreibe am Rehwild sichtbare Merkmale, Jahreslauf und offene Beobachtungsfragen; ergänze ein Spurprotokoll, ohne aus einem Einzelmerkmal Gewissheit abzuleiten.",
+              "selfCheck": [
+                "Mindestens zwei tatsächlich erkennbare Merkmale genannt.",
+                "Jahreszeit und Lebensraum einbezogen.",
+                "Unsicherheit ausdrücklich stehen gelassen."
+              ],
+              "moduleId": "wissen-rehwild-jahreslauf",
+              "lessonId": "reh-jahreszeiten",
+              "caseText": "Ein einzelnes Reh und ein undeutlicher Hufabdruck werden am Waldrand beobachtet. Trenne gesicherte Angaben von zwei noch offenen Deutungen.",
+              "followUp": "Welche weitere Beobachtung würde die Art- oder Jahreslaufeinordnung verbessern?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-spuren-systematisch",
+                  "lessonId": "spur-abdruck"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-zh-lebensraum",
+          "label": "Lebensraum & Wildschaden",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-zh-lebensraum-ziel",
+              "title": "Erklären und begründen",
+              "task": "Beschreibe ein Schadensbild zunächst ohne Verursacherbehauptung und erkläre anschließend Nahrung, Deckung und Verbindung aus Sicht einer ausgewählten Art.",
+              "selfCheck": [
+                "Schadensbild vor Ursache beschrieben.",
+                "Artbezogene Lebensraumfunktion erklärt.",
+                "Eine überprüfbare Rückfrage oder Beobachtung vorgeschlagen."
+              ],
+              "moduleId": "wissen-wald-wild",
+              "lessonId": "bilder",
+              "caseText": "An jungen Bäumen fehlen Triebe; eine nahe Straße trennt zwei Gehölze. Stelle Beobachtung, mögliche Ursachen und die nächste gemeinsame Klärung getrennt dar.",
+              "followUp": "Warum beweist das Schadensbild allein weder eine genaue Wildzahl noch die Wirksamkeit einer Maßnahme?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-lebensraeume-biotopverbund",
+                  "lessonId": "biotop-netz"
+                },
+                {
+                  "moduleId": "wissen-ausbau-baumarten-waldaufbau",
+                  "lessonId": "nadelmerkmale"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-zh-jagdpraxis",
+          "label": "Jagdpraxis",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-zh-jagdpraxis-ziel",
+              "title": "Erklären und begründen",
+              "task": "Erkläre vor einer gedachten gemeinsamen Jagd Auftrag, Einweisung, Standort und Rückmeldung; nenne bei einer Unklarheit einen begründeten Unterbruch.",
+              "selfCheck": [
+                "Unklare Punkte vor Beginn benannt.",
+                "Standort und Zuständigkeit verständlich beschrieben.",
+                "Änderung und Rückmeldung verbunden."
+              ],
+              "moduleId": "wissen-gesellschaftsjagd",
+              "lessonId": "einweisung",
+              "caseText": "Eine Einweisung enthält keinen klaren Rückmeldeweg. Formuliere die fehlenden Fragen und beschreibe deinen Standort so, dass eine andere Person ihn nachvollziehen kann.",
+              "followUp": "Welche Änderung der Situation erfordert eine erneute Abstimmung?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-orientierung",
+                  "lessonId": "karte"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-zh-hunde-nachsuche",
+          "label": "Jagdhunde & Nachsuche",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-zh-hunde-nachsuche-ziel",
+              "title": "Erklären und begründen",
+              "task": "Ordne eine Aufgabe den benötigten Fähigkeiten des Hund-Mensch-Teams zu und übergib für eine Nachsuche geordnete Beobachtungen statt einer erfundenen Trefferdiagnose.",
+              "selfCheck": [
+                "Aufgabe und Eignung des Teams getrennt.",
+                "Ort, Zeit und Richtung geordnet.",
+                "Fachkundige Führung und offene Zuständigkeiten benannt."
+              ],
+              "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+              "lessonId": "hund-aufgaben",
+              "caseText": "Nach einem Ereignis sollen Ort, Zeit, beobachtete Richtung und offene Fragen an eine fachkundige Leitung übermittelt werden. Stelle eine kurze Meldung zusammen.",
+              "followUp": "Welche Angaben sind Beobachtung, welche nur Vermutung und wer bestätigt die Übernahme?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-nachsuche",
+                  "lessonId": "merken"
+                },
+                {
+                  "moduleId": "wissen-ausbau-anschussmeldung",
+                  "lessonId": "uebergabenotiz"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-zh-wildbret",
+          "label": "Wildbrethygiene",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-zh-wildbret-ziel",
+              "title": "Erklären und begründen",
+              "task": "Zeichne Kontaktwege vom Revier zur Übergabe und trenne Verunreinigung, Kühlverlauf und Untersuchungsstatus als unterschiedliche Fragen.",
+              "selfCheck": [
+                "Kontaktwege konkret benannt.",
+                "Kühlverlauf und Untersuchung nicht gleichgesetzt.",
+                "Unbekannte Angaben und fachliche Klärung festgehalten."
+              ],
+              "moduleId": "wissen-wildbrethygiene",
+              "lessonId": "sauber",
+              "caseText": "Ein sauber wirkendes Stück besitzt einen unklaren Kühlverlauf. Welche Informationen müssen vor einer fachlichen Entscheidung ergänzt werden?",
+              "followUp": "Weshalb ersetzt eine unauffällige Wahrnehmung keine Prüfung der gesamten Vorgeschichte?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-wildbrethygiene",
+                  "lessonId": "beurteilen"
+                },
+                {
+                  "moduleId": "wissen-ausbau-wildbretprozess",
+                  "lessonId": "prozess"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-zh-waffen",
+          "label": "Waffenkunde & Sicherheit",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-zh-waffen-ziel",
+              "title": "Erklären und begründen",
+              "task": "Unterscheide auf einem Lernblatt Gesamtpatrone und Bauteile; begründe außerdem, warum Sichtdeckung und unklare Kommandos keine ausreichende Entscheidungsgrundlage sind.",
+              "selfCheck": [
+                "Teil und Ganzes fachlich getrennt.",
+                "Sichtdeckung nicht als geprüfter Hintergrund ausgegeben.",
+                "Unklarheit an Aufsicht oder zuständige Leitung zurückgegeben."
+              ],
+              "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+              "lessonId": "patrone-geschoss-bauteile",
+              "caseText": "Ein Gedankenbild zeigt ein Tier vor dichtem Gebüsch; eine andere Person ruft ein unklar verstandenes Kommando. Benenne die zwei getrennten Sicherheitsfragen.",
+              "followUp": "Welche noch fehlende Information verhindert eine verantwortliche Fortsetzung?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-kugelfang",
+                  "lessonId": "hintergrund"
+                },
+                {
+                  "moduleId": "wissen-vertiefung-sicherheitsroutine-stand",
+                  "lessonId": "phasenkarte"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-zh-recht",
+          "label": "Jagdrecht",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-zh-recht-ziel",
+              "title": "Erklären und begründen",
+              "task": "Lege für eine Zürcher Rechtsfrage Ort, Zeitpunkt, zuständige Normebene und noch fehlende Berechtigung getrennt dar; nutze anschließend den vorhandenen Zürcher Rechtsleser.",
+              "selfCheck": [
+                "Zürich und konkretes Datum genannt.",
+                "Bundesrahmen, Kantonsvorschrift und konkreter Fall getrennt.",
+                "Keine pauschale Jagdfreigabe formuliert."
+              ],
+              "moduleId": "wissen-vertiefung-rechtsfassung-pruefen-2026",
+              "lessonId": "ort",
+              "caseText": "Eine Person sagt: Ich habe die Jagdprüfung bestanden, also ist mein geplanter Einsatz erlaubt. Formuliere die noch zu klärenden örtlichen Rechtsfragen.",
+              "followUp": "Welche Information liefert ein Prüfungszeugnis, welche Frage muss gesondert geklärt werden?",
+              "regionalLaw": true
+            }
+          ]
         }
       ]
     },
@@ -124,6 +360,215 @@
           "section": "Einleitung: kantonale Prüfung, Theorie mündlich und schriftlich, praktischer Teil",
           "kind": "independent-explanation",
           "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-be-bejv-lehrplan",
+          "title": "Lehrplan Berner Jagdausbildung, Kurs 26/27ff, 3. Auflage V02",
+          "url": "https://jagdausbildung-bejv.ch/wp-content/uploads/2026/09/Lehrplan-Kurs-26_27ff-3.-Auflage_V02.pdf",
+          "publisher": "Berner Jägerverband BEJV / Fédération des chasseurs bernois FCB",
+          "section": "Gedruckte S.3–4 Inhaltsverzeichnis; S.5 Vorwort; S.7 Rechtsebenen; S.42 Nachsuche; S.44 Wildtierkunde; S.50–52 Waffen/Optik/Sicherheit. Ausschließlich gelesene Teilabschnitte.",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "ch-be-recht",
+          "label": "Jagdrecht",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv-lehrplan"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-be-recht-ziel",
+              "title": "Erklären und begründen",
+              "task": "Baue eine Berner Rechtsantwort aus Ort, Sachverhalt und einschlägiger Ebene auf; unterscheide Prüfungsnachweis und die noch zu klärende Jagdbewilligung.",
+              "selfCheck": [
+                "Bund und Kanton nicht verwechselt.",
+                "Berechtigungsfrage nicht aus einem einzigen Nachweis beantwortet.",
+                "Offene Regel oder Fassung präzise benannt."
+              ],
+              "moduleId": "wissen-vertiefung-rechtsfassung-pruefen-2026",
+              "lessonId": "ort",
+              "caseText": "Schreibe eine kurze Antwort auf eine pauschale Erlaubnisbehauptung und erkläre dieselbe Begründung anschließend frei.",
+              "followUp": "Welche aktuelle amtliche Fundstelle und welche örtliche Einzelangabe fehlen noch?",
+              "regionalLaw": true
+            }
+          ]
+        },
+        {
+          "id": "ch-be-jagdausuebung",
+          "label": "Jagd & Jagdausübung",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv-lehrplan"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-be-jagdausuebung-ziel",
+              "title": "Erklären und begründen",
+              "task": "Erkläre eine Jagdsituation als Abfolge begründeter organisatorischer Entscheidungen und füge eine getrennte Prüfung der Wildbrethygiene an.",
+              "selfCheck": [
+                "Einweisung und Rückmeldung nachvollziehbar.",
+                "Unklarheiten vor der Handlung geklärt.",
+                "Hygiene als eigener Prozessschritt behandelt."
+              ],
+              "moduleId": "wissen-gesellschaftsjagd",
+              "lessonId": "einweisung",
+              "caseText": "Eine gemeinsame Jagd endet mit einer Übergabe. Schreibe zunächst die offenen Einweisungsfragen auf; zeichne danach einen Kontaktweg, über den Verunreinigung weitergetragen werden könnte.",
+              "followUp": "Welche Information muss bei der Übergabe erhalten bleiben?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-ausbau-wildbretprozess",
+                  "lessonId": "prozess"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-be-hege",
+          "label": "Hege & Naturkenntnisse",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv-lehrplan"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-be-hege-ziel",
+              "title": "Erklären und begründen",
+              "task": "Vergleiche Baummerkmale, ein Schadensbild und eine Lebensraumverbindung, ohne aus einer einzelnen Beobachtung eine fertige Maßnahme abzuleiten.",
+              "selfCheck": [
+                "Mindestens zwei Bestimmungsmerkmale verwendet.",
+                "Lebensraum aus Sicht einer Art beschrieben.",
+                "Befund und Ursache getrennt."
+              ],
+              "moduleId": "wissen-ausbau-baumarten-waldaufbau",
+              "lessonId": "nadelmerkmale",
+              "caseText": "Zwei Gehölze sind durch eine Straße getrennt; an Jungbäumen fehlt ein Trieb. Beschreibe getrennt Bestimmung, Lebensraumfunktion und offene Ursache.",
+              "followUp": "Welche zusätzliche Erhebung würde eine gemeinsame Planung verbessern?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-wald-wild",
+                  "lessonId": "bilder"
+                },
+                {
+                  "moduleId": "wissen-lebensraeume-biotopverbund",
+                  "lessonId": "biotop-netz"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-be-hunde",
+          "label": "Jagdhunde & Nachsuche",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv-lehrplan"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-be-hunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Unterscheide Hundearbeit von Team-Eignung und erstelle eine Nachsuchemeldung mit Beobachtungen, Zuständigkeit und offenen Angaben.",
+              "selfCheck": [
+                "Keine Rassebezeichnung als vollständige Eignung gewertet.",
+                "Beobachtung und Vermutung getrennt.",
+                "Übernahme und Leitung ausdrücklich geklärt."
+              ],
+              "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+              "lessonId": "hund-aufgaben",
+              "caseText": "Eine Beobachtung soll an die fachkundige Leitung weitergegeben werden. Notiere Ort, Zeit und Richtung; begründe anschließend mündlich, welche Schlussfolgerung offenbleibt.",
+              "followUp": "Weshalb ersetzt die Existenz einer Organisation nicht deine sorgfältige eigene Meldung?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-ausbau-anschussmeldung",
+                  "lessonId": "uebergabenotiz"
+                },
+                {
+                  "moduleId": "wissen-nachsuche",
+                  "lessonId": "koordination"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-be-wildkunde",
+          "label": "Wildkunde",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv-lehrplan"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-be-wildkunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Erkläre am Rehwild Fortpflanzung und Jahreslauf und ergänze eine Spurbeobachtung mit ausdrücklich begrenzter Art- oder Altersaussage.",
+              "selfCheck": [
+                "Sichtbare Umstände zuerst genannt.",
+                "Jahreslauf oder Fortpflanzungszusammenhang erklärt.",
+                "Keine genaue Alters- oder Verwaisungsbehauptung erfunden."
+              ],
+              "moduleId": "wissen-rehwild-jahreslauf",
+              "lessonId": "reh-nachwuchs",
+              "caseText": "Ein Kitz ist allein sichtbar. Schreibe eine sachliche Beschreibung; erkläre anschließend, was eine nicht gesehene Mutter für die Aussagekraft bedeutet.",
+              "followUp": "Wie würde sich deine Antwort ändern, wenn eine konkrete Gefahr beschrieben wird?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-spuren-systematisch",
+                  "lessonId": "spur-umfeld"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-be-waffen",
+          "label": "Waffen, Optik & Munition",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv-lehrplan"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-be-waffen-ziel",
+              "title": "Erklären und begründen",
+              "task": "Ordne Begriffe von Gesamtpatrone und Bauteilen zu und erkläre getrennt die Grenzen eines optischen Bilds und den organisatorischen Umgang mit Unsicherheit.",
+              "selfCheck": [
+                "Gesamtpatrone und Geschoss nicht gleichgesetzt.",
+                "Auffinden und Bestimmen getrennt.",
+                "Keine praktische Freigabe aus einem Gerät oder App-Ergebnis abgeleitet."
+              ],
+              "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+              "lessonId": "patrone-geschoss-bauteile",
+              "caseText": "Eine Darstellung zeigt eine Wärmequelle ohne sichere Artmerkmale. Stelle die offene Identifikation und die fehlenden Entscheidungsinformationen getrennt dar.",
+              "followUp": "Warum beantwortet größere Darstellung allein keine Frage nach sicherer Identifikation?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-optik",
+                  "lessonId": "sehen"
+                },
+                {
+                  "moduleId": "wissen-vertiefung-sicherheitsroutine-stand",
+                  "lessonId": "phasenkarte"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -960,6 +1405,166 @@
           "section": "Ablauf der Prüfung: Waffen-/Schiessprüfung und folgende theoretische Prüfung",
           "kind": "independent-explanation",
           "reviewedOn": "2026-11-01"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "ch-gr-wild-umwelt",
+          "label": "Wild & Umwelt",
+          "sourceIds": [
+            "ch-gr-norm",
+            "ch-gr-bkpjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-gr-wild-umwelt-ziel",
+              "title": "Erklären und begründen",
+              "task": "Vergleiche zwei Gebirgshänge über Exposition, Vegetation und Rückzug; erkläre anschließend, warum eine eingezeichnete Verbindung allein noch keine Nutzbarkeit belegt.",
+              "selfCheck": [
+                "Mehr als die Höhenlage betrachtet.",
+                "Bedürfnisse einer konkreten Art einbezogen.",
+                "Beobachtung nicht mit Bestand oder Ursache verwechselt."
+              ],
+              "moduleId": "wissen-gams-steinbock",
+              "lessonId": "berg-lebensraum",
+              "caseText": "Zwei Hänge liegen gleich hoch, unterscheiden sich aber in Ausrichtung und Schneelage. Zeichne für eine alpine Wildart einen begrenzten Vergleich und offene Prüffragen.",
+              "followUp": "Welche weitere Information benötigt eine Bewertung aus Sicht genau dieser Art?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-lebensraeume-biotopverbund",
+                  "lessonId": "biotop-netz"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-gr-wildkunde",
+          "label": "Wildkunde",
+          "sourceIds": [
+            "ch-gr-norm",
+            "ch-gr-bkpjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-gr-wildkunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Vergleiche Gämse und Steinbock anhand mehrerer erkennbarer Merkmale und ergänze eine Spurbeobachtung, ohne aus einer Silhouette ein genaues Alter abzuleiten.",
+              "selfCheck": [
+                "Mehrere Merkmale statt eines Einzelzeichens.",
+                "Unbekannte Körperteile als unbekannt markiert.",
+                "Spuruntergrund und Beobachtungsgrenzen genannt."
+              ],
+              "moduleId": "wissen-gams-steinbock",
+              "lessonId": "berg-merkmale",
+              "caseText": "Ein schlecht beleuchtetes Bergtier ist nur teilweise sichtbar. Erstelle eine Merkmalsliste und trenne mögliche Artzuordnung von ungeklärtem Geschlecht oder Alter.",
+              "followUp": "Welche Merkmale fehlen und welche weitere störungsarme Beobachtung könnte helfen?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-spuren-systematisch",
+                  "lessonId": "spur-abdruck"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-gr-jagdkunde",
+          "label": "Jagdkunde",
+          "sourceIds": [
+            "ch-gr-norm",
+            "ch-gr-bkpjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-gr-jagdkunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Verbinde eine klare Einweisung mit einer sachlichen Meldung nach einem Ereignis und begründe, wann weitere Entscheidungen an die qualifizierte Leitung gehören.",
+              "selfCheck": [
+                "Beobachtungen vor Deutung geordnet.",
+                "Zuständigkeit und Übernahme benannt.",
+                "Keine Sicherheit durch bloße Erfahrung oder Rassebezeichnung behauptet."
+              ],
+              "moduleId": "wissen-gesellschaftsjagd",
+              "lessonId": "einweisung",
+              "caseText": "Eine Person will nach einer unklar beobachteten Situation selbst weitergehen. Strukturiere zunächst bekannte Tatsachen, offene Fragen und die erforderliche Abstimmung.",
+              "followUp": "Welche Standort- und Richtungsangaben müssen unabhängig von der eigenen Vermutung erhalten bleiben?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-ausbau-anschussmeldung",
+                  "lessonId": "uebergabenotiz"
+                },
+                {
+                  "moduleId": "wissen-nachsuche",
+                  "lessonId": "koordination"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch-gr-gesetzeskunde",
+          "label": "Gesetzeskunde",
+          "sourceIds": [
+            "ch-gr-norm",
+            "ch-gr-bkpjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-gr-gesetzeskunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Formuliere eine konkrete Bündner Rechtsfrage mit Ort, Zeitpunkt und Sachverhalt; trenne den Ausbildungsnachweis von der separat zu klärenden örtlichen Berechtigung.",
+              "selfCheck": [
+                "Graubünden und Datum eindeutig.",
+                "Bund, Kanton und konkreter Fall getrennt.",
+                "Keine pauschale Erlaubnis aus einem einzigen Nachweis."
+              ],
+              "moduleId": "wissen-vertiefung-rechtsfassung-pruefen-2026",
+              "lessonId": "ort",
+              "caseText": "Eine Person setzt bestandene Prüfung und uneingeschränkte Jagdmöglichkeit gleich. Gliedere die offenen Rechtsfragen und öffne den vorhandenen Bündner Rechtsleser.",
+              "followUp": "Welche aktuelle örtliche Vorschrift könnte neben einem allgemeinen Bundesrahmen erforderlich sein?",
+              "regionalLaw": true
+            }
+          ]
+        },
+        {
+          "id": "ch-gr-waffenkunde",
+          "label": "Waffenkunde & Sicherheit",
+          "sourceIds": [
+            "ch-gr-norm",
+            "ch-gr-bkpjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog oder amtliche Bewertung dieses Fachs.",
+          "goals": [
+            {
+              "id": "ch-gr-waffenkunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Unterscheide grundlegende Munitionsbegriffe auf einem Lernblatt und erkläre einen Sicherheitsunterbruch im beaufsichtigten Rahmen, ohne Bedienungsfolgen zu improvisieren.",
+              "selfCheck": [
+                "Teil und Ganzes getrennt.",
+                "Unklarheit als offen benannt.",
+                "Fortsetzung nicht aus Routine oder Gruppendruck begründet."
+              ],
+              "moduleId": "wissen-ausbau-revierpraxis-beschuss-kennzeichnung-2026",
+              "lessonId": "patrone-geschoss-bauteile",
+              "caseText": "Ein Kommando wurde nicht verstanden. Formuliere eine kurze Rückfrage und ordne auf einem getrennten Papierblatt Gesamtpatrone und Geschoss als unterschiedliche Begriffe ein.",
+              "followUp": "Welche Rolle haben Aufsicht und örtliche Standordnung gegenüber eigener Vorerfahrung?",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-vertiefung-sicherheitsroutine-stand",
+                  "lessonId": "phasenkarte"
+                }
+              ]
+            }
+          ]
         }
       ]
     },

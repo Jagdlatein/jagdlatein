@@ -14,6 +14,7 @@ const { examReviewHref } = load('lib/exam-review-progress.js');
 const { lessonHash, lessonIndexFromHash } = load('lib/learning-lesson-navigation.js');
 const data = getExamStudyPlanData({ asOf: '2026-11-01' });
 const expectedProfiles = examCountries.flatMap(country => country.regions.map(region => `${country.code}:${region.code}`));
+const expectedSubjectCounts = new Map([['CH:ZH',7],['CH:BE',6],['CH:GR',5],['DE:BY',6],['DE:BB',6],['DE:HE',4]]);
 const sourcePaths = ['ch', 'at', 'de'].map(country => `../data/exam-alignment/${country}-2026-11-01.json`);
 let alignment;
 function getAlignment() { return alignment ||= load('lib/exam-alignment-server.js').getExamAlignmentData(); }
@@ -75,7 +76,7 @@ test('The build-time adapter projects exactly all51 canonical profiles with boun
   assert.deepEqual(projected.regions.map(key), expectedProfiles); assert.equal(new Set(projected.regions.map(key)).size, 51);
   const regionKeys = ['country', 'region', 'status', 'summary', 'formats', 'focus', 'moduleIds', 'limits', 'sources'].sort();
   for (const region of projected.regions) {
-    assert.deepEqual(Object.keys(region).sort(), regionKeys); assert.ok(['confirmed', 'partial', 'special'].includes(region.status));
+    assert.deepEqual(Object.keys(region).sort(), expectedSubjectCounts.has(key(region)) ? [...regionKeys,'subjectAreas'].sort() : regionKeys); assert.ok(['confirmed', 'partial', 'special'].includes(region.status));
     assert.ok(region.summary && region.limits.length && region.focus.length);
     const sources = new Map(region.sources.map(source => [source.id, source])); assert.equal(sources.size, region.sources.length);
     for (const source of region.sources) {
@@ -91,7 +92,18 @@ test('The build-time adapter projects exactly all51 canonical profiles with boun
       assert.ok(new Set(evidence.map(source => source.publisher)).size >= 2, key(region));
     }
     for (const focus of region.focus) { assert.deepEqual(Object.keys(focus).sort(), ['detail', 'label', 'moduleIds', 'sourceIds']); assert.ok(focus.label && focus.detail); for (const id of focus.sourceIds) assert.ok(sources.has(id)); }
+    if (expectedSubjectCounts.has(key(region))) {
+      assert.equal(region.status,'confirmed');assert.equal(region.subjectAreas.length,expectedSubjectCounts.get(key(region)));
+      assert.equal(new Set(region.subjectAreas.map(area=>area.id)).size,region.subjectAreas.length);
+      for(const area of region.subjectAreas){
+        assert.deepEqual(Object.keys(area).sort(),['goals','id','label','limit','sourceIds']);assert.ok(area.id&&area.label&&area.limit&&area.goals.length);
+        const evidence=area.sourceIds.map(id=>sources.get(id));assert.ok(evidence.every(Boolean));
+        assert.ok(evidence.some(source=>['norm','norm-copy'].includes(source.kind)));assert.ok(evidence.some(source=>source.kind==='independent-explanation'));assert.ok(new Set(evidence.map(source=>source.publisher)).size>=2);
+        for(const goal of area.goals){assert.ok(goal.id&&goal.title&&goal.task&&goal.selfCheck);assert.equal(typeof goal.regionalLaw,'boolean');if(goal.regionalLaw){assert.equal(goal.href,null);assert.equal(goal.quizHref,null);}else{assert.match(goal.href,/^\/kurse\/[^#]+#lesson-/);}}
+      }
+    }
   }
+  assert.equal(projected.regions.filter(region=>region.subjectAreas).length,6);assert.equal(projected.regions.reduce((sum,region)=>sum+(region.subjectAreas?.length||0),0),34);
   const serialized = JSON.stringify(projected);
   assert.doesNotMatch(serialized, /candidateFormats|readStatus|blocked|officialText|correctIndex|correctIds|"answers"|"questions"|"choices"|"prompt"|"model"|"transcript"|"lessons"/);
 });
@@ -105,7 +117,14 @@ test('Every offered learning/quiz/review/optional oral link resolves to real sha
     const category = learningCategoryDetails.find(category => category.title === course.category); assert.ok(category); assert.notEqual(category.slug, 'jagdrecht');
     assert.equal(item.id, id); assert.equal(item.title, getLearningNavigationLabel(course)); assert.equal(item.categorySlug, category.slug); assert.equal(item.categoryTitle, category.title);
     const href = new URL(item.href, 'https://jagdlatein.test'); assert.equal(href.pathname, `/kurse/${id}`); assert.equal(href.hash, lessonHash(course.lessons[0].id)); assert.equal(lessonIndexFromHash(course.lessons, href.hash), 0);
-    assert.equal(item.quizHref, `/kurse/${id}#wissenscheck`); assert.equal(item.reviewHref, examReviewHref('gemischt', category.slug));
+    if(id==='wissen-waffensicherheit') {
+      assert.equal(item.quizHref,null);
+      assert.ok(course.questions.some(question=>question.countries.length!==3 || [...question.countries].sort().join(',')!=='AT,CH,DE' || question.topic==='Recht'));
+    } else {
+      assert.ok(course.questions.every(question=>[...question.countries].sort().join(',')==='AT,CH,DE' && question.topic!=='Recht'),id);
+      assert.equal(item.quizHref, `/kurse/${id}#wissenscheck`);
+    }
+    assert.equal(item.reviewHref, examReviewHref('gemischt', category.slug));
     const matchingOral = oralExamQuestions.find(question => question.course === course.id && question.categorySlug === category.slug);
     assert.equal(item.oralHref, matchingOral ? `/lernen/pruefungsgespraech?kategorie=${category.slug}&eintrag=${encodeURIComponent(matchingOral.id)}` : null, id);
     if (item.oralHref) {
@@ -116,6 +135,7 @@ test('Every offered learning/quiz/review/optional oral link resolves to real sha
       assert.ok(question); assert.equal(question.course, course.id); assert.equal(question.categorySlug, category.slug); assert.notEqual(question.categorySlug, 'jagdrecht');
     }
   }
+  assert.deepEqual(Object.values(projected.learningCatalog).filter(item=>item.quizHref===null).map(item=>item.id),['wissen-waffensicherheit']);
   assert.ok(oralLinks > 0, 'existing exact course-bound oral questions must produce positive Erklären links');
   assert.ok(oralLinks < Object.keys(projected.learningCatalog).length, 'a shared category must not invent a course-bound oral question');
   for (const region of projected.regions) for (const id of [...region.moduleIds, ...region.focus.flatMap(focus => focus.moduleIds)]) assert.ok(learningModules.find(module => module.id === id).countries.includes(region.country));
@@ -153,6 +173,10 @@ test('The adapter copies only intentional metadata and rejects missing/duplicate
   assert.throws(() => projectFixture(data => data[sourcePaths[0]].regions[0].sources[0].kind = 'blocked'), /Quellennachweis/);
   assert.throws(() => projectFixture(data => data[sourcePaths[0]].regions[0].sources[0].url = 'http://example.invalid/norm'), /Quellennachweis/);
   assert.throws(() => projectFixture(data => { const region = data[sourcePaths[0]].regions.find(region => region.formats.length); region.sources.forEach(source => { source.publisher = 'Dieselbe Institution'; }); }), /Doppelbeleg/);
+  assert.throws(() => projectFixture(data => { const region=data[sourcePaths[2]].regions.find(region=>region.subjectAreas?.length);region.subjectAreas[0].sourceIds=region.subjectAreas[0].sourceIds.filter(id=>region.sources.find(source=>source.id===id).kind==='norm'); }), /Fachbezug/);
+  assert.throws(() => projectFixture(data => { const region=data[sourcePaths[2]].regions.find(region=>region.subjectAreas?.length);region.subjectAreas[1].id=region.subjectAreas[0].id; }), /doppelter Fachbezug/);
+  assert.throws(() => projectFixture(data => { const region=data[sourcePaths[2]].regions.find(region=>region.subjectAreas?.length);region.subjectAreas[0].goals[0].lessonId='missing-lesson'; }), /Lektionsbezug/);
+  assert.throws(() => projectFixture(data => { const area=data[sourcePaths[2]].regions.find(region=>region.subjectAreas?.length).subjectAreas[0];const partial=data[sourcePaths[2]].regions.find(region=>region.status==='partial');partial.subjectAreas=[{...area,sourceIds:[]}]; }), /Fachbezug/);
 });
 
 test('A draft and an accepted-but-uncommitted save preserve the confirmed regional row until the actual profile changes', async () => {

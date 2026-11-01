@@ -1,0 +1,508 @@
+{
+  "scope": "Eigene Prüfungslernziele und Selbstkontrollen zu bestehenden Lektionen; kein amtlicher Stoff- oder Bewertungsplan.",
+  "categories": [
+    {
+      "slug": "wildkunde",
+      "goals": [
+        {
+          "id": "wild-merkmale",
+          "title": "Federwild mit Merkmalskombinationen bestimmen",
+          "task": "Vergleiche zwei gedachte Vogelbeobachtungen anhand von Körperform, Schnabel und Flügelzeichnung. Beschreibe zuerst die sichtbaren Merkmale und erst danach eine mögliche Art.",
+          "selfCheck": [
+            "Ich nenne mehrere tatsächlich erkennbare Merkmale.",
+            "Ich trenne Artvermutung und sichere Beobachtung.",
+            "Ich benenne, welche weitere Ansicht zur Bestimmung fehlt."
+          ],
+          "moduleId": "wissen-federwild-beobachtung",
+          "lessonId": "vogel-merkmale"
+        },
+        {
+          "id": "wild-keimruhe",
+          "title": "Rehfortpflanzung im Jahreslauf erklären",
+          "task": "Verbinde Paarung, Keimruhe und Setzzeit in einer einfachen Jahreslaufskizze. Erkläre anschließend, welche Aussage ein allein sichtbares Kitz erlaubt.",
+          "selfCheck": [
+            "Ich ordne Keimruhe zwischen Paarung und weiterer Entwicklung ein.",
+            "Ich erkläre den zeitlichen Zusammenhang statt nur Monatszahlen aufzuzählen.",
+            "Ich leite aus fehlender Sicht auf die Mutter keine sichere Verwaisung ab."
+          ],
+          "moduleId": "wissen-rehwild-jahreslauf",
+          "lessonId": "reh-nachwuchs"
+        },
+        {
+          "id": "wild-kopfschmuck",
+          "title": "Geweih und Horn am Aufbau unterscheiden",
+          "task": "Vergleiche den Kopfaufsatz von Reh und Gams anhand der beschriebenen Gewebe. Verwende eine beschriftete Darstellung; leite aus der Silhouette keine Alterszahl ab.",
+          "selfCheck": [
+            "Ich unterscheide Geweihknochen von Hornkern und Keratinscheide.",
+            "Ich ordne Reh und Gams dem passenden Aufbau zu.",
+            "Ich erkläre, warum die äußere Form die Gewebeschichten nicht unmittelbar zeigt."
+          ],
+          "moduleId": "wissen-vertiefung-geweih-horn-gewebe-2026",
+          "lessonId": "gewebe"
+        }
+      ],
+      "caseQuestionId": "kitzfund"
+    },
+    {
+      "slug": "waffen-sicherheit",
+      "goals": [
+        {
+          "id": "sicherheit-regeln",
+          "title": "Sicherheitsregeln als getrennte Prüfpunkte erklären",
+          "task": "Besprich einen reinen Papierfall mit unklarem Ladezustand und Ablenkung. Erkläre die verschiedenen Sicherheitsprüfpunkte; praktische Handhabung erfolgt ausschließlich in betreuter Ausbildung.",
+          "selfCheck": [
+            "Ich halte Mündungsrichtung, Fingerposition und Ladezustand auseinander.",
+            "Ich begründe, warum eine Sicherung andere Regeln nicht ersetzt.",
+            "Ich benenne Unklarheit als Grund für eine Unterbrechung."
+          ],
+          "moduleId": "wissen-waffensicherheit",
+          "lessonId": "regeln"
+        },
+        {
+          "id": "sicherheit-hintergrund",
+          "title": "Sichtdeckung und Kugelfang unterscheiden",
+          "task": "Beschreibe einen Papierfall mit Bewuchs hinter einem Tier. Trenne Zielansprache, Umfeld und beurteilbaren Hintergrund, ohne eine Schussabgabe zu simulieren.",
+          "selfCheck": [
+            "Ich unterscheide verdeckenden Bewuchs von einem geprüften Kugelfang.",
+            "Ich beziehe den Bereich vor, neben und hinter dem Ziel in die Erklärung ein.",
+            "Ich begründe den Verzicht bei einem ungeklärten sicherheitsrelevanten Punkt."
+          ],
+          "moduleId": "wissen-kugelfang",
+          "lessonId": "hintergrund"
+        },
+        {
+          "id": "sicherheit-rueckmeldung",
+          "title": "Eine sicherheitsrelevante Meldung bestätigen lassen",
+          "task": "Formuliere auf einer Tischkarte eine Meldung mit Empfänger, Ort und Inhalt. Erkläre, wie eine fehlende Rückmeldung behandelt wird; übe ohne Waffen und laufende Jagd.",
+          "selfCheck": [
+            "Ich benenne einen eindeutigen Empfänger und den konkreten Inhalt.",
+            "Ich unterscheide Senden, Hören und bestätigtes Verstehen.",
+            "Ich benenne den vereinbarten Ersatzweg bei ausbleibender Antwort."
+          ],
+          "moduleId": "wissen-ausbau-sicherheitskommunikation",
+          "lessonId": "bestaetigung"
+        }
+      ],
+      "caseQuestionId": "kugelfang"
+    },
+    {
+      "slug": "jagdpraxis",
+      "goals": [
+        {
+          "id": "praxis-ansitzplan",
+          "title": "Einen begleiteten Ansitz vollständig vorbereiten",
+          "task": "Entwirf für einen begleiteten Ansitz eine kurze Vorbereitung mit Zugang, Rückkehr, Wetter und Erreichbarkeit. Erkläre, wie ein zweifelhafter Sitz in die Entscheidung eingeht.",
+          "selfCheck": [
+            "Ich berücksichtige Berechtigung, örtliche Freigaben und Rückweg.",
+            "Ich benenne Rückmeldung und Kommunikationsmöglichkeit.",
+            "Ich begründe die Nichtbenutzung einer zweifelhaften Einrichtung."
+          ],
+          "moduleId": "wissen-ansitzplanung",
+          "lessonId": "plan"
+        },
+        {
+          "id": "praxis-uebergabenotiz",
+          "title": "Eine Nachsuchemeldung geordnet übergeben",
+          "task": "Erstelle aus einem erfundenen Fall eine Übergabenotiz für die zuständige Fachperson. Ordne Standort, Beobachtung, letzten Sichtkontakt und offene Punkte; erfinde keinen Ausgang.",
+          "selfCheck": [
+            "Ich trenne eigene Wahrnehmung von fremder Mitteilung.",
+            "Ich halte Zeit, Ortsbezug und offene Punkte nachvollziehbar fest.",
+            "Ich dokumentiere Kontakt, Rückmeldung und spätere Ergänzungen getrennt."
+          ],
+          "moduleId": "wissen-ausbau-anschussmeldung",
+          "lessonId": "uebergabenotiz"
+        },
+        {
+          "id": "praxis-notfallort",
+          "title": "Einen Notfallort für Ortsfremde beschreiben",
+          "task": "Übersetze einen erfundenen internen Reviernamen in eine eindeutige Ortsbeschreibung mit Zugang. Die Papierübung verwendet keinen echten Notruf und verzögert im Ernstfall keine frühe Alarmierung.",
+          "selfCheck": [
+            "Ich benenne auffindbare Orts- und Zugangsinformationen.",
+            "Ich unterscheide den Notfallort vom Standort der anrufenden Person.",
+            "Ich benenne offene Geländeinformationen statt einen vertrauten Reviernamen vorauszusetzen."
+          ],
+          "moduleId": "wissen-ausbau-notruf-revier-2026",
+          "lessonId": "ort"
+        }
+      ],
+      "caseQuestionId": "meldung"
+    },
+    {
+      "slug": "natur-revier",
+      "goals": [
+        {
+          "id": "natur-spurfolge",
+          "title": "Eine Spurfolge statt eines Einzelabdrucks beschreiben",
+          "task": "Skizziere mehrere überlagerte Abdrücke und notiere Richtung, Folge und bekannte Witterung. Erkläre, welche Aussagen zu Tierzahl und Spuralter damit noch offenbleiben.",
+          "selfCheck": [
+            "Ich beschreibe Anordnung und Überlagerung getrennt.",
+            "Ich setze Abdruckzahl nicht automatisch mit Tier- oder Schrittzahl gleich.",
+            "Ich behandle eine scharfe Spur nicht als genaue Uhrzeit."
+          ],
+          "moduleId": "wissen-spuren-systematisch",
+          "lessonId": "spur-folge"
+        },
+        {
+          "id": "natur-biotopnetz",
+          "title": "Einen Biotopverbund aus Sicht einer Art prüfen",
+          "task": "Zeichne zwei geeignete Lebensräume mit einer möglichen Verbindung und einem Hindernis. Prüfe die Funktion der Verbindung für eine ausdrücklich benannte Zielart.",
+          "selfCheck": [
+            "Ich unterscheide Kernfläche, Trittstein und verbindende Struktur.",
+            "Ich benenne Anschluss, Hindernisse und Erreichbarkeit.",
+            "Ich trenne eine plausible Kartenverbindung von belegter Nutzung."
+          ],
+          "moduleId": "wissen-lebensraeume-biotopverbund",
+          "lessonId": "biotop-netz"
+        },
+        {
+          "id": "natur-erfassungsaufwand",
+          "title": "Beobachtungszahlen mit ihrem Aufwand vergleichen",
+          "task": "Vergleiche zwei Besuche mit unterschiedlicher Dauer, Strecke oder Methode. Formuliere einen Hinweis, der die Vergleichsgrenze der Zahlen verständlich macht.",
+          "selfCheck": [
+            "Ich nenne Methode, Dauer und beobachteten Abschnitt.",
+            "Ich markiere abweichende Bedingungen oder einen verkürzten Besuch.",
+            "Ich behaupte aus höherem Aufwand keine automatische Bestandszunahme."
+          ],
+          "moduleId": "wissen-ausbau-monitoring",
+          "lessonId": "aufwand"
+        }
+      ],
+      "caseQuestionId": "monitoring"
+    },
+    {
+      "slug": "hundewesen",
+      "goals": [
+        {
+          "id": "hund-arbeitsprofile",
+          "title": "Vorstehen, Stöbern und Apportieren zuordnen",
+          "task": "Ordne Vorsteh-, Stöber- und Apportierarbeit verschiedenen Arbeitsprofilen zu. Vergleiche dazu passende Rassebeispiele und den individuellen Ausbildungsstand.",
+          "selfCheck": [
+            "Ich erkläre die Aufgaben mit unterschiedlichen Tätigkeiten.",
+            "Ich unterscheide Rassegruppe, Zuchtziel und nachgewiesenes Können.",
+            "Ich leite aus Foto oder Gruppennummer keine individuelle Einsatzfreigabe ab."
+          ],
+          "moduleId": "wissen-vertiefung-jagdhunderassen",
+          "lessonId": "rassegruppen"
+        },
+        {
+          "id": "hund-lautkontext",
+          "title": "Lautbegriffe mit dem Beobachtungskontext verbinden",
+          "task": "Ordne Spurlaut, Sichtlaut und Waidlaut im ausdrücklich beschriebenen JGHV-Prüfungskontext ein. Trenne in einem Lernfall die sichtbare Verfolgung von der später verdeckten Situation.",
+          "selfCheck": [
+            "Ich nenne den jeweiligen Bezug zu Spur, Sicht oder fehlender Verfolgung.",
+            "Ich unterscheide gehörten Laut von beobachtetem Sichtkontakt.",
+            "Ich übertrage diese Begriffe nicht ungeprüft auf jede örtliche Prüfungsordnung."
+          ],
+          "moduleId": "wissen-vertiefung-hunde-nase-spur-laut",
+          "lessonId": "wissen-vertiefung-hunde-nase-spur-laut-lautbegriffe"
+        },
+        {
+          "id": "hund-lernaufbau",
+          "title": "Einen Lernschritt passend vereinfachen",
+          "task": "Zerlege ruhiges Warten in unterscheidbare Anforderungen. Verändere in deinem Papier-Lernplan nur einen Faktor und beschreibe, woran der nächste Schritt beobachtbar wird.",
+          "selfCheck": [
+            "Ich trenne Dauer, Abstand und Ablenkung.",
+            "Ich ändere zunächst eine Bedingung statt alle zugleich.",
+            "Ich leite aus einem Erfolg im Wohnzimmer keinen sicheren Transfer in jede Umgebung ab."
+          ],
+          "moduleId": "wissen-ausbau-hundelernen",
+          "lessonId": "schritte"
+        }
+      ],
+      "caseQuestionId": "hundelernen"
+    },
+    {
+      "slug": "wildbret-gesundheit",
+      "goals": [
+        {
+          "id": "wildbret-kontaktwege",
+          "title": "Saubere und verunreinigte Arbeitswege trennen",
+          "task": "Skizziere einen Arbeitsbereich mit Händen, Werkzeug und Ablageflächen. Markiere mögliche Kreuzkontakte und erkläre einen nötigen Arbeitswechsel; die praktische Gewinnung bleibt Teil fachlicher Schulung.",
+          "selfCheck": [
+            "Ich benenne einen konkreten Weg der Verschleppung.",
+            "Ich halte saubere und benutzte Bereiche auseinander.",
+            "Ich behandle verschmutzte Handschuhe nicht als Ersatz für einen hygienischen Wechsel."
+          ],
+          "moduleId": "wissen-wildbrethygiene",
+          "lessonId": "sauber"
+        },
+        {
+          "id": "wildbret-kuehlverlauf",
+          "title": "Eine Kühlkette über ihren Verlauf beurteilen",
+          "task": "Beschreibe in einem Papierfall Zeiten, Transport und Temperaturverlauf einer Kühlunterbrechung. Benenne die Informationen für eine fachliche Klärung, ohne eine eigene Freigabe zu erteilen.",
+          "selfCheck": [
+            "Ich betrachte den Verlauf statt nur den letzten Messwert.",
+            "Ich leite aus kalter Oberfläche keine vollständige Unbedenklichkeit ab.",
+            "Ich benenne die noch zu prüfenden produkt- und ortsbezogenen Vorgaben."
+          ],
+          "moduleId": "wissen-wildbrethygiene",
+          "lessonId": "kuehlen"
+        },
+        {
+          "id": "wildbret-krankheitsbegriffe",
+          "title": "Zoonose und Tierseuche auseinanderhalten",
+          "task": "Formuliere zu einem erfundenen Fund je eine Frage zur menschlichen Kontaktgefahr und zur Verschleppung in Tierbestände. Erkläre, warum beide Begriffe unterschiedliche Prüffragen bezeichnen.",
+          "selfCheck": [
+            "Ich unterscheide mögliche Übertragung zwischen Tier und Mensch vom tiergesundheitsrechtlichen Rahmen.",
+            "Ich benenne Kontakt- und Verschleppungswege als getrennte Fragen.",
+            "Ich leite aus dem Begriff weder eine Ferndiagnose noch eine Transporterlaubnis ab."
+          ],
+          "moduleId": "wissen-ausbau-wildkrankheiten",
+          "lessonId": "begriffe"
+        }
+      ],
+      "caseQuestionId": "sinneseindruck"
+    },
+    {
+      "slug": "jagdrecht",
+      "goals": [
+        {
+          "id": "recht-geltungsbereich",
+          "title": "Eine örtlich konkrete Rechtsfrage stellen",
+          "task": "Formuliere eine Rechtsfrage mit Land, Region, Zeitpunkt und Handlung. Öffne für die konkrete Antwort die Rechtsansicht deines bestätigten Prüfungsprofils; die Lektion übt die Prüfmethode.",
+          "selfCheck": [
+            "Ich nenne den tatsächlichen Ort und die geplante Handlung.",
+            "Ich unterscheide zugrunde liegende Vorschrift und erklärendes Merkblatt.",
+            "Ich markiere eine noch offene regionale Voraussetzung."
+          ],
+          "moduleId": "wissen-ausbau-rechtsquellen",
+          "lessonId": "quelle"
+        },
+        {
+          "id": "recht-berechtigung",
+          "title": "Persönlichen Nachweis und örtlichen Auftrag trennen",
+          "task": "Entwirf Fragen für einen erstmaligen Jagdgast zu Dokument, Anerkennung, räumlichem Umfang und Auftrag. Beantworte örtliche Einzelregeln nur mit der passenden regionalen Rechtsansicht.",
+          "selfCheck": [
+            "Ich trenne persönliche Qualifikation und konkreten örtlichen Auftrag.",
+            "Ich prüfe Gültigkeit und Anerkennung statt sie aus dem Dokumentnamen abzuleiten.",
+            "Ich behandle eine Einladung nicht als Antwort auf sämtliche weiteren Voraussetzungen."
+          ],
+          "moduleId": "wissen-ausbau-rechtsquellen",
+          "lessonId": "person"
+        },
+        {
+          "id": "recht-fallakte",
+          "title": "Eine Schutzgebietsfrage nachvollziehbar dokumentieren",
+          "task": "Fülle für einen erfundenen Fall Land, Region, Gebiet, Datum, Aktivität und amtliche Fundstelle aus. Die Länderbeispiele der Lektion bleiben Beispiele; kläre die tatsächliche örtliche Grundlage gesondert.",
+          "selfCheck": [
+            "Ich ordne Karte und maßgebliche Gebietsgrundlage getrennt zu.",
+            "Ich halte offene Fragen und die zuständige Rückfrage fest.",
+            "Ich behandle eine eigene Prüfakte nicht als amtliche Erlaubnis."
+          ],
+          "moduleId": "wissen-ausbau-schutzgebietspruefung-2026",
+          "lessonId": "fallakte"
+        }
+      ]
+    },
+    {
+      "slug": "pruefung-sprache",
+      "goals": [
+        {
+          "id": "sprache-koerperbegriffe",
+          "title": "Körperteile in Alltagssprache und Jägersprache benennen",
+          "task": "Beschrifte an einer geeigneten Rehdarstellung Maul, Hals, Beine und hellen Hinterteilbereich. Formuliere anschließend dieselbe Beschreibung verständlich ohne Fachwörter.",
+          "selfCheck": [
+            "Ich ordne Äser, Träger, Läufe und Spiegel dem richtigen Bereich zu.",
+            "Ich erhalte in beiden Sprachfassungen dieselbe Bedeutung.",
+            "Ich leite aus einem Körperteil keine vollständige Alters- oder Geschlechtsbestimmung ab."
+          ],
+          "moduleId": "wissen-ausbau-jaegersprache",
+          "lessonId": "koerper"
+        },
+        {
+          "id": "sprache-fallbegruendung",
+          "title": "Entscheidung, Grund und nächsten Schritt verbinden",
+          "task": "Beantworte einen selbst erstellten Fall mit Entscheidung, ausschlaggebendem Grund und passendem nächsten Schritt. Ersetze allgemeine Schlagwörter durch eine konkrete fehlende Information.",
+          "selfCheck": [
+            "Ich nenne eine eindeutige Entscheidung.",
+            "Ich verknüpfe den Grund mit dem konkreten Sachverhalt.",
+            "Ich wähle den nächsten Schritt passend zur fachlichen oder rechtlichen Frage."
+          ],
+          "moduleId": "wissen-ausbau-pruefungsfaelle",
+          "lessonId": "begruenden"
+        },
+        {
+          "id": "sprache-abrufkontrolle",
+          "title": "Ohne Vorlage erklären und begründet kontrollieren",
+          "task": "Schließe eine gelesene Lektion und erkläre ihr zentrales Kriterium. Vergleiche danach mit dem Text, verbessere eine unzutreffende Idee und probiere eine eigene Fallvariante.",
+          "selfCheck": [
+            "Ich formuliere zuerst selbst statt die Lösung nur wiederzuerkennen.",
+            "Ich kontrolliere den Zusammenhang und nicht nur einzelne Schlüsselwörter.",
+            "Ich benenne eine konkrete Korrektur und einen erneuten Abrufauftrag."
+          ],
+          "moduleId": "wissen-ausbau-lernmethoden",
+          "lessonId": "abruf"
+        }
+      ],
+      "caseQuestionId": "abruflernen"
+    },
+    {
+      "slug": "wald-pflanzen",
+      "goals": [
+        {
+          "id": "wald-nadelbaeume",
+          "title": "Fichte und Weißtanne über mehrere Merkmale vergleichen",
+          "task": "Vergleiche Zweigbilder von Fichte und Weißtanne nach Nadelstellung, Unterseite und erkennbaren Zapfenmerkmalen. Bleibe bei einer vorläufigen Bestimmung, wenn entscheidende Ansichten fehlen.",
+          "selfCheck": [
+            "Ich nenne eine passende Kombination von Nadel- und Zapfenmerkmalen.",
+            "Ich behandle einen Bodenfund nicht als sicheren Nachweis für den nächsten Baum.",
+            "Ich begrenze den Vergleich auf die beiden behandelten Arten."
+          ],
+          "moduleId": "wissen-ausbau-baumarten-waldaufbau",
+          "lessonId": "nadelmerkmale"
+        },
+        {
+          "id": "wald-winterknospen",
+          "title": "Die Gemeine Esche im Wintervergleich begründen",
+          "task": "Skizziere die beschriebenen Winterknospen der Gemeinen Esche und verbinde sie mit dem späteren Blattbau. Erkläre im Vergleich der vier Kursarten, warum die Knospenstellung allein nicht genügt.",
+          "selfCheck": [
+            "Ich verbinde schwarze Knospen mit gegenüberstehenden Paaren und Endknospe.",
+            "Ich unterscheide das gefiederte Gesamtblatt von einem einzelnen Fiederblättchen.",
+            "Ich benenne die Grenze zum vollständigen Bestimmungsschlüssel."
+          ],
+          "moduleId": "wissen-pruefung-winterknospen-2026",
+          "lessonId": "esche"
+        },
+        {
+          "id": "wald-schadensprotokoll",
+          "title": "Schaden und vermutete Ursache getrennt dokumentieren",
+          "task": "Ordne Beobachtungen an einem Jungbaum in sichtbaren Schaden, mögliche Ursache und zusätzliche Prüfhinweise. Leite aus einem fehlenden Trieb nicht ohne weitere Merkmale einen bestimmten Verursacher ab.",
+          "selfCheck": [
+            "Ich beschreibe den betroffenen Pflanzenteil und die Verletzung.",
+            "Ich kennzeichne die Sicherheit der Ursachenvermutung.",
+            "Ich benenne einen weiteren zur Zuordnung benötigten Befund."
+          ],
+          "moduleId": "wissen-ausbau-waldverjuengung-verbiss",
+          "lessonId": "schaden"
+        }
+      ],
+      "caseQuestionId": "baumwinter"
+    },
+    {
+      "slug": "landwirtschaft-lebensraeume",
+      "goals": [
+        {
+          "id": "feld-entwicklungsstadien",
+          "title": "Kulturstadien als wechselnden Lebensraum vergleichen",
+          "task": "Beschreibe denselben Getreideschlag als jungen, dichten und abgeernteten Bestand. Vergleiche erreichbare Nahrung, Deckung und Rückzugsmöglichkeiten, ohne eine dauerhafte Nutzung zu unterstellen.",
+          "selfCheck": [
+            "Ich benenne Entwicklungszustand und Zeitpunkt.",
+            "Ich unterscheide sichtbare Struktur von vermuteter Tiernutzung.",
+            "Ich erkläre, warum der Kulturname allein die aktuelle Funktion nicht beschreibt."
+          ],
+          "moduleId": "wissen-ausbau-agrarjahr",
+          "lessonId": "stadien"
+        },
+        {
+          "id": "feld-mahdabstimmung",
+          "title": "Eine Rettungsmaßnahme räumlich und zeitlich abstimmen",
+          "task": "Zeichne für eine Papierübung Fläche, Grenzen und Zufahrt ein. Formuliere die bestätigte Abstimmung zwischen Betrieb, ausführender Person und fachkundigem Rettungsteam einschließlich eines Änderungswegs.",
+          "selfCheck": [
+            "Ich benenne Fläche und erreichbare Verantwortliche eindeutig.",
+            "Ich lasse Bezeichnung und geplanten Ablauf zurückbestätigen.",
+            "Ich leite aus einem angenommenen Termin keine eigenständige Maschinenfreigabe ab."
+          ],
+          "moduleId": "wissen-ausbau-mahd-wildtierrettung",
+          "lessonId": "team"
+        },
+        {
+          "id": "feld-heckenziel",
+          "title": "Eine Heckenidee mit dem Offenlandziel abgleichen",
+          "task": "Vergleiche dieselbe Pflanzidee an einem strukturarmen Ackerrand und einer Fläche mit bekanntem Offenland-Brutvorkommen. Formuliere vor einer Maßnahme die standortbezogenen Prüffragen.",
+          "selfCheck": [
+            "Ich nenne Zielart und vorhandenen Naturwert.",
+            "Ich unterscheide mögliche Gehölzfunktionen vom Bedarf offener Flächen.",
+            "Ich behandle Förderhinweis oder Einzelbeobachtung nicht als alleinige Planungsentscheidung."
+          ],
+          "moduleId": "wissen-ausbau-feldraine-hecken",
+          "lessonId": "zielkonflikte"
+        }
+      ],
+      "caseQuestionId": "mahd"
+    },
+    {
+      "slug": "ausruestung-technik",
+      "goals": [
+        {
+          "id": "technik-massstab",
+          "title": "Kartenmaßstab und Gehzeit auseinanderhalten",
+          "task": "Rechne drei Zentimeter im gedruckten Maßstab 1 zu 25 000 in eine horizontale Geländestrecke um. Erkläre anschließend, welche zusätzlichen Angaben für eine Wegeplanung nötig sind.",
+          "selfCheck": [
+            "Ich halte Karten- und Geländeeinheiten nachvollziehbar zusammen.",
+            "Ich unterscheide horizontale Strecke, gekrümmten Weg und Gehzeit.",
+            "Ich nutze bei geänderter Bildschirmdarstellung die tatsächlich passende Maßstabsangabe."
+          ],
+          "moduleId": "wissen-ausbau-karten-gps",
+          "lessonId": "massstab"
+        },
+        {
+          "id": "technik-ausfallplan",
+          "title": "Offlinezugriff und eine geübte Alternative prüfen",
+          "task": "Beschreibe in einer sicheren Trockenübung den vorher geprüften Offlinezugriff deiner Karte und eine verfügbare Alternative bei Geräteausfall. Verursache dafür keinen echten Ausfall im Gelände.",
+          "selfCheck": [
+            "Ich unterscheide heruntergeladene Daten von nur online sichtbaren Funktionen.",
+            "Ich benenne eine verfügbare und bekannte Reservefunktion.",
+            "Ich berücksichtige Rückkehrpunkte, Zeitrahmen und Erreichbarkeit."
+          ],
+          "moduleId": "wissen-ausbau-karten-gps",
+          "lessonId": "ausfall"
+        },
+        {
+          "id": "technik-schichten",
+          "title": "Bekleidung nach Funktionen und Bewegung planen",
+          "task": "Ordne innerer, isolierender und äußerer Bekleidungsschicht ihre Funktionen zu. Prüfe in einer Trockenübung gemeinsam Beweglichkeit und Erreichbarkeit zusätzlicher Isolierung.",
+          "selfCheck": [
+            "Ich beschreibe die unterschiedlichen Schichtfunktionen.",
+            "Ich betrachte Passform und Beweglichkeit der Kombination.",
+            "Ich leite aus einem Produktetikett keine Eignung für jede Situation ab."
+          ],
+          "moduleId": "wissen-ausbau-ausruestungsplanung",
+          "lessonId": "schichten"
+        }
+      ],
+      "caseQuestionId": "offlinekarte"
+    },
+    {
+      "slug": "tierschutz-verantwortung",
+      "goals": [
+        {
+          "id": "verantwortung-verzicht",
+          "title": "Einen Verzicht mit dem konkreten Grund begründen",
+          "task": "Formuliere zu einem Papierfall mit Erfolgsdruck einen sachlichen Verzichtssatz. Begründe ihn mit der fehlenden Voraussetzung und nicht mit Vorwürfen oder dem bisher investierten Aufwand.",
+          "selfCheck": [
+            "Ich trenne Ergebniswunsch und fachliche Bewertung.",
+            "Ich benenne den offenen Sicherheits- oder Fähigkeitsgrund.",
+            "Ich beurteile die Entscheidung nicht allein am ausgebliebenen Jagderfolg."
+          ],
+          "moduleId": "wissen-ausbau-verantwortungsentscheidungen",
+          "lessonId": "verzicht"
+        },
+        {
+          "id": "verantwortung-fundkontakt",
+          "title": "Eine örtlich passende Fachstelle klären",
+          "task": "Stelle für einen erfundenen Fund die örtlichen Kontakte nach Aufgabe und Erreichbarkeit zusammen. Beschreibe eine bestätigte Übergabe mit offenen Punkten, ohne eigenständige Pflege zu beginnen.",
+          "selfCheck": [
+            "Ich kläre Zuständigkeit nach Fundort und erkannter Tiergruppe.",
+            "Ich benenne Kontaktperson, bestätigte Übernahme und noch offene Schritte.",
+            "Ich behandle eine Internetliste nicht als automatische Erlaubnis für Aufnahme, Pflege oder Freilassung."
+          ],
+          "moduleId": "wissen-ausbau-wildunfall-fundtiere",
+          "lessonId": "fundtierkontakt"
+        },
+        {
+          "id": "verantwortung-konfliktbefund",
+          "title": "Eine Konfliktmeldung ohne Schuldvermutung formulieren",
+          "task": "Beschreibe einen erfundenen Konflikt am Revierzugang mit Ort, Zeit und sicherem Befund. Halte eine unbekannte Ursache ausdrücklich offen und wähle den geeigneten Kontaktweg.",
+          "selfCheck": [
+            "Ich nenne ein beobachtbares Ereignis statt ein Gruppenetikett.",
+            "Ich unterscheide Befund und vermutete Ursache.",
+            "Ich formuliere die Meldung ohne öffentliches Bloßstellen vermeintlicher Verursacher."
+          ],
+          "moduleId": "wissen-ausbau-naturdialog",
+          "lessonId": "beobachtungkonflikt"
+        }
+      ],
+      "caseQuestionId": "fundtier"
+    }
+  ]
+}

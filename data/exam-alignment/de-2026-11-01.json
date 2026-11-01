@@ -203,6 +203,152 @@
           "kind": "independent-explanation",
           "reviewedOn": "2026-11-01"
         }
+      ],
+      "subjectAreas": [
+        {
+          "id": "de-by-waffenkunde",
+          "label": "Waffenkunde",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "limit": "Ausgewählter Sicherheitsaspekt der Waffenkunde; kein vollständiger Waffen-, Munitions- oder Fanggerätestoff.",
+          "goals": [
+            {
+              "id": "de-by-waffenkunde-ziel",
+              "title": "Sicherheitsprinzipien im Fall begründen",
+              "task": "Erkläre an einer beschriebenen Situation, warum eine Sicherung eine falsche Mündungsrichtung nicht ausgleicht. Benenne eine Ablenkung und begründe, warum du den Übungsablauf unter qualifizierter Anleitung unterbrechen würdest.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-waffensicherheit",
+              "lessonId": "regeln",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-by-wildbiologie",
+          "label": "Wildbiologie",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "limit": "Rehwild ist hier das konkrete Lernbeispiel; daraus folgt keine Abdeckung aller heimischen Wildarten.",
+          "goals": [
+            {
+              "id": "de-by-wildbiologie-ziel",
+              "title": "Rehwild im Jahreslauf beschreiben",
+              "task": "Halte Fell, Geweih und Gruppierung in einer nachvollziehbaren Beobachtungsnotiz getrennt fest. Erkläre, warum ein Einzelblick weder einen genauen Kalendertag noch ein genaues Alter belegt.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-rehwild-jahreslauf",
+              "lessonId": "reh-jahreszeiten",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-by-recht",
+          "label": "Recht",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "limit": "Die Lektion trainiert Quellenbezug. Den konkreten bayerischen Rechtstext prüfst du in der regionalen Rechtsansicht.",
+          "goals": [
+            {
+              "id": "de-by-recht-ziel",
+              "title": "Rechtsantwort mit Quellenbezug geben",
+              "task": "Benenne bei einem selbst erstellten Papierfall Land, Region und den konkreten Regelungsbereich. Formuliere eine ungeklärte Anerkennungs- oder Berechtigungsfrage ausdrücklich als offen, statt eine fremde Landesregel zu übertragen.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-ausbau-pruefungsfaelle",
+              "lessonId": "quellenantwort",
+              "regionalLaw": true
+            }
+          ]
+        },
+        {
+          "id": "de-by-hege-jagdbetrieb",
+          "label": "Wildhege und Jagdbetrieb",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "limit": "Fiktive Bilanzübung; keine Methode zur Ermittlung eines realen Bestands und keine Abschussplanung.",
+          "goals": [
+            {
+              "id": "de-by-hege-jagdbetrieb-ziel",
+              "title": "Eine Bestandsänderung erklären",
+              "task": "Ordne in einem vollständig erfundenen Rechenfall Geburten, Sterbefälle, Zuwanderung und Abwanderung getrennt zu. Erkläre, warum dieselbe Grenzbewegung auf Revier- und Landschaftsebene unterschiedlich eingeordnet wird.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-vertiefung-populationsoekologie",
+              "lessonId": "bilanz",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-by-jagdhunde",
+          "label": "Jagdhundewesen",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "limit": "Aufgabenverständnis; keine Feststellung einer tatsächlichen Brauchbarkeit und kein Ersatz für angeleitete Hundeausbildung.",
+          "goals": [
+            {
+              "id": "de-by-jagdhunde-ziel",
+              "title": "Hundearbeit aufgabenbezogen zuordnen",
+              "task": "Ordne gedachte Situationen den Aufgaben Suche, Vorstehen, Stöbern, Bringen oder Nachsuche zu. Nenne eine notwendige Fähigkeit der Führung und erkläre, weshalb Rasse oder eine gelungene Einzelübung keine umfassende Einsatzfähigkeit beweist.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+              "lessonId": "hund-aufgaben",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-by-naturschutz-land-wald",
+          "label": "Naturschutz, Land- und Waldbau",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "limit": "Ausgewählter Lebensraumaspekt; kein vollständiger Stoff zu Naturschutz, Landwirtschaft und Waldbau.",
+          "goals": [
+            {
+              "id": "de-by-naturschutz-land-wald-ziel",
+              "title": "Lebensraumfunktionen für eine Zielart prüfen",
+              "task": "Markiere in einer eigenen Skizze Nahrung, Fortpflanzungsplätze, Deckung und Ruhebereiche für eine gewählte Zielart. Trenne tatsächlich beobachtete Funktionen von nur vermuteten Funktionen und nenne eine fehlende Information.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-lebensraeume-biotopverbund",
+              "lessonId": "biotop-funktion",
+              "regionalLaw": false
+            }
+          ]
+        }
       ]
     },
     {
@@ -381,6 +527,152 @@
           "section": "Allgemeine Anmeldefristen: Prüfungszyklus; Prüfungsfragen: sechs Sachgebiete",
           "kind": "independent-explanation",
           "reviewedOn": "2026-11-01"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "de-bb-wildarten",
+          "label": "Wildarten",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "limit": "Ein einzelner Spurenaspekt der Artenkenntnis; keine vollständige Artbestimmung oder amtliche Nachweisbewertung.",
+          "goals": [
+            {
+              "id": "de-bb-wildarten-ziel",
+              "title": "Ein Spurmerkmal mit seiner Grenze beschreiben",
+              "task": "Beschreibe erkennbare Schalen, Zehen, Ballen oder Krallen zusammen mit Untergrund und Erhaltung. Erkläre an Sand, Schlamm oder tauendem Schnee, weshalb ein undeutlicher Einzelabdruck keine sichere Artbestimmung oder genaue Fußgröße trägt.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-spuren-systematisch",
+              "lessonId": "spur-abdruck",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-bb-naturschutz",
+          "label": "Naturschutz",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "limit": "Gedankliche Bewertung einer Skizze; kein genehmigter Maßnahmenplan und keine Aussage über alle Tierarten.",
+          "goals": [
+            {
+              "id": "de-bb-naturschutz-ziel",
+              "title": "Eine Verbindung zwischen Lebensräumen beurteilen",
+              "task": "Unterscheide in einer Skizze Kernfläche, Trittstein und mögliche Verbindung nach ihrer Funktion für eine Zielart. Benenne eine Barriere und erkläre den Unterschied zwischen einer plausiblen Kartenlinie und tatsächlich belegter Nutzung.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-lebensraeume-biotopverbund",
+              "lessonId": "biotop-netz",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-bb-waffentechnik",
+          "label": "Waffentechnik",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "limit": "Entscheidungsübung; keine Anleitung zur Reparatur oder selbstständigen Störungsbeseitigung.",
+          "goals": [
+            {
+              "id": "de-bb-waffentechnik-ziel",
+              "title": "Eine unklare Funktion sicher unterbrechen",
+              "task": "Erkenne im beschriebenen Lernfall eine unklare Patronenzuordnung, mögliche Blockade oder ungewöhnliche Funktion als Grund zum Stoppen. Formuliere, wie du den normalen Ablauf unterbrichst und das Problem mit qualifizierter Hilfe klärst, statt unter Zeitdruck zu improvisieren.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-waffensicherheit",
+              "lessonId": "stoerung",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-bb-jagdbetrieb",
+          "label": "Jagdbetrieb",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "limit": "Meldung und Koordination; keine eigenständige Anleitung zur Durchführung einer Nachsuche oder Zusage regionaler Wildfolgerechte.",
+          "goals": [
+            {
+              "id": "de-bb-jagdbetrieb-ziel",
+              "title": "Nachsuche als koordinierte Teamaufgabe erklären",
+              "task": "Benenne für einen selbst erstellten Fall Zuständigkeit, Ansprechpartner und vorab zu klärende Absprachen. Erkläre, warum Dringlichkeit regionale Grenzen, Sicherheitsfragen und die benötigte Kompetenz nicht ersetzt.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-nachsuche",
+              "lessonId": "koordination",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-bb-wildkrankheiten",
+          "label": "Wildkrankheiten",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "limit": "Keine Ferndiagnose, Bergungsfreigabe oder lebensmittelrechtliche Beurteilung.",
+          "goals": [
+            {
+              "id": "de-bb-wildkrankheiten-ziel",
+              "title": "Eine sachliche Fundmeldung erstellen",
+              "task": "Formuliere eine Meldung mit auffindbarem Ort, Datum, soweit sicher bestimmter Tierart und sichtbaren Auffälligkeiten. Trenne den beobachteten Befund von einer Krankheitsvermutung und benenne die notwendige fachliche Abklärung.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-tiergesundheit",
+              "lessonId": "fund",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-bb-recht",
+          "label": "Rechtsvorschriften",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "limit": "Methodische Fallübung; die konkrete Rechtsregel und ihr Geltungsbereich werden zusätzlich in der Brandenburg-Ansicht geprüft.",
+          "goals": [
+            {
+              "id": "de-bb-recht-ziel",
+              "title": "Unabhängige Voraussetzungen im Fall trennen",
+              "task": "Ordne Ansprache, rechtliche Voraussetzungen, sichere Lage und eigene Kompetenz als getrennte Prüffelder. Begründe an einem eigenen Fall, weshalb eine erfüllte Voraussetzung ein anderes offenes Prüffeld nicht kompensiert.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-ausbau-pruefungsfaelle",
+              "lessonId": "ebenen",
+              "regionalLaw": true
+            }
+          ]
         }
       ]
     },
@@ -593,6 +885,104 @@
           "section": "§ 3 physische PDF-S. 11; § 5 Abs. 1 PDF-S. 13; § 6 Abs. 1 PDF-S. 14; Kopf Geltung ab 01.04.2026",
           "kind": "norm-copy",
           "reviewedOn": "2026-11-01"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "de-he-wildbiologie",
+          "label": "Wildbiologie",
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "limit": "Ausgewählter Befundaspekt aus dem umfangreicheren Sachgebiet; keine vollständige Wildbiologie-, Naturschutz-, Land- oder Forstkunde.",
+          "goals": [
+            {
+              "id": "de-he-wildbiologie-ziel",
+              "title": "Schadensbild vor Ursache beschreiben",
+              "task": "Unterscheide im vorhandenen Lernbeispiel fehlende Triebe, abgelöste Rinde und Reibespuren anhand der betroffenen Pflanzenteile. Halte Höhe, Frische und Umgebung fest und lasse die Ursache offen, wenn der Befund keine eindeutige Zuordnung trägt.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-wald-wild",
+              "lessonId": "bilder",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-he-jagdbetrieb",
+          "label": "Jagdbetrieb",
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "limit": "Hygienische Grundentscheidung; keine praktische Kompetenzbescheinigung oder abschließende Wildbretbeurteilung.",
+          "goals": [
+            {
+              "id": "de-he-jagdbetrieb-ziel",
+              "title": "Einen hygienischen Arbeitswechsel begründen",
+              "task": "Zeige im eigenen Schema, auf welchem Weg Hände, Werkzeuge oder Kontaktflächen Verunreinigung in einen sauberen Bereich tragen könnten. Begründe am vorhandenen Beispiel eine Unterbrechung oder einen Wechsel, ohne daraus eine Freigabe des Wildbrets abzuleiten.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-wildbrethygiene",
+              "lessonId": "sauber",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-he-waffen",
+          "label": "Waffen",
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "limit": "Sicherheitsorientierte Fallbeschreibung; keine Schießfreigabe aus einem Foto oder aus dieser Lernaufgabe.",
+          "goals": [
+            {
+              "id": "de-he-waffen-ziel",
+              "title": "Hintergrund und Sichtdeckung unterscheiden",
+              "task": "Beschreibe den Unterschied zwischen einem verdeckenden Busch und einem fachlich beurteilten Hintergrund. Benenne im Lernfall eine offene Frage vor, neben oder hinter dem Ziel und begründe das Unterlassen der Schussabgabe bei ungeklärter Lage.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-kugelfang",
+              "lessonId": "hintergrund",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "de-he-recht",
+          "label": "Recht",
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "limit": "Eigene Variantenübung; keine Übernahme einer bestimmten hessischen Einzelfallentscheidung oder einer fremden Landesregel.",
+          "goals": [
+            {
+              "id": "de-he-recht-ziel",
+              "title": "Eine geänderte Lage neu prüfen",
+              "task": "Verändere an einem eigenen Ausgangsfall genau eine Bedingung, etwa Ansprache, Person im Umfeld oder Region. Benenne, welches Prüffeld dadurch neu zu beurteilen ist und welche anderen Fragen weiterhin offenbleiben.",
+              "selfCheck": [
+                "Die Aufgabe ist vollständig beantwortet.",
+                "Die Begründung bezieht sich auf die verknüpfte Lektion.",
+                "Die genannte Grenze ist berücksichtigt."
+              ],
+              "moduleId": "wissen-ausbau-pruefungsfaelle",
+              "lessonId": "veraenderung",
+              "regionalLaw": true
+            }
+          ]
         }
       ]
     },
