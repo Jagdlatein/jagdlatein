@@ -1,2 +1,5 @@
 # PDF offsets and compressed streams must survive Windows/Mac checkouts byte-for-byte.
 *.pdf binary
+# Keep the reviewed reel caption/page identical in Git, downloads and its ZIP.
+public/werbung/jagdlatein-reel-30s-2026-11-01.html text eol=lf
+public/werbung/jagdlatein-reel-30s-2026-11-01.txt text eol=lf

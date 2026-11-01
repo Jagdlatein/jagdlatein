@@ -2,6 +2,7 @@
 // No browser profile, provider account, customer data or external request.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
+const { inflateRawSync } = require('node:zlib');
 const { createLoader, root, local } = require('./helpers/project-module.cjs');
 const { NextRequest } = local('next/server');
 const { unstable_getResponseFromNextConfig } = local('next/experimental/testing/server');
@@ -30,11 +31,37 @@ test('Hosted files preserve the independently reviewed reel, package and cover b
     assert.equal(file.length, item.bytes); assert.equal(sha(file), item.sha256);
   }
   assert.equal(sha(bytes('mp4')), '1c07f554247c76f5f53fea6519c23259dbefae2e52beb5438d153ff52162062b');
-  assert.equal(sha(bytes('zip')), '63c05a931bb84f3a9dbf9be87972e9be81ddbcf73cc32952ec1d6fdde8a509fb');
+  assert.equal(sha(bytes('zip')), '07e69ed6864158dab51dfe244864bcb2d3aa534d33d26e951d5ff051b936f2c5');
   const video = bytes('mp4'); assert.equal(video.toString('ascii', 4, 8), 'ftyp');
   assert.ok(video.indexOf(Buffer.from('moov')) < video.indexOf(Buffer.from('mdat')), 'Fast-start metadata precedes media');
   const photo = await local('sharp')(bytes('jpg')).metadata();
   assert.equal(photo.width, 1080); assert.equal(photo.height, 1920); assert.equal(photo.format, 'jpeg');
+});
+
+test('ZIP members retain the final movie and the exact LF caption served from Git on every platform', () => {
+  const zip = bytes('zip'); let end = zip.length - 22;
+  while (end >= Math.max(0, zip.length - 65557) && zip.readUInt32LE(end) !== 0x06054b50) end--;
+  assert.ok(end >= 0); assert.equal(zip.readUInt16LE(end + 10), 6);
+  const members = new Map(); let cursor = zip.readUInt32LE(end + 16);
+  for (let i = 0; i < 6; i++) {
+    assert.equal(zip.readUInt32LE(cursor), 0x02014b50);
+    const method = zip.readUInt16LE(cursor + 10), size = zip.readUInt32LE(cursor + 20);
+    const nameLength = zip.readUInt16LE(cursor + 28), offset = zip.readUInt32LE(cursor + 42);
+    const name = zip.subarray(cursor + 46, cursor + 46 + nameLength).toString('utf8');
+    assert.equal(zip.readUInt32LE(offset), 0x04034b50); assert.ok([0,8].includes(method));
+    const start = offset + 30 + zip.readUInt16LE(offset + 26) + zip.readUInt16LE(offset + 28);
+    const compressed = zip.subarray(start, start + size), content = method === 8 ? inflateRawSync(compressed) : compressed;
+    assert.equal(content.length, zip.readUInt32LE(cursor + 24)); assert.equal(members.has(name), false);
+    members.set(name, content); cursor += 46 + nameLength + zip.readUInt16LE(cursor + 30) + zip.readUInt16LE(cursor + 32);
+  }
+  assert.deepEqual([...members.keys()], ['Jagdlatein-Reel-30s.mp4','Jagdlatein-Reel-30s-ohne-Musik.mp4','Jagdlatein-Reel-30s-Cover.jpg','Begleittext.txt','credits.json','Nutzung.txt']);
+  assert.deepEqual(members.get('Jagdlatein-Reel-30s.mp4'), bytes('mp4'));
+  assert.deepEqual(members.get('Jagdlatein-Reel-30s-Cover.jpg'), bytes('jpg'));
+  assert.deepEqual(members.get('Begleittext.txt'), bytes('txt'));
+  assert.equal(sha(members.get('Jagdlatein-Reel-30s-ohne-Musik.mp4')), '82a2cbdc0d1bc033d5b33dbca69357b8484529a24ab2a7367fdc4702a0148bb1');
+  for (const content of [bytes('txt'), bytes('html'), members.get('credits.json'), members.get('Nutzung.txt')]) assert.equal(content.includes(Buffer.from('\r\n')), false);
+  const attributes = fs.readFileSync(path.join(root, '.gitattributes'), 'utf8');
+  for (const ext of ['html','txt']) assert.ok(attributes.includes(`public${stem}.${ext} text eol=lf`));
 });
 
 test('Only the five exact new GET/HEAD paths bypass session reads; neighbours and lessons remain guarded', async () => {
