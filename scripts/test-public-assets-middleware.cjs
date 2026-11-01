@@ -91,13 +91,15 @@ test('Every published learning image path is exact, unique and backed by a real 
   assert.ok(learningImagePaths.every(pathname => fs.existsSync(path.join(root, 'public', pathname))));
 });
 
-test('Only the four exact media attribution documents are public; neighboring files and learning access remain guarded', async () => {
+test('Only the six exact media attribution documents are public; neighboring files and learning access remain guarded', async () => {
   const { mediaExperienceDocumentationPaths } = load('lib/media-experience-asset-paths.js');
   assert.deepEqual(Array.from(mediaExperienceDocumentationPaths), [
     '/lernen/videos-2026-10-26/mediennachweise.json',
     '/lernen/videos-2026-10-26/MEDIEN-LIZENZEN.md',
     '/lernen/videos-2026-11-01/mediennachweise.json',
     '/lernen/videos-2026-11-01/MEDIEN-LIZENZEN.md',
+    '/lernen/videos-pruefungswissen-2026-11-01/mediennachweise.json',
+    '/lernen/videos-pruefungswissen-2026-11-01/MEDIEN-LIZENZEN.md',
   ]);
   for (const pathname of mediaExperienceDocumentationPaths) {
     assert.ok(fs.existsSync(path.join(root, 'public', pathname)));
@@ -117,6 +119,15 @@ test('Only the four exact media attribution documents are public; neighboring fi
     '/lernen/videos-2026-11-01/MEDIEN-LIZENZEN.md.bak',
     '/lernen/videos-2026-11-01/loesungen.json',
     '/lernen/videos-2026-11-01',
+    '/lernen/videos-pruefungswissen-2026-11-01/private.json',
+    '/lernen/videos-pruefungswissen-2026-11-01/mediennachweise.json.bak',
+    '/lernen/videos-pruefungswissen-2026-11-01/mediennachweise.json/private',
+    '/lernen/videos-pruefungswissen-2026-11-01/MEDIEN-LIZENZEN.md.bak',
+    '/lernen/videos-pruefungswissen-2026-11-01/loesungen.json',
+    '/lernen/videos-pruefungswissen-2026-11-01',
+    '/lernen/pruefungswissen-2026-11-01/private.jpg',
+    '/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg.bak',
+    '/lernen/pruefungswissen-2026-11-01/private.json',
     '/lernen/videos-2026-10-26', '/lernen/wildtier-videofaelle', '/lernen/wildjahr',
     '/kurse/wissen-rehwild-jahreslauf', '/konto',
   ]) {

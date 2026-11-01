@@ -4,7 +4,9 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const { cootSwimmingLobesBaselineFixture, stripCootSwimmingLobesDataset, beforeCootSwimmingLobesGuide } = require('./helpers/coot-swimming-lobes-addition-nov01.cjs');
+const createLoader = overrides => createProjectLoader(cootSwimmingLobesBaselineFixture(overrides));
 const revision = 'a6adad695442ba0a90c638cba2e2c80e0e5758ab';
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026', lessonId = 'nickhaut';
 const questionId = `${courseId}-${lessonId}-oberflaechenfunktion`;
@@ -29,7 +31,7 @@ function historicalLoader() {
   return historic;
 }
 const load = createLoader(), old = historicalLoader();
-const raw = load('data/learning-expansion-biology-2026-10-16.json'), beforeRaw = old('data/learning-expansion-biology-2026-10-16.json');
+const raw = stripCootSwimmingLobesDataset(load('data/learning-expansion-biology-2026-10-16.json')), beforeRaw = old('data/learning-expansion-biology-2026-10-16.json');
 const curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);
 const lesson = course.lessons.find(item => item.id === lessonId), cards = load('lib/learning-flashcards.js').getFlashcards();
 const isNewCard = card => card.moduleId === courseId && card.lessonId === lessonId;
@@ -118,7 +120,7 @@ test('Existing course route, topic and exact lesson search expose the appendix w
   for (const slug of slugs) {
     const expected = oldGuides.getWildlifeLearningGuide(slug).map(target => target.moduleId === courseId
       ? { ...target, flashcardCount: target.flashcardCount + 1 } : target);
-    assert.deepEqual(guides.getWildlifeLearningGuide(slug), expected, slug);
+    assert.deepEqual(beforeCootSwimmingLobesGuide(guides.getWildlifeLearningGuide(slug)), expected, slug);
   }
 });
 

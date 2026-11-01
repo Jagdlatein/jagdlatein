@@ -5,6 +5,7 @@ const fs = require('node:fs'), path = require('node:path'), { execFileSync } = r
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const ceca = require('./helpers/avian-ceca-addition-oct29.cjs');
 const nictitating = require('./helpers/avian-nictitating-addition-nov01.cjs');
+const coot = require('./helpers/coot-swimming-lobes-addition-nov01.cjs');
 const sharp = local('sharp'), swc = local('next/dist/build/swc');
 const revision = '7722b8d0a918bce26e51f7984d3dd877709ab60f';
 const load = createLoader(), project = load('lib/lesson-photos-server.js').getCourseLessonPhotos;
@@ -14,6 +15,7 @@ const { learningModules, getLearningModule } = curriculum;
 // Editorially approved lesson/paragraph/photo boundaries, independent of the
 // implementation's private placement table. Other lessons receive no image.
 const expected = {
+  'wissen-ausbau-biologie-vogelkoerper-2026': { schwimmlappen: ['lessonDetail-cootFeet'] },
   'wissen-ausbau-raubwildoekologie': {vielfalt:['wildlife-fuchs','wildlife-dachs']},
   'wissen-federwild-beobachtung': {'vogel-merkmale':['wildlife-stockente','wildlife-fasan']},
   'wissen-vertiefung-wild-huehner-nachwuchs': {feldhuehner:['wildlife-rebhuhn']},
@@ -31,6 +33,7 @@ const expected = {
   'wissen-lebensraeume-biotopverbund': { 'biotop-funktion': ['landscape-natur-revier'] },
 };
 const expectedPaths = {
+  'lessonDetail-cootFeet': '/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg',
   ...Object.fromEntries(['fuchs','dachs','stockente','fasan','rebhuhn','baummarder','steinmarder'].map(id=>['wildlife-'+id,`/wildkunde/nachweise-2026/${id}.jpg`])),
   ...Object.fromEntries(['stieleiche','eberesche','waldkiefer'].map(id=>['plant-'+id,`/lernen/pflanzen/${id}.jpg`])),
   'detail-mallardFeather':'/lernen/wilddetails-2026/stockente-feder.jpg',
@@ -51,10 +54,10 @@ const expectedPaths = {
 const allMaps = learningModules.map(module => [module, project(module)]);
 const photos = allMaps.flatMap(([, map]) => Object.values(map).flat());
 const paragraphFor = photo => ({'wildlife-fasan':1,'wildlife-rebhuhn':2,'plant-eberesche':1}[photo.id] || 0);
-const appendices = [ceca, nictitating];
+const appendices = [ceca, nictitating, coot];
 const newQuestions = new Set(appendices.map(({ courseId, questionId }) => `${courseId}-${questionId}`));
 function formerCourse(course) {
-  return nictitating.stripAvianNictitatingAddition(ceca.stripAvianCecaAddition(course));
+  return coot.stripCootSwimmingLobesAddition(nictitating.stripAvianNictitatingAddition(ceca.stripAvianCecaAddition(course)));
 }
 
 function historicalLoader() {
@@ -77,8 +80,8 @@ function historicalLoader() {
 }
 const old = historicalLoader();
 
-test('Exactly fifteen real courses, nineteen exact lessons and twenty-four approved photographs receive audited paragraph placements', () => {
-  assert.equal(Object.keys(expected).length, 15);
+test('Exactly sixteen real courses, twenty exact lessons and twenty-five approved photographs receive audited paragraph placements', () => {
+  assert.equal(Object.keys(expected).length, 16);
   let courseCount = 0, lessonCount = 0;
   for (const [module, map] of allMaps) {
     const intended = expected[module.id] || {};
@@ -94,18 +97,18 @@ test('Exactly fifteen real courses, nineteen exact lessons and twenty-four appro
       }
     }
   }
-  assert.equal(courseCount, 15); assert.equal(lessonCount, 19); assert.equal(photos.length, 24);
-  assert.equal(new Set(photos.map(photo => photo.src)).size, 24);
+  assert.equal(courseCount, 16); assert.equal(lessonCount, 20); assert.equal(photos.length, 25);
+  assert.equal(new Set(photos.map(photo => photo.src)).size, 25);
 });
 
-test('The complete875-lesson inventory contains no image on any unapproved lesson or paragraph, including Nickhaut', () => {
+test('The complete876-lesson inventory contains no image on any unapproved lesson or paragraph, including Nickhaut', () => {
   let lessons = 0, unillustrated = 0;
   for (const [module, map] of allMaps) for (const lesson of module.lessons) {
     lessons++;
     if (!expected[module.id]?.[lesson.id]) { unillustrated++; assert.equal(Object.hasOwn(map, lesson.id), false); }
     for (const photo of map[lesson.id] || []) assert.equal(photo.afterParagraph,paragraphFor(photo));
   }
-  assert.equal(lessons, 875); assert.equal(unillustrated, 856);
+  assert.equal(lessons, 876); assert.equal(unillustrated, 856);
   const nickhaut = getLearningModule(nictitating.courseId);
   assert.ok(nickhaut.lessons.some(lesson => lesson.id === nictitating.lessonId));
   assert.equal(Object.hasOwn(project(nickhaut), nictitating.lessonId), false, 'The new Nickhaut explanation has no approved illustrative photograph');
@@ -114,7 +117,7 @@ test('The complete875-lesson inventory contains no image on any unapproved lesso
   assert.throws(() => project({ ...course, lessons: course.lessons.filter(lesson => lesson.id !== 'berg-merkmale') }), /Missing audited photo lesson/);
 });
 
-test('All twenty-four actual JPEG files exist in the public allowlist and their decoded pixel dimensions match the payload', async () => {
+test('All twenty-five actual JPEG files exist in the public allowlist and their decoded pixel dimensions match the payload', async () => {
   const allowed = new Set(load('lib/learning-image-paths.js').learningImagePaths);
   const publicRoot = path.join(root, 'public');
   await Promise.all(photos.map(async photo => {
@@ -134,6 +137,7 @@ test('Every payload carries a visible explanation and limit plus the existing au
   const details = load('lib/wild-detail-atlas.js').wildDetailPhotos;
   const landscapes = load('lib/learning-category-photos.js').categoryPhotographs;
   const breeds = load('lib/learning-media.js').breedPictures;
+  const foot = load('data/reviews/coot-foot-photo-2026-11-01.json').assets.find(photo => photo.id === 'cootFeet');
   for (const photo of photos) {
     assert.deepEqual(Object.keys(photo).sort(), ['id', 'src', 'width', 'height', 'alt', 'caption', 'limit', 'afterParagraph', 'author', 'license', 'licenseUrl', 'sourceUrl', 'modifications'].sort());
     assert.equal(photo.alt, photo.caption); assert.ok(photo.caption.length > 65 && photo.limit.length > 55);
@@ -141,7 +145,8 @@ test('Every payload carries a visible explanation and limit plus the existing au
     if(photo.id==='plant-waldkiefer'){assert.equal(photo.license,'Public domain');assert.equal(photo.licenseUrl,'https://commons.wikimedia.org/wiki/Commons:Public_domain');}
     else{assert.equal(new URL(photo.licenseUrl).hostname, 'creativecommons.org'); assert.match(photo.license, /CC/);}
     const [kind, ...parts] = photo.id.split('-'), sourceKey = parts.join('-');
-    const source = kind === 'wildlife' ? wildlife[sourceKey] : kind === 'plant' ? plants[sourceKey] : kind === 'landscape' ? landscapes[sourceKey] : kind==='detail'?details[sourceKey]:breeds.find(item => item.src === photo.src);
+    if (kind === 'lessonDetail') assert.equal(sourceKey, 'cootFeet', 'Only the one named new lesson-detail source is approved');
+    const source = kind === 'wildlife' ? wildlife[sourceKey] : kind === 'plant' ? plants[sourceKey] : kind === 'landscape' ? landscapes[sourceKey] : kind === 'detail' ? details[sourceKey] : kind === 'lessonDetail' ? foot : breeds.find(item => item.src === photo.src);
     assert.ok(source); assert.equal(photo.license, source.license); assert.equal(photo.licenseUrl, source.licenseUrl);
     assert.equal(photo.sourceUrl, source.sourceUrl || source.sourcePage || source.creditUrl || source.url);
     if (source.author === 'Giles Laurent') assert.equal(photo.author, '© Giles Laurent · gileslaurent.com');
@@ -154,10 +159,12 @@ test('Every payload carries a visible explanation and limit plus the existing au
   assert.match(byId['plant-fichte'].limit, /Nadelunterseite/);
   assert.match(byId['breed-deutsch-drahthaar'].limit, /Ausbildungsstand, Gesundheit und individuelle Eignung/);
   assert.match(byId['wildlife-damwild'].modifications, /Originalausschnitt von Ellicrum/);
+  assert.match(byId['lessonDetail-cootFeet'].limit, /London, August 2014; andere Aufnahme als der Blässhuhnfilm aus Bled/);
+  assert.equal(byId['lessonDetail-cootFeet'].modifications, foot.modifications);
 });
 
 test('Projection does not mutate any raw course or shared photo object and callers cannot contaminate later results', () => {
-  const photographModules = ['lib/wildlife-photographs.js', 'lib/nature-photos.js', 'lib/learning-category-photos.js', 'lib/learning-media.js'];
+  const photographModules = ['lib/wildlife-photographs.js', 'lib/nature-photos.js', 'lib/learning-category-photos.js', 'lib/learning-media.js', 'data/reviews/coot-foot-photo-2026-11-01.json'];
   const sources = photographModules.map(file => load(file));
   const beforeCourses = JSON.stringify(learningModules), beforePhotos = JSON.stringify(sources);
   for (const module of learningModules) project(module);
@@ -169,16 +176,16 @@ test('Projection does not mutate any raw course or shared photo object and calle
   assert.equal(JSON.stringify(learningModules), beforeCourses); assert.equal(JSON.stringify(sources), beforePhotos);
 });
 
-test('All old courses, lessons, rotated question fields and review dates equal7722b8d beyond the exact ceca and Nickhaut appendices', () => {
+test('All old courses, lessons, rotated question fields and review dates equal7722b8d beyond the exact ceca, Nickhaut and foot appendices', () => {
   const baseline = old('lib/learning-curriculum.js');
-  assert.deepEqual(curriculum.learningCounts, { modules: 198, lessons: 875, questions: 2749 });
+  assert.deepEqual(curriculum.learningCounts, { modules: 198, lessons: 876, questions: 2750 });
   assert.deepEqual(learningModules.map(formerCourse), baseline.learningModules);
   assert.deepEqual(curriculum.learningQuestions.filter(question => !newQuestions.has(question.id)), baseline.learningQuestions);
 });
 
 test('All1755 existing cards including the116 starter objects retain full fields/order and no photo metadata enters the ranked question bank', () => {
   const cards = load('lib/learning-flashcards.js').getFlashcards(), before = old('lib/learning-flashcards.js').getFlashcards();
-  assert.equal(before.length, 1755); assert.equal(cards.length, 1757); const oldIds=new Set(before.map(card=>card.id));assert.deepEqual(cards.filter(card=>oldIds.has(card.id)), before); assert.deepEqual(cards.slice(0, 116), before.slice(0, 116));
+  assert.equal(before.length, 1755); assert.equal(cards.length, 1758); const oldIds=new Set(before.map(card=>card.id));assert.deepEqual(cards.filter(card=>oldIds.has(card.id)), before); assert.deepEqual(cards.slice(0, 116), before.slice(0, 116));
   assert.deepEqual(cards.filter(card => !oldIds.has(card.id)).map(card => card.id).sort(), [...newQuestions].map(id => `flash-${id}`).sort());
   assert.deepEqual(load('data/questions-full.js').QUESTIONS.filter(question => !newQuestions.has(question.id)), old('data/questions-full.js').QUESTIONS);
   const question = curriculum.learningQuestions.find(question => question.learningCategory === 'Wildkunde');

@@ -64,7 +64,16 @@ test('The lightweight catalog resolves every real clip once without importing an
     assert.equal(url.searchParams.get('eintrag'), item.id);
     assert.equal(url.pathname, item.kind === 'wild' ? '/lernen/wildtier-videofaelle' : '/lernen/jagdhund-videos');
     assert.equal(url.hash, item.kind === 'wild' ? '#video-fall' : '#hundevideo-film');
-    if (item.kind === 'wild') assert.ok(link.moduleIds.includes(item.course.slice('/kurse/'.length)));
+    if (item.kind === 'wild') {
+      const courseUrl = new URL(item.course, 'https://jagdlatein.test');
+      const moduleId = courseUrl.pathname.slice('/kurse/'.length);
+      assert.ok(link.moduleIds.includes(moduleId));
+      if (courseUrl.hash) {
+        assert.ok(courseUrl.hash.startsWith('#lesson-'));
+        const lessonId = decodeURIComponent(courseUrl.hash.slice('#lesson-'.length));
+        assert.ok(learningModules.find(module => module.id === moduleId).lessons.some(lesson => lesson.id === lessonId), item.id);
+      }
+    }
   }
 });
 

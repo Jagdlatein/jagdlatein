@@ -1,0 +1,32 @@
+{
+  "reviewedOn": "2026-11-01",
+  "scope": "Eine konkrete Blässhuhn-Fußaufnahme für die neue Lektion schwimmlappen. Quellenlektüre, tatsächliche lokale Sichtprüfung und Datei-/Lizenznachweis; keine vollständige Arten- oder Gerätezertifizierung.",
+  "assets": [
+    {
+      "id": "cootFeet",
+      "src": "/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg",
+      "name": "Blässhuhnfüße mit Schwimmlappen",
+      "species": "Fulica atra",
+      "width": 1280,
+      "height": 1067,
+      "author": "Shyamal",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coot_feet.jpg",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Coot_feet.jpg",
+      "downloadedUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Coot_feet.jpg/1280px-Coot_feet.jpg",
+      "downloadedHttpStatus": 200,
+      "originalDownloadHttpStatus": 429,
+      "recordedOn": "2014-08",
+      "location": "St. James Park, London, Vereinigtes Königreich",
+      "aiGenerated": false,
+      "checkedOn": "2026-11-01",
+      "bytes": 484501,
+      "sha256": "e2489b2211a92cb2d002c64a48c57b8e2fc06136d15130ec5a478fb6c4fa0f18",
+      "modifications": "Die veröffentlichte Wikimedia-Vorschaufassung mit 1280 Pixel Breite wurde unverändert kopiert. Die Skalierung gegenüber dem Original stammt von Wikimedia; kein zusätzlicher Bildausschnitt, keine generative Bearbeitung.",
+      "sourceRead": "Commons-Zusammenfassung, Quelle Own work, Autor, Datum August 2014, CC-BY-SA-3.0-Lizenzbedingungen und Dateigeschichte tatsächlich gelesen. Die angegebene 1280-Pixel-Vorschau wurde mit HTTP200 heruntergeladen; der Originaldateiabruf lieferte HTTP429 und wird nicht als erfolgreicher Originaldownload ausgegeben.",
+      "visualReview": "Tatsächliche lokale JPEG-Datei von Recherche und leitender Bearbeitung unabhängig gesehen: zwei Füße auf Gras; einzelne Zehen mit seitlichen Hautlappen und sichtbaren Zwischenräumen. Keine Schwimmbewegung, keine Alters-, Geschlechts-, Gesundheits- oder Leistungsbestimmung.",
+      "sourceContext": "Andere Aufnahme als der Blässhuhnfilm aus Bled; kein gemeinsames Individuum, Ort oder Aufnahmezeitpunkt behauptet."
+    }
+  ]
+}

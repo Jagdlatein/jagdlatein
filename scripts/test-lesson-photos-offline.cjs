@@ -61,9 +61,9 @@ function offlineCourse(overrides = {}) {
 }
 
 test('Each illustrated course exports only its exact own lesson pictures without changing course, questions or review dates', () => {
-  assert.equal(illustrated.length, 15);
-  assert.equal(illustrated.reduce((sum, course) => sum + Object.keys(getCourseLessonPhotos(course)).length, 0), 19);
-  assert.equal(new Set(illustrated.flatMap(course => Object.values(getCourseLessonPhotos(course)).flat().map(photo => photo.src))).size, 24);
+  assert.equal(illustrated.length, 16);
+  assert.equal(illustrated.reduce((sum, course) => sum + Object.keys(getCourseLessonPhotos(course)).length, 0), 20);
+  assert.equal(new Set(illustrated.flatMap(course => Object.values(getCourseLessonPhotos(course)).flat().map(photo => photo.src))).size, 25);
   for (const course of illustrated) {
     const before = clone(course), saved = pack([course.id]);
     assert.equal(validateOfflinePack(saved, now), true, course.id);
@@ -140,7 +140,7 @@ test('The bounded 64-photo allowance supports an actual eight-course choice cont
 test('Every actually exported legacy and new photo decodes, has its public exact allowlist and is accepted by worker PREPARE', async () => {
   const paths = new Set();
   for (const course of learningModules) for (const photo of pack([course.id]).photos) paths.add(photo.src);
-  assert.equal(paths.size, 42);
+  assert.equal(paths.size, 43);
   const sharp = local('sharp');
   for (const src of paths) {
     assert.ok(learningImagePaths.includes(src), src);
@@ -159,7 +159,9 @@ test('Every actually exported legacy and new photo decodes, has its public exact
 test('Additional photographs do not open APIs, protected HTML, retired paths or arbitrary neighboring files to the cache', async () => {
   const worker = workerFixture();
   for (const pathname of ['/api/auth/status', '/api/lernen/offline', '/konto', '/preise', '/kurse/wissen-ausbau-hasenartige',
-    '/lernen/pflanzen/private.jpg', '/lernen/pflanzen/fichte.jpg.bak', '/wildkunde/rehwild.jpg']) {
+    '/lernen/pflanzen/private.jpg', '/lernen/pflanzen/fichte.jpg.bak', '/wildkunde/rehwild.jpg',
+    '/lernen/pruefungswissen-2026-11-01/private.jpg', '/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg.bak',
+    '/lernen/pruefungswissen-2026-11-01/private.json']) {
     let intercepted = false;
     worker.handlers.fetch({ request: new Request(`https://offline.invalid${pathname}`), respondWith() { intercepted = true; } });
     assert.equal(intercepted, false, pathname);

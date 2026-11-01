@@ -1470,6 +1470,36 @@
             "nickhaut"
           ],
           "supports": "Unabhängige histologische Originalarbeit: Background, Functions of the eyelids, Methoden, gemeinsame und unterschiedliche Lidbefunde sowie Conclusions tatsächlich gelesen. Getrennte Ober-, Unter- und Nickhautstrukturen; Unterschiede zwischen untersuchten Greifvögeln und Eulen. Oberflächenschutz und Tränenfilmverteilung werden fachlich erklärt, nicht als wiederholter Tränenfilmversuch. Kleine Individuenzahl und begrenzte Übertragung ausdrücklich erhalten; keine Gewebemaße, Immunmechanismen, Behandlung oder Abbildungen übernommen."
+        },
+        {
+          "label": "LBV: Blässhuhn oder Blässralle – Kennzeichen",
+          "url": "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/blaesshuhn/",
+          "organization": "Landesbund für Vogel- und Naturschutz in Bayern e.V.",
+          "checkedOn": "2026-11-01",
+          "lessonIds": [
+            "schwimmlappen"
+          ],
+          "supports": "Kennzeichen der eigenständigen Artendarstellung tatsächlich direkt gelesen: einzelne Schwimmlappen an den Zehen statt Schwimmhäuten, ausdrücklich Fulica atra. Keine neue Untersuchung, keine Mengen-, Geschlechts-, Brutzeit-, Nahrungs- oder Leistungsangaben übernommen."
+        },
+        {
+          "label": "RSPB: Eurasian Coot – How to identify",
+          "url": "https://www.rspb.org.uk/birds-and-wildlife/eurasian-coot",
+          "organization": "Royal Society for the Protection of Birds",
+          "checkedOn": "2026-11-01",
+          "lessonIds": [
+            "schwimmlappen"
+          ],
+          "supports": "How to identify tatsächlich direkt gelesen: gelappte Hautsäume an den Zehen von Fulica atra unterstützen das Schwimmen. Unabhängig redigierte fachliche Erklärung, keine eigene experimentelle Wiederholung; keine Strömungsmechanik, Effizienz, Geschwindigkeit, UK-Schutzstatus oder Verhaltensdeutung übernommen."
+        },
+        {
+          "label": "Blühendes Österreich: Blässhuhn – Beschreibung",
+          "url": "https://www.bluehendesoesterreich.at/naturlexikon/blaesshuhn",
+          "organization": "Blühendes Österreich – BILLA gemeinnützige Privatstiftung",
+          "checkedOn": "2026-11-01",
+          "lessonIds": [
+            "schwimmlappen"
+          ],
+          "supports": "Beschreibung tatsächlich direkt gelesen: verbreiterte Zehen mit Schwimmlappen statt Schwimmhäuten und Zusammenhang mit der Fortbewegung im Wasser. Zweite eigenständig verfasste Funktionsbeschreibung neben RSPB, keine Messreihe. Das dortige schneller wird nicht als Leistungsvergleich übernommen; keine Alters-, Größen-, Gelege- oder Verbreitungswerte."
         }
       ],
       "lessons": [
@@ -1566,6 +1596,19 @@
           ],
           "takeaway": "Die Nickhaut ist ein drittes bewegliches Lid: Sie streicht über die Hornhaut und unterstützt deren Oberflächenschutz.",
           "exercise": "Beschreibe die Bewegungsrichtung und die Oberflächenfunktion der Nickhaut. Trenne dabei Lid, Hornhaut und Pupille."
+        },
+        {
+          "id": "schwimmlappen",
+          "title": "Schwimmlappen",
+          "reviewedOn": "2026-11-01",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Beim Blässhuhn sitzen Hautlappen an den einzelnen Zehen. Die verbreiterten, gelappten Zehenränder sind etwas anderes als eine durchgehende Schwimmhaut zwischen benachbarten Zehen. Verfolge deshalb am deutlich sichtbaren Fuß den Verlauf einer Zehe und ihren seitlichen Rand getrennt.",
+            "Die Schwimmlappen unterstützen das Schwimmen. Wie sie beim einzelnen Tier bewegt werden, lässt sich aus einem Standbild nicht ablesen. Das Merkmal liefert keine Messung der Schwimmgeschwindigkeit und keine Beurteilung des individuellen Zustands.",
+            "Das zugeordnete Detailfoto zeigt die Füße eines Blässhuhns auf Gras; zwischen den Zehen bleiben Zwischenräume sichtbar. Es ist eine andere Aufnahme als der schwimmende Vogel im Lernfilm. Das Foto erklärt den Fußbau, zeigt aber keinen Schwimmstoß. Für die Bestimmung eines unbekannten Vogels bleiben weitere Merkmale nötig."
+          ],
+          "takeaway": "Blässhuhnzehen tragen einzelne Schwimmlappen statt durchgehender Schwimmhäute zwischen den Zehen; der Bau unterstützt das Schwimmen.",
+          "exercise": "Verfolge im Detailfoto eine Zehe. Unterscheide ihren seitlichen Hautlappen von einer Hautverbindung zur Nachbarzehe."
         }
       ],
       "questions": [
@@ -2062,6 +2105,19 @@
           ],
           "answer": 2,
           "explain": "Die bewegliche Nickhaut wird über die Hornhaut geführt und unterstützt die Verteilung des Tränenfilms sowie das Entfernen kleiner Fremdpartikel. Bau und Sichtbarkeit unterscheiden sich zwischen Vögeln."
+        },
+        {
+          "id": "schwimmlappen-anordnung",
+          "lessonId": "schwimmlappen",
+          "q": "Wie sind die Schwimmlappen an den Füßen des Blässhuhns angeordnet?",
+          "options": [
+            "Als durchgehende Hautflächen zwischen allen benachbarten Zehen.",
+            "Als schmale Hautleisten ausschließlich am Lauf oberhalb der Zehen.",
+            "Als nur unter den Zehen liegende Sohlenpolster ohne seitliche Hautsäume.",
+            "Als seitliche Hautlappen an den einzelnen Zehen, mit Zwischenräumen zwischen den Zehen."
+          ],
+          "answer": 3,
+          "explain": "Beim Blässhuhn liegen die gelappten Hautsäume an den einzelnen Zehen. Sie bilden keine durchgehende Schwimmhaut zwischen benachbarten Zehen. Die Lappen unterstützen das Schwimmen; ein Standbild des Fußbaus misst aber weder die Bewegung noch eine Schwimmleistung."
         }
       ]
     },
@@ -4557,6 +4613,34 @@
           "sourceRoles": {
             "https://www.mdpi.com/2076-2615/13/23/3656": "Methods und Results 3.2 benennen Bewegungsunschärfe, eingeschränkte Erkennbarkeit und unterschiedlich transparente Membranen. Keine pauschale Erkennbarkeit oder identische Lidbewegung wird daraus abgeleitet.",
             "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0": "Abstract und Conclusions berichten morphologische Unterschiede und warnen bei kleiner Individuenzahl vor sicherer Trennung individueller und artspezifischer Merkmale. Die Grenze des eigenen Bildbefunds ist eine redaktionelle Reichweitenbegrenzung, keine Diagnosevorschrift."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "schwimmlappen",
+      "claims": [
+        {
+          "claim": "Das Blässhuhn (Fulica atra) besitzt einzelne Zehen mit gelappten Hautsäumen statt einer durchgehenden Schwimmhaut zwischen benachbarten Zehen.",
+          "sourceUrls": [
+            "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/blaesshuhn/",
+            "https://www.rspb.org.uk/birds-and-wildlife/eurasian-coot"
+          ],
+          "sourceRoles": {
+            "https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/blaesshuhn/": "Kennzeichen: ausdrücklich einzelne Schwimmlappen an den Zehen statt Schwimmhäuten. Die Aufgabe vertieft diese konkret beschriebene äußere Anatomie.",
+            "https://www.rspb.org.uk/birds-and-wildlife/eurasian-coot": "How to identify: lobed flaps of skin on the toes. Eigenständig redigierte Bestätigung des Bauprinzips an derselben benannten Art, keine zweite biologische Messung."
+          }
+        },
+        {
+          "claim": "Die Schwimmlappen des Blässhuhns unterstützen die Fortbewegung beim Schwimmen. Daraus wird weder eine Geschwindigkeit noch eine Effizienz oder ein Vergleichsvorteil abgeleitet. Ein Standbild zeigt hier Struktur, keine gemessene Bewegung oder individuelle Leistung.",
+          "sourceUrls": [
+            "https://www.rspb.org.uk/birds-and-wildlife/eurasian-coot",
+            "https://www.bluehendesoesterreich.at/naturlexikon/blaesshuhn"
+          ],
+          "sourceRoles": {
+            "https://www.rspb.org.uk/birds-and-wildlife/eurasian-coot": "How to identify beschreibt die Unterstützung des Schwimmens durch die Zehenlappen. Keine Widerstands- oder Antriebswerte werden genannt oder übernommen.",
+            "https://www.bluehendesoesterreich.at/naturlexikon/blaesshuhn": "Beschreibung verbindet die verbreiterten Zehen und Lappen mit der Fortbewegung im Wasser. Die vergleichende Formulierung schneller wird nicht gelehrt; das Funktionsprinzip wird bescheiden als Unterstützung erklärt. Die Bildgrenzen sind die ausdrücklich begrenzte eigene Beobachtung der getrennten Fotoaufnahme."
           }
         }
       ]

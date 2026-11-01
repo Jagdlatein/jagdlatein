@@ -1,0 +1,93 @@
+{
+  "reviewedOn": "2026-11-01",
+  "scope": "Two new original wildlife scenes and six original observation questions; no alteration to the nineteen existing videos or their 53 questions.",
+  "baselineRevision": "6cb07b1600990c94793b78e65e06db0365ac1115",
+  "sourceProcess": "Commons original pages, summary, author, licence, date/place fields, history and structured metadata actually read. Author licence and source attribution copied exactly. Original files were downloaded and independently decoded by the separate media-preparation task.",
+  "visualProcess": "The reviewer read both distributed contact sheets and MP4 frames extracted at exactly2,9,17 seconds. Root independently read the distributed contacts. No uninterrupted playback, audio listening, physical-device check or broad biological certification is claimed.",
+  "visualSamples": {
+    "workspace": "work/media-exam-expansion-nov01b",
+    "distributed": [
+      "damwild-dyrehaven-contact.jpg",
+      "blaesshuhn-bled-contact.jpg"
+    ],
+    "questionTimes": [
+      "questions-qa/damwild-dyrehaven-question-times.jpg",
+      "questions-qa/blaesshuhn-bled-question-times.jpg"
+    ]
+  },
+  "records": [
+    {
+      "id": "damwild-dyrehaven",
+      "title": "Damwild zwischen Bäumen",
+      "source": "https://commons.wikimedia.org/wiki/File:Fallow_deer_in_Dyrehaven_1.webm",
+      "author": "Thue",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "transcriptWords": 116,
+      "questionTimes": [
+        2,
+        9,
+        17
+      ],
+      "correctAnswerPositions": [
+        0,
+        1,
+        2
+      ],
+      "course": "/kurse/wissen-vertiefung-wild-hirsche-vergleichen",
+      "soundHref": "/lernen/tierstimmen?stimme=damhirsch#tierstimme-title",
+      "sourceDuration": 21.72,
+      "sourceContainerDuration": 22,
+      "sourceStartTimestamp": 0.28,
+      "encodedDuration": 21.72,
+      "sourceVideoFrames": 543,
+      "encodedVideoFrames": 543,
+      "posterTime": 9,
+      "modifications": "Vollständige Originalaufnahme als MP4/H.264 neu kodiert und auf codecgeeignete Bildmaße bis 1280 Pixel Breite skaliert; ursprüngliche Abspielgeschwindigkeit, kein Zuschnitt und keine zusätzlichen Schnitte oder Montage von Jagdlatein. Vorhandene positive Startzeitstempel werden auf 0 normalisiert; alle dekodierten Videobilder bleiben erhalten. Einstellungswechsel der Originalquelle bleiben erhalten. Vorhandener Originalton als AAC. Vorschaubild: Standbild derselben Aufnahme."
+    },
+    {
+      "id": "blaesshuhn-bled",
+      "title": "Blässhühner auf dem Wasser",
+      "source": "https://commons.wikimedia.org/wiki/File:2022-01-08_BLED_GRUIFORMES_Fulica_atra_LISKA.webm",
+      "author": "NaIzletuSi ™",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "transcriptWords": 113,
+      "questionTimes": [
+        2,
+        9,
+        17
+      ],
+      "correctAnswerPositions": [
+        1,
+        2,
+        0
+      ],
+      "course": "/kurse/wissen-ausbau-biologie-vogelkoerper-2026#lesson-schwimmlappen",
+      "soundHref": "/lernen/tierstimmen?stimme=blaesshuhn#tierstimme-title",
+      "sourceDuration": 25.015,
+      "sourceContainerDuration": 25.015,
+      "sourceStartTimestamp": -0.007,
+      "encodedDuration": 25.015,
+      "sourceVideoFrames": 624,
+      "encodedVideoFrames": 624,
+      "posterTime": 5,
+      "modifications": "Vollständige Originalaufnahme als MP4/H.264 neu kodiert und auf codecgeeignete Bildmaße bis 1280 Pixel Breite skaliert; ursprüngliche Abspielgeschwindigkeit, kein Zuschnitt und keine zusätzlichen Schnitte oder Montage von Jagdlatein. Vorhandene positive Startzeitstempel werden auf 0 normalisiert; alle dekodierten Videobilder bleiben erhalten. Einstellungswechsel der Originalquelle bleiben erhalten. Vorhandener Originalton als AAC. Vorschaubild: Standbild derselben Aufnahme."
+    }
+  ],
+  "observationBoundaries": {
+    "damwild": [
+      "Foreground trunks and branches obscure bodies.",
+      "The sampled middle side view differs from later rear views.",
+      "No total population, exact age or identified food is inferred."
+    ],
+    "blaesshuhn": [
+      "Two dark birds show light bill/front-head regions, changing orientations and later strong water reflections.",
+      "Feet and swimming lobes are not visible; the movie does not prove the foot anatomy taught in the linked lesson.",
+      "The linked foot photograph is a separate source, not a frame extracted from this film.",
+      "No specific food, diagnosis or whole-population count is inferred."
+    ]
+  },
+  "technicalBoundary": "Damwild source container starts at0.28s; normalization produces21.720s while retaining all543 decoded frames. Coot retains all624 frames and25.015s. Original speed, complete frame sequences and absence of new crop/cuts are documented in the media manifest.",
+  "integrationBoundary": "New scene data only; root owns aggregator, lightweight reciprocal links and player menu. The optional soundHref exists only on these two additions and contains no audio payload."
+}

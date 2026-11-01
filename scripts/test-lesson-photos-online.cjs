@@ -23,7 +23,7 @@ async function fixture(t, initialHash = '', module = course, pictures = lessonPh
   } };
   const Component = createLoader({
     'next/router': { useRouter: () => router },
-    'next/link': ({ href, children, ...props }) => React.createElement('a', { href: typeof href === 'string' ? href : href.pathname, ...props }, children),
+    'next/link': ({ href, children, prefetch, ...props }) => React.createElement('a', { href: typeof href === 'string' ? href : href.pathname, ...props }, children),
     'next/image': ({ unoptimized, priority, fill, ...props }) => React.createElement('img', props),
     './LearningToolLayout': wrap(({ children }) => React.createElement('main', null, children)),
     './PageMenu': { ...wrap(({ children }) => React.createElement('aside', null, children)), closePageMenu() {} },
@@ -101,6 +101,37 @@ test('Complete photo sources stay in the last initially closed source section; i
     assert.ok(footer.textContent.includes(decodeURIComponent(new URL(photo.sourceUrl).pathname.split('/wiki/File:')[1]).replaceAll('_', ' ')));
   }
   await h.route('#quellen'); assert.equal(footer.open, true);
+});
+
+test('The coot foot detail appears only in its exact lesson, preserves all paragraphs and separates the London still from the Bled film', async t => {
+  const bird = load('lib/learning-curriculum.js').getLearningModule('wissen-ausbau-biologie-vogelkoerper-2026');
+  const pictures = load('lib/lesson-photos-server.js').getCourseLessonPhotos(bird);
+  assert.deepEqual(Object.keys(pictures), ['schwimmlappen']);
+  const [photo] = pictures.schwimmlappen;
+  assert.equal(photo.id, 'lessonDetail-cootFeet');
+  assert.equal(photo.src, '/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg');
+  const lesson = bird.lessons.find(item => item.id === 'schwimmlappen'); assert.ok(lesson);
+  const h = await fixture(t, '#lesson-schwimmlappen', bird, pictures);
+  const article = h.lesson(), inline = article.querySelector('[data-lesson-photos="lesson"]');
+  assert.ok(inline); assert.equal(inline.previousElementSibling.textContent, lesson.paragraphs[0]);
+  assert.deepEqual([...article.querySelector('.lessonText').children].map(node => node.firstElementChild.textContent), lesson.paragraphs);
+  assert.deepEqual([...article.querySelectorAll('img')].map(image => image.getAttribute('src')), [photo.src]);
+  assert.ok(inline.textContent.includes(photo.limit));
+  assert.match(inline.textContent, /London, August 2014/); assert.match(inline.textContent, /andere Aufnahme als der Blässhuhnfilm aus Bled/);
+  assert.match(inline.textContent, /keinen Schwimmstoß und keine gemessene Leistung/);
+  assert.equal(inline.querySelectorAll('a').length, 0);
+  const footer = document.getElementById('quellen');
+  assert.equal(footer.open, false); assert.equal(document.querySelector('main').lastElementChild, footer);
+  for (const link of document.querySelectorAll('main a[href^="https://"]')) assert.ok(footer.contains(link), link.outerHTML);
+  assert.equal(document.querySelectorAll(`img[src="${photo.src}"]`).length, 1);
+  assert.equal(footer.querySelectorAll(`a[href="${photo.sourceUrl}"]`).length, 1);
+  assert.equal(footer.querySelectorAll(`a[href="${photo.licenseUrl}"]`).length, 1);
+  assert.ok(footer.textContent.includes(photo.author)); assert.ok(footer.textContent.includes(photo.modifications));
+  await h.route('#lesson-nickhaut');
+  const other = bird.lessons.find(item => item.id === 'nickhaut'); assert.ok(other);
+  assert.deepEqual([...h.lesson().querySelector('.lessonText').children].map(node => node.firstElementChild.textContent), other.paragraphs);
+  assert.equal(h.lesson().querySelectorAll('img').length, 0);
+  await h.route('#lesson-schwimmlappen'); assert.equal(h.lesson().querySelectorAll(`img[src="${photo.src}"]`).length, 1);
 });
 
 test('A course without an audited placement retains its full text without a fabricated explanatory photograph', async t => {

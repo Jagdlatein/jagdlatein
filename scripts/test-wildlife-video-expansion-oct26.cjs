@@ -45,7 +45,11 @@ test('The five original video objects, all fifteen old questions and their order
   assert.deepEqual(old.map(item => item.id), ['fuchs', 'rotwild', 'schwarzwild', 'stockente', 'rehwild']);
   assert.equal(hash(old), '2da5832fd49a5d9d100f4e00ecc158a1360624f03b377b5aba9ccc61abcb2a27');
   assert.equal(old.flatMap(item => item.questions).length, 15);
-  const later = load('lib/wildlife-video-expansion-2026-11-01.js').wildlifeVideoExpansionNov01Cases;
+  const later = [...load('lib/wildlife-video-expansion-2026-11-01.js').wildlifeVideoExpansionNov01Cases,
+    ...load('lib/wildlife-video-expansion-exam-2026-11-01.js').wildlifeVideoExamExpansionNov01Cases];
+  assert.deepEqual(later.map(item => item.id), ['maeusebussard-flug', 'fasan-sandbad', 'ringeltaube-ast', 'wildkaninchen-park', 'damwild-dyrehaven', 'blaesshuhn-bled']);
+  assert.deepEqual(wildlifeVideoCases.slice(0, 11), [...old, ...added]);
+  assert.deepEqual(wildlifeVideoCases.slice(11), later);
   assert.equal(wildlifeVideoCases.length, 11 + later.length);
   assert.equal(wildlifeVideoQuestionCount, 33 + later.flatMap(item => item.questions).length);
   assert.deepEqual(wildlifeVideoCases.filter(item => ids.has(item.id)), added);

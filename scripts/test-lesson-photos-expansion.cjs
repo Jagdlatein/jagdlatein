@@ -12,14 +12,14 @@ const revision = '9f16930e3008fe7892fd3cc5fec76de61daff2fb';
 const swc = local('next/dist/build/swc');
 const load = createLoader();
 const clone = value => JSON.parse(JSON.stringify(value));
-const gitBytes = name => execFileSync('git', ['show', `${revision}:${name}`], { cwd: root, maxBuffer: 35 * 1024 * 1024 });
-function historicalLoader() {
+const gitBytes = (name, at = revision) => execFileSync('git', ['show', `${at}:${name}`], { cwd: root, maxBuffer: 35 * 1024 * 1024 });
+function historicalLoader(at = revision) {
   const cache = new Map();
   function oldLoad(relative) {
     const filename = path.resolve(root, relative), name = path.relative(root, filename).replaceAll('\\', '/');
     assert.ok(name && !name.startsWith('../') && !path.isAbsolute(name));
     if (cache.has(filename)) return cache.get(filename).exports;
-    const source = gitBytes(name).toString('utf8'), module = { exports: {} };
+    const source = gitBytes(name, at).toString('utf8'), module = { exports: {} };
     cache.set(filename, module);
     if (name.endsWith('.json')) { module.exports = JSON.parse(source.replace(/^\uFEFF/, '')); return module.exports; }
     const { code } = swc.transformSync(source, { filename, disableNextSsg: true,
@@ -40,6 +40,11 @@ const project = load('lib/lesson-photos-server.js').getCourseLessonPhotos;
 const oldProject = old('lib/lesson-photos-server.js').getCourseLessonPhotos;
 const entries = courses.flatMap(course => Object.entries(project(course)).flatMap(([lessonId, photos]) => photos.map(photo => ({ courseId: course.id, lessonId, photo }))));
 const oldEntries = oldCourses.flatMap(course => Object.entries(oldProject(course)).flatMap(([lessonId, photos]) => photos.map(photo => ({ courseId: course.id, lessonId, photo }))));
+const beforeFoot = historicalLoader('6cb07b1600990c94793b78e65e06db0365ac1115');
+const beforeFootProject = beforeFoot('lib/lesson-photos-server.js').getCourseLessonPhotos;
+const beforeFootEntries = beforeFoot('lib/learning-curriculum.js').learningModules.flatMap(course => Object.entries(beforeFootProject(course)).flatMap(([lessonId, photos]) => photos.map(photo => ({ courseId: course.id, lessonId, photo }))));
+const footIdentity = 'wissen-ausbau-biologie-vogelkoerper-2026/schwimmlappen/lessonDetail-cootFeet';
+const footPath = '/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg';
 const identity = entry => `${entry.courseId}/${entry.lessonId}/${entry.photo.id}`;
 const expectedAdditions = [
   ['wissen-ausbau-raubwildoekologie', 'vielfalt', 'wildlife-fuchs', 0],
@@ -54,22 +59,26 @@ const expectedAdditions = [
   ['wissen-vertiefung-laubblatt-merkmale-round4-2026', 'blatt-oder-blaettchen', 'plant-eberesche', 1],
   ['wissen-ausbau-federaufbau-funktion-2026', 'feinbau', 'detail-mallardFeather', 0],
   ['wissen-vertiefung-geweih-horn-gewebe-2026', 'gewebe', 'detail-rehSkull', 0],
+  ['wissen-ausbau-biologie-vogelkoerper-2026', 'schwimmlappen', 'lessonDetail-cootFeet', 0],
 ];
 const tuple = entry => [entry.courseId, entry.lessonId, entry.photo.id, entry.photo.afterParagraph];
 const ordered = values => [...values].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
 const byPhotoId = Object.fromEntries(entries.map(entry => [entry.photo.id, entry.photo]));
 
-test('The twelve original projected photo objects and their relative order remain exact; only twelve named placements are added', () => {
+test('The twelve original and all twenty-four pre-foot photo objects remain exact; only thirteen named placements follow the first package', () => {
   assert.equal(oldEntries.length, 12, 'Historical package is a real twelve-photo baseline');
   const formerIds = new Set(oldEntries.map(identity));
   assert.equal(formerIds.size, 12);
   assert.deepEqual(entries.filter(entry => formerIds.has(identity(entry))), oldEntries);
   assert.equal(JSON.stringify(entries.filter(entry => formerIds.has(identity(entry)))), JSON.stringify(oldEntries), 'Existing image field order is also preserved');
   assert.deepEqual(ordered(entries.filter(entry => !formerIds.has(identity(entry))).map(tuple)), ordered(expectedAdditions));
-  assert.equal(entries.length, 24);
-  assert.equal(new Set(entries.map(entry => entry.courseId)).size, 15);
-  assert.equal(new Set(entries.map(entry => `${entry.courseId}/${entry.lessonId}`)).size, 19);
-  assert.equal(new Set(entries.map(entry => entry.photo.src)).size, 24);
+  assert.equal(beforeFootEntries.length, 24);
+  assert.deepEqual(entries.filter(entry => identity(entry) !== footIdentity), beforeFootEntries);
+  assert.equal(JSON.stringify(entries.filter(entry => identity(entry) !== footIdentity)), JSON.stringify(beforeFootEntries), 'All twenty-four pre-foot full objects and field order remain exact');
+  assert.equal(entries.length, 25);
+  assert.equal(new Set(entries.map(entry => entry.courseId)).size, 16);
+  assert.equal(new Set(entries.map(entry => `${entry.courseId}/${entry.lessonId}`)).size, 20);
+  assert.equal(new Set(entries.map(entry => entry.photo.src)).size, 25);
 });
 
 test('Each new photo is bound to its actual paragraph and exposes only bounded image provenance, with decoded dimensions', async () => {
@@ -134,7 +143,12 @@ test('All registered original photograph bytes remain identical to historical Gi
   assert.ok(paths.size > 80, 'Covers complete source registries, beyond only the twelve additions');
   const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
   for (const src of paths) assert.equal(sha(fs.readFileSync(path.join(root, 'public', src))), sha(gitBytes(`public${src}`)), src);
-  for (const entry of entries) assert.ok(paths.has(entry.photo.src), `${entry.photo.id} already existed in the published asset inventory`);
+  for (const entry of entries) {
+    if (identity(entry) === footIdentity) {
+      assert.equal(entry.photo.src, footPath);
+      assert.equal(sha(fs.readFileSync(path.join(root, 'public', footPath))), 'e2489b2211a92cb2d002c64a48c57b8e2fc06136d15130ec5a478fb6c4fa0f18');
+    } else assert.ok(paths.has(entry.photo.src), `${entry.photo.id} already existed in the published asset inventory`);
+  }
 });
 
 test('Correct original credit and material modifications survive both explanation display and complete final source rendering', () => {

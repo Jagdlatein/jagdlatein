@@ -7,7 +7,8 @@ const { createHash } = require('node:crypto');
 const { createLoader: createPracticeProjectLoader, root, local } = require('./helpers/project-module.cjs');
 const { avianNictitatingBaselineFixture, stripAvianNictitatingDataset } = require('./helpers/avian-nictitating-addition-nov01.cjs');
 const { avianCecaBaselineFixture, stripAvianCecaDataset } = require('./helpers/avian-ceca-addition-oct29.cjs');
-const createLoader = overrides => createPracticeProjectLoader(practiceKnowledgeBaselineFixture(avianNictitatingBaselineFixture(avianCecaBaselineFixture(overrides))));
+const { cootSwimmingLobesBaselineFixture, stripCootSwimmingLobesDataset } = require('./helpers/coot-swimming-lobes-addition-nov01.cjs');
+const createLoader = overrides => createPracticeProjectLoader(cootSwimmingLobesBaselineFixture(practiceKnowledgeBaselineFixture(avianNictitatingBaselineFixture(avianCecaBaselineFixture(overrides)))));
 const { courseId, lessonId, questionIds, sourceURLs, stripAvianUrinaryAddition,
   stripAvianUrinaryDataset, isAvianUrinaryCard, avianUrinaryBaselineFixture } = require('./helpers/avian-urinary-addition-oct29.cjs');
 // The concurrently authorized mast appendix has its own exact positive tests.
@@ -32,7 +33,7 @@ function historicalLoader() {
 }
 const load = createLoader(), oldLoad = historicalLoader();
 const curriculum = load('lib/learning-curriculum.js'), previous = oldLoad('lib/learning-curriculum.js');
-const raw = stripAvianNictitatingDataset(stripAvianCecaDataset(require('../data/learning-expansion-biology-2026-10-16.json')));
+const raw = stripCootSwimmingLobesDataset(stripAvianNictitatingDataset(stripAvianCecaDataset(require('../data/learning-expansion-biology-2026-10-16.json'))));
 const course = curriculum.getLearningModule(courseId), lesson = course.lessons.find(item => item.id === lessonId);
 const cards = load('lib/learning-flashcards.js').getFlashcards(), oldCards = oldLoad('lib/learning-flashcards.js').getFlashcards();
 

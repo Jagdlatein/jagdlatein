@@ -7,6 +7,7 @@ const MEDIA = new Set([
   // Actual course/breed photographs already included by the offline exporter.
   "/lernen/hunde-2026/labrador.jpg", "/lernen/hunde-2026/kurzhaar.jpg", "/lernen/hunde-2026/weimaraner.jpg",
   // Additional existing JPGs explicitly assigned to the current lesson text.
+  "/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg",
   "/lernen/wilddetails-2026/stockente-feder.jpg", "/lernen/wilddetails-2026/reh-schaedel.jpg",
   "/lernen/pflanzen/fichte.jpg", "/lernen/pflanzen/rotbuche.jpg", "/lernen/pflanzen/haengebirke.jpg",
   "/lernen/pflanzen/stieleiche.jpg", "/lernen/pflanzen/eberesche.jpg", "/lernen/pflanzen/waldkiefer.jpg",
