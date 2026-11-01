@@ -7,6 +7,7 @@ const { createLoader, local } = require('./helpers/project-module.cjs');
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const EXAM_KEY = 'jl_exam_profile_v1', LEGAL_KEY = 'jl_legal_region_v1';
+const ACCOUNT_KEY = '11111111-1111-4111-8111-111111111111';
 const load = createLoader();
 const { QUESTIONS } = load('data/questions-full.js');
 const quizScope = load('lib/quiz-learning-scope.js');
@@ -88,7 +89,7 @@ function fixture(t, { component = 'components/RegionalLawLearning.js', props, qu
     do { render(); queued.splice(0).forEach(callback => callback()); assert.ok(++count < 20, 'Finite stable hydration'); } while (dirty);
     return tree;
   }
-  function close() { if (disposed) return; for (const slot of slots) slot?.cleanup?.(); disposed = true; global.window = previousWindow; global.fetch = previousFetch; }
+  function close() { if (disposed) return; for (const slot of slots) slot?.cleanup?.(); product('lib/account-exam-profile-client.js').resetAccountExamProfile(); disposed = true; global.window = previousWindow; global.fetch = previousFetch; }
   t.after(close);
   if (hydrate) flush(); else render();
   return { storage, writes, removes, fetches, pushes, replacements, router, product, flush, close,
@@ -99,6 +100,13 @@ function fixture(t, { component = 'components/RegionalLawLearning.js', props, qu
     click(label) { const button = nodes(tree, node => node.type === 'button' && text(node).includes(label))[0]; assert.ok(button, label); button.props.onClick(); flush(); },
     chooseTopic(value) { nodes(tree, node => node.type === 'select' && node.props.id === 'quiz-topic')[0].props.onChange({ target: { value } }); flush(); },
     profile(profile) { if (profile) storage.set(EXAM_KEY, JSON.stringify(profile)); else storage.delete(EXAM_KEY); for (const listener of storageListeners) listener({ key: EXAM_KEY, storageArea: browserStorage }); flush(); },
+    async account(profile) {
+      const request = fetches.find(item => item.url === '/api/account/exam-profile' && !item.responded);
+      assert.ok(request, 'A real summary account-profile read is pending'); request.responded = true;
+      assert.equal(request.options.method, undefined); assert.equal(request.options.cache, 'no-store'); assert.equal(request.options.credentials, 'same-origin');
+      request.resolve({ ok: true, status: 200, async json() { return { accountKey: ACCOUNT_KEY, profile }; } });
+      for (let pass = 0; pass < 12; pass++) { await Promise.resolve(); flush(); }
+    },
   };
 }
 
@@ -194,15 +202,16 @@ test('Explicit quiz URL country wins, manual country choice survives profile cha
   assert.deepEqual(s.writes, []); assert.deepEqual(s.fetches, []);
 });
 
-test('Summary displays the exact hydrated target without changing host URL, ranking, drafts or account data', t => {
+test('Summary displays the exact hydrated target without changing host URL, ranking, drafts or account data', async t => {
   const s = fixture(t, { component: 'components/ExamProfileSummary.js', hydrate: false, query: { region: 'ZH', artikel: 'synthetic' }, values: { [EXAM_KEY]: JSON.stringify({ country: 'DE', region: 'BY' }), jagd_country: 'AT', journal: 'Isolated draft', account: 'Isolated account' } });
   assert.match(s.html(), /Dein Prüfungsplan/); assert.doesNotMatch(s.html(), /Prüfungsziel: Bayern/);
-  s.flush(); assert.match(s.html(), /Prüfungsziel: Bayern · Deutschland/);
+  s.flush(); assert.doesNotMatch(s.html(), /Prüfungsziel: Bayern/);
+  await s.account({ country: 'DE', region: 'BY' }); assert.match(s.html(), /Prüfungsziel: Bayern · Deutschland/);
   assert.match(s.html(), /href="\/jagdrecht\/de\?region=BY"/); assert.match(s.html(), /href="\/lernen\/pruefungsplan"/);
   assert.deepEqual(s.router.query, { region: 'ZH', artikel: 'synthetic' });
-  assert.deepEqual(s.pushes, []); assert.deepEqual(s.replacements, []); assert.deepEqual(s.fetches, []); assert.deepEqual(s.writes, []);
+  assert.deepEqual(s.pushes, []); assert.deepEqual(s.replacements, []); assert.equal(s.fetches.length, 1); assert.deepEqual(s.writes, []);
   assert.equal(s.storage.get('jagd_country'), 'AT'); assert.equal(s.storage.get('journal'), 'Isolated draft'); assert.equal(s.storage.get('account'), 'Isolated account');
-  assert.equal(s.storageListeners, 1); s.close(); assert.equal(s.storageListeners, 0);
+  assert.equal(s.storageListeners, 0, 'The account-only summary does not subscribe to device-profile storage'); s.close(); assert.equal(s.storageListeners, 0);
 });
 
 test('Profile destinations retain the real regional API paid-access gate before any dataset is consulted', async () => {
@@ -221,10 +230,14 @@ async function domFixture(t, values = {}) {
   const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || path.join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
   const dom = new JSDOM('<!doctype html><html><body><div id="app"></div></body></html>', { url: 'https://example.invalid/quiz-app' });
   for (const [key, value] of Object.entries(values)) dom.window.localStorage.setItem(key, value);
-  const savedGlobals = new Map(), writes = [], removes = [], requests = [], listeners = new Set(), roots = [];
+  const savedGlobals = new Map(), writes = [], removes = [], requests = [], pendingAccounts = [], listeners = new Set(), roots = [];
   for (const [key, value] of Object.entries({ window: dom.window, document: dom.window.document, navigator: dom.window.navigator, HTMLElement: dom.window.HTMLElement,
     MutationObserver: dom.window.MutationObserver, IS_REACT_ACT_ENVIRONMENT: true,
-    fetch: (...args) => { requests.push(args); throw new Error('This profile integration must not send network requests'); } })) {
+    fetch: (...args) => {
+      assert.equal(args[0], '/api/account/exam-profile', 'Only the isolated account-profile API is available');
+      requests.push(args);
+      return new Promise(resolve => pendingAccounts.push({ args, resolve, responded: false }));
+    } })) {
     savedGlobals.set(key, Object.getOwnPropertyDescriptor(globalThis, key));
     Object.defineProperty(globalThis, key, { value, configurable: true, writable: true });
   }
@@ -242,18 +255,31 @@ async function domFixture(t, values = {}) {
     './PageMenu': { __esModule: true, default: ({ children }) => React.createElement('aside', {}, children), closePageMenu() {}, openPageMenu() {} },
     '../hooks/useSelectionPageStart': { __esModule: true, default: () => ({ focusSelection() {}, cancelSelectionFocus() {} }) },
   });
+  const account = product('lib/account-exam-profile-client.js');
   const { createRoot, hydrateRoot } = local('react-dom/client');
   const container = dom.window.document.getElementById('app');
   t.after(async () => {
     try {
       await React.act(async () => { for (const root of roots) root.unmount(); });
+      account.resetAccountExamProfile();
       assert.equal(listeners.size, 0, 'The final actual React unmount removes the shared storage listener');
     } finally {
       dom.window.close();
       for (const [key, descriptor] of savedGlobals) { if (descriptor) Object.defineProperty(globalThis, key, descriptor); else delete globalThis[key]; }
     }
   });
-  return { dom, product, container, writes, removes, requests, get listeners() { return listeners.size; },
+  async function accountResponse(profile) {
+    const pending = pendingAccounts.find(item => !item.responded);
+    assert.ok(pending, 'A real account-profile request is pending'); pending.responded = true;
+    const options = pending.args[1];
+    assert.equal(options.cache, 'no-store'); assert.equal(options.credentials, 'same-origin');
+    if (options.method === 'PUT') {
+      assert.equal(options.headers['X-Jagdlatein-Exam-Account'], ACCOUNT_KEY);
+      assert.deepEqual(JSON.parse(options.body), profile, 'Only the explicitly submitted valid country/region is saved');
+    } else assert.equal(options.method, undefined);
+    await React.act(async () => { pending.resolve({ ok: true, status: 200, async json() { return { accountKey: ACCOUNT_KEY, profile }; } }); });
+  }
+  return { dom, product, container, writes, removes, requests, accountResponse, get listeners() { return listeners.size; },
     async mount(element) { const root = createRoot(container); roots.push(root); await React.act(async () => root.render(element)); return root; },
     async hydrate(element) {
       container.innerHTML = local('react-dom/server').renderToString(element);
@@ -262,11 +288,9 @@ async function domFixture(t, values = {}) {
       return recoveries;
     },
     async external(profile) {
-      const newValue = profile ? JSON.stringify(profile) : null;
-      await React.act(async () => {
-        if (newValue) dom.window.localStorage.setItem(EXAM_KEY, newValue); else dom.window.localStorage.removeItem(EXAM_KEY);
-        dom.window.dispatchEvent(new dom.window.StorageEvent('storage', { key: EXAM_KEY, newValue, storageArea: dom.window.localStorage }));
-      });
+      let refreshed;
+      await React.act(async () => { refreshed = account.loadAccountExamProfile({ force: true }); });
+      await accountResponse(profile); await refreshed;
     },
     async click(label) { const button = [...container.querySelectorAll('button')].find(button => button.textContent.includes(label)); assert.ok(button, label); await React.act(async () => button.click()); },
     async select(id, value) { const select = container.querySelector(`#${id}`); assert.ok(select, id); await React.act(async () => { select.value = value; select.dispatchEvent(new dom.window.Event('change', { bubbles: true })); }); },
@@ -279,11 +303,12 @@ test('Real React hydration shares the actual profile store between quiz and summ
   const Quiz = s.product('components/QuizSetup.js').default;
   const element = React.createElement(Quiz, { ...quizOptions, initialCountry: 'DE', initialTopic: 'Recht' });
   const recoveries = await s.hydrate(element);
+  await s.accountResponse({ country: 'AT', region: 'T' });
   const start = () => [...s.container.querySelectorAll('a')].find(link => link.textContent.startsWith('Quiz starten'));
   assert.deepEqual(recoveries, [], 'SSR and hydration agree without a replacement render');
   assert.equal(start().getAttribute('href'), '/quiz-app/run?country=AT&topic=Recht');
   assert.match(s.container.textContent, /Prüfungsziel: Tirol · Österreich/);
-  assert.equal(s.listeners, 1, 'Quiz and nested summary share one storage listener');
+  assert.equal(s.listeners, 0, 'The nested summary starts account loading before quiz subscription; both then use the account store without a device listener');
   await s.external({ country: 'CH', region: 'ZH' });
   assert.equal(start().getAttribute('href'), '/quiz-app/run?country=CH&topic=Recht');
   assert.match(s.container.textContent, /Prüfungsziel: Zürich · Schweiz/);
@@ -292,8 +317,9 @@ test('Real React hydration shares the actual profile store between quiz and summ
   assert.equal(start().getAttribute('href'), '/quiz-app/run?country=DE&topic=Recht');
   assert.match(s.container.textContent, /Prüfungsziel: Wien · Österreich/);
   for (const key of ['jagd_country', 'journal', 'account']) assert.equal(s.dom.window.localStorage.getItem(key), seeded[key]);
-  assert.ok(s.writes.every(([key]) => key === EXAM_KEY), 'Only simulated cross-tab exam changes wrote storage');
-  assert.deepEqual(s.removes, []); assert.deepEqual(s.requests, []);
+  assert.equal(s.dom.window.localStorage.getItem(EXAM_KEY), seeded[EXAM_KEY], 'Account refreshes do not rewrite the old device target');
+  assert.deepEqual(s.writes, []); assert.deepEqual(s.removes, []);
+  assert.deepEqual(s.requests.map(([url, options]) => [url, options.method || 'GET']), Array.from({ length: 3 }, () => ['/api/account/exam-profile', 'GET']));
 });
 
 test('Actual server element keys remount the real quiz on a new explicit URL context while retaining choices for the same context', async t => {
@@ -304,6 +330,7 @@ test('Actual server element keys remount the real quiz on a new explicit URL con
   const next = await Page({ searchParams: { country: 'AT', topic: 'Recht' } });
   assert.equal(first.key, same.key); assert.notEqual(first.key, next.key);
   const root = await s.mount(first);
+  await s.accountResponse({ country: 'CH', region: 'SG' });
   const start = () => [...s.container.querySelectorAll('a')].find(link => link.textContent.startsWith('Quiz starten')).getAttribute('href');
   assert.equal(start(), '/quiz-app/run?country=DE&topic=Recht');
   await s.click('Schweiz'); assert.equal(start(), '/quiz-app/run?country=CH&topic=Recht');
@@ -314,7 +341,8 @@ test('Actual server element keys remount the real quiz on a new explicit URL con
     await React.act(async () => root.render(invalid));
     assert.equal(start(), '/quiz-app/run?country=DE&topic=Recht', 'An explicitly invalid URL keeps its documented server fallback instead of adopting the CH profile');
   }
-  assert.deepEqual(s.writes, []); assert.deepEqual(s.requests, []);
+  assert.deepEqual(s.writes, []);
+  assert.deepEqual(s.requests.map(([url, options]) => [url, options.method || 'GET']), [['/api/account/exam-profile', 'GET']]);
 });
 
 test('Real plan and summary preserve an unsaved draft through external profile changes and synchronize only an explicit save', async t => {
@@ -324,6 +352,7 @@ test('Real plan and summary preserve an unsaved draft through external profile c
   const data = s.product('lib/exam-study-plan-server.js').getExamStudyPlanData({ asOf: '2026-10-29' });
   const reviewCatalog = s.product('lib/daily-review-pool.js').getPackedDailyReviewCatalog();
   await s.mount(React.createElement(React.Fragment, {}, React.createElement(Plan, { data, reviewCatalog }), React.createElement(Summary)));
+  await s.accountResponse({ country: 'CH', region: 'SG' });
   assert.match(s.container.querySelector('[aria-label="Dein Prüfungsziel"]').textContent, /St\. Gallen · Schweiz/);
   await s.select('exam-plan-country', 'DE'); await s.select('exam-plan-region', 'BY');
   assert.equal(s.dom.window.localStorage.getItem(EXAM_KEY), seeded[EXAM_KEY]); assert.deepEqual(s.writes, []);
@@ -332,12 +361,16 @@ test('Real plan and summary preserve an unsaved draft through external profile c
   assert.equal(s.container.querySelector('#exam-plan-region').value, 'BY');
   assert.match(s.container.querySelector('[aria-label="Dein Prüfungsziel"]').textContent, /Wien · Österreich/);
   await React.act(async () => s.container.querySelector('form').dispatchEvent(new s.dom.window.Event('submit', { bubbles: true, cancelable: true })));
-  assert.deepEqual(JSON.parse(s.dom.window.localStorage.getItem(EXAM_KEY)), { country: 'DE', region: 'BY' });
+  assert.match(s.container.querySelector('[aria-label="Dein Prüfungsziel"]').textContent, /Wien · Österreich/, 'An unconfirmed PUT cannot publish the draft');
+  await s.accountResponse({ country: 'DE', region: 'BY' });
+  assert.equal(s.dom.window.localStorage.getItem(EXAM_KEY), seeded[EXAM_KEY], 'A confirmed account save leaves the legacy device target unchanged');
+  assert.deepEqual(s.product('lib/account-exam-profile-client.js').getAccountExamSnapshot().profile, { country: 'DE', region: 'BY' });
   assert.match(s.container.querySelector('[aria-label="Dein Prüfungsziel"]').textContent, /Bayern · Deutschland/);
   assert.match(s.container.querySelector('#exam-plan-target').textContent, /Bayern · Deutschland/);
-  assert.ok(s.writes.every(([key]) => key === EXAM_KEY));
+  assert.deepEqual(s.writes, []);
   for (const key of [LEGAL_KEY, 'jagd_country', 'journal']) assert.equal(s.dom.window.localStorage.getItem(key), seeded[key]);
-  assert.deepEqual(s.requests, []); assert.deepEqual(s.removes, []);
+  assert.deepEqual(s.requests.map(([url, options]) => [url, options.method || 'GET']), [['/api/account/exam-profile', 'GET'], ['/api/account/exam-profile', 'GET'], ['/api/account/exam-profile', 'PUT']]);
+  assert.deepEqual(s.removes, []);
   assert.equal(s.listeners, 2, 'One shared profile listener plus the separate read-only repetition listener');
   assert.deepEqual([...s.container.querySelectorAll('[aria-labelledby="exam-plan-progress"] dd')].map(node => node.textContent), ['0', '0', '0']);
 });

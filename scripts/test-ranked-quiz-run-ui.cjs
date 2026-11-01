@@ -84,6 +84,8 @@ function setup() {
     if (id.endsWith('/AppIcon')) return { __esModule: true, default: () => null };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     if (id.endsWith('/daily-review')) return { recordReviewAnswer() {} };
+    if (id.endsWith('/use-exam-profile')) return { __esModule: true, default: () => ({ ready: true, profile: null }) };
+    if (id.endsWith('/exam-profile')) return { getExamProfileDetails: () => null };
     if (id.endsWith('/quiz-learning-scope')) return { isCountryQuizTopic: topic => topic === 'Recht',
       quizLearningUrl: (pathname, country, topic) => `${pathname}?${topic === 'Recht' ? `country=${country}&` : ''}topic=${encodeURIComponent(topic)}` };
     return pr(id);

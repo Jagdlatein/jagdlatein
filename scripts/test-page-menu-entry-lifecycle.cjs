@@ -39,6 +39,7 @@ async function fixture(options = {}) {
   let page = options.page !== false, epoch = 0;
   const load = createLoader({
     'next/navigation': { usePathname: () => pathname },
+    'next/router': { useRouter: () => router },
     'next/compat/router': { useRouter: () => options.appRouter ? null : router },
     'next/link': ({ children, href, prefetch, ...props }) => React.createElement('a', { ...props, href }, children),
     './AppIcon': { __esModule: true, default: () => null },
@@ -46,6 +47,7 @@ async function fixture(options = {}) {
     './AppUpdateStatus': { __esModule: true, default: () => null },
     '../../components/LearningDiscovery': { __esModule: true, default: () => null },
     '../../lib/learning-curriculum': { learningModules: [] },
+    '../../lib/use-exam-profile': { __esModule: true, default: () => ({ ready: true, profile: null }) },
     '../lib/learning-categories': { learningCategoryDetails: [] },
   });
   const { default: PageMenu, closePageMenu, PAGE_MENU_ROUTE_ATTRIBUTE } = load('components/PageMenu.js');

@@ -7,6 +7,8 @@ import AppIcon from "../../../components/AppIcon";
 import styles from "../../../styles/RankedQuiz.module.css";
 import { isCountryQuizTopic, quizLearningUrl } from "../../../lib/quiz-learning-scope";
 import { recordReviewAnswer } from "../../../lib/daily-review";
+import useExamProfile from "../../../lib/use-exam-profile";
+import { getExamProfileDetails } from "../../../lib/exam-profile";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const timestamp = value => typeof value === "string" && Number.isFinite(Date.parse(value));
@@ -40,11 +42,24 @@ function validRound(round) {
 export default function QuizClient() {
   const router = useRouter();
   const params = useSearchParams();
-  const requestedCountry = (params.get("country") || "DE").toUpperCase();
-  const requestedTopic = (params.get("topic") || "Alle").trim();
+  const exam = useExamProfile();
+  const requestedCountry = (params?.get("country") || "DE").toUpperCase();
+  const requestedTopic = (params?.get("topic") || "Alle").trim();
   const topic = requestedTopic && requestedTopic.length <= 120 && !/[\u0000-\u001f\u007f]/.test(requestedTopic) ? requestedTopic : "Alle";
-  const country = isCountryQuizTopic(topic) && ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE";
-  const [round, setRound] = useState(null);
+  const countryTopic = isCountryQuizTopic(topic);
+  const countryExplicit = params?.has("country") === true;
+  const waitingForProfile = !params || (countryTopic && !countryExplicit && !exam.ready);
+  const profileCountry = exam.ready ? getExamProfileDetails(exam.profile)?.country.code : null;
+  const country = countryTopic ? !countryExplicit && profileCountry ? profileCountry
+    : ["DE", "AT", "CH"].includes(requestedCountry) ? requestedCountry : "DE" : "DE";
+  const selectionKey = JSON.stringify([country, topic, waitingForProfile]);
+  const selectionIdentity = useRef({ key: selectionKey });
+  if (selectionIdentity.current.key !== selectionKey) selectionIdentity.current = { key: selectionKey };
+  const selection = selectionIdentity.current;
+  const [roundState, setRoundState] = useState(null);
+  // A new URL/profile context must not display the old jurisdiction's question
+  // during the render before its effect has cancelled and restarted the request.
+  const round = roundState?.selection === selection ? roundState.value : null;
   const [busy, setBusy] = useState("profile");
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState(null);
@@ -65,6 +80,11 @@ export default function QuizClient() {
   const setupUrl = quizLearningUrl("/quiz-app", country, topic);
   const nameUrl = quizLearningUrl("/quiz-app/username", country, topic);
 
+  function live(record = context.current) {
+    return mounted.current && !waitingForProfile && selectionIdentity.current === selection && record && context.current === record
+      && selectionIdentity.current === record.selection;
+  }
+
   function rememberRound(id) {
     try { window.sessionStorage.setItem(storageKey, id); } catch { /* The server remains authoritative without browser storage. */ }
   }
@@ -78,12 +98,12 @@ export default function QuizClient() {
     return Math.max(0, Math.min(30, Math.ceil((clock.deadline - clock.serverNow - elapsed) / 1000)));
   }
   function applyRound(value) {
-    if (!validRound(value)) throw new Error("Die Quizrunde enthält keine gültige Antwort.");
+    if (!validRound(value) || value.country !== country || value.topic !== topic) throw new Error("Die Quizrunde enthält keine gültige Antwort.");
     serverClock.current = value.phase === "asking" ? {
       deadline: Date.parse(value.deadlineAt), serverNow: Date.parse(value.serverNow), receivedAt: globalThis.performance.now(),
     } : null;
     currentRound.current = value;
-    setRound(value);
+    setRoundState({ selection, value });
     setSelected(value.feedback?.selectedAnswerId ?? null);
     setSeconds(value.phase === "asking" ? remainingSeconds() : 0);
     setError(null);
@@ -117,15 +137,16 @@ export default function QuizClient() {
   }, []);
 
   useEffect(() => {
-    const record = { controller: new AbortController() };
+    const record = { controller: new AbortController(), selection };
     context.current = record;
     pending.current?.controller?.abort();
     pending.current = null;
     currentRound.current = null;
-    setRound(null);
+    setRoundState(null);
     setSelected(null);
     setError(null);
     setBusy("profile");
+    if (waitingForProfile) return () => record.controller.abort();
     if (startRequest.current?.key !== storageKey) {
       let savedId;
       try { savedId = window.sessionStorage.getItem(storageKey); } catch {}
@@ -137,7 +158,7 @@ export default function QuizClient() {
         const profile = await readResponse(await fetch("/api/quiz/register", {
           method: "GET", credentials: "same-origin", cache: "no-store", signal: record.controller.signal,
         }));
-        if (!mounted.current || context.current !== record) return;
+        if (!live(record)) return;
         if (profile.identity === null) {
           setBusy("redirect");
           router.push(nameUrl);
@@ -154,11 +175,11 @@ export default function QuizClient() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ country, topic, requestId: startRequest.current.id }),
         }));
-        if (!mounted.current || context.current !== record) return;
+        if (!live(record)) return;
         if (result.round?.roundId !== startRequest.current.id) throw new Error("Die Antwort gehört nicht zu dieser Runde.");
         applyRound(result.round);
       } catch (failure) {
-        if (mounted.current && context.current === record) {
+        if (live(record)) {
           setBusy(null);
           setError(failureState(stage, failure));
         }
@@ -168,10 +189,10 @@ export default function QuizClient() {
     return () => {
       record.controller.abort();
     };
-  }, [country, topic, reloadKey, router]);
+  }, [country, topic, waitingForProfile, reloadKey, router]);
 
   async function execute(operation) {
-    if (!operation || operation.running || !mounted.current || operation.context !== context.current) return;
+    if (!operation || operation.running || !live(operation.context)) return;
     operation.running = true;
     operation.controller = new AbortController();
     setBusy(operation.kind);
@@ -186,12 +207,12 @@ export default function QuizClient() {
         options.body = JSON.stringify(operation.payload);
       }
       const result = await readResponse(await fetch(url, options));
-      if (!mounted.current || operation.context !== context.current || pending.current !== operation) return;
+      if (!live(operation.context) || pending.current !== operation) return;
       if (result.round?.roundId !== operation.payload.roundId) throw new Error("Die Antwort gehört nicht zu dieser Runde.");
       applyRound(result.round);
       pending.current = null;
     } catch (failure) {
-      if (mounted.current && operation.context === context.current && pending.current === operation) {
+      if (live(operation.context) && pending.current === operation) {
         setBusy(null);
         setError(failureState(operation.kind, failure));
       }
@@ -201,7 +222,7 @@ export default function QuizClient() {
   }
 
   function answer(answerId, rendered = round) {
-    if (!mounted.current || pending.current || rendered !== currentRound.current || rendered?.phase !== "asking") return;
+    if (!live() || pending.current || rendered !== currentRound.current || rendered?.phase !== "asking") return;
     if (answerId !== null && !rendered.question.answers.some(item => item.id === answerId)) return;
     const operation = { kind: "answer", context: context.current, payload: {
       roundId: rendered.roundId, questionId: rendered.question.id, answerId, requestId: globalThis.crypto.randomUUID(),
@@ -211,19 +232,19 @@ export default function QuizClient() {
     void execute(operation);
   }
   function next(rendered = round) {
-    if (!mounted.current || pending.current || rendered !== currentRound.current || rendered?.phase !== "feedback") return;
+    if (!live() || pending.current || rendered !== currentRound.current || rendered?.phase !== "feedback") return;
     const operation = { kind: "next", context: context.current, payload: { roundId: rendered.roundId, requestId: globalThis.crypto.randomUUID() } };
     pending.current = operation;
     void execute(operation);
   }
   function synchronize() {
-    if (!round || pending.current?.running) return;
+    if (!live() || !round || pending.current?.running) return;
     const operation = { kind: "sync", context: context.current, payload: { roundId: round.roundId } };
     pending.current = operation;
     void execute(operation);
   }
   function restart() {
-    if (pending.current?.running) return;
+    if (!live() || pending.current?.running) return;
     forgetRound();
     startRequest.current = { key: storageKey, id: null };
     setReloadKey(value => value + 1);
@@ -264,6 +285,7 @@ export default function QuizClient() {
       {[401, 403].includes(error.status) ? <Link href={`/login?reauth=1&next=${encodeURIComponent(returnUrl)}`}>Anmeldung erneuern</Link>
         : error.status === 409 && round ? <button type="button" onClick={synchronize}>Runde erneut laden</button>
         : <button type="button" onClick={() => {
+          if (!live()) return;
           if (pending.current) void execute(pending.current);
           else setReloadKey(value => value + 1);
         }}>Erneut versuchen</button>}
@@ -279,7 +301,7 @@ export default function QuizClient() {
 
   if (!round) return <main className={styles.main}><div className={styles.wrap}>
     <header className={styles.header}><h1><AppIcon name="quiz" size={32} />Jagdquiz mit Rangliste</h1></header>
-    {error ? errorNotice() : <p role="status">{busy === "profile" ? "Dein Quizname wird bestätigt …" : busy === "redirect" ? "Bitte wähle deinen Quiznamen …" : "Lade Quizrunde …"}</p>}
+    {waitingForProfile ? <p role="status">Dein Prüfungsprofil wird geladen …</p> : error ? errorNotice() : <p role="status">{busy === "profile" ? "Dein Quizname wird bestätigt …" : busy === "redirect" ? "Bitte wähle deinen Quiznamen …" : "Lade Quizrunde …"}</p>}
     {!error && <p><Link href={setupUrl}>Thema wählen</Link></p>}
   </div></main>;
 

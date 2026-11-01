@@ -2,13 +2,19 @@
 
 import "../styles/AppBase.css";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import ExamProfileBoundary, { requiresExamProfile } from "../components/ExamProfileBoundary";
 
 export default function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const required = requiresExamProfile(router.pathname);
   return (
     <>
       <Head><link rel="manifest" href="/manifest.webmanifest" /><meta name="theme-color" content="#faf8f1" /></Head>
-      <Component {...pageProps} />
-      <GlobalHomeButton />
+      <ExamProfileBoundary required={required}>
+        <Component {...pageProps} />
+        {!Component.examProfileSetup && <GlobalHomeButton />}
+      </ExamProfileBoundary>
     </>
   );
 }

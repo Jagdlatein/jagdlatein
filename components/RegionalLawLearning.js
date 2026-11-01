@@ -395,9 +395,9 @@ export default function RegionalLawLearning({ country, name, regionLabel, region
         {((selection.view === "wissen" && !article && !topicArticles.length) || (selection.view !== "wissen" && !questionPool.length)) &&
           <p className={styles.notice} role="status">{query ? "Kein Treffer in dieser Auswahl. Ändere den Suchbegriff oder das Thema." : "Für diese Auswahl sind noch keine ausreichend belegten Lernabschnitte und Fragen freigegeben. Die amtliche Gesetzessammlung bleibt direkt erreichbar."}</p>}
         </>}
+        <p className={styles.notice}>Die freigegebenen Abschnitte sind eine gezielte Lernsammlung. Sie bilden noch nicht sämtliche Gesetze, Verordnungen und Prüfungsanforderungen der Region ab.</p>
         <details className={styles.lowerPath}><summary>Ergänzende Quellen, Rechtsstand und Umfang</summary>
           {bundle.region.notes && <p>{bundle.region.notes}</p>}
-          <p>Die freigegebenen Abschnitte sind eine gezielte Lernsammlung. Sie bilden noch nicht sämtliche Gesetze, Verordnungen und Prüfungsanforderungen der Region ab.</p>
           <p><a href={bundle.region.officialUrl} target="_blank" rel="noopener noreferrer">{bundle.region.lawTitle} – amtliche Gesamtsammlung</a></p>
           {(selection.view === "wissen" ? (article ? [article] : []) : bundle.articles.filter(item => questionPool.some(question => question.articleId === item.id))).map(item => <div key={item.id}><h3>{item.title} · {item.citation}</h3><ArticleSources article={item} /></div>)}
         </details>

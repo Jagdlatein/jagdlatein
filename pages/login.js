@@ -13,7 +13,7 @@ import authStyles from "../styles/Auth.module.css";
 export async function getServerSideProps({ req, res, query }) {
   res?.setHeader("Cache-Control", "private, no-store, max-age=0");
   if (readAccountSession(req.cookies?.[JL_ACCOUNT_COOKIE]) && query.reauth !== "1") {
-    return { redirect: { destination: getNextUrl(query.next), permanent: false } };
+    return { redirect: { destination: `/pruefungsziel?next=${encodeURIComponent(getNextUrl(query.next))}`, permanent: false } };
   }
   const testMailMode = getTestLoginMailMode();
   let allowReviewLogin = false;
@@ -198,7 +198,7 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     }
   }
 
-  if (welcome?.flow === flow) return <ExamProfileWelcome key={flow.key} destination={welcome.destination} isCurrent={welcomeGuard.current.isCurrent} />;
+  if (welcome?.flow === flow) return <ExamProfileWelcome key={flow.key} destination={welcome.destination} isCurrent={welcomeGuard.current.isCurrent} freshLogin />;
 
   const title = forSubscription ? "Dein Konto für das Abo" : registrationMode ? "Dein Lernkonto" : "Willkommen zurück";
   const description = forSubscription
@@ -238,3 +238,4 @@ export default function LoginPage({ registration = false, allowRegistration = fa
     </section>
   </LearningToolLayout>;
 }
+LoginPage.examProfileSetup = true;

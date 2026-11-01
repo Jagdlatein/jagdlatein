@@ -20,7 +20,7 @@ function setup(initial = {}, options = {}) {
     useEffect(fn, deps) { const index = cursor++; if (!slots[index] || !deps || deps.some((value, i) => !Object.is(value, slots[index].deps[i]))) { slots[index] = { deps }; pending.push(() => { cleanups[index]?.(); cleanups[index] = fn(); }); } },
   };
   const useProfile = () => ({ ...store,
-    saveProfile(value) { calls.save.push(value); if (options.failSave) return false; if (options.commit !== false) store.profile = value; return true; },
+    async saveProfile(value) { calls.save.push(value); await Promise.resolve(); if (options.failSave) return false; if (options.commit !== false) store.profile = value; return true; },
     clearProfile() { calls.clear++; if (options.failClear) return false; if (options.commit !== false) store.profile = null; return true; },
   });
   function PageMenu({ children }) { return React.createElement('aside', null, children); }
@@ -34,7 +34,7 @@ function setup(initial = {}, options = {}) {
   return { store, calls, PageMenu, render, get tree() { return tree; }, nodes: predicate => nodes(tree, predicate),
     control(id) { return nodes(tree, node => node.props?.id === id)[0]; },
     change(id, value) { this.control(id).props.onChange({ target: { value } }); render(); },
-    save() { nodes(tree, node => node.type === 'form')[0].props.onSubmit({ preventDefault() {} }); render(); },
+    async save() { await nodes(tree, node => node.type === 'form')[0].props.onSubmit({ preventDefault() {} }); render(); },
     clear() { nodes(tree, node => node.type === 'button' && text(node) === 'Prüfungsziel entfernen')[0].props.onClick(); render(); },
     update(value) { Object.assign(store, value); render(); },
     dispose() { cleanups.forEach(cleanup => cleanup?.()); },
@@ -110,20 +110,20 @@ test('Restoration waits for readiness and never silently saves a target or opens
   } finally { h.dispose(); }
 });
 
-test('Changing the country and region remains a draft until explicit save; focus follows the actual profile commit', () => {
+test('Changing the country and region remains a draft until explicit save; focus follows the actual profile commit', async () => {
   const h = setup({ profile: { country: 'CH', region: 'ZH' } }, { commit: false });
   try {
     h.change('exam-plan-country', 'DE'); assert.equal(h.control('exam-plan-region').props.value, '');
     h.change('exam-plan-region', 'BY'); assert.deepEqual(h.calls.save, []);
     assert.match(text(h.tree), /Zürich · Schweiz/); assert.doesNotMatch(text(h.tree), /Bayern · Deutschland/);
-    h.save(); assert.deepEqual(h.calls.save, [{ country: 'DE', region: 'BY' }]); assert.equal(h.calls.focus.length, 0); assert.equal(h.calls.close, 0);
+    await h.save(); assert.deepEqual(h.calls.save, [{ country: 'DE', region: 'BY' }]); assert.equal(h.calls.focus.length, 0); assert.equal(h.calls.close, 0);
     h.update({ profile: { country: 'DE', region: 'BY' } });
     assert.match(text(h.tree), /Bayern · Deutschland/); assert.equal(h.calls.focus.length, 1); assert.equal(h.calls.close, 1);
     assert.ok(h.nodes(node => node.props?.href === '/jagdrecht/de?region=BY&ansicht=uebung').length);
   } finally { h.dispose(); }
 });
 
-test('An external profile update preserves a dirty draft and invalidates old context handlers', () => {
+test('An external profile update preserves a dirty draft and invalidates old context handlers', async () => {
   const h = setup({ profile: { country: 'CH', region: 'ZH' } });
   try {
     h.change('exam-plan-country', 'AT'); h.change('exam-plan-region', 'NOE');
@@ -131,14 +131,14 @@ test('An external profile update preserves a dirty draft and invalidates old con
     h.update({ profile: { country: 'DE', region: 'BY' } });
     assert.equal(h.control('exam-plan-country').props.value, 'AT'); assert.equal(h.control('exam-plan-region').props.value, 'NOE');
     oldSave({ preventDefault() {} }); assert.equal(h.calls.save.length, 0);
-    h.save(); assert.deepEqual(h.calls.save, [{ country: 'AT', region: 'NOE' }]);
+    await h.save(); assert.deepEqual(h.calls.save, [{ country: 'AT', region: 'NOE' }]);
   } finally { h.dispose(); }
 });
 
-test('Editing a new draft supersedes an accepted pending focus request before a late profile commit', () => {
+test('Editing a new draft supersedes an accepted pending focus request before a late profile commit', async () => {
   const h = setup({ profile: { country: 'CH', region: 'ZH' } }, { commit: false });
   try {
-    h.change('exam-plan-country', 'AT'); h.change('exam-plan-region', 'NOE'); h.save();
+    h.change('exam-plan-country', 'AT'); h.change('exam-plan-region', 'NOE'); await h.save();
     h.change('exam-plan-region', 'S');
     h.update({ profile: { country: 'AT', region: 'NOE' } });
     assert.equal(h.control('exam-plan-region').props.value, 'S');
@@ -161,9 +161,9 @@ test('Old draft handlers are blocked before rerender and all saved callbacks sto
   assert.equal(h.calls.save.length, 0); assert.equal(h.calls.clear, 0); assert.equal(h.calls.open.length, 0);
 });
 
-test('A failed commit retains the original target; session-only commits and explicit removal are honestly described', () => {
+test('A failed commit retains the original target; session-only commits and explicit removal are honestly described', async () => {
   const failed = setup({ profile: { country: 'CH', region: 'ZH' } }, { failSave: true });
-  try { failed.change('exam-plan-country', 'AT'); failed.change('exam-plan-region', 'NOE'); failed.save(); assert.match(text(failed.tree), /Zürich · Schweiz/); assert.match(text(failed.tree), /konnte nicht übernommen/); assert.equal(failed.calls.focus.length, 0); } finally { failed.dispose(); }
+  try { failed.change('exam-plan-country', 'AT'); failed.change('exam-plan-region', 'NOE'); await failed.save(); assert.match(text(failed.tree), /Zürich · Schweiz/); assert.match(text(failed.tree), /konnte nicht übernommen/); assert.equal(failed.calls.focus.length, 0); } finally { failed.dispose(); }
   const session = setup({ profile: { country: 'CH', region: 'ZH' }, persistence: 'session' });
   try { assert.match(text(session.tree), /nur in dieser Sitzung/); session.clear(); assert.equal(session.store.profile, null); assert.equal(session.control('exam-plan-country').props.value, ''); assert.equal(session.calls.clear, 1); assert.equal(session.calls.focus.length, 1); } finally { session.dispose(); }
 });
@@ -192,14 +192,19 @@ test('Actual SSR puts complete orientation before closed final original sources 
   assert.match(html, /weder eine Prüfungszulassung noch eine Jagdberechtigung/);
 });
 
-test('Reusable profile summaries only link to the selected law and plan; they neither navigate nor save', () => {
+test('Reusable summaries read the account target once and only link to its law and plan; they never navigate or save', () => {
   for (const profile of [null, { country: 'AT', region: 'NOE' }, { country: 'DE', region: 'BE' }]) {
-    let actions = 0;
-    const Summary = createLoader({ '../lib/use-exam-profile': { __esModule: true, default: () => ({ profile, ready: true, persistence: 'session', saveProfile() { actions++; }, clearProfile() { actions++; } }) } })('components/ExamProfileSummary.js').default;
+    let actions = 0, reads = 0; const effects = [];
+    const Summary = createLoader({ react: { ...React, useEffect(fn) { effects.push(fn); } },
+      '../hooks/useAccountExamProfile': { __esModule: true, default: () => ({ profile, ready: true, persistence: 'account', saveProfile() { actions++; }, clearProfile() { actions++; } }) },
+      '../lib/account-exam-profile-client': { loadAccountExamProfile() { reads++; } },
+    })('components/ExamProfileSummary.js').default;
     const tree = Summary({}); assert.equal(actions, 0);
+    assert.equal(reads, 0); effects.forEach(effect => effect()); assert.equal(reads, 1);
     assert.equal(nodes(tree, node => ['select', 'input', 'button', 'dialog'].includes(node.type)).length, 0);
     assert.equal(nodes(tree, node => node.props?.href === '/lernen/pruefungsplan').length, 1);
-    if (profile) { assert.equal(nodes(tree, node => node.props?.href === profileApi.examProfileLawHref(profile)).length, 1); assert.match(text(tree), /nur diese Sitzung/); }
+    if (profile) assert.equal(nodes(tree, node => node.props?.href === profileApi.examProfileLawHref(profile)).length, 1);
+    assert.doesNotMatch(text(tree), /nur diese Sitzung|Geräteauswahl/);
   }
 });
 

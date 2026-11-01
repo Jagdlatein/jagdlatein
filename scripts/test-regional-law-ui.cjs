@@ -64,6 +64,22 @@ const norm = { id: 'sg-one', topic: 'pruefung', title: 'Synthetic norm', lawTitl
 function bundle(code = 'SG') { return { country: 'CH', region: { code, name: code === 'SG' ? 'St. Gallen' : 'Zürich', officialUrl: 'https://example.invalid', lawTitle: 'Synthetic law' },
   articles: [{ ...norm, regionCode: code, regionName: code }], questions: [{ id: `${code}-q`, topic: 'pruefung', articleId: norm.id, regionCode: code }], sources: [] }; }
 
+test('Regional scope remains visible before the closed final source panel', async () => {
+  const s = harness({ region: 'SG', thema: 'pruefung', artikel: 'sg-one' });
+  try {
+    await s.respond(0, bundle());
+    const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || require('node:path').join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
+    const dom = new JSDOM(s.html()), document = dom.window.document;
+    try {
+      const notice = [...document.querySelectorAll('p')].find(p => p.textContent.includes('Sie bilden noch nicht sämtliche Gesetze, Verordnungen und Prüfungsanforderungen der Region ab.'));
+      const panel = [...document.querySelectorAll('details')].find(d => d.querySelector('summary')?.textContent === 'Ergänzende Quellen, Rechtsstand und Umfang');
+      assert.ok(notice); assert.equal(notice.closest('details'), null, 'Essential scope is readable without opening sources');
+      assert.ok(panel); assert.equal(panel.hasAttribute('open'), false);
+      assert.ok(notice.compareDocumentPosition(panel) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
+    } finally { dom.window.close(); }
+  } finally { s.close(); }
+});
+
 test('The personal exam target restores a bare country page before a different last-viewed region', () => {
   const exam = { ready: true, profile: { country: 'CH', region: 'ZH' } };
   const s = harness({}, { country: 'CH', region: 'SG' }, exam);

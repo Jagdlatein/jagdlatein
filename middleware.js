@@ -113,7 +113,7 @@ export async function middleware(req) {
   let renewedCookie = null;
 
   const isPublic = PUBLIC_PATHS.includes(pathname);
-  const isAccountPage = ["/konto", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)
+  const isAccountPage = ["/konto", "/pruefungsziel", "/meine-kurse", "/auswertungen", "/dashboard", "/quiz-app/stats", "/quiz/stats"].includes(pathname)
     || /^\/community\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(pathname);
 
   // gewünschte Zielseite merken (inkl. Query)

@@ -1,206 +1,136 @@
-// Actual component and actual profile-store lifetimes; synthetic storage only.
+// Mandatory account welcome: actual React/JSDOM effects and isolated RAM/HTTP.
 const test = require('node:test'), assert = require('node:assert/strict');
-const fs = require('node:fs'), path = require('node:path');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
-const { nodes, text } = require('./helpers/field-reader-fixture.cjs');
-const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
-const KEY = 'jl_exam_profile_v1';
-// Load the real shared layout in the server environment before browser doubles
-// are attached; styled-jsx must not mistake that double for a complete DOM.
-const Layout = createLoader()('components/LearningToolLayout.js').default;
+const { createLoader, local } = require('./helpers/project-module.cjs');
+const { fixture, A, B, nativeProps, event, React } = require('./helpers/account-exam-dom.cjs');
+const CH = { country: 'CH', region: 'ZH' }, AT = { country: 'AT', region: 'NOE' };
+// styled-jsx must initialize in a server environment, before a minimal window
+// double is attached. The real layout still renders the actual SSR heading.
+const ServerLayout = createLoader()('components/LearningToolLayout.js').default;
 
-function setup(t, options = {}) {
-  const previous = global.window, values = new Map(options.profile ? [[KEY, JSON.stringify(options.profile)]] : []);
-  const writes = [], removed = [], redirects = [], listeners = new Set(), frames = [], saveCalls = [];
-  let denyWrite = options.denyWrite || false, denyRead = options.denyRead || false;
-  let failNavigation = options.failNavigation || false, parentLive = true;
-  const storage = { getItem(key) { if (denyRead) throw new Error('Read denied'); return values.get(key) ?? null; },
-    setItem(key, value) { writes.push([key, value]); if (denyWrite) throw new Error('Write denied'); values.set(key, value); },
-    removeItem(key) { removed.push(key); values.delete(key); } };
-  global.window = { localStorage: storage, location: { replace(target) { redirects.push(target); if (failNavigation) throw new Error('Navigation denied'); } },
-    addEventListener(name, listener) { if (name === 'storage') listeners.add(listener); },
-    removeEventListener(name, listener) { if (name === 'storage') listeners.delete(listener); } };
-  const slots = [], effects = []; let cursor = 0, changed = false, disposed = false, tree, protocol;
-  const hooks = { ...React,
-    useState(initial) { const i = cursor++; slots[i] ||= { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, input => { assert.equal(disposed, false, 'No state write after unmount'); const value = typeof input === 'function' ? input(slots[i].value) : input; changed ||= !Object.is(value, slots[i].value); slots[i].value = value; }]; },
-    useRef(initial) { const i = cursor++; return slots[i] ||= { current: initial }; },
-    useEffect(fn, deps) { const i = cursor++, old = slots[i]; if (!old || deps.some((value, index) => !Object.is(value, old.deps[index]))) { slots[i] = { deps, cleanup: old?.cleanup }; effects.push(() => { slots[i].cleanup?.(); slots[i].cleanup = fn(); }); } },
-    useSyncExternalStore(subscribe, getSnapshot) { protocol = { subscribe, getSnapshot }; hooks.useEffect(() => subscribe(() => { assert.equal(disposed, false); changed = true; }), [subscribe]); return getSnapshot(); },
-  };
-  const deferred = { profile: options.profile || null, ready: options.ready !== false, persistence: options.persistence || 'device', saveProfile(value) { saveCalls.push(value); return options.rejectSave !== true; } };
-  const overrides = { react: hooks, './LearningToolLayout': { __esModule: true, default: Layout } };
-  if (options.deferred) overrides['../lib/use-exam-profile'] = { __esModule: true, default: () => deferred };
-  const api = createLoader(overrides);
-  const Component = api('components/ExamProfileWelcome.js').default;
-  const props = { destination: options.destination || '/lernen', isCurrent: () => parentLive };
-  function render() {
-    for (let pass = 0; pass < 15; pass++) {
-      cursor = 0; changed = false; tree = Component(props);
-      frames.push({ forms: nodes(tree, node => node.type === 'form').length, text: text(tree) });
-      while (effects.length) effects.shift()();
-      if (!changed) return tree;
-    }
-    throw new Error('Welcome did not settle');
-  }
-  function dispose() { if (disposed) return; slots.forEach(slot => slot.cleanup?.()); disposed = true; }
-  t.after(() => { dispose(); global.window = previous; }); render();
-  return { writes, removed, values, redirects, frames, saveCalls, deferred, props, storage, render, dispose, get tree() { return tree; },
-    controls: () => nodes(tree, node => node.type === 'select'),
-    control(id) { return nodes(tree, node => node.props?.id === id)[0]; },
-    button(label) { return nodes(tree, node => node.type === 'button' && text(node) === label)[0]; },
-    change(id, value) { this.control(id).props.onChange({ target: { value } }); render(); },
-    save() { nodes(tree, node => node.type === 'form')[0].props.onSubmit({ preventDefault() {} }); render(); },
-    click(label) { this.button(label).props.onClick(); render(); },
-    commit(profile, persistence = 'device') { assert.ok(options.deferred); deferred.profile = profile; deferred.persistence = persistence; render(); },
-    update(value) { Object.assign(props, value); render(); },
-    parent(value) { parentLive = value; },
-    external(profile) { if (profile) values.set(KEY, JSON.stringify(profile)); else values.delete(KEY); for (const listener of [...listeners]) listener({ key: KEY, storageArea: storage }); render(); },
-    set failNavigation(value) { failNavigation = value; },
-    get snapshot() { return protocol?.getSnapshot(); },
-  };
-}
-
-test('Actual React SSR has exactly one page heading and a loading state without touching browser storage or painting a form', () => {
-  const previous = global.window; let reads = 0;
-  global.window = { get localStorage() { reads++; throw new Error('SSR cannot read storage'); } };
+test('Actual SSR is one loading page without reading browser preferences, fetching, or painting a choice form', () => {
+  const previous = Object.getOwnPropertyDescriptor(globalThis, 'window'); let reads = 0;
+  Object.defineProperty(globalThis, 'window', { configurable: true, value: { get localStorage() { reads++; throw new Error('No SSR storage'); } } });
   try {
-    const Welcome = createLoader()('components/ExamProfileWelcome.js').default;
-    const html = renderToStaticMarkup(React.createElement(Welcome, { destination: '/lernen' }));
-    assert.equal(reads, 0); assert.equal((html.match(/<h1\b/g) || []).length, 1);
-    assert.match(html, />Dein Prüfungsziel<\/h1>/); assert.match(html, /Dein Prüfungsziel wird geladen/);
-    assert.doesNotMatch(html, /<form|<select|<dialog/);
-  } finally { global.window = previous; }
+    const Welcome = createLoader({ './LearningToolLayout': { __esModule: true, default: ServerLayout } })('components/ExamProfileWelcome.js').default;
+    const html = local('react-dom/server').renderToStaticMarkup(React.createElement(Welcome, { destination: '/lernen' }));
+    assert.equal(reads, 0); assert.equal((html.match(/<h1\b/g) || []).length, 1); assert.match(html, /Dein Prüfungsziel wird geladen/); assert.doesNotMatch(html, /<form|<select|<dialog/);
+  } finally { if (previous) Object.defineProperty(globalThis, 'window', previous); else delete globalThis.window; }
 });
 
-test('A restored valid device profile redirects once to the exact safe destination with no choice flash or storage write', t => {
-  const f = setup(t, { profile: { country: 'CH', region: 'ZH' }, destination: '/kurse/wissen-jagdrecht-ch#lesson-rahmen' });
-  assert.deepEqual(f.redirects, ['/kurse/wissen-jagdrecht-ch#lesson-rahmen']);
-  assert.equal(nodes(f.tree, node => node.type === 'a' && text(node) === 'Weiter')[0].props.href, '/kurse/wissen-jagdrecht-ch#lesson-rahmen');
-  assert.ok(f.frames.every(frame => frame.forms === 0));
-  assert.deepEqual(f.writes, []); assert.deepEqual(f.removed, []);
-  f.render(); f.render(); assert.equal(f.redirects.length, 1);
+test('Actual hydration starts from the neutral server snapshot even when a confirmed account is already in RAM', async t => {
+  const s = await fixture(t, { hydrate: true, loadAccount: true, profile: CH, denyStorage: true, props: { destination: '/lernen#start' } });
+  assert.match(s.serverHtml, /Dein Prüfungsziel wird geladen/); assert.doesNotMatch(s.serverHtml, /<form|<select|gespeichertes Prüfungsziel ist bereit/);
+  assert.deepEqual(s.recoverableErrors, []); assert.deepEqual(s.navigations, ['/lernen#start']); assert.deepEqual(s.reads, []); assert.deepEqual(s.writes, []);
 });
 
-test('All51 region choices start empty, are offered under their exact country and remain unsaved drafts', t => {
-  const f = setup(t);
-  assert.equal(f.control('exam-welcome-country').props.value, ''); assert.equal(f.control('exam-welcome-region').props.value, '');
-  const { examCountries } = createLoader()('lib/exam-profile.js'); let count = 0;
+test('Loading has no local fallback or skip; all51 explicit choices are offered empty without saving a draft', async t => {
+  const s = await fixture(t, { deferGet: true, values: { jl_exam_profile_v1: JSON.stringify(CH) } });
+  assert.equal(s.container.querySelector('form'), null); assert.deepEqual(s.navigations, []); await s.respond(0);
+  assert.equal(s.container.querySelector('#exam-welcome-country').value, ''); assert.equal(s.container.querySelector('#exam-welcome-region').value, '');
+  assert.doesNotMatch(s.container.textContent, /Später auswählen|Trotzdem weiter/);
+  const { examCountries } = s.product('lib/exam-profile.js'); let count = 0;
   for (const country of examCountries) {
-    f.change('exam-welcome-country', country.code);
-    assert.equal(f.control('exam-welcome-region').props.value, '');
-    const options = nodes(f.control('exam-welcome-region'), node => node.type === 'option' && node.props.value);
-    assert.deepEqual(options.map(option => [option.props.value, text(option)]), country.regions.map(region => [region.code, region.name]));
-    count += options.length;
+    await s.select('exam-welcome-country', country.code);
+    const select = s.container.querySelector('#exam-welcome-region'); assert.equal(select.value, '');
+    const options = [...select.options].filter(node => node.value); assert.deepEqual(options.map(node => [node.value, node.textContent]), country.regions.map(region => [region.code, region.name])); count += options.length;
   }
-  assert.equal(count, 51); assert.deepEqual(f.writes, []); assert.deepEqual(f.redirects, []);
+  assert.equal(count, 51); assert.equal(s.calls.length, 1); assert.deepEqual(s.writes, []); assert.deepEqual(s.reads, []);
 });
 
-test('A real explicit save persists only country/region before document navigation and double submissions cannot repeat it', t => {
-  const f = setup(t, { destination: '/preise?next=%2Flernen' });
-  f.change('exam-welcome-country', 'AT'); f.change('exam-welcome-region', 'NOE');
-  const submit = nodes(f.tree, node => node.type === 'form')[0].props.onSubmit;
-  submit({ preventDefault() {} }); submit({ preventDefault() {} }); f.render();
-  assert.deepEqual(f.writes, [[KEY, JSON.stringify({ country: 'AT', region: 'NOE' })]]);
-  assert.deepEqual(f.redirects, ['/preise?next=%2Flernen']);
-  assert.deepEqual(f.snapshot.profile, { country: 'AT', region: 'NOE' });
-  assert.equal(f.snapshot.persistence, 'device');
-  assert.doesNotMatch(JSON.stringify(f.writes), /destination|email|code|next/);
+test('Only confirmed account persistence unlocks continuation; duplicate captured submits do not duplicate PUT or optimistically navigate', async t => {
+  const target = '/preise?next=%2Fkurse%2Fwildkunde#paypal-subscribe-preise'; const s = await fixture(t, { props: { destination: target } });
+  await s.choose('AT', 'NOE'); const submit = nativeProps(s.container.querySelector('form')).onSubmit;
+  let task; await React.act(async () => { task = submit(event()); submit(event()); });
+  assert.equal(s.calls.length, 2); assert.equal(s.calls[1].options.headers['X-Jagdlatein-Exam-Account'], A); assert.deepEqual(JSON.parse(s.calls[1].options.body), AT);
+  assert.equal(s.snapshot.profile, null); assert.equal(s.container.querySelector('form').getAttribute('aria-busy'), 'true'); assert.deepEqual(s.navigations, []);
+  await s.respond(1, AT); await task; assert.deepEqual(s.navigations, [target]); assert.deepEqual(s.snapshot.profile, AT); assert.deepEqual(s.writes, []); assert.deepEqual(s.reads, []);
+  await s.render(); await s.render(); assert.equal(s.navigations.length, 1);
 });
 
-test('Acceptance without an actual profile-store commit never redirects; only the matching real committed target unlocks continuation', t => {
-  const f = setup(t, { deferred: true });
-  f.change('exam-welcome-country', 'DE'); f.change('exam-welcome-region', 'BY'); f.save();
-  assert.deepEqual(f.saveCalls, [{ country: 'DE', region: 'BY' }]); assert.deepEqual(f.redirects, []);
-  assert.equal(f.control('exam-welcome-country').props.disabled, true);
-  f.render(); assert.deepEqual(f.redirects, []);
-  f.commit({ country: 'DE', region: 'BY' }); assert.deepEqual(f.redirects, ['/lernen']);
+test('A server-restored account target continues once to the exact safe destination without a draft flash or device write', async t => {
+  const target = '/kurse/wissen-jagdrecht-ch#lesson-rahmen'; const s = await fixture(t, { profile: CH, props: { destination: target } });
+  assert.equal(s.container.querySelector('form'), null); assert.deepEqual(s.navigations, [target]); assert.deepEqual(s.writes, []); assert.deepEqual(s.reads, []);
+  await s.render(); assert.deepEqual(s.navigations, [target]);
 });
 
-test('A rejected save stays on the form with a retryable message and does not silently navigate or choose another target', t => {
-  const f = setup(t, { deferred: true, rejectSave: true });
-  f.change('exam-welcome-country', 'CH'); f.change('exam-welcome-region', 'BE'); f.save();
-  assert.match(text(f.tree), /konnte nicht übernommen/); assert.deepEqual(f.redirects, []);
-  assert.equal(f.control('exam-welcome-region').props.value, 'BE');
-  assert.equal(f.button('Speichern und weiter').props.disabled, false);
+test('Failed or timed-out saves retain the selected draft and offer retry without a session-only bypass', async t => {
+  for (const timeout of [false, true]) {
+    const s = await fixture(t, { denyStorage: true }); await s.choose('AT', 'NOE'); const { task } = await s.submit();
+    if (timeout) await s.timeout(); else await s.respond(1, null, A, 503); await task;
+    assert.equal(s.snapshot.profile, null); assert.deepEqual(s.navigations, []); assert.equal(s.container.querySelector('#exam-welcome-region').value, 'NOE');
+    assert.match(s.container.textContent, /erneut|nicht übernommen/i); assert.equal(s.button('Prüfungsziel speichern').disabled, false); assert.doesNotMatch(s.container.textContent, /Trotzdem weiter|Später auswählen/);
+    assert.deepEqual(s.reads, []); assert.deepEqual(s.writes, []); await s.close();
+  }
 });
 
-test('Skipping is explicit, never changes storage and navigates only once', t => {
-  const f = setup(t, { destination: '/konto' });
-  const skip = f.button('Später auswählen').props.onClick;
-  skip(); skip(); f.render();
-  assert.deepEqual(f.redirects, ['/konto']); assert.deepEqual(f.writes, []); assert.deepEqual(f.removed, []);
+test('A GET error offers an explicit reload; expired account sessions offer safe login and never local fallback', async t => {
+  const target = '/kurse/wildkunde?modus=test#quiz'; const s = await fixture(t, { deferGet: true, props: { destination: target } });
+  await s.respond(0, null, A, 503); assert.equal(s.container.querySelector('form'), null); assert.ok(s.button('Erneut laden'));
+  await s.click('Erneut laden'); assert.equal(s.calls.length, 2); await s.respond(1, null, A, 401);
+  assert.equal(s.container.querySelector('a').getAttribute('href'), `/login?next=${encodeURIComponent(target)}`); assert.equal(s.container.querySelector('form'), null); assert.deepEqual(s.navigations, []);
 });
 
-test('Blocked storage keeps the selection on the current page and warns of loss before an explicit hard-navigation acknowledgement', t => {
-  const f = setup(t, { denyWrite: true });
-  f.change('exam-welcome-country', 'AT'); f.change('exam-welcome-region', 'S'); f.save();
-  assert.equal(f.snapshot.persistence, 'session'); assert.deepEqual(f.redirects, []);
-  assert.match(text(f.tree), /nur auf dieser geöffneten Seite/); assert.match(text(f.tree), /beim Weitergehen verloren gehen/);
-  assert.equal(nodes(f.tree, node => node.type === 'form').length, 0);
-  const writes = f.writes.length; f.click('Trotzdem weiter');
-  assert.deepEqual(f.redirects, ['/lernen']); assert.equal(f.writes.length, writes);
-  assert.equal(f.values.has(KEY), false);
+test('The first confirmed empty account focuses the actual page heading once; changing country and region does not repeatedly scroll', async t => {
+  const s = await fixture(t); await React.act(async () => new Promise(resolve => setTimeout(resolve, 10)));
+  assert.equal(s.dom.window.document.activeElement, s.container.querySelector('h1')); assert.ok(s.scrolls.length > 0); assert.ok(s.scrolls.every(value => value.top === 0 && value.left === 0));
+  const count = s.scrolls.length; await s.choose(); assert.equal(s.scrolls.length, count);
 });
 
-test('An already held RAM-only preference shows its limitation without a form flash or automatic document navigation', t => {
-  const f = setup(t, { deferred: true, profile: { country: 'DE', region: 'BY' }, persistence: 'session' });
-  assert.ok(f.frames.every(frame => frame.forms === 0)); assert.deepEqual(f.redirects, []);
-  assert.match(text(f.tree), /Bayern · Deutschland/); assert.ok(f.button('Trotzdem weiter'));
+test('Captured handlers are invalid after draft revision, destination change and parent authorization loss before passive cleanup', async t => {
+  const s = await fixture(t, { props: { destination: '/lernen' } }), oldRegion = nativeProps(s.container.querySelector('#exam-welcome-region')).onChange;
+  await React.act(async () => { nativeProps(s.container.querySelector('#exam-welcome-country')).onChange({ target: { value: 'AT' } }); oldRegion({ target: { value: 'ZH' } }); });
+  assert.equal(s.container.querySelector('#exam-welcome-region').value, ''); await s.select('exam-welcome-region', 'NOE');
+  const oldSave = nativeProps(s.container.querySelector('form')).onSubmit;
+  await s.render({ destination: '/konto' }, () => oldSave(event())); assert.equal(s.calls.length, 1); assert.deepEqual(s.navigations, []);
+  const currentSave = nativeProps(s.container.querySelector('form')).onSubmit; s.parent(false); await React.act(async () => currentSave(event())); assert.equal(s.calls.length, 1);
+  await s.load(CH); assert.deepEqual(s.navigations, []);
 });
 
-test('External-tab restoration supersedes a draft; captured save and skip actions cannot overwrite the new profile', t => {
-  const f = setup(t);
-  f.change('exam-welcome-country', 'AT'); f.change('exam-welcome-region', 'NOE');
-  const submit = nodes(f.tree, node => node.type === 'form')[0].props.onSubmit, skip = f.button('Später auswählen').props.onClick;
-  f.external({ country: 'CH', region: 'ZH' });
-  submit({ preventDefault() {} }); skip(); f.render();
-  assert.deepEqual(f.writes, []); assert.deepEqual(f.snapshot.profile, { country: 'CH', region: 'ZH' });
-  assert.deepEqual(f.redirects, ['/lernen']); assert.equal(nodes(f.tree, node => node.type === 'form').length, 0);
+test('A fresh login reloads the account rather than trusting a prior ready RAM profile', async t => {
+  const s = await fixture(t, { loadAccount: true, profile: CH, deferReloads: true, props: { freshLogin: true } });
+  assert.equal(s.calls.length, 2); assert.equal(s.snapshot.ready, false); assert.equal(s.snapshot.profile, null); assert.deepEqual(s.navigations, []);
+  await s.respond(1, null, B); assert.ok(s.container.querySelector('form')); assert.deepEqual(s.navigations, []); assert.equal(s.snapshot.accountKey, B);
 });
 
-test('Draft revision and destination origins invalidate captured actions before rerender or cleanup', t => {
-  const f = setup(t), region = f.control('exam-welcome-region').props.onChange, skip = f.button('Später auswählen').props.onClick;
-  f.control('exam-welcome-country').props.onChange({ target: { value: 'AT' } });
-  region({ target: { value: 'ZH' } }); skip(); f.render();
-  assert.equal(f.control('exam-welcome-region').props.value, ''); assert.deepEqual(f.redirects, []);
-  const oldSkip = f.button('Später auswählen').props.onClick;
-  f.update({ destination: '/konto' }); oldSkip(); assert.deepEqual(f.redirects, []);
-  f.click('Später auswählen'); assert.deepEqual(f.redirects, ['/konto']);
+test('Account replacement clears the previous draft and blocks captured old-account Save both before render and after commit', async t => {
+  const s = await fixture(t, { deferGet: true }); await s.respond(0); await s.choose('AT', 'NOE');
+  const oldSave = nativeProps(s.container.querySelector('form')).onSubmit;
+  let load;
+  await React.act(async () => { load = s.store.loadAccountExamProfile({ force: true }); oldSave(event()); });
+  assert.equal(s.calls.length, 2, 'Old Save is blocked while current account is loading');
+  await React.act(async () => { s.calls[1].resolve(Response.json({ profile: null, accountKey: B })); await load; oldSave(event()); });
+  assert.equal(s.calls.length, 2, 'An A draft cannot be PUT to the newly confirmed B before React commits its replacement');
+  assert.equal(s.container.querySelector('#exam-welcome-country').value, ''); assert.equal(s.container.querySelector('#exam-welcome-region').value, '');
+  await React.act(async () => oldSave(event())); assert.equal(s.calls.length, 2); assert.deepEqual(s.navigations, []);
 });
 
-test('Parent authorization guards stop old save, skip and initial automatic navigation before child effect cleanup', t => {
-  const f = setup(t); f.change('exam-welcome-country', 'AT'); f.change('exam-welcome-region', 'NOE');
-  const save = nodes(f.tree, node => node.type === 'form')[0].props.onSubmit, skip = f.button('Später auswählen').props.onClick;
-  f.parent(false); save({ preventDefault() {} }); skip();
-  assert.deepEqual(f.writes, []); assert.deepEqual(f.redirects, []);
-  f.external({ country: 'CH', region: 'ZH' }); assert.deepEqual(f.redirects, []);
+test('A real unmount blocks captured form/reload handlers and late save completion cannot navigate', async t => {
+  const s = await fixture(t); await s.choose(); const oldSave = nativeProps(s.container.querySelector('form')).onSubmit;
+  const { task } = await s.submit(); await s.unmount(); await React.act(async () => oldSave(event())); assert.equal(s.calls.length, 2);
+  await s.respond(1, CH); await task; assert.deepEqual(s.navigations, []); await s.close();
+  const second = await fixture(t, { deferGet: true }); await second.respond(0, null, A, 503);
+  const reload = nativeProps(second.button('Erneut laden')).onClick; await second.unmount(); reload(); assert.equal(second.calls.length, 1);
 });
 
-test('A real unmount blocks captured form actions after an accepted save is still awaiting its store commit', t => {
-  const f = setup(t, { deferred: true }); f.change('exam-welcome-country', 'AT'); f.change('exam-welcome-region', 'NOE');
-  const submit = nodes(f.tree, node => node.type === 'form')[0].props.onSubmit, skip = f.button('Später auswählen').props.onClick;
-  f.save(); f.dispose(); submit({ preventDefault() {} }); skip();
-  assert.equal(f.saveCalls.length, 1); assert.deepEqual(f.redirects, []);
+test('Blocked document transition is not retried by ordinary renders and explicit retries retain origin and unmount guards', async t => {
+  const s = await fixture(t, { profile: CH, failNavigation: true, props: { destination: '/konto' } });
+  assert.deepEqual(s.navigations, ['/konto']); assert.match(s.container.textContent, /Die nächste Seite konnte nicht geöffnet werden/);
+  await s.render(); await s.render(); assert.equal(s.navigations.length, 1);
+  const retry = nativeProps(s.button('Erneut weiter')).onClick; s.parent(false); retry(); assert.equal(s.navigations.length, 1); s.parent(true);
+  s.failNavigation = false; await React.act(async () => { retry(); retry(); }); assert.equal(s.navigations.length, 2, 'One rendered retry can attempt document navigation only once before React commits');
+  await s.unmount(); retry(); assert.equal(s.navigations.length, 2);
 });
 
-test('Throwing document navigation does not loop and offers independently guarded repeated retries and a safe direct link', t => {
-  const f = setup(t, { profile: { country: 'CH', region: 'ZH' }, failNavigation: true, destination: '/konto' });
-  assert.equal(f.redirects.length, 1); f.render(); f.render(); assert.equal(f.redirects.length, 1);
-  const oldRetry = f.button('Erneut weiter').props.onClick;
-  oldRetry(); oldRetry(); f.render(); assert.equal(f.redirects.length, 2);
-  f.click('Erneut weiter'); assert.equal(f.redirects.length, 3);
-  const link = nodes(f.tree, node => node.type === 'a')[0]; assert.equal(link.props.href, '/konto');
-  let prevented = 0; f.parent(false); link.props.onClick({ preventDefault() { prevented++; } });
-  assert.equal(prevented, 1);
-  f.parent(true); f.failNavigation = false; f.click('Erneut weiter'); assert.equal(f.redirects.length, 4);
+test('A rendered Reload action cannot duplicate or supersede its already pending retry before the next render', async t => {
+  const s = await fixture(t, { deferGet: true }); await s.respond(0, null, A, 503);
+  const reload = nativeProps(s.button('Erneut laden')).onClick;
+  await React.act(async () => { reload(); reload(); });
+  assert.equal(s.calls.length, 2); assert.equal(s.calls[1].options.signal.aborted, false); await s.respond(1);
 });
 
-test('Unsafe destinations are normalized by the existing login guard and never become external navigation or stored fields', t => {
+test('Unsafe return destinations remain internal and inline boundary mode never performs document navigation', async t => {
   for (const destination of ['https://evil.invalid', '//evil.invalid', '/\\evil.invalid', '/login?next=/konto', '/%2F%2Fevil.invalid', '/registrieren', '/%5Cevil']) {
-    const f = setup(t, { profile: { country: 'CH', region: 'ZH' }, destination });
-    assert.deepEqual(f.redirects, ['/']); assert.deepEqual(f.writes, []); f.dispose();
+    const s = await fixture(t, { profile: CH, props: { destination } }); assert.deepEqual(s.navigations, ['/']); await s.close();
   }
-  const source = fs.readFileSync(path.join(root, 'components/ExamProfileWelcome.js'), 'utf8');
-  assert.doesNotMatch(source, /fetch\(|document\.cookie|sessionStorage|localStorage|router\.push|clearProfile|PageMenu|<dialog/);
-  assert.match(source, /getLoginContinuation\(destination\)/);
+  const s = await fixture(t, { profile: CH, props: { destination: '/lernen', inline: true } }); assert.deepEqual(s.navigations, []); assert.equal(s.container.querySelector('form'), null);
 });

@@ -2,6 +2,7 @@
 import GlobalHomeButton from "../components/GlobalHomeButton";
 import "../styles/AppBase.css";
 import { siteBranding } from "../lib/brand-config";
+import AppExamProfileBoundary from "../components/AppExamProfileBoundary";
 
 export const metadata = {
   title: "Jagdlatein",
@@ -30,8 +31,7 @@ export default function RootLayout({ children }) {
     <html lang="de">
       <head />
       <body>
-        {children}
-        <GlobalHomeButton />
+        <AppExamProfileBoundary>{children}<GlobalHomeButton /></AppExamProfileBoundary>
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-// Real React/JSDOM handoffs with synthetic OTP responses and device storage.
+// Real React/JSDOM handoffs with synthetic OTP and account-profile responses.
 // No email, authentication service, real account or browser data is accessed.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -8,14 +8,16 @@ const React = local('react');
 const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || path.join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
 const EXAM_KEY = 'jl_exam_profile_v1';
 const LEGAL_KEY = 'jl_legal_region_v1';
+const A = '11111111-1111-4111-8111-111111111111', B = '22222222-2222-4222-8222-222222222222';
 const event = () => ({ preventDefault() {} });
 const nativeProps = node => node?.[Object.keys(node).find(key => key.startsWith('__reactProps$'))];
 const deferred = () => { let resolve; const promise = new Promise(done => { resolve = done; }); return { promise, resolve }; };
 
-async function fixture(t, { props = {}, query = {}, account = { paid: false, admin: false }, values = {}, verify, realFocus = false } = {}) {
+async function fixture(t, { props = {}, query = {}, account = { paid: false, admin: false }, values = {}, verify, realFocus = false, examProfile = null } = {}) {
   const dom = new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>', { url: 'https://example.invalid/login' });
   for (const [key, value] of Object.entries(values)) dom.window.localStorage.setItem(key, value);
-  const calls = [], navigations = [], writes = [], removes = [], listeners = new Set(), timers = new Map(), globals = new Map();
+  const calls = [], examCalls = [], navigations = [], writes = [], removes = [], listeners = new Set(), timers = new Map(), globals = new Map();
+  let serverExamProfile = examProfile, serverExamAccount = A;
   const scrolls = [];
   dom.window.scrollTo = value => scrolls.push(value);
   let timerId = 1000000, currentProps = props, disposed = false, storageBlocked = false, probeRevision = 0, layoutAction = null;
@@ -41,6 +43,14 @@ async function fixture(t, { props = {}, query = {}, account = { paid: false, adm
   };
   const fakeClearTimeout = id => { if (!timers.delete(id)) realClearTimeout(id); };
   const fetcher = async (url, options) => {
+    if (url === '/api/account/exam-profile') {
+      examCalls.push({ url, options }); assert.equal(options.cache, 'no-store'); assert.equal(options.credentials, 'same-origin');
+      if (options.method === 'PUT') {
+        assert.equal(options.headers['X-Jagdlatein-Exam-Account'], serverExamAccount);
+        const profile = JSON.parse(options.body); assert.deepEqual(Object.keys(profile), ['country', 'region']); serverExamProfile = profile;
+      } else assert.equal(options.body, undefined);
+      return Response.json({ profile: serverExamProfile, accountKey: serverExamAccount });
+    }
     calls.push({ url, options });
     assert.match(url, /^\/api\/auth\/(?:register-request|register-verify|request-code|verify-code)$/);
     assert.equal(options.method, 'POST'); assert.equal(options.credentials, 'same-origin');
@@ -75,8 +85,11 @@ async function fixture(t, { props = {}, query = {}, account = { paid: false, adm
   const findButton = label => [...container.querySelectorAll('button')].find(button => button.textContent.includes(label));
   async function edit(value) { const input = container.querySelector('input'); assert.ok(input); await React.act(async () => nativeProps(input).onChange({ target: { value } })); }
   async function submit() { const form = container.querySelector('form'); assert.ok(form); await React.act(async () => { await nativeProps(form).onSubmit(event()); }); }
-  return { container, dom, product, router, calls, navigations, writes, removes, timers, location, scrolls, edit, submit, close,
+  return { container, dom, product, router, calls, examCalls, navigations, writes, removes, timers, location, scrolls, edit, submit, close,
     get storedProfile() { return dom.window.localStorage.getItem(EXAM_KEY); },
+    get accountProfile() { return serverExamProfile; },
+    setServerProfile(profile, accountKey = A) { serverExamProfile = profile; serverExamAccount = accountKey; },
+    async seedAccount(profile, accountKey = A) { serverExamProfile = profile; serverExamAccount = accountKey; await React.act(async () => product('lib/account-exam-profile-client.js').loadAccountExamProfile({ force: true })); },
     blockStorage() { storageBlocked = true; },
     async render(nextProps = {}, nextQuery = router.query, beforePassiveCleanup = null) {
       currentProps = { ...currentProps, ...nextProps }; router.query = nextQuery;
@@ -121,9 +134,10 @@ test('A newly signed-in unpaid learner selects the exam target inline before the
   assert.deepEqual(JSON.parse(s.calls[0].options.body), { email: 'member@example.invalid' });
   assert.deepEqual(JSON.parse(s.calls[1].options.body), { email: 'member@example.invalid', code: '123456' });
   await s.save('AT', 'NOE');
-  assert.deepEqual(JSON.parse(s.storedProfile), { country: 'AT', region: 'NOE' });
+  assert.deepEqual(s.accountProfile, { country: 'AT', region: 'NOE' }); assert.equal(s.storedProfile, null);
   assert.deepEqual(s.navigations, [{ method: 'replace', href: `/preise?next=${encodeURIComponent(next)}#paypal-subscribe-preise` }]);
-  assert.deepEqual(s.writes.map(([key]) => key), [EXAM_KEY]); assert.deepEqual(s.removes, []);
+  assert.deepEqual(s.writes, []); assert.deepEqual(s.removes, []);
+  assert.deepEqual(s.examCalls.map(call => call.options.method || 'GET'), ['GET', 'PUT']);
   assert.equal(s.dom.window.localStorage.getItem('jagd_country'), 'AT'); assert.equal(s.dom.window.localStorage.getItem('journal'), 'Synthetic draft');
   assert.deepEqual(JSON.parse(s.dom.window.localStorage.getItem(LEGAL_KEY)), { country: 'DE', region: 'BY' });
   assert.doesNotMatch(s.container.textContent, /Lesbare Originalpassagen|Eigene freigegebene Rechtsfragen/);
@@ -141,7 +155,7 @@ test('Registration and unified existing-member sign-in use the same welcome hand
   }
 });
 
-test('Existing valid device targets skip welcome without writes and preserve paid/admin/free/checkout return query and hash', async t => {
+test('Existing confirmed account targets continue without writes and preserve paid/admin/free/checkout return query and hash', async t => {
   const cases = [
     { account: { paid: true, admin: false }, next: '/lernen/wildjahr?art=rehwild&monat=10#wildjahr-top', target: '/lernen/wildjahr?art=rehwild&monat=10#wildjahr-top' },
     { account: { paid: false, admin: true }, next: '/admin?bereich=kurse#oben', target: '/admin?bereich=kurse#oben' },
@@ -151,17 +165,17 @@ test('Existing valid device targets skip welcome without writes and preserve pai
   ];
   const raw = JSON.stringify({ country: 'CH', region: 'ZH' });
   for (const item of cases) {
-    const s = await fixture(t, { account: item.account, query: { next: item.next }, values: { [EXAM_KEY]: raw } });
+    const s = await fixture(t, { account: item.account, query: { next: item.next }, values: { [EXAM_KEY]: raw }, examProfile: { country: 'CH', region: 'ZH' } });
     await s.login();
     assert.equal(s.container.querySelector('#exam-welcome-country'), null);
     assert.deepEqual(s.navigations, [{ method: 'replace', href: item.target }]);
     assert.equal(s.storedProfile, raw); assert.deepEqual(s.writes, []); assert.deepEqual(s.removes, []);
-    assert.equal(s.calls.length, 2); await s.close();
+    assert.equal(s.calls.length, 2); assert.equal(s.examCalls.length, 1); await s.close();
   }
 });
 
 test('Confirmed welcome stops the resend countdown and ignores its captured callback after real elapsed time', async t => {
-  const s = await fixture(t, { values: { [EXAM_KEY]: JSON.stringify({ country: 'CH', region: 'ZH' }) } });
+  const s = await fixture(t, { examProfile: { country: 'CH', region: 'ZH' } });
   await s.edit('member@example.invalid'); await s.submit();
   const countdown = [...s.timers.values()].find(timer => timer.delay === 1000);
   assert.ok(countdown, 'The actual login request scheduled its existing resend countdown');
@@ -179,7 +193,7 @@ test('Confirmed welcome stops the resend countdown and ignores its captured call
 
 test('Ordinary parent renders retain one welcome navigation attempt, including a blocked document transition', async t => {
   for (const failNavigation of [false, true]) {
-    const s = await fixture(t, { values: { [EXAM_KEY]: JSON.stringify({ country: 'DE', region: 'BY' }) } });
+    const s = await fixture(t, { examProfile: { country: 'DE', region: 'BY' } });
     if (failNavigation) {
       const replace = s.location.replace;
       s.location.replace = href => { replace(href); throw new Error('Synthetic blocked transition'); };
@@ -188,31 +202,40 @@ test('Ordinary parent renders retain one welcome navigation attempt, including a
     await s.render(); await s.render({}, { ...s.router.query });
     assert.equal(s.navigations.length, 1, 'A new parent render must not create a new navigation origin');
     if (failNavigation) assert.match(s.container.textContent, /Die nächste Seite konnte nicht geöffnet werden/);
-    else assert.ok([...s.container.querySelectorAll('a')].some(link => link.textContent === 'Weiter'));
+    else assert.match(s.container.textContent, /gespeichertes Prüfungsziel ist bereit/);
     assert.equal(s.calls.length, 2); assert.deepEqual(s.writes, []);
     await s.close();
   }
 });
 
-test('Malformed stored targets are not silently replaced; explicit later selection skips without changing any preference', async t => {
+test('An old malformed device target is not trusted or erased; account selection is mandatory and explicit', async t => {
   const raw = JSON.stringify({ country: 'CH', region: 'BY' });
   const s = await fixture(t, { account: { paid: true }, query: { next: '/lernen?category=wildkunde#arten' }, values: { [EXAM_KEY]: raw, jagd_country: 'DE' } });
   await s.login(); assert.ok(s.container.querySelector('#exam-welcome-country'));
   assert.equal(s.container.querySelector('#exam-welcome-country').value, '');
   assert.equal(s.container.querySelector('#exam-welcome-region').value, '');
-  await s.click('Später auswählen');
+  assert.equal([...s.container.querySelectorAll('button')].some(node => /Später auswählen|Trotzdem weiter/.test(node.textContent)), false);
+  assert.deepEqual(s.navigations, []); await s.save('AT', 'NOE');
   assert.deepEqual(s.navigations, [{ method: 'replace', href: '/lernen?category=wildkunde#arten' }]);
-  assert.equal(s.storedProfile, raw); assert.deepEqual(s.writes, []); assert.deepEqual(s.removes, []);
+  assert.deepEqual(s.accountProfile, { country: 'AT', region: 'NOE' }); assert.equal(s.storedProfile, raw); assert.deepEqual(s.writes, []); assert.deepEqual(s.removes, []);
 });
 
-test('Storage denial keeps the explicit session choice visible until the learner confirms continuation', async t => {
+test('Denied device storage cannot turn an account-confirmed target into a session-only choice', async t => {
   const s = await fixture(t, { query: { next: '/preise?next=%2Flernen#paypal-subscribe-preise' } });
   await s.login(); s.blockStorage(); await s.save('AT', 'T');
-  assert.deepEqual(s.navigations, []); assert.equal(s.storedProfile, null);
-  assert.match(s.container.textContent, /Sitzung|dauerhaft/i);
-  await s.click('Trotzdem weiter');
+  assert.equal(s.storedProfile, null); assert.deepEqual(s.accountProfile, { country: 'AT', region: 'T' });
   assert.deepEqual(s.navigations, [{ method: 'replace', href: '/preise?next=%2Flernen#paypal-subscribe-preise' }]);
-  assert.deepEqual(s.writes.map(([key]) => key), [EXAM_KEY]);
+  assert.deepEqual(s.writes, []);
+});
+
+test('Fresh OTP login replaces an old RAM account target before deciding whether the new account needs onboarding', async t => {
+  const s = await fixture(t, { account: { paid: true }, query: { next: '/lernen#start' }, values: { [EXAM_KEY]: JSON.stringify({ country: 'DE', region: 'BY' }) } });
+  await s.seedAccount({ country: 'CH', region: 'ZH' }, A); s.setServerProfile(null, B);
+  await s.login();
+  assert.ok(s.container.querySelector('#exam-welcome-country')); assert.equal(s.container.querySelector('#exam-welcome-country').value, '');
+  assert.deepEqual(s.navigations, []); assert.equal(s.examCalls.length, 2); assert.ok(s.examCalls.every(call => call.options.method === undefined));
+  assert.equal(s.product('lib/account-exam-profile-client.js').getAccountExamSnapshot().accountKey, B);
+  assert.deepEqual(s.writes, []); assert.deepEqual(s.removes, []);
 });
 
 test('A stale welcome action cannot save or navigate after the parent flow changes, before passive cleanup', async t => {
@@ -220,12 +243,12 @@ test('A stale welcome action cannot save or navigate after the parent flow chang
     const s = await fixture(t, { account: { paid: true }, query: { next: '/lernen#start' } });
     await s.login(); await s.select('exam-welcome-country', 'CH'); await s.select('exam-welcome-region', 'SG');
     const oldSave = nativeProps(s.container.querySelector('form[aria-label="Prüfungsziel wählen"]')).onSubmit;
-    const oldSkip = nativeProps([...s.container.querySelectorAll('button')].find(button => button.textContent.includes('Später auswählen'))).onClick;
+    const oldCountry = nativeProps(s.container.querySelector('#exam-welcome-country')).onChange;
     let layoutCalls = 0;
-    await s.render(props, { next: '/konto' }, () => { layoutCalls++; oldSave(event()); oldSkip(event()); });
+    await s.render(props, { next: '/konto' }, () => { layoutCalls++; oldSave(event()); oldCountry({ target: { value: 'DE' } }); });
     assert.equal(layoutCalls, 1, 'Captured actions run in the actual layout phase before passive unmount cleanup');
     assert.deepEqual(s.writes, []); assert.deepEqual(s.navigations, []); assert.equal(s.location.href, null);
-    assert.equal(s.calls.length, 2); await s.close();
+    assert.equal(s.calls.length, 2); assert.equal(s.examCalls.length, 1); assert.equal(s.examCalls.some(call => call.options.method === 'PUT'), false); await s.close();
   }
 });
 
@@ -250,7 +273,7 @@ test('Existing signed-session and explicit reauthentication server flows preserv
   const page = product('pages/login.js');
   const headers = {}, res = { setHeader: (key, value) => { headers[key] = value; } };
   const signed = await page.getServerSideProps({ req: { cookies: { 'synthetic-cookie': 'signed-synthetic' } }, res, query: { next: '/kurse/hundewesen?modus=test#quiz' } });
-  assert.deepEqual(signed, { redirect: { destination: '/kurse/hundewesen?modus=test#quiz', permanent: false } });
+  assert.deepEqual(signed, { redirect: { destination: `/pruefungsziel?next=${encodeURIComponent('/kurse/hundewesen?modus=test#quiz')}`, permanent: false } });
   const reauth = await page.getServerSideProps({ req: { cookies: { 'synthetic-cookie': 'signed-synthetic' } }, res, query: { next: '/konto', reauth: '1' } });
   assert.ok(reauth.props); assert.equal(reauth.redirect, undefined);
   const unsigned = await page.getServerSideProps({ req: { cookies: {} }, res, query: { next: '/konto' } });

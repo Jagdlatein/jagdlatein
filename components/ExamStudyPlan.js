@@ -4,6 +4,7 @@ import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import useExamProfile from "../lib/use-exam-profile";
+import { getAccountExamSnapshot } from "../lib/account-exam-profile-client";
 import useExamReviewProgress from "../lib/use-exam-review-progress";
 import { examReviewHref } from "../lib/exam-review-progress";
 import { examCountries, normalizeExamProfile, getExamProfileDetails, examProfileLawHref } from "../lib/exam-profile";
@@ -29,7 +30,7 @@ function Sources({ region, federal }) {
 }
 
 export default function ExamStudyPlan({ data, reviewCatalog }) {
-  const { profile: storedProfile, ready, persistence, saveProfile, clearProfile } = useExamProfile();
+  const { profile: storedProfile, ready, persistence, saveProfile, clearProfile, saving: accountSaving, error: accountError, accountKey } = useExamProfile();
   const progress = useExamReviewProgress(reviewCatalog);
   const profile = normalizeExamProfile(storedProfile);
   const details = getExamProfileDetails(profile);
@@ -38,6 +39,7 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
   const [notice, setNotice] = useState("");
   const [saveRequest, setSaveRequest] = useState(0);
   const mounted = useRef(false);
+  const saving = useRef(false);
   const initialized = useRef(false);
   const dirty = useRef(false);
   const draftRevision = useRef(0);
@@ -50,7 +52,11 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
   const revision = draftRevision.current;
   const heading = useRef(null);
   const { focusSelection } = useSelectionPageStart(origin, ready);
-  function current() { return mounted.current && ready && activeProfile.current === origin && draftRevision.current === revision; }
+  function current() {
+    const confirmed = getAccountExamSnapshot();
+    return mounted.current && ready && !saving.current && !accountSaving && activeProfile.current === origin && draftRevision.current === revision
+      && (persistence !== "account" || (confirmed.ready && confirmed.accountKey === accountKey && !confirmed.saving && profileKey(confirmed.profile) === key));
+  }
 
   useEffect(() => {
     mounted.current = true;
@@ -98,13 +104,20 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
     setDraft(next);
     setNotice("");
   }
-  function save(event) {
+  async function save(event) {
     event?.preventDefault();
     if (!current()) return;
     const next = normalizeExamProfile(draftRef.current);
     if (!next) { setNotice("Bitte Land und Prüfungsregion wählen."); return; }
     pendingFocus.current = { key: profileKey(next) };
-    if (!saveProfile(next)) { pendingFocus.current = null; setNotice("Das Prüfungsziel konnte nicht übernommen werden. Bitte erneut wählen."); return; }
+    saving.current = true;
+    let result;
+    try { result = saveProfile(next); if (result && typeof result.then === "function") result = await result; }
+    catch { result = false; }
+    finally { saving.current = false; }
+    if (!mounted.current) return;
+    if (persistence === "account" && getAccountExamSnapshot().accountKey !== accountKey) { pendingFocus.current = null; return; }
+    if (!result) { pendingFocus.current = null; setNotice("Das Prüfungsziel konnte nicht übernommen werden. Bitte erneut wählen."); return; }
     dirty.current = false;
     draftRevision.current++;
     setNotice("Prüfungsziel übernommen.");
@@ -130,10 +143,10 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
   return <LearningToolLayout title="Dein Prüfungsplan" description="Wissen, regionale Rechtsübungen und praktische Ausbildung für dein bewusst gewähltes Prüfungsziel verbinden." icon="book" category="pruefung-sprache" headingOnly robots="noindex,follow">
     <PageMenu title="Prüfungsziel">
       <form onSubmit={save} aria-label="Prüfungsziel wählen">
-        <label className={styles.field} htmlFor="exam-plan-country">Land<select id="exam-plan-country" value={draft.country} disabled={!ready} onChange={event => changeCountry(event.target.value)}><option value="">Land wählen</option>{examCountries.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}</select></label>
-        <label className={styles.field} htmlFor="exam-plan-region">{draftCountry?.regionLabel || "Region"}<select id="exam-plan-region" value={draft.region} disabled={!ready || !draftCountry} onChange={event => changeRegion(event.target.value)}><option value="">Region wählen</option>{draftCountry?.regions.map(region => <option key={region.code} value={region.code}>{region.name}</option>)}</select></label>
+        <label className={styles.field} htmlFor="exam-plan-country">Land<select id="exam-plan-country" value={draft.country} disabled={!ready || accountSaving} onChange={event => changeCountry(event.target.value)}><option value="">Land wählen</option>{examCountries.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}</select></label>
+        <label className={styles.field} htmlFor="exam-plan-region">{draftCountry?.regionLabel || "Region"}<select id="exam-plan-region" value={draft.region} disabled={!ready || !draftCountry || accountSaving} onChange={event => changeRegion(event.target.value)}><option value="">Region wählen</option>{draftCountry?.regions.map(region => <option key={region.code} value={region.code}>{region.name}</option>)}</select></label>
         <p className={styles.menuHint}>Die Auswahl ist zunächst ein Entwurf. Erst „Prüfungsziel speichern“ übernimmt sie. Deine bisherigen Antworten und andere geöffnete Lernansichten bleiben erhalten.</p>
-        <div className={styles.actions}><button type="submit" className={styles.button} disabled={!ready || !isDraftValid}>Prüfungsziel speichern</button>{profile && <button type="button" className={`${styles.button} ${styles.secondary}`} disabled={!ready} onClick={clear}>Prüfungsziel entfernen</button>}</div>
+        <div className={styles.actions}><button type="submit" className={styles.button} disabled={!ready || !isDraftValid || accountSaving}>{accountSaving ? "Wird gespeichert …" : "Prüfungsziel speichern"}</button>{profile && persistence !== "account" && <button type="button" className={`${styles.button} ${styles.secondary}`} disabled={!ready} onClick={clear}>Prüfungsziel entfernen</button>}</div>
       </form>
     </PageMenu>
 
@@ -141,8 +154,8 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
       <h2 ref={heading} id="exam-plan-target" tabIndex={-1}>{details ? `${details.region.name} · ${details.country.name}` : "Dein Prüfungsziel"}</h2>
       <p className={styles.lead}>{details ? "Dein Lernweg verbindet gemeinsames Fachwissen mit den Rechtsübungen deiner gewählten Region." : ready ? "Wähle dein Land und deine Prüfungsregion unten im Menü. Die gemeinsamen Lernkategorien kannst du bereits hier nutzen." : "Dein lokal gespeichertes Prüfungsziel wird geladen. Die gemeinsamen Lernkategorien stehen dir bereits zur Verfügung."}</p>
       <button type="button" className={`${styles.button} ${styles.secondary}`} disabled={!ready} onClick={openSelection}>{details ? "Prüfungsziel ändern" : "Prüfungsziel wählen"}</button>
-      {ready && <p className={styles.note}>{persistence === "device" ? "Dein Prüfungsziel wird nur in diesem Browser auf diesem Gerät gespeichert. Es wird nicht mit deinem Konto oder anderen Geräten abgeglichen." : "Dauerhaftes Speichern ist hier nicht verfügbar. Dein Prüfungsziel gilt nur in dieser Sitzung; nach dem Schließen musst du es erneut wählen."} Auf gemeinsam genutzten Geräten können andere Personen dieses Browsers das Ziel sehen.</p>}
-      {notice && <p role="status">{notice}</p>}
+      {ready && <p className={styles.note}>{persistence === "account" ? "Dein Prüfungsziel ist in deinem Konto gespeichert und nach der Anmeldung auch auf anderen Geräten verfügbar. Eine Änderung gilt für deine künftige Auswahl; bereits ausdrücklich geöffnete Rechtsansichten bleiben erhalten." : persistence === "device" ? "Dein Prüfungsziel ist eine lokale Geräteauswahl." : "Dein Prüfungsziel gilt nur in dieser Sitzung."}</p>}
+      {(notice || accountError) && <p role="status">{notice || accountError}</p>}
     </section>
 
     {details && regionData && <section className={styles.section} aria-labelledby="exam-plan-law">

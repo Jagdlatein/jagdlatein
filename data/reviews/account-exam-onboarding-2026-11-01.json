@@ -1,0 +1,40 @@
+{
+  "reviewedOn": "2026-11-01",
+  "baseline": "6b27f674a81f4420413956f62b96748d073de356",
+  "scope": "Verpflichtendes kontogebundenes Prüfungsziel nach der Anmeldung und als Voraussetzung der normalen Lernoberfläche; vorhandene regionale Rechtsinhalte passend erschließen. Keine neue Freigabe oder fachliche Neudatierung von Rechtsfragen.",
+  "choice": {
+    "countries": ["CH", "AT", "DE"],
+    "regions": {"CH": 26, "AT": 9, "DE": 16},
+    "firstLogin": "Nach bestätigtem E-Mail-Code wird das tatsächlich aktuelle Kontoprofil geladen. Nur ein bereits dort gespeichertes gültiges Ziel überspringt die Auswahl. Sonst müssen Land und zugehöriger Kanton beziehungsweise Bundesland bestätigt werden; kein Überspringen und kein automatisch angenommenes Land.",
+    "oldDevices": "Ein altes jl_exam_profile_v1 oder eine gelesene Rechtsregion wird nicht als Kontoziel importiert. Alte Gerätewerte bleiben unberührt. Ein anderes Konto auf demselben Gerät braucht sein eigenes bestätigtes Ziel.",
+    "changeLater": "Vorhandener Prüfungsplan unter Meine Prüfung sowie Link im Konto. Änderungen sind Entwürfe bis zur bestätigten Serverantwort; Länderwechsel leert die Regionsauswahl. Für das Kontoprofil gibt es keinen Entfernen-Schalter.",
+    "layout": "Eine vollständige Seite statt eines zusätzlichen Fensters. Nach der Übernahme Fokus und Scrollposition am Seitenanfang. Im Anmeldeschritt bleibt die übrige Lernnavigation ausgeblendet.",
+    "accountTools": "Konto, Abo-/Hilfeseiten und die vorhandene lokale Offline-Leseschale bleiben ohne zusätzliches Prüfungsziel erreichbar. Sie gewähren dadurch keine neuen Lern- oder Datenrechte."
+  },
+  "persistenceAndSecurity": {
+    "storage": "Zwei nullable text-Spalten exam_country/exam_region in der bestehenden privaten userprofile-Tabelle. Das Ziel bleibt im Konto, auch nach Browserdatenlöschung oder Wechsel des Geräts. Clientseitig nur Arbeitsspeicher, keine Kontoidentität oder neue Profilkopie in localStorage.",
+    "migration": "supabase/migrations/20261101150000_account_exam_profile.sql",
+    "databaseConstraint": "Beide Werte leer oder eines der exakt 51 zulässigen Land-/Regionpaare. Kontoanlagen starten ohne Ziel; Kontolöschung entfernt die Felder zusammen mit der Kontozeile.",
+    "api": "/api/account/exam-profile",
+    "identity": "Signierte eigene Kontositzung, aktuelle account_generation und bestehende Review-Identitätsprüfung vor und nach dem Zugriff. JSON-Erfolg nur profile und eigene accountKey-Generation; keine vom Browser gelieferte E-Mail oder Konto-ID bestimmt das betroffene Konto.",
+    "write": "Same-Origin-JSON, maximal 1024 Bytes und nur country/region. Zusätzlicher X-Jagdlatein-Exam-Account muss zur aktuellen signierten Sitzung passen; veraltetes Konto ergibt 409. Ein eingeschränkter service_role-RPC ändert ausschließlich die zwei neuen Werte atomar für E-Mail und Generation. Keine neue UPDATE-Tabellenberechtigung, kein öffentlicher RPC.",
+    "responses": "Private/no-store und Vary: Cookie. Keine anonyme Profilantwort. Fehler, Timeout, Kontoablösung, Unmount und verspätete Ergebnisse führen nicht zur optimistischen Übernahme eines neuen Ziels.",
+    "entitlements": "Prüfungsziel ist eine Lernpräferenz, keine Berechtigung. Bestehende Authentifizierungs-, Premium-, Abo-, Betreiber- und Kontolöschungsprüfungen bleiben zuständig.",
+    "privacy": "Geteilte Datenschutzhinweise und daraus erzeugte eigenständige HTML-Fassung beschreiben jetzt die kontogebundene Auswahl und ihre Änderung/Löschung. Keine öffentliche Ranglistenangabe."
+  },
+  "learningIntegration": {
+    "regionalLaw": "Generischer Jagdrecht-Einstieg führt nach bereitem gültigem Profil zum exakten Länderpfad mit Region. Eindeutig gewählte andere Länder-/Regions-URLs bleiben für den bewussten Vergleich maßgeblich; Lesen schreibt das Kontoziel nicht um.",
+    "rankedQuiz": "Ein direkt gestarteter Rechtsquiz ohne ausdrückliches Land wartet auf das Profil und verwendet dessen Land. Bestehende ausdrückliche Länder-URLs bleiben maßgeblich; alte Runden und Handler können nach Kontextwechsel kein fremdes Länderquiz unter neuer Überschrift zeigen.",
+    "otherLinks": "Bestehende Profilverbraucher für Prüfungsplan, Kurshinweise, Medien-Rechtslink und Quizvorbereitung erhalten das bestätigte Kontoziel über den gemeinsamen Store.",
+    "limitsVisible": "Der bestehende Hinweis auf unvollständige örtliche Gesetze, Lernpassagen und Prüfungsabdeckung steht unmittelbar im Hauptinhalt, nicht ausschließlich in den geschlossenen Schlussquellen.",
+    "biology": "Gemeinsame Biologie wird nicht nach Ländern oder Regionen künstlich getrennt. Die Länderwahl des Ranglistenquiz behauptet keine zusätzliche vollständige kantonale oder Landesfragenbank."
+  },
+  "verification": {
+    "aggregate": "478 bestandene Fälle einschließlich fünf verschachtelter Fälle, 31 unterschiedliche Testdateien, kein übersprungener Fall. Finale Protokolle außerhalb des Repos unter work/exam-onboarding-nov01.",
+    "database": "Migration tatsächlich im bestehenden Supabase-Projekt ausgeführt; danach Schema, validierte Regionsconstraint, Funktionskörper gegen getestete Quelle sowie gesperrte anonyme/direkte und erlaubte serverseitige Ausführung lesend bestätigt. Keine Kundendatensätze zum Prüfen verändert. Separat echte PostgreSQL/WASM-Migrationstests mit isolierten Konten.",
+    "independentReviews": ["work/account-exam-profile-nov01/independent-client-welcome-plan-review.json", "work/exam-onboarding-nov01/learning-profile-integration-review.json", "work/exam-onboarding-nov01/independent-jagdrecht-entry-review.json", "work/exam-onboarding-nov01/independent-ranked-run-review.json"],
+    "regressions": "Tatsächliche React-Hydration und Lebenszyklen, kontogebundene Erstwahl, fehlende Gerätewerte, Fehler/Timeout/401/409, keine optimistische Speicherung, A-B-A und unmittelbare Handler vor Render, Navigation/Retry, Unmount, unveränderter OTP-Request, sichere Rücksprungziele, lokale Entwürfe und Fokus nach Serverbestätigung geprüft. Zwei konkret reproduzierte Retry-Doppelklicklücken vor Veröffentlichung behoben.",
+    "preservation": "Regionale Gesetzesdaten, Freigaben, Prüfdaten und Fragen unverändert. Fremde data/learning-expansion-afternoon-2026-10-16.json unverändert und ungestagt, SHA-256 23e6e8fc8fd6c3e1b5ad115b92036b901d0dc3613332d4edd0deb0c283a607c9.",
+    "release": "Produktionsbuild, Git-/Vercel-Commitzuordnung und tatsächliche öffentliche Auslieferung werden zusätzlich außerhalb des Repos dokumentiert. Keine authentifizierte echte Erstlogin-/Mehrgeräteprüfung oder fachliche Gesamtzertifizierung behauptet."
+  }
+}

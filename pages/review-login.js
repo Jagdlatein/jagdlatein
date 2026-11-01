@@ -31,7 +31,8 @@ export default function ReviewLogin() {
       setPassword("");
       if (!response.ok || result.success !== true) { setMessage(result.message || "Die Anmeldung konnte nicht bestätigt werden."); return; }
       const next = getNextUrl(router.query.next || "/konto");
-      await router.replace(new URL(next, "https://jagdlatein.invalid").pathname === "/review-login" ? "/konto" : next);
+      const destination = new URL(next, "https://jagdlatein.invalid").pathname === "/review-login" ? "/konto" : next;
+      await router.replace(`/pruefungsziel?next=${encodeURIComponent(destination)}`);
     } catch { setPassword(""); setMessage("Die Anmeldung ist derzeit nicht verfügbar. Bitte erneut versuchen."); }
     finally { busy.current = false; setPending(false); }
   }
