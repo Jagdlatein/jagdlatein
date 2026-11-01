@@ -4,6 +4,8 @@ import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import useExamProfile from "../lib/use-exam-profile";
+import useExamReviewProgress from "../lib/use-exam-review-progress";
+import { examReviewHref } from "../lib/exam-review-progress";
 import { examCountries, normalizeExamProfile, getExamProfileDetails, examProfileLawHref } from "../lib/exam-profile";
 import styles from "../styles/ExamStudyPlan.module.css";
 
@@ -26,8 +28,9 @@ function Sources({ region, federal }) {
   </details>;
 }
 
-export default function ExamStudyPlan({ data }) {
+export default function ExamStudyPlan({ data, reviewCatalog }) {
   const { profile: storedProfile, ready, persistence, saveProfile, clearProfile } = useExamProfile();
+  const progress = useExamReviewProgress(reviewCatalog);
   const profile = normalizeExamProfile(storedProfile);
   const details = getExamProfileDetails(profile);
   const key = profileKey(profile);
@@ -154,7 +157,22 @@ export default function ExamStudyPlan({ data }) {
       <h2 id="exam-plan-learning">Dein Lernweg</h2>
       <p>Die Kategorien entsprechen dem Menü. Wildbiologie und andere gemeinsame Grundlagen lernst du länderübergreifend; örtlich unterschiedliche Rechtsvorgaben prüfst du gesondert.</p>
       <ol className={styles.steps}><li><strong>Verstehen:</strong> Lies den Lerntext und erkläre den Zusammenhang mit eigenen Worten.</li><li><strong>Anwenden:</strong> Löse die zugehörigen Fragen. Prüfe auch bei einem Treffer, warum die anderen Antworten nicht passen.</li><li><strong>Wiederholen:</strong> Kehre zu offenen Fragen zurück und verknüpfe das Wissen mit einem eigenen Prüfungsfall.</li></ol>
-      <ul className={styles.categoryList}>{data.categories.map(category => <li key={category.slug}><Link href={`/lernen/${category.slug}`} prefetch={false}>{category.title}</Link><p>{category.focus.join(" · ")}</p></li>)}</ul>
+      <section aria-labelledby="exam-plan-progress" className={styles.progress}>
+        <h3 id="exam-plan-progress">Deine Wiederholung</h3>
+        {progress.phase === "loading" ? <p role="status">Dein lokaler Wiederholungsstand wird geladen …</p> : progress.phase === "unavailable" ? <p role="status">Dein Wiederholungsstand ist hier gerade nicht lesbar. Du kannst die Lernkategorien weiterhin öffnen.</p> : <>
+          <dl className={styles.counts}><div><dt>Beantwortet</dt><dd>{progress.summary.total.answered}</dd></div><div><dt>Fällig</dt><dd>{progress.summary.total.due}</dd></div><div><dt>Zuletzt falsch</dt><dd>{progress.summary.total.mistakes}</dd></div></dl>
+          <div className={styles.links}>{progress.summary.total.due > 0 && <Link href={examReviewHref("faellig")} prefetch={false}>Fällige Fragen</Link>}{progress.summary.total.mistakes > 0 && <Link href={examReviewHref("fehler")} prefetch={false}>Fehler üben</Link>}<Link href={examReviewHref("gemischt")} prefetch={false}>Kurze Wissensrunde</Link></div>
+        </>}
+        <p className={styles.menuHint}>Hier zählen unterschiedliche Fragen aus dem gemeinsamen Wiederholungskatalog, die du in diesem Browser beantwortet hast. Fällige und zuletzt falsche Fragen können sich überschneiden. Frühere Kursabschlüsse, Lernkarten und regionale Rechtsübungen werden nicht hinzugerechnet. Die Zahlen zeigen keine vollständige Prüfungsabdeckung oder Prüfungsreife. Der Verlauf bleibt auf diesem Gerät und wird beim Abmelden entfernt.</p>
+      </section>
+      <ul className={styles.categoryList}>{data.categories.map(category => {
+        const status = progress.summary?.byCategory[category.slug];
+        return <li key={category.slug}>
+          <Link href={`/lernen/${category.slug}`} prefetch={false}>{category.title}</Link><p>{category.focus.join(" · ")}</p>
+          {status && <><p className={styles.reviewCount}>{status.answered ? `${status.answered} beantwortet · ${status.due} fällig · ${status.mistakes} zuletzt falsch` : "Noch keine Antworten im Wiederholungsverlauf"}</p>
+            <div className={styles.links}>{status.due > 0 && <Link href={examReviewHref("faellig", category.slug)} prefetch={false} aria-label={`Fällige Fragen: ${category.title}`}>Wiederholen</Link>}{status.mistakes > 0 && <Link href={examReviewHref("fehler", category.slug)} prefetch={false} aria-label={`Fehler üben: ${category.title}`}>Fehler</Link>}</div></>}
+        </li>;
+      })}</ul>
     </section>
 
     <section className={styles.section} aria-labelledby="exam-plan-practice">

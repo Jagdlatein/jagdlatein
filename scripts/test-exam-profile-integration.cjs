@@ -322,7 +322,8 @@ test('Real plan and summary preserve an unsaved draft through external profile c
   const s = await domFixture(t, seeded);
   const Plan = s.product('components/ExamStudyPlan.js').default, Summary = s.product('components/ExamProfileSummary.js').default;
   const data = s.product('lib/exam-study-plan-server.js').getExamStudyPlanData({ asOf: '2026-10-29' });
-  await s.mount(React.createElement(React.Fragment, {}, React.createElement(Plan, { data }), React.createElement(Summary)));
+  const reviewCatalog = s.product('lib/daily-review-pool.js').getPackedDailyReviewCatalog();
+  await s.mount(React.createElement(React.Fragment, {}, React.createElement(Plan, { data, reviewCatalog }), React.createElement(Summary)));
   assert.match(s.container.querySelector('[aria-label="Dein Prüfungsziel"]').textContent, /St\. Gallen · Schweiz/);
   await s.select('exam-plan-country', 'DE'); await s.select('exam-plan-region', 'BY');
   assert.equal(s.dom.window.localStorage.getItem(EXAM_KEY), seeded[EXAM_KEY]); assert.deepEqual(s.writes, []);
@@ -336,5 +337,7 @@ test('Real plan and summary preserve an unsaved draft through external profile c
   assert.match(s.container.querySelector('#exam-plan-target').textContent, /Bayern · Deutschland/);
   assert.ok(s.writes.every(([key]) => key === EXAM_KEY));
   for (const key of [LEGAL_KEY, 'jagd_country', 'journal']) assert.equal(s.dom.window.localStorage.getItem(key), seeded[key]);
-  assert.deepEqual(s.requests, []); assert.deepEqual(s.removes, []); assert.equal(s.listeners, 1);
+  assert.deepEqual(s.requests, []); assert.deepEqual(s.removes, []);
+  assert.equal(s.listeners, 2, 'One shared profile listener plus the separate read-only repetition listener');
+  assert.deepEqual([...s.container.querySelectorAll('[aria-labelledby="exam-plan-progress"] dd')].map(node => node.textContent), ['0', '0', '0']);
 });

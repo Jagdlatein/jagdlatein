@@ -20,6 +20,11 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
   const category = requestedCategory === undefined ? "" : typeof requestedCategory === "string" && available.some(item => item.slug === requestedCategory) ? requestedCategory : null;
   const valid = ready && mode !== null && category !== null;
   const selectionKey = valid ? JSON.stringify([mode, category]) : null;
+  // Recovery carries only the validated public selection, never incidental URL fields.
+  const returnParams = new URLSearchParams();
+  if (valid && mode !== "gemischt") returnParams.set("modus", mode);
+  if (valid && category) returnParams.set("kategorie", category);
+  const returnPath = `/lernen/fuenf-minuten${returnParams.size ? `?${returnParams}` : ""}`;
   const viewKey = JSON.stringify([ready, router.asPath, router.query]);
   const view = useRef({ key: viewKey });
   if (view.current.key !== viewKey) view.current = { key: viewKey };
@@ -85,12 +90,12 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
       </section>
     </PageMenu>
     <div id="review-content" ref={content} tabIndex={-1} aria-busy={working}>
-      {valid ? <DailyReviewRound key={selectionKey} pool={pool} category={category} mode={mode} origin={origin} isCurrent={isCurrent} disabled={working} /> : <p role={ready ? undefined : "status"}>{ready ? "Diese Auswahl ist nicht verfügbar. Wähle Runde und Thema unten im Menü." : "Deine Auswahl wird geladen …"}</p>}
+      {valid ? <DailyReviewRound key={selectionKey} pool={pool} category={category} mode={mode} returnPath={returnPath} origin={origin} isCurrent={isCurrent} disabled={working} /> : <p role={ready ? undefined : "status"}>{ready ? "Diese Auswahl ist nicht verfügbar. Wähle Runde und Thema unten im Menü." : "Deine Auswahl wird geladen …"}</p>}
     </div>
   </LearningToolLayout>;
 }
 
-function DailyReviewRound({ pool, category, mode, origin, isCurrent, disabled }) {
+function DailyReviewRound({ pool, category, mode, returnPath, origin, isCurrent, disabled }) {
   const [round, setRound] = useState(null);
   const [load, setLoad] = useState({ phase: "loading", message: "", status: 0 });
   const current = useRef(null);
@@ -232,7 +237,7 @@ function DailyReviewRound({ pool, category, mode, origin, isCurrent, disabled })
       <h2 id="review-question-title" tabIndex={-1} ref={heading}>Die vorherige Runde wurde geschlossen</h2>
       <p>Der Wiederholungsverlauf oder dein Konto wurde an anderer Stelle geändert. Starte bei Bedarf eine neue Runde.</p>
       <button type="button" className={styles.primary} disabled={disabled} onClick={() => { if (!pendingLoad.current) void start(); }}>Neue kurze Runde</button>
-    </section> : load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : <button type="button" className={styles.primary} disabled={disabled} onClick={() => { if (!pendingLoad.current) void start(); }}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
+    </section> : load.phase === "error" ? <section className={styles.panel} role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href={`/login?next=${encodeURIComponent(returnPath)}`}>Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href={`/preise?next=${encodeURIComponent(returnPath)}`}>Zugang ansehen</Link> : <button type="button" className={styles.primary} disabled={disabled} onClick={() => { if (!pendingLoad.current) void start(); }}>Erneut versuchen</button>}</section> : !round ? <p role="status">Deine Fragen werden geladen …</p> : round.finished ? <section className={styles.panel}>
       <h2 id="review-question-title" tabIndex={-1} ref={heading}>Deine Runde ist abgeschlossen</h2><p>{round.score} von {round.questions.length} richtig.</p>
       {mistakes.length > 0 ? <section aria-labelledby="review-mistakes-title"><h3 id="review-mistakes-title">Fehler nachlesen</h3>
         {mistakes.map(item => {
@@ -249,7 +254,7 @@ function DailyReviewRound({ pool, category, mode, origin, isCurrent, disabled })
         })}
       </section> : <p>Alle Antworten dieser Runde sind richtig.</p>}
       {load.phase === "repeating" && <p role="status">Die Fehler dieser Runde werden erneut geladen …</p>}
-      {load.phase === "repeat-error" && <div role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href="/login?next=%2Flernen%2Ffuenf-minuten">Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href="/preise?next=%2Flernen%2Ffuenf-minuten">Zugang ansehen</Link> : null}</div>}
+      {load.phase === "repeat-error" && <div role="alert"><p>{load.message}</p>{load.status === 401 ? <Link href={`/login?next=${encodeURIComponent(returnPath)}`}>Zum Jagdlatein-Konto</Link> : load.status === 403 ? <Link href={`/preise?next=${encodeURIComponent(returnPath)}`}>Zugang ansehen</Link> : null}</div>}
       {mistakes.length > 0 && <button type="button" className={styles.primary} disabled={disabled || load.phase === "repeating"} onClick={repeatMistakes}>Diese Fehler üben</button>}
       <button type="button" className={styles.primary} disabled={disabled || load.phase === "repeating"} onClick={() => { if (!pendingLoad.current && current.current === round && round.finished) void start(); }}>Neue kurze Runde</button>
     </section> : question ? <section className={styles.panel}>
