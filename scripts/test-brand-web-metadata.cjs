@@ -22,7 +22,7 @@ test('Default social preview uses an absolute brand image with its own truthful 
   assert.ok(!bare.has('og:image:width') && !bare.has('og:image:height') && !bare.has('og:image:alt'));
 });
 
-test('The actual signed-out homepage supplies one crawlable compact brand image and matching Organization logo without new controls', () => {
+test('The actual signed-out homepage starts with its text heading and keeps the Organization logo only as metadata', () => {
   const Empty = () => null;
   const Home = createLoader({ 'next/head': Head, 'next/link': ({ children, ...props }) => React.createElement('a', props, children),
     '../lib/account-access': { readRequestAccountSession: () => null },
@@ -33,10 +33,9 @@ test('The actual signed-out homepage supplies one crawlable compact brand image 
     '../components/Community': { CommunityInvite: Empty }, '../components/HomeNews': Empty, '../components/JagdakademiePromotion': Empty,
   })('pages/index.js').default;
   const html = renderToStaticMarkup(React.createElement(Home));
-  assert.equal((html.match(/class="brandImage"/g) || []).length, 1);
-  assert.match(html, new RegExp(`src="${brand.icon192}"`));
-  assert.ok(html.includes(`${brand.icon512} 512w`)); assert.match(html, /sizes="\(max-width: 620px\) 112px, 144px"/);
-  assert.ok(html.includes('alt="Jagdlatein – Illustration mit Jäger und Hirsch"'));
+  assert.doesNotMatch(html, /<img\b[^>]*src="\/branding\//);
+  assert.doesNotMatch(html, /class="brandImage"/);
+  assert.match(html, /<main[^>]*><div[^>]*><p[^>]*>Wissen für Revier und Prüfung<\/p><h1[^>]*>Jagdlatein<\/h1>/);
   const data = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
   assert.deepEqual(data, [siteOrganization]);
   assert.equal(data[0].name, 'Jagdlatein'); assert.equal(data[0].logo.contentUrl, `${brand.site}${brand.logo}`);
