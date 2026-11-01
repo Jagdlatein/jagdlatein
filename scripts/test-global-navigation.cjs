@@ -381,6 +381,7 @@ test('Law navigation returns through statute, topic and region without mixing an
 
 test('Dock Back preserves each committed topic, case, motif, season and review selection in focused learning tools', () => {
   const tools = [
+    ['/lernen/tierstimmen', '?stimme=fasan', '?stimme=ringeltaube'],
     ['/lernen/videos', '?bereich=wild', '?bereich=hund'],
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],

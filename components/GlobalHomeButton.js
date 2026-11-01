@@ -71,6 +71,7 @@ function tracksLawSelection(path) {
   return /^\/jagdrecht\/(?:ch|de|at)$/.test(path.split(/[?#]/)[0]);
 }
 const toolSelectionFields = {
+  "/lernen/tierstimmen": ["stimme"],
   "/lernen/videos": ["bereich"],
   "/lernen/spurenwerkstatt": ["eintrag", "ansicht"],
   "/lernen/wildbret-stuecke": ["eintrag", "ansicht"],

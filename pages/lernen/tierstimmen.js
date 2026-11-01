@@ -1,5 +1,5 @@
-import AnimalSounds from "../../components/AnimalSounds";
+import AnimalSoundRoute from "../../components/AnimalSoundRoute";
 
 export default function AnimalSoundsPage() {
-  return <AnimalSounds />;
+  return <AnimalSoundRoute />;
 }

@@ -3,7 +3,9 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const { avianNictitatingBaselineFixture, stripAvianNictitatingDataset } = require('./helpers/avian-nictitating-addition-nov01.cjs');
+const createLoader = overrides => createProjectLoader(avianNictitatingBaselineFixture(overrides));
 const swc = local('next/dist/build/swc');
 const revision = '9f16930e3008fe7892fd3cc5fec76de61daff2fb';
 const courseId = 'wissen-ausbau-biologie-verdauungsvergleich-2026';
@@ -31,10 +33,10 @@ function historicalLoader() {
   return load;
 }
 const load = createLoader(), old = historicalLoader();
-const raw = load('data/learning-expansion-biology-2026-10-16.json');
+const raw = stripAvianNictitatingDataset(load('data/learning-expansion-biology-2026-10-16.json'));
 const beforeRaw = old('data/learning-expansion-biology-2026-10-16.json');
 const curriculum = load('lib/learning-curriculum.js');
-const course = curriculum.getLearningModule(courseId), lesson = course.lessons.at(-1);
+const course = curriculum.getLearningModule(courseId), lesson = course.lessons.find(item => item.id === lessonId);
 const cards = load('lib/learning-flashcards.js').getFlashcards();
 function withoutAddition(module) {
   if (module.id !== courseId) return module;

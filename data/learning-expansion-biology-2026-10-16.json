@@ -1450,6 +1450,26 @@
             "harnwege"
           ],
           "supports": "Erster Sachabsatz tatsächlich gelesen: Huhn, paarige Nieren, ableitende Harnleiter zur Kloake und ausdrücklich keine Harnblase. Unabhängige veterinäranatomische Erklärung zur präzisen Blasenabsenz am benannten Modell; keine Nephrontypen, Histologie, Maße oder Bilder übernommen. Die pauschale Formulierung über Vögel wird nicht unterschiedslos auf sämtliche Wildarten übertragen."
+        },
+        {
+          "label": "Morris und Parsons (2023): The Various Ways in Which Birds Blink",
+          "url": "https://www.mdpi.com/2076-2615/13/23/3656",
+          "organization": "John G. L. Morris, Westmead Hospital; Jesse J. Parsons / Animals",
+          "checkedOn": "2026-11-01",
+          "lessonIds": [
+            "nickhaut"
+          ],
+          "supports": "Originale Video-Beobachtungsstudie: Methods, Results 3.2, Discussion und Conclusions tatsächlich gelesen, über das öffentliche Europe-PMC-Volltext-XML. Bewegung der Nickhaut vom inneren zum äußeren Augenwinkel über die Hornhaut; verschiedene Lidbewegungen und eingeschränkte Erkennbarkeit. Tränenfilmfunktion in der Diskussion fachlich eingeordnet, nicht als eigene experimentelle Tränenfilmmessung. Keine Blinkzahlen, Artenquoten, Diagnosen, Evolutionserklärung oder Abbildungen übernommen."
+        },
+        {
+          "label": "Klećkowska-Nawrot et al. (2025): Upper, lower and third eyelids in birds of prey",
+          "url": "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0",
+          "organization": "Wrocław University of Environmental and Life Sciences; Warsaw University of Life Sciences / BMC Veterinary Research",
+          "checkedOn": "2026-11-01",
+          "lessonIds": [
+            "nickhaut"
+          ],
+          "supports": "Unabhängige histologische Originalarbeit: Background, Functions of the eyelids, Methoden, gemeinsame und unterschiedliche Lidbefunde sowie Conclusions tatsächlich gelesen. Getrennte Ober-, Unter- und Nickhautstrukturen; Unterschiede zwischen untersuchten Greifvögeln und Eulen. Oberflächenschutz und Tränenfilmverteilung werden fachlich erklärt, nicht als wiederholter Tränenfilmversuch. Kleine Individuenzahl und begrenzte Übertragung ausdrücklich erhalten; keine Gewebemaße, Immunmechanismen, Behandlung oder Abbildungen übernommen."
         }
       ],
       "lessons": [
@@ -1533,6 +1553,19 @@
           ],
           "takeaway": "Beim Huhn führen Harnleiter von den Nieren zur Kloake; dort treffen getrennte Harn-, Darm- und Fortpflanzungswege auf einen gemeinsamen Endbereich.",
           "exercise": "Beschrifte auf dem Papier getrennt Niere → Harnleiter → Kloake und Darm → Kloake. Markiere den Fortpflanzungstrakt als weiteren Zugang; die Übung erfordert keinen Tierkontakt."
+        },
+        {
+          "id": "nickhaut",
+          "title": "Nickhaut",
+          "reviewedOn": "2026-11-01",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Die Nickhaut ist ein bewegliches drittes Lid am Vogelauge. Sie ist von Ober- und Unterlid zu unterscheiden. Beim beschriebenen Nickhautblinzeln zieht sie vom inneren zum äußeren Augenwinkel über die Hornhaut. Das ist eine Bewegung einer Gewebeschicht über der Augenoberfläche, keine Verschiebung der Pupille.",
+            "Die Bewegung unterstützt die Verteilung des Tränenfilms und das Entfernen kleiner Fremdpartikel von der Hornhautoberfläche. Damit gehört die Nickhaut zum Schutz der Augenoberfläche.",
+            "Nickhäute und Lidbewegungen sehen bei verschiedenen Vögeln unterschiedlich aus. Die Membran ist nicht bei jeder Art gleich durchsichtig. Ein kurzer Film aus größerer Entfernung muss diese kleine Struktur nicht erkennbar zeigen. Aus einem unscharfen Augenbild werden deshalb weder eine Nickhaut noch eine Augenkrankheit oder bestimmte Sehschärfe sicher bestimmt."
+          ],
+          "takeaway": "Die Nickhaut ist ein drittes bewegliches Lid: Sie streicht über die Hornhaut und unterstützt deren Oberflächenschutz.",
+          "exercise": "Beschreibe die Bewegungsrichtung und die Oberflächenfunktion der Nickhaut. Trenne dabei Lid, Hornhaut und Pupille."
         }
       ],
       "questions": [
@@ -2016,6 +2049,19 @@
           ],
           "answer": 2,
           "explain": "Darm, Harnleiter und Fortpflanzungstrakt münden in den gemeinsamen Kloakenbereich. Die gemeinsame Endstelle hebt ihre unterschiedliche Herkunft und Funktion nicht auf."
+        },
+        {
+          "id": "nickhaut-oberflaechenfunktion",
+          "lessonId": "nickhaut",
+          "q": "Welcher Vorgang erklärt die Oberflächenfunktion der Nickhaut beim beschriebenen Vogelblinzeln?",
+          "options": [
+            "Sie vergrößert die Pupillenöffnung und regelt dadurch ausschließlich den Lichteinfall.",
+            "Sie verformt die Linse und stellt damit das Bild auf der Netzhaut scharf.",
+            "Sie streicht über die Hornhaut und hilft, Tränenfilm zu verteilen und kleine Fremdpartikel zu entfernen.",
+            "Sie verändert nur die Stellung des Oberlids; die Hornhaut wird dabei nicht überstrichen."
+          ],
+          "answer": 2,
+          "explain": "Die bewegliche Nickhaut wird über die Hornhaut geführt und unterstützt die Verteilung des Tränenfilms sowie das Entfernen kleiner Fremdpartikel. Bau und Sichtbarkeit unterscheiden sich zwischen Vögeln."
         }
       ]
     },
@@ -4472,6 +4518,45 @@
           "sourceRoles": {
             "https://poultry.extension.org/articles/poultry-anatomy/avian-digestive-system/": "Ceca und Intestinal Microflora erklären Gärung und mikrobiellen Verdauungsbeitrag; Gizzard erklärt getrennt mechanisches Zerkleinern und Mischen. Keine benachbarten Wasser-, Vitamin- oder Nährstoffanteilsbehauptungen übernommen.",
             "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0213503": "Einleitung zur mikrobiellen Pflanzenverarbeitung sowie Abstract und Discussion Hemicellulose and starch-hydrolyzing GHs: Mikroben und genetisches Abbaupotenzial. Der letzte Absatz dieser Discussion verlangt weitere Untersuchungen zur Genexpression; Genbefunde werden deshalb nicht als direkte Mengen- oder Energiemessung ausgegeben. Keine experimentelle Replikation des Hühnerbeispiels behauptet."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "nickhaut",
+      "claims": [
+        {
+          "claim": "Die Nickhaut ist ein bewegliches drittes Lid, von Ober- und Unterlid getrennt. Beim beschriebenen Nickhautblinzeln wird sie vom inneren zum äußeren Augenwinkel über die Hornhaut geführt; die Pupille wird dabei nicht über die Hornhaut verschoben.",
+          "sourceUrls": [
+            "https://www.mdpi.com/2076-2615/13/23/3656",
+            "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0"
+          ],
+          "sourceRoles": {
+            "https://www.mdpi.com/2076-2615/13/23/3656": "Results 3.2 beobachtet direkt die Bewegung medial nach lateral über die Hornhaut; Simple Summary und Methoden unterscheiden mehrere Lidtypen.",
+            "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0": "Background und Nomina-Anatomica-Bezug trennen die drei Lidstrukturen; die Originalhistologie untersucht diese jeweils gesondert. Die Bewegungsfunktion ist dort anatomische Einordnung, nicht dieselbe Video-Beobachtung."
+          }
+        },
+        {
+          "claim": "Die Nickhautbewegung unterstützt Tränenfilmverteilung und das Entfernen kleiner Fremdpartikel von der Hornhautoberfläche. Dies wird als fachliche Funktionsdeutung der Arbeiten, nicht als gemeinsame wiederholte Tränenfilmmessung vermittelt.",
+          "sourceUrls": [
+            "https://www.mdpi.com/2076-2615/13/23/3656",
+            "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0"
+          ],
+          "sourceRoles": {
+            "https://www.mdpi.com/2076-2615/13/23/3656": "Discussion, erster Absatz zu phasischen Blinkbewegungen: Tränenflüssigkeit über der Hornhaut und Entfernen von Material. Die Studie misst primär sichtbare Lidbewegungen.",
+            "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0": "Functions of the eyelids in birds: Schutz vor Fremdkörpern, Entfernen von Oberflächenmaterial und Verteilung des präkornealen Tränenfilms. Histologische Originalbefunde sind keine neue direkte Messung der Reinigungsleistung."
+          }
+        },
+        {
+          "claim": "Aussehen, Durchsichtigkeit und Lidbewegungen variieren. Eine kurze entfernte oder unscharfe Aufnahme liefert nicht automatisch einen sichtbaren Nickhautbefund, eine Krankheitsdiagnose oder eine Sehschärfenmessung.",
+          "sourceUrls": [
+            "https://www.mdpi.com/2076-2615/13/23/3656",
+            "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0"
+          ],
+          "sourceRoles": {
+            "https://www.mdpi.com/2076-2615/13/23/3656": "Methods und Results 3.2 benennen Bewegungsunschärfe, eingeschränkte Erkennbarkeit und unterschiedlich transparente Membranen. Keine pauschale Erkennbarkeit oder identische Lidbewegung wird daraus abgeleitet.",
+            "https://bmcvetres.biomedcentral.com/articles/10.1186/s12917-025-04677-0": "Abstract und Conclusions berichten morphologische Unterschiede und warnen bei kleiner Individuenzahl vor sicherer Trennung individueller und artspezifischer Merkmale. Die Grenze des eigenen Bildbefunds ist eine redaktionelle Reichweitenbegrenzung, keine Diagnosevorschrift."
           }
         }
       ]

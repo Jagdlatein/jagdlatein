@@ -113,6 +113,7 @@ test('Audio source failures have a retry and old error/play events cannot affect
   let playCount = 0, paused = 0;
   const props = sound => ({ sound, label: 'Originalaufnahme', onPlay: () => playCount++ });
   const s = setup('components/AnimalSounds.js', props(sounds[0]), 'SoundPlayer');
+  s.flush();
   const oldAudio = find(s.tree, node => node.type === 'audio'), oldSource = find(s.tree, node => node.type === 'source');
   oldSource.props.onError(); s.redraw(); assert.ok(find(s.tree, node => node.props?.role === 'alert'));
   s.click('Noch einmal laden'); oldSource.props.onError(); s.redraw();

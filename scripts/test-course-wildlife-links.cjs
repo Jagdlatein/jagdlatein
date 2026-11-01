@@ -1,6 +1,7 @@
 // Reciprocal navigation reuses exact authored associations, not inferred
 // biological relationships. Synthetic scope edits never change product data.
 const test = require('node:test'), assert = require('node:assert/strict'), fs = require('node:fs'), path = require('node:path');
+const { createHash } = require('node:crypto');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { nodes, text } = require('./helpers/field-reader-fixture.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
@@ -10,8 +11,9 @@ const { getWildlifeLearningGuide: guide } = load('lib/wildlife-learning-guide.js
 const { wildYearCatalog: inventory } = load('lib/wild-year-catalog.js');
 const { jawModelsBySlug } = load('lib/wildlife-jaw-models.js');
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
+const { animalSounds } = load('lib/animal-sounds.js');
 const Links = load('components/CourseWildlifeLinks.js').default;
-const moduleKeys = ['slug', 'name', 'lessonIds', 'portraitHref', 'yearHref', 'modelHref'].sort();
+const moduleKeys = ['slug', 'name', 'lessonIds', 'portraitHref', 'yearHref', 'modelHref', 'soundLinks'].sort();
 
 test('Every reciprocal association matches an existing species-scoped guide target and never reverses generic foundations', () => {
   const snapshot = JSON.stringify(learningModules), covered = [], species = new Set();
@@ -41,14 +43,55 @@ test('Feldhase and Ringeltaube appear only at their exact unique blinddarm and k
   const module = getLearningModule('wissen-ausbau-biologie-verdauungsvergleich-2026'), links = project(module);
   assert.equal(links.length, 2); assert.deepEqual(links.find(link => link.slug === 'feldhase').lessonIds, ['blinddarm']); assert.deepEqual(links.find(link => link.slug === 'ringeltaube').lessonIds, ['kropfmilch']);
   for (const lesson of module.lessons) {
-    const visible = nodes(Links({ links, lessonId: lesson.id }), node => node.props?.['data-course-wildlife']).map(node => node.props['data-course-wildlife']);
+    const tree = Links({ links, lessonId: lesson.id });
+    const visible = nodes(tree, node => node.props?.['data-course-wildlife']).map(node => node.props['data-course-wildlife']);
     assert.deepEqual(visible, lesson.id === 'blinddarm' ? ['feldhase'] : lesson.id === 'kropfmilch' ? ['ringeltaube'] : [], lesson.id);
+    const sounds = nodes(tree, node => node.props?.href?.startsWith('/lernen/tierstimmen?')).map(node => node.props.href);
+    assert.deepEqual(sounds, lesson.id === 'kropfmilch' ? ['/lernen/tierstimmen?stimme=ringeltaube#tierstimme-title'] : [], `${lesson.id}: only the displayed species has sound links`);
   }
   for (const id of ['prefix-blinddarm', 'blinddarm-suffix', 'Blinddarm', 'unknown']) assert.deepEqual(project({ ...module, lessons: [{ id }] }), []);
   assert.deepEqual(project({ ...module, lessons: [{ id: 'blinddarm' }, { id: 'blinddarm' }] }), []);
   const broad = getLearningModule('wissen-vertiefung-wild-kleine-beutegreifer'), all = project(broad);
   assert.equal(all.length, 6); assert.ok(all.every(link => link.lessonIds === null));
   for (const lesson of broad.lessons) assert.equal(nodes(Links({ links: all, lessonId: lesson.id }), node => node.props?.['data-course-wildlife']).length, 6);
+});
+
+test('Eleven courses expose all exact recorded-species matches as 23 minimal links to 18 existing recordings', () => {
+  const covered = [], recordings = new Set(); let associations = 0;
+  for (const module of learningModules) {
+    const links = project(module);
+    if (links.some(link => link.soundLinks.length)) covered.push(module.id);
+    for (const link of links) {
+      const expected = animalSounds.filter(sound => sound.speciesSlug === link.slug);
+      assert.deepEqual(link.soundLinks, expected.map(sound => ({ title: `${sound.name}: ${sound.call}`, href: `/lernen/tierstimmen?stimme=${encodeURIComponent(sound.id)}#tierstimme-title` })), `${module.id}:${link.slug}`);
+      associations += link.soundLinks.length;
+      for (const sound of link.soundLinks) {
+        assert.deepEqual(Object.keys(sound).sort(), ['href', 'title']);
+        assert.doesNotMatch(JSON.stringify(sound), /\.mp3|"src"|"options"|"explanation"|"questions"|"answer"/);
+        const url = new URL(sound.href, 'https://jagdlatein.invalid');
+        assert.equal(url.origin, 'https://jagdlatein.invalid'); assert.equal(url.pathname, '/lernen/tierstimmen'); assert.equal(url.hash, '#tierstimme-title');
+        assert.deepEqual([...url.searchParams.keys()], ['stimme']);
+        const original = animalSounds.find(item => item.id === url.searchParams.get('stimme'));
+        assert.ok(original && original.speciesSlug === link.slug, `${module.id}:${sound.href}`);
+        recordings.add(original.id);
+      }
+    }
+  }
+  assert.equal(covered.length, 11); assert.equal(associations, 23); assert.equal(recordings.size, 18);
+  for (const [moduleId, slug, expected] of [
+    ['wissen-rotwild-sozialverhalten', 'rotwild', 'rothirsch'],
+    ['wissen-rehwild-jahreslauf', 'rehwild', 'rehbock'],
+    ['wissen-gams-steinbock', 'gamswild', 'gams'],
+  ]) assert.deepEqual(project(getLearningModule(moduleId)).find(link => link.slug === slug).soundLinks.map(sound => new URL(sound.href, 'https://jagdlatein.invalid').searchParams.get('stimme')), [expected]);
+  assert.deepEqual(project(getLearningModule('wissen-ausbau-hasenartige')).flatMap(link => link.soundLinks), []);
+});
+
+test('All 37 original recording objects remain byte-for-byte identical through metadata projection', () => {
+  assert.equal(animalSounds.length, 37);
+  const before = JSON.stringify(animalSounds);
+  assert.equal(createHash('sha256').update(before).digest('hex'), 'b44d90339a2d84a253ec2fa8273edd063801e1d72c32c13d8236c2aef11ced47');
+  for (const module of learningModules) project(module);
+  assert.equal(JSON.stringify(animalSounds), before);
 });
 
 test('Unknown courses and malformed module inputs produce no fallback species or empty menu section', () => {
@@ -70,14 +113,15 @@ test('Each portrait anchor exists in the actual portrait topic registry; Wildjah
   }
 });
 
-test('Actual198-course SSG props project only minimal links and retain the exact original module and flashcard data', () => {
-  const page = load('pages/kurse/[slug].js'), flashcards = load('lib/learning-flashcards.js');
+test('Actual198-course SSG props project only minimal links and retain the exact original module, flashcards and lesson photos', () => {
+  const page = load('pages/kurse/[slug].js'), flashcards = load('lib/learning-flashcards.js'), photos = load('lib/lesson-photos-server.js');
   assert.deepEqual(page.getStaticPaths().paths.map(item => item.params.slug), learningModules.map(module => module.id));
   for (const module of learningModules) {
     const result = page.getStaticProps({ params: { slug: module.id } });
-    assert.deepEqual(Object.keys(result.props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks', 'oralExamLinks', 'practiceLinks'].sort());
+    assert.deepEqual(Object.keys(result.props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks', 'oralExamLinks', 'practiceLinks', 'lessonPhotos'].sort());
     assert.equal(result.props.module, module); assert.deepEqual(result.props.flashcards, flashcards.getFlashcardLessonSummary(module.id)); assert.deepEqual(result.props.wildlifeLinks, project(module));
     assert.deepEqual(page.default(result.props).props.wildlifeLinks, result.props.wildlifeLinks);
+    assert.deepEqual(result.props.lessonPhotos, photos.getCourseLessonPhotos(module));
   }
   assert.deepEqual(page.getStaticProps({ params: { slug: 'unknown' } }), { notFound: true });
 });
@@ -87,11 +131,18 @@ test('The stateless menu uses short internal links without preloading, dialogs, 
   assert.equal(text(nodes(tree, node => node.type === 'h3')[0]), 'Arten');
   assert.equal(nodes(tree, node => node.props?.['data-course-wildlife']).length, 6);
   const navigation = nodes(tree, node => typeof node.props?.href === 'string');
-  for (const link of navigation) { assert.ok(['Artenwissen', 'Wildjahr', '3D'].includes(text(link))); assert.equal(link.props.prefetch, false); assert.equal(link.props.target, undefined); assert.match(link.props.href, /^\/(wildkunde|lernen)\//); assert.ok(link.props['aria-label'].includes(': ')); }
+  const sounds = links.flatMap(link => link.soundLinks.map(sound => ({ ...sound, species: link.name })));
+  for (const link of navigation) {
+    const sound = sounds.find(sound => sound.href === link.props.href);
+    if (sound) { assert.equal(text(link), `Tierstimme: ${sound.title}`); assert.equal(link.props['aria-label'], `${sound.species}: ${sound.title}`); }
+    else assert.ok(['Artenwissen', 'Wildjahr', '3D'].includes(text(link)));
+    assert.equal(link.props.prefetch, false); assert.equal(link.props.target, undefined); assert.match(link.props.href, /^\/(wildkunde|lernen)\//); assert.ok(link.props['aria-label'].includes(': '));
+  }
+  assert.equal(navigation.length, links.reduce((sum, link) => sum + 2 + Number(!!link.modelHref) + link.soundLinks.length, 0));
   assert.equal(nodes(tree, node => ['details', 'dialog', 'button', 'select', 'input', 'form'].includes(node.type)).length, 0);
   const SSR = createLoader({ 'next/link': ({ href, children, prefetch, ...rest }) => React.createElement('a', { href, ...rest }, children) })('components/CourseWildlifeLinks.js').default;
   const html = renderToStaticMarkup(React.createElement(SSR, { links, lessonId: 'unused' }));
-  assert.match(html, /data-course-wildlife-links/); assert.doesNotMatch(html, /<details|<dialog|target=|Quellen|Wissen prüfen/);
+  assert.match(html, /data-course-wildlife-links/); assert.doesNotMatch(html, /<details|<dialog|target=|Quellen|Wissen prüfen|<audio\b|<source\b|<track\b|\.mp3/);
 });
 
 test('The page client transform removes server-only projection and the new presentation imports no corpus or question source', () => {
@@ -101,9 +152,9 @@ test('The page client transform removes server-only projection and the new prese
   assert.doesNotMatch(transformed, /course-wildlife-links-server|learning-curriculum|learning-flashcards/);
   assert.match(transformed, /__N_SSG/);
   const source = fs.readFileSync(path.join(root, 'components/CourseWildlifeLinks.js'), 'utf8');
-  assert.doesNotMatch(source, /course-wildlife-links-server|wildlife-learning-guide|wild-year-catalog|european-wildlife|learning-curriculum|useState|useEffect|fetch\(/);
+  assert.doesNotMatch(source, /course-wildlife-links-server|wildlife-learning-guide|wild-year-catalog|european-wildlife|learning-curriculum|animal-sounds|animalSound|useState|useEffect|fetch\(/);
   const course = fs.readFileSync(path.join(root, 'components/LearningCourse.js'), 'utf8');
-  assert.doesNotMatch(course, /course-wildlife-links-server|wildlife-learning-guide|wild-year-catalog|european-wildlife|learning-curriculum/);
+  assert.doesNotMatch(course, /course-wildlife-links-server|wildlife-learning-guide|wild-year-catalog|european-wildlife|learning-curriculum|animal-sounds|animalSound/);
 });
 
 test('The actual course owner filters the current lesson inside its existing PageMenu and keeps learning, quiz and closed sources intact', () => {

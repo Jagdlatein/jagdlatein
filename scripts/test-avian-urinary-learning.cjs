@@ -5,7 +5,9 @@ const fs = require('node:fs'), path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const { createLoader: createPracticeProjectLoader, root, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createPracticeProjectLoader(practiceKnowledgeBaselineFixture(overrides));
+const { avianNictitatingBaselineFixture, stripAvianNictitatingDataset } = require('./helpers/avian-nictitating-addition-nov01.cjs');
+const { avianCecaBaselineFixture, stripAvianCecaDataset } = require('./helpers/avian-ceca-addition-oct29.cjs');
+const createLoader = overrides => createPracticeProjectLoader(practiceKnowledgeBaselineFixture(avianNictitatingBaselineFixture(avianCecaBaselineFixture(overrides))));
 const { courseId, lessonId, questionIds, sourceURLs, stripAvianUrinaryAddition,
   stripAvianUrinaryDataset, isAvianUrinaryCard, avianUrinaryBaselineFixture } = require('./helpers/avian-urinary-addition-oct29.cjs');
 // The concurrently authorized mast appendix has its own exact positive tests.
@@ -30,8 +32,8 @@ function historicalLoader() {
 }
 const load = createLoader(), oldLoad = historicalLoader();
 const curriculum = load('lib/learning-curriculum.js'), previous = oldLoad('lib/learning-curriculum.js');
-const raw = require('../data/learning-expansion-biology-2026-10-16.json');
-const course = curriculum.getLearningModule(courseId), lesson = course.lessons.at(-1);
+const raw = stripAvianNictitatingDataset(stripAvianCecaDataset(require('../data/learning-expansion-biology-2026-10-16.json')));
+const course = curriculum.getLearningModule(courseId), lesson = course.lessons.find(item => item.id === lessonId);
 const cards = load('lib/learning-flashcards.js').getFlashcards(), oldCards = oldLoad('lib/learning-flashcards.js').getFlashcards();
 
 test('The complete original biology dataset and all198 old courses retain content, field order and dates against actual HEAD25807fe', () => {
@@ -86,7 +88,7 @@ test('The existing topic tree, real course route, text search and three country 
   const page = load('pages/kurse/[slug].js');
   assert.equal(JSON.stringify(page.getStaticPaths()), JSON.stringify(oldLoad('pages/kurse/[slug].js').getStaticPaths()));
   const props = page.getStaticProps({ params: { slug: courseId } }).props;
-  assert.deepEqual(props.module.lessons.at(-1), lesson); assert.equal(props.flashcards.lessons[lessonId], 2);
+  assert.deepEqual(props.module.lessons.find(item => item.id === lessonId), lesson); assert.equal(props.flashcards.lessons[lessonId], 2);
   const found = load('lib/learning-search.js').searchLearning({ query: 'Harnleiter Kloake', category: 'wildkunde', type: 'course' }).results.find(item => item.id === `course:${courseId}`);
   assert.equal(found.href, `/kurse/${courseId}#lesson-${lessonId}`);
   const bank = load('data/questions-full.js').QUESTIONS, { quizLearningPool } = load('lib/quiz-learning-scope.js');
@@ -103,7 +105,7 @@ test('A real expiring offline pack retains full old content, the new anatomical 
     const { validateOfflinePack } = load('lib/offline-learning.js');
     assert.equal(validateOfflinePack(pack, now), true); assert.equal(validateOfflinePack(pack, pack.expiresAt), false);
     assert.deepEqual(pack.courses[0].lessons, course.lessons); assert.deepEqual(pack.courses[0].questions, course.questions);
-    assert.equal(pack.courses[0].reviewedOn, '2026-10-16'); assert.equal(pack.courses[0].lessons.at(-1).reviewedOn, '2026-10-29');
+    assert.equal(pack.courses[0].reviewedOn, '2026-10-16'); assert.equal(pack.courses[0].lessons.find(item => item.id === lessonId).reviewedOn, '2026-10-29');
   } finally { if (oldSecret === undefined) delete process.env.JL_SESSION_SECRET; else process.env.JL_SESSION_SECRET = oldSecret; }
 });
 

@@ -29,13 +29,19 @@ function load(relative, overrides = {}, expose = '') {
   new Function('require', 'module', 'exports', code + expose)(resolve, mod, mod.exports);
   return mod.exports;
 }
-function engine() {
-  const slots = []; let cursor = 0;
+function engine(withEffects = false) {
+  const slots = [], effects = [], cleanups = []; let cursor = 0;
   return { hooks: { ...React,
     useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, value => { slots[i].value = typeof value === 'function' ? value(slots[i].value) : value; }]; },
     useRef(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: { current: initial } }; return slots[i].value; },
-    useMemo(fn) { return fn(); }, useEffect() {}, useCallback(fn) { return fn; },
-  }, render(fn) { cursor = 0; return fn(); } };
+    useMemo(fn) { return fn(); }, useEffect(fn, deps) {
+      if (!withEffects) return;
+      const i = cursor++;
+      if (!slots[i] || !deps || deps.some((value, j) => !Object.is(value, slots[i].deps[j]))) {
+        slots[i] = { deps }; effects.push(() => { cleanups[i]?.(); cleanups[i] = fn(); });
+      }
+    }, useCallback(fn) { return fn; },
+  }, render(fn) { cursor = 0; return fn(); }, flush() { const pending = effects.splice(0); pending.forEach(fn => fn()); return pending.length > 0; } };
 }
 function find(node, predicate) {
   if (Array.isArray(node)) { for (const child of node) { const result = find(child, predicate); if (result) return result; } return null; }
@@ -48,8 +54,12 @@ function text(node) {
   return typeof node === 'object' ? text(node.props?.children) : String(node);
 }
 function setup(relative, exportName = 'default', expose = '', props = {}) {
-  const e = engine(); const Component = load(relative, { react: e.hooks }, expose)[exportName];
-  const render = () => e.render(() => Component(props)); let tree = render();
+  const audio = relative === 'components/AnimalSounds.js';
+  const e = engine(audio);
+  const overrides = { react: e.hooks };
+  if (audio) overrides['next/router'] = { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/tierstimmen' }) };
+  const Component = load(relative, overrides, expose)[exportName];
+  const render = () => { let next; for (let pass = 0; pass < 4; pass++) { next = e.render(() => Component(props)); if (!e.flush()) return next; } throw new Error('Audio fixture did not settle'); }; let tree = render();
   return { get tree() { return tree; }, redraw() { tree = render(); }, html() { return renderToStaticMarkup(tree); },
     button(label) { const node = find(tree, n => n.type === 'button' && text(n).trim() === label); assert.ok(node, 'Missing button: ' + label); return node; },
     click(label) { const node = this.button(label); assert.ok(!node.props.disabled, 'Disabled: ' + label); node.props.onClick(); tree = render(); },

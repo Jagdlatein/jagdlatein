@@ -11,6 +11,7 @@ export default function CourseWildlifeLinks({ links = [], lessonId }) {
       <Link href={link.portraitHref} prefetch={false} aria-label={`${link.name}: Artenwissen`}>Artenwissen</Link>
       <Link href={link.yearHref} prefetch={false} aria-label={`${link.name}: Wildjahr`}>Wildjahr</Link>
       {link.modelHref && <Link href={link.modelHref} prefetch={false} aria-label={`${link.name}: 3D-Präparat`}>3D</Link>}
+      {link.soundLinks?.map(sound => <Link key={sound.href} href={sound.href} prefetch={false} aria-label={`${link.name}: ${sound.title}`}>Tierstimme: {sound.title}</Link>)}
     </li>)}</ul>
   </nav>;
 }

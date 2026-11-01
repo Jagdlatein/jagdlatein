@@ -3,6 +3,8 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const ceca = require('./helpers/avian-ceca-addition-oct29.cjs');
+const nictitating = require('./helpers/avian-nictitating-addition-nov01.cjs');
 const sharp = local('sharp'), swc = local('next/dist/build/swc');
 const revision = '7722b8d0a918bce26e51f7984d3dd877709ab60f';
 const load = createLoader(), project = load('lib/lesson-photos-server.js').getCourseLessonPhotos;
@@ -49,11 +51,10 @@ const expectedPaths = {
 const allMaps = learningModules.map(module => [module, project(module)]);
 const photos = allMaps.flatMap(([, map]) => Object.values(map).flat());
 const paragraphFor = photo => ({'wildlife-fasan':1,'wildlife-rebhuhn':2,'plant-eberesche':1}[photo.id] || 0);
-const expandedCourse = 'wissen-ausbau-biologie-verdauungsvergleich-2026';
-const newQuestion = expandedCourse+'-vogelblinddaerme-funktion';
+const appendices = [ceca, nictitating];
+const newQuestions = new Set(appendices.map(({ courseId, questionId }) => `${courseId}-${questionId}`));
 function formerCourse(course) {
-  if(course.id !== expandedCourse) return course;
-  return {...course,lessons:course.lessons.filter(lesson=>lesson.id!=='vogelblinddaerme'),questions:course.questions.filter(question=>question.id!==newQuestion),sources:course.sources.filter(source=>!source.lessonIds?.includes('vogelblinddaerme'))};
+  return nictitating.stripAvianNictitatingAddition(ceca.stripAvianCecaAddition(course));
 }
 
 function historicalLoader() {
@@ -97,14 +98,17 @@ test('Exactly fifteen real courses, nineteen exact lessons and twenty-four appro
   assert.equal(new Set(photos.map(photo => photo.src)).size, 24);
 });
 
-test('The complete874-lesson inventory contains no image on any unapproved lesson or paragraph', () => {
+test('The complete875-lesson inventory contains no image on any unapproved lesson or paragraph, including Nickhaut', () => {
   let lessons = 0, unillustrated = 0;
   for (const [module, map] of allMaps) for (const lesson of module.lessons) {
     lessons++;
     if (!expected[module.id]?.[lesson.id]) { unillustrated++; assert.equal(Object.hasOwn(map, lesson.id), false); }
     for (const photo of map[lesson.id] || []) assert.equal(photo.afterParagraph,paragraphFor(photo));
   }
-  assert.equal(lessons, 874); assert.equal(unillustrated, 855);
+  assert.equal(lessons, 875); assert.equal(unillustrated, 856);
+  const nickhaut = getLearningModule(nictitating.courseId);
+  assert.ok(nickhaut.lessons.some(lesson => lesson.id === nictitating.lessonId));
+  assert.equal(Object.hasOwn(project(nickhaut), nictitating.lessonId), false, 'The new Nickhaut explanation has no approved illustrative photograph');
   for (const value of [undefined, null, false, '', [], {}, { id: 'unknown' }, { id: 'wissen-rehwild-jahreslauf', lessons: [] }]) assert.deepEqual(project(value), {});
   const course = getLearningModule('wissen-gams-steinbock');
   assert.throws(() => project({ ...course, lessons: course.lessons.filter(lesson => lesson.id !== 'berg-merkmale') }), /Missing audited photo lesson/);
@@ -165,17 +169,18 @@ test('Projection does not mutate any raw course or shared photo object and calle
   assert.equal(JSON.stringify(learningModules), beforeCourses); assert.equal(JSON.stringify(sources), beforePhotos);
 });
 
-test('All old courses, lessons, rotated question fields and review dates equal7722b8d beyond one explicit avian append', () => {
+test('All old courses, lessons, rotated question fields and review dates equal7722b8d beyond the exact ceca and Nickhaut appendices', () => {
   const baseline = old('lib/learning-curriculum.js');
-  assert.deepEqual(curriculum.learningCounts, { modules: 198, lessons: 874, questions: 2748 });
+  assert.deepEqual(curriculum.learningCounts, { modules: 198, lessons: 875, questions: 2749 });
   assert.deepEqual(learningModules.map(formerCourse), baseline.learningModules);
-  assert.deepEqual(curriculum.learningQuestions.filter(question=>question.id!==newQuestion), baseline.learningQuestions);
+  assert.deepEqual(curriculum.learningQuestions.filter(question => !newQuestions.has(question.id)), baseline.learningQuestions);
 });
 
 test('All1755 existing cards including the116 starter objects retain full fields/order and no photo metadata enters the ranked question bank', () => {
   const cards = load('lib/learning-flashcards.js').getFlashcards(), before = old('lib/learning-flashcards.js').getFlashcards();
-  assert.equal(cards.length, 1756); const oldIds=new Set(before.map(card=>card.id));assert.deepEqual(cards.filter(card=>oldIds.has(card.id)), before); assert.deepEqual(cards.slice(0, 116), before.slice(0, 116));
-  assert.deepEqual(load('data/questions-full.js').QUESTIONS.filter(question=>question.id!==newQuestion), old('data/questions-full.js').QUESTIONS);
+  assert.equal(before.length, 1755); assert.equal(cards.length, 1757); const oldIds=new Set(before.map(card=>card.id));assert.deepEqual(cards.filter(card=>oldIds.has(card.id)), before); assert.deepEqual(cards.slice(0, 116), before.slice(0, 116));
+  assert.deepEqual(cards.filter(card => !oldIds.has(card.id)).map(card => card.id).sort(), [...newQuestions].map(id => `flash-${id}`).sort());
+  assert.deepEqual(load('data/questions-full.js').QUESTIONS.filter(question => !newQuestions.has(question.id)), old('data/questions-full.js').QUESTIONS);
   const question = curriculum.learningQuestions.find(question => question.learningCategory === 'Wildkunde');
   const state = { phase: 'asking', index: 0, questions: [question], roundId: 'synthetic', country: 'CH', topic: 'Wildkunde', points: 0, correctAnswers: 0, timedOutAnswers: 0, serverNow: 1000, deadlineAt: 2000 };
   const live = load('lib/ranked-quiz-server.js').publicRound(state);
@@ -191,8 +196,15 @@ test('All198 real SSG routes retain their seven exact former props and pass only
     const result = page.getStaticProps({ params: { slug: module.id } }), previous = baseline.getStaticProps({ params: { slug: module.id } });
     assert.deepEqual(Object.keys(result.props), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks', 'oralExamLinks', 'practiceLinks', 'lessonPhotos']);
     const { lessonPhotos, ...oldProps } = result.props;
-    const former={...oldProps,module:formerCourse(oldProps.module)};
-    if(module.id===expandedCourse){former.flashcards={...oldProps.flashcards,total:oldProps.flashcards.total-1,lessons:{...oldProps.flashcards.lessons}};delete former.flashcards.lessons.vogelblinddaerme;}
+    // Only the new audio metadata field is absent from the historical links;
+    // retain every other field and compare all seven former props completely.
+    const former = { ...oldProps, module: formerCourse(oldProps.module),
+      wildlifeLinks: oldProps.wildlifeLinks.map(({ soundLinks, ...historicalLink }) => historicalLink) };
+    for (const { courseId, lessonId } of appendices) if (module.id === courseId) {
+      assert.equal(oldProps.flashcards.lessons[lessonId], 1, `${module.id}: exact appended lesson card`);
+      former.flashcards = { ...former.flashcards, total: former.flashcards.total - 1, lessons: { ...former.flashcards.lessons } };
+      delete former.flashcards.lessons[lessonId];
+    }
     assert.deepEqual(former, previous.props, module.id);
     assert.deepEqual(lessonPhotos, project(module)); assert.ok(Buffer.byteLength(JSON.stringify(lessonPhotos)) < 6000);
     const child = page.default(result.props);
