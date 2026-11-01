@@ -1,0 +1,79 @@
+{
+  "createdOn": "2026-11-01",
+  "purpose": "Operator-requested stable high-quality 30-second Instagram promotional reel and phone download",
+  "baselineRevision": "a504b260823e31316a09b7c949ae9e9003d4bbe2",
+  "durationSeconds": 30,
+  "width": 1080,
+  "height": 1920,
+  "frameRate": 30,
+  "frames": 900,
+  "files": [
+    {
+      "path": "/werbung/jagdlatein-reel-30s-2026-11-01.html",
+      "bytes": 4519,
+      "sha256": "719ed3fb2335eca3eb3b3def0c0f6cdda960e1c7cbbe6870e632466ec8e461f4"
+    },
+    {
+      "path": "/werbung/jagdlatein-reel-30s-2026-11-01.mp4",
+      "bytes": 2531922,
+      "sha256": "1c07f554247c76f5f53fea6519c23259dbefae2e52beb5438d153ff52162062b"
+    },
+    {
+      "path": "/werbung/jagdlatein-reel-30s-2026-11-01.zip",
+      "bytes": 4492812,
+      "sha256": "63c05a931bb84f3a9dbf9be87972e9be81ddbcf73cc32952ec1d6fdde8a509fb"
+    },
+    {
+      "path": "/werbung/jagdlatein-reel-30s-2026-11-01.jpg",
+      "bytes": 683004,
+      "sha256": "80141890b716ad21b7563b68b948729c4de97cafde0118f8a8f1b47d56ee5190"
+    },
+    {
+      "path": "/werbung/jagdlatein-reel-30s-2026-11-01.txt",
+      "bytes": 1247,
+      "sha256": "1fde0d9930a570a4853d3cd52766ae87f62822652a774f1f8f0655f991d7c489"
+    }
+  ],
+  "photos": [
+    {
+      "title": "Rotwild ) ( Red deer",
+      "author": "K-PIXEL-N (Klaus Nagel)",
+      "source": "https://commons.wikimedia.org/wiki/File:Rotwild_)_(_Red_deer_-_Flickr_-_K-PIXEL-N.jpg",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "59d543a1a935fb6d1ff1619e9e8b863ae034608c5863d1828542b3770f3c2839",
+      "modifications": "Hochformat- bzw. Kartenausschnitt, proportionale Skalierung, teilweise abgedunkeltes Farb-Overlay, typografische Montage und weiche Überblendung. Keine generative Veränderung der Tiere oder Pflanzen."
+    },
+    {
+      "title": "Lepus EM115247 (27783674376)",
+      "author": "Bengt Nyman",
+      "source": "https://commons.wikimedia.org/wiki/File:Lepus_EM115247_(27783674376).jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "sha256": "2a83d44e49e927dbe1b8a3230282392273a193315c6a26f955fa3fada59d7ad9",
+      "modifications": "Hochformat- bzw. Kartenausschnitt, proportionale Skalierung, teilweise abgedunkeltes Farb-Overlay, typografische Montage und weiche Überblendung. Keine generative Veränderung der Tiere oder Pflanzen."
+    },
+    {
+      "title": "20180703Quercus robur2",
+      "author": "AnRo0002",
+      "source": "https://commons.wikimedia.org/wiki/File:20180703Quercus_robur2.jpg",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "2fb021f7006e41a8ae304c406992c0859fa525c1626418ab75d07678d49846d3",
+      "modifications": "Hochformat- bzw. Kartenausschnitt, proportionale Skalierung, teilweise abgedunkeltes Farb-Overlay, typografische Montage und weiche Überblendung. Keine generative Veränderung der Tiere oder Pflanzen."
+    }
+  ],
+  "music": {
+    "type": "Eigene neu komponierte und synthetisierte 30-Sekunden-Musik bei96BPM. Keine Fremdsamples, Stockmusik, Sprache oder Musik-API.",
+    "wavSha256": "552a1b16e57b5b06f42715458a1db658f68da7731e31bf58f6063532f388cb42"
+  },
+  "graphics": "Eigene typografische Funktionskarten. Keine behaupteten App-Screenshots, fingierten Nutzerdaten oder Lernergebnisse.",
+  "branding": "Vorhandene, vom Betreiber ausdrücklich für Jagdlatein freigegebene Markenillustration; proportional skaliert mit runden Ecken. Keine neue öffentliche Lizenz für das Logo.",
+  "stores": {
+    "apple": "https://apps.apple.com/de/app/jagdlatein/id6819820561",
+    "google": "https://play.google.com/store/apps/details?id=de.jagdlatein.app&hl=de",
+    "web": "https://jagdlatein.de/"
+  },
+  "access": "Five exact new public paths, no prefix exception. Requested MP4 attachment only for download=1; ZIP attachment. Old15s files remain unchanged. No account, payment, learning-content or store permission change.",
+  "reviewLimits": "Concrete local plates and encoded frames, decode/timing/loudness, licenses and isolated delivery guards are reviewed separately. No actual Instagram posting, physical-device download, browser session, continuous hearing test or platform creative approval claimed."
+}

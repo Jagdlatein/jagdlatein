@@ -18,7 +18,7 @@ test('Exactly four response safeguards apply globally without restricting script
   assert.equal(global.length, 1);
   assert.deepEqual(toHeaders(global[0].headers), expected);
   const downloads = entries.filter(entry => entry.source !== '/:path*');
-  assert.deepEqual(downloads.map(entry => entry.source), ['/werbung/jagdlatein-15s-2026-11-01.mp4', '/werbung/jagdlatein-15s-2026-11-01.zip']);
+  assert.deepEqual(downloads.map(entry => entry.source), ['/werbung/jagdlatein-15s-2026-11-01.mp4', '/werbung/jagdlatein-15s-2026-11-01.zip', '/werbung/jagdlatein-reel-30s-2026-11-01.mp4', '/werbung/jagdlatein-reel-30s-2026-11-01.zip']);
   assert.ok(downloads.every(entry => entry.headers.length === 1 && entry.headers[0].key === 'Content-Disposition'));
   assert.doesNotMatch(expected['content-security-policy'], /(?:script-src|default-src|frame-src|child-src|media-src|connect-src|sandbox)/);
   assert.ok(!global[0].headers.some(item => item.key.toLowerCase() === 'permissions-policy'));

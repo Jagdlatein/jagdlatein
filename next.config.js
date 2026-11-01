@@ -48,6 +48,17 @@ const nextConfig = {
       headers: [
         { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-15s-Werbepaket.zip"' },
       ],
+    }, {
+      source: "/werbung/jagdlatein-reel-30s-2026-11-01.mp4",
+      has: [{ type: "query", key: "download", value: "1" }],
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Reel-30s.mp4"' },
+      ],
+    }, {
+      source: "/werbung/jagdlatein-reel-30s-2026-11-01.zip",
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Reel-30s-Paket.zip"' },
+      ],
     }];
   },
 
