@@ -1,0 +1,728 @@
+{
+  "scope": "Ausgewählte regionale Prüfungsbausteine und eigene Lernaufträge; kein vollständiger amtlicher Stoffplan.",
+  "regions": [
+    {
+      "country": "AT",
+      "region": "B",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Landesrecht im eigenen Fall begründen",
+          "detail": "Ordne einem eigenen Papierfall zuerst Burgenland und die dafür benötigte Rechtsquelle zu. Benenne ausdrücklich, welche Voraussetzung noch offen bleibt.",
+          "moduleIds": [],
+          "sourceIds": [
+            "b-ris"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Wildkunde verständlich erklären",
+          "detail": "Erkläre anhand der vorhandenen Lektion, warum eine Beobachtung zum Rehwild mit der Jahreszeit verbunden werden muss. Trenne Beobachtung und Einordnung.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf"
+          ],
+          "sourceIds": [
+            "b-ris"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-rehwild-jahreslauf"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Der aktuelle Normtext ist gelesen. Die älteren Erläuterungen und die Formularseite sind kein unabhängiger aktueller Doppelbeleg für die konkrete Prüfungsform."
+      ],
+      "sources": [
+        {
+          "id": "b-ris",
+          "title": "Burgenländische Jagdkarten- und Jagdprüfungsverordnung",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrBgld&Gesetzesnummer=20001127&FassungVom=2026-11-01",
+          "publisher": "Land Burgenland / RIS",
+          "section": "§8 Abs.1–2 und Abs.7; ausschließlich allgemeine Jagdprüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "b-authority",
+          "title": "Anträge auf Zulassung zur Prüfung",
+          "url": "https://www.jagd-burgenland.at/antraege-auf-zulassung-zur-pruefung/",
+          "publisher": "Land Burgenland – Jagdverwaltung",
+          "section": "Anträge zur allgemeinen Jagdprüfung",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "b-explanation",
+          "title": "Erläuterungen zur Jagdkarten- und Jagdprüfungsverordnung 2017",
+          "url": "https://www.jagd-burgenland.at/wp-content/uploads/2023/08/jagdkarten_und_jagdpruefungsverordnung_2017_erlaeuterungen.pdf",
+          "publisher": "Land Burgenland – Jagdverwaltung",
+          "section": "PDF physisch S3, Zu §8",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "K",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Wildkunde und Erklärung verbinden",
+          "detail": "Erkläre eine jahreszeitliche Beobachtung aus der Rehwildlektion in eigenen Worten. Nenne die Beobachtungsgrenze, statt eine sichere Einordnung zu behaupten.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf"
+          ],
+          "sourceIds": [
+            "k-ris-law",
+            "k-regulation"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Rechtsquelle und Voraussetzung trennen",
+          "detail": "Formuliere zu einem eigenen Kärntner Papierfall eine kurze Antwort mit Landesbezug, zuständiger Quelle und noch zu klärender Voraussetzung.",
+          "moduleIds": [
+            "wissen-ausbau-pruefungsfaelle"
+          ],
+          "sourceIds": [
+            "k-ris-law",
+            "k-regulation"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-rehwild-jahreslauf",
+        "wissen-ausbau-pruefungsfaelle"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Prüfungsordnung und Merkblatt stammen beide von der Kärntner Jägerschaft. Sie werden nicht als zwei unabhängig verfasste Belege gezählt."
+      ],
+      "sources": [
+        {
+          "id": "k-ris-law",
+          "title": "Kärntner Jagdgesetz 2000 §37",
+          "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrK&Gesetzesnummer=20000013&Paragraf=37&FassungVom=2026-11-01",
+          "publisher": "Land Kärnten / RIS",
+          "section": "§37 Abs.6 und Abs.10",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "k-regulation",
+          "title": "Prüfungsordnung für den Nachweis der jagdlichen Eignung – 1.Verordnung 2025",
+          "url": "https://www.kaerntner-jaegerschaft.at/sites/default/files/2025-02/1.%20Verordnung_Pr%C3%BCfungsordnung%20Dez.%202024_0.pdf",
+          "publisher": "Kärntner Jägerschaft – Landesvorstand",
+          "section": "PDF physisch S2 §5 Abs.1–3; Rechtsgrundlage auf S1",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "k-merkblatt",
+          "title": "Merkblatt Jagdprüfung 2026",
+          "url": "https://www.kaerntner-jaegerschaft.at/sites/default/files/2026-02/MERKBLATT%202026.pdf",
+          "publisher": "Kärntner Jägerschaft",
+          "section": "PDF physisch S1: Wie geht die Jagdprüfung vonstatten?; S2: mündlich-praktischer Teil",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "k-authority",
+          "title": "Jagdprüfung – Ausbildung",
+          "url": "https://www.kaerntner-jaegerschaft.at/aus-weiterbildung/ausbildung/jagdpruefung",
+          "publisher": "Kärntner Jägerschaft",
+          "section": "Aktuelle Gliederung der ausgeschriebenen Prüfungen in mündlich/praktisch und Schießprüfung; Verweise auf Verordnung/Merkblatt",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "NOE",
+      "status": "confirmed",
+      "summary": "Niederösterreich verbindet mündliche Theorie und praktische Prüfung.",
+      "formats": [
+        {
+          "label": "Mündliche Theorie",
+          "sourceIds": [
+            "noe-ris-law",
+            "noe-authority"
+          ]
+        },
+        {
+          "label": "Praktische Prüfung",
+          "sourceIds": [
+            "noe-ris-law",
+            "noe-authority"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Landesrecht konkret zuordnen",
+          "detail": "Ordne einen selbst erstellten Papierfall Niederösterreich zu und benenne, welche konkrete Landesquelle du für die Antwort brauchst.",
+          "moduleIds": [],
+          "sourceIds": [
+            "noe-ris-law",
+            "noe-authority"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Jagdhundeaufgabe begründen",
+          "detail": "Wähle eine in der Lektion beschriebene Aufgabe und erkläre die dazu benötigten Fähigkeiten des Hundes. Halte Aufgabenwissen und regionale Nachweise auseinander.",
+          "moduleIds": [
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [
+            "noe-ris-law",
+            "noe-authority"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-jagdhunde-aufgaben-ausbildung"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung."
+      ],
+      "sources": [
+        {
+          "id": "noe-ris-law",
+          "title": "NÖ Jagdgesetz 1974 §60 – Jagdprüfung",
+          "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Gesetzesnummer=20000559&Paragraf=60&FassungVom=2026-11-01",
+          "publisher": "Land Niederösterreich / RIS",
+          "section": "§60 Abs.4–5",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "noe-ris-regulation",
+          "title": "NÖ Jagdverordnung – Prüfungsablauf",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrNO&Gesetzesnummer=20001057&FassungVom=2026-11-01",
+          "publisher": "Land Niederösterreich / RIS",
+          "section": "§10; Abgrenzung des Prüfungsablaufs ohne Übernahme von Fristen oder Bewertung",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "noe-authority",
+          "title": "Jungjägerkurs und Jagdprüfung",
+          "url": "https://www.noejagdverband.at/ausbildung/jungjaegerkurs/",
+          "publisher": "NÖ Jagdverband",
+          "section": "Abschnitte Jungjägerkurs & Jagdprüfung sowie Jagdkurse",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "OOE",
+      "status": "confirmed",
+      "summary": "Oberösterreich verbindet eine mündliche Prüfung mit einem praktischen Teil zur Waffenhandhabung.",
+      "formats": [
+        {
+          "label": "Mündliche Prüfung",
+          "sourceIds": [
+            "ooe-ris",
+            "ooe-authority"
+          ]
+        },
+        {
+          "label": "Praktischer Teil zur Waffenhandhabung",
+          "sourceIds": [
+            "ooe-ris",
+            "ooe-authority"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Waldbeobachtung mit ihrer Grenze erklären",
+          "detail": "Beschreibe einen in der Lektion behandelten Befund und erkläre, warum Beobachtung und Ursache getrennt werden müssen.",
+          "moduleIds": [
+            "wissen-wald-wild"
+          ],
+          "sourceIds": [
+            "ooe-ris",
+            "ooe-authority"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Hygienischen Arbeitswechsel begründen",
+          "detail": "Erkläre am vorhandenen Lernbeispiel, wann eine Verunreinigung unterbrochen werden muss. Begründe den Wechsel ohne eine pauschale Freigabe des Wildbrets.",
+          "moduleIds": [
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [
+            "ooe-ris",
+            "ooe-authority"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-wald-wild",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung."
+      ],
+      "sources": [
+        {
+          "id": "ooe-ris",
+          "title": "Oö. Jagdverordnung 2024 – Jagdprüfung",
+          "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrOO&Gesetzesnummer=20001309&FassungVom=2026-11-01",
+          "publisher": "Land Oberösterreich / RIS",
+          "section": "§6 Abs.1–2 und Abs.4",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ooe-authority",
+          "title": "Voraussetzungen für die Zulassung zur Jagdprüfung & Anmeldung",
+          "url": "https://www.ooeljv.at/aus-und-weiterbildung/ausbildung-jagdkurse/voraussetzungen-fuer-die-zulassung-zur-jagdpruefung-anmeldung/",
+          "publisher": "OÖ Landesjagdverband",
+          "section": "Absatz Die Jagdprüfung besteht aus einem mündlichen Teil und einem praktischen Teil",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "S",
+      "status": "confirmed",
+      "summary": "Salzburg trennt den theoretischen Prüfungsteil vom praktischen Teil mit Schießprüfung. Eine zusätzliche schriftliche oder mündliche Unterform der Theorie wird hier nicht unterstellt.",
+      "formats": [
+        {
+          "label": "Theoretischer Teil",
+          "sourceIds": [
+            "s-ris-law",
+            "s-authority"
+          ]
+        },
+        {
+          "label": "Praktischer Teil (Schießprüfung)",
+          "sourceIds": [
+            "s-ris-law",
+            "s-authority-admission"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Wildkunde und Lebensraum zusammen erklären",
+          "detail": "Erkläre an der Rehwildlektion, wie Äsung und Ruheplätze gemeinsam betrachtet werden. Markiere, was ein einzelner Befund nicht zeigt.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf"
+          ],
+          "sourceIds": [
+            "s-ris-law",
+            "s-authority"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Hygieneentscheidung verständlich machen",
+          "detail": "Begründe einen hygienischen Arbeitswechsel aus dem vorhandenen Lernbeispiel in eigenen Worten. Unterscheide sauberes Arbeiten und eine förmliche Beurteilung.",
+          "moduleIds": [
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [
+            "s-ris-law",
+            "s-authority"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-rehwild-jahreslauf",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung."
+      ],
+      "sources": [
+        {
+          "id": "s-ris-law",
+          "title": "Salzburger Jagdgesetz 1993 – Abhaltung der Prüfung",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrSbg&Gesetzesnummer=10000930&FassungVom=2026-11-01",
+          "publisher": "Land Salzburg / RIS",
+          "section": "§52 Abs.2–4; ausschließlich allgemeine Jagdprüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "s-authority",
+          "title": "Ausbildungsinhalte der Jagdprüfung",
+          "url": "https://www.sbg-jaegerschaft.at/aus-weiterbildung/jagdpruefung/ausbildungsinhalte/",
+          "publisher": "Salzburger Jägerschaft",
+          "section": "Abschnitt Ausbildungsinhalte: Fachgebiete für den theoretischen Prüfungsteil",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "s-authority-admission",
+          "title": "Anmeldung und Zulassung zur Jagdprüfung",
+          "url": "https://www.sbg-jaegerschaft.at/aus-weiterbildung/jagdpruefung/anmeldung-und-zulassung-zur-jagdpruefung/",
+          "publisher": "Salzburger Jägerschaft",
+          "section": "Absatz zur Zulassung zum theoretischen und zum praktischen Teil (Schießprüfung)",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "ST",
+      "status": "confirmed",
+      "summary": "Die Steiermark verbindet eine theoretische Teilprüfung mit einer praktischen Schießprüfung. Die Theorie wird hier nicht ohne weiteren Abgleich als schriftlich oder mündlich eingeordnet.",
+      "formats": [
+        {
+          "label": "Theoretische Teilprüfung",
+          "sourceIds": [
+            "st-ris",
+            "st-authority"
+          ]
+        },
+        {
+          "label": "Praktische Schießprüfung",
+          "sourceIds": [
+            "st-ris",
+            "st-authority"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Jagdhundeaufgabe erklären",
+          "detail": "Erkläre für eine vorhandene jagdliche Aufgabe, welche Fähigkeiten beim Hund gebraucht werden. Benenne Grenzen, statt einer Rasse pauschal jede Aufgabe zuzuordnen.",
+          "moduleIds": [
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [
+            "st-ris",
+            "st-authority"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Befund und Hygieneentscheidung trennen",
+          "detail": "Trenne in einem eigenen Papierfall eine beobachtete Auffälligkeit von der nötigen weiteren Beurteilung. Formuliere, welche Information noch fehlt.",
+          "moduleIds": [
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [
+            "st-ris",
+            "st-authority"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung."
+      ],
+      "sources": [
+        {
+          "id": "st-ris",
+          "title": "Steiermärkische Jägerprüfungsverordnung",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrStmk&Gesetzesnummer=20000925&FassungVom=2026-11-01",
+          "publisher": "Land Steiermark / RIS",
+          "section": "§3 Abs.1–2; konsolidierter Text mit Änderung LGBl.15/2025",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "st-authority",
+          "title": "Jagdprüfung – Prüfungsinhalt",
+          "url": "https://www.jagd-stmk.at/jagdpruefung/",
+          "publisher": "Steirische Landesjägerschaft",
+          "section": "Abschnitt Prüfungsinhalt",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "T",
+      "status": "confirmed",
+      "summary": "Tirol verbindet einen mündlichen theoretischen und einen praktischen Teil. Die benannte unabhängige Erläuterung stammt aus der Schwazer Ausschreibung für 2027.",
+      "formats": [
+        {
+          "label": "Mündliche Theorie",
+          "sourceIds": [
+            "t-ris-law-current",
+            "t-ris-regulation",
+            "t-schwaz-2027"
+          ]
+        },
+        {
+          "label": "Praktischer Teil mit Prüfungsschießen",
+          "sourceIds": [
+            "t-ris-law-current",
+            "t-ris-regulation",
+            "t-schwaz-2027"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Wildbretwissen begründet wiedergeben",
+          "detail": "Erkläre das vorhandene Hygiene-Lernbeispiel mit Beobachtung, notwendigem Arbeitswechsel und dessen Begründung. Die Aufgabe übt eine Erklärung, keine praktische Kompetenzbescheinigung.",
+          "moduleIds": [
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [
+            "t-ris-law-current",
+            "t-ris-regulation"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Landesquelle im Fall benennen",
+          "detail": "Gib zu einem eigenen Tiroler Papierfall eine kurze Quellenantwort: Welches Land, welche konkrete Quelle und welche noch offene Voraussetzung gehören dazu?",
+          "moduleIds": [
+            "wissen-ausbau-pruefungsfaelle"
+          ],
+          "sourceIds": [
+            "t-ris-law-current",
+            "t-ris-regulation"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-wildbrethygiene",
+        "wissen-ausbau-pruefungsfaelle"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Die unabhängige Erläuterung ist eine bereits veröffentlichte Ausschreibung für Schwaz 2027. Sie bestätigt die groben Formen, keine landesweit identische Organisation, Termine oder vollständige Fächerliste."
+      ],
+      "sources": [
+        {
+          "id": "t-ris-law-current",
+          "title": "Tiroler Jagdgesetz 2004 – Jungjägerprüfung",
+          "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrT&Gesetzesnummer=10000088&Paragraf=28a&FassungVom=2026-11-01",
+          "publisher": "Land Tirol / RIS",
+          "section": "§28a Abs.5 und Abs.9 lit.d",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "t-ris-regulation",
+          "title": "Erste Durchführungsverordnung zum Tiroler Jagdgesetz 2004",
+          "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrT&Gesetzesnummer=20000620&FassungVom=2026-11-01",
+          "publisher": "Land Tirol / RIS",
+          "section": "§6 Abs.1 lit.b–d und §7 Abs.2–3; allgemeine Jungjägerprüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "t-schwaz-2027",
+          "title": "Jungjägerkurs 2027 – Ausschreibung Schwaz",
+          "url": "https://www.tjv.at/wp-content/uploads/2026/10/Ausschreibung-Jungjaegerkurs-2027-Schwaz.pdf",
+          "publisher": "Tiroler Jägerverband – Bezirksstelle Schwaz",
+          "section": "Einseitiges PDF: Absätze Prüfungsschießen und mündliche Prüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "t-authority",
+          "title": "Jungjäger – Ausbildung",
+          "url": "https://www.tjv.at/bildung/jungjaeger/",
+          "publisher": "Tiroler Jägerverband",
+          "section": "Aktuelle Bezirksübersicht und Verweis auf Schwazer Ausschreibung 2027",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "V",
+      "status": "confirmed",
+      "summary": "Vorarlberg prüft theoretisches Wissen mündlich. Praktische Handhabung und ein entsprechender Schießnachweis sind gesondert zu beachten.",
+      "formats": [
+        {
+          "label": "Mündlicher theoretischer Teil",
+          "sourceIds": [
+            "v-ris",
+            "v-authority"
+          ]
+        },
+        {
+          "label": "Praktischer Handhabungsteil bzw. entsprechender Schießnachweis",
+          "sourceIds": [
+            "v-ris",
+            "v-authority"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Wald- und Wildbezug im Fachgespräch erklären",
+          "detail": "Erläutere an einem vorhandenen Lernfall, warum ein beobachteter Wildschaden noch keine einzelne Ursache beweist. Benenne die nötigen weiteren Informationen.",
+          "moduleIds": [
+            "wissen-wald-wild"
+          ],
+          "sourceIds": [
+            "v-ris",
+            "v-authority"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Rechtsquelle statt pauschaler Antwort",
+          "detail": "Ordne einem eigenen Papierfall ausdrücklich Vorarlberg zu und nenne die regionale Quelle, bevor du eine rechtliche Antwort formulierst.",
+          "moduleIds": [],
+          "sourceIds": [
+            "v-ris",
+            "v-authority"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-wald-wild"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Ob ein entsprechender Nachweis den praktischen Handhabungsteil entfallen lässt, muss für den konkreten Nachweis geklärt werden. Der Kurzüberblick trifft keine Anerkennungsentscheidung."
+      ],
+      "sources": [
+        {
+          "id": "v-ris",
+          "title": "Vorarlberger Jagdverordnung – Jagdprüfung",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrVbg&Gesetzesnummer=20000568&FassungVom=2026-11-01",
+          "publisher": "Land Vorarlberg / RIS",
+          "section": "§12 Abs.1 und §13 Abs.1–3",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "v-authority",
+          "title": "Jungjäger:innen – Jagdprüfung und Prüfungsinhalte",
+          "url": "https://vjagd.at/jungjaegerinnen/",
+          "publisher": "Vorarlberger Jägerschaft",
+          "section": "Abschnitte Jagdprüfung, Prüfungsinhalte und Voraussetzungen: Schießprüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "AT",
+      "region": "W",
+      "status": "confirmed",
+      "summary": "Wien verbindet theoretische Prüfungsgespräche mit einer praktischen Schießprüfung.",
+      "formats": [
+        {
+          "label": "Theoretische Prüfungsgespräche",
+          "sourceIds": [
+            "w-ris-law-current",
+            "w-authority"
+          ]
+        },
+        {
+          "label": "Praktische Schießprüfung",
+          "sourceIds": [
+            "w-ris-law-current",
+            "w-ris-regulation",
+            "w-authority"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Wissen mündlich begründen",
+          "detail": "Formuliere zu einem vorhandenen Lernfall Entscheidung, Grund und verbleibende Grenze in eigenen Worten. Kontrolliere danach, ob sich Beobachtung und Schlussfolgerung unterscheiden lassen.",
+          "moduleIds": [
+            "wissen-ausbau-pruefungsfaelle"
+          ],
+          "sourceIds": [
+            "w-ris-law-current",
+            "w-authority"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Jagdhundeaufgabe im Fachgespräch erläutern",
+          "detail": "Erläutere eine in der Lektion behandelte Aufgabe und die dazu benötigten Fähigkeiten des Hundes. Regionale Nachweise bleiben gesondert zu prüfen.",
+          "moduleIds": [
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [
+            "w-ris-law-current",
+            "w-authority"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-ausbau-pruefungsfaelle",
+        "wissen-jagdhunde-aufgaben-ausbildung"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Die organisatorischen Gesprächsgruppen des Verbands sind kein abschließender Stoffkatalog. Wegen unterschiedlicher Reihenfolgebeschreibungen wird hier keine feste Reihenfolge vorgegeben."
+      ],
+      "sources": [
+        {
+          "id": "w-ris-law-current",
+          "title": "Wiener Jagdgesetz – Jagdprüfung",
+          "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrW&Gesetzesnummer=20000437&Paragraf=52&FassungVom=2026-11-01",
+          "publisher": "Land Wien / RIS",
+          "section": "§52 Abs.3 und Abs.5; ausschließlich allgemeine Jagdprüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "w-ris-regulation",
+          "title": "Wiener Verordnung über die Jagd- und Jagdaufseherprüfung",
+          "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrW&Gesetzesnummer=20000441&FassungVom=2026-11-01",
+          "publisher": "Land Wien / RIS",
+          "section": "AbschnittI: Jagdprüfung, §§1–5, insbesondere §4 Abs.1–2",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "w-authority",
+          "title": "Jagdprüfung – Ablauf der theoretischen und praktischen Prüfung",
+          "url": "https://jagd-wien.at/produkt/jagdpruefung/",
+          "publisher": "Wiener Landesjagdverband",
+          "section": "FAQ Wie läuft die theoretische Jagdprüfung ab? und Wie läuft die praktische Jagdprüfung ab?",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    }
+  ]
+}

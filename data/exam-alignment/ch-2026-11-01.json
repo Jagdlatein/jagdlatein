@@ -1,0 +1,1365 @@
+{
+  "scope": "Ausgewählte regionale Prüfungsbausteine und eigene Lernaufträge; kein vollständiger amtlicher Stoffplan.",
+  "regions": [
+    {
+      "country": "CH",
+      "region": "ZH",
+      "status": "confirmed",
+      "summary": "Zürich trennt die Prüfung zur Zulassung als Anwärterin oder Anwärter von der späteren praktischen Jagdprüfung im Revier.",
+      "formats": [
+        {
+          "label": "Anwärterprüfung: Theorie und Schiessprüfung",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ]
+        },
+        {
+          "label": "Spätere Jagdprüfung: Wissen und praktisches Handeln im Revier",
+          "sourceIds": [
+            "ch-zh-reglement",
+            "ch-zh-jagdzuerich"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Revierfall erklären",
+          "detail": "Eigene Lernübung: Beschreibe eine Reviersituation: Was beobachtest du, welche Unsicherheit bleibt und welche Informationen braucht eine Nachsuche? Begründe die Entscheidung laut in eigenen Worten.",
+          "moduleIds": [
+            "wissen-spuren-systematisch",
+            "wissen-nachsuche",
+            "wissen-waffensicherheit"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-spuren-systematisch",
+        "wissen-nachsuche",
+        "wissen-waffensicherheit"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Keine Aussagen über Termine, Mindestzeiten, Anerkennung fremder Ausweise oder aktuelle Schiessprogramme übernommen."
+      ],
+      "sources": [
+        {
+          "id": "ch-zh-reglement",
+          "title": "Reglement über die Jagdprüfungen vom 9. Dezember 2024",
+          "url": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/umwelt-tiere/tiere/fischerei-und-jagd/jagd/wie_werde_ich_jaegerin_oder_jaeger_im_kanton_zuerich/Reglement%20mit%20Unterschrift.pdf",
+          "publisher": "Kanton Zürich – FJV",
+          "section": "S. 1–2: Anwärterprüfung; S. 4–6: Jagdprüfung und Prüfungsstoff",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-zh-jagdzuerich",
+          "title": "Aus- und Weiterbildung",
+          "url": "https://www.jagdzuerich.ch/themen/aus-weiterbildung/",
+          "publisher": "JagdZürich",
+          "section": "Ausbildung zur Jägerin / zum Jäger; Ablauf Anwärterprüfung, Revierlernen und Jagdprüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "BE",
+      "status": "confirmed",
+      "summary": "In Bern werden Theorie und Praxis geprüft. Der theoretische Teil umfasst schriftliche und mündliche Leistungen.",
+      "formats": [
+        {
+          "label": "Theorie: schriftlich und mündlich",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv"
+          ]
+        },
+        {
+          "label": "Gesonderter praktischer Prüfungsteil",
+          "sourceIds": [
+            "ch-be-norm",
+            "ch-be-bejv"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Kurzantwort und Begründung",
+          "detail": "Eigene Lernübung: Schreibe zunächst eine kurze Antwort zu Bund, Kanton und Jagdbewilligung. Erkläre dieselbe Antwort anschließend frei und verbinde sie mit einem Beispiel zur Nachsuche.",
+          "moduleIds": [
+            "wissen-pruefungslernen",
+            "wissen-nachsuche"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-nachsuche"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Aktuelle amtliche JDV: Stand 01.10.2023. Die über die Behördenausbildungsseite erreichbare Version 1295 (2017) ist historisch und wurde nicht als heutige Zulassungsgrundlage benutzt. Fristen und Stunden wurden nicht übernommen."
+      ],
+      "sources": [
+        {
+          "id": "ch-be-norm",
+          "title": "Direktionsverordnung über die Jagdprüfung",
+          "url": "https://www.belex.sites.be.ch/api/de/versions/2863/pdf_file",
+          "publisher": "Kanton Bern",
+          "section": "Art. 8–11: Prüfungsziel, Fächer, schriftlicher/mündlicher theoretischer und praktischer Teil",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-be-bejv",
+          "title": "Jagdprüfung",
+          "url": "https://jagdausbildung-bejv.ch/jagdpruefung/",
+          "publisher": "Berner Jägerverband – Jagdausbildung BEJV",
+          "section": "Einleitung: kantonale Prüfung, Theorie mündlich und schriftlich, praktischer Teil",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "LU",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Gesundheit und Wildbret verbinden",
+          "detail": "Eigene Lernübung: Trenne an einem eigenen Übungsfall drei Fragen: Was lässt sich beobachten, was muss fachlich abgeklärt werden und welche Hygieneschritte bleiben unabhängig davon notwendig?",
+          "moduleIds": [
+            "wissen-tiergesundheit",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-tiergesundheit",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-lu-norm",
+          "title": "Reglement über die Jagdprüfung",
+          "url": "https://srl.lu.ch/api/de/versions/3254/pdf_file",
+          "publisher": "Kanton Luzern",
+          "section": "§§ 9, 13–15: Gegenstand und praktische/theoretische Prüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-lu-lawa",
+          "title": "Jagdlehrgang",
+          "url": "https://lawa.lu.ch/jagd/jagdlehrgang",
+          "publisher": "Kanton Luzern – Dienststelle lawa",
+          "section": "Abschnitt Jagdprüfung, Aufzählung der drei Prüfungsteile und Stoffbereiche",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-lu-schule",
+          "title": "Ausbildung – Ausbildungsfächer",
+          "url": "https://www.jagdschuleluzern.ch/ausbildung",
+          "publisher": "Jagdschule Luzern",
+          "section": "Ausbildungsfächer: Wildtierbiologie, -management, Hunde, Wildbret, Krankheiten, Jagdrecht und Ökologie",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "UR",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Geländeprotokoll üben",
+          "detail": "Eigene Lernübung: Notiere zu einer vorgestellten Beobachtung nur sichtbare Merkmale, Spuren und Lebensraum. Trenne eine sichere Bestimmung von einer Vermutung und ergänze die Orientierung im Gelände.",
+          "moduleIds": [
+            "wissen-spuren-systematisch",
+            "wissen-orientierung",
+            "wissen-federwild-beobachtung"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-spuren-systematisch",
+        "wissen-orientierung",
+        "wissen-federwild-beobachtung"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-ur-programm",
+          "title": "Jagdlehrgang 2026/2027; Programm",
+          "url": "https://www.ur.ch/_doc/437018",
+          "publisher": "Kanton Uri – Jägerprüfungskommission",
+          "section": "S. 1–4: Sicherheit, Wildhutbegleitung, Spurenlesen, Wild-/Vogelkunde, Hege, Wildbrethygiene und Theorie/Parcours",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "SZ",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Wild und Lebensraum begründen",
+          "detail": "Eigene Lernübung: Wähle eine alpine Wildart und erkläre ihren Lebensraum. Verbinde das mit einer möglichen Störung und dem passenden Aufgabenbereich eines Jagdhundes, ohne aus Artwissen eine Jagdfreigabe abzuleiten.",
+          "moduleIds": [
+            "wissen-gams-steinbock",
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-gams-steinbock",
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-jagdhunde-aufgaben-ausbildung"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-sz-lehrgang",
+          "title": "Jagdlehrgang",
+          "url": "https://www.sz.ch/umweltdepartement/amt-fuer-wald-und-natur/jagd-und-wildtiere/jagd/jagdlehrgang.html/8756-8758-8802-9447-9454-9460-10682-10687",
+          "publisher": "Kanton Schwyz – Amt für Wald und Natur",
+          "section": "Abschnitte Aufbau des Jagdlehrganges und Jagdprüfung",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "OW",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Biologie und Ökologie erklären",
+          "detail": "Eigene Lernübung: Erkläre den Unterschied zwischen einer Beobachtung am Wildtier und einer Aussage über seinen Lebensraum. Formuliere danach ein Beispiel für eine Maßnahme zur Verbesserung des Lebensraums.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-wald-wild"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-wald-wild"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-ow-norm",
+          "title": "Ausführungsbestimmungen über die Eignungsprüfung der Jägerinnen und Jäger",
+          "url": "https://gdb.ow.ch/api/de/versions/1502/pdf_file",
+          "publisher": "Kanton Obwalden",
+          "section": "Art. 6–7: zwei Teilgebiete, Fachgruppen und schriftliche/mündliche Beurteilung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "NW",
+      "status": "confirmed",
+      "summary": "Nidwalden verbindet einen theoretischen Teil mit einer praktischen Prüfung, zu der neben dem Schiessen und der Waffenhandhabung auch Distanzenschätzen und Lebensraumkenntnisse gehören.",
+      "formats": [
+        {
+          "label": "Theoretischer und praktischer Prüfungsteil",
+          "sourceIds": [
+            "ch-nw-norm",
+            "ch-nw-pjvn"
+          ]
+        },
+        {
+          "label": "Praxis umfasst auch Lebensraumkenntnisse",
+          "sourceIds": [
+            "ch-nw-norm",
+            "ch-nw-pjvn"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Lebensraum im Praxisfall",
+          "detail": "Eigene Lernübung: Ordne einem Wildtier einen passenden Lebensraum zu und begründe deine Wahl anhand von Nahrung, Deckung und Störung. Verknüpfe die Begründung mit einer Maßnahme zur Lebensraumverbesserung.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-wald-wild"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-wald-wild"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Der gesonderte schriftliche/mündliche Aufbau der Theorie ist zwar in der Norm gelesen, aber nicht Teil der hier doppelt bestätigten Kurzfassung. Keine Stunden, Termine oder Schiesswerte übernommen."
+      ],
+      "sources": [
+        {
+          "id": "ch-nw-norm",
+          "title": "Vollzugsverordnung über den Jagdlehrgang und die Jagdprüfung",
+          "url": "https://gesetze.nw.ch/api/de/versions/691/pdf_file",
+          "publisher": "Kanton Nidwalden",
+          "section": "§§ 7–8 und 11–15: Lehrgang, praktische und theoretische Prüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-nw-pjvn",
+          "title": "Ausbildung zur Jägerin / zum Jäger",
+          "url": "https://www.pjvn.ch/home/ausbildung-zur-jaegerin-zum-jaeger/",
+          "publisher": "Patentjägerverein Nidwalden",
+          "section": "Jagdlehrgang; praktischer und theoretischer Teil",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "GL",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Beobachtung bis Versorgung",
+          "detail": "Eigene Lernübung: Erkläre zuerst, welche Merkmale eine Wildtierbeobachtung tragen. Wechsle anschließend zu einem getrennten Wildbretfall und benenne, welche Gesundheitsbeurteilung ein äußeres Foto nicht leisten kann.",
+          "moduleIds": [
+            "wissen-gams-steinbock",
+            "wissen-spuren-systematisch",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-gams-steinbock",
+        "wissen-spuren-systematisch",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-gl-norm",
+          "title": "Verordnung über die Jagdausbildung",
+          "url": "https://gesetze.gl.ch/api/de/versions/2134/pdf_file",
+          "publisher": "Kanton Glarus",
+          "section": "Art. 8 und 10–13: Lehrstoff und Teilprüfungen",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-gl-lehrgang",
+          "title": "Jagdlehrgang",
+          "url": "https://www.gl.ch/verwaltung/bau-und-umwelt/umwelt-wald-und-energie/jagd-und-fischerei/jagdlehrgang.html/6324",
+          "publisher": "Kanton Glarus – Jagd und Fischerei",
+          "section": "Ausbildung, Gesetzesgrundlagen und obligatorische Wildbrethygiene",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "ZG",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Verständlich erklären",
+          "detail": "Eigene Lernübung: Erkläre einer Person ohne Jagderfahrung einen Wald-Wild-Zusammenhang in Alltagssprache. Unterscheide dabei beobachteten Schaden, mögliche Ursache und noch zu klärende Rechtsfrage.",
+          "moduleIds": [
+            "wissen-wald-wild",
+            "wissen-jaegersprache"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-wald-wild",
+        "wissen-jaegersprache"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-zg-norm",
+          "title": "Reglement über die Jagdausbildung und -prüfung",
+          "url": "https://bgs.zg.ch/api/de/versions/1986/pdf_file",
+          "publisher": "Kanton Zug",
+          "section": "§§ 3–6: Zweck, Fachprüfungen, Staffelung und Bewertung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-zg-jagen",
+          "title": "Jagen – Jagdausbildung",
+          "url": "https://zg.ch/de/natur-umwelt-tiere/arten-und-lebensraeume/jagen",
+          "publisher": "Kanton Zug",
+          "section": "Abschnitt Jagdausbildung",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "FR",
+      "status": "confirmed",
+      "summary": "Freiburg unterscheidet eine Grundprüfung mit theoretischen und praktischen Bestandteilen von einer ergänzenden Prüfung für die Büchse.",
+      "formats": [
+        {
+          "label": "Grundprüfung: Theorie und Praxis",
+          "sourceIds": [
+            "ch-fr-norm",
+            "ch-fr-ffsc"
+          ]
+        },
+        {
+          "label": "Davon getrennte ergänzende Büchsenprüfung",
+          "sourceIds": [
+            "ch-fr-norm",
+            "ch-fr-ffsc"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Grundlage und Ergänzung trennen",
+          "detail": "Eigene Lernübung: Sortiere deine Lernnotizen in Artenwissen, Recht, Hunde, Hygiene und Sicherheit. Markiere, welche Fragen allgemeines Wissen betreffen und welche du zusätzlich mit der örtlichen Ausbildung klären musst.",
+          "moduleIds": [
+            "wissen-pruefungslernen",
+            "wissen-tiergesundheit",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-tiergesundheit",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Aktuelle Norm: in Kraft seit 01.03.2026. Die Broschüre bestätigt nur die genannten Grundstrukturen, keine heutigen Gebühren, Stunden oder Zulassungsdetails."
+      ],
+      "sources": [
+        {
+          "id": "ch-fr-norm",
+          "title": "Règlement concernant l'examen d'aptitude à la chasse",
+          "url": "https://bdlf.fr.ch/api/fr/versions/8430/pdf_file",
+          "publisher": "Kanton Freiburg",
+          "section": "Art. 4–6: Grundprüfung, theoretische/praktische Teile und Ergänzungsprüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-fr-ffsc",
+          "title": "Devenir chasseresse ou chasseur fribourgeois – Broschüre",
+          "url": "https://chassefribourgeoise.ch/wp-content/uploads/2023/08/2023-08-brochure_FR.pdf",
+          "publisher": "Fédération fribourgeoise des sociétés de chasse FFSC",
+          "section": "S. 2: Examen; Grundprüfung und ergänzende Büchsenprüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "SO",
+      "status": "confirmed",
+      "summary": "Solothurn verbindet praktische Prüfungsteile mit einer theoretischen Jagdprüfung, die schriftliche und mündliche Leistungen umfasst.",
+      "formats": [
+        {
+          "label": "Praktische Prüfung",
+          "sourceIds": [
+            "ch-so-weisung",
+            "ch-so-rjso"
+          ]
+        },
+        {
+          "label": "Theorie: schriftlicher und mündlicher Teil",
+          "sourceIds": [
+            "ch-so-weisung",
+            "ch-so-rjso"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Begriff, Bild und Erklärung",
+          "detail": "Eigene Lernübung: Beantworte einen eigenen kurzen Fall schriftlich. Erkläre danach frei den Zusammenhang zwischen Wildtierbiologie, Lebensraum, Wildbret und Jagdpraxis, statt nur einen Merksatz aufzusagen.",
+          "moduleIds": [
+            "wissen-pruefungslernen",
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Keine alten Lehrbuchauflagen, Gebühren, Prüfungszeiten oder Schiessanforderungen als aktuelle Vorgabe übernommen."
+      ],
+      "sources": [
+        {
+          "id": "ch-so-weisung",
+          "title": "Weisung über den Jagdlehrgang und die Jagdprüfung vom 1. Januar 2022",
+          "url": "https://so.ch/fileadmin/internet/vwd/vwd-awjf-jagd/pdf/Jagdpruefung/Weisung_ueber_den_Jagdlehrgang_und_die_Jagdpruefung_final_ohne_Korrekturmodus.pdf",
+          "publisher": "Kanton Solothurn – Volkswirtschaftsdepartement",
+          "section": "Ziff. 2.2; 3.1; 3.2.2–3.2.4",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-so-rjso",
+          "title": "Ausbildung und Weiterbildung",
+          "url": "https://www.revierjagd-solothurn.ch/de/bereiche/ausbildung",
+          "publisher": "RevierJagd Solothurn",
+          "section": "Der Weg zum Jagdfähigkeitsausweis; Jagdlehrgang im Kanton SO",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "BS",
+      "status": "special",
+      "summary": "Für Basel-Stadt wird hier kein eigener üblicher Prüfungsturnus unterstellt. Kläre, wo du den Prüfungsnachweis erwerben sollst und wie dieser für deinen vorgesehenen Weg anerkannt wird. Das örtliche Recht bleibt eine eigene Lernaufgabe.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Prüfung und Berechtigung unterscheiden",
+          "detail": "Eigene Lernübung: Erkläre den Unterschied zwischen einem Prüfungsnachweis und einer örtlichen Jagdberechtigung. Führe in deinen Lernnotizen Basel-Stadt als Rechtsregion und den tatsächlich vereinbarten Prüfungsweg getrennt.",
+          "moduleIds": [
+            "wissen-pruefungslernen"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-bs-norm",
+          "title": "Wildtier- und Jagdverordnung",
+          "url": "https://www.gesetzessammlung.bs.ch/api/de/versions/6265/pdf_file",
+          "publisher": "Kanton Basel-Stadt",
+          "section": "§ 17: Anerkennung ausländischer Prüfungen mit Bezug auf die Baselbieter Prüfungsanforderungen",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "BL",
+      "status": "confirmed",
+      "summary": "Für Baselland ist die praktische Vorbereitung in einer Jagdgesellschaft ein eigener wichtiger Teil. Die gelesene Norm und der Jagdverband verbinden sie mit Reviererfahrung und dokumentierten Ausbildungsleistungen.",
+      "formats": [
+        {
+          "label": "Praktische Vorbereitung im Revier und Lehrgangsnachweis",
+          "sourceIds": [
+            "ch-bl-norm",
+            "ch-bl-jagdbaselland"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Revierbeobachtung und Nachweis",
+          "detail": "Eigene Lernübung: Beschreibe einen selbst erstellten Revierfall: Beobachtung, Lebensraum, Wildbretfrage und Nachsuche. Halte digitale Lernnotizen getrennt von dem amtlich bzw. im Lehrgang geforderten Nachweis.",
+          "moduleIds": [
+            "wissen-spuren-systematisch",
+            "wissen-nachsuche",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-spuren-systematisch",
+        "wissen-nachsuche",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Nur die genannte praktische Vorbereitung ist unabhängig gegengeprüft. Prüfungsnoten, Stunden, Gebühren und eine für jeden Jahrgang feste schriftliche/mündliche Theorieform werden nicht behauptet."
+      ],
+      "sources": [
+        {
+          "id": "ch-bl-norm",
+          "title": "Verordnung über die Jagdprüfung",
+          "url": "https://bl.clex.ch/api/de/versions/2610/pdf_file",
+          "publisher": "Kanton Basel-Landschaft",
+          "section": "§§ 4, 7, 8 und 15: praktischer Lehrgang und Prüfungsbereiche",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-bl-jagdbaselland",
+          "title": "Jagdausbildung / Jagdprüfung",
+          "url": "https://www.jagdbaselland.ch/ausbildung/",
+          "publisher": "Jagd Baselland",
+          "section": "Deine ersten vier Schritte: Hegejahr, Jagdgesellschaft und Hegebüchlein",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "SH",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Parcoursfall gedanklich lösen",
+          "detail": "Eigene Lernübung: Verbinde eine Beobachtung aus Wald oder Feld mit einer Rechtsfrage, einer Frage zum Hundeeinsatz und einer Sicherheitsentscheidung. Begründe jeden Schritt, ohne eine bloß gelernte Antwort als örtliche Freigabe zu behandeln.",
+          "moduleIds": [
+            "wissen-wald-wild",
+            "wissen-jagdhunde-aufgaben-ausbildung",
+            "wissen-kugelfang"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-wald-wild",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-kugelfang"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-sh-service",
+          "title": "Anmeldung zur Jägerprüfung",
+          "url": "https://services.sh.ch/de/services/anmeldung-jaegerpruefung",
+          "publisher": "Kanton Schaffhausen – Jagd und Fischerei",
+          "section": "Kurzbeschreibung und Ablauf: Schiessprüfung, theoretisch-praxisbezogener Teil",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-sh-jvs",
+          "title": "Jäger werden",
+          "url": "https://www.j-v-s.ch/jaeger-werden",
+          "publisher": "Verein Schaffhauser Jagdaufsicht",
+          "section": "Jäger werden: Grünes Jahr und Fachwissen im praxisnahen Parcours",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "AR",
+      "status": "confirmed",
+      "summary": "Ausserrhoden trennt den ersten Prüfungsteil mit Waffenkenntnis, Handhabung und Schiessen vom zweiten Teil mit den weiteren jagdlichen Fachbereichen.",
+      "formats": [
+        {
+          "label": "Erster Teil: Waffenkenntnis, Handhabung und Schiessen",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ]
+        },
+        {
+          "label": "Zweiter Teil: Recht, Wild, Lebensraum, Jagdpraxis, Hunde und Gesundheit",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Handwerk und Natur zusammenführen",
+          "detail": "Eigene Lernübung: Erkläre an einem eigenen Fall, wie Lebensraum, Wildbeobachtung, Hundeeinsatz und Hygiene zusammenhängen. Notiere die örtliche Rechtsfrage getrennt von den allgemeinen biologischen Aussagen.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-jagdhunde-aufgaben-ausbildung",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Keine Lehrgangsdauer oder Hegestunden aus teils voneinander abweichenden Webseitenabschnitten übernommen. Die genaue schriftliche/mündliche Durchführung des zweiten Teils bleibt Sache der aktuellen Prüfungsinformation."
+      ],
+      "sources": [
+        {
+          "id": "ch-ar-norm",
+          "title": "Verordnung zum Gesetz über Jagd, Wild- und Vogelschutz",
+          "url": "https://ar.clex.ch/api/de/versions/1533/pdf_file",
+          "publisher": "Kanton Appenzell Ausserrhoden",
+          "section": "Art. 49–50 und 53: erster und zweiter Prüfungsteil",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-ar-pjv",
+          "title": "Ausbildung",
+          "url": "https://www.jagd-ar.ch/ausbildung",
+          "publisher": "Patentjägerverein Appenzell Ausserrhoden",
+          "section": "Ablauf der Prüfung; erster und zweiter Prüfungsteil",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "AI",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Wild, Hund und Umwelt erklären",
+          "detail": "Eigene Lernübung: Ordne einem Wildtier seine Lebensraumansprüche zu. Erkläre anschließend die Aufgabe eines Jagdhundes und benenne, welche Frage du anhand der aktuellen örtlichen Rechtsvorgabe beantworten musst.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-jagdhunde-aufgaben-ausbildung"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-ai-norm",
+          "title": "Standeskommissionsbeschluss über die Jagdprüfung",
+          "url": "https://ai.clex.ch/api/de/versions/2292/pdf_file",
+          "publisher": "Kanton Appenzell Innerrhoden",
+          "section": "Art. 6 und Anhang A1: praktische/theoretische Bestandteile und Fachgruppen",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "SG",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Sicherheit begründen",
+          "detail": "Eigene Lernübung: Arbeite einen eigenen Sicherheitsfall durch: Welche Information fehlt und weshalb reicht ein gutes Artenwissen allein nicht? Verbinde die Antwort mit einem Lebensraum- oder Hygienefall.",
+          "moduleIds": [
+            "wissen-waffensicherheit",
+            "wissen-kugelfang",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-waffensicherheit",
+        "wissen-kugelfang",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Leitfäden und amtliche Übungsangebote behalten ihren jeweiligen Jahrgang. Aus einem älteren Angebot wird kein vollständig aktueller Prüfungsmodus für alle Fächer abgeleitet."
+      ],
+      "sources": [
+        {
+          "id": "ch-sg-norm",
+          "title": "Verordnung über die Jagdprüfung",
+          "url": "https://www.gesetzessammlung.sg.ch/api/de/versions/3315/pdf_file",
+          "publisher": "Kanton St.Gallen",
+          "section": "Art. 1, 7, 9 und 14: Schiess- und Theorieprüfung; Fächer und zugelassene Formen",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-sg-ausbildung",
+          "title": "Jagdausbildung 2026–2028",
+          "url": "https://www.sg.ch/umwelt-natur/jagd-fischerei/jagd/jagdausbildung-2025/jagdausbildung-2026---2028.html",
+          "publisher": "Kanton St.Gallen – ANJF/GAJ",
+          "section": "Module; Leitfaden und Übersicht der Ausbildung",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-sg-rjsg",
+          "title": "Vorkurs Jagdausbildung",
+          "url": "https://revierjagd-sg.ch/content-8",
+          "publisher": "RevierJagd St.Gallen",
+          "section": "Ausschreibung: theoretische Grundlagen und beaufsichtigte praktische Einführung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "GR",
+      "status": "confirmed",
+      "summary": "Graubünden unterscheidet Waffen-/Schiessprüfung und die theoretische Prüfung Wild und Jagd. Die Vorbereitung verbindet Wildkunde, Wild und Umwelt, Jagdkunde und Gesetzeskunde.",
+      "formats": [
+        {
+          "label": "Waffen- und Schiessprüfung",
+          "sourceIds": [
+            "ch-gr-norm",
+            "ch-gr-bkpjv-pruefung"
+          ]
+        },
+        {
+          "label": "Theorie Wild und Jagd",
+          "sourceIds": [
+            "ch-gr-norm",
+            "ch-gr-bkpjv",
+            "ch-gr-bkpjv-pruefung"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Alpenwild und Umwelt verknüpfen",
+          "detail": "Eigene Lernübung: Erkläre an einer alpinen Wildart den Zusammenhang von Lebensraum, Beobachtung und Störung. Bearbeite danach einen getrennten Fall zu Wildtieranatomie und Wildbrethygiene.",
+          "moduleIds": [
+            "wissen-gams-steinbock",
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-gams-steinbock",
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Kataloge behalten ihren ausgewiesenen Jahrgang. Der Waffenfragenkatalog 2019 ist keine vollständige aktuelle Rechtsprüfung; zusätzlich verlinkte Unterlagen für 2027 werden nicht als bereits vollständig geprüft ausgegeben."
+      ],
+      "sources": [
+        {
+          "id": "ch-gr-norm",
+          "title": "Kantonale Jagdprüfungsverordnung",
+          "url": "https://www.gr-lex.gr.ch/api/de/versions/3032/pdf_file",
+          "publisher": "Kanton Graubünden",
+          "section": "Art. 4b, 7, 9–10 und 13: Waffen-/Schiessprüfung, Wild und Jagd, Wildfleischgewinnung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-gr-bkpjv",
+          "title": "KoAWJ Jagdlehrgang",
+          "url": "https://www.bkpjv.ch/ueber-uns/ressorts/ausbildung/koawj-jungjaegerausbildung.html",
+          "publisher": "Bündner Kantonaler Patentjägerverband BKPJV",
+          "section": "Waffenkunde/Schiessen und Theorie; Wildkunde, Wild/Umwelt, Jagdkunde und Gesetzeskunde",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-gr-largo",
+          "title": "Wildbrethygiene 2027 (LARGO)",
+          "url": "https://bkpjv.ch/ueber-uns/verband/sektionen/largo.html",
+          "publisher": "BKPJV / ALT / AJF",
+          "section": "Beschreibung von LARGO und Obligatorisch für Eignungsprüfungskandidaten",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-gr-bkpjv-pruefung",
+          "title": "Ausbildung und Jagdprüfung",
+          "url": "https://www.bkpjv.ch/ueber-uns/ressorts/ausbildung/ausbildung-und-jagdpruefung.html",
+          "publisher": "Bündner Kantonaler Patentjägerverband BKPJV",
+          "section": "Ablauf der Prüfung: Waffen-/Schiessprüfung und folgende theoretische Prüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "AG",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Mündlichen Fall trainieren",
+          "detail": "Eigene Lernübung: Erkläre einen eigenen Fall zu Jagdrecht, Wild und Lebensraum laut. Schreibe anschließend die entscheidende Begründung in zwei Sätzen und benenne offen, was nur die zuständige Prüfungsstelle verbindlich klären kann.",
+          "moduleIds": [
+            "wissen-pruefungslernen",
+            "wissen-wald-wild"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-pruefungslernen",
+        "wissen-wald-wild"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Die Behörde veröffentlicht getrennte Reglementsfassungen bis 31. Dezember 2026 und ab 1. Januar 2027. Die Einzelanforderungen werden hier nicht vermischt; für deinen Jahrgang ist die passende Fassung zu klären."
+      ],
+      "sources": [
+        {
+          "id": "ch-ag-reglement-2026",
+          "title": "Jagdprüfungsreglement – gültig bis 31. Dezember 2026",
+          "url": "https://www.ag.ch/media/kanton-aargau/bvu/umwelt-natur/jagd/aus-und-weiterbildung/jagdpruefungsreglement-gueltig-bis-31-12-2026.pdf",
+          "publisher": "Kanton Aargau – BVU",
+          "section": "Ziff. 3.2, 4.2–4.3",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-ag-reglement-2027",
+          "title": "Jagdprüfungsreglement – gültig ab 1. Januar 2027",
+          "url": "https://www.ag.ch/media/kanton-aargau/bvu/umwelt-natur/jagd/aus-und-weiterbildung/jagdpruefungsreglement-gueltig-ab-01-01-2027.pdf",
+          "publisher": "Kanton Aargau – BVU",
+          "section": "Ziff. 3.2, 4.2–4.3 und 5",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "TG",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Wald, Wild und Hund erklären",
+          "detail": "Eigene Lernübung: Beschreibe einen Wald-Wild-Fall. Erkläre ihn erst kurz schriftlich, dann frei mit Rückfragen. Ergänze, welche Aufgabe ein Jagdhund dabei tatsächlich erfüllen soll.",
+          "moduleIds": [
+            "wissen-wald-wild",
+            "wissen-jagdhunde-aufgaben-ausbildung",
+            "wissen-pruefungslernen"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-wald-wild",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-pruefungslernen"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Die ältere Jägerprüfungsverordnung 922.13 ist historisch. Die aktuelle Recherche bezieht sich auf die Jagdverordnung 922.11; deren konkrete Prüfungsgliederung ist noch nicht unabhängig gegengeprüft."
+      ],
+      "sources": [
+        {
+          "id": "ch-tg-norm",
+          "title": "Verordnung des Regierungsrates zum Gesetz über die Jagd und den Schutz wildlebender Säugetiere und Vögel",
+          "url": "https://www.rechtsbuch.tg.ch/api/de/versions/2313/pdf_file",
+          "publisher": "Kanton Thurgau",
+          "section": "§§ 8–10: Prüfungsstoff, schriftliche Vorprüfung, praktische und mündliche Prüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-tg-formulare",
+          "title": "Formulare – Jagd",
+          "url": "https://jfv.tg.ch/formulare.html/8709",
+          "publisher": "Kanton Thurgau – Jagd- und Fischereiverwaltung",
+          "section": "Anmeldung Jägerprüfung und zuständige Verwaltung",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "TI",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Zwei Themen verbinden",
+          "detail": "Eigene Lernübung: Erkläre an einem selbst erstellten Wildtierfall die Beobachtung und den Lebensraum. Bearbeite danach einen getrennten Hygienefall; aus einem äußeren Foto folgt keine sichere Fleischbeurteilung.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-tiergesundheit",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-tiergesundheit",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-ti-regolamento",
+          "title": "Regolamento per l’ottenimento del certificato d’abilitazione alla caccia",
+          "url": "https://m3.ti.ch/CAN/RLeggi/public/raccolta-leggi/legge/num/496",
+          "publisher": "Repubblica e Cantone Ticino",
+          "section": "Art. 11 und 14–16: schriftliche, mündliche und Schiesssession; jeweilige Themen",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-ti-fcti",
+          "title": "Formazione / Esami",
+          "url": "https://www.caccia-fcti.ch/candidati-cacciatori",
+          "publisher": "Federazione Cacciatori Ticinesi FCTI",
+          "section": "Programma di formazione und Preparazione agli esami",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "VD",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Entscheidung und Begründung",
+          "detail": "Eigene Lernübung: Erkläre eine selbst erstellte Situation im Wald: Was beobachtest du am Lebensraum, welche Bedeutung hat das für das Wild und welche Entscheidung musst du mit Recht und Verantwortung begründen?",
+          "moduleIds": [
+            "wissen-wald-wild",
+            "wissen-jagdhunde-aufgaben-ausbildung",
+            "wissen-pruefungslernen"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-wald-wild",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-pruefungslernen"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Die gelesene Richtlinie trägt den Stand 2021. Eine vollständige Prüfung späterer Änderungen und der Vorgaben deines Jahrgangs steht noch aus."
+      ],
+      "sources": [
+        {
+          "id": "ch-vd-directive",
+          "title": "Directive – Organisation de l’examen de chasse",
+          "url": "https://www.vd.ch/fileadmin/user_upload/themes/environnement/faune_nature/fichiers_pdf/Chasse/06_legislation/Directive_Examen_chasse_2021.pdf",
+          "publisher": "Etat de Vaud – DGE",
+          "section": "Version 2.0, wirksam 01.05.2021; §§ 5.6–5.12: Jagdarten, Hunde, Wildmanagement, Wald-Wild, Ethik",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-vd-fsvd",
+          "title": "Le rôle de la chasse – Formation & sécurité",
+          "url": "https://www.chassevd.ch/le-role-de-la-chasse",
+          "publisher": "Fédération des Sections Vaudoises de la Diana FSVD",
+          "section": "Formation & sécurité: örtliche Fächer und Verantwortung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "VS",
+      "status": "confirmed",
+      "summary": "Die Walliser Ausbildung verbindet Theorie und Praxis. Zur Vorbereitung gehören Schiessprüfung und Theorieprüfung; die folgende eigene Übung verbindet Tierbeobachtung und Lebensraum.",
+      "formats": [
+        {
+          "label": "Vorbereitung auf Schiess- und Theorieprüfung",
+          "sourceIds": [
+            "ch-vs-norm",
+            "ch-vs-fvsc"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Alpine Arten und Lebensraum",
+          "detail": "Eigene Lernübung: Vergleiche zwei alpine Beobachtungen: Welche Merkmale tragen die Bestimmung, welche Umweltbedingungen sind wichtig und welche Unsicherheit bleibt? Ergänze eine eigene Frage zu Tiergesundheit.",
+          "moduleIds": [
+            "wissen-gams-steinbock",
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-tiergesundheit"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-gams-steinbock",
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-tiergesundheit"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Die Quellen stimmen bei den benannten Etappen überein. Weitere Unterformen werden nicht ohne hinreichenden Abgleich als schriftlich, mündlich oder praktisch gleichgesetzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-vs-norm",
+          "title": "Règlement d'exécution de la loi sur la chasse",
+          "url": "https://lex.vs.ch/api/fr/versions/3620/pdf_file",
+          "publisher": "Kanton Wallis",
+          "section": "Art. 1–2 und 5: obligatorische Praxis/Theorie, Schiess- und Theorieprüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-vs-fvsc",
+          "title": "Dicastères – Formation candidats-chasseurs",
+          "url": "https://www.fvsc.ch/fr/pages/discasteres-71",
+          "publisher": "Fédération valaisanne des sociétés de chasse FVSC",
+          "section": "Tabellenzeile Formation candidats-chasseurs",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "NE",
+      "status": "confirmed",
+      "summary": "Die Vorbereitung in Neuenburg verbindet Theorie und Praxis. Die folgende eigene Lernaufgabe übt Erklärungen zu Recht, Tierbeobachtung und Lebensraum; sie ist kein amtlicher Pflichtfall.",
+      "formats": [
+        {
+          "label": "Vorbereitung mit Theorie und Praxis",
+          "sourceIds": [
+            "ch-ne-reglement",
+            "ch-ne-fcn"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Vier Perspektiven auf einen Fall",
+          "detail": "Eigene Lernübung: Erkläre einen eigenen Fall aus vier Blickwinkeln: örtliches Recht, Tierbestimmung, Hundeeinsatz und Ökosystem. Benenne bei jeder Antwort, was beobachtet, erklärt oder noch zu prüfen ist.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-jagdhunde-aufgaben-ausbildung"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Keine Prüfungsnoten, Gebühren, Stunden oder Zulassungsdetails übernommen. Die eigene Übung beschreibt keine im Kanton zwingend gestellte Aufgabe. Ein zusätzlich bereitgestelltes Prüfungs-PDF von 2018 war textlich nicht lesbar und wird nicht als geprüftes neues Detailreglement ausgegeben."
+      ],
+      "sources": [
+        {
+          "id": "ch-ne-reglement",
+          "title": "Règlement de chasse (RCh), RSN 922.101.1",
+          "url": "https://rsn.ne.ch/DATA/program/books/rsne/htm/922.101.1.htm",
+          "publisher": "République et Canton de Neuchâtel",
+          "section": "Art. 4 und 7–9: Ausbildung sowie praktische/theoretische Prüfung",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-ne-fcn",
+          "title": "Services – Formation / Permis de chasser",
+          "url": "https://www.chasse-neuchatel.ch/services",
+          "publisher": "Fédération des chasseurs neuchâtelois FCN",
+          "section": "Formation, Ziele, praktische und theoretische Kursthemen",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "GE",
+      "status": "special",
+      "summary": "Genf hat einen besonderen staatlichen Umgang mit Wildtierregulation. Hier wird kein gewöhnlicher lokaler Jagdprüfungsablauf unterstellt. Kläre den tatsächlich vorgesehenen Ausbildungs- und Anerkennungsweg mit der zuständigen Stelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Genfer Sonderweg erklären",
+          "detail": "Eigene Lernübung: Erkläre den Unterschied zwischen allgemeinem Wildtierwissen, Genfer Rechtslage und einem Prüfungsweg in einer konkret vereinbarten Prüfungsregion. Lerne die biologische Grundlage weiter, ohne daraus eine private Jagdberechtigung abzuleiten.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-pruefungslernen"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-pruefungslernen"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Allgemeines Wildtierwissen und ein gespeichertes Genfer Profil begründen keine private Jagdberechtigung oder automatische Anerkennung eines fremden Ausweises."
+      ],
+      "sources": [
+        {
+          "id": "ch-ge-lfaune",
+          "title": "Loi sur la faune (LFaune), M 5 05",
+          "url": "https://silgeneve.ch/legis/data/rsg_m5_05.htm",
+          "publisher": "République et Canton de Genève",
+          "section": "Art. 8 und 16; aktueller Text mit letzter Änderung 23.03.2024",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-ge-bafu",
+          "title": "Chasse – régime spécial de la chasse étatique",
+          "url": "https://www.bafu.admin.ch/fr/chasse",
+          "publisher": "Bundesamt für Umwelt BAFU",
+          "section": "Régime spécial à Genève und formation à la chasse",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "CH",
+      "region": "JU",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Biologie und Verantwortung verbinden",
+          "detail": "Eigene Lernübung: Erkläre an einem eigenen Fall den Zusammenhang von Wildtierbeobachtung, Lebensraum und Verantwortung. Ergänze, welche örtliche Rechtsfrage vor einer Anwendung zwingend zu klären ist.",
+          "moduleIds": [
+            "wissen-lebensraeume-biotopverbund",
+            "wissen-pruefungslernen"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-lebensraeume-biotopverbund",
+        "wissen-pruefungslernen"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "ch-ju-formation",
+          "title": "Exercice de la chasse et formation",
+          "url": "https://www.jura.ch/fr/Autorites/Administration/DEC/ENV/Chasse-et-faune-sauvage/Exercice-de-la-chasse-et-formation/Exercice-de-la-chasse-et-formation.html",
+          "publisher": "République et Canton du Jura – Office de l’environnement",
+          "section": "Formation des candidats chasseurs; sécurité, nature, gestion et organisierende FCJC",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ch-ju-fcjc",
+          "title": "Formation – Devenir chasseur",
+          "url": "https://fcjc.ch/formation/",
+          "publisher": "Fédération cantonale jurassienne des chasseurs FCJC",
+          "section": "Formation des candidats chasseurs: Jagdpraxis, Gesetzgebung, Waffenkenntnis, Biologie und Wildmanagement",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    }
+  ]
+}

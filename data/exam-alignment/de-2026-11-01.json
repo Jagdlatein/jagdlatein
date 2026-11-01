@@ -1,0 +1,1126 @@
+{
+  "scope": "Ausgewählte regionale Prüfungsbausteine und eigene Lernaufträge; kein vollständiger amtlicher Stoffplan.",
+  "regions": [
+    {
+      "country": "DE",
+      "region": "BW",
+      "status": "confirmed",
+      "summary": "Baden-Württemberg verbindet jagdliches Schießen, schriftliches Wissen und mündlich-praktische Aufgaben. Die konkrete Reihenfolge wird hier nicht vorgegeben.",
+      "formats": [
+        {
+          "label": "Schriftlich",
+          "sourceIds": [
+            "bw-law",
+            "bw-jv"
+          ]
+        },
+        {
+          "label": "Mündlich-praktisch",
+          "sourceIds": [
+            "bw-law",
+            "bw-jv"
+          ]
+        },
+        {
+          "label": "Jagdliches Schießen",
+          "sourceIds": [
+            "bw-law",
+            "bw-jv"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Fall begründen",
+          "detail": "Bearbeite einen eigenen Revierfall: Was beobachtest du, welche Risiken erkennst du und welche Rechtsquelle musst du prüfen? Begründe jeden Schritt.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf",
+            "wissen-waffensicherheit"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Die Quellen stimmen bei den genannten Prüfungsarten überein, geben die Reihenfolge aber unterschiedlich wieder. Deshalb wird hier keine feste Reihenfolge vorgegeben."
+      ],
+      "sources": [
+        {
+          "id": "bw-law",
+          "title": "JPrO Baden-Württemberg § 2",
+          "url": "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW000089C7NN00000000007",
+          "publisher": "Land Baden-Württemberg",
+          "section": "§ 2 Abs. 1 und 2; Fassung vom 21.12.2021, gültig ab 08.01.2022",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "bw-jv",
+          "title": "Häufige Fragen – Wie ist die Jägerprüfung aufgebaut?",
+          "url": "https://www.jv-freiburg.de/aus-/fortbildung/ausbildung-zum-jaeger/haeufige-fragen",
+          "publisher": "Jägervereinigung Freiburg e.V.",
+          "section": "Fragen zur Jägerprüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "BY",
+      "status": "confirmed",
+      "summary": "Die bayerische Prüfung verbindet schriftliches und mündliches Wissen mit einem praktischen Teil aus Waffenhandhabung und Büchsenschießen.",
+      "formats": [
+        {
+          "label": "Schriftlich",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ]
+        },
+        {
+          "label": "Mündlich",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ]
+        },
+        {
+          "label": "Praktisch: Waffenhandhabung und Büchsenschießen",
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Waffenkunde",
+          "detail": "Erkläre die Sicherheitsrisiken einer jagdlichen Situation. Begründe, wann du eine Übung abbrichst; praktische Handhabung übst du betreut.",
+          "moduleIds": [
+            "wissen-waffensicherheit",
+            "wissen-kugelfang"
+          ],
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Wildbiologie",
+          "detail": "Beschreibe das Rehwild im Jahreslauf. Verbinde Lebensweise und Lebensraum, und kennzeichne Beobachtung, Erklärung und offene Frage getrennt.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf",
+            "wissen-vertiefung-populationsoekologie"
+          ],
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Recht",
+          "detail": "Ordne einen eigenen Rechtsfall der richtigen Rechtsquelle zu. Prüfe Land, Fassung und Geltungszeit, bevor du deine Antwort begründest.",
+          "moduleIds": [],
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Wildhege und Jagdbetrieb",
+          "detail": "Erkläre an einem eigenen Revierfall das Zusammenspiel von Lebensraum, Hege und verantwortlicher Jagdpraxis. Benenne die Grenzen deines Wissens.",
+          "moduleIds": [
+            "wissen-vertiefung-populationsoekologie",
+            "wissen-nachsuche"
+          ],
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Jagdhundewesen",
+          "detail": "Wähle für eine beschriebene Aufgabe einen passenden Hundeeinsatz. Begründe Aufgabe, Vorbereitung und Grenzen anhand der vorhandenen Lektionen.",
+          "moduleIds": [
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Naturschutz, Land- und Waldbau",
+          "detail": "Verbinde den Schutz einer Art mit ihrem Lebensraum. Unterscheide biologische Bedürfnisse von rechtlichen Vorgaben und prüfe letztere an der Quelle.",
+          "moduleIds": [
+            "wissen-vertiefung-populationsoekologie"
+          ],
+          "sourceIds": [
+            "by-law",
+            "by-bjv"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-waffensicherheit",
+        "wissen-rehwild-jahreslauf",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Der praktische Teil ist hier als Waffenhandhabung und Büchsenschießen belegt; er wird nicht mit einem allgemeinen mündlich-praktischen Reviergang gleichgesetzt."
+      ],
+      "sources": [
+        {
+          "id": "by-law",
+          "title": "Jäger- und Falknerprüfungsordnung Bayern",
+          "url": "https://www.gesetze-bayern.de/Content/Document/BayJFPO/true",
+          "publisher": "Freistaat Bayern",
+          "section": "§§ 10, 11 und 14",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "by-bjv",
+          "title": "Der Weg zum Jäger",
+          "url": "https://jagd-bayern.de/jagd-lernen/der-weg-zum-jaeger/",
+          "publisher": "Bayerischer Jagdverband e.V.",
+          "section": "Inhalte der Ausbildung; Teile der bayerischen Jägerprüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "BE",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Rechtsquelle prüfen",
+          "detail": "Unterscheide an einem eigenen Fall allgemeines Fachwissen und regionale Rechtsfragen. Prüfe die passende aktuelle Quelle und halte offene Fragen für deine Ausbildungsstelle fest.",
+          "moduleIds": [],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-waffensicherheit",
+        "wissen-rehwild-jahreslauf",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "be-law",
+          "title": "Berliner Jäger- und Falknerprüfungsordnung",
+          "url": "https://gesetze.berlin.de/perma?j=Jagd%2FFalkPrV_BE_!_6",
+          "publisher": "Land Berlin",
+          "section": "§ 6 Prüfungsabschnitte; Fassung vom 31.10.2008, gültig ab 23.11.2008",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "be-service",
+          "title": "Jägerprüfung – Zulassung zur Prüfung beantragen",
+          "url": "https://service.berlin.de/dienstleistung/350568/",
+          "publisher": "Senatsverwaltung Berlin",
+          "section": "Prüfungsabschnitte",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "BB",
+      "status": "confirmed",
+      "summary": "In Brandenburg werden schriftliches Wissen, mündlich-praktische Aufgaben und jagdliches Schießen geprüft.",
+      "formats": [
+        {
+          "label": "Schriftlich",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ]
+        },
+        {
+          "label": "Mündlich-praktisch",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ]
+        },
+        {
+          "label": "Jagdliches Schießen",
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Wildarten",
+          "detail": "Erkläre Merkmale, Lebensweise und Jahreslauf des Rehwilds. Formuliere anschließend eine eigene kurze Antwort, ohne bloß eine Auswahl auswendig zu lernen.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf"
+          ],
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Naturschutz",
+          "detail": "Beschreibe einen Lebensraumkonflikt und begründe mögliche Schutzfragen. Trenne die biologische Einordnung von der noch zu prüfenden Rechtslage.",
+          "moduleIds": [
+            "wissen-vertiefung-populationsoekologie"
+          ],
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Waffentechnik",
+          "detail": "Benenne Sicherheitsrisiken einer beschriebenen Situation und erkläre deine Entscheidung. Die praktische Handhabung bleibt Teil der betreuten Ausbildung.",
+          "moduleIds": [
+            "wissen-waffensicherheit",
+            "wissen-kugelfang"
+          ],
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Jagdbetrieb",
+          "detail": "Erkläre eine jagdliche Aufgabe zusammenhängend: Ausgangslage, Hundearbeit, eigene Entscheidung und Grenzen. Nutze die vorhandenen Lernfälle zur Begründung.",
+          "moduleIds": [
+            "wissen-jagdhunde-aufgaben-ausbildung",
+            "wissen-nachsuche"
+          ],
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Wildkrankheiten",
+          "detail": "Ordne einen beschriebenen auffälligen Befund ein. Unterscheide Beobachtung von Diagnose und benenne, wann eine fachliche Abklärung erforderlich ist.",
+          "moduleIds": [
+            "wissen-tiergesundheit",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Rechtsvorschriften",
+          "detail": "Prüfe an einem eigenen Fall zuerst Bundes- und Landesbezug sowie den aktuellen Quellenstand. Begründe dann deine Antwort und notiere offene Punkte.",
+          "moduleIds": [],
+          "sourceIds": [
+            "bb-law",
+            "bb-ljv"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-vertiefung-populationsoekologie",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Veröffentlichte mögliche Prüfungsfragen sind keine Zusage identischer künftiger Aufgaben. Die eigenen Lernaufträge sind kein Abdruck des Landesfragenkatalogs."
+      ],
+      "sources": [
+        {
+          "id": "bb-law",
+          "title": "Jägerprüfungsordnung Brandenburg",
+          "url": "https://bravors.brandenburg.de/de/verordnungen-212246",
+          "publisher": "Land Brandenburg",
+          "section": "§§ 8 und 10; Änderungshinweis vom 05.03.2024",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "bb-ljv",
+          "title": "Infos zur Jägerprüfung",
+          "url": "https://ljv-brandenburg.de/jaeger-werden/infos-zur-jaegerpruefung/",
+          "publisher": "Landesjagdverband Brandenburg e.V., beliehene Prüfungsstelle",
+          "section": "Allgemeine Anmeldefristen: Prüfungszyklus; Prüfungsfragen: sechs Sachgebiete",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "HB",
+      "status": "special",
+      "summary": "Die gelesenen Darstellungen gliedern praktische und mündliche Anforderungen unterschiedlich. Deshalb wird hier keine pauschale Drei-Teile-Simulation für Bremen angeboten. Kläre den für dich geltenden Ablauf mit der Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Beobachtung erklären",
+          "detail": "Beschreibe einen Revierbefund zuerst als Beobachtung. Erkläre anschließend die biologische Einordnung und notiere gesondert, welche Rechtsfrage noch zu prüfen ist.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "hb-lj",
+          "title": "So werde ich Jäger/in",
+          "url": "https://www.lj-bremen.de/Informationen-So-werde-ich-Jaegerin.html",
+          "publisher": "Landesjägerschaft Bremen e.V.",
+          "section": "Prüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "HH",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Antwort strukturieren",
+          "detail": "Formuliere eine eigene Antwort mit Beobachtung, Begründung und Grenze. Prüfe anschließend, welche Aussagen Fachwissen und welche von der regionalen Rechtslage abhängig sind.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "hh-ljv",
+          "title": "Prüfungs-Ordnung",
+          "url": "https://ljv-hamburg.de/pruefungs-ordnung/",
+          "publisher": "Landesjagd- und Naturschutzverband Hamburg e.V.",
+          "section": "Einleitung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "hh-authority",
+          "title": "Jägerprüfung und Jagdschein in Hamburg",
+          "url": "https://www.hamburg.de/politik-und-verwaltung/behoerden/bukea/themen/agrarwirtschaft/jagd/jaegerpruefung-und-jagdschein-179510",
+          "publisher": "Freie und Hansestadt Hamburg, zuständige Fachbehörde",
+          "section": "Prüfungsausschüsse der Landesjägerschaft",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "HE",
+      "status": "confirmed",
+      "summary": "Hessen verbindet jagdliches Schießen, schriftliche und praktisch-mündliche Prüfung. Wildbiologie, Jagdbetrieb, Waffen und Recht sind die vier fachlichen Oberbereiche.",
+      "formats": [
+        {
+          "label": "Schriftlich",
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ]
+        },
+        {
+          "label": "Praktisch-mündlich",
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ]
+        },
+        {
+          "label": "Jagdliches Schießen",
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Wildbiologie",
+          "detail": "Erkläre am Rehwild, wie Jahreslauf und Lebensraum zusammenhängen. Unterscheide sichere Merkmale, allgemeine Erklärung und noch offene Beobachtungsfragen.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf",
+            "wissen-vertiefung-populationsoekologie"
+          ],
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Jagdbetrieb",
+          "detail": "Bearbeite einen eigenen Jagdpraxisfall. Erkläre getrennt den Zweck der Hundearbeit und die Hygienefragen; begründe deine Entscheidungen mit den Lektionen.",
+          "moduleIds": [
+            "wissen-jagdhunde-aufgaben-ausbildung",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Waffen",
+          "detail": "Begründe eine Sicherheitsentscheidung anhand der beschriebenen Umgebung. Benenne Risiken und Abbruchgründe; praktische Handhabung übst du mit deiner Ausbildungsstelle.",
+          "moduleIds": [
+            "wissen-waffensicherheit",
+            "wissen-kugelfang"
+          ],
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "kind": "own-practice"
+        },
+        {
+          "label": "Recht",
+          "detail": "Ordne einen eigenen Rechtsfall den passenden Quellen zu. Prüfe die geltende Fassung und erkläre, welche Frage durch eine allgemeine Lernantwort offenbleibt.",
+          "moduleIds": [],
+          "sourceIds": [
+            "he-current-law",
+            "he-ljv"
+          ],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-wildbrethygiene",
+        "wissen-jagdhunde-aufgaben-ausbildung"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Der Abgleich betrifft ausgewählte Prüfungsarten und fachliche Oberbereiche. Ältere Aufgaben-, Bewertungs- und Fristenangaben werden daraus nicht übernommen."
+      ],
+      "sources": [
+        {
+          "id": "he-amendment",
+          "title": "GVBl. 2026 Nr. 14 – Änderung der HJagdV",
+          "url": "https://rp-kassel.hessen.de/sites/rp-kassel.hessen.de/files/2026-03/gvbl_2026_nr_14_aendvo_hjagdvo_regelungstext.pdf",
+          "publisher": "Land Hessen",
+          "section": "Art. 1 Nr. 4 und 5, physische PDF-S. 3–4",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "he-rp",
+          "title": "Die Jägerprüfung in Hessen",
+          "url": "https://rp-kassel.hessen.de/forsten-und-landwirtschaft/jagd/jaegerpruefung",
+          "publisher": "Regierungspräsidium Kassel, obere Jagdbehörde",
+          "section": "Einleitung und Neuregelungshinweis",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "he-ljv",
+          "title": "Jagdschein & Jägerprüfung",
+          "url": "https://ljv-hessen.de/jagd-in-hessen/jagdschein/",
+          "publisher": "Landesjagdverband Hessen e.V.",
+          "section": "Das grüne Abitur",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "he-current-law",
+          "title": "Hessische Jagdverordnung, aktuelle Gesamtausgabe",
+          "url": "https://ljv-hessen.de/download/hessische-jagdverordnung-hjagdv/",
+          "publisher": "Land Hessen; amtlicher Normtext beim Landesjagdverband Hessen bereitgestellt",
+          "section": "§ 3 physische PDF-S. 11; § 5 Abs. 1 PDF-S. 13; § 6 Abs. 1 PDF-S. 14; Kopf Geltung ab 01.04.2026",
+          "kind": "norm-copy",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "MV",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Merkmale begründen",
+          "detail": "Erkläre Merkmale und Jahreslauf des Rehwilds mit eigenen Worten. Begründe deine Einordnung und kennzeichne, was der beschriebene Fall nicht sicher erkennen lässt.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf",
+            "wissen-vertiefung-populationsoekologie"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt."
+      ],
+      "sources": [
+        {
+          "id": "mv-ljv",
+          "title": "Mit uns Jäger werden",
+          "url": "https://www.ljv-mecklenburg-vorpommern.de/J%C3%A4gerlehrhof/J%C3%A4ger-werden/",
+          "publisher": "Landesjagdverband M-V e.V.",
+          "section": "Praxisorientierte Ausbildung; Dokumente",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "mv-lup",
+          "title": "Jägerprüfung: Aufbau der Prüfung",
+          "url": "https://www.kreis-lup.de/Leben-im-Landkreis/Leben-und-Soziales/Ordnung/",
+          "publisher": "Landkreis Ludwigslust-Parchim, untere Jagdbehörde",
+          "section": "Jagdbehörde / Jägerprüfung / Aufbau der Prüfung",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "NI",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Fassung kontrollieren",
+          "detail": "Prüfe für einen eigenen Rechtsfall Quelle, Land und Geltungsstand. Trenne eine bestätigte Regel von einer Änderungsankündigung und benenne offen gebliebene Fragen.",
+          "moduleIds": [],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-vertiefung-populationsoekologie",
+        "wissen-wildbrethygiene",
+        "wissen-jagdhunde-aufgaben-ausbildung"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Der angebotene Normdownload und spätere amtliche Änderungshinweise tragen unterschiedliche Stände. Eine angekündigte Änderung wird hier nicht als bereits geltende Regel behandelt."
+      ],
+      "sources": [
+        {
+          "id": "ni-law",
+          "title": "Verordnung über die Jäger- und Falknerprüfung, amtlicher Download",
+          "url": "https://www.ml.niedersachsen.de/download/151946/Verordnung_ueber_die_Jaeger-_und_die_Falknerpruefung_vom_30._August_2005_zuletzt_geaendert_durch_Verordnung_vom_27._Januar_2020_nicht_vollstaendig_barrierefrei_.pdf",
+          "publisher": "Niedersächsisches Landwirtschaftsministerium",
+          "section": "§§ 4 und 7; Anlage 1; physische PDF-S. 3–4 und 11",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ni-ml",
+          "title": "Jägerprüfung in Niedersachsen",
+          "url": "https://www.ml.niedersachsen.de/startseite/themen/wald_holz_jagd/jagd_in_niedersachsen/jaegerpruefung-in-niedersachsen-5226.html",
+          "publisher": "Niedersächsisches Landwirtschaftsministerium",
+          "section": "Einleitung und verlinkter amtlicher Normdownload",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ni-ljn",
+          "title": "Ihr Weg zum Jagdschein",
+          "url": "https://m.ljn.de/wild-und-jagd/ihr-weg-zum-jagdschein",
+          "publisher": "Landesjägerschaft Niedersachsen e.V.",
+          "section": "Die Prüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ni-gazette-2024",
+          "title": "Nds. GVBl. 2024 Nr. 42, Normbezug zur JFPVO",
+          "url": "https://www.verkuendung-niedersachsen.de/api/ndsgvbl/2024/42/0/nds-gvbl-2024-42.pdf",
+          "publisher": "Land Niedersachsen",
+          "section": "Gedruckte S. 19 / physische PDF-S. 19, Tarifstelle 100.3, allein Normzitat",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "ni-reform-2026",
+          "title": "Novelle des Niedersächsischen Jagdgesetzes",
+          "url": "https://www.ml.niedersachsen.de/startseite/aktuelles/novelle-des-niedersachsischen-jagdgesetzes-236898.html",
+          "publisher": "Niedersächsisches Landwirtschaftsministerium",
+          "section": "Praxisgerechter Tierschutz: Hinweis zur verpflichtenden Ausbildung und angekündigten Verordnungsänderung",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "NW",
+      "status": "confirmed",
+      "summary": "NRW prüft schriftliches Wissen, jagdliches Schießen und mündlich-praktisches Anwenden.",
+      "formats": [
+        {
+          "label": "Schriftlich",
+          "sourceIds": [
+            "nw-law",
+            "nw-kjs"
+          ]
+        },
+        {
+          "label": "Schießen",
+          "sourceIds": [
+            "nw-law",
+            "nw-kjs"
+          ]
+        },
+        {
+          "label": "Mündlich-praktisch",
+          "sourceIds": [
+            "nw-law",
+            "nw-kjs"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Praxisfall erklären",
+          "detail": "Begründe eine eigene Entscheidung in einem beschriebenen Revierfall. Verbinde Beobachtung, Sicherheitsrisiken und Hygienefragen, ohne aus einem Einzelhinweis eine sichere Diagnose abzuleiten.",
+          "moduleIds": [
+            "wissen-waffensicherheit",
+            "wissen-wildbrethygiene",
+            "wissen-tiergesundheit"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung."
+      ],
+      "sources": [
+        {
+          "id": "nw-law",
+          "title": "DVO LJG-NRW, aktuelle Fassung",
+          "url": "https://recht.nrw.de/lrgv/rechtsverordnung/09122025-landesjagdgesetzdurchfuehrungsverordnung-dvo-ljg-nrw/",
+          "publisher": "Land Nordrhein-Westfalen",
+          "section": "§ 3 Abs. 1 und 2",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "nw-kjs",
+          "title": "Jungjägerausbildung",
+          "url": "https://moenchengladbach.ljv-nrw.de/jungjaegerausbildung/",
+          "publisher": "Kreisjägerschaft Mönchengladbach e.V.",
+          "section": "Die Jägerprüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "nw-ministry",
+          "title": "Jägerprüfung",
+          "url": "https://www.mlv.nrw.de/themen/jagd-und-fischerei/jagd/jaegerpruefung/",
+          "publisher": "Ministerium Landwirtschaft und Verbraucherschutz NRW",
+          "section": "Einleitung, nachzuweisende Kenntnisse",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "RP",
+      "status": "confirmed",
+      "summary": "Rheinland-Pfalz verbindet Schießprüfung, schriftliches Wissen und mündlich-praktische Aufgaben. Die künftige Neuregelung wird hier nicht als bereits geltender Prüfungsstandard behandelt.",
+      "formats": [
+        {
+          "label": "Schießprüfung",
+          "sourceIds": [
+            "rp-law",
+            "rp-kreisgruppe"
+          ]
+        },
+        {
+          "label": "Schriftlich",
+          "sourceIds": [
+            "rp-law",
+            "rp-kreisgruppe"
+          ]
+        },
+        {
+          "label": "Mündlich-praktisch",
+          "sourceIds": [
+            "rp-law",
+            "rp-kreisgruppe"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Wissen anwenden",
+          "detail": "Erkläre einen eigenen Fall zusammenhängend: Wildtierbeobachtung, passende Hundearbeit und offene Rechtsfrage. Begründe jede Zuordnung mit dem vorhandenen Lernstoff.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf",
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung.",
+        "Der gelesene Normabschnitt ist bis 31. März 2027 ausgewiesen. Angekündigte Neuregelungen werden nicht vorzeitig als heutiger Prüfungsmaßstab übernommen."
+      ],
+      "sources": [
+        {
+          "id": "rp-law",
+          "title": "LJVO Rheinland-Pfalz",
+          "url": "https://landesrecht.rlp.de/bsrp/document/jlr-NNLRP00005B8FNN00000000038",
+          "publisher": "Land Rheinland-Pfalz",
+          "section": "§ 26 Abs. 1; Kopf Fassung vom 25.07.2013, gültig vom 21.08.2013 bis 31.03.2027",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "rp-forst",
+          "title": "Ausbildung und Jägerprüfung",
+          "url": "https://www.wald.rlp.de/nutzen/wild-jagd/jagdliche-regelungen/ausbildung-und-jaegerpruefung",
+          "publisher": "Landesforsten Rheinland-Pfalz",
+          "section": "Jägerprüfung",
+          "kind": "official-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "rp-kreisgruppe",
+          "title": "Ausbildung und Jägerprüfung",
+          "url": "https://bernkastel-wittlich.ljv-rlp.de/ausbildung/",
+          "publisher": "Kreisgruppe Bernkastel-Wittlich im Landesjagdverband Rheinland-Pfalz e.V.",
+          "section": "Jägerprüfung: Gliederung; eigener Bericht zur Prüfung 2026",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "rp-reform",
+          "title": "Änderungen des Landesjagdgesetzes und neue Landesjagdverordnung",
+          "url": "https://www.wald.rlp.de/start-landesforsten-rheinland-pfalz/service/nachrichten-uebersicht/einzelnachricht/ministerin-christine-schneider-informiert-ueber-aenderungen-des-landesjagdgesetzes-und-den-erlass-einer-neuen-landesjagdverordnung",
+          "publisher": "Ministerium für Landwirtschaft, Weinbau, Umwelt und Forsten Rheinland-Pfalz",
+          "section": "Pressehinweis vom 24.08.2026: Anhörungsverfahren und geplantes Inkrafttreten",
+          "kind": "context",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "SL",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Befund einordnen",
+          "detail": "Beschreibe einen auffälligen Befund und die daraus entstehenden Hygienefragen. Trenne Beobachtung, Verdacht und fachliche Abklärung, statt eine Ferndiagnose zu behaupten.",
+          "moduleIds": [
+            "wissen-tiergesundheit",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Ein älterer Normauszug wird nicht als Bestätigung aller späteren Änderungen verwendet. Fragenpoolzahlen und Bestehenswerte werden nicht übernommen."
+      ],
+      "sources": [
+        {
+          "id": "sl-vjs",
+          "title": "Jägerausbildung",
+          "url": "https://www.saarjaeger.de/aus-und-weiterbildung/jagerausbildung/",
+          "publisher": "Vereinigung der Jäger des Saarlandes",
+          "section": "Theorie-Fächer; Fragenpool; Hinweis Änderung vom 30.01.2025",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "SN",
+      "status": "confirmed",
+      "summary": "Sachsen verbindet jagdliches Schießen mit schriftlicher und mündlich-praktischer Prüfung.",
+      "formats": [
+        {
+          "label": "Jagdliches Schießen",
+          "sourceIds": [
+            "sn-law",
+            "sn-ljv"
+          ]
+        },
+        {
+          "label": "Schriftlich",
+          "sourceIds": [
+            "sn-law",
+            "sn-ljv"
+          ]
+        },
+        {
+          "label": "Mündlich-praktisch",
+          "sourceIds": [
+            "sn-law",
+            "sn-ljv"
+          ]
+        }
+      ],
+      "focus": [
+        {
+          "label": "Sicher entscheiden",
+          "detail": "Begründe an einem eigenen Lernfall eine Sicherheits- und eine Hygienefrage. Prüfe die Rechtsquelle gesondert, bevor du aus allgemeinem Wissen eine regionale Antwort ableitest.",
+          "moduleIds": [
+            "wissen-waffensicherheit",
+            "wissen-wildbrethygiene"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Nur die hier benannten Bausteine sind abgeglichen. Das ist kein vollständiger amtlicher Stoffplan, keine Zulassungsentscheidung und kein Ersatz für betreute praktische Ausbildung."
+      ],
+      "sources": [
+        {
+          "id": "sn-law",
+          "title": "Sächsische Jagdverordnung",
+          "url": "https://revosax.sachsen.de/vorschrift/12563",
+          "publisher": "Freistaat Sachsen",
+          "section": "§ 12 Abs. 1 und 2",
+          "kind": "norm",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "sn-ljv",
+          "title": "Wie werde ich Jäger?",
+          "url": "https://ljv-sachsen.de/bildung/wie-werde-ich-jaeger/",
+          "publisher": "Landesjagdverband Sachsen e.V.",
+          "section": "Die Prüfung",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "ST",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Risiken erkennen",
+          "detail": "Benenne Sicherheitsrisiken in einer beschriebenen Übungssituation und erkläre Abbruchgründe. Die praktische Handhabung klärst und übst du mit deiner Ausbildungsstelle.",
+          "moduleIds": [
+            "wissen-waffensicherheit",
+            "wissen-kugelfang"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Die gelesene amtlich bereitgestellte Broschüre trägt den Stand 4. Dezember 2025. Sie ersetzt hier keinen positiven Abgleich sämtlicher späterer Änderungen."
+      ],
+      "sources": [
+        {
+          "id": "st-js",
+          "title": "Jägerausbildung im Saalkreis",
+          "url": "https://ljv-sachsen-anhalt.de/jaegerschaft-saalkreis/jaegerausbildung-2/",
+          "publisher": "Jägerschaft Saalkreis e.V.",
+          "section": "Informationen zur Jägerprüfung: drei Teile",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "st-lvwa-copy",
+          "title": "Jagdrecht Sachsen-Anhalt, amtlich bereitgestellte Auswahl",
+          "url": "https://lvwa.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/LVWA/LVwA/Dokumente/4_landwirtschaftumwelt/409/409h/Jagdrecht.pdf",
+          "publisher": "Landesverwaltungsamt Sachsen-Anhalt",
+          "section": "Kopf Stand 04.12.2025; LJagdG-DVO Kopf physische S. 40; § 6 Abs. 1 S. 41",
+          "kind": "norm-copy",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "SH",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Jahreslauf verknüpfen",
+          "detail": "Erkläre die Biologie einer Wildart im Jahreslauf. Unterscheide diese Erklärung von einer rechtlichen Jagdzeit und prüfe die Rechtsfrage an der aktuellen Quelle.",
+          "moduleIds": [
+            "wissen-rehwild-jahreslauf"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Ein aktueller amtlicher Normtext konnte noch nicht positiv lesbar mit der unabhängigen Erläuterung abgeglichen werden. Ältere Verordnungen und Statistiken schließen diese Lücke nicht."
+      ],
+      "sources": [
+        {
+          "id": "sh-ljv",
+          "title": "Jäger/in werden!",
+          "url": "https://ljv-sh.de/jaeger-werden/jaeger-in-werden/",
+          "publisher": "Landesjagdverband Schleswig-Holstein e.V.",
+          "section": "Prüfung; Ausbildungsinhalte",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    },
+    {
+      "country": "DE",
+      "region": "TH",
+      "status": "partial",
+      "summary": "Der aktuelle örtliche Prüfungsrahmen ist noch nicht ausreichend mit unabhängig verfassten Originalunterlagen abgeglichen. Nutze die eigenen Lernaufträge zur Vorbereitung; den genauen Ablauf und die für dich geltenden Nachweise klärst du mit deiner Prüfungsstelle.",
+      "formats": [],
+      "focus": [
+        {
+          "label": "Fachwissen und Recht",
+          "detail": "Begründe einen eigenen Jagdpraxisfall mit Fachwissen. Ordne zusätzlich jeder Rechtsfrage ihre Quelle zu und prüfe deren Geltungsstand, statt eine allgemeine Antwort zu übertragen.",
+          "moduleIds": [
+            "wissen-jagdhunde-aufgaben-ausbildung"
+          ],
+          "sourceIds": [],
+          "kind": "own-practice"
+        }
+      ],
+      "moduleIds": [
+        "wissen-rehwild-jahreslauf",
+        "wissen-waffensicherheit",
+        "wissen-jagdhunde-aufgaben-ausbildung",
+        "wissen-wildbrethygiene"
+      ],
+      "limits": [
+        "Für diese Region wird noch keine vollständige oder originalgetreue Prüfungssimulation behauptet. Die Lernaufträge sind eigene Beispiele; ungeklärte Prüfungsformen werden nicht ergänzt.",
+        "Ältere Übungsangebote werden nicht automatisch mit einem aktuellen amtlichen Fragenkatalog gleichgesetzt. Keine Schießwerte oder Fristen werden daraus abgeleitet."
+      ],
+      "sources": [
+        {
+          "id": "th-ljvt",
+          "title": "Jägerprüfung beim LJVT",
+          "url": "https://ljv-thueringen.de/bildung/jaegerpruefung/",
+          "publisher": "Landesjagdverband Thüringen e.V.",
+          "section": "Die Übersicht; Theoretische Ausbildung Sachgebiete 1–4",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-01"
+        }
+      ]
+    }
+  ]
+}

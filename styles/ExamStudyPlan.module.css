@@ -31,4 +31,19 @@
 .sources li { margin: 14px 0; }
 .sources a { color: #73571a; overflow-wrap: anywhere; text-underline-offset: 3px; }
 .sources small { display: block; line-height: 1.7; color: #6e6249; }
+.regionFormats { padding-left: 24px; margin: 16px 0; }
+.regionFormats li { margin: 8px 0; }
+.regionLimits { padding: 16px 18px; margin: 20px 0; background: #f8f3e6; border-left: 4px solid #a1843f; }
+.regionLimits h3 { margin: 0 0 10px; }
+.regionLimits ul { padding-left: 22px; margin: 0; }
+.regionLimits li { margin: 8px 0; }
+.regionPreparation { margin-top: 24px; }
+.regionFocus, .regionStarts { list-style: none; padding: 0; margin: 0 0 24px; min-width: 0; }
+.regionFocus li { margin: 18px 0; min-width: 0; }
+.regionFocus h4, .regionStarts h4 { margin: 0 0 8px; overflow-wrap: anywhere; }
+.regionFocus p { margin: 0; }
+.regionStarts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+.regionStarts li { min-width: 0; border-bottom: 1px solid #e3d5b3; padding: 16px 0; }
+.regionCategory { margin: 0 0 6px; color: #6e6249; font-size: 16px; }
 @media(max-width: 680px) { .categoryList { grid-template-columns: minmax(0, 1fr); } .counts { gap: 12px 18px; } }
+@media(max-width: 680px) { .regionStarts { grid-template-columns: minmax(0, 1fr); } }

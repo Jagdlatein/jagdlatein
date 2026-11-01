@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
+import ExamRegionPreparation from "./ExamRegionPreparation";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import useExamProfile from "../lib/use-exam-profile";
@@ -15,12 +16,22 @@ const profileKey = profile => profile ? `${profile.country}:${profile.region}` :
 const resourceLabels = { "official-catalog": "Amtlicher Originalkatalog", "official-sample": "Amtliches Übungsangebot", "exam-rules": "Prüfungsregel oder Behördeninformation" };
 const formatDate = date => typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date.split("-").reverse().join(".") : "nicht angegeben";
 
-function Sources({ region, federal }) {
+function Sources({ region, federal, alignment }) {
   const groups = [{ name: region.name, sources: region.sources, resources: region.examResources }];
   if (region.includesFederal && federal) groups.push({ name: federal.name, sources: federal.sources, resources: federal.examResources });
   return <details className={styles.sources} id="exam-plan-sources">
     <summary>Originalquellen und Prüfungsunterlagen · {region.name}</summary>
     <p>Die Prüfstände stammen aus den bestehenden Rechtsnachweisen. Sie sind keine neue vollständige Prüfung der Unterlagen und keine Zusage künftiger Prüfungsfragen.</p>
+    {alignment?.sources?.length > 0 && <section aria-labelledby="exam-plan-framework-sources">
+      <h3 id="exam-plan-framework-sources">Nachweise zum Prüfungsrahmen</h3>
+      <p>Am 1. November 2026 wurden die hier bezeichneten Abschnitte abgeglichen. Die Einordnung betrifft ausgewählte Prüfungsbausteine; sie ist keine vollständige Prüfung aller Zulassungs-, Bewertungs- und Anerkennungsregeln. Verbandsangaben sind eigenständig verfasste Erläuterungen und keine amtlichen Originalkataloge.</p>
+      <ul>{alignment.sources.map(source => <li key={source.id}>
+        <a href={source.url} target="_blank" rel="noreferrer">{source.title}</a>
+        <small>{source.publisher} · {source.kind === "norm" ? "Originalregelung" : source.kind === "norm-copy" ? "Originalnorm in bereitgestellter Kopie" : source.kind === "independent-explanation" ? "Eigenständige Erläuterung" : source.kind === "official-explanation" ? "Behördeninformation" : "Ergänzende Einordnung"} · Abschnittsabgleich {formatDate(source.reviewedOn)}</small>
+        <p>{source.section}</p>
+        {alignment.formats.some(format => format.sourceIds.includes(source.id)) && <p>Zuordnung: {alignment.formats.filter(format => format.sourceIds.includes(source.id)).map(format => format.label).join(" · ")}</p>}
+      </li>)}</ul>
+    </section>}
     {groups.map(group => <section key={group.name} aria-label={group.name}>
       <h3>{group.name}</h3>
       <ul>{group.sources.map(source => <li key={`${source.url}:${source.publisher}`}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a><small>{source.publisher} · übernommener Prüfstand {formatDate(source.reviewedOn)}</small></li>)}</ul>
@@ -29,7 +40,7 @@ function Sources({ region, federal }) {
   </details>;
 }
 
-export default function ExamStudyPlan({ data, reviewCatalog }) {
+export default function ExamStudyPlan({ data, reviewCatalog, examAlignment }) {
   const { profile: storedProfile, ready, persistence, saveProfile, clearProfile, saving: accountSaving, error: accountError, accountKey } = useExamProfile();
   const progress = useExamReviewProgress(reviewCatalog);
   const profile = normalizeExamProfile(storedProfile);
@@ -138,6 +149,7 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
   const draftCountry = examCountries.find(country => country.code === draft.country);
   const countryData = data.countries.find(country => country.code === profile?.country);
   const regionData = countryData?.regions.find(region => region.code === profile?.region);
+  const alignment = ready && profile ? examAlignment?.regions?.find(item => item.country === profile.country && item.region === profile.region) : null;
   const isDraftValid = Boolean(normalizeExamProfile(draft));
 
   return <LearningToolLayout title="Dein Prüfungsplan" description="Wissen, regionale Rechtsübungen und praktische Ausbildung für dein bewusst gewähltes Prüfungsziel verbinden." icon="book" category="pruefung-sprache" headingOnly robots="noindex,follow">
@@ -157,6 +169,8 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
       {ready && <p className={styles.note}>{persistence === "account" ? "Dein Prüfungsziel ist in deinem Konto gespeichert und nach der Anmeldung auch auf anderen Geräten verfügbar. Eine Änderung gilt für deine künftige Auswahl; bereits ausdrücklich geöffnete Rechtsansichten bleiben erhalten." : persistence === "device" ? "Dein Prüfungsziel ist eine lokale Geräteauswahl." : "Dein Prüfungsziel gilt nur in dieser Sitzung."}</p>}
       {(notice || accountError) && <p role="status">{notice || accountError}</p>}
     </section>
+
+    {alignment && <ExamRegionPreparation region={alignment} learningCatalog={examAlignment.learningCatalog} />}
 
     {details && regionData && <section className={styles.section} aria-labelledby="exam-plan-law">
       <h2 id="exam-plan-law">Regionales Recht</h2>
@@ -198,6 +212,6 @@ export default function ExamStudyPlan({ data, reviewCatalog }) {
       <h2 id="exam-plan-field">Praxis und örtliche Vorgaben</h2>
       <p>Praktische Ausbildung, betreute Waffenhandhabung, Schießnachweise, Erste-Hilfe-Ausbildung und örtliche Prüfungsanforderungen klärst du mit deiner Ausbildungs- und Prüfungsstelle. Digitales Lernen ersetzt diese Nachweise nicht. Ein gespeichertes Ziel und richtige Quizantworten sind weder eine Prüfungszulassung noch eine Jagdberechtigung.</p>
     </section>
-    {regionData && <Sources region={regionData} federal={countryData.federal} />}
+    {regionData && <Sources region={regionData} federal={countryData.federal} alignment={alignment} />}
   </LearningToolLayout>;
 }
