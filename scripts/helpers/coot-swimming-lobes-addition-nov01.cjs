@@ -2,6 +2,7 @@
 // Positive full-content/photo preservation checks live in test-coot-swimming-lobes-lesson.
 const assert = require('node:assert/strict');
 const { createLoader } = require('./project-module.cjs');
+const { stockenteLamellaeBaselineFixture } = require('./stockente-lamellae-addition-nov01.cjs');
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
 const lessonId = 'schwimmlappen', questionId = 'schwimmlappen-anordnung';
 const sourceURLs = ['https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/blaesshuhn/',
@@ -37,7 +38,7 @@ function cootSwimmingLobesBaselineFixture(overrides = {}) {
       return Object.fromEntries(Object.entries(photos).filter(([id]) => id !== lessonId));
     } };
   }
-  return output;
+  return stockenteLamellaeBaselineFixture(output);
 }
 function beforeCootSwimmingLobesGuide(targets) {
   return targets.map(target => {

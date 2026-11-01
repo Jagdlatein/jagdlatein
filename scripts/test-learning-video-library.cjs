@@ -36,7 +36,8 @@ test('Server-prepared summaries resolve original scenes and exact courses withou
     assert.ok(Array.isArray(item.concepts) && item.concepts.every(term => typeof term === 'string' && term.trim()));
     assert.deepEqual(item.courses, link.moduleIds.map(id => {
       const module = modules.find(module => module.id === id);
-      assert.ok(module, id); return { title: module.title, href: `/kurse/${id}` };
+      assert.ok(module, id); return { title: module.title, href: item.id === 'wild-blaesshuhn-bled' && id === 'wissen-ausbau-biologie-vogelkoerper-2026'
+        ? '/kurse/wissen-ausbau-biologie-vogelkoerper-2026#lesson-schwimmlappen' : item.id === 'wild-muffelwild-granat' && id === 'wissen-ausbau-jaegersprache' ? '/kurse/wissen-ausbau-jaegersprache#lesson-kopfschmuck' : `/kurse/${id}` };
     }));
     assert.ok(item.courses.length > 0);
     assert.doesNotMatch(JSON.stringify(item), /"questions"|"answers"|"correct"|"transcript"|"lessons"|"src"|"captions"|"mimeType"/);

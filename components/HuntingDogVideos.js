@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
+import MediaExamLawLink from "./MediaExamLawLink";
 import MenuChoice from "./MenuChoice";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { dogVideoSources, huntingDogVideoLessons } from "../lib/hunting-dog-video-lessons";
@@ -125,6 +126,7 @@ export default function HuntingDogVideos() {
       </section>
       <Link href="/lernen/videos">Alle Lernvideos</Link>
       <Link href="/lernen/jagdhunde">Jagdhunderassen und ihre Arbeitsgebiete</Link>
+      {lesson && <MediaExamLawLink />}
     </PageMenu>
     {lesson ? <article key={lesson.id} className={styles.videoLesson} id="hundevideo-film">
       <header className={styles.sectionHeader}><h2 ref={heading} tabIndex={-1}>{lesson.title}</h2><p>{lesson.breed} · {Math.ceil(lesson.duration)} Sekunden · ohne Ton, mit Handlungstext</p></header>
