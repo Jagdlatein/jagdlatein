@@ -1,0 +1,58 @@
+{
+  "createdOn": "2026-11-01",
+  "purpose": "Operator-requested mobile download of the completed 15-second promotional video",
+  "durationSeconds": 15,
+  "width": 1080,
+  "height": 1920,
+  "publicPaths": [
+    "/werbung/jagdlatein-15s-2026-11-01.html",
+    "/werbung/jagdlatein-15s-2026-11-01.mp4",
+    "/werbung/jagdlatein-15s-2026-11-01.zip",
+    "/werbung/jagdlatein-15s-2026-11-01.jpg",
+    "/werbung/jagdlatein-15s-2026-11-01.txt"
+  ],
+  "files": [
+    {
+      "path": "/werbung/jagdlatein-15s-2026-11-01.html",
+      "bytes": 4153,
+      "sha256": "6914e0f273be25823afc04b3fa1456ff7b0b8d436c44edb847063c9696e31abc"
+    },
+    {
+      "path": "/werbung/jagdlatein-15s-2026-11-01.jpg",
+      "bytes": 182966,
+      "sha256": "88ff745775230d940868fb82ab8e62f7408b8880427aeb31c617d24deafa3afe"
+    },
+    {
+      "path": "/werbung/jagdlatein-15s-2026-11-01.mp4",
+      "bytes": 10504668,
+      "sha256": "c3bd9d8747ae2b737c13f99a58eb04050d5f20c4aa6758fbf62337f056c9ac0b"
+    },
+    {
+      "path": "/werbung/jagdlatein-15s-2026-11-01.txt",
+      "bytes": 2334,
+      "sha256": "0c1b559bb616de18b5e6b2c74ba58fae0c6da34a8606af7b515faf7a40c9e627"
+    },
+    {
+      "path": "/werbung/jagdlatein-15s-2026-11-01.zip",
+      "bytes": 21735743,
+      "sha256": "f9c2125cf13a15f85e6f842f5bb0346e7c8a7d94acdccdf102abc71de5d9b80f"
+    }
+  ],
+  "originalVideoAuthors": [
+    {
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "author": "Moritz Kohls",
+      "source": "https://commons.wikimedia.org/wiki/File:Galoppierende_Rehe_auf_einem_Feld.webm",
+      "license": "CC BY 4.0"
+    },
+    {
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "author": "NaIzletuSi ™",
+      "source": "https://commons.wikimedia.org/wiki/File:2022-04-19_%C5%A0TARANCAN_LEPORIDAE_Lepus_Europaeus_POLJSKI_ZAJEC_3.webm",
+      "license": "CC BY 3.0"
+    }
+  ],
+  "changes": "Short excerpts at original speed; portrait crop or landscape inset on blurred footage; resizing, dark overlays, typography and montage; original audio removed; original synthesized soundtrack",
+  "access": "Five exact public files only. MP4 download=1 and ZIP set fixed attachment filenames; plain MP4 remains previewable. No new authentication, payment or learning-content permission.",
+  "limitations": "File bytes/headers, isolated middleware and installed Next header resolver checked. No physical mobile/browser storage download asserted."
+}

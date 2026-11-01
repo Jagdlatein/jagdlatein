@@ -11,6 +11,14 @@ const LEARNING_IMAGES = new Set(learningImagePaths);
 const LEARNING_AUDIO = new Set(learningAudioPaths);
 const EXPERIENCE_ASSETS = new Set([...natureAssetPaths, ...mediaExperienceAssetPaths, ...mediaExperienceDocumentationPaths, ...knowledgeExpansionAssetPaths, "/lernen/offline-sw.js"]);
 const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.png", "/apple_touch_icon.png", "/og.png", ...brandingAssetPaths]);
+// Operator-requested promotional download, deliberately five exact public files.
+const PROMO_DOWNLOADS = new Set([
+  "/werbung/jagdlatein-15s-2026-11-01.html",
+  "/werbung/jagdlatein-15s-2026-11-01.mp4",
+  "/werbung/jagdlatein-15s-2026-11-01.zip",
+  "/werbung/jagdlatein-15s-2026-11-01.jpg",
+  "/werbung/jagdlatein-15s-2026-11-01.txt",
+]);
 
 // These exact Pages Router routes run getPaidPageProps before rendering any
 // protected content. Let that live server check own the request instead of
@@ -85,7 +93,7 @@ export async function middleware(req) {
   // Static Files erlauben
   if (
     pathname.startsWith("/_next") ||
-    LEARNING_IMAGES.has(pathname) || LEARNING_AUDIO.has(pathname) || EXPERIENCE_ASSETS.has(pathname) || APP_ICONS.has(pathname) ||
+    LEARNING_IMAGES.has(pathname) || LEARNING_AUDIO.has(pathname) || EXPERIENCE_ASSETS.has(pathname) || APP_ICONS.has(pathname) || PROMO_DOWNLOADS.has(pathname) ||
     pathname.startsWith("/favicon") ||
     pathname.startsWith("/public")
   ) {

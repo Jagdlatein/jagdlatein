@@ -14,10 +14,14 @@ const toHeaders = values => Object.fromEntries(values.map(({ key, value }) => [k
 
 test('Exactly four response safeguards apply globally without restricting scripts, child frames, cameras or media', async () => {
   const entries = await current.headers();
-  assert.equal(entries.length, 1); assert.equal(entries[0].source, '/:path*');
-  assert.deepEqual(toHeaders(entries[0].headers), expected);
+  const global = entries.filter(entry => entry.source === '/:path*');
+  assert.equal(global.length, 1);
+  assert.deepEqual(toHeaders(global[0].headers), expected);
+  const downloads = entries.filter(entry => entry.source !== '/:path*');
+  assert.deepEqual(downloads.map(entry => entry.source), ['/werbung/jagdlatein-15s-2026-11-01.mp4', '/werbung/jagdlatein-15s-2026-11-01.zip']);
+  assert.ok(downloads.every(entry => entry.headers.length === 1 && entry.headers[0].key === 'Content-Disposition'));
   assert.doesNotMatch(expected['content-security-policy'], /(?:script-src|default-src|frame-src|child-src|media-src|connect-src|sandbox)/);
-  assert.ok(!entries[0].headers.some(item => item.key.toLowerCase() === 'permissions-policy'));
+  assert.ok(!global[0].headers.some(item => item.key.toLowerCase() === 'permissions-policy'));
 });
 
 test('Every existing redirect, remote image pattern and public release environment rule stays exact', async () => {

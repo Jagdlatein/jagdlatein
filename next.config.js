@@ -37,6 +37,17 @@ const nextConfig = {
         { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         { key: "X-Content-Type-Options", value: "nosniff" },
       ],
+    }, {
+      source: "/werbung/jagdlatein-15s-2026-11-01.mp4",
+      has: [{ type: "query", key: "download", value: "1" }],
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-15s.mp4"' },
+      ],
+    }, {
+      source: "/werbung/jagdlatein-15s-2026-11-01.zip",
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-15s-Werbepaket.zip"' },
+      ],
     }];
   },
 
