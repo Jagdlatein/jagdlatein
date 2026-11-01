@@ -81,8 +81,8 @@ function openAnatomyQuiz(app) {
   assert.ok(details && !details.props.open); details.props.onToggle({ currentTarget: { open: true } }); app.redraw();
 }
 
-test('All 85 questions have valid answers, substantial feedback and stable IDs', () => {
-  assert.equal(videos.wildlifeVideoQuestionCount, 55);
+test('All 89 questions have valid answers, substantial feedback and stable IDs', () => {
+  assert.equal(videos.wildlifeVideoQuestionCount, 59);
   assert.equal(anatomy.anatomyQuestions.length, 6);
   assert.equal(observation.observationQuestionCount, 24);
   const collections = [videos.wildlifeVideoCases.flatMap(item => item.questions), anatomy.anatomyQuestions, observation.observationCases.flatMap(item => item.stages)];
@@ -95,7 +95,7 @@ test('All 85 questions have valid answers, substantial feedback and stable IDs',
 
 test('Real local WebM/JPEG/GLB assets have correct file signatures and documented licenses', () => {
   const { mediaExperienceAssetPaths } = load('lib/media-experience-asset-paths.js');
-  assert.equal(mediaExperienceAssetPaths.length, 44); assert.equal(new Set(mediaExperienceAssetPaths).size, 44);
+  assert.equal(mediaExperienceAssetPaths.length, 48); assert.equal(new Set(mediaExperienceAssetPaths).size, 48);
   for (const asset of mediaExperienceAssetPaths) {
     const full = path.join(root, 'public', asset); assert.ok(fs.existsSync(full), asset); const data = fs.readFileSync(full);
     if (asset.endsWith('.mp4')) assert.equal(data.subarray(4, 8).toString(), 'ftyp');
@@ -109,8 +109,8 @@ test('Real local WebM/JPEG/GLB assets have correct file signatures and documente
   }
 });
 
-test('All thirty catalog entries deep-link to a valid content ID without answer keys', () => {
-  const { mediaSearchEntries } = load('lib/media-search-entries.js'); assert.equal(mediaSearchEntries.length, 30);
+test('All thirty-two catalog entries deep-link to a valid content ID without answer keys', () => {
+  const { mediaSearchEntries } = load('lib/media-search-entries.js'); assert.equal(mediaSearchEntries.length, 32);
   for (const entry of mediaSearchEntries) {
     assert.equal(Object.hasOwn(entry, 'answer'), false); assert.ok(entry.categories.length); assert.ok(entry.text.length > 50);
     const url = new URL(entry.href, 'https://example.test'); const id = url.searchParams.get('eintrag');
@@ -131,8 +131,8 @@ test('Every video question explains a wrong answer; text alternative and duplica
       if (index < item.questions.length - 1) { const next = app.button('Nächste Frage').props.onClick; next(); next(); app.redraw(); assert.ok(app.content().includes(item.questions[index + 1].question)); staleAnswer(); app.redraw(); }
     }
   }
-  assert.match(app.content(), /55 von 55 Fragen beantwortet · 0 richtig/);
-  app.click('Alle Videofälle neu beginnen'); assert.match(app.content(), /0 von 55 Fragen beantwortet/);
+  assert.match(app.content(), /59 von 59 Fragen beantwortet · 0 richtig/);
+  app.click('Alle Videofälle neu beginnen'); assert.match(app.content(), /0 von 59 Fragen beantwortet/);
 });
 
 test('Observation reveals exactly one stage, rejects stale events and explains all wrong choices', () => {
@@ -189,7 +189,7 @@ test('Direct search links select valid content and unknown observation IDs never
   } finally { global.window = previousWindow; }
 });
 
-test('All eighty-five correct choices receive explanations and correct completion scores', () => {
+test('All eighty-nine correct choices receive explanations and correct completion scores', () => {
   const videoApp = setup('components/WildlifeVideoCases.js');
   for (const item of videos.wildlifeVideoCases) {
     videoApp.click(item.title); videoApp.click('Textfassung gelesen – Fragen öffnen');
@@ -198,7 +198,7 @@ test('All eighty-five correct choices receive explanations and correct completio
       if (index < item.questions.length - 1) videoApp.click('Nächste Frage');
     }
   }
-  assert.match(videoApp.content(), /55 von 55 Fragen beantwortet · 55 richtig/);
+  assert.match(videoApp.content(), /59 von 59 Fragen beantwortet · 59 richtig/);
   const observationApp = setup('components/ObservationWorkshop.js');
   for (const item of observation.observationCases) {
     observationApp.choose(item.id);

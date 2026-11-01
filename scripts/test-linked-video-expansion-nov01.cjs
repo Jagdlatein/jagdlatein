@@ -125,11 +125,11 @@ test('All21 prior full video objects,59 prior questions, lightweight links and o
   const old = historicalLoader(), beforeWild = old('lib/wildlife-video-cases.js').wildlifeVideoCases;
   const beforeDogs = old('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
   assert.equal(beforeWild.length+beforeDogs.length,21); assert.equal([...beforeWild,...beforeDogs].flatMap(item=>item.questions).length,59);
-  assert.deepEqual(videos.wildlifeVideoCases.filter(item=>!addedIds.has(item.id)),beforeWild);
+  assert.deepEqual(videos.wildlifeVideoCases.filter(item=>!addedIds.has(item.id) && !['steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)),beforeWild);
   assert.deepEqual(videos.wildlifeVideoCases.slice(0,beforeWild.length),beforeWild); assert.deepEqual(dogs,beforeDogs);
-  assert.deepEqual(load('lib/learning-video-links.js').learningVideoLinks.filter(item=>!addedIds.has(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
-  assert.equal(videos.wildlifeVideoCases.length+dogs.length,23); assert.equal(videos.wildlifeVideoQuestionCount,55);
-  assert.equal([...videos.wildlifeVideoCases,...dogs].flatMap(item=>item.questions).length,63);
+  assert.deepEqual(load('lib/learning-video-links.js').learningVideoLinks.filter(item=>!addedIds.has(item.id) && !['steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
+  assert.equal(videos.wildlifeVideoCases.length+dogs.length,25); assert.equal(videos.wildlifeVideoQuestionCount,59);
+  assert.equal([...videos.wildlifeVideoCases,...dogs].flatMap(item=>item.questions).length,67);
 });
 
 test('Both whole-frame JPEG posters fully decode at1280by720 without a hidden crop or broken payload', async()=>{
@@ -168,7 +168,7 @@ test('New films resolve precise existing courses, portraits, search entries and 
   const {europeanWildlifeBySlug}=load('lib/european-wildlife-discovery.js');
   const {mediaSearchEntries}=load('lib/media-search-entries.js'), {searchLearning}=load('lib/learning-search.js');
   const {filterLearningVideos}=load('lib/video-library-search.js');
-  assert.equal(library.length,23);
+  assert.equal(library.length,25);
   for (const item of added) {
     const target=new URL(item.course,'https://jagdlatein.invalid'), moduleId=target.pathname.slice(7), course=getLearningModule(moduleId);
     assert.ok(course); if(target.hash) assert.ok(course.lessons.some(lesson=>'#lesson-'+lesson.id===target.hash));
@@ -190,8 +190,11 @@ test('Only the exact4new media files and2attribution documents extend the public
   const old=historicalLoader()('lib/media-experience-asset-paths.js');
   const media=expected.flatMap(item=>[`${dir}/${item.id}.mp4`,`${dir}/${item.id}-vorschau.jpg`]);
   const docs=[`${dir}/mediennachweise.json`,`${dir}/MEDIEN-LIZENZEN.md`];
-  assert.deepEqual(mediaExperienceAssetPaths.filter(value=>!media.includes(value)),old.mediaExperienceAssetPaths);
-  assert.deepEqual(mediaExperienceDocumentationPaths.filter(value=>!docs.includes(value)),old.mediaExperienceDocumentationPaths);
+  const laterDir='/lernen/videos-wildkunde-2026-11-01';
+  const laterMedia=['steinwild-ljubljana','reiherente-petrosawodsk'].flatMap(id=>[`${laterDir}/${id}.mp4`,`${laterDir}/${id}-vorschau.jpg`]);
+  const laterDocs=[`${laterDir}/mediennachweise.json`,`${laterDir}/MEDIEN-LIZENZEN.md`];
+  assert.deepEqual(mediaExperienceAssetPaths.filter(value=>!media.includes(value)&&!laterMedia.includes(value)),old.mediaExperienceAssetPaths);
+  assert.deepEqual(mediaExperienceDocumentationPaths.filter(value=>!docs.includes(value)&&!laterDocs.includes(value)),old.mediaExperienceDocumentationPaths);
   for(const item of media) assert.ok(mediaExperienceAssetPaths.includes(item));
   for(const item of docs) assert.ok(mediaExperienceDocumentationPaths.includes(item));
   assert.equal(mediaExperienceDocumentationPaths.includes(dir),false);

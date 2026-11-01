@@ -1,0 +1,101 @@
+{
+  "reviewedOn": "2026-11-01",
+  "baseline": "1bf28f2c4d288a95457a37ca2543a6cdfc1487d9",
+  "scope": "Zwei echte Lernfilme mit je zwei Beobachtungsfragen, eine neue Vogelbein-Lektion im bestehenden Kurs und gemeinsame Suchbegriffe der Mediathek. Gemeinsame Biologie für CH/AT/DE, keine neue regionale Rechtsfreigabe.",
+  "videos": {
+    "newIds": ["steinwild-ljubljana", "reiherente-petrosawodsk"],
+    "questionsAdded": 4,
+    "fullSourceRecords": "/lernen/videos-wildkunde-2026-11-01/mediennachweise.json",
+    "licenses": "/lernen/videos-wildkunde-2026-11-01/MEDIEN-LIZENZEN.md",
+    "verification": "Commons-Originalseiten und strukturierte Originalmetadaten tatsächlich gelesen. Vollständige Originaldateien außerhalb des Repos heruntergeladen, Bytezahl und SHA-1 gegen Commons abgeglichen. Original und H.264-Ausgabe vollständig dekodiert; jeweils alle 839 Videobilder erhalten. Kontaktbögen und Einzelbilder bei 3/13/23 bzw. 3/11/23 Sekunden visuell geprüft; unabhängig nochmals geprüft und dekodiert. Keine behauptete durchgehende visuelle Wiedergabe, Hör- oder Geräteprüfung.",
+    "steinwild": {
+      "source": "https://commons.wikimedia.org/wiki/File:2023-08-18_ZOO_LJUBLJANA_-_Capra_ibex_ibex.webm",
+      "author": "NaIzletuSi ™",
+      "license": "CC BY 3.0",
+      "sourceRevision": 1177168315,
+      "visible": "Langes unverzweigtes Hornpaar mit nach hinten gerichteten Bögen und kräftigen Querwülsten an der Vorderseite.",
+      "contextAndLimits": "Zoo Ljubljana, Slowenien; Quellen-Titel und Beschreibung nennen den 18., das Datumsfeld den 20. August 2023. Genaues Aufnahmedatum ausdrücklich ungeklärt. Keine freilebende Population, gezählten Lebensjahre oder Gesundheitsdiagnose aus dem Film abgeleitet.",
+      "sourceRole": "Commons dokumentiert die abgeschlossene YouTube-CC-BY-Lizenzprüfung durch MZaplotnik am 7. März 2026. Lizenzprüfer und hochladendes Konto werden nicht mit dem Urheber verwechselt. Keine eigene aktuelle Prüfung der YouTube-Seite behauptet.",
+      "knowledgeClaims": [
+        {
+          "claim": "Vordere Schmuckknoten beziehungsweise Querwülste sind von Jahresringen an der Hornrückseite zu unterscheiden; nicht als gezählte Lebensjahre verwenden.",
+          "sources": [
+            {
+              "organization": "Schweizerischer Nationalpark und SCNAT",
+              "title": "Focus Steinbock: Entwicklung der Hörner",
+              "url": "https://nationalpark.ch/wp-content/uploads/2023/10/Focus_Steinbock.pdf",
+              "actuallyRead": "Physische PDF-Seite 2, Abschnitt Entwicklung der Hörner; auch unabhängig visuell gelesen.",
+              "role": "Fachliche Unterscheidung von Vorderwülsten und hinteren Jahresringen. Keine dort benachbarte Schätzformel oder Zahlenregel übernommen."
+            },
+            {
+              "organization": "Naturpark Beverin",
+              "title": "Der Steinbock im Naturpark Beverin: Imposante Hörner",
+              "url": "https://www.naturpark-beverin.ch/sites/naturpark_beverin/files/2021-10/Wissensheft_Der%20Steinbock%20im%20Naturpark%20Beverin.pdf",
+              "actuallyRead": "Physische PDF-Seite 3, Abschnitt Imposante Hörner; auch unabhängig visuell gelesen.",
+              "role": "Eigenständig formulierte fachliche Bestätigung, dass Schmuckknoten nicht mit Jahresringen übereinstimmen und keine sichere genaue Altersbestimmung liefern. Kein zweites Experiment behauptet."
+            }
+          ]
+        }
+      ],
+      "course": "/kurse/wissen-gams-steinbock#lesson-berg-merkmale",
+      "additionalCourse": "wissen-vertiefung-wild-alpine-winterstrategien",
+      "reviewCorrection": "Die neue Textfassung erklärt die Unterscheidung selbst. Eine anfängliche ungenaue Zuschreibung an den primären Grundkurs wurde vor Veröffentlichung entfernt; der zweite vorhandene Kurs enthält tatsächlich die Hornlektion."
+    },
+    "reiherente": {
+      "author": "Olksolo",
+      "license": "CC BY-SA 4.0",
+      "sourceRevision": 1037775936,
+      "sourceRecord": "/lernen/videos-wildkunde-2026-11-01/mediennachweise.json",
+      "sourceRecordId": "reiherente-petrosawodsk",
+      "visible": "Helle Flanke unter dunklem Rücken und dunklem Kopf, Ansichtswechsel beim Schwimmen. Füße und Gelenke bleiben unter Wasser unsichtbar.",
+      "contextAndLimits": "Originalquelle nennt Aythya fuligula, Französischen Teich in Petrosawodsk, Republik Karelien, Russland, 7. Mai 2025. Neutraler Aufnahmekontext derselben Art; kein aus Schwimmen erfundener Tauchgang, Beutetyp, Alters- oder Gesundheitsbefund.",
+      "course": "/kurse/wissen-federwild-beobachtung#lesson-vogel-merkmale",
+      "additionalCourses": ["wissen-ausbau-biologie-vogelkoerper-2026", "wissen-vertiefung-wild-wasservoegel-jahreslauf"],
+      "boundary": "Mediathek und globale Suchbeschreibung nennen den Vogelbein-Kursbezug ausdrücklich getrennt vom Film, in dem Füße und Gelenke unsichtbar sind. Der verknüpfte vorhandene Ruf ist eine separate Tonaufnahme."
+    }
+  },
+  "lesson": {
+    "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+    "lessonId": "vogelbein",
+    "title": "Knie und Sprunggelenk",
+    "words": 163,
+    "questionsAdded": 1,
+    "cardsAdded": 1,
+    "sourcesAdded": 3,
+    "courseAndDatasetReviewedOnPreserved": "2026-10-16",
+    "newLessonReviewedOn": "2026-11-01",
+    "claims": [
+      {
+        "claim": "Der auffällige untere nach hinten gerichtete Knick ist das Sprung- beziehungsweise Fersengelenk. Das eigentliche Knie liegt höher und häufig unter dem Gefieder.",
+        "sources": ["https://gf.nd.gov/wildlife-notes/look-bird-legs", "https://abcbirds.org/news/why-are-owl-legs-so-long-the-science-behind-those-lengthy-bird-limbs/"]
+      },
+      {
+        "claim": "Unter dem Sprunggelenk führt ein Fußabschnitt zu den Zehen. Die vereinfachte Reihenfolge ist für einen normal auf den Zehen stehenden Vogel erläutert, keine Aussage über jede Pose.",
+        "sources": ["https://gf.nd.gov/wildlife-notes/look-bird-legs", "https://reidparkzoo.org/why-do-birds-knees-bend-backwards/", "https://abcbirds.org/news/why-are-owl-legs-so-long-the-science-behind-those-lengthy-bird-limbs/"]
+      }
+    ],
+    "actualReadSources": [
+      {"organization": "North Dakota Game and Fish Department", "section": "A Look at Bird Legs, erster anatomischer Absatz", "dateRole": "Undatierter Haupttext; Copyright-Fuß ist kein Veröffentlichungsdatum."},
+      {"organization": "Reid Park Zoo", "section": "Why Do Birds’ Knees Bend ‘Backwards’?, vollständige kurze Erklärung", "publicationDate": "2020-07-06"},
+      {"organization": "American Bird Conservancy", "section": "Why Are Owl Legs So Long?, Standing on their toes mit allgemeiner Vogel-/Reiher-Einordnung", "publicationDate": "2021-09-07"}
+    ],
+    "limits": "Drei eigenständig redigierte institutionelle Erklärungen, keine experimentelle Replikation. Keine Eulenkraft-, Temperatur-, Längen-, Diagnose-, Fang- oder Manipulationsanleitung. Keine fremden Bilder übernommen.",
+    "visualAid": "Eigenes dreistufiges Lageschema Knie, Sprunggelenk, Fußabschnitt/Zehen im bestehenden Diagrammtyp. Ausdrücklich vereinfacht und nicht maßstäblich, kein Lehrfoto oder Skelettbefund.",
+    "preservation": "Alle neun bisherigen Lektionen, 39 Fragen, 22 Quellen und das Kursdatum erhalten. Nur hinten angehängt. Tatsächlichen birdBody-Kartenzählwert von 38 auf 39 angepasst."
+  },
+  "discovery": {
+    "change": "Gemeinsame Begriffe und Lesefokus im importfreien learning-video-discovery-Modul; globale Suche und Mediathek verwenden dieselben Angaben für alle 25 Filme.",
+    "visibleBoundaryClarification": "Blässhuhn: Kursbezug Schwimmlappen, Füße im Film unsichtbar. Bisherige 23 Filmobjekte und 63 Fragen bleiben vollständig erhalten.",
+    "limits": "Keine Quizantworten, falschen Optionen, Player oder persönlichen Daten in das Suchmodul aufgenommen; keine zusätzliche Suchoberfläche oder Fenster."
+  },
+  "validation": {
+    "tests": "328 passende unterschiedliche Tests in 32 Dateien, keine übersprungenen Fälle. Finaler Protokollnachweis außerhalb des Repos: work/media-learning-nov01d/tests-final.txt.",
+    "positivePreservation": "Alle 198 vorhandenen Kurse, 2751 alten Kursfragen, 1759 alten Karten in Reihenfolge einschließlich 116 Starterkarten sowie 114 Artenzuordnungen gegen tatsächlichen Git-Baseline verglichen. Nur benannte Ergänzung und ihr Kartenzählwert ausgenommen.",
+    "integration": "Neue Inhalte in echter Kurssuche, Quizbank, Karten, Druck, serverseitigen Kursprops und exportiertem Offlinepaket geprüft. Tatsächlicher Online- und isoliert exportierter Offline-Leser zeigen Text und Lageschema vor geschlossenen Schlussquellen. Gemeinsame Biologie bei allen 51 definierten Prüfungsprofilen erhalten; keine 51 getrennten biologischen Regionalbanken behauptet.",
+    "security": "Nur die vier exakt benannten Film-/Vorschaudateien und zwei Lizenzdokumente zur bestehenden öffentlichen Medienliste ergänzt. Nachbarpfade, private Dateien und API-/Kontozugriff bleiben geschützt. Keine neuen Dienste oder Berechtigungsänderungen.",
+    "independentReview": "Unabhängige Quellen-, Medien-, redaktionelle und technische Gegenprüfung durch /root/media_delivery_nov01; Medienautor /root/media_growth_audit. Quellenrollen und sichtbare Fragebilder tatsächlich erneut gelesen beziehungsweise angesehen. Finaler Build und echte Vercel-Auslieferung werden zusätzlich außerhalb des Repos nachgewiesen.",
+    "foreignFile": "data/learning-expansion-afternoon-2026-10-16.json bleibt unberührt und ungestagt; SHA-256 23e6e8fc8fd6c3e1b5ad115b92036b901d0dc3613332d4edd0deb0c283a607c9."
+  },
+  "counts": {"videos": 25, "wildlifeVideos": 21, "dogVideos": 4, "videoQuestions": 67, "courses": 198, "lessons": 878, "courseQuestions": 2752, "cards": 1760},
+  "coverageLimit": "Die getrennten Medien- und Curriculumzählungen sind keine vollständige fachliche Neuprüfung, keine amtlichen Originalfragen und kein Nachweis vollständiger Jagdprüfungsabdeckung für CH/AT/DE. Regionales Recht unverändert. Kein authentifizierter Produktions-Lerntext, tatsächlicher Offline-Browser, persönlicher Datenspeicher oder physisches Mobilgerät geprüft."
+}

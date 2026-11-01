@@ -1,5 +1,6 @@
 // Historical snapshots remove only this named one-question appendix. Positive
 // full-object preservation is checked independently against Git 873c459.
+const { birdLegBaselineFixture } = require('./bird-leg-addition-nov01.cjs');
 const courseId = 'wissen-federwild-beobachtung', lessonId = 'vogel-lamellen';
 const questionId = 'vogel-lamellen-funktion';
 const sourceURLs = [
@@ -20,6 +21,6 @@ function stockenteLamellaeBaselineFixture(overrides = {}) {
   const key = './learning-wildlife';
   const current = Object.hasOwn(overrides, key) ? overrides[key]
     : require('./project-module.cjs').createLoader(overrides)('lib/learning-wildlife.js');
-  return { ...overrides, [key]: { ...current, wildlifeModules: current.wildlifeModules.map(stripStockenteLamellaeAddition) } };
+  return birdLegBaselineFixture({ ...overrides, [key]: { ...current, wildlifeModules: current.wildlifeModules.map(stripStockenteLamellaeAddition) } });
 }
 module.exports = { courseId, lessonId, questionId, sourceURLs, stripStockenteLamellaeAddition, stockenteLamellaeBaselineFixture };

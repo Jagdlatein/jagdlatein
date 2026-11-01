@@ -3,6 +3,7 @@
 const assert = require('node:assert/strict');
 const { createLoader } = require('./project-module.cjs');
 const { stockenteLamellaeBaselineFixture } = require('./stockente-lamellae-addition-nov01.cjs');
+const { beforeBirdLegGuide, stripBirdLegDataset } = require('./bird-leg-addition-nov01.cjs');
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026';
 const lessonId = 'schwimmlappen', questionId = 'schwimmlappen-anordnung';
 const sourceURLs = ['https://www.lbv.de/ratgeber/naturwissen/artenportraits/detail/blaesshuhn/',
@@ -17,8 +18,8 @@ function stripCootSwimmingLobesAddition(module) {
   };
 }
 function stripCootSwimmingLobesDataset(dataset) {
-  return { ...dataset, modules: dataset.modules.map(stripCootSwimmingLobesAddition),
-    evidence: dataset.evidence.filter(record => !(record.moduleId === courseId && record.lessonId === lessonId)) };
+  return stripBirdLegDataset({ ...dataset, modules: dataset.modules.map(stripCootSwimmingLobesAddition),
+    evidence: dataset.evidence.filter(record => !(record.moduleId === courseId && record.lessonId === lessonId)) });
 }
 function cootSwimmingLobesBaselineFixture(overrides = {}) {
   const key = '../data/learning-expansion-biology-2026-10-16.json';
@@ -41,7 +42,7 @@ function cootSwimmingLobesBaselineFixture(overrides = {}) {
   return stockenteLamellaeBaselineFixture(output);
 }
 function beforeCootSwimmingLobesGuide(targets) {
-  return targets.map(target => {
+  return beforeBirdLegGuide(targets).map(target => {
     if (target.moduleId !== courseId) return target;
     assert.equal(target.flashcardCount, 38);
     return { ...target, flashcardCount: 37 };

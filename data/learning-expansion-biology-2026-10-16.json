@@ -1500,6 +1500,33 @@
             "schwimmlappen"
           ],
           "supports": "Beschreibung tatsächlich direkt gelesen: verbreiterte Zehen mit Schwimmlappen statt Schwimmhäuten und Zusammenhang mit der Fortbewegung im Wasser. Zweite eigenständig verfasste Funktionsbeschreibung neben RSPB, keine Messreihe. Das dortige schneller wird nicht als Leistungsvergleich übernommen; keine Alters-, Größen-, Gelege- oder Verbreitungswerte."
+        },
+        {
+          "label": "North Dakota Game and Fish Department: A Look at Bird Legs",
+          "url": "https://gf.nd.gov/wildlife-notes/look-bird-legs",
+          "organization": "North Dakota Game and Fish Department",
+          "supports": "Eigenständig verfasste Anatomieerklärung einer staatlichen Wildtierfachbehörde: sichtbarer unterer Knick als Sprung-/Fersengelenk, Knie höher und häufig gefiederverdeckt; Zehenkontakt. Undatierter Haupttext, kein Veröffentlichungsjahr aus dem Copyright-Fuß abgeleitet. Keine Zehenzahl, Krallenfunktion oder US-Rechtsangabe übernommen.",
+          "lessonIds": [
+            "vogelbein"
+          ]
+        },
+        {
+          "label": "Reid Park Zoo: Why Do Birds’ Knees Bend ‘Backwards’?",
+          "url": "https://reidparkzoo.org/why-do-birds-knees-bend-backwards/",
+          "organization": "Reid Park Zoo",
+          "supports": "Eigenständige Anatomieerklärung vom 6. Juli 2020: vermeintliches Knie ist Sprunggelenk; das Knie liegt höher, Gewicht beim Stehen auf den Zehen. Keine Bilder übernommen.",
+          "lessonIds": [
+            "vogelbein"
+          ]
+        },
+        {
+          "label": "American Bird Conservancy: Why Are Owl Legs So Long?",
+          "url": "https://abcbirds.org/news/why-are-owl-legs-so-long-the-science-behind-those-lengthy-bird-limbs/",
+          "organization": "American Bird Conservancy",
+          "supports": "Eigenständig verfasster Fachtext vom 7. September 2021, Abschnitt Standing on their toes: unterer sichtbarer Gelenkknick ist Sprunggelenk; darunter Fußabschnitt, Knie und Oberbein häufig unter Gefieder. Keine Eulenkräfte, Leistungs-, Temperatur- oder Verletzungsangaben und keine Bilder übernommen.",
+          "lessonIds": [
+            "vogelbein"
+          ]
         }
       ],
       "lessons": [
@@ -1609,6 +1636,19 @@
           ],
           "takeaway": "Blässhuhnzehen tragen einzelne Schwimmlappen statt durchgehender Schwimmhäute zwischen den Zehen; der Bau unterstützt das Schwimmen.",
           "exercise": "Verfolge im Detailfoto eine Zehe. Unterscheide ihren seitlichen Hautlappen von einer Hautverbindung zur Nachbarzehe."
+        },
+        {
+          "id": "vogelbein",
+          "title": "Knie und Sprunggelenk",
+          "reviewedOn": "2026-11-01",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bei einem stehenden Vogel kann ein deutlich sichtbarer Knick im unteren Bein wie ein nach hinten gebeugtes Knie wirken. Anatomisch handelt es sich dort jedoch um das Sprunggelenk, auch Fersengelenk genannt. Das eigentliche Knie liegt weiter oben, näher am Körper, und ist meist von Gefieder verdeckt. Die sichtbare Beinkontur zeigt deshalb nicht die Lage sämtlicher Gelenke.",
+            "Auch der Abschnitt unter diesem Sprunggelenk ist nicht einfach ein menschlicher Unterschenkel: Er gehört zum verlängerten Fußabschnitt und führt zu den Zehen. Beim normalen Stehen auf den Zehen bleibt dieser Abschnitt über dem Boden. Vergleiche deshalb die Gelenkfolge vom Körper zu den Zehen, statt allein nach der Höhe eines auffälligen Knicks zu benennen.",
+            "Für eine Prüfungsantwort trennst du äußere Ansicht und anatomische Zuordnung. Beschreibe zuerst den sichtbaren Beinabschnitt; kennzeichne ein durch Federn oder Wasser verdecktes Gelenk als nicht einsehbar. Die Erklärung ist keine Anleitung, einen Vogel zum Untersuchen zu fangen oder ein Gelenk zu bewegen. Aus einer einzelnen Haltung folgen weder eine sichere Verletzungsdiagnose noch genaue Knochenlängen."
+          ],
+          "takeaway": "Der auffällige untere Knick ist das Sprunggelenk; das Knie liegt höher und ist häufig vom Gefieder verdeckt.",
+          "exercise": "Eigene Papierübung: Ordne Körper, meist verdecktes Knie, Sprunggelenk und Zehen in dieser Reihenfolge. Markiere an einer vorhandenen Vogelaufnahme nur die tatsächlich einsehbaren Abschnitte; ergänze keine Knochenmaße."
         }
       ],
       "questions": [
@@ -2118,6 +2158,19 @@
           ],
           "answer": 3,
           "explain": "Beim Blässhuhn liegen die gelappten Hautsäume an den einzelnen Zehen. Sie bilden keine durchgehende Schwimmhaut zwischen benachbarten Zehen. Die Lappen unterstützen das Schwimmen; ein Standbild des Fußbaus misst aber weder die Bewegung noch eine Schwimmleistung."
+        },
+        {
+          "id": "vogelbein-gelenk",
+          "lessonId": "vogelbein",
+          "q": "Welches Gelenk ist der auffällige, nach hinten abgewinkelte Knick im unteren Vogelbein?",
+          "options": [
+            "Das Sprunggelenk.",
+            "Das Kniegelenk.",
+            "Das Hüftgelenk.",
+            "Das Zehengrundgelenk."
+          ],
+          "answer": 0,
+          "explain": "Der sichtbare untere Knick entspricht dem Sprung- beziehungsweise Fersengelenk. Das Knie liegt weiter oben und bleibt häufig unter dem Gefieder verborgen. Unterhalb des Sprunggelenks folgt ein Fußabschnitt zu den Zehen; die äußere Kontur ist keine vollständige Skelettansicht."
         }
       ]
     },
@@ -4642,6 +4695,27 @@
             "https://www.rspb.org.uk/birds-and-wildlife/eurasian-coot": "How to identify beschreibt die Unterstützung des Schwimmens durch die Zehenlappen. Keine Widerstands- oder Antriebswerte werden genannt oder übernommen.",
             "https://www.bluehendesoesterreich.at/naturlexikon/blaesshuhn": "Beschreibung verbindet die verbreiterten Zehen und Lappen mit der Fortbewegung im Wasser. Die vergleichende Formulierung schneller wird nicht gelehrt; das Funktionsprinzip wird bescheiden als Unterstützung erklärt. Die Bildgrenzen sind die ausdrücklich begrenzte eigene Beobachtung der getrennten Fotoaufnahme."
           }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "vogelbein",
+      "claims": [
+        {
+          "claim": "Der nach hinten abgewinkelte sichtbare untere Knick entspricht dem Sprung- oder Fersengelenk. Das Knie liegt höher am Körper und ist häufig von Gefieder verdeckt.",
+          "sourceUrls": [
+            "https://gf.nd.gov/wildlife-notes/look-bird-legs",
+            "https://abcbirds.org/news/why-are-owl-legs-so-long-the-science-behind-those-lengthy-bird-limbs/"
+          ]
+        },
+        {
+          "claim": "Unter dem Sprunggelenk liegt ein Fußabschnitt zu den Zehen. Bei einem auf den Zehen stehenden Vogel bleibt dieser Abschnitt oberhalb des Bodens. Das vereinfachte Lageschema ist keine maßstäbliche Skelettansicht und keine Diagnose.",
+          "sourceUrls": [
+            "https://gf.nd.gov/wildlife-notes/look-bird-legs",
+            "https://reidparkzoo.org/why-do-birds-knees-bend-backwards/",
+            "https://abcbirds.org/news/why-are-owl-legs-so-long-the-science-behind-those-lengthy-bird-limbs/"
+          ]
         }
       ]
     }

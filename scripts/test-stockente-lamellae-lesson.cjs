@@ -3,7 +3,9 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { birdLegBaselineFixture, beforeBirdLegGuide } = require('./helpers/bird-leg-addition-nov01.cjs');
+const createLoader = overrides => createProjectLoader(birdLegBaselineFixture(overrides));
 const { courseId, lessonId, questionId: rawQuestionId, sourceURLs, stripStockenteLamellaeAddition: strip,
   stockenteLamellaeBaselineFixture } = require('./helpers/stockente-lamellae-addition-nov01.cjs');
 const revision = '873c459ffb3ac538301bb3f467cdf8738f3e3a97', questionId = `${courseId}-${rawQuestionId}`;
@@ -97,7 +99,7 @@ test('All114 wildlife guide objects retain their full fields and existing course
   const guides=load('lib/wildlife-learning-guide.js'),previous=old('lib/wildlife-learning-guide.js');
   assert.deepEqual(guides.wildlifeGuideTargets,previous.wildlifeGuideTargets);
   const slugs=Object.keys(load('lib/european-wildlife-discovery.js').europeanWildlifeBySlug);assert.equal(slugs.length,114);
-  for(const slug of slugs)assert.deepEqual(guides.getWildlifeLearningGuide(slug),previous.getWildlifeLearningGuide(slug).map(target=>target.moduleId===courseId?{...target,flashcardCount:target.flashcardCount+1}:target),slug);
+  for(const slug of slugs)assert.deepEqual(beforeBirdLegGuide(guides.getWildlifeLearningGuide(slug)),previous.getWildlifeLearningGuide(slug).map(target=>target.moduleId===courseId?{...target,flashcardCount:target.flashcardCount+1}:target),slug);
 });
 
 test('The actual reader keeps the entire explanation first and closes its final source panel with the new lesson date', () => {

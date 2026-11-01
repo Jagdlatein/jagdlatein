@@ -6,6 +6,7 @@ const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
 const { stockenteLamellaeBaselineFixture } = require('./helpers/stockente-lamellae-addition-nov01.cjs');
+const { beforeBirdLegGuide, stripBirdLegDataset } = require('./helpers/bird-leg-addition-nov01.cjs');
 const createLoader = overrides => createProjectLoader(stockenteLamellaeBaselineFixture(overrides));
 const revision = '6cb07b1600990c94793b78e65e06db0365ac1115';
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026', lessonId = 'schwimmlappen';
@@ -33,7 +34,7 @@ function historicalLoader() {
   return historic;
 }
 const load = createLoader(), old = historicalLoader();
-const raw = load('data/learning-expansion-biology-2026-10-16.json'), beforeRaw = old('data/learning-expansion-biology-2026-10-16.json');
+const raw = stripBirdLegDataset(load('data/learning-expansion-biology-2026-10-16.json')), beforeRaw = old('data/learning-expansion-biology-2026-10-16.json');
 const curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId), lesson = course.lessons.find(item => item.id === lessonId);
 const flashcards = load('lib/learning-flashcards.js'), cards = flashcards.getFlashcards();
 const photos = load('lib/lesson-photos-server.js').getCourseLessonPhotos(course), photo = photos[lessonId]?.[0];
@@ -141,7 +142,7 @@ test('Search, course props and all114 old guide targets stay exact apart from th
   const guides = load('lib/wildlife-learning-guide.js'), previousGuides = old('lib/wildlife-learning-guide.js');
   assert.deepEqual(guides.wildlifeGuideTargets, previousGuides.wildlifeGuideTargets);
   const slugs = Object.keys(load('lib/european-wildlife-discovery.js').europeanWildlifeBySlug); assert.equal(slugs.length, 114);
-  for (const slug of slugs) assert.deepEqual(guides.getWildlifeLearningGuide(slug), previousGuides.getWildlifeLearningGuide(slug).map(target => target.moduleId === courseId ? { ...target, flashcardCount: target.flashcardCount + 1 } : target), slug);
+  for (const slug of slugs) assert.deepEqual(beforeBirdLegGuide(guides.getWildlifeLearningGuide(slug)), previousGuides.getWildlifeLearningGuide(slug).map(target => target.moduleId === courseId ? { ...target, flashcardCount: target.flashcardCount + 1 } : target), slug);
 });
 
 test('The actual online reader places photo, complete lesson and visible limits before its closed final scientific/photo sources', () => {

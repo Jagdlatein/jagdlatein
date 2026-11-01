@@ -88,18 +88,18 @@ test('Four exact new scenes resolve to their existing course and only establishe
 test('Every old wildlife and dog object, all 41 old questions and their order match Git 2f5d806 exactly', () => {
   assert.equal(baselineWild.length, 11); assert.equal(baselineDogs.length, 4);
   assert.equal([...baselineWild, ...baselineDogs].flatMap(item => item.questions).length, 41);
-  assert.deepEqual(wildlifeVideoCases.filter(item => !ids.has(item.id) && !examIds.has(item.id) && !['muffelwild-granat', 'graugans-dresden'].includes(item.id)), baselineWild);
+  assert.deepEqual(wildlifeVideoCases.filter(item => !ids.has(item.id) && !examIds.has(item.id) && !['muffelwild-granat', 'graugans-dresden', 'steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)), baselineWild);
   assert.deepEqual(wildlifeVideoCases.slice(0, baselineWild.length), baselineWild);
   assert.deepEqual(huntingDogVideoLessons, baselineDogs);
   assert.deepEqual(wildlifeVideoCases.filter(item => ids.has(item.id)), added);
   const examCases = load('lib/wildlife-video-expansion-exam-2026-11-01.js').wildlifeVideoExamExpansionNov01Cases;
   assert.deepEqual(examCases.map(item => item.id), [...examIds]);
   assert.deepEqual(wildlifeVideoCases.filter(item => examIds.has(item.id)), examCases);
-  assert.equal(wildlifeVideoCases.length, 19);
+  assert.equal(wildlifeVideoCases.length, 21);
   assert.equal(huntingDogVideoLessons.length, 4);
-  assert.equal(wildlifeVideoQuestionCount, 55);
-  assert.equal([...wildlifeVideoCases, ...huntingDogVideoLessons].flatMap(item => item.questions).length, 63);
-  assert.equal(new Set(wildlifeVideoCases.map(item => item.id)).size, 19);
+  assert.equal(wildlifeVideoQuestionCount, 59);
+  assert.equal([...wildlifeVideoCases, ...huntingDogVideoLessons].flatMap(item => item.questions).length, 67);
+  assert.equal(new Set(wildlifeVideoCases.map(item => item.id)).size, 21);
   assert.deepEqual(wildlifeVideoAssetPaths, wildlifeVideoCases.flatMap(item => [item.src, item.poster]));
 });
 
@@ -145,7 +145,7 @@ test('Each added scene is an exact lightweight directory entry and links to the 
   const { getLearningVideoLibrary } = load('lib/learning-video-library.js');
   const { learningVideoLinks, getCourseVideoLinks, getWildlifeVideoLinks } = load('lib/learning-video-links.js');
   const library = getLearningVideoLibrary();
-  assert.equal(library.length, 23);
+  assert.equal(library.length, 25);
   for (const [index, item] of added.entries()) {
     const target = expected[index];
     const summary = library.find(value => value.id === `wild-${item.id}`);
