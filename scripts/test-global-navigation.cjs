@@ -381,6 +381,7 @@ test('Law navigation returns through statute, topic and region without mixing an
 
 test('Dock Back preserves each committed topic, case, motif, season and review selection in focused learning tools', () => {
   const tools = [
+    ['/lernen/videos', '?bereich=wild', '?bereich=hund'],
     ['/lernen/spurenwerkstatt', '?eintrag=biber-nagespur', '?eintrag=reh-schnee'],
     ['/lernen/wildbret-stuecke', '?eintrag=hals', '?eintrag=schulter'],
     ['/lernen/pflanzenatlas', '?eintrag=rotbuche&jahreszeit=sommer', '?eintrag=rotbuche&jahreszeit=winter'],
@@ -407,6 +408,19 @@ test('Dock Back preserves each committed topic, case, motif, season and review s
     s.render().props.children[0].props.onClick();
     assert.equal(s.destination, base + first, base); s.unmount();
   }
+});
+
+test('Video library Back distinguishes area selections while applied search context remains one menu stop', () => {
+  const base='/lernen/videos', wild=`${base}?bereich=wild`, dogs=`${base}?bereich=hund`;
+  const s=setup(base,['/lernen']);
+  s.route(wild);s.route(dogs);s.route(`${dogs}&q=Spurlaut`);s.route(`${dogs}&q=Sichtlaut`);
+  assert.deepEqual(s.history,['/lernen',base,wild,`${dogs}&q=Sichtlaut`]);
+  s.render().props.children[0].props.onClick();assert.equal(s.destination,wild);
+  const native=setup(base,['/lernen']);native.route(wild);native.route(dogs);native.route(wild);
+  native.render().props.children[0].props.onClick();assert.equal(native.destination,base);
+  const immediate=setup(base,['/lernen']);immediate.route(wild);immediate.navigateBeforeEffects(dogs);
+  immediate.render().props.children[0].props.onClick();assert.equal(immediate.destination,wild);
+  s.unmount();native.unmount();immediate.unmount();
 });
 
 test('Daily review Back follows only committed mode and category steps while context, native history and immediate Back keep their stop', () => {

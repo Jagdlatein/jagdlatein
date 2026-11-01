@@ -126,7 +126,7 @@ test('Actual course rendering exposes exact direct video links only inside the e
     './LearningToolLayout': { __esModule: true, default: ({ children }) => React.createElement('main', null, children) },
     './PageMenu': { __esModule: true, default: ({ children }) => React.createElement('aside', { 'data-lower-menu': true }, children), closePageMenu() {} },
     '../lib/learning-media': { getLearningMedia: () => null },
-    './LearningMedia': { LearningCover: noop, LearningDiagram: noop, BreedGallery: noop, WildlifeGallery: noop },
+    './LearningMedia': { LearningCover: noop, LearningDiagram: noop, BreedGallery: noop, WildlifeGallery: noop, CoursePhotoSources: noop },
   })('components/LearningCourse.js').default;
   const selected = learningModules.filter(module => getCourseVideoLinks(module.id).length);
   const unmatched = learningModules.find(module => !getCourseVideoLinks(module.id).length);

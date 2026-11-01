@@ -69,7 +69,11 @@ test('Actual old and new scene pages use the right MIME, complete transcript, ho
       assert.equal(footer.tagName, 'DETAILS'); assert.equal(footer.open, false);
       assert.ok(footer.textContent.includes(scene.author));
       assert.ok(footer.querySelector(`a[href="${scene.source}"]`));
-      if (scene.reviewedOn) { assert.match(footer.textContent, /26\. Oktober 2026/); assert.doesNotMatch(footer.textContent, /4\. Oktober 2026|Rothirsch – waldwissen/); }
+      if (scene.reviewedOn) {
+        const expectedDate = new Intl.DateTimeFormat('de-CH', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${scene.reviewedOn}T00:00:00Z`));
+        assert.ok(footer.textContent.includes(expectedDate), scene.id);
+        assert.doesNotMatch(footer.textContent, /4\. Oktober 2026|Rothirsch – waldwissen/);
+      }
       else assert.match(footer.textContent, /4\. Oktober 2026/);
       assert.ok(document.querySelector(`aside a[href="${scene.course}"]`));
     } finally { dom.window.close(); }

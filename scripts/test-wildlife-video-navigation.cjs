@@ -65,7 +65,8 @@ function answer(h, item, index = questionNumber(h) - 1) {
 
 // These checks preserve authored content and event behavior; they do not assert
 // a new factual review or physical device playback.
-test('All eleven direct scenes retain exact media, transcripts, observations, licenses and thirty-three explanations with one lower picker', t => {
+test('All fifteen direct scenes retain exact media, transcripts, observations, licenses and forty-five explanations with one lower picker', t => {
+  assert.equal(cases.length, 15); assert.equal(wildlifeVideoQuestionCount, 45);
   const h = fixture(t);
   for (const item of cases) {
     history(h, { eintrag: item.id });
@@ -78,7 +79,11 @@ test('All eleven direct scenes retain exact media, transcripts, observations, li
     const body = h.nodes(node => node.type === 'section' && node.props['aria-labelledby'] === 'video-fall')[0];
     for (const fact of [item.species, item.location, ...item.observations]) assert.ok(text(body).includes(fact));
     const footer = nodes(body, node => node.type === 'details' && node.props.id !== 'video-textfassung')[0];
-    assert.ok(footer && !footer.props.open); assert.match(text(footer), item.reviewedOn ? /abgeglichen am 26\. Oktober 2026/ : /Geprüft am 4\. Oktober 2026/);
+    assert.ok(footer && !footer.props.open);
+    if (item.reviewedOn) {
+      const reviewedDate = new Intl.DateTimeFormat('de-CH', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${item.reviewedOn}T00:00:00Z`));
+      assert.ok(text(footer).includes(`abgeglichen am ${reviewedDate}`), `${item.id}: exact scene review date`);
+    } else assert.match(text(footer), /Geprüft am 4\. Oktober 2026/);
     assert.ok(text(footer).includes(item.author));
     for (const href of [item.source, item.licenseUrl, ...(item.authorUrl ? [item.authorUrl] : [])]) assert.ok(nodes(footer, node => node.props?.href === href).length);
     assert.ok(nodes(body, node => node.type === 'p' && text(node).includes('Unsichtbare Nahrung, exakte Altersjahre')).length);
@@ -95,7 +100,7 @@ test('All eleven direct scenes retain exact media, transcripts, observations, li
       if (index < item.questions.length - 1) { const next = button(h, 'Nächste Frage').props.onClick; next(); next(); h.render(); }
     }
   }
-  assert.equal(answered(h), wildlifeVideoQuestionCount); assert.match(text(menu(h)), /33 von 33 Fragen beantwortet · 0 richtig/);
+  assert.equal(answered(h), wildlifeVideoQuestionCount); assert.match(text(menu(h)), /45 von 45 Fragen beantwortet · 0 richtig/);
   assert.equal(h.calls.length, 0, 'Existing URLs and local quiz steps add no synthetic navigation');
 });
 

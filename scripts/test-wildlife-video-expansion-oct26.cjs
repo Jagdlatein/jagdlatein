@@ -41,14 +41,15 @@ test('Six bounded new original scenes resolve to the exact existing species and 
 });
 
 test('The five original video objects, all fifteen old questions and their ordering remain exact', () => {
-  const old = wildlifeVideoCases.filter(item => !ids.has(item.id));
+  const old = wildlifeVideoCases.filter(item => ['fuchs', 'rotwild', 'schwarzwild', 'stockente', 'rehwild'].includes(item.id));
   assert.deepEqual(old.map(item => item.id), ['fuchs', 'rotwild', 'schwarzwild', 'stockente', 'rehwild']);
   assert.equal(hash(old), '2da5832fd49a5d9d100f4e00ecc158a1360624f03b377b5aba9ccc61abcb2a27');
   assert.equal(old.flatMap(item => item.questions).length, 15);
-  assert.equal(wildlifeVideoCases.length, 11);
-  assert.equal(wildlifeVideoQuestionCount, 33);
+  const later = load('lib/wildlife-video-expansion-2026-11-01.js').wildlifeVideoExpansionNov01Cases;
+  assert.equal(wildlifeVideoCases.length, 11 + later.length);
+  assert.equal(wildlifeVideoQuestionCount, 33 + later.flatMap(item => item.questions).length);
   assert.deepEqual(wildlifeVideoCases.filter(item => ids.has(item.id)), added);
-  assert.equal(new Set(wildlifeVideoCases.map(item => item.id)).size, 11);
+  assert.equal(new Set(wildlifeVideoCases.map(item => item.id)).size, wildlifeVideoCases.length);
   assert.deepEqual(wildlifeVideoAssetPaths, wildlifeVideoCases.flatMap(item => [item.src, item.poster]));
 });
 
@@ -103,7 +104,7 @@ test('The existing video directory and page props expose each exact new scene wi
     assert.equal(summary.duration, item.duration);
     assert.equal(summary.href, `/lernen/wildtier-videofaelle?eintrag=${item.id}#video-fall`);
     assert.equal(summary.src, undefined);
-    assert.equal(summary.poster, undefined);
+    assert.equal(summary.poster, item.poster);
     assert.equal(summary.questions, undefined);
     assert.equal(summary.transcript, undefined);
   }
