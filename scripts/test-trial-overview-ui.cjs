@@ -192,10 +192,24 @@ test('Malformed or oversized provider payloads cannot become a displayed custome
   assert.equal(h.exports.validTrialOverview(body()), true);
 });
 
+test('Only ongoing access stages are accepted by the active overview', () => {
+  const h = harness(() => {});
+  for (const stage of ['trial', 'regular', 'grace']) assert.equal(h.exports.validTrialOverview(body([{ ...item(), stage }])), true);
+  for (const stage of ['ended', 'cancelled', 'paused', 'review']) assert.equal(h.exports.validTrialOverview(body([{ ...item(), stage }])), false);
+});
+
+test('An empty filtered window says no active matches and still explains the older-record boundary', async () => {
+  const h = harness(() => Promise.resolve(response(body([], { windowLimited: true, olderRecordsAvailable: true }))));
+  h.render(); h.advance(); await flush(); const rendered = text(h.render(true));
+  assert.match(rendered, /Keine aktiven Abos im geprüften Live-Bestand gefunden/);
+  assert.match(rendered, /Ältere aktive Abos können fehlen/);
+  assert.doesNotMatch(rendered, /Noch keine bestätigten Testabos/); h.unmount();
+});
+
 test('A bounded result window is labelled without inventing a global customer count', async () => {
   const h = harness(() => Promise.resolve(response(body([item()], { windowLimited: true, olderRecordsAvailable: true }))));
   h.render(); h.advance(); await flush(); const rendered = text(h.render(true));
-  assert.match(rendered, /bis zu\s+200\s+aktuelle Abos begrenzt/); assert.match(rendered, /Ältere Einträge können fehlen/);
+  assert.match(rendered, /prüft bis zu\s+200\s+aktuelle Aboeinträge/); assert.match(rendered, /Ältere aktive Abos können fehlen/);
   assert.doesNotMatch(rendered, /insgesamt 200|200 Kunden/); h.unmount();
 });
 

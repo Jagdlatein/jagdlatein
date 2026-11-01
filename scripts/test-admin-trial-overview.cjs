@@ -196,18 +196,18 @@ test('A cancelled PayPal subscription retains its actually funded regular interv
   assert.equal(result.items[0].firstRegularAt, '2026-10-13T12:00:00.000Z'); assert.equal(result.items[0].trialUntil, '2026-10-16T12:00:00.000Z');
 });
 
-for (const [label, pp, payments, expected] of [
-  ['cancelled free period', { status: 'CANCELLED' }, [], 'cancelled'],
-  ['paused free period', { status: 'SUSPENDED' }, [], 'paused'],
-  ['ended trial without payment', { trial_started_at: '2026-10-10T12:00:00.000Z', trial_until: '2026-10-13T12:00:00.000Z' }, [], 'ended'],
-  ['unverified trial schedule', { review_reason: 'trial_schedule_changed' }, [], 'review'],
-  ['unknown status', { status: 'WHATEVER' }, [], 'review'],
-  ['extended unsupported trial', { trial_until: '2027-10-16T12:00:00.000Z' }, [], 'review'],
-  ['zero trial event pretending to fund access', { paid_until: '2026-11-13T12:00:00.000Z' }, [payment({ amount: '0.00' })], 'review'],
-  ['refunded payment pretending to fund access', { paid_until: '2026-11-13T12:00:00.000Z' }, [payment({ status: 'REFUNDED' })], 'review'],
-]) test(`PayPal ${label} is not confused with a successfully paid renewal`, async () => {
+for (const [label, pp, payments] of [
+  ['cancelled free period', { status: 'CANCELLED' }, []],
+  ['paused free period', { status: 'SUSPENDED' }, []],
+  ['ended trial without payment', { trial_started_at: '2026-10-10T12:00:00.000Z', trial_until: '2026-10-13T12:00:00.000Z' }, []],
+  ['unverified trial schedule', { review_reason: 'trial_schedule_changed' }, []],
+  ['unknown status', { status: 'WHATEVER' }, []],
+  ['extended unsupported trial', { trial_until: '2027-10-16T12:00:00.000Z' }, []],
+  ['zero trial event pretending to fund access', { paid_until: '2026-11-13T12:00:00.000Z' }, [payment({ amount: '0.00' })]],
+  ['refunded payment pretending to fund access', { paid_until: '2026-11-13T12:00:00.000Z' }, [payment({ status: 'REFUNDED' })]],
+]) test(`PayPal ${label} is hidden rather than displayed as active access`, async () => {
   const result = await fixture({ paypal: [paypal(pp)], payments }).overview();
-  assert.equal(result.items[0].stage, expected); assert.equal(result.items[0].accessUntil, null);
+  assert.deepEqual(result.items, []); assert.equal(result.hasMore, false);
 });
 
 test('Apple preserves the original free period after transitioning to regular access', async () => {
@@ -232,7 +232,7 @@ test('Apple billing grace is separate from a freshly paid regular period', async
 test('A revoked or mismatched latest Apple transaction cannot manufacture regular access', async () => {
   for (const overrides of [{ revoked_at: iso(NOW) }, { app_account_token: NEW_GENERATION }, { is_upgraded: true }]) {
     const result = await fixture({ apple: [apple()], transactions: [history()[0], appleTransaction(overrides)] }).overview();
-    assert.equal(result.items[0].stage, 'review'); assert.equal(result.items[0].accessUntil, null);
+    assert.deepEqual(result.items, []); assert.equal(result.hasMore, false);
   }
 });
 
@@ -261,7 +261,8 @@ test('Current ownership generation filters stale, deleted and recreated email re
 
 test('Deletion during detail reads prevents the response from exposing the old owner email', async () => {
   const f = fixture({ paypal: [paypal()], deleteAfterInitialProfiles: true });
-  assert.deepEqual((await f.overview()).items, []);
+  const result = await f.overview('limit=1');
+  assert.deepEqual(result.items, []); assert.equal(result.hasMore, false);
 });
 
 test('The combined page is stable, bounded and does not assert an unbounded total', async () => {
@@ -309,9 +310,43 @@ test('An earlier malformed zero-value payment cannot hide a later supported regu
   assert.equal(result.items[0].stage, 'regular'); assert.equal(result.items[0].firstRegularAt, '2026-10-14T11:00:00.000Z');
 });
 
-test('An unknown plan with stored dates is displayed for review and grants no reported trial coverage', async () => {
+test('An unknown plan with stored dates is hidden and grants no reported trial coverage', async () => {
   const result = await fixture({ paypal: [paypal({ plan_id: 'P-UNKNOWN12345' })] }).overview();
-  assert.equal(result.items[0].stage, 'review'); assert.equal(result.items[0].accessUntil, null);
+  assert.deepEqual(result.items, []); assert.equal(result.hasMore, false);
+});
+
+test('Hidden newer contracts never consume active page positions or create an empty next page', async () => {
+  const hidden = ['CANCELLED', 'SUSPENDED', 'EXPIRED', 'APPROVED'].map((status, index) => paypal({
+    subscription_id: `I-HIDDEN${index}12345`, status, created_at: iso(NOW - index),
+  }));
+  const f = fixture({ paypal: [...hidden, paypal({ created_at: iso(NOW - 10000) })],
+    apple: [apple({ created_at: iso(NOW - 11000) })], transactions: history() });
+  const first = await f.overview('limit=1'), second = await f.overview('limit=1&offset=1'), beyond = await f.overview('limit=1&offset=2');
+  assert.deepEqual(first.items.map(row => row.id), ['paypal:Production:I-TRIAL12345']); assert.equal(first.hasMore, true);
+  assert.deepEqual(second.items.map(row => row.id), ['apple:Production:101']); assert.equal(second.hasMore, false);
+  assert.deepEqual(beyond.items, []); assert.equal(beyond.hasMore, false);
+});
+
+test('Access ending exactly now, invalid access dates and inactive Apple states are hidden', async () => {
+  const expired = await fixture({ paypal: [paypal({ trial_until: iso(NOW) })],
+    apple: [apple({ access_until: iso(NOW) })], transactions: history() }).overview();
+  assert.deepEqual(expired.items, []); assert.equal(expired.hasMore, false);
+  for (const overrides of [{ access_until: 'invalid' }, { access_until: null }, { status: 2 }, { status: 3 }, { status: 5 }]) {
+    const result = await fixture({ apple: [apple(overrides)], transactions: history() }).overview();
+    assert.deepEqual(result.items, []); assert.equal(result.hasMore, false);
+  }
+});
+
+test('An empty active result preserves the older-record warning and bounded evidence reads', async () => {
+  const values = Array.from({ length: 102 }, (_, index) => paypal({ subscription_id: `I-HIDDEN${String(index).padStart(7, '0')}`,
+    status: 'EXPIRED', created_at: iso(NOW - index * 1000) }));
+  const f = fixture({ paypal: values }), result = await f.overview();
+  assert.deepEqual(result.items, []); assert.equal(result.hasMore, false);
+  assert.equal(result.windowLimited, true); assert.equal(result.olderRecordsAvailable, true); assert.equal(result.windowLimit, 200);
+  const details = f.calls.filter(call => call.columns?.includes('regular:'));
+  assert.equal(details.length, 2);
+  assert.ok(details.every(call => call.filters.find(filter => filter[0] === 'in' && filter[1] === 'subscription_id')[2].length <= 50));
+  assert.ok(details.every(call => call.limits.some(([limit, spec]) => limit === 21 && spec.referencedTable === 'regular')));
 });
 
 test('Missing provider tables produce a safe setup error rather than an apparently empty overview', async () => {

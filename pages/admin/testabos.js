@@ -10,7 +10,6 @@ const PAGE_SIZE = 25;
 const REQUEST_TIMEOUT = 18000;
 const stages = {
   trial: "Testzugang aktiv", regular: "Reguläres Abo", grace: "Zahlungsfrist",
-  ended: "Beendet", cancelled: "Gekündigt", paused: "Pausiert", review: "Prüfung offen",
 };
 
 export async function getServerSideProps(context) {
@@ -214,28 +213,28 @@ export default function TrialOverviewPage({ testEnvironment = false }) {
   const overview = useTrialOverview(testEnvironment);
   const denied = [401, 403].includes(overview.error?.status);
   const notification = overview.notifications;
-  return <AccountLayout title="Testabos und Abos" description="Neue Testabos und ihr weiterer Verlauf – privat für den Betreiber." active="account" hideCommunity>
+  return <AccountLayout title="Testabos und Abos" description="Aktive Testabos und Abos – privat für den Betreiber." active="account" hideCommunity>
     <section className={styles.panel} aria-labelledby="trial-overview-heading">
       <div className={styles.heading}>
-        <div><p className={styles.eyebrow}>Betreiberübersicht</p><h2 id="trial-overview-heading">Alle Systeme an einem Ort</h2></div>
+        <div><p className={styles.eyebrow}>Betreiberübersicht</p><h2 id="trial-overview-heading">Aktive Abos</h2></div>
         {!denied && <button type="button" className={accountStyles.secondaryButton} onClick={overview.reload} disabled={overview.loading}>Aktualisieren</button>}
       </div>
-      <p className={styles.intro}>Apple-Abos aus der iPhone-/iPad-App und PayPal-Abos von Android oder der Website. Angezeigt werden bestätigte Testabos mit ihrem aktuellen Verlauf.</p>
+      <p className={styles.intro}>Nur Testabos und Folgeabos mit aktuell bestätigtem Zugang: Apple · iPhone/iPad, PayPal · Android/Website. Eine ausgeschaltete Verlängerung blendet einen noch laufenden Zugang nicht aus.</p>
       {!denied && <div className={styles.controls}>
         <label>E-Mail-Adresse suchen<input type="search" inputMode="email" value={overview.query} onChange={event => overview.search(event.target.value)} placeholder="Vollständige E-Mail-Adresse" maxLength={320} autoComplete="off" autoCapitalize="none" spellCheck={false} /></label>
         <label>Umgebung<select value={overview.environment} onChange={event => overview.chooseEnvironment(event.target.value)} disabled={testEnvironment}>{!testEnvironment && <option value="live">Live · echte Kunden</option>}<option value="sandbox">Test · Sandbox / TestFlight</option></select></label>
       </div>}
       <p className={styles.environment}>{overview.environment === "live" ? "Live: Kundenabos der veröffentlichten App und Website." : "Testdaten: kostenlose Sandbox- und TestFlight-Käufe. Keine echten Kundenzahlungen."}</p>
-      {overview.loading ? <p className={styles.result} role="status">Abos werden geladen …</p> : overview.error ? <OverviewError error={overview.error} /> : overview.incompleteSearch ? <p className={styles.result} role="status">Gib die vollständige E-Mail-Adresse ein oder leere die Suche, um alle Abos zu sehen.</p> : overview.data && <>
-        <p className={styles.result} role="status">{overview.data.items.length ? `${overview.offset + 1}–${overview.offset + overview.data.items.length} ${overview.query.trim() ? "Treffer" : "Abos"}${overview.data.hasMore ? " · weitere vorhanden" : ""}` : overview.query.trim() ? "Keine Abos für diese Suche gefunden." : overview.environment === "live" ? "Noch keine bestätigten Testabos in der Live-Umgebung vorhanden." : "Noch keine bestätigten Testabos in dieser Testumgebung vorhanden."}</p>
-        {overview.data.items.length > 0 && <div className={styles.list} aria-label="Bestätigte Testabos und ihr Verlauf">{overview.data.items.map(item => <SubscriptionRow key={`${item.provider}-${item.environment}-${item.id}`} item={item} />)}</div>}
+      {overview.loading ? <p className={styles.result} role="status">Aktive Abos werden geladen …</p> : overview.error ? <OverviewError error={overview.error} /> : overview.incompleteSearch ? <p className={styles.result} role="status">Gib die vollständige E-Mail-Adresse ein oder leere die Suche, um aktive Abos zu sehen.</p> : overview.data && <>
+        <p className={styles.result} role="status">{overview.data.items.length ? `${overview.offset + 1}–${overview.offset + overview.data.items.length} ${overview.query.trim() ? "Treffer" : "aktive Abos"}${overview.data.hasMore ? " · weitere vorhanden" : ""}` : overview.query.trim() ? "Keine aktiven Abos für diese Suche gefunden." : overview.environment === "live" ? "Keine aktiven Abos im geprüften Live-Bestand gefunden." : "Keine aktiven Abos im geprüften Testbestand gefunden."}</p>
+        {overview.data.items.length > 0 && <div className={styles.list} aria-label="Aktive Testabos und Abos">{overview.data.items.map(item => <SubscriptionRow key={`${item.provider}-${item.environment}-${item.id}`} item={item} />)}</div>}
         {(overview.offset > 0 || overview.data.hasMore) && <nav className={styles.pagination} aria-label="Seiten der Aboübersicht">
           <button type="button" className={accountStyles.secondaryButton} onClick={overview.previous} disabled={overview.offset === 0}>Vorherige Seite</button>
           <span>Seite {Math.floor(overview.offset / PAGE_SIZE) + 1}</span>
           <button type="button" className={accountStyles.secondaryButton} onClick={overview.next} disabled={!overview.data.hasMore}>Nächste Seite</button>
         </nav>}
         <p className={styles.verified}>Übersicht geladen: {overviewDate(overview.data.asOf)}. Das Datum für das reguläre Abo erscheint erst mit der entsprechenden Anbieterbestätigung.</p>
-        {(overview.data.windowLimited || overview.data.olderRecordsAvailable) && <p className={styles.environment}>Diese Ansicht ist auf bis zu {overview.data.windowLimit} aktuelle Abos begrenzt. Ältere Einträge können fehlen. Suche mit einer vollständigen E-Mail-Adresse gezielt nach einem Konto.</p>}
+        {(overview.data.windowLimited || overview.data.olderRecordsAvailable) && <p className={styles.environment}>Diese Ansicht prüft bis zu {overview.data.windowLimit} aktuelle Aboeinträge. Ältere aktive Abos können fehlen. Suche mit einer vollständigen E-Mail-Adresse gezielt nach einem Konto.</p>}
       </>}
     </section>
     {!denied && <section className={styles.panel} aria-labelledby="trial-notification-heading">
