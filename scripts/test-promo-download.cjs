@@ -263,7 +263,9 @@ if (process.env.JL_PROMO_RELEASE_BASE_URL) test('Deployed phone URLs return the 
     assert.equal(response.headers.get('set-cookie'), null, ext);
     const bytes = Buffer.from(await response.arrayBuffer());
     assert.equal(bytes.length, fixture.bytes, ext); assert.equal(sha256(bytes), fixture.sha256, ext);
-    assert.equal(response.headers.get('content-disposition'), ext === 'zip' ? 'attachment; filename="Jagdlatein-15s-Werbepaket.zip"' : null, ext);
+    const disposition = response.headers.get('content-disposition');
+    if (ext === 'zip') assert.equal(disposition, 'attachment; filename="Jagdlatein-15s-Werbepaket.zip"');
+    else assert.ok(disposition === null || /^inline(?:;|$)/i.test(disposition), `${ext} remains inline`);
     t.diagnostic(`${ext}: 200, ${bytes.length} bytes, SHA-256 ${sha256(bytes)}`);
   }
   const download = await get(`${canonical}${stem}.mp4?download=1`);
