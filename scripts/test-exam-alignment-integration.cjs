@@ -1,6 +1,8 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+// The plan's reading focus uses a ready bare Next route; account readiness is still tested independently.
+const createLoader = (overrides = {}) => createProjectLoader({ 'next/router': { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/pruefungsplan' }) }, ...overrides });
 const { nodes, text } = require('./helpers/field-reader-fixture.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader();
@@ -14,7 +16,7 @@ const { examReviewHref } = load('lib/exam-review-progress.js');
 const { lessonHash, lessonIndexFromHash } = load('lib/learning-lesson-navigation.js');
 const data = getExamStudyPlanData({ asOf: '2026-11-01' });
 const expectedProfiles = examCountries.flatMap(country => country.regions.map(region => `${country.code}:${region.code}`));
-const expectedSubjectCounts = new Map([['CH:ZH',7],['CH:BE',6],['CH:GR',5],['DE:BY',6],['DE:BB',6],['DE:HE',4]]);
+const expectedSubjectCounts = new Map([['CH:ZH',7],['CH:BE',6],['CH:GR',5],['DE:BY',6],['DE:BB',6],['DE:HE',4],['CH:AR',9],['AT:NOE',4],['AT:ST',7]]);
 const sourcePaths = ['ch', 'at', 'de'].map(country => `../data/exam-alignment/${country}-2026-11-01.json`);
 let alignment;
 function getAlignment() { return alignment ||= load('lib/exam-alignment-server.js').getExamAlignmentData(); }
@@ -103,7 +105,7 @@ test('The build-time adapter projects exactly all51 canonical profiles with boun
       }
     }
   }
-  assert.equal(projected.regions.filter(region=>region.subjectAreas).length,6);assert.equal(projected.regions.reduce((sum,region)=>sum+(region.subjectAreas?.length||0),0),34);
+  assert.equal(projected.regions.filter(region=>region.subjectAreas).length,9);assert.equal(projected.regions.reduce((sum,region)=>sum+(region.subjectAreas?.length||0),0),54);
   const serialized = JSON.stringify(projected);
   assert.doesNotMatch(serialized, /candidateFormats|readStatus|blocked|officialText|correctIndex|correctIds|"answers"|"questions"|"choices"|"prompt"|"model"|"transcript"|"lessons"/);
 });

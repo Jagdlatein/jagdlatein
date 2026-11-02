@@ -1,6 +1,8 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+// The plan's reading focus uses a ready bare Next route; account readiness is still tested independently.
+const createLoader = (overrides = {}) => createProjectLoader({ 'next/router': { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/pruefungsplan' }) }, ...overrides });
 const { nodes, text } = require('./helpers/field-reader-fixture.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader();

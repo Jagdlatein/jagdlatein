@@ -226,6 +226,148 @@
           "section": "Abschnitte Jungjägerkurs & Jagdprüfung sowie Jagdkurse",
           "kind": "independent-explanation",
           "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "noe-ris-subjects-20261102",
+          "title": "NÖ Jagdgesetz 1974 §60 – ausgewählte Prüfungsgegenstände",
+          "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Gesetzesnummer=20000559&Paragraf=60&FassungVom=2026-11-02",
+          "publisher": "Land Niederösterreich / RIS",
+          "section": "§60 Abs.4 Z1–3 und Z6: Rechtsvorschriften, Waffen/Munition, Erkennungsmerkmale/Lebensweise sowie Jagdhundehaltung/-führung. Nur diese ausgewählten Fachbezüge, keine gesamte Fächerliste oder Bewertung.",
+          "kind": "norm",
+          "reviewedOn": "2026-11-02"
+        },
+        {
+          "id": "noe-jagdverband-subjects-20261102",
+          "title": "Jungjägerkurs & Jagdprüfung – Unterrichtsthemen",
+          "url": "https://www.noejagdverband.at/ausbildung/jungjaegerkurs/",
+          "publisher": "NÖ Jagdverband",
+          "section": "Abschnitt Jagdkurse: eigenständig formulierter Überblick nennt Jagdgesetz, Wildkunde, Hundewesen, Brauchtum sowie Waffen- und Munitionskunde. Die hier gewählten vier Fachbezüge verwenden keine Kurskosten oder Termine.",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-02"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "at-noe-rechtskunde",
+          "label": "Rechtskunde",
+          "sourceIds": [
+            "noe-ris-subjects-20261102",
+            "noe-jagdverband-subjects-20261102"
+          ],
+          "limit": "Eigene Quellenübung zum bestätigten Fachbezug; keine Musterlösung für alle NÖ-Rechtsvorschriften. Offene Landesfragen bleiben ausdrücklich offen.",
+          "goals": [
+            {
+              "id": "at-noe-rechtskunde-ziel",
+              "title": "Den Rechtsrahmen am konkreten Ort prüfen",
+              "task": "Ordne einen selbst erstellten Gastfall Niederösterreich zu. Trenne Person, Ort, geplante Handlung und fehlende Angaben; wähle anschließend die dafür passende Landesquelle statt einer pauschalen Länderantwort.",
+              "selfCheck": [
+                "Land und konkrete Teilfrage sind benannt.",
+                "Einladung, eigene Berechtigung und örtlicher Auftrag werden getrennt geprüft.",
+                "Ungeklärte Anerkennung oder weitere Voraussetzungen werden als offen bezeichnet."
+              ],
+              "moduleId": "wissen-ausbau-pruefungsfaelle",
+              "lessonId": "quellenantwort",
+              "regionalLaw": true,
+              "caseText": "Eine Person besitzt einen Jagdausweis aus einer anderen Region und wird für einen Tag eingeladen. Formuliere die Fragen, die vor einer rechtlichen Antwort geklärt werden müssen.",
+              "followUp": "Was kannst du aus der Einladung allein noch nicht ableiten?"
+            }
+          ]
+        },
+        {
+          "id": "at-noe-waffen",
+          "label": "Waffen & Munition",
+          "sourceIds": [
+            "noe-ris-subjects-20261102",
+            "noe-jagdverband-subjects-20261102"
+          ],
+          "limit": "Papierfall zur Sicherheitsbegründung; praktische Handhabung, konkrete Waffenbauart und geltende Vorgaben werden in qualifizierter Ausbildung geprüft.",
+          "goals": [
+            {
+              "id": "at-noe-waffen-ziel",
+              "title": "Unklaren Zustand als Unterbrechungsgrund erklären",
+              "task": "Erkläre anhand eines reinen Papierfalls, warum eine eingeschaltete Sicherung andere Sicherheitsregeln nicht ersetzt. Verbinde Ladezustand, Mündungsrichtung und Fingerposition mit einer klaren Rückfrage bei der Übergabe.",
+              "selfCheck": [
+                "Die voneinander unabhängigen Sicherheitsprüfpunkte werden einzeln benannt.",
+                "Eine Vermutung über den Ladezustand wird nicht als Kontrolle ausgegeben.",
+                "Unklare Funktion oder nicht eindeutig passende Munition führt in der Erklärung zur Unterbrechung und fachlichen Klärung."
+              ],
+              "moduleId": "wissen-waffensicherheit",
+              "lessonId": "regeln",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-waffensicherheit",
+                  "lessonId": "stoerung"
+                }
+              ],
+              "caseText": "Bei einer gedachten Übergabe heißt es nur: Die Sicherung ist drin. Welche offenen Punkte gehören in deine Antwort?",
+              "followUp": "Welche Aussage über die Munition oder Funktion verlangt zusätzlich eine fachliche Klärung?"
+            }
+          ]
+        },
+        {
+          "id": "at-noe-wildkunde",
+          "label": "Wildkunde",
+          "sourceIds": [
+            "noe-ris-subjects-20261102",
+            "noe-jagdverband-subjects-20261102"
+          ],
+          "limit": "Ausgewählte Merkmals- und Jahreslaufübung; weder vollständige Artenliste noch sichere Alters- oder Geschlechtsansprache aus einem Einzelbild.",
+          "goals": [
+            {
+              "id": "at-noe-wildkunde-ziel",
+              "title": "Jahreszeit, Merkmal und Lebensweise verbinden",
+              "task": "Beschreibe in einem eigenen Rehwildfall Fell, sichtbaren Kopfschmuck und Gruppierung getrennt. Erkläre den Jahreslauf mit der Lektion und markiere, was aus dem kurzen Blick nicht sicher folgt.",
+              "selfCheck": [
+                "Tatsächlich erkennbare Merkmale und eigene Annahmen sind getrennt.",
+                "Der Jahreszeitbezug wird erklärt, ohne einen festen Tag für jedes Tier zu behaupten.",
+                "Fehlende Sicht auf weitere Tiere wird nicht mit sicherem Alleinsein gleichgesetzt."
+              ],
+              "moduleId": "wissen-rehwild-jahreslauf",
+              "lessonId": "reh-jahreszeiten",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-ansitzplanung",
+                  "lessonId": "beobachten"
+                }
+              ],
+              "caseText": "Am Waldrand ist kurz ein einzelnes Reh sichtbar. Eine andere Person bezeichnet es sofort als sicher allein. Prüfe diese Schlussfolgerung.",
+              "followUp": "Welche zusätzliche Beobachtung wäre hilfreich, und welche Unsicherheit bleibt trotzdem?"
+            }
+          ]
+        },
+        {
+          "id": "at-noe-hundewesen",
+          "label": "Hundewesen",
+          "sourceIds": [
+            "noe-ris-subjects-20261102",
+            "noe-jagdverband-subjects-20261102"
+          ],
+          "limit": "Eigene Aufgabe zu Fähigkeiten und Ausbildungsstand des Hund-Mensch-Teams; keine regionale Einsatzfreigabe oder Anerkennung einer Hundeprüfung.",
+          "goals": [
+            {
+              "id": "at-noe-hundewesen-ziel",
+              "title": "Aufgabe und Ausbildungsstand auseinanderhalten",
+              "task": "Vergleiche zwei gedachte Aufgaben des Hund-Mensch-Teams. Benenne benötigte Fähigkeiten, klare Signale und die Grenze zwischen einer gelungenen Alltagsübung und einem fachlich begleiteten jagdlichen Einsatz.",
+              "selfCheck": [
+                "Die konkrete Aufgabe steht vor der Rassebezeichnung.",
+                "Fähigkeiten der führenden Person werden neben der Hundeleistung genannt.",
+                "Eine einzelne gelungene Übung ersetzt in der Erklärung keine vollständige aufgabenbezogene Eignung."
+              ],
+              "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+              "lessonId": "hund-aufgaben",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+                  "lessonId": "hund-team"
+                }
+              ],
+              "caseText": "Ein Hund bringt einen Übungsgegenstand zuverlässig zurück. Daraus wird seine Eignung für jede jagdliche Aufgabe abgeleitet. Begründe die Grenze.",
+              "followUp": "Welche Information zum Team und zur vorgesehenen Aufgabe fehlt?"
+            }
+          ]
         }
       ]
     },
@@ -463,6 +605,252 @@
           "section": "Abschnitt Prüfungsinhalt",
           "kind": "independent-explanation",
           "reviewedOn": "2026-11-01"
+        },
+        {
+          "id": "st-ris-subjects-20261102",
+          "title": "Steiermärkische Jägerprüfungsverordnung §3 – ausgewählte Fachbezüge",
+          "url": "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=LrStmk&Gesetzesnummer=20000925&FassungVom=2026-11-02",
+          "publisher": "Land Steiermark / RIS",
+          "section": "§3 Abs.1 Z1–3 und Z5–7: Recht und Einflüsse auf Kulturen/Lebensraum, Waffen, Jagdausübung, Erkennungsmerkmale, Jagdhunde und Behandlung von Wild. Keine Bewertung, Schießwerte oder vollständige Fachabdeckung übernommen.",
+          "kind": "norm",
+          "reviewedOn": "2026-11-02"
+        },
+        {
+          "id": "st-jaegerschaft-subjects-20261102",
+          "title": "Jagdprüfung in der Steiermark – Prüfungsinhalt",
+          "url": "https://www.jagd-stmk.at/jagdpruefung/",
+          "publisher": "Steirische Landesjägerschaft",
+          "section": "Abschnitt Prüfungsinhalt: eigenständige Themenübersicht mit Rechtskunde, Wildökologie/Naturschutz, Wald-/Feld-/Wiesenkunde, Wild und Lebensraum, Wildbrethygiene, Wildstandsbewirtschaftung/Jagdbetrieb, Jagdhundewesen sowie Waffen-/Schießkunde. Keine Unterlagenfristen oder Gebühren übernommen.",
+          "kind": "independent-explanation",
+          "reviewedOn": "2026-11-02"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "at-st-rechtskunde",
+          "label": "Rechtskunde",
+          "sourceIds": [
+            "st-ris-subjects-20261102",
+            "st-jaegerschaft-subjects-20261102"
+          ],
+          "limit": "Eigene Methode für eine örtlich passende Quellenantwort; weder vollständiger steirischer Rechtskatalog noch amtliche Musterbewertung.",
+          "goals": [
+            {
+              "id": "at-st-rechtskunde-ziel",
+              "title": "Geänderten Ort als neue Rechtsfrage erkennen",
+              "task": "Erstelle zwei Varianten desselben Papierfalls: einmal in der Steiermark und einmal in einer anderen Region. Markiere, welche biologischen Beobachtungen bleiben und welche Rechtsquelle neu geprüft werden muss.",
+              "selfCheck": [
+                "Der Ort wird ausdrücklich vor der rechtlichen Antwort genannt.",
+                "Gemeinsames Artenwissen und örtliche Rechtsvoraussetzungen werden getrennt.",
+                "Eine ungeprüfte Anerkennung oder Berechtigung wird nicht aus dem anderen Fall übernommen."
+              ],
+              "moduleId": "wissen-ausbau-pruefungsfaelle",
+              "lessonId": "quellenantwort",
+              "regionalLaw": true,
+              "caseText": "Ein Gastfall wird mit unveränderten Personen und Tierbeobachtungen in eine andere Region verlegt. Welche Teile der früheren Antwort dürfen nicht ungeprüft übernommen werden?",
+              "followUp": "Welche Behörde oder Originalquelle brauchst du zur Klärung der offenen örtlichen Voraussetzung?"
+            }
+          ]
+        },
+        {
+          "id": "at-st-waffen",
+          "label": "Waffen & Sicherheit",
+          "sourceIds": [
+            "st-ris-subjects-20261102",
+            "st-jaegerschaft-subjects-20261102"
+          ],
+          "limit": "Reiner Erklärungsfall; konkrete Handhabung und Schießfertigkeit gehören in beaufsichtigte praktische Ausbildung. Kein Schießprogramm wird vorgegeben.",
+          "goals": [
+            {
+              "id": "at-st-waffen-ziel",
+              "title": "Sicherung und sichere Handhabung getrennt begründen",
+              "task": "Erkläre die Sicherheitsprüfpunkte an einer gedachten Übergabesituation. Zeige sprachlich, warum Aufmerksamkeit, Mündungsrichtung und überprüfter Zustand zusammengehören und eine unklare Situation unterbrochen wird.",
+              "selfCheck": [
+                "Mehrere Sicherheitsprüfpunkte werden unabhängig voneinander genannt.",
+                "Eine betätigte Sicherung wird nicht als Ausgleich für falsche Mündungsrichtung dargestellt.",
+                "Bei einer unklaren Funktion wird fachliche Klärung statt eines Versuchs unter Zeitdruck genannt."
+              ],
+              "moduleId": "wissen-waffensicherheit",
+              "lessonId": "regeln",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-waffensicherheit",
+                  "lessonId": "stoerung"
+                }
+              ],
+              "caseText": "Während einer gedachten Übergabe lenkt ein Gespräch ab. Formuliere, welche Fragen vor dem Fortsetzen offen sind.",
+              "followUp": "Woran erkennst du in deiner Antwort, dass keine einzelne Vorrichtung alle anderen Regeln ersetzt?"
+            }
+          ]
+        },
+        {
+          "id": "at-st-wald-lebensraum",
+          "label": "Wald & Lebensraum",
+          "sourceIds": [
+            "st-ris-subjects-20261102",
+            "st-jaegerschaft-subjects-20261102"
+          ],
+          "limit": "Ausgewählter eigener Befund- und Lebensraumfall; keine vollständige Wald-/Feld-/Wiesenkunde oder Maßnahme für jedes Revier.",
+          "goals": [
+            {
+              "id": "at-st-wald-lebensraum-ziel",
+              "title": "Schadensbild und Lebensraumfunktion getrennt erklären",
+              "task": "Beschreibe an einer gedachten Waldkante fehlende Triebe oder Rindenverletzungen zunächst als Befund. Ergänze erreichbare Nahrung, Deckung und Ruhebereiche aus Sicht einer benannten Art, ohne daraus eine genaue Wildzahl abzuleiten.",
+              "selfCheck": [
+                "Befund, vermutete Ursache und noch fehlende Information sind getrennt.",
+                "Die Lebensraumfunktion wird für eine ausdrücklich genannte Art betrachtet.",
+                "Eine Schlussfolgerung für das ganze Revier wird nicht aus einem auffälligen Einzelbaum gezogen."
+              ],
+              "moduleId": "wissen-wald-wild",
+              "lessonId": "bilder",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-wald-wild",
+                  "lessonId": "verjuengung"
+                },
+                {
+                  "moduleId": "wissen-lebensraeume-biotopverbund",
+                  "lessonId": "biotop-funktion"
+                }
+              ],
+              "caseText": "Ein einzelner junger Baum ist beschädigt. Daraus wird sofort auf zu viel Wild im ganzen Revier geschlossen. Ordne Beobachtung, Deutung und weitere Vergleichsdaten.",
+              "followUp": "Warum sind auch unbeschädigte Pflanzen und der gewählte Vergleichsbereich relevant?"
+            }
+          ]
+        },
+        {
+          "id": "at-st-jagdbetrieb",
+          "label": "Jagdbetrieb",
+          "sourceIds": [
+            "st-ris-subjects-20261102",
+            "st-jaegerschaft-subjects-20261102"
+          ],
+          "limit": "Eigene Planungsübung vor einem begleiteten Ansitz; keine praktische Kompetenzbescheinigung und keine örtliche Jagdfreigabe.",
+          "goals": [
+            {
+              "id": "at-st-jagdbetrieb-ziel",
+              "title": "Einen begleiteten Ansitz mit Rückweg und Abbruch planen",
+              "task": "Formuliere für einen gedachten begleiteten Ansitz Zugang, Rückmeldung, Wetterbeobachtung und sichere Rückkehr. Trenne günstige Beobachtungschancen von den Voraussetzungen, die vor Nutzung des Sitzes oder einer Handlung geklärt sein müssen.",
+              "selfCheck": [
+                "Örtliche Berechtigung und Freigaben werden als eigene Prüffrage benannt.",
+                "Aufenthaltsort, Erreichbarkeit und Rückmeldung gehören in den Plan.",
+                "Eine zweifelhafte Einrichtung wird nicht durch einen vorsichtigen Versuch geprüft."
+              ],
+              "moduleId": "wissen-ansitzplanung",
+              "lessonId": "plan",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-ansitzplanung",
+                  "lessonId": "abbruch"
+                }
+              ],
+              "caseText": "Der beste Beobachtungsplatz hat eine zweifelhaft wirkende Leiter. Eine Person schlägt vor, nur kurz und besonders vorsichtig aufzusteigen. Begründe deine Entscheidung.",
+              "followUp": "Welche sichere Alternative oder weitere Klärung gehört in die Nachbereitung?"
+            }
+          ]
+        },
+        {
+          "id": "at-st-wildkunde",
+          "label": "Wildkunde",
+          "sourceIds": [
+            "st-ris-subjects-20261102",
+            "st-jaegerschaft-subjects-20261102"
+          ],
+          "limit": "Ausgewählte Art- und Jahreslaufübung, keine vollständige Liste der Wildarten nach steirischem Jagdrecht und keine Jagdbarkeitsaussage.",
+          "goals": [
+            {
+              "id": "at-st-wildkunde-ziel",
+              "title": "Sichtbare Merkmale mit offenen Ansprachefragen verbinden",
+              "task": "Entwirf zwei kurze Rehwildbeobachtungen aus verschiedenen Jahreszeiten. Beschreibe Fell, Kopfschmuck und Gruppierung nur soweit erkennbar und erkläre, warum ein Einzelmerkmal keine vollständige Ansprache liefert.",
+              "selfCheck": [
+                "Sichtbare Merkmale stehen vor einer Deutung.",
+                "Jahreszeitliche Änderung wird mit unterschiedlicher Beobachtbarkeit verbunden.",
+                "Ein fester Kalender-, Alters- oder Gesundheitswert wird nicht aus einem Einzelbild behauptet."
+              ],
+              "moduleId": "wissen-rehwild-jahreslauf",
+              "lessonId": "reh-jahreszeiten",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-ansitzplanung",
+                  "lessonId": "beobachten"
+                }
+              ],
+              "caseText": "Zwei Bilder zeigen Rehe mit unterschiedlichem Fell und unterschiedlicher Gruppierung. Eine Person hält dies für widersprüchlich. Erkläre den möglichen Jahreslaufbezug ohne einen Aufnahmetag zu erfinden.",
+              "followUp": "Welche Bildinformation wäre für weitere Deutungen nötig, und welche Grenze bleibt?"
+            }
+          ]
+        },
+        {
+          "id": "at-st-hundewesen",
+          "label": "Hundewesen",
+          "sourceIds": [
+            "st-ris-subjects-20261102",
+            "st-jaegerschaft-subjects-20261102"
+          ],
+          "limit": "Aufgabenbezogenes Lernziel für Hund und Führung; keine automatische Einsatzfreigabe nach Rasse oder einem einzelnen Trainingserfolg.",
+          "goals": [
+            {
+              "id": "at-st-hundewesen-ziel",
+              "title": "Eine Aufgabe mit dem Team und seinem Lernstand abgleichen",
+              "task": "Wähle eine Aufgabe aus Suche, Vorstehen, Stöbern, Bringen oder Nachsuche und nenne jeweils die benötigte Leistung von Hund und führender Person. Begründe anschließend, wann qualifizierte Begleitung nötig bleibt.",
+              "selfCheck": [
+                "Die Aufgabe wird konkret statt nur durch eine Rassebezeichnung beschrieben.",
+                "Das Können der führenden Person wird in die Einschätzung einbezogen.",
+                "Ausbildungsstand und vorhandene Nachweise werden nicht aus einem Foto oder Alltagserfolg abgeleitet."
+              ],
+              "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+              "lessonId": "hund-aufgaben",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+                  "lessonId": "hund-team"
+                }
+              ],
+              "caseText": "Ein unerfahrenes Team soll nach einer einzelnen guten Übung eine anspruchsvolle jagdliche Aufgabe übernehmen. Erkläre, welche Informationen und fachliche Begleitung fehlen.",
+              "followUp": "Weshalb ist bei dieser Einschätzung die Ausbildung der führenden Person ebenso wichtig?"
+            }
+          ]
+        },
+        {
+          "id": "at-st-wildbret",
+          "label": "Wildbrethygiene",
+          "sourceIds": [
+            "st-ris-subjects-20261102",
+            "st-jaegerschaft-subjects-20261102"
+          ],
+          "limit": "Eigene Hygiene- und Übergabeübung; keine Verwertungsfreigabe und kein Ersatz für fachliche Schulung oder vorgeschriebene Untersuchung.",
+          "goals": [
+            {
+              "id": "at-st-wildbret-ziel",
+              "title": "Arbeitskontakt, Kühlverlauf und Untersuchung auseinanderhalten",
+              "task": "Ordne einen eigenen Übergabefall nach möglichen Kreuzkontakten, dokumentiertem Kühlverlauf und noch offener Beurteilung. Formuliere die fehlenden Angaben, ohne aus einer kalten Oberfläche oder einer einzelnen Freigabe allgemeine Unbedenklichkeit abzuleiten.",
+              "selfCheck": [
+                "Saubere und verunreinigte Arbeitswege werden konkret unterschieden.",
+                "Der Kühlverlauf wird getrennt vom letzten Oberflächeneindruck beschrieben.",
+                "Eine spezielle Untersuchung wird nicht mit vollständiger Lebensmittelsicherheit gleichgesetzt."
+              ],
+              "moduleId": "wissen-wildbrethygiene",
+              "lessonId": "sauber",
+              "regionalLaw": false,
+              "relatedLessons": [
+                {
+                  "moduleId": "wissen-wildbrethygiene",
+                  "lessonId": "kuehlen"
+                },
+                {
+                  "moduleId": "wissen-wildbrethygiene",
+                  "lessonId": "beurteilen"
+                }
+              ],
+              "caseText": "Ein äußerlich sauber wirkendes Stück wird kühl angeliefert; über den Transportverlauf fehlen Angaben. Stelle die noch offenen Fragen für die fachliche Übergabe zusammen.",
+              "followUp": "Welche Frage beantwortet der aktuelle Eindruck nicht, und welche Information musst du ausdrücklich als unbekannt markieren?"
+            }
+          ]
         }
       ]
     },

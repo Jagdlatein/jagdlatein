@@ -1215,18 +1215,254 @@
           "title": "Verordnung zum Gesetz über Jagd, Wild- und Vogelschutz",
           "url": "https://ar.clex.ch/api/de/versions/1533/pdf_file",
           "publisher": "Kanton Appenzell Ausserrhoden",
-          "section": "Art. 49–50 und 53: erster und zweiter Prüfungsteil",
+          "section": "Art. 49–50 (gedruckte S. 16): zwei Teile und Fächer des ersten Teils; Art. 53 (S. 17): acht Fächer des zweiten Teils. Aktuelle Version 1533, Stand 01.04.2024, am 02.11.2026 zusätzlich über amtliche LexWork-Metadaten bestätigt. Nur Fachbezüge; keine Noten, Gebühren, Stunden oder Schiesswerte übernommen.",
           "kind": "norm",
-          "reviewedOn": "2026-11-01"
+          "reviewedOn": "2026-11-02"
         },
         {
           "id": "ch-ar-pjv",
           "title": "Ausbildung",
           "url": "https://www.jagd-ar.ch/ausbildung",
           "publisher": "Patentjägerverein Appenzell Ausserrhoden",
-          "section": "Ablauf der Prüfung; erster und zweiter Prüfungsteil",
+          "section": "Ablauf der Prüfung: erster Teil Waffenhandhabung, Waffen/Munition/Optik; zweiter Teil Wild & Natur (Biologie/Ökologie/Management), Hunde & Jagdpraxis, Krankheiten & Hygiene und rechtliche Grundlagen. Eigenständig verfasste thematische Einordnung; keine widersprüchlichen Dauerangaben oder neue Durchführungsregeln übernommen.",
           "kind": "independent-explanation",
-          "reviewedOn": "2026-11-01"
+          "reviewedOn": "2026-11-02"
+        }
+      ],
+      "subjectAreas": [
+        {
+          "id": "ch-ar-erster-teil",
+          "label": "Waffen & Sicherheit (erster Teil)",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Zusammengefasster eigener Lernbaustein zum ersten Prüfungsteil; keine Gleichsetzung mit einem einzelnen amtlichen Fach, kein Schiessprogramm und kein Ersatz für beaufsichtigte Praxis. Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-erster-teil-ziel",
+              "title": "Erklären und begründen",
+              "task": "Erkläre die voneinander unabhängigen Sicherheitskontrollen und was bei einer Unterbrechung zu klären ist. Praktische Waffenhandhabung und Schiessen gehören in die beaufsichtigte Ausbildung.",
+              "selfCheck": [
+                "Mündungsrichtung, Fingerposition und Ladezustand getrennt benannt.",
+                "Eine Sicherung nicht als Ersatz für andere Kontrollen behandelt.",
+                "Eine Unterbrechung ausdrücklich an qualifizierte Anleitung angebunden."
+              ],
+              "moduleId": "wissen-waffensicherheit",
+              "lessonId": "regeln",
+              "caseText": "Im gesprochenen Lernfall lenkt ein Gespräch eine Person bei einer Kontrolle ab. Begründe, weshalb eine Erinnerung an den vorherigen Zustand keine erneute Prüfung ersetzt.",
+              "followUp": "Welche praktischen Schritte lässt du dir unter qualifizierter Anleitung zeigen, statt sie nur auswendig aufzusagen?",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-recht",
+          "label": "Jagdgesetzgebung",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-recht-ziel",
+              "title": "Erklären und begründen",
+              "task": "Ordne einen eigenen Rechtsfall Appenzell Ausserrhoden, einem konkreten Gebiet, einer Art und einem Datum zu. Trenne die Bundesvorgabe von der noch zu prüfenden kantonalen Regelung.",
+              "selfCheck": [
+                "Kanton, Gebiet, Art und Zeitpunkt genannt.",
+                "Bundesebene und kantonale Vorgaben getrennt recherchiert.",
+                "Offene Berechtigung oder Zuständigkeit nicht mit einem Lernresultat gleichgesetzt."
+              ],
+              "moduleId": "wissen-jagdrecht-ch",
+              "lessonId": "rahmen",
+              "caseText": "Eine allgemeine Schweizer Übersicht enthält eine Aussage, aber der konkrete Ausserrhoder Ort und Zeitpunkt fehlen. Formuliere eine gezielte Rückfrage und halte fest, welche Quelle noch benötigt wird.",
+              "followUp": "Welche Information verhindert, dass aus der Übersicht voreilig eine örtliche Erlaubnis abgeleitet wird?",
+              "regionalLaw": true
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-biologie",
+          "label": "Wildtierbiologie",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-biologie-ziel",
+              "title": "Erklären und begründen",
+              "task": "Beschreibe einen gedachten Vogel zuerst mit Körperform, Schnabel, Schwanz und tatsächlich erkennbarer Zeichnung. Trenne die begründete Artvermutung von noch offenen Merkmalen.",
+              "selfCheck": [
+                "Mehrere beobachtbare Merkmale statt nur einer Farbe genannt.",
+                "Sichtbedingungen und verdeckte Merkmale berücksichtigt.",
+                "Art- oder Geschlechtszuordnung nicht sicherer formuliert als die Beobachtung trägt."
+              ],
+              "moduleId": "wissen-federwild-beobachtung",
+              "lessonId": "vogel-merkmale",
+              "caseText": "Bei einem kurz sichtbaren Vogel fällt eine Flügelzeichnung auf, der Kopf bleibt verdeckt. Erstelle eine Beobachtungsnotiz und erkläre, was du vor einer sicheren Zuordnung noch prüfen würdest.",
+              "followUp": "Wie verändert sich deine Aussage, wenn eine auffällige Farbe nur im Gegenlicht gesehen wurde?",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-oekologie",
+          "label": "Wildtierökologie",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-oekologie-ziel",
+              "title": "Erklären und begründen",
+              "task": "Skizziere für eine Zielart Nahrung, Deckung, Ruhe und Fortpflanzungsbereiche. Unterscheide nachgewiesene Funktionen einer Fläche von Annahmen und fehlenden Ergänzungen.",
+              "selfCheck": [
+                "Eine konkrete Zielart oder Artengruppe gewählt.",
+                "Erreichbare Funktionen und offene Annahmen getrennt dargestellt.",
+                "Eine Maßnahme nicht pauschal allen Arten als Nutzen zugeschrieben."
+              ],
+              "moduleId": "wissen-lebensraeume-biotopverbund",
+              "lessonId": "biotop-funktion",
+              "caseText": "Eine Wiese soll durchgehend mit Gehölzen bepflanzt werden. Formuliere zuerst die Frage nach Zielart, Ausgangszustand und Lebensraumfunktion.",
+              "followUp": "Warum reicht die Größe einer Fläche allein nicht, um ihre Eignung für die gewählte Art zu erklären?",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-management",
+          "label": "Wildtiermanagement",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-management-ziel",
+              "title": "Erklären und begründen",
+              "task": "Prüfe bei zwei selbst erstellten Beobachtungsprotokollen zuerst Suchdauer, Strecke, Methode und Bedingungen. Begründe, welche Aussagen ein Vergleich der Nachweise trägt und welche offen bleiben.",
+              "selfCheck": [
+                "Ergebnis und Erfassungsaufwand nebeneinander notiert.",
+                "Standort- oder Methodenwechsel als solche gekennzeichnet.",
+                "Aus einer größeren Nachweiszahl keine automatische Bestandszunahme abgeleitet."
+              ],
+              "moduleId": "wissen-ausbau-monitoring",
+              "lessonId": "aufwand",
+              "caseText": "Beim zweiten Besuch wurde länger beobachtet und ein anderes Gerät benutzt. Erkläre, welche Vergleichsgrenze du vor jeder Aussage über den Bestand festhältst.",
+              "followUp": "Welche zusätzlichen Angaben müssen im Protokoll stehen, damit eine andere Person deinen Vergleich beurteilen kann?",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-handwerk",
+          "label": "Jagdliches Handwerk",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-handwerk-ziel",
+              "title": "Erklären und begründen",
+              "task": "Erstelle eine kurze Nachsuchenmeldung aus Standort, Zeit, beobachteter Reaktion, Richtung und Sichtgrenzen. Trenne direkte Beobachtung von Vermutung.",
+              "selfCheck": [
+                "Eigene Position und Zeitpunkt festgehalten.",
+                "Sichtgrenze und beobachtete Richtung verständlich beschrieben.",
+                "Aus einem Einzelzeichen keine sichere Trefferdiagnose abgeleitet."
+              ],
+              "moduleId": "wissen-nachsuche",
+              "lessonId": "merken",
+              "caseText": "Der Verbleib eines Stücks ist unklar; ein Geländepunkt und eine Bewegungsrichtung wurden gesehen. Übermittle diese Angaben, ohne die Lücken mit einer sicheren Diagnose zu füllen.",
+              "followUp": "Welche Angabe stammt von dir selbst und welche müsstest du vor einer Weitergabe als Aussage einer anderen Person kennzeichnen?",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-wildbret",
+          "label": "Wildbretverwertung",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-wildbret-ziel",
+              "title": "Erklären und begründen",
+              "task": "Beschreibe den Kühlverlauf eines eigenen Übergabefalls mit Zeiten, Transport und vorhandenen Temperaturangaben. Benenne fehlende Angaben, statt aus einer kalten Oberfläche eine Freigabe abzuleiten.",
+              "selfCheck": [
+                "Zeitlicher Verlauf vor einem Einzelmesswert betrachtet.",
+                "Tierart, Produkt und vorgesehenen Ablauf als Klärungspunkte festgehalten.",
+                "Fehlende Angaben und fachliche Entscheidung getrennt benannt."
+              ],
+              "moduleId": "wissen-wildbrethygiene",
+              "lessonId": "kuehlen",
+              "caseText": "Bei der Übergabe ist eine Oberfläche kalt, der vorangegangene Transport aber nicht dokumentiert. Stelle die Rückfragen zusammen, die den Verlauf nachvollziehbar machen.",
+              "followUp": "Weshalb beantwortet ein später kühler Zustand die Frage nach der vorherigen Behandlung nicht allein?",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-hunde",
+          "label": "Jagdhunde",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-hunde-ziel",
+              "title": "Erklären und begründen",
+              "task": "Ordne eine gedachte Aufgabe der passenden Arbeitsweise zu und erkläre, was Hund und Führung dafür nachweislich können müssen. Trenne Rassehinweis, Ausbildungsstand und konkrete Eignung.",
+              "selfCheck": [
+                "Aufgabe verständlich beschrieben.",
+                "Individuelle Leistung unter den gezeigten Bedingungen benannt.",
+                "Ausbildung und Zusammenarbeit des Teams berücksichtigt."
+              ],
+              "moduleId": "wissen-jagdhunde-aufgaben-ausbildung",
+              "lessonId": "hund-aufgaben",
+              "caseText": "Ein Hund bringt einen Übungsgegenstand zuverlässig. Begründe, welche eng begrenzte Leistung damit beobachtet wurde und welche anderen Fähigkeiten gesondert zu beurteilen sind.",
+              "followUp": "Welche Fähigkeit der Führung gehört zur geplanten Aufgabe, zusätzlich zur Leistung des Hundes?",
+              "regionalLaw": false
+            }
+          ]
+        },
+        {
+          "id": "ch-ar-krankheiten",
+          "label": "Wildtierkrankheiten",
+          "sourceIds": [
+            "ch-ar-norm",
+            "ch-ar-pjv"
+          ],
+          "limit": "Ausgewählte eigene Lernziele; kein vollständiger Stoffkatalog, keine amtlichen Prüfungsfragen und keine amtliche Bewertung.",
+          "goals": [
+            {
+              "id": "ch-ar-krankheiten-ziel",
+              "title": "Erklären und begründen",
+              "task": "Formuliere eine Fundmeldung mit Ort, Zeit, Verhalten und Beobachtungsbedingungen. Lasse die Ursache offen, wenn sie nicht fachlich geklärt ist, und bestimme die zuständige örtliche Fachstelle.",
+              "selfCheck": [
+                "Konkretes Verhalten statt eines unbelegten Krankheitsnamens beschrieben.",
+                "Beobachtungsgrenzen und fehlende Angaben benannt.",
+                "Unvorbereiteten Kontakt vermieden und fachliche Klärung vorgesehen."
+              ],
+              "moduleId": "wissen-ausbau-wildkrankheiten",
+              "lessonId": "beobachten",
+              "caseText": "Ein Wildtier reagiert ungewöhnlich wenig. Erstelle eine sachliche Meldung, ohne aus einer einzelnen Erscheinung eine Diagnose zu machen.",
+              "followUp": "Welche Unsicherheit bleibt auch dann, wenn ein anderes Tier äußerlich unauffällig wirkt?",
+              "regionalLaw": false
+            }
+          ]
         }
       ]
     },

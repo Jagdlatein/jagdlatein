@@ -3,6 +3,8 @@ import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import ExamRegionPreparation from "./ExamRegionPreparation";
 import ExamLearningGoals from "./ExamLearningGoals";
+import MenuChoice from "./MenuChoice";
+import useExamPlanTopic from "../hooks/useExamPlanTopic";
 import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import useExamProfile from "../lib/use-exam-profile";
@@ -25,7 +27,7 @@ function Sources({ region, federal, alignment, blueprint }) {
     {region && <p>Die Prüfstände stammen aus den bestehenden Rechtsnachweisen. Sie sind keine neue vollständige Prüfung der Unterlagen und keine Zusage künftiger Prüfungsfragen.</p>}
     {alignment?.sources?.length > 0 && <section aria-labelledby="exam-plan-framework-sources">
       <h3 id="exam-plan-framework-sources">Nachweise zum Prüfungsrahmen</h3>
-      <p>Am 1. November 2026 wurden die hier bezeichneten Abschnitte abgeglichen. Die Einordnung betrifft ausgewählte Prüfungsbausteine; sie ist keine vollständige Prüfung aller Zulassungs-, Bewertungs- und Anerkennungsregeln. Verbandsangaben sind eigenständig verfasste Erläuterungen und keine amtlichen Originalkataloge.</p>
+      <p>Die bezeichneten Abschnitte wurden zu den jeweils genannten Daten abgeglichen. Die Einordnung betrifft ausgewählte Prüfungsbausteine; sie ist keine vollständige Prüfung aller Zulassungs-, Bewertungs- und Anerkennungsregeln. Verbandsangaben sind eigenständig verfasste Erläuterungen und keine amtlichen Originalkataloge.</p>
       <ul>{alignment.sources.map(source => <li key={source.id}>
         <a href={source.url} target="_blank" rel="noreferrer">{source.title}</a>
         <small>{source.publisher} · {source.kind === "norm" ? "Originalregelung" : source.kind === "norm-copy" ? "Originalnorm in bereitgestellter Kopie" : source.kind === "independent-explanation" ? "Eigenständige Erläuterung" : source.kind === "official-explanation" ? "Behördeninformation" : "Ergänzende Einordnung"} · Abschnittsabgleich {formatDate(source.reviewedOn)}</small>
@@ -51,6 +53,7 @@ function Sources({ region, federal, alignment, blueprint }) {
 }
 
 export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, examBlueprint }) {
+  const topicSelection = useExamPlanTopic(data.categories);
   const { profile: storedProfile, ready, persistence, saveProfile, clearProfile, saving: accountSaving, error: accountError, accountKey } = useExamProfile();
   const progress = useExamReviewProgress(reviewCatalog);
   const profile = ready ? normalizeExamProfile(storedProfile) : null;
@@ -161,9 +164,16 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
   const regionData = countryData?.regions.find(region => region.code === profile?.region);
   const alignment = ready && profile ? examAlignment?.regions?.find(item => item.country === profile.country && item.region === profile.region) : null;
   const isDraftValid = Boolean(normalizeExamProfile(draft));
+  const goalCategories = examBlueprint?.categories.filter(category => topicSelection.topic === "alle" || category.slug === topicSelection.topic) || [];
+  const goalSourceIds = new Set(goalCategories.flatMap(category => category.goals.flatMap(goal => goal.sourceIds)));
+  const visibleBlueprint = examBlueprint && goalCategories.length ? { categories: goalCategories, sources: examBlueprint.sources.filter(source => goalSourceIds.has(source.id)) } : null;
 
   return <LearningToolLayout title="Dein Prüfungsplan" description="Wissen, regionale Rechtsübungen und praktische Ausbildung für dein bewusst gewähltes Prüfungsziel verbinden." icon="book" category="pruefung-sprache" headingOnly robots="noindex,follow">
-    <PageMenu title="Prüfungsziel">
+    <PageMenu title="Prüfungsplan">
+      <MenuChoice label="Lerngebiet" id="exam-plan-topic" value={topicSelection.topic || ""} disabled={!topicSelection.ready} aria-controls="exam-plan-learning" onChange={event => topicSelection.select(event.target.value)}>
+        <option value="" disabled>Lerngebiet wählen</option><option value="alle">Alle Lerngebiete</option>{data.categories.map(category => <option key={category.slug} value={category.slug}>{category.title}</option>)}
+      </MenuChoice>
+      {topicSelection.error && <p role="alert">{topicSelection.error}</p>}
       <form onSubmit={save} aria-label="Prüfungsziel wählen">
         <label className={styles.field} htmlFor="exam-plan-country">Land<select id="exam-plan-country" value={draft.country} disabled={!ready || accountSaving} onChange={event => changeCountry(event.target.value)}><option value="">Land wählen</option>{examCountries.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}</select></label>
         <label className={styles.field} htmlFor="exam-plan-region">{draftCountry?.regionLabel || "Region"}<select id="exam-plan-region" value={draft.region} disabled={!ready || !draftCountry || accountSaving} onChange={event => changeRegion(event.target.value)}><option value="">Region wählen</option>{draftCountry?.regions.map(region => <option key={region.code} value={region.code}>{region.name}</option>)}</select></label>
@@ -180,23 +190,15 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
       {(notice || accountError) && <p role="status">{notice || accountError}</p>}
     </section>
 
-    {alignment && <ExamRegionPreparation region={alignment} learningCatalog={examAlignment.learningCatalog} />}
-
-    {details && regionData && <section className={styles.section} aria-labelledby="exam-plan-law">
-      <h2 id="exam-plan-law">Regionales Recht</h2>
-      <p>{details.region.name} bestimmt deine Rechtsauswahl. {regionData.includesFederal ? "Das zugehörige Bundesrecht ist einmal einbezogen." : "Der Bestand bezieht sich auf das gewählte Bundesland."}</p>
-      <dl className={styles.counts}><div><dt>Lesbare Originalpassagen</dt><dd>{regionData.totalArticleCount}</dd></div><div><dt>Eigene freigegebene Rechtsfragen</dt><dd>{regionData.totalQuestionCount}</dd></div></dl>
-      <div className={styles.links}><Link href={examProfileLawHref(profile)} prefetch={false}>Recht lesen</Link><Link href={examProfileLawHref(profile, "uebung")} prefetch={false}>Recht üben</Link></div>
-      <p className={styles.note}>Das sind ausgewählte eigene Lernfragen, kein amtlicher Originalkatalog und keine vollständige Abdeckung des örtlichen Prüfungsstoffs. Nur fachlich freigegebene Fragen sind enthalten. Recht, Prüfungsanforderungen und Termine zusätzlich bei der zuständigen Stelle prüfen. Ältere Originalkataloge sind nicht automatisch auf dem heutigen Rechtsstand.</p>
-    </section>}
-
     <section className={styles.section} aria-labelledby="exam-plan-learning">
-      <h2 id="exam-plan-learning">Dein Lernweg</h2>
+      <h2 id="exam-plan-learning" ref={topicSelection.heading} tabIndex={-1}>Dein Lernweg{topicSelection.topic && topicSelection.topic !== "alle" ? ` · ${data.categories.find(category => category.slug === topicSelection.topic).title}` : ""}</h2>
       <p>Die Kategorien entsprechen dem Menü. Wildbiologie und andere gemeinsame Grundlagen lernst du länderübergreifend; örtlich unterschiedliche Rechtsvorgaben prüfst du gesondert.</p>
+      <button type="button" className={`${styles.button} ${styles.secondary}`} disabled={!topicSelection.ready} onClick={topicSelection.open}>Lerngebiet wählen</button>
+      {!topicSelection.topic && <p role="status">{topicSelection.ready ? "Dieses Lerngebiet ist nicht verfügbar. Wähle unten im Menü ein Lerngebiet oder alle Lerngebiete. Dein Prüfungsziel und deine bisherigen Antworten bleiben erhalten." : "Deine Lerngebiete werden geladen."}</p>}
       {examBlueprint && <p className={styles.note}>Prüfungslernziele: Erkennen, Erklären und Begründen. Bearbeite die folgenden eigenen Lernziele mit ihrer Selbstkontrolle. „Lektion lesen &amp; üben“ führt zum genauen Lerntext und dessen Lektionsübung; der Kurscheck umfasst auch andere Lektionen. Die Kriterien sind Lernhilfen und keine amtlichen Bestehensregeln.</p>}
       {!examBlueprint && <ol className={styles.steps}><li><strong>Verstehen:</strong> Lies den Lerntext und erkläre den Zusammenhang mit eigenen Worten.</li><li><strong>Anwenden:</strong> Löse die zugehörigen Fragen. Prüfe auch bei einem Treffer, warum die anderen Antworten nicht passen.</li><li><strong>Wiederholen:</strong> Kehre zu offenen Fragen zurück und verknüpfe das Wissen mit einem eigenen Prüfungsfall.</li></ol>}
 
-      <ul className={styles.categoryList}>{data.categories.map(category => {
+      <ul className={`${styles.categoryList}${topicSelection.topic && topicSelection.topic !== "alle" ? ` ${styles.focusedCategory}` : ""}`}>{data.categories.filter(category => topicSelection.topic === "alle" || topicSelection.topic === category.slug).map(category => {
         const status = progress.summary?.byCategory[category.slug];
         return <li key={category.slug}>
           <Link href={`/lernen/${category.slug}`} prefetch={false}>{category.title}</Link>
@@ -215,6 +217,16 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
       </section>
     </section>
 
+    {alignment && <ExamRegionPreparation region={alignment} learningCatalog={examAlignment.learningCatalog} />}
+
+    {details && regionData && <section className={styles.section} aria-labelledby="exam-plan-law">
+      <h2 id="exam-plan-law">Regionales Recht</h2>
+      <p>{details.region.name} bestimmt deine Rechtsauswahl. {regionData.includesFederal ? "Das zugehörige Bundesrecht ist einmal einbezogen." : "Der Bestand bezieht sich auf das gewählte Bundesland."}</p>
+      <dl className={styles.counts}><div><dt>Lesbare Originalpassagen</dt><dd>{regionData.totalArticleCount}</dd></div><div><dt>Eigene freigegebene Rechtsfragen</dt><dd>{regionData.totalQuestionCount}</dd></div></dl>
+      <div className={styles.links}><Link href={examProfileLawHref(profile)} prefetch={false}>Recht lesen</Link><Link href={examProfileLawHref(profile, "uebung")} prefetch={false}>Recht üben</Link></div>
+      <p className={styles.note}>Das sind ausgewählte eigene Lernfragen, kein amtlicher Originalkatalog und keine vollständige Abdeckung des örtlichen Prüfungsstoffs. Nur fachlich freigegebene Fragen sind enthalten. Recht, Prüfungsanforderungen und Termine zusätzlich bei der zuständigen Stelle prüfen. Ältere Originalkataloge sind nicht automatisch auf dem heutigen Rechtsstand.</p>
+    </section>}
+
     <section className={styles.section} aria-labelledby="exam-plan-practice">
       <h2 id="exam-plan-practice">Wissen verknüpfen</h2>
       <div className={styles.links}><Link href="/quiz-app" prefetch={false}>Quiz</Link><Link href="/lernen/pruefungsgespraech" prefetch={false}>Prüfungsgespräch</Link><Link href="/lernen/lernkarten" prefetch={false}>Lernkarten</Link><Link href="/lernen/wildjahr" prefetch={false}>Wildjahr</Link><Link href="/lernen/spurenwerkstatt" prefetch={false}>Spuren</Link></div>
@@ -231,6 +243,6 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
         <li><strong>Offene Lernziele:</strong> Benenne vor dem nächsten betreuten Termin eine konkrete Unsicherheit und den Teil, den du erneut zeigen oder erklären möchtest.</li>
       </ul></>}
     </section>
-    {(regionData || examBlueprint) && <Sources region={regionData} federal={countryData?.federal} alignment={alignment} blueprint={examBlueprint} />}
+    {(regionData || visibleBlueprint) && <Sources region={regionData} federal={countryData?.federal} alignment={alignment} blueprint={visibleBlueprint} />}
   </LearningToolLayout>;
 }

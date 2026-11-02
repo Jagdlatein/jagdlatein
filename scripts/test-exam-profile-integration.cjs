@@ -3,7 +3,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
+// The plan's reading focus uses a ready bare Next route; account readiness is still tested independently.
+const createLoader = (overrides = {}) => createProjectLoader({ 'next/router': { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/pruefungsplan' }) }, ...overrides });
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const EXAM_KEY = 'jl_exam_profile_v1', LEGAL_KEY = 'jl_legal_region_v1';

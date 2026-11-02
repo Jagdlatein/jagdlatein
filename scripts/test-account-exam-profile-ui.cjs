@@ -1,7 +1,9 @@
 // Mandatory route gate and editable plan with real React/account store lifetimes.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
-const { createLoader, root: repo } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, root: repo } = require('./helpers/project-module.cjs');
+// The plan's reading focus uses a ready bare Next route; account readiness is still tested independently.
+const createLoader = (overrides = {}) => createProjectLoader({ 'next/router': { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/pruefungsplan' }) }, ...overrides });
 const { fixture, A, B, nativeProps, event, React } = require('./helpers/account-exam-dom.cjs');
 const CH = { country: 'CH', region: 'ZH' }, AT = { country: 'AT', region: 'NOE' };
 const load = createLoader();
@@ -54,6 +56,7 @@ function planOptions(options = {}) {
   const PageMenu = ({ children }) => React.createElement('aside', { 'data-test-page-menu': true }, children);
   const progress = { phase: 'ready', summary: { total: { answered: 0, due: 0, mistakes: 0 }, byCategory: {} } };
   return { menu, options: { component: 'components/ExamStudyPlan.js', loadAccount: true, profile: CH, props: { data }, ...options, overrides: {
+    'next/router': { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/pruefungsplan' }) },
     './PageMenu': { __esModule: true, default: PageMenu, openPageMenu(id) { menu.opened.push(id); }, closePageMenu() { menu.closed++; } },
     '../lib/use-exam-review-progress': { __esModule: true, default: () => progress }, ...options.overrides,
   } } };

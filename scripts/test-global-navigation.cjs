@@ -500,6 +500,27 @@ test('Oral exam Back tracks only its category and question while context edits r
   immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
 });
 
+test('Exam plan Back tracks its exact category choice and all-category return while context, native and immediate Back retain the prior stop', () => {
+  const base = '/lernen/pruefungsplan';
+  const first = `${base}?kategorie=wildkunde#exam-plan-learning`;
+  const second = `${base}?kategorie=hundewesen#exam-plan-learning`;
+  const s = setup(base, ['/lernen']); s.route(first); s.route(second);
+  s.route(`${base}?q=Hund&quelle=suche&kategorie=hundewesen#exam-plan-learning`);
+  assert.equal(s.history.length, 4, 'Unrelated context does not add another category stop');
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, first);
+  const all = setup(base, ['/lernen']); all.route(first); all.route(second); all.route(`${base}#exam-plan-learning`);
+  all.render().props.children[0].props.onClick(); assert.equal(all.destination, second, 'Removing kategorie is an explicit return to all categories');
+  const native = setup(base, ['/lernen']); native.route(first); native.route(second); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base, 'Native history truncates the returned category instead of duplicating it');
+  const immediate = setup(base, ['/lernen']); immediate.route(first); immediate.navigateBeforeEffects(second);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first, 'Immediate dock Back observes the actual URL before its remember effect');
+  const unrelated = setup('/lernen/pruefungsplan-other', ['/lernen']);
+  unrelated.route('/lernen/pruefungsplan-other?kategorie=wildkunde'); unrelated.route('/lernen/pruefungsplan-other?kategorie=hundewesen');
+  assert.equal(unrelated.history.length, 2, 'The concrete plan rule must not become a global query rule');
+  unrelated.render().props.children[0].props.onClick(); assert.equal(unrelated.destination, '/lernen');
+  for (const instance of [s, all, native, immediate, unrelated]) instance.unmount();
+});
+
 test('Dog journal Back follows exercise reading while search context, native Back and immediate Back retain their correct stop', () => {
   const base = '/lernen/hundetraining-tagebuch';
   const first = base + '?eintrag=pflege#exercise-title';

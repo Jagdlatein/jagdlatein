@@ -1,6 +1,8 @@
 // Real React/DOM lifecycle coverage. All storage and events below are synthetic.
 const test = require('node:test'), assert = require('node:assert/strict'), path = require('node:path');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
+// The plan's reading focus uses a ready bare Next route; account readiness is still tested independently.
+const createLoader = (overrides = {}) => createProjectLoader({ 'next/router': { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/pruefungsplan' }) }, ...overrides });
 const React = local('react');
 const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || path.join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
 const load = createLoader();

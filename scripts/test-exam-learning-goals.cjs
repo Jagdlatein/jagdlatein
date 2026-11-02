@@ -1,7 +1,9 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { execFileSync } = require('node:child_process');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+// The plan's reading focus uses a ready bare Next route; account readiness is still tested independently.
+const createLoader = (overrides = {}) => createProjectLoader({ 'next/router': { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/pruefungsplan' }) }, ...overrides });
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader();
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
@@ -226,8 +228,8 @@ test('Optional own case prompts and complementary lessons keep exact safe anchor
   for(const change of [{caseText:{}},{followUp:[]},{relatedLessons:[{moduleId:'missing',lessonId:'missing'}]},{relatedLessons:[{moduleId:'wissen-ausbau-rechtsquellen',lessonId:getLearningModule('wissen-ausbau-rechtsquellen').lessons[0].id}]}])assert.throws(()=>projectExamLearningGoal(goalFixture(change),{country:'DE'}));
 });
 
-test('The34 regional subject areas retain all exact authored lessons, own cases and complementary anchors for only the six evidenced profiles', () => {
-  const expected=new Map([['CH:ZH',7],['CH:BE',6],['CH:GR',5],['DE:BY',6],['DE:BB',6],['DE:HE',4]]);
+test('The54 regional subject areas retain all exact authored lessons, own cases and complementary anchors for only the nine evidenced profiles', () => {
+  const expected=new Map([['CH:ZH',7],['CH:BE',6],['CH:GR',5],['DE:BY',6],['DE:BB',6],['DE:HE',4],['CH:AR',9],['AT:NOE',4],['AT:ST',7]]);
   const data=load('lib/exam-alignment-server.js').getExamAlignmentData();
   const authored=['ch','at','de'].flatMap(country=>JSON.parse(fs.readFileSync(path.join(root,`data/exam-alignment/${country}-2026-11-01.json`),'utf8')).regions);
   let count=0,complementary=0,ownCases=0;
@@ -254,7 +256,7 @@ test('The34 regional subject areas retain all exact authored lessons, own cases 
       }
     }
   }
-  assert.equal(count,34);assert.ok(complementary>0&&ownCases>0);
+  assert.equal(count,54);assert.ok(complementary>0&&ownCases>0);
 });
 
 test('Full plan SSR keeps the exact learning text and self-checks above closed final sources and states their real limits', () => {

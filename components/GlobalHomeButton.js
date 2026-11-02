@@ -86,6 +86,7 @@ const toolSelectionFields = {
   "/lernen/wildjahr": ["art", "monat"],
   "/lernen/wildtier-videofaelle": ["eintrag"],
   "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
+  "/lernen/pruefungsplan": ["kategorie"],
   "/lernen/hundetraining-tagebuch": ["eintrag"],
   "/lernen/anatomie": ["bereich", "thema", "eintrag"],
   "/lernen/kiefer-3d": ["art", "vergleich"],
