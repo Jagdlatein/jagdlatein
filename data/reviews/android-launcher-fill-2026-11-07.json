@@ -1,0 +1,55 @@
+{
+  "preparedOn": "2026-11-07",
+  "scope": "Android launcher layout requested by the operator after a device photo showed a wide added mat. No changes to learning content or its review dates.",
+  "approvedMaster": "mobile/branding/jagdlatein-logo.png",
+  "approvedMasterSha256": "96480878aea7652bd43497a103854e0ba93a3e0d932b96c3583d6be23ea880ca",
+  "artworkRole": "Previously approved brand illustration, not a teaching photograph. Source file unchanged; deterministic native resource derivatives only.",
+  "producer": "mobile/scripts/prepare-android-icon-fill.mjs",
+  "sourceVersion": { "name": "1.0.4", "code": 3 },
+  "candidateVersion": { "name": "1.0.5", "code": 4 },
+  "packageName": "de.jagdlatein.app",
+  "layout": {
+    "legacySizeDp": 48,
+    "legacyArtworkDpBefore": 33,
+    "legacyArtworkDpAfter": 48,
+    "adaptiveLayerDp": 108,
+    "adaptiveArtworkDpBefore": 48,
+    "adaptiveCentralImageDpAfter": 72,
+    "background": "Central image with nearest-edge-pixel extension into the motion margin; no added flat mat.",
+    "foreground": "Same central 72dp illustration, transparent only outside the illustration. Preserves foreground content for platform consumers.",
+    "maskLimit": "72dp is the nominal static viewport, not the guaranteed 66dp safe area. OEM masks and effects may crop outer image details; the full square cannot remain uncut inside every circular mask.",
+    "previews": "Derived from actual generated resources. Simulations, not a device installation."
+  },
+  "nativeScope": {
+    "actualChangedFiles": 22,
+    "iconResourceChanges": 21,
+    "versionFileChanges": 1,
+    "newBackgroundBitmaps": 5,
+    "supportedDensities": ["mdpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"],
+    "sourceFilesRemoved": 0,
+    "originalSourceUnchanged": true,
+    "capacitorPackagesAndConfigurationUnchanged": true,
+    "manifestExceptVersionsUnchanged": true,
+    "permissionsUrlsAndPushConfigurationUnchanged": true,
+    "websiteAndIosBrandAssetsUnchanged": true
+  },
+  "checks": {
+    "mobileTests": { "uniquePassed": 65, "failed": 0, "skippedOnWindows": 0, "parts": ["64-case final mobile suite", "1 additional real-resource pixel contract"] },
+    "signingHelperBoundaryCases": 24,
+    "signingHelperDiagnosticCases": 16,
+    "signingHelperChanges": "Only release directory, filenames and version constants; existing certificate binding, key path, alias, hash, payload, ACL and human-console guards retained.",
+    "realWebpFilesPixelChecked": 20,
+    "packedWebpFilesByteChecked": 20,
+    "bundletoolValidation": "passed",
+    "dexSemanticChange": "Only expected generated R$mipmap resource identifiers; no added or removed classes.",
+    "unsignedBundleBytes": 6356408,
+    "unsignedBundleSha256": "581eeed7a1493d0b0c979349feb874424e6b1c9430f19a77e055cd913d14cda8"
+  },
+  "technicalSourcesRead": [
+    "https://developer.android.com/develop/ui/compose/system/icon_design_adaptive",
+    "https://android.googlesource.com/platform/frameworks/base/+/e434d07ae6d4d09e83d60c0fc67b11894369a615/libs/WindowManager/Shell/src/com/android/wm/shell/startingsurface/SplashscreenContentDrawer.java#471"
+  ],
+  "candidateBoundary": "This report records preparation and validation of the unsigned release candidate. Signing, upload, review and public distribution require separate observed evidence; preparing or publishing this generator does not update an installed app icon.",
+  "externalEvidence": "Chat workspace work/icon-fill-nov07: final AAB review, native source diff, mobile test logs, bounded signing preflight and before/after preview.",
+  "preservedForeignFile": "data/learning-expansion-afternoon-2026-10-16.json"
+}
