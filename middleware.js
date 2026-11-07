@@ -11,7 +11,7 @@ const LEARNING_IMAGES = new Set(learningImagePaths);
 const LEARNING_AUDIO = new Set(learningAudioPaths);
 const EXPERIENCE_ASSETS = new Set([...natureAssetPaths, ...mediaExperienceAssetPaths, ...mediaExperienceDocumentationPaths, ...knowledgeExpansionAssetPaths, "/lernen/offline-sw.js"]);
 const APP_ICONS = new Set(["/app-icon.svg", "/android_192.png", "/android_512.png", "/apple_touch_icon.png", "/og.png", ...brandingAssetPaths]);
-// Operator-requested promotional downloads: five exact files per package.
+// Operator-requested promotional downloads: exact files, never a prefix grant.
 const PROMO_DOWNLOADS = new Set([
   "/werbung/jagdlatein-15s-2026-11-01.html",
   "/werbung/jagdlatein-15s-2026-11-01.mp4",
@@ -23,6 +23,12 @@ const PROMO_DOWNLOADS = new Set([
   "/werbung/jagdlatein-reel-30s-2026-11-01.zip",
   "/werbung/jagdlatein-reel-30s-2026-11-01.jpg",
   "/werbung/jagdlatein-reel-30s-2026-11-01.txt",
+  "/werbung/jagdlatein-story-2026-11-07.html",
+  "/werbung/jagdlatein-story-2026-11-07.jpg",
+  "/werbung/jagdlatein-story-2026-11-07.txt",
+  "/werbung/jagdlatein-story-2026-11-07.zip",
+  "/werbung/jagdlatein-story-2026-11-07-30s.mp4",
+  "/werbung/jagdlatein-story-2026-11-07-15s.mp4",
 ]);
 
 // These exact Pages Router routes run getPaidPageProps before rendering any

@@ -1,0 +1,105 @@
+{
+  "createdOn": "2026-11-07",
+  "role": "Werbestory für Social Media; keine behauptete App-Aufnahme oder von Plattformen freigegebene Store-Vorschau.",
+  "videos": [
+    {
+      "title": "Galoppierende Rehe auf einem Feld",
+      "author": "Moritz Kohls",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Galoppierende_Rehe_auf_einem_Feld.webm",
+      "sourceSha256": "6fc20c474e5cfa37432cfef1cc537b44789ca76bfb7a592cbd821a5666c96347",
+      "appearsIn": [
+        "30s",
+        "15s"
+      ],
+      "modifications": "Kurze Ausschnitte bei Originalgeschwindigkeit, gleichmäßige30fps; Hochformatbeschnitt beim Hasen, proportionale Skalierung, breiter Reh-/Hundeinsatz, teils unscharfer Hintergrund, abdunkelnde Farb-Overlays, Typografie und Montage. Originalton entfernt."
+    },
+    {
+      "title": "2022-04-19 ŠTARANCAN LEPORIDAE Lepus Europaeus POLJSKI ZAJEC 3",
+      "author": "NaIzletuSi ™",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:2022-04-19_%C5%A0TARANCAN_LEPORIDAE_Lepus_Europaeus_POLJSKI_ZAJEC_3.webm",
+      "sourceSha256": "f73e87f542cebc1bedec2942c87994bd4f57e64c68ee8884270e98dd2130e228",
+      "appearsIn": [
+        "30s",
+        "15s"
+      ],
+      "modifications": "Kurze Ausschnitte bei Originalgeschwindigkeit, gleichmäßige30fps; Hochformatbeschnitt beim Hasen, proportionale Skalierung, breiter Reh-/Hundeinsatz, teils unscharfer Hintergrund, abdunkelnde Farb-Overlays, Typografie und Montage. Originalton entfernt."
+    },
+    {
+      "title": "Golden retriever swimming the doggy paddle",
+      "author": "Golden Woofs",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Golden_retriever_swimming_the_doggy_paddle.webm",
+      "sourceSha256": "18efd66e28e76cfd8d69ea38f7ec8fb12c548c3dcfa923068369c17dc6d7a0c8",
+      "appearsIn": [
+        "30s"
+      ],
+      "modifications": "Kurze Ausschnitte bei Originalgeschwindigkeit, gleichmäßige30fps; Hochformatbeschnitt beim Hasen, proportionale Skalierung, breiter Reh-/Hundeinsatz, teils unscharfer Hintergrund, abdunkelnde Farb-Overlays, Typografie und Montage. Originalton entfernt."
+    }
+  ],
+  "music": "Eigene neu komponierte und synthetisierte Musik bei112BPM; keine Fremdsamples, Musikbibliotheken, Sprache oder Musik-API.",
+  "branding": "Unverändertes vorhandenes, vom Betreiber freigegebenes App-Symbol; proportional skaliert, gerundete Ecken. Keine neue öffentliche Lizenz für dieses Markenzeichen.",
+  "graphics": "Eigene redaktionelle Motion-Grafiken; keine fingierte App-Oberfläche, Nutzerwerte oder Prüfungsergebnisse.",
+  "poolBoundary": "Der Hund ist im Pool mit Schwimmhilfe zu sehen; die Aufnahme belegt keine Jagdprüfung oder jagdliche Einsatzfähigkeit.",
+  "stores": {
+    "apple": "https://apps.apple.com/de/app/jagdlatein/id6819820561",
+    "google": "https://play.google.com/store/apps/details?id=de.jagdlatein.app&hl=de",
+    "web": "https://jagdlatein.de/"
+  },
+  "limits": "Keine amtliche Vollabdeckung oder Bestehensgarantie. Keine Veröffentlichung auf Instagram, keine Geräteprüfung oder Werbemittelfreigabe durch Apple, Google oder Meta behauptet.",
+  "purpose": "Operator-requested finished high-quality vertical advertising story and phone downloads.",
+  "formats": [
+    {
+      "seconds": 30,
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 900
+    },
+    {
+      "seconds": 15,
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 450
+    }
+  ],
+  "files": [
+    {
+      "path": "/werbung/jagdlatein-story-2026-11-07.html",
+      "bytes": 5728,
+      "sha256": "d67bb19466e8d8c1e9424ab3adaffae42ccaea72bfba5e1fb4ba7eb5e71d4676"
+    },
+    {
+      "path": "/werbung/jagdlatein-story-2026-11-07.jpg",
+      "bytes": 586841,
+      "sha256": "5f8c7ca0583470f0a87f853d94f6924dba0ecf0a0e1490aa99ef5a87fb2984cc"
+    },
+    {
+      "path": "/werbung/jagdlatein-story-2026-11-07.txt",
+      "bytes": 1424,
+      "sha256": "bd78ab48b903f0d5174b87e69c99e1adc7f54088ed634104889b4f60b98bd8c2"
+    },
+    {
+      "path": "/werbung/jagdlatein-story-2026-11-07.zip",
+      "bytes": 42320526,
+      "sha256": "e7fccb942221855619f6d2cf22a861f783458a9e6991bac7631b8b45e6ae5afe"
+    },
+    {
+      "path": "/werbung/jagdlatein-story-2026-11-07-30s.mp4",
+      "bytes": 12905869,
+      "sha256": "fb72c777308a602a67ef8689c824e4786000ca5510db42698e944c424c891bbe"
+    },
+    {
+      "path": "/werbung/jagdlatein-story-2026-11-07-15s.mp4",
+      "bytes": 8755651,
+      "sha256": "9c7ed4d211f71404ebea2317bb74f6ffd4740974fc8e3316cf5ebeea49fe6e20"
+    }
+  ],
+  "access": "Only six exact GET/HEAD public files; download=1 attaches the two specifiedMP4s,ZIP attaches; no prefix grant, customer-data access or unrelated account/teaching permission change.",
+  "qa": "Encoded-frame, full-decode, loudness and isolated/public delivery QA separately documented outside repository."
+}

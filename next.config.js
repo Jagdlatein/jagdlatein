@@ -59,6 +59,23 @@ const nextConfig = {
       headers: [
         { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Reel-30s-Paket.zip"' },
       ],
+    }, {
+      source: "/werbung/jagdlatein-story-2026-11-07-30s.mp4",
+      has: [{ type: "query", key: "download", value: "1" }],
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Story-30s.mp4"' },
+      ],
+    }, {
+      source: "/werbung/jagdlatein-story-2026-11-07-15s.mp4",
+      has: [{ type: "query", key: "download", value: "1" }],
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Story-15s.mp4"' },
+      ],
+    }, {
+      source: "/werbung/jagdlatein-story-2026-11-07.zip",
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Story-Paket.zip"' },
+      ],
     }];
   },
 
