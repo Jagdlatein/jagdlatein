@@ -54,7 +54,7 @@ test('Pages and App Router advertise the same PNG favicon and Apple touch paths 
   assert.deepEqual(headLinks.map(node => node.props.sizes), ['32x32', '48x48', '96x96', '180x180']);
   const file = path.join(root, 'app/layout.jsx'), { code } = local('next/dist/build/swc').transformSync(fs.readFileSync(file, 'utf8'), { filename: file, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const module = { exports: {} };
-  new Function('require', 'module', 'exports', code)(id => id.endsWith('.css') ? {} : id === '../lib/brand-config' ? load('lib/brand-config.js') : id === '../components/GlobalHomeButton' ? { __esModule: true, default: () => null } : local(id), module, module.exports);
+  new Function('require', 'module', 'exports', code)(id => id.endsWith('.css') ? {} : id === '../lib/brand-config' ? load('lib/brand-config.js') : id === '../components/AppExamProfileBoundary' ? load('components/AppExamProfileBoundary.js') : id === '../components/GlobalHomeButton' ? { __esModule: true, default: () => null } : local(id), module, module.exports);
   const metadata = module.exports.metadata;
   assert.equal(metadata.metadataBase.href, `${brand.site}/`);
   assert.deepEqual(metadata.icons.icon.map(icon => icon.url), [brand.favicon32, brand.favicon48, brand.favicon96]);

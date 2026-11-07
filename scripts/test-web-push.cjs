@@ -285,10 +285,11 @@ test('Installable web metadata uses only existing correctly sized local icons an
     assert.equal(`${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`,icon.sizes);
   }
   assert.ok(!JSON.stringify(manifest).includes('https:'));
-  const load=createLoader({'next/head':({children})=>React.createElement(React.Fragment,null,children),'../components/GlobalHomeButton':{__esModule:true,default:()=>null},'../styles/AppBase.css':{},'./globals.css':{}});
+  const load=createLoader({'next/head':({children})=>React.createElement(React.Fragment,null,children),'next/router':{useRouter:()=>({pathname:'/'})},'../components/GlobalHomeButton':{__esModule:true,default:()=>null},'../styles/AppBase.css':{},'./globals.css':{}});
   const App=load('pages/_app.js').default;
   const html=local('react-dom/server').renderToStaticMarkup(React.createElement(App,{Component:()=>React.createElement('main',null,'Synthetic page'),pageProps:{}}));
   assert.match(html,/<link rel="manifest" href="\/manifest.webmanifest"/);
+  assert.match(html,/<main>Synthetic page<\/main>/,'The real profile boundary keeps this public-page fixture visible');
   assert.equal(load('app/layout.jsx').metadata.manifest,'/manifest.webmanifest');
   for(const filename of ['pages/_app.js','app/layout.jsx'])assert.doesNotMatch(fs.readFileSync(path.join(root,filename),'utf8'),/requestPermission|serviceWorker\.register|initializeApp|firebase\/|firebasejs/);
   const middleware=createLoader({'./lib/account-session-edge':{JL_ACCOUNT_COOKIE:'synthetic',readAccountSessionEdge:async()=>null}})('middleware.js').middleware,{NextRequest}=local('next/server');
