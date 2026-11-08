@@ -61,6 +61,14 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
   const lessonRoute = `${module.id}:${router.asPath || ""}`;
   const currentLessonRoute = useRef(lessonRoute);
   currentLessonRoute.current = lessonRoute;
+  const quizCatalog = useRef(null);
+  if (!quizCatalog.current || quizCatalog.current.module !== module || quizCatalog.current.questions !== module.questions || quizCatalog.current.lessons !== module.lessons) quizCatalog.current = { module, questions: module.questions, lessons: module.lessons };
+  const catalog = quizCatalog.current;
+  const readQuizAddress = () => JSON.stringify([router.isReady !== false, router.asPath, router.query, typeof window === "undefined" ? null : `${window.location.pathname}${window.location.search}${window.location.hash}`]);
+  const quizAddress = readQuizAddress();
+  const quizView = useRef(null);
+  if (!quizView.current || quizView.current.address !== quizAddress || quizView.current.catalog !== catalog) quizView.current = { address: quizAddress, catalog };
+  const quizOrigin = quizView.current;
   const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(`${module.id}:${lessonIndex}`, router.isReady !== false);
   useEffect(() => { lessonMounted.current = true; return () => { lessonMounted.current = false; lessonRequest.current++; }; }, []);
   useEffect(() => {
@@ -172,6 +180,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
   const wrongQuestions = run.questions.filter((item) => run.answers[item.id] !== undefined && !item.correct.includes(run.answers[item.id]));
   const practice = run.mode !== "full";
   const lessonPractice = run.lessonPractice;
+  const runCatalogCurrent = !run.started || run.questions.every(item => module.questions.includes(item));
 
   function updateRun(next) {
     currentRun.current = next;
@@ -179,10 +188,42 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
   }
 
   function startRun(questions, mode, lessonContext = null) {
-    if (quizContext.current.paused || currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current) return false;
+    if (!currentQuizAction() || !questions.length || questions.some(item => !module.questions.includes(item))) return false;
     cancelSelectionFocus();
     updateRun({ ...makeRun(questions, mode, newAnswerSeed(run.answerSeed), lessonContext), started: true });
     return true;
+  }
+
+  function currentQuizAction() {
+    const address = readQuizAddress();
+    if (address !== quizAddress) {
+      // A real address change can precede React's next paint. Observing it
+      // ends this origin even if history returns to the same address later.
+      if (quizView.current === quizOrigin) quizView.current = { address, catalog: quizCatalog.current };
+      return false;
+    }
+    return !quizContext.current.paused && runCatalogCurrent && currentRun.current === run && (typeof window === "undefined" || lessonMounted.current)
+      && router.isReady !== false && quizView.current === quizOrigin && quizCatalog.current === catalog;
+  }
+
+  function mistakeLesson(item) {
+    if (!module.questions.includes(item) || typeof item.lessonId !== "string") return null;
+    const matches = module.lessons.filter(entry => entry.id === item.lessonId);
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function openMistakeLesson(event, item) {
+    event.preventDefault();
+    if (!currentQuizAction() || !run.showResult || !wrongQuestions.includes(item)) return;
+    const target = mistakeLesson(item);
+    if (target) void selectLesson(module.lessons.indexOf(target));
+  }
+
+  function openFeedbackLesson(event, item) {
+    event.preventDefault();
+    if (!currentQuizAction() || !run.started || run.showResult || question !== item || selected === undefined) return;
+    const target = mistakeLesson(item);
+    if (target) void selectLesson(module.lessons.indexOf(target));
   }
 
   function practiceCurrentLesson() {
@@ -201,7 +242,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
 
   function answerQuestion(answerId) {
     // A stale button cannot answer twice or answer the next question before it renders.
-    if (quizContext.current.paused || currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || !run.started || run.complete || selected !== undefined) return;
+    if (!currentQuizAction() || !module.questions.includes(question) || !run.started || run.complete || selected !== undefined) return;
     if (!question.answers.some((answer) => answer.id === answerId)) return;
     const answers = { ...run.answers, [question.id]: answerId };
     const score = run.score + (question.correct.includes(answerId) ? 1 : 0);
@@ -221,7 +262,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
   }
 
   function nextQuestion() {
-    if (quizContext.current.paused || currentRun.current !== run || typeof window !== "undefined" && !lessonMounted.current || selected === undefined) return;
+    if (!currentQuizAction() || !module.questions.includes(question) || selected === undefined) return;
     cancelSelectionFocus();
     updateRun(run.complete ? { ...run, showResult: true } : { ...run, index: run.index + 1 });
   }
@@ -240,7 +281,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
               </div>
             </nav>
             {lessonError && <p role="alert">{lessonError}</p>}
-            {lessonQuestions.length > 0 && <button type="button" className={styles.secondaryButton} data-course-lesson-practice={lesson.id} disabled={quizPaused || router.isReady === false} aria-label={`${lesson.title}: ${lessonQuestions.length} Fragen üben`} onClick={practiceCurrentLesson}>Lektion üben</button>}
+            {lessonQuestions.length > 0 && <button type="button" className={styles.secondaryButton} data-course-lesson-practice={lesson.id} disabled={quizPaused || !runCatalogCurrent || router.isReady === false} aria-label={`${lesson.title}: ${lessonQuestions.length} Fragen üben`} onClick={practiceCurrentLesson}>Lektion üben</button>}
             {videos.length > 0 && <nav aria-label="Videos"><h3>Videos</h3><ul className={styles.sources}>{videos.map(video => <li key={video.id}><Link href={video.href} prefetch={false}>{video.title}</Link></li>)}</ul></nav>}
             <CourseWildlifeLinks links={wildlifeLinks} lessonId={module.lessons[lessonIndex].id} />
             <CourseBreedLinks moduleId={module.id} lessonId={module.lessons[lessonIndex].id} />
@@ -286,8 +327,8 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
             <summary>Wissen zu diesem Thema prüfen</summary>
           <section aria-labelledby="quiz-heading">
             <h2 id="quiz-heading" tabIndex={-1}>Wissenscheck</h2>
-            {quizPaused ? <div role="status">
-              <p>Die Übungsrunde wurde geschlossen, weil der Wiederholungsverlauf oder dein Konto an anderer Stelle geändert wurde. Du kannst die Lektion weiterlesen.</p>
+            {quizPaused || !runCatalogCurrent ? <div role="status">
+              <p>{!runCatalogCurrent ? "Die Fragen dieses Kurses wurden geändert. Öffne den Kurs erneut, um die aktuelle Fassung zu üben. Dein gespeicherter Kursstand bleibt erhalten." : "Die Übungsrunde wurde geschlossen, weil der Wiederholungsverlauf oder dein Konto an anderer Stelle geändert wurde. Du kannst die Lektion weiterlesen."}</p>
               <a className={styles.button} href={`/kurse/${encodeURIComponent(module.id)}${lessonHash(lesson.id)}`}>Kurs erneut öffnen</a>
             </div> : !run.started ? (
               <>
@@ -300,6 +341,22 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
                 <h3>{lessonPractice ? "Lektionsrunde abgeschlossen" : practice ? "Übungsrunde beendet" : "Lerneinheit abgeschlossen"}</h3>
                 <p className={styles.resultScore}>{run.score} von {run.questions.length} richtig <span>({Math.round(run.score / run.questions.length * 100)} %)</span></p>
                 <p>{practice ? "Diese Übungsrunde verändert deinen gespeicherten Kursabschluss nicht." : "Dein Abschluss und dein bestes Ergebnis erscheinen in „Meine Kurse“. Wenn das Speichern fehlschlägt, kannst du es unten erneut versuchen."}</p>
+                {wrongQuestions.length > 0 && <section aria-labelledby="course-mistakes-title" className={styles.mistakeReview}>
+                  <h4 id="course-mistakes-title">Fehler verstehen</h4>
+                  <p>Hier stehen die in dieser Runde falsch beantworteten Fragen. Lies die Erklärung und prüfe den Zusammenhang in der passenden Lektion. Deine Runde und dein Ergebnis bleiben beim Nachlesen erhalten.</p>
+                  <ol className={styles.mistakeList}>{wrongQuestions.map(item => {
+                    const ownAnswer = item.answers.find(answer => answer.id === run.answers[item.id]);
+                    const target = mistakeLesson(item);
+                    return <li key={item.id}>
+                      <h5>{item.q}</h5>
+                      {(item.topic === "Recht" || item.countries.length < 3) && <p className={styles.countryNote}><strong>Geltungsbereich dieser Frage:</strong> {item.countries.map(code => countryNames[code] || code).join(" · ")}</p>}
+                      <p><strong>Deine Antwort:</strong> {ownAnswer ? ownAnswer.text : "Die damalige Auswahl ist nicht zuordenbar."}</p>
+                      <p><strong>Richtig ist:</strong> {item.answers.filter(answer => item.correct.includes(answer.id)).map(answer => answer.text).join(", ")}</p>
+                      <p>{item.explain}</p>
+                      {target ? <a href={lessonHash(target.id)} className={styles.textButton} onClick={event => openMistakeLesson(event, item)} aria-label={`${item.q}: Lektion ${target.title} nachlesen`}>Lektion nachlesen: {target.title}</a> : <p className={styles.muted}>Für diese Frage ist keine eindeutige passende Lektion hinterlegt.</p>}
+                    </li>;
+                  })}</ol>
+                </section>}
                 <div className={styles.actions}>
                   {wrongQuestions.length > 0 && <button type="button" className={styles.button} onClick={() => startRun(wrongQuestions, "practice", lessonPractice)}>Nur Fehler üben ({wrongQuestions.length})</button>}
                   <button type="button" className={styles.secondaryButton} onClick={() => lessonPractice ? startRun(lessonPractice.questions, "lesson", lessonPractice) : startRun(module.questions, "full")}>{lessonPractice ? "Lektion wiederholen" : "Alle Fragen wiederholen"}</button>
@@ -333,11 +390,7 @@ function LearningContent({ module, flashcards, wildlifeLinks = [], miniCourseLin
                     {!question.correct.includes(selected) && <p><strong>Richtig ist:</strong> {question.answers.filter((answer) => question.correct.includes(answer.id)).map((answer) => answer.text).join(", ")}</p>}
                     <p>{question.explain}</p>
                     <LessonPhotos photos={lessonPhotos[question.lessonId] || []} context="feedback" />
-                    {question.lessonId && <a href={lessonHash(question.lessonId)} className={styles.textButton} onClick={event => {
-                      event.preventDefault();
-                      const index = module.lessons.findIndex((item) => item.id === question.lessonId);
-                      if (index >= 0) selectLesson(index);
-                    }}>Passende Lektion öffnen</a>}
+                    {mistakeLesson(question) && <a href={lessonHash(question.lessonId)} className={styles.textButton} onClick={event => openFeedbackLesson(event, question)}>Passende Lektion öffnen</a>}
                     <div className={styles.actions}><button type="button" className={styles.button} onClick={nextQuestion}>{run.complete ? "Ergebnis ansehen" : "Nächste Frage"}</button></div>
                   </div>
                 )}

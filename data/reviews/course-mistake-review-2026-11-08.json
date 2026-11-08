@@ -1,0 +1,32 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Fehlernachlesen im bestehenden Online-Kurs-Wissenscheck, in dessen Lektionsübung und explizitem Fehlertraining. Kein neuer Prüfungsstoff, keine fachliche Gesamtprüfung und kein Umbau des separaten Offline-Quizrenderers.",
+  "before": "Mit drei tatsächlich ausgeführten isolierten React-Runden reproduziert: Nach Ergebnis ansehen verschwanden die zuvor falsch beantworteten Fragen, die eigene und richtige Antwort sowie die Originalerklärung aus dem Quizbereich. Das galt für Vollkurs, Lektionsrunde und Fehlertraining. Nur die erneute Runde blieb möglich.",
+  "result": {
+    "presentation": "Fehler verstehen steht unmittelbar im vorhandenen Ergebnisblock. Jede wirklich falsche Antwort erscheint in ursprünglicher Rundenreihenfolge mit Frage, tatsächlicher eigener Auswahl, richtiger Antwort und unveränderter Originalerklärung.",
+    "noInference": "Es werden keine individuellen Irrtumsursachen, neuen Distraktorbegründungen, amtlichen Bewertungen oder zusätzlichen Lernfehler erfunden.",
+    "lessonLink": "Nur das aktuelle konkrete Frageobjekt mit genau einer passenden lessonId erhält den genauen Lektionsanker. Fehlende oder mehrdeutige Zuordnung wird benannt, keine erste oder benachbarte Lektion ersatzweise geöffnet.",
+    "reading": "Die vollständige Lektion öffnet über den bestehenden bestätigten Leseweg. Ergebnis und beantwortete Fragen bleiben bei Lektionswechsel und History erhalten; ein fehlgeschlagener Aufruf ersetzt weder Lesetext noch Ergebnis.",
+    "sources": "Fragen, Erklärungen und ihre unmittelbaren Geltungsgrenzen stehen vor dem unveränderten geschlossenen Quellenabschluss. Lektionsvolltexte werden nicht dutzendfach in die Ergebnisseite kopiert.",
+    "limits": "Die Anzeige ist eine lokale Zusammenfassung der aktuellen Online-Übungsrunde. Sie synchronisiert keinen neuen Ergebnisverlauf und ist keine Diagnose der persönlichen Prüfungsreife."
+  },
+  "boundaries": [
+    "Neue und bestehende mutierende Quizaktionen prüfen aktuelle Runde, Mounted-Lebenszeit, Pause, konkrete Modul-/Fragen-/Lektionskatalogidentität sowie Raw-Router-/Query-/Hash-/Browseradresse vor ihrer Wirkung.",
+    "Ein vor React beobachteter Adresswechsel entwertet alte Aktionen auch bei anschließender Rückkehr auf dieselbe Adresse.",
+    "Auch vorhandene Antwort-, Weiter- und Feedback-Lektionsaktionen besitzen diese frühen Grenzen. Die aktuelle gerenderte Runde bleibt bei normalem Nachlesen verwendbar.",
+    "Ein Fragenkatalogaustausch bei gleicher Kurs-ID zeigt keine alte Frage mit neuer Lektion als aktuelle Fassung. Die Ansicht verlangt ein ausdrückliches erneutes Öffnen.",
+    "Vorhandene Entfernung des Wiederholungsverlaufs, Storage-clear, Kontolöschung und echter Unmount sperren aufbewahrte Link-/Retry-/Antwortaktionen.",
+    "Keine neue Storage-, Konto-, Zahlungs-, Anbieter- oder API-Schreibaktion. Vollkursfortschritt und die bestehende ausdrückliche Fehler-/Lektionswiederholung bleiben erhalten."
+  ],
+  "validation": {
+    "newRegressionFile": "scripts/test-course-mistake-review.cjs",
+    "newTests": 15,
+    "passedTogether": 41,
+    "broaderPassed": 35,
+    "broaderSuites": ["scripts/test-answer-order.cjs", "scripts/test-learning-experiences.cjs", "scripts/test-learning-ui-state.cjs"],
+    "independentProbes": "Vier zusätzlich unabhängig geschriebene Proben außerhalb des Repos bestanden: tatsächliche Browseradresse ohne Routeränderung und A-B-A; nur Lektionskatalog ersetzt; false/cancel/erneuter aktueller Versuch; zwei Fehler derselben Lektion ohne Ergebnis-/Verlaufsänderung.",
+    "existingSuites": ["scripts/test-course-lesson-practice.cjs", "scripts/test-course-review-lifetime.cjs"],
+    "method": "Tatsächliche React-/DOM-/Effect-Cleanup-Lebenszyklen, ausschließlich synthetische Kurse und isolierte Router-, Speicher- und Fortschrittsdoubles.",
+    "specificChecks": ["Falsch/richtig und Reihenfolge", "Eigene Antwort und unveränderte Erklärung", "Lektionscommit und History", "Fehlgeschlagene Navigation", "Fehlende/mehrdeutige Lektionszuordnung", "Keine erfundenen Fehler bei richtigem Abschluss", "Vollkurs/Lektionsrunde/Fehlertraining getrennt", "Raw-URL vor Render und A-B-A", "Fragenkatalogaustausch bei gleicher Kurs-ID", "Echter Unmount/Pause/Kontolöschung", "Geltungsbereich unmittelbar an der Frage", "Keine zusätzlichen Fortschritts- oder Wiederholungswrites"]
+  }
+}

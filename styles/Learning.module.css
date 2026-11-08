@@ -111,3 +111,9 @@
   .question { font-size: 19px; }
   .feedback { padding: 16px; }
 }
+.mistakeReview { margin: 24px 0; }
+.mistakeReview h4 { margin-bottom: 8px; }
+.mistakeList { padding-left: 24px; margin: 16px 0; }
+.mistakeList > li { margin: 20px 0; padding: 0 0 18px; border-bottom: 1px solid #dfd0ab; }
+.mistakeList h5 { margin: 0 0 10px; font-size: 19px; line-height: 1.5; overflow-wrap: anywhere; }
+.mistakeList p { margin: 8px 0; line-height: 1.65; overflow-wrap: anywhere; }

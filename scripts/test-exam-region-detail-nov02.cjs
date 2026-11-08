@@ -267,6 +267,11 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
       assert.deepEqual(stripBroodPatchDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
       continue;
     }
+    if (filename === 'data/learning-expansion-wildlife-dogs-2026-10-16.json') {
+      const { stripFeatherFieldsDataset } = require('./helpers/feather-fields-additions-nov08.cjs');
+      assert.deepEqual(stripFeatherFieldsDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
+      continue;
+    }
     assert.equal(current, baselineText(filename).replace(/\r\n/g, '\n'), filename);
   }
 });

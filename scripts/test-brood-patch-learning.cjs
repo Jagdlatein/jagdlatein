@@ -1,7 +1,9 @@
 // Exact preservation/integration checks; these do not certify scientific claims.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { featherFieldsBaselineFixture } = require('./helpers/feather-fields-additions-nov08.cjs');
+const createLoader = overrides => createProjectLoader(featherFieldsBaselineFixture(overrides));
 const { courseId, lessonId, sourceURLs: urls, stripBroodPatchAddition, stripBroodPatchDataset } = require('./helpers/brood-patch-addition-nov08.cjs');
 const raw = require('../data/learning-expansion-biology-2026-10-16.json');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js');

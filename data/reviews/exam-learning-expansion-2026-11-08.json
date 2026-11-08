@@ -1,0 +1,44 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Verständlicheres Nachlernen im Kursquiz und zwei zusammengehörende Ergänzungen zum Gefieder im bestehenden CH/AT/DE-Fachwissen.",
+  "courseMistakes": {
+    "reader": "Bestehender Online-Kurs-Wissenscheck einschließlich Lektionsrunde und ausdrücklichem Fehlertraining; der separate Offline-Quizrenderer wurde nicht umgebaut.",
+    "content": "Nach Ergebnis ansehen bleiben die wirklich falsch beantworteten Fragen in Rundenreihenfolge mit tatsächlicher eigener Antwort, richtiger Antwort und unveränderter Originalerklärung lesbar. Der genaue Lektionslink öffnet den vollständigen Ausgangstext über die bestehende bestätigte Navigation.",
+    "preservation": "Nachlesen und History erhalten die Runde und das Ergebnis. Keine neue Speicherung, kein persönlicher Fehlergrund erfunden, kein neuer amtlicher Bewertungsmaßstab. Vollkurs- und Übungsfortschritt bleiben getrennt.",
+    "lifetime": "Frühe Mounted-/Runden-/Modul-/Fragen-/Katalog-/Raw-URL-Grenzen schützen neue und vorhandene Antwort-, Weiter-, Retry- und Lektionsaktionen. Ein beobachteter Adresswechsel entwertet alte Aktionen auch bei Rückkehr zur gleichen Adresse. Bei ersetztem Fragenkatalog verlangt die Ansicht ausdrücklich ein erneutes Öffnen, statt alte Antworten mit neuen Fakten zu mischen.",
+    "mapping": "Alle 2757 aktuellen Kursfragen besitzen genau eine passende lessonId und gültige Antwortbezüge. Ein fehlender oder mehrdeutiger Lektionsbezug erhält im UI keinen Ersatztext und keinen erfundenen Nachbarlink.",
+    "sources": "Erklärungen und unmittelbare territoriale Grenzen stehen beim jeweiligen Fehler. Bestehende Quellen und Datumsrollen bleiben am geschlossenen Seitenende; dies ist keine neue externe Prüfung aller alten Erklärungen."
+  },
+  "knowledge": {
+    "course": "wissen-ausbau-federaufbau-funktion-2026",
+    "lessons": [{ "id": "federfluren", "words": 147 }, { "id": "fadenfedern", "words": 146 }],
+    "newQuestions": 3,
+    "answerOptionsEach": 4,
+    "newCards": 3,
+    "claims": "Ansatzfelder und äußere Überdeckung sind getrennte Ebenen; Zwischenfelder können federfrei oder schwächer befiedert sein. Fadenfedern haben eine haarähnliche Form, während die beschriebenen Sinnesrezeptoren im Haut-/Follikelbereich liegen.",
+    "sourcesActuallyRead": [
+      { "publisher": "Poultry Hub Australia", "sections": "The skin, Feathers, Filoplumes", "role": "Institutioneller Lehrtext, benannter Geflügelbezug; keine eigene Messreihe" },
+      { "publisher": "Cornell Lab Bird Academy", "sections": "Glossareinträge apteria, feather tracts, pterylae und filoplumes", "role": "Eigenständig verfasste Hochschuldefinitionen; keine fachliche Prüfung des gesamten Glossars" },
+      { "publisher": "University of Connecticut, Rubega Lab", "sections": "Lecture notes Types of feathers vi und Pterylosis i–iii", "role": "Unabhängige universitäre Einordnung; Original-HTML trotz Web-Timeout direkt HTTP200 gelesen" },
+      { "publisher": "Necker 1985, Journal of Comparative Physiology A", "sections": "Nur öffentliches Original-Summary, DOI 10.1007/BF00610731", "role": "Elektrophysiologischer Originalbefund an Tauben; kein gelesener Volltext und keine unabhängige Replikation der Lehrtexte" }
+    ],
+    "limits": "Keine Allarten-Flurkarte, Messwerte, Diagnosen oder universelle Flugfunktion. Die freien Federschäfte werden nicht als Nervenleitung erklärt. Keine übernommenen Lehrbilder, Filme oder Tierkontakte.",
+    "integration": "Vorhandener Wildkunde-Kurs, genaue Suche/Lektionsanker, Wissenscheck, Lernkarten, geschützte Karten-API, Druckansicht und ablaufendes Offlinepaket.",
+    "preservation": "Alte acht Lektionen, 22 Fragen, zehn Quellen und Kursdatum 16. Oktober bleiben exakt. Alle 198 vorherigen Kursobjekte und alle 1762 vorherigen Karten einschließlich der 116 Starter und ihrer Reihenfolge wurden positiv erhalten. Nur die beiden neuen Lektionen und ihre Quellenrollen tragen das Datum 8. November."
+  },
+  "validation": {
+    "tests": { "passed": 537, "failed": 0, "skipped": 0 },
+    "newRegressions": { "courseMistakes": 15, "knowledge": 10 },
+    "independentAdditionalLifecycleProbes": 4,
+    "independentSourceReview": "Autor, Root und unabhängiger Reviewer lasen die vier konkreten Quellenausschnitte selbst. Der Reviewer verglich den gesamten alten Datensatz und sämtliche alten Karten zusätzlich mit getrennten HEAD-/Working-Loadern.",
+    "historicalFixtures": "Die bestehenden Brutfleck-, Lenticellen- und regionalen Detail-Bestandstests projizieren ausschließlich den separat geprüften exakten neuen Gefieder-Appendix heraus. Alle bisherigen Hash-/Objekt-/Reihenfolgenprüfungen bleiben erhalten.",
+    "visual": "Lokale statische Vorschau des tatsächlichen fertig beantworteten React-Kursrenderers mit ausdrücklichen Testdaten, unveränderten aktuellen Kursstyles und transparent vereinfachtem Kopf/Menüportal; schmale Ansicht ohne horizontalen Überlauf, Quellen geschlossen. Keine Kundendaten oder physische Geräteprüfung.",
+    "releaseProof": "Produktionsbuild und tatsächliche Vercel-Auslieferung werden vor Abschluss gesondert im Chat-Workspace work/exam-expansion-nov08c protokolliert."
+  },
+  "preserved": {
+    "foreignFile": "data/learning-expansion-afternoon-2026-10-16.json unberührt und nicht gestagt; SHA256 23E6E8FC8FD6C3E1B5AD115B92036B901D0DC3613332D4EDD0DEB0C283A607C9",
+    "userData": "Keine Benutzer-, Zahlungs-, Abonnement-, Konto- oder Einwilligungsänderung; keine neuen kostenpflichtigen Dienste oder Store-Veröffentlichung.",
+    "regionalLaw": "Keine Änderungen an regionalen Rechtsdaten, Freigabesperren oder Prüfungszulassungen."
+  },
+  "limits": "Gezielte eigene Lernhilfe und eng geprüfte Fachergänzung, keine vollständige amtliche Prüfungsabdeckung oder fachliche Neuprüfung der gesamten App."
+}

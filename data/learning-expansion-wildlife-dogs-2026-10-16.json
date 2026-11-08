@@ -427,6 +427,49 @@
             "schwingen",
             "steuerfedern"
           ]
+        },
+        {
+          "label": "PoultryHub: Integumentary – Federfelder und Fadenfedern",
+          "url": "https://www.poultryhub.org/anatomy-and-physiology/body-systems/integumentary-surface-of-the-bird",
+          "organization": "PoultryHub Australia, University of New England",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "federfluren",
+            "fadenfedern"
+          ],
+          "supports": "Originalkapitel direkt gelesen: The skin (Huhn als Modell: Pterylae/Apteria und äußere Überdeckung), Feathers und Filoplumes (haarähnliche Form, Äste an der Spitze). Die dort vereinfachte völlige Federfreiheit wird mit Cornell auf federfreie oder schwächer befiederte Zwischenfelder präzisiert. Keine übrigen Haut-, Größen-, Pigment-, Fütterungs-, Eingriffs- oder Gefiederpflegebehauptungen übernommen; keine eigene Messreihe."
+        },
+        {
+          "label": "Cornell Bird Academy: Glossar – feather tracts, pterylae, apteria, filoplumes",
+          "url": "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/",
+          "organization": "Cornell Lab of Ornithology",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "federfluren",
+            "fadenfedern"
+          ],
+          "supports": "Nur die vier benannten Originaleinträge direkt gelesen: Federansatzfelder, federfreie oder schwächer befiederte Zwischenfelder sowie haarähnliche Fadenfedern mit wenigen/fehlenden, gegebenenfalls endständigen Ästen und Sinnesrezeptoren in der Haut bei ihren Follikeln. Keine vollständige fachliche Prüfung des umfangreichen Glossars; keine eigene Versuchsmessung."
+        },
+        {
+          "label": "Rubega Lab: Lecture Notes – Feathers, Types und Pterylosis",
+          "url": "https://rubegalab.uconn.edu/lecture-notes-feathers/",
+          "organization": "University of Connecticut, Department of Ecology & Evolutionary Biology, Rubega Lab",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "federfluren",
+            "fadenfedern"
+          ],
+          "supports": "Originallehrtext tatsächlich gelesen: Abschnitt 3.vi (haarähnliche sensorische Fadenfedern und Stellung benachbarter Fahnenfedern) und 5.i–iii (bei den meisten Vögeln Federfelder, Zwischenfelder und Überdeckung). Nach Web-Timeout war das öffentliche Original-HTML direkt mit HTTP 200 lesbar. Keine Entstehungshypothesen, Kühlungsfunktion, Ausnahmeliste oder übrigen Evolutions-/Farbangaben übernommen; fachliche Einordnung, keine experimentelle Replikation."
+        },
+        {
+          "label": "Necker (1985): Fadenfeder-Rezeptoren in Taubenhaut – Originalsummary",
+          "url": "https://link.springer.com/article/10.1007/BF00610731",
+          "organization": "Ruhr-Universität Bochum, Reinhold Necker; Journal of Comparative Physiology A",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "fadenfedern"
+          ],
+          "supports": "Vollständige öffentlich lesbare Original-Summary (DOI 10.1007/BF00610731) tatsächlich gelesen, kein Volltext: elektrophysiologische Reaktion eines langsam adaptierenden Mechanorezeptors an der Basis von Fadenfedern bei Tauben; Reaktion bei seitlicher Konturfederverschiebung oder Fadenfederbewegung und fachliche Deutung als Gefiedersensor. Keine Messwerte, universellen Artleistungen, Kälterezeptorvergleiche oder experimentell bewiesene allgemeine Flugfunktion gelehrt. Institutionelle Lehrtexte sind eine unabhängige funktionelle Einordnung, keine Wiederholung dieses Versuchs."
         }
       ],
       "lessons": [
@@ -520,6 +563,32 @@
           "exercise": "Vergleiche in einer eigenen Vogelskizze die Lage von Schwungfedern und Steuerfedern und erläutere den Beitrag des Schwanzes zur Richtungssteuerung.",
           "reviewedOn": "2026-10-27",
           "flashcardExpansion": true
+        },
+        {
+          "id": "federfluren",
+          "title": "Federfluren",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Ein geschlossen wirkendes Gefieder entsteht nicht bei jedem Vogel aus gleichmäßig über die Haut verteilten Federansätzen. Bei vielen Vögeln stehen die Konturfedern in bestimmten Hautfeldern, den Federfluren oder Pterylae. Dazwischen liegen Federraine, die Apteria: federfreie oder schwächer befiederte Zwischenfelder. Die Begriffe beschreiben die Verteilung an der Haut und nicht die Farbe der sichtbaren Federoberfläche.",
+            "Benachbarte größere Federn können solche Zwischenfelder überdecken. Ein Vogel kann deshalb äußerlich dicht befiedert erscheinen, obwohl die Ansatzstellen darunter nicht überall gleich verteilt sind. Denke an ein eigenes Lernschema: Die Punkte für Federansätze liegen in Streifen; die darüber gezeichneten Federn überlappen bis über die Zwischenräume. Streifen der Ansatzstellen und geschlossene äußere Deckung widersprechen sich nicht.",
+            "Das ist ein verbreiteter Bauplan, keine für sämtliche Vogelarten identische Flurkarte. Ein Foto des geschlossenen Gefieders zeigt die genaue Grenze jeder Flur nicht zwangsläufig. Für die Prüfung erkläre zuerst Ansatzfeld, Zwischenfeld und Überdeckung, bevor du einzelne Federformen benennst."
+          ],
+          "takeaway": "Federfluren tragen Federansätze; größere Federn können die dazwischenliegenden Federraine von außen überdecken.",
+          "exercise": "Zeichne eine eigene schematische Hautfläche mit Federfluren, Zwischenfeldern und überlappenden Federn. Trenne die Ansatzpunkte von der sichtbaren äußeren Deckung; kein Tierkontakt ist nötig."
+        },
+        {
+          "id": "fadenfedern",
+          "title": "Fadenfedern",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Fadenfedern heißen auch Filoplumen. Sie besitzen einen schlanken, haarähnlichen Schaft mit wenigen oder keinen Ästen; vorhandene Äste sitzen an der Spitze. Dadurch fehlt ihnen die breite geschlossene Fahne einer typischen Kontur- oder Schwungfeder. Haarähnlich beschreibt ihre Gestalt: Es sind Federn, keine Säugetierhaare.",
+            "An ihrem Haut- und Follikelbereich liegen Sinnesrezeptoren. Bewegungen einer Fadenfeder oder benachbarter Federn können dort registriert werden. Solche Rückmeldungen tragen zur Wahrnehmung der Stellung des Gefieders bei. Der nervöse Empfang ist im Hautbereich zu verorten, nicht in einer vermeintlichen Nervenleitung durch den freien Federschaft. Form, Bewegung und Rezeptor sind dabei verschiedene Teile des Zusammenhangs.",
+            "Die hierfür herangezogenen elektrischen Messungen stammen aus einer Taubenuntersuchung. Sie legen keine für alle Wildvogelarten gleiche Empfindlichkeit fest und beweisen nicht jede vermutete Bedeutung für den Flug. Eigene Prüfungsübung: Zeichne eine Feder mit breiter Fahne und daneben eine Fadenfeder. Markiere bei beiden die Hautgrenze; ergänze den Rezeptorbereich an der Fadenfeder."
+          ],
+          "takeaway": "Fadenfedern sind haarähnliche Federn; Rezeptoren in ihrem Haut- und Follikelbereich liefern Rückmeldung über Bewegungen im Gefieder.",
+          "exercise": "Beschrifte in einer eigenen Fadenfeder-Skizze Schaft, gegebenenfalls vorhandene Äste an der Spitze, Hautgrenze und Rezeptorbereich. Erkläre den Unterschied zwischen Federform und nervösem Empfang."
         }
       ],
       "questions": [
@@ -808,6 +877,45 @@
           ],
           "answer": 3,
           "explain": "Steuerfedern heißen auch Rectrices und gehören zum Schwanz. Sie unterstützen Richtungsänderungen; der Schwanz wird damit nicht als einziges Steuerorgan beschrieben."
+        },
+        {
+          "id": "federfluren-ueberdeckung",
+          "lessonId": "federfluren",
+          "q": "Warum kann ein Vogel äußerlich dicht befiedert erscheinen, obwohl die Federansätze in getrennten Federfluren liegen?",
+          "options": [
+            "Konturfedern benachbarter Federfluren können die Zwischenfelder überdecken.",
+            "Federraine sind zusätzliche Reihen von Konturfederansätzen ohne Zwischenräume.",
+            "Dichtes äußeres Gefieder bedeutet immer, dass jeder Hautbereich gleich viele Federansätze trägt.",
+            "Federflur bezeichnet allein eine Federfarbe und nicht den Ansatz an der Haut."
+          ],
+          "answer": 0,
+          "explain": "Die sichtbare äußere Deckung und die Verteilung der Ansatzstellen sind verschiedene Ebenen. Aus den Federfluren herausragende Federn können die federfreien oder schwächer befiederten Zwischenfelder überdecken. Daraus folgt keine einheitliche Flurkarte sämtlicher Arten."
+        },
+        {
+          "id": "fadenfedern-form",
+          "lessonId": "fadenfedern",
+          "q": "Welcher Bau kennzeichnet eine Fadenfeder im hier beschriebenen Grundmuster?",
+          "options": [
+            "Ein schlanker, haarähnlicher Schaft mit wenigen oder keinen Ästen; vorhandene Äste sitzen an der Spitze.",
+            "Eine breite geschlossene Fahne mit dicht ineinander greifenden Haken über die gesamte Länge.",
+            "Ein kurzer Schaft mit einer rundum dicht verzweigten, gleichmäßig flauschigen Daunenfahne.",
+            "Ein langer, kräftiger Schaft mit zwei deutlich ungleichen, geschlossenen Fahnen wie bei einer Schwungfeder."
+          ],
+          "answer": 0,
+          "explain": "Filoplumen besitzen einen haarähnlichen Schaft und höchstens wenige endständige Äste. Ihre Form ist von einer breiten geschlossenen Fahne und von einer rundum flauschigen Daunenstruktur zu unterscheiden. Haarähnlich bedeutet nicht, dass es sich um ein Säugetierhaar handelt."
+        },
+        {
+          "id": "fadenfedern-rezeptorort",
+          "lessonId": "fadenfedern",
+          "q": "Wo liegt bei Fadenfedern der für Bewegungsrückmeldung beschriebene nervöse Empfangsbereich?",
+          "options": [
+            "Im Haut- und Follikelbereich an der Basis der Fadenfeder.",
+            "Als Nervenleitung ausschließlich an der freien Spitze des Federschafts.",
+            "Ausschließlich im Hakenverschluss einer breiten, geschlossenen Federfahne.",
+            "In den Farbpigmenten der bereits ausgewachsenen Feder, unabhängig von der Haut."
+          ],
+          "answer": 0,
+          "explain": "Die Fadenfeder überträgt Bewegung auf ihren hautnahen Rezeptorbereich. Der freie haarähnliche Schaft ist nicht mit dem nervösen Empfangsgewebe gleichzusetzen. Die Taubenbefunde und fachliche Einordnung begründen keine identische Empfindlichkeit aller Vogelarten."
         }
       ]
     },
@@ -2592,6 +2700,53 @@
           "sourceRoles": {
             "https://academy.allaboutbirds.org/feathers-article/": "All About Feathers, Tail feathers sowie Flight: Steuerbeitrag der Schwanzfedern tatsächlich gelesen. Keine Zahlen oder Befestigungsdetails übernommen.",
             "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight": "Feathers and flight, Rectrices: Ruderfunktion und Richtungsänderungen tatsächlich gelesen. Keine allein daraus übernommene Brems- oder artspezifische Flugleistungsbehauptung."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "federfluren",
+      "claims": [
+        {
+          "claim": "Bei vielen Vögeln konzentrieren sich Konturfederansätze in Federfluren (Pterylae). Dazwischen liegen Apteria: federfreie oder schwächer befiederte Zwischenfelder; keine universell absolut federfreie oder artübergreifend identische Flurkarte wird behauptet.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/integumentary-surface-of-the-bird",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/",
+            "https://rubegalab.uconn.edu/lecture-notes-feathers/"
+          ]
+        },
+        {
+          "claim": "Größere Federn benachbarter Federfluren können Zwischenfelder überdecken. Äußerlich geschlossenes Gefieder beweist daher keine gleichmäßige Verteilung der Ansatzstellen auf der Haut. Das eigene Lernschema trennt Ansatzpunkte und äußere Deckung; es ist keine beobachtete Art- oder Mauserbestimmung.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/integumentary-surface-of-the-bird",
+            "https://rubegalab.uconn.edu/lecture-notes-feathers/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "fadenfedern",
+      "claims": [
+        {
+          "claim": "Fadenfedern beziehungsweise Filoplumen haben einen schlanken haarähnlichen Schaft mit wenigen oder keinen Ästen; vorhandene Äste sitzen an der Spitze. Diese reduzierte Form ist von einer breiten geschlossenen Federfahne zu unterscheiden.",
+          "sourceUrls": [
+            "https://www.poultryhub.org/anatomy-and-physiology/body-systems/integumentary-surface-of-the-bird",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/"
+          ]
+        },
+        {
+          "claim": "Rezeptoren im Haut- und Follikelbereich können auf Fadenfeder- beziehungsweise benachbarte Federbewegung reagieren und damit Rückmeldung zur Gefiederstellung liefern. Necker untersuchte diese Reaktion elektrophysiologisch an Tauben; Cornell und UConn ordnen die sensorische Grundfunktion unabhängig fachlich ein, wiederholen diesen Versuch aber nicht. Kein Nerv im freien Federschaft und keine allgemeine Messleistung oder gesicherte universelle Flugfunktion werden daraus abgeleitet.",
+          "sourceUrls": [
+            "https://link.springer.com/article/10.1007/BF00610731",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/",
+            "https://rubegalab.uconn.edu/lecture-notes-feathers/"
+          ],
+          "sourceRoles": {
+            "https://link.springer.com/article/10.1007/BF00610731": "Einzige hier verwendete Originalmessquelle: nur die öffentlich lesbare Summary der Tauben-Elektrophysiologie.",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/": "Unabhängige Begriffs- und Funktionsbestätigung mit ausdrücklicher Lage der Rezeptoren in der Haut bei den Follikeln; keine Wiederholung der Messreihe.",
+            "https://rubegalab.uconn.edu/lecture-notes-feathers/": "Unabhängige Lehrdarstellung zur sensorischen Rolle und Federstellung; keine neue Versuchsmessung."
           }
         }
       ]
