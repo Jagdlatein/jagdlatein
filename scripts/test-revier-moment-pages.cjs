@@ -15,7 +15,7 @@ function load(relative, overrides = {}, cache = new Map()) {
   new Function('require', 'module', 'exports', code)(id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
-    if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
+    if (id === 'next/link') return ({ href, children, prefetch, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/image') return ({ priority, ...props }) => React.createElement('img', props);
     if (id === 'next/head') return () => null;
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(file), path.extname(id) ? id : `${id}.js`)), overrides, cache);
@@ -44,9 +44,9 @@ test('Home passes only the explicit public teaser, without answer fields or an e
 
 test('The protected daily page sends one case with no-store and preserves its original review date', async () => {
   const headers = new Map();
-  const page = load('pages/tagesquiz.js', { '../lib/revier-moment-server': { getRevierMoment: () => moment } });
-  const result = page.getServerSideProps({ res: { setHeader: (key, value) => headers.set(key, value) } });
-  assert.equal(headers.get('Cache-Control'), 'private, no-store');
+  const page = load('pages/tagesquiz.js', { '../lib/revier-moment-server': { getRevierMoment: () => moment }, '../lib/account-access': { getPaidPageProps: async context => { context.res.setHeader('Cache-Control', 'private, no-store, max-age=0'); return { props: {} }; } } });
+  const result = await page.getServerSideProps({ res: { setHeader: (key, value) => headers.set(key, value) } });
+  assert.equal(headers.get('Cache-Control'), 'private, no-store, max-age=0');
   assert.equal(result.props.moment, moment);
   const { middleware } = load('middleware.js', { './lib/account-session-edge': { JL_ACCOUNT_COOKIE: 'jl_account', readAccountSessionEdge: async () => null } });
   const url = 'https://jagdlatein.example/tagesquiz';
@@ -55,17 +55,20 @@ test('The protected daily page sends one case with no-store and preserves its or
   assert.equal(new URL(response.headers.get('location')).searchParams.get('next'), '/tagesquiz');
 });
 
-test('Daily page links to the selected dossier and separates local repetition from server-ranked rounds', () => {
+test('Daily page links to the exact selected lesson and separates local repetition from server-ranked rounds', () => {
   const Page = load('components/RevierMoment.js', { 'next/router': { useRouter: () => ({ query: {} }) } }).default;
   const html = renderToStaticMarkup(React.createElement(Page, { moment }));
-  assert.match(html, new RegExp(`thema=${moment.topic.id}#revierwissen-inhalt`));
+  assert.ok(!html.includes(`href="${moment.href}"`), 'Full reading and its link follow only after answer or skip');
   assert.match(html, /href="\/lernen\/fuenf-minuten"/);
   assert.match(html, /href="\/quiz-app"/);
   assert.doesNotMatch(html, /href="\/lernen#lernen-suche"/);
   assert.match(html, /class="header titleHeader"/);
+  assert.match(html, /<h1[^>]*>Fall des Tages<\/h1>/); assert.match(html, /Deine Entscheidung/);
   assert.match(html, /keine Antworten gespeichert/);
   assert.match(html, /keine Ranglistenpunkte/);
   assert.match(html, new RegExp(moment.question.reviewedOn));
-  assert.match(html, new RegExp(moment.photo.credit.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  assert.equal((html.match(/class="answerOption"/g) || []).length, 4);
+  assert.doesNotMatch(html, /<img|<figure|Wissen vertiefen|Fachlicher Abgleich der Frage/);
+  assert.match(html, /keine amtliche Prüfungsfrage/); assert.match(html, /Übernommener Prüfstand/);
   assert.doesNotMatch(html, /Runde auswerten|Nächste Frage|Neu gemischt üben/);
 });

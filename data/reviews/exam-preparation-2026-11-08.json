@@ -1,0 +1,51 @@
+{
+  "reviewedOn": "2026-11-08",
+  "baselineCommit": "f1fa75548e5c3686c1024eed99a16014e2446407",
+  "scope": "Übersichtlichere, verknüpfte Prüfungsvorbereitung für CH/AT/DE; eigener Lernzielstand und Tagesfälle aus vorhandenen Kursen",
+  "dailyCase": {
+    "route": "/tagesquiz",
+    "cases": 60,
+    "subjectAreas": 11,
+    "answerOptions": 4,
+    "correctAnswers": 1,
+    "origin": "60 ausdrücklich ausgewählte, bereits vorhandene gemeinsame DACH-Kursfragen; keine zusätzlichen 60 Curriculumfragen erzeugt. Originalfrage, Antwortkennungen/-texte und Erklärung wörtlich erhalten.",
+    "presentation": "Kurzer Original-Lektions- und Kurskontext; nach Antwort oder Weiß ich noch nicht vollständiger passender Lektionslesetext, Merksatz, Denkauftrag und exakter Lektionslink. Vier echte Antwortoptionen, kein zusätzlicher Auswahlmodus.",
+    "calendar": "Schweizer Kalendertag und bestehender 60-Tage-Zyklus, einschließlich DST/Neujahr/Schaltjahr.",
+    "evidence": "19 konkrete Lektionsquellensätze und 41 ausdrücklich als Kursreferenzen bezeichnete Quellensätze; echte gültige vorhandene Lektions-/Kursprüfdaten übernommen. Keine heutige fachliche Neuprüfung aller Ausgangskurse behauptet.",
+    "privacyAndAccess": "Kein Antwortspeicher und keine Ranglistenpunkte. Vollständige bezahlte Kursinhalte erst nach bestehender serverseitiger Zugangsprüfung; öffentlicher Homepage-Teaser weiterhin genau Datum, Datumsanzeige, Frage und Kurstitel.",
+    "preserved": "Die früher im Tageswechsel verwendeten Forschungsfragen sowie ihre drei Formate bleiben im Forschungswerkzeug erhalten. Keine unpassenden Dossierfotos auf neue Lernfälle übertragen. Quellen am Ende des gesamten Lesers geschlossen."
+  },
+  "selfAssessment": {
+    "route": "/lernen/pruefungsplan",
+    "states": ["Offen", "Üben", "Erklärt"],
+    "goals": "36 vorhandene gemeinsame Lernziele plus die jeweils passenden vorhandenen regionalen Ziele; 54 regionale Ziele in neun belegten Detailprofilen. Kein neuer amtlicher Lehrplan und keine zusätzliche regionale Rechtsfreigabe.",
+    "profileScope": "Eigene Liste je einer der 51 ausdrücklich gewählten Prüfungsregionen; Wechsel bewahrt die andere Liste. Keine Übertragung einer Bestätigung auf eine andere Region.",
+    "localOnly": "Lokal auf diesem Gerät, keine Synchronisation und keine E-Mail oder Kontokennung im Speicher. Blockierter Speicher wird als Sitzung statt Speicherung ausgewiesen.",
+    "guards": "Mounted-, Originalobjekt-, Katalog-, bestätigte Konto-/Profil-, URL-/History- und Revisionsgrenzen vor Setzen/Reset. Aktuelle Gerätebytes vor gezieltem Update verhindern den nachgewiesenen Verlust einer anderen Liste bei verzögertem StorageEvent. Keine Transaktionsgarantie für simultane Mehrprozess-Schreibzugriffe behauptet.",
+    "cleanup": "Nur bestätigte Abmeldung/Kontolöschung räumt lokale Markierungen ab; abgelehnte Anfragen erhalten sie. Native Speicherereignisse und bestätigter Clear entwerten alte Handler. Keine Testaktionen mit echten Kundendaten.",
+    "layout": "Lernziele vor Summen, ein kurzer Stand-Selektor am konkreten Ziel, bestehende Kategorien/unteres Auswahlmenü und letzte geschlossene Quellenbox. Selbsteinschätzung getrennt von Wiederholungsantworten und Prüfungsreife."
+  },
+  "knowledgeConnections": {
+    "shortReview": "Alle 2610 aktuell zugelassenen gemeinsamen Wiederholungsfragen liefern nur ihre tatsächlich zugeordnete vollständige Lektion mit allen Absätzen, Merksatz und Denkauftrag. Keine erste-Lektion-Ersatzwahl. Quellenrollen bleiben erhalten: 1831 Lektionszuordnungen und 779 Kursreferenzen. Öffentlicher Katalog weiter nur Kennung/Kategorie.",
+    "reviewReliability": "15-Sekunden-Gesamtfrist für Transport und JSON; explizites Retry statt endlosem Laden. Veraltete Antworten übernehmen keinen Nachfolger. Fehlerwiederholung behält bei Fehlern ihre fertige Auswertung und den vollständigen Lesetext.",
+    "videos": "Vier vorhandene Jagdhundfilme jetzt mit ihren fünf bereits redaktionell zugeordneten Kursen verknüpft. Nur 841 Byte id/title/href-Projektion, kein ganzer Fragen- oder Kurskatalog im Player. Film-, Quiz-, Text-, Quellen-, Lizenz- und Prüfdatumsobjekte erhalten.",
+    "newLesson": "Lentizellen hinten im bestehenden Holzaufbaukurs: 144 Wörter, eine eigene Frage und eine Karte. Genau diese neue Lektion fachlich am 8. November geprüft; übrige Inhalte und Prüfdaten erhalten. Details im getrennten Lentizellenbericht."
+  },
+  "newLessonOriginalSourcesRead": [
+    "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05c.htm",
+    "https://mmegias.webs2.uvigo.es/02-english/1-vegetal/v-imagenes-grandes/proteccion_peridermis.php",
+    "https://boku.ac.at/universitaetsleitung/rektorat/stabsstellen/oeffentlichkeitsarbeit/themen/presseaussendungen/presseaussendungen-2025/24042025-baumrinde-als-co2-aktivistin"
+  ],
+  "validation": {
+    "distinctTests": 381,
+    "passed": 381,
+    "failed": 0,
+    "skipped": 0,
+    "independentReview": "Alle 60 Tagesfragen, 240 Optionen und 138 Lesetextabsätze tatsächlich gelesen und positiv mit ihren Ausgangsobjekten verglichen; neue Lentizellenquellen durch Root und zwei weitere Reviewer gelesen. Alle vorherigen 198 Kurse und 1760 Karten einschließlich 116 Starter positiv erhalten.",
+    "testRuntime": "Node 22.23.3; isolierte Speicher-/Konto-/Netzwerk-Doubles. Getrennter verifizierter jsdom-26.1.0-Testlauf nach fehlender Datei im alten Temp-Runtime; keine Produktionsabhängigkeit ergänzt.",
+    "historicalFixtures": "Bekannte historische, bereits vor dem neuen Anhang rote Vollsnapshots separat gegen den unveränderten Ausgangsbestand reproduziert; keine Produktregression daraus behauptet. Enge Projektion nur der expliziten neuen Lentizellen-Ergänzungen erhält alte Goldens.",
+    "visualScope": "Synthetische echte Komponenten und CSS im Browser betrachtet; keine körperliche Geräteprüfung oder angemeldete Produktions-Lernansicht behauptet. Produktionsbuild und Auslieferung werden separat im Chat-Workspace dokumentiert."
+  },
+  "preservedForeignFile": "data/learning-expansion-afternoon-2026-10-16.json bleibt unverändert und ungestagt",
+  "limits": "Eigene Lernhilfe, keine amtlichen Originalprüfungsfragen, keine vollständige Prüfungsabdeckung oder Zulassungs-/Bestehensgarantie. Örtliche Vorgaben und betreute Praxis bleiben gesondert. Keine Kontorechte, Abos, Zahlungen oder App-Store-Veröffentlichungen verändert."
+}

@@ -9,6 +9,7 @@ import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { learningCategoryDetails } from "../lib/learning-categories";
 import { REVIEW_STORAGE_KEY, readReviewHistory, recordReviewAnswer, clearReviewHistory, selectDailyReview, reviewMethodSources } from "../lib/daily-review";
 import { unpackDailyReviewCatalog } from "../lib/daily-review-catalog";
+import { reviewReadingParagraphs, requestDailyReviewQuestions } from "../lib/daily-review-reading";
 import styles from "../styles/LearningExperience.module.css";
 
 export default function DailyReview({ pool: suppliedPool, catalog }) {
@@ -133,13 +134,12 @@ function DailyReviewRound({ pool, category, mode, returnPath, origin, isCurrent,
     const abort = new AbortController(); controller.current = abort;
     const operation = { version, origin, abort }; pendingLoad.current = operation;
     const ownsRequest = () => mounted.current && request.current === version && pendingLoad.current === operation;
-    const canCommit = () => ownsRequest() && scope.current === origin && isCurrent() && !abort.signal.aborted;
+    const ownsView = () => ownsRequest() && scope.current === origin && isCurrent();
+    const canCommit = () => ownsView() && !abort.signal.aborted;
     let responseStatus = 0;
     try {
-      const params = new URLSearchParams({ ids: selectedQuestions.map(question => question.id).join(",") });
-      const response = await fetch(`/api/lernen/wiederholung?${params}`, { signal: abort.signal, cache: "no-store", credentials: "same-origin" });
+      const { response, body } = await requestDailyReviewQuestions(selectedQuestions.map(question => question.id), abort);
       responseStatus = response.status;
-      const body = await response.json();
       if (!response.ok) throw new Error(typeof body?.message === "string" ? body.message : "Deine Fragen konnten nicht geladen werden.");
       const details = Array.isArray(body?.questions) ? new Map(body.questions.map(question => [question?.id, question])) : null;
       if (!details || details.size !== selectedQuestions.length || body.questions.length !== selectedQuestions.length || selectedQuestions.some(item => {
@@ -148,7 +148,7 @@ function DailyReviewRound({ pool, category, mode, returnPath, origin, isCurrent,
           question.answers.some(answer => !answer || typeof answer.id !== "string" || typeof answer.text !== "string") || new Set(question.answers.map(answer => answer.id)).size !== 4 ||
           !Array.isArray(question.correct) || !question.correct.length || question.correct.some(id => !question.answers.some(answer => answer.id === id)) ||
           typeof question.explain !== "string" || typeof question.courseTitle !== "string" || !Array.isArray(question.sources) ||
-          question.reading != null && (typeof question.reading.title !== "string" || !question.reading.title.trim() || typeof question.reading.paragraph !== "string" || !question.reading.paragraph.trim()) ||
+          question.reading != null && !reviewReadingParagraphs(question.reading) ||
           typeof question.href !== "string" || !question.href.startsWith("/kurse/");
       })) throw new Error("Die Fragenauswahl konnte nicht vollständig geladen werden. Bitte erneut versuchen.");
       if (!canCommit()) return;
@@ -160,15 +160,15 @@ function DailyReviewRound({ pool, category, mode, returnPath, origin, isCurrent,
       const next = { questions, index: 0, selected: null, selections: [], score: 0, finished: false };
       current.current = next; setRound(next); setLoad({ phase: "ready", message: "", status: 0 });
     } catch (failure) {
-      if (canCommit()) {
+      if (ownsView() && (!abort.signal.aborted || failure.code === "REVIEW_TIMEOUT")) {
         if (!preserveCompletion) { current.current = null; setRound(null); }
-        setLoad({ phase: preserveCompletion ? "repeat-error" : "error", message: failure.message || "Deine Fragen konnten nicht geladen werden.", status: responseStatus });
+        setLoad({ phase: preserveCompletion ? "repeat-error" : "error", message: failure.message || "Deine Fragen konnten nicht geladen werden.", status: failure.responseStatus || responseStatus });
       }
     } finally {
       if (controller.current === abort) controller.current = null;
       if (ownsRequest()) {
         pendingLoad.current = null;
-        if (scope.current !== origin || !isCurrent() || abort.signal.aborted) setLoad({ phase: preserveCompletion ? "ready" : "error", message: preserveCompletion ? "" : "Die Auswahl hat sich geändert. Bitte die Fragen erneut laden.", status: 0 });
+        if (scope.current !== origin || !isCurrent()) setLoad({ phase: preserveCompletion ? "ready" : "error", message: preserveCompletion ? "" : "Die Auswahl hat sich geändert. Bitte die Fragen erneut laden.", status: 0 });
       }
     }
   }
@@ -248,7 +248,7 @@ function DailyReviewRound({ pool, category, mode, returnPath, origin, isCurrent,
             <p><strong>Deine Antwort:</strong> {item.answers.find(answer => answer.id === chosen)?.text}</p>
             <p><strong>{correctAnswers.length === 1 ? "Richtige Antwort:" : "Richtige Antworten:"}</strong> {correctAnswers.map(answer => answer.text).join(" · ")}</p>
             <p>{item.explain}</p>
-            {item.reading && <section aria-labelledby={`finished-reading-${item.id}`}><h4 id={`finished-reading-${item.id}`}>Wissen dazu</h4><p><strong>{item.reading.title}</strong></p><p>{item.reading.paragraph}</p></section>}
+            {item.reading && <section aria-labelledby={`finished-reading-${item.id}`}><h4 id={`finished-reading-${item.id}`}>Wissen dazu</h4>{renderReviewReading(item.reading)}</section>}
             <Link href={item.href}>In „{item.courseTitle}“ weiterlesen</Link>
           </article>;
         })}
@@ -262,7 +262,7 @@ function DailyReviewRound({ pool, category, mode, returnPath, origin, isCurrent,
       <h2 id="review-question-title" ref={heading} tabIndex={-1}>{question.q}</h2>
       <div className={styles.choices}>{question.answers.map(answer => <button type="button" key={answer.id} className={`${styles.choice} ${round.selected !== null && question.correct.includes(answer.id) ? styles.correct : round.selected === answer.id ? styles.wrong : ""}`} disabled={disabled || round.selected !== null} aria-pressed={round.selected === answer.id} onClick={() => choose(answer.id)}>{answer.text}</button>)}</div>
       {round.selected !== null && <div className={styles.feedback}><div role="status"><h3>{question.correct.includes(round.selected) ? "Richtig" : "Noch einmal nachlesen"}</h3><p>{question.explain}</p></div>
-        {question.reading && <section className={styles.reviewReading} aria-labelledby={`reading-${question.id}`}><h3 id={`reading-${question.id}`}>Wissen dazu</h3><p><strong>{question.reading.title}</strong></p><p>{question.reading.paragraph}</p></section>}
+        {question.reading && <section className={styles.reviewReading} aria-labelledby={`reading-${question.id}`}><h3 id={`reading-${question.id}`}>Wissen dazu</h3>{renderReviewReading(question.reading)}</section>}
         <Link href={question.href}>In „{question.courseTitle}“ weiterlesen</Link></div>}
       {round.selected !== null && <button type="button" className={styles.primary} disabled={disabled} onClick={advance}>{round.index + 1 === round.questions.length ? "Runde abschließen" : "Nächste Frage"}</button>}
     </section> : <p>{mode === "faellig" ? "Auf diesem Gerät sind für dieses Thema gerade keine Fragen fällig." : mode === "fehler" ? "Auf diesem Gerät gibt es für dieses Thema gerade keine offenen Fehler." : "Für dieses Thema sind noch keine Fragen in der kurzen Runde verfügbar."}</p>}
@@ -277,5 +277,14 @@ function DailyReviewRound({ pool, category, mode, returnPath, origin, isCurrent,
     {sourceQuestions.length > 0 && <details key={round.finished ? "finished-sources" : `question-sources-${question.id}`} className={styles.panel}><summary>{round.finished ? "Quellen zu den nachgelesenen Fragen" : "Quellen zur beantworteten Frage"}</summary>
       {sourceQuestions.map(item => <section key={item.id}><h3>{item.q}</h3><p>{item.sourceScope === "lesson" ? "Quellen zur passenden Lektion" : "Quellen der Lerneinheit"}</p><ul>{item.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label || source.title}</a></li>)}</ul></section>)}
     </details>}
+  </>;
+}
+
+function renderReviewReading(reading) {
+  const paragraphs = reviewReadingParagraphs(reading);
+  if (!paragraphs) return null;
+  return <><p><strong>{reading.title}</strong></p>{paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+    {reading.takeaway && <p><strong>Merke dir:</strong> {reading.takeaway}</p>}
+    {reading.exercise && <p><strong>Zum Nachdenken:</strong> {reading.exercise}</p>}
   </>;
 }

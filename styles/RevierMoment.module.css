@@ -14,8 +14,12 @@
 .page { font-size: 18px; max-width: 1040px; }
 .page h1 { font-size: clamp(30px, 5vw, 40px); }
 .page > div > .date { margin-top: 0; }
-.deeper { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; align-items: start; padding: 26px; margin-top: 24px; background: #fffdf7; border: 1px solid #dfd2af; border-radius: 20px; }
+.deeper { padding: 26px; margin-top: 24px; background: #fffdf7; border: 1px solid #dfd2af; border-radius: 20px; line-height: 1.75; }
 .deeper p { margin-top: 0; }
+.deeper p + p { margin-top: 16px; }
+.sources { margin-top: 24px; padding-top: 12px; border-top: 1px solid #dfd2af; color: #6a604a; font-size: 14px; line-height: 1.75; }
+.sources summary { padding: 10px 0; min-height: 44px; cursor: pointer; font-weight: 750; color: #526538; }
+.sources a { color: #526538; text-underline-offset: 4px; }
 .textLink { display: inline-flex; align-items: center; gap: 10px; padding: 8px 0; min-height: 44px; color: #556632; text-underline-offset: 5px; font-weight: 750; }
 .photo { margin: 0; min-width: 0; }
 .photo img { display: block; width: 100%; height: auto; max-height: 240px; object-fit: contain; border-radius: 13px; background: #f4efdf; }

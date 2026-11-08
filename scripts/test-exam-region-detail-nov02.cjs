@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { stripLenticelDataset } = require('./helpers/lenticel-addition-nov08.cjs');
 
 const BASELINE = '8b12ce6253ce9bc090aad2c47bd660e5b2280002';
 const countries = ['ch', 'at', 'de'];
@@ -256,6 +257,11 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
   assert.ok(curriculumFiles.length > 60);
   for (const filename of curriculumFiles) {
     const current = fs.readFileSync(path.join(root, filename), 'utf8').replace(/\r\n/g, '\n');
+    if (filename === 'data/learning-expansion-ecology-2026-10-16.json') {
+      // Keep every old object exact; only the separately tested Nov 8 appendix is projected.
+      assert.deepEqual(stripLenticelDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
+      continue;
+    }
     assert.equal(current, baselineText(filename).replace(/\r\n/g, '\n'), filename);
   }
 });

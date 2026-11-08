@@ -54,7 +54,18 @@ test('Every real maintained question already has exact shared scope and the enti
   new Function('require','module','exports',code)(id=>id.startsWith('.')?actual(path.join('lib',path.extname(id)?id:`${id}.js`)):local(id),module,module.exports);
   const oldPool=module.exports.getDailyReviewPool(),nextPool=actual('lib/daily-review-pool.js').getDailyReviewPool();
   assert.ok(nextPool.length>2000);
-  assert.deepEqual(nextPool,oldPool);
+  // The November expansion adds the rest of this exact lesson's prose,
+  // takeaway and exercise; every pre-existing field remains identical.
+  const previousShape=nextPool.map(item=>({...item,...(item.reading?{reading:{title:item.reading.title,paragraph:item.reading.paragraph}}:{})}));
+  assert.deepEqual(previousShape,oldPool);
+  for(const item of nextPool){
+    const course=learningModules.find(course=>course.questions.some(question=>question.id===item.id));
+    const question=course.questions.find(question=>question.id===item.id);
+    const lesson=course.lessons.find(lesson=>lesson.id===question.lessonId);
+    assert.deepEqual(item.reading.paragraphs,lesson.paragraphs);
+    if(lesson.takeaway)assert.equal(item.reading.takeaway,lesson.takeaway);
+    if(lesson.exercise)assert.equal(item.reading.exercise,lesson.exercise);
+  }
   const questions=new Map(learningModules.flatMap(item=>item.questions.map(question=>[question.id,question])));
   for(const item of nextPool){const question=questions.get(item.id);assert.ok(question);assert.deepEqual([...question.countries].sort(),['AT','CH','DE']);assert.notEqual(question.topic,'Recht');}
   assert.deepEqual(actual('lib/daily-review-pool.js').getDailyReviewCatalog(),module.exports.getDailyReviewCatalog());

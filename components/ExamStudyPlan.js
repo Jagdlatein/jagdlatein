@@ -11,6 +11,8 @@ import useExamProfile from "../lib/use-exam-profile";
 import { getAccountExamSnapshot } from "../lib/account-exam-profile-client";
 import useExamReviewProgress from "../lib/use-exam-review-progress";
 import { examReviewHref } from "../lib/exam-review-progress";
+import { buildExamGoalCatalog } from "../lib/exam-goal-progress";
+import useExamGoalProgress from "../lib/use-exam-goal-progress";
 import { examCountries, normalizeExamProfile, getExamProfileDetails, examProfileLawHref } from "../lib/exam-profile";
 import styles from "../styles/ExamStudyPlan.module.css";
 
@@ -59,6 +61,9 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
   const profile = ready ? normalizeExamProfile(storedProfile) : null;
   const details = getExamProfileDetails(profile);
   const key = profileKey(profile);
+  const goalCatalog = useRef(null);
+  if (!goalCatalog.current || goalCatalog.current.blueprint !== examBlueprint || goalCatalog.current.alignment !== examAlignment) goalCatalog.current = { blueprint: examBlueprint, alignment: examAlignment, value: buildExamGoalCatalog(examBlueprint, examAlignment) };
+  const goalProgress = useExamGoalProgress({ catalog: goalCatalog.current.value, profile, ready, persistence, accountKey, enabled: Boolean(examBlueprint) });
   const [draft, setDraft] = useState(emptyDraft);
   const [notice, setNotice] = useState("");
   const [saveRequest, setSaveRequest] = useState(0);
@@ -192,7 +197,7 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
 
     <section className={styles.section} aria-labelledby="exam-plan-learning">
       <h2 id="exam-plan-learning" ref={topicSelection.heading} tabIndex={-1}>Dein Lernweg{topicSelection.topic && topicSelection.topic !== "alle" ? ` · ${data.categories.find(category => category.slug === topicSelection.topic).title}` : ""}</h2>
-      <p>Die Kategorien entsprechen dem Menü. Wildbiologie und andere gemeinsame Grundlagen lernst du länderübergreifend; örtlich unterschiedliche Rechtsvorgaben prüfst du gesondert.</p>
+      <p>Gemeinsames Fachwissen und regionales Recht für dein Prüfungsziel.</p>
       <button type="button" className={`${styles.button} ${styles.secondary}`} disabled={!topicSelection.ready} onClick={topicSelection.open}>Lerngebiet wählen</button>
       {!topicSelection.topic && <p role="status">{topicSelection.ready ? "Dieses Lerngebiet ist nicht verfügbar. Wähle unten im Menü ein Lerngebiet oder alle Lerngebiete. Dein Prüfungsziel und deine bisherigen Antworten bleiben erhalten." : "Deine Lerngebiete werden geladen."}</p>}
       {examBlueprint && <p className={styles.note}>Prüfungslernziele: Erkennen, Erklären und Begründen. Bearbeite die folgenden eigenen Lernziele mit ihrer Selbstkontrolle. „Lektion lesen &amp; üben“ führt zum genauen Lerntext und dessen Lektionsübung; der Kurscheck umfasst auch andere Lektionen. Die Kriterien sind Lernhilfen und keine amtlichen Bestehensregeln.</p>}
@@ -202,11 +207,21 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
         const status = progress.summary?.byCategory[category.slug];
         return <li key={category.slug}>
           <Link href={`/lernen/${category.slug}`} prefetch={false}>{category.title}</Link>
-          {examBlueprint?.categories?.find(item => item.slug === category.slug) ? <ExamLearningGoals category={examBlueprint.categories.find(item => item.slug === category.slug)} profile={ready ? profile : null} /> : <p>{category.focus.join(" · ")}</p>}
+          {examBlueprint?.categories?.find(item => item.slug === category.slug) ? <ExamLearningGoals category={examBlueprint.categories.find(item => item.slug === category.slug)} profile={ready ? profile : null} goalProgress={goalProgress} /> : <p>{category.focus.join(" · ")}</p>}
           {status && <><p className={styles.reviewCount}>{status.answered ? `${status.answered} beantwortet · ${status.due} fällig · ${status.mistakes} zuletzt falsch` : "Noch keine Antworten im Wiederholungsverlauf"}</p>
             <div className={styles.links}>{status.due > 0 && <Link href={examReviewHref("faellig", category.slug)} prefetch={false} aria-label={`Fällige Fragen: ${category.title}`}>Wiederholen</Link>}{status.mistakes > 0 && <Link href={examReviewHref("fehler", category.slug)} prefetch={false} aria-label={`Fehler üben: ${category.title}`}>Fehler</Link>}</div></>}
         </li>;
       })}</ul>
+      {examBlueprint && <section className={styles.goalProgress} aria-labelledby="exam-goal-progress">
+        <h3 id="exam-goal-progress">Meine Selbstkontrolle</h3>
+        {goalProgress.ready ? <>
+          <dl className={styles.counts}><div><dt>Offen</dt><dd>{goalProgress.counts.offen}</dd></div><div><dt>Üben</dt><dd>{goalProgress.counts.ueben}</dd></div><div><dt>Erklärt</dt><dd>{goalProgress.counts.erklaert}</dd></div></dl>
+          <p className={styles.menuHint}>Hier zählen alle {goalProgress.counts.total} Lernziele, auch aus anderen Lerngebieten; jedes Prüfungsziel hat eine eigene Liste.</p>
+          <button type="button" className={`${styles.button} ${styles.secondary}`} disabled={!goalProgress.counts.ueben && !goalProgress.counts.erklaert} onClick={goalProgress.reset}>Diesen Stand zurücksetzen</button>
+          <p className={styles.menuHint}>Deine Markierungen sind Selbstbewertungen, keine Prüfungsergebnisse; {goalProgress.persistence === "device" ? "sie bleiben nur auf diesem Gerät und werden nach erfolgreichem Abmelden entfernt." : "sie bleiben nur in dieser Sitzung."}</p>
+        </> : <p role="status">{profile ? "Deine Selbstkontrolle wird geladen …" : "Wähle dein Prüfungsziel, um deinen persönlichen Stand zu markieren."}</p>}
+        {goalProgress.error && <p role="status">{goalProgress.error}</p>}
+      </section>}
       <section aria-labelledby="exam-plan-progress" className={styles.progress}>
         <h3 id="exam-plan-progress">Deine Wiederholung</h3>
         {progress.phase === "loading" ? <p role="status">Dein lokaler Wiederholungsstand wird geladen …</p> : progress.phase === "unavailable" ? <p role="status">Dein Wiederholungsstand ist hier gerade nicht lesbar. Du kannst die Lernkategorien weiterhin öffnen.</p> : <>
@@ -217,7 +232,7 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
       </section>
     </section>
 
-    {alignment && <ExamRegionPreparation region={alignment} learningCatalog={examAlignment.learningCatalog} />}
+    {alignment && <ExamRegionPreparation region={alignment} learningCatalog={examAlignment.learningCatalog} goalProgress={examBlueprint ? goalProgress : undefined} />}
 
     {details && regionData && <section className={styles.section} aria-labelledby="exam-plan-law">
       <h2 id="exam-plan-law">Regionales Recht</h2>

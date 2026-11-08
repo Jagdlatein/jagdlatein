@@ -16,6 +16,7 @@ import { CommunityInvite } from "../components/Community";
 import { getInitialJagdNews } from "../lib/jagd-news-server";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { clearReviewHistory } from "../lib/daily-review";
+import { clearExamGoalProgress } from "../lib/exam-goal-progress";
 import { cleanupWebPushForAccountChange } from "../lib/firebase-web-push";
 import { cleanupNativePushForAccountChange } from "../lib/native-push-preferences";
 import { stopUsageAnalytics } from "../lib/usage-analytics";
@@ -123,6 +124,7 @@ export default function Home({ loggedIn = false, initialNews, revierMoment }) {
     });
     if(!canLogOut()) return;
     if (!response.ok) throw new Error("Die Abmeldung konnte nicht bestätigt werden.");
+    if (!clearExamGoalProgress()) window.alert("Abgemeldet. Entferne deine lokale Lernziel-Selbstkontrolle bitte über die Browserdaten dieser App.");
     if (pushCleanup.some(success => !success)) window.alert("Abgemeldet. Die Benachrichtigungen konnten auf diesem Gerät noch nicht vollständig deaktiviert werden. Schalte sie bei Bedarf in den Systemeinstellungen aus.");
     if (!clearReviewHistory()) window.alert("Abgemeldet. Entferne den lokalen Wiederholungsverlauf bitte über die Browserdaten dieser App.");
     try { await clearOfflineLearning(); } catch { window.alert("Abgemeldet. Die lokalen Downloads konnten nicht vollständig entfernt werden. Bitte im Lernrucksack entfernen oder die Browserdaten dieser App löschen."); }

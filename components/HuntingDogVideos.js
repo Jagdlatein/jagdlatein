@@ -38,12 +38,13 @@ export function ObservationQuestion({ question, scope, canInteract }) {
   </details>;
 }
 
-export default function HuntingDogVideos() {
+export default function HuntingDogVideos({ courseLinks = {} } = {}) {
   const router = useRouter();
   const ready = router.isReady === true;
   const requested = router.query.eintrag;
   const lesson = ready ? requested === undefined ? huntingDogVideoLessons[0]
     : huntingDogVideoLessons.find(item => typeof requested === "string" && item.id === requested) || null : null;
+  const courses = lesson && courseLinks && Object.hasOwn(courseLinks, lesson.id) && Array.isArray(courseLinks[lesson.id]) ? courseLinks[lesson.id] : [];
   const requestedSection = (router.asPath || "").split("#")[1];
   const section = ["hundevideo-film", "hundevideo-handlung", "hundevideo-auswahl"].includes(requestedSection) ? requestedSection : "hundevideo-film";
   const [mediaFailure, setMediaFailure] = useState(null);
@@ -143,6 +144,10 @@ export default function HuntingDogVideos() {
       <section className={styles.learningText}><h3>Was du daraus lernen kannst</h3><p>{lesson.lesson}</p><p>{lesson.practice}</p></section>
       <section className={styles.learningText} id="hundevideo-handlung"><h3 ref={transcriptHeading} tabIndex={-1}>Handlung als Text</h3><p>{lesson.transcript}</p></section>
       <section className={styles.checks} aria-label="Beobachtung prüfen"><h3>Deine Beobachtung prüfen</h3>{lesson.questions.map(question => <ObservationQuestion key={`${lesson.id}-${question.id}`} question={question} scope={origin} canInteract={currentView} />)}</section>
+      {courses.length > 0 && <nav className={styles.continueLink} aria-label="Zum Hundevideo weiterlernen" data-dog-video-courses>
+        <h3>Dazu lernen</h3>
+        <ul>{courses.map(course => <li key={course.id}><Link href={course.href} prefetch={false}>{course.title}</Link></li>)}</ul>
+      </nav>}
       <details className={styles.details}><summary>Fachquellen, Bildnachweis und Prüfstand</summary><p>{lesson.media.author} · <a href={lesson.media.source} target="_blank" rel="noopener noreferrer">Originalquelle</a> · <a href={lesson.media.licenseUrl} target="_blank" rel="noopener noreferrer">{lesson.media.license}</a></p><p>{lesson.media.recordingDate}. {lesson.media.changes}</p><p>Inhalt und sichtbare Szenen geprüft am 12. Oktober 2026. Die Fachquellen erklären das jeweilige Thema; sie sind keine Bewertung dieses einzelnen Hundes.</p><ul>{lesson.sources.map(id => <li key={id}><a href={dogVideoSources[id].url} target="_blank" rel="noopener noreferrer">{dogVideoSources[id].organization}: {dogVideoSources[id].label}</a></li>)}</ul></details>
     </article> : <p className={styles.feedback}>{ready ? "Diese Szene ist nicht verfügbar. Wähle eine Szene unten im Menü." : "Die gewählte Szene wird geladen."}</p>}
   </LearningToolLayout>;

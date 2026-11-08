@@ -57,3 +57,8 @@
 .examCase h4 { margin: 0 0 8px; }
 .examCategoryGoals { min-width: 0; }
 .focusedCategory { grid-template-columns: minmax(0, 1fr); }
+.goalState { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 14px 0; font-size: 16px; font-weight: 700; }
+.goalState select { min-height: 48px; min-width: 150px; max-width: 100%; padding: 10px 14px; font: inherit; color: #3e321b; background: #fffdf7; border: 1px solid #cdbb91; border-radius: 10px; }
+.goalState select:disabled { opacity: .65; }
+.goalProgress { margin: 22px 0; padding: 16px 0; border-top: 1px solid #dfd0ab; border-bottom: 1px solid #dfd0ab; }
+.goalProgress h3 { margin: 0 0 12px; }

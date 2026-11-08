@@ -12,6 +12,7 @@ import { cleanupNativePushForAccountChange } from "../lib/native-push-preference
 import { getAccountPageProps } from "../lib/account-page";
 import { clearOfflineLearning } from "../lib/offline-learning";
 import { clearReviewHistory } from "../lib/daily-review";
+import { clearExamGoalProgress } from "../lib/exam-goal-progress";
 import styles from "../styles/Account.module.css";
 
 export async function getServerSideProps(context) {
@@ -84,6 +85,7 @@ function AccountDeletion({ onDeleted, isCurrent = () => true }) {
       const pushCleanup = await Promise.all([cleanupWebPushForAccountChange({localOnly:true,isCurrent:active}), cleanupNativePushForAccountChange({localOnly:true,isCurrent:active})]);
       if (!active()) return;
       if(pushCleanup.some(success=>!success)) setMessage("Dein Konto ist gelöscht. Schalte Benachrichtigungen auf diesem Gerät bei Bedarf zusätzlich in den Systemeinstellungen aus.");
+      if (!clearExamGoalProgress()) setMessage("Dein Konto ist gelöscht. Entferne deine lokale Lernziel-Selbstkontrolle bitte über die Browserdaten dieser App.");
       if (!clearReviewHistory()) setMessage("Dein Konto ist gelöscht. Entferne den lokalen Wiederholungsverlauf bitte über die Browserdaten dieser App.");
       try { await clearOfflineLearning(); }
       catch { if(active()) setMessage("Dein Konto ist gelöscht. Der lokale Lernrucksack auf diesem Gerät konnte nicht vollständig geleert werden. Entferne ihn bitte in den Browser-Einstellungen."); }

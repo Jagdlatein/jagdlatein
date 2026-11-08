@@ -89,6 +89,30 @@
           "checkedOn": "2026-10-24",
           "lessonIds": ["gefaessverteilung"],
           "supports": "Eigenständiger Fachbeitrag von Wald und Holz NRW: Sandbirke als zerstreutporiges Beispiel. Originalartikel 2020, Onlinefassung vom 29. Juni 2021; keine Studie zur Gefäßgrößenverteilung und keine zusätzlichen Kennwerte oder Bewirtschaftungshinweise übernommen."
+        },
+        {
+          "label": "Botanik online: Sekundäre Abschlussgewebe, Absätze Lentizellen",
+          "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05c.htm",
+          "organization": "Universität Hamburg, historisches Botanik-online-Archiv / Peter von Sengbusch",
+          "checkedOn": "2026-11-08",
+          "lessonIds": ["lentizellen"],
+          "supports": "Tatsächlich gelesener Hochschullehrtext im Archiv 1996–2004: besondere Zellgruppen im Korkgewebe, sichtbares Holunderbeispiel und Gasaustausch zwischen Atmosphäre und stoffwechselaktiven Geweben unterhalb der Rinde. Historische fachliche Erklärung, keine neue Messung. Keine Abbildungen oder pauschal vollständige Gasdichtheit übernommen."
+        },
+        {
+          "label": "Atlas of Plant and Animal Histology: Periderm, Holunder-Lehrpräparat und Schlussabsätze",
+          "url": "https://mmegias.webs2.uvigo.es/02-english/1-vegetal/v-imagenes-grandes/proteccion_peridermis.php",
+          "organization": "Universidade de Vigo, Department of Functional Biology and Health Sciences",
+          "checkedOn": "2026-11-08",
+          "lessonIds": ["lentizellen"],
+          "supports": "Unabhängiger Hochschul-Histologieatlas, Seitenstand 23. Januar 2026: Periderm, benanntes Sambucus-nigra-Präparat und Lentizellen als Gaswege. Eigenständige fachliche Darstellung, keine experimentelle Replikation. Keine Mikroaufnahme, Detailaussage zu Zwischenzellräumen oder allgemeine Artbestimmungsregel übernommen."
+        },
+        {
+          "label": "BOKU (24. April 2025): Baumrinde als CO₂-Aktivistin, Abschnitt Gasaustausch über die Rinde",
+          "url": "https://boku.ac.at/universitaetsleitung/rektorat/stabsstellen/oeffentlichkeitsarbeit/themen/presseaussendungen/presseaussendungen-2025/24042025-baumrinde-als-co2-aktivistin",
+          "organization": "BOKU University / Institut für Botanik",
+          "checkedOn": "2026-11-08",
+          "lessonIds": ["lentizellen"],
+          "supports": "Tatsächlich gelesener institutioneller Bericht eigener Forschung: Gasaustauschkammer an äußerer Rinde und Rolle der Lentizellen bei den benannten Esche-, Zürgelbaum- und Ginkgo-Untersuchungen. Ergänzende Funktionsbestätigung, kein gelesener Originalvolltext und keine unabhängige Wiederholung der Lehrquellen. Keine Messwerte, Photosyntheseaussagen oder Übertragung spezieller Ergebnisse auf Holunder übernommen."
         }
       ],
       "lessons": [
@@ -148,6 +172,19 @@
           ],
           "takeaway": "Eichenholz zeigt einen Ring großer Frühholzgefäße vor deutlich kleineren Spätholzgefäßen; Sandbirke ist ein zerstreutporiges Gegenbeispiel.",
           "exercise": "Erkläre den Unterschied zwischen einem Frühholzporenring und einem vollständigen Jahrring, ohne allein aus dem Gefäßmuster eine Art zu bestimmen."
+        },
+        {
+          "id": "lentizellen",
+          "title": "Lentizellen",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Das äußere Abschlussgewebe eines verholzten Sprosses erfüllt eine Schutzfunktion. Zum sekundären Abschlussgewebe, dem Periderm, gehören örtlich besondere Zellgruppen: die Lentizellen. Sie ermöglichen Gasaustausch zwischen der Atmosphäre und lebenden Geweben unterhalb der Rinde. Eine schützende Hülle schließt damit den Austausch von Gasen nicht vollständig aus.",
+            "Am Schwarzen Holunder (Sambucus nigra) sind Lentizellen an der Sprossoberfläche gut erkennbar; botanische Lehrpräparate zeigen ihre Lage im Abschlussgewebe. Das Holunderbeispiel ist kein vollständiger Bestimmungsschlüssel. Aus einer einzelnen Rindenmarke wird hier weder die Art noch ein bestimmter Gesundheitszustand abgeleitet. Auch werden keine identischen Formen oder Austauschleistungen aller Gehölze behauptet.",
+            "Eigene Prüfungsübung: Ordne drei beschrifteten Strukturen ihre Aufgaben zu: Lentizelle – Gasaustausch; Xylem – Wasserleitung; Phloem – Transport organischer Stoffe. Vergleiche anschließend mit den bereits behandelten Blattspaltöffnungen. Eine Lentizelle am verholzten Spross ist keine Blattspaltöffnung. Die Aufgabe eines Gaswegs darf außerdem nicht mit dem Ferntransport von Wasser oder Zucker gleichgesetzt werden."
+          ],
+          "takeaway": "Lentizellen ermöglichen Gasaustausch durch das äußere Abschlussgewebe; sie sind von Leitgeweben und Blattspaltöffnungen zu unterscheiden.",
+          "exercise": "Erkläre die Funktion einer Lentizelle am Holunderbeispiel und grenze sie von Xylem, Phloem und einer Blattspaltöffnung ab."
         }
       ],
       "questions": [
@@ -579,6 +616,19 @@
           ],
           "answer": 2,
           "explain": "Bei Stiel- und Traubeneiche stehen die großen Frühholzgefäße ringförmig; die Spätholzgefäße sind deutlich kleiner. Beide Bereiche gehören zum Zuwachs. Das erklärt ein Gefäßmuster und ist für sich kein vollständiger Artenbestimmungsschlüssel."
+        },
+        {
+          "id": "lentizellen-gasaustausch",
+          "lessonId": "lentizellen",
+          "q": "Welche Funktion haben Lentizellen beim beschriebenen Holunderbeispiel?",
+          "options": [
+            "Sie ersetzen das Xylem beim Ferntransport flüssigen Wassers.",
+            "Sie ermöglichen Gasaustausch zwischen Außenluft und inneren lebenden Geweben.",
+            "Sie bilden den ganzen Jahrring aus Früh- und Spätholz.",
+            "Sie sind die Blattspaltöffnungen des Holunders."
+          ],
+          "answer": 1,
+          "explain": "Lentizellen bilden örtliche Gaswege im sekundären äußeren Abschlussgewebe. Xylem und Phloem sind Leitgewebe; Blattspaltöffnungen sind andere Strukturen. Das Holunderbeispiel begründet keine identischen Formen oder Austauschleistungen aller Gehölze."
         }
       ]
     },
@@ -3581,6 +3631,27 @@
           "sourceUrls": [
             "https://www.wald.rlp.de/nutzen/holz/oeko-rohstoff",
             "https://www.waldwissen.net/de/waldwirtschaft/waldbau/standortskunde/die-birke-unkraut-oder-alternative"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-oekologie-holzaufbau-2026",
+      "lessonId": "lentizellen",
+      "claims": [
+        {
+          "claim": "Lentizellen sind besondere Zellgruppen im sekundären äußeren Abschlussgewebe und ermöglichen Gasaustausch zwischen Atmosphäre und lebenden Geweben unterhalb der Rinde. Zwei unabhängige Hochschullehrtexte erklären den anatomischen Grundzusammenhang. Der BOKU-Bericht eigener Forschung bestätigt ergänzend die Gaswechselfunktion bei seinen ausdrücklich benannten Baumarten; er ist kein hier gelesener Originalvolltext oder Replikationsnachweis und liefert keine Holunder-Messwerte.",
+          "sourceUrls": [
+            "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05c.htm",
+            "https://mmegias.webs2.uvigo.es/02-english/1-vegetal/v-imagenes-grandes/proteccion_peridermis.php",
+            "https://boku.ac.at/universitaetsleitung/rektorat/stabsstellen/oeffentlichkeitsarbeit/themen/presseaussendungen/presseaussendungen-2025/24042025-baumrinde-als-co2-aktivistin"
+          ]
+        },
+        {
+          "claim": "Schwarzer Holunder (Sambucus nigra) dient als konkretes Lentizellen-Lehrbeispiel: Hamburg nennt die Sichtbarkeit an seiner Sprossoberfläche, der unabhängige Vigo-Atlas benennt ein entsprechendes Lehrpräparat. Das ist kein vollständiger Bestimmungsschlüssel und keine Aussage identischer Formen oder Austauschleistungen aller Gehölze. Die eigene Zuordnungsübung trennt diesen Gasweg von bereits erklärten Wasser-/Zuckerleitgeweben und Blattspaltöffnungen.",
+          "sourceUrls": [
+            "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05c.htm",
+            "https://mmegias.webs2.uvigo.es/02-english/1-vegetal/v-imagenes-grandes/proteccion_peridermis.php"
           ]
         }
       ]

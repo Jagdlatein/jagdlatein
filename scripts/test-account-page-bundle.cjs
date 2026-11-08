@@ -65,6 +65,7 @@ function pageFixture({ signedIn = true, courses = [], overview = {} } = {}) {
     if (id === '../components/NativePushPreferences') return loadPushModule('components/NativePushPreferences.js');
     if (id === '../components/UsagePreferences') return loadPushModule('components/UsagePreferences.js');
     if (id === '../lib/usage-analytics') return loadPushModule('lib/usage-analytics.js');
+    if (id === '../lib/exam-goal-progress') return loadPushModule('lib/exam-goal-progress.js');
     if (id === '../components/ExamProfileSummary') return { __esModule: true, default: () => null };
     if (id === '../lib/firebase-web-push') return loadPushModule('lib/firebase-web-push.js');
     if (id === '../lib/native-push-preferences') return loadPushModule('lib/native-push-preferences.js');

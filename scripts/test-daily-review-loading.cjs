@@ -94,14 +94,14 @@ test('Server question retrieval preserves requested order and never serves legal
   for (const invalid of [[], [ids[0], ids[0]], ['wissen-jagdrecht-de-1'], ['wissen-waffensicherheit-4'], ['wissen-no-such-question'], ['__proto__'], Array.from({ length: 9 }, (_, i) => maintained.getDailyReviewCatalog()[i].id)]) assert.throws(() => maintained.getDailyReviewQuestions(invalid));
 });
 
-test('Selected questions carry one unchanged lesson paragraph with matching sources, not a whole course', () => {
+test('Selected questions carry the full unchanged lesson text with matching sources, not other course lessons', () => {
   const modules = load('lib/learning-curriculum.js').learningModules;
   for (const item of maintained.getDailyReviewPool()) {
     const course = modules.find(course => course.questions.some(question => question.id === item.id));
     const question = course.questions.find(question => question.id === item.id);
     const lesson = course.lessons.find(lesson => lesson.id === question.lessonId);
-    assert.deepEqual(item.reading, { title: lesson.title, paragraph: lesson.paragraphs.find(paragraph => typeof paragraph === 'string' && paragraph.trim()) });
-    assert.deepEqual(Object.keys(item.reading).sort(), ['paragraph', 'title']);
+    assert.deepEqual(item.reading, { title: lesson.title, paragraph: lesson.paragraphs.find(paragraph => typeof paragraph === 'string' && paragraph.trim()), paragraphs: lesson.paragraphs, ...(lesson.takeaway ? {takeaway:lesson.takeaway}:{}), ...(lesson.exercise ? {exercise:lesson.exercise}:{}) });
+    assert.deepEqual(Object.keys(item.reading).sort(), ['exercise', 'paragraph', 'paragraphs', 'takeaway', 'title']);
     assert.ok(!('lessons' in item) && !('objectives' in item));
     const evidence = (lesson.evidence || []).flatMap(record => record.sources || []);
     const expected = [...new Set((evidence.length ? evidence : course.sources).map(source => source.url))];
