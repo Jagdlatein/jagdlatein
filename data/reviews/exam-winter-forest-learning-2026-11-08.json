@@ -1,0 +1,74 @@
+{
+  "reviewedOn": "2026-11-08",
+  "baseline": "d5bb4f0cebe387c6875eea9f0e40071c84ef3b8b",
+  "scope": "Vier eng belegte biologische und forstliche Lektionen sowie fünf Lesepfade für die Jagdprüfungsvorbereitung im gemeinsamen CH/AT/DE-Grundlagenwissen",
+  "additions": {
+    "originalSchematics": 2,
+    "answersPerQuestion": 4,
+    "questions": 4,
+    "oralLinks": 4,
+    "flashcards": 4,
+    "lessons": 4,
+    "goalLinks": 1
+  },
+  "existingCourses": [
+    "wissen-vertiefung-wild-alpine-winterstrategien",
+    "wissen-ausbau-waldverjuengung-verbiss"
+  ],
+  "sourceReports": [
+    "marmot-hibernation-2026-11-08.md",
+    "forest-regeneration-learning-2026-11-08.md",
+    "practical-exam-learning-links-2026-11-08.json"
+  ],
+  "factualReview": {
+    "root": "Konkrete Quellen und finale Volltexte/Fragen/Schemata selbst gelesen",
+    "independent": "Dritter Reviewer las acht konkrete Fachdokumente einschließlich beider vollständiger Originalabstracts sowie die finalen Volltexte und Fragen",
+    "limits": "Originalabstractlektüre wird nicht als Volltextlektüre bezeichnet. FIWI2015 und Arnold1988 haben denselben Autor; keine unabhängige experimentelle Replikation behauptet. Institutionelle Waldtexte sind keine neuen Experimente."
+  },
+  "correction": {
+    "dateHandling": "Altes Kursdatum bleibt übernommener Prüfstand; nur die vier neuen Lektionen tragen den08.November. Keine vollständige neue Prüfung aller alten Lektionen behauptet.",
+    "scope": "Genau ein Satz präzisiert: Bei natürlicher Verjüngung aus Samen müssen diese auf geeignete Bedingungen treffen und Keimlinge weiterwachsen können.",
+    "reason": "Naturverjüngung kann auch vegetativen Nachwuchs umfassen",
+    "course": "wissen-ausbau-waldverjuengung-verbiss",
+    "lesson": "entstehung"
+  },
+  "preservation": {
+    "previousOralLinks": 9,
+    "priorCourses": 198,
+    "oldSchematics": 9,
+    "goalIds": 36,
+    "priorFullCards": 1773,
+    "oralQuestions": 20,
+    "method": "Vollständige alte Kurs- und Rohmodulobjekte nach strikt validierter Rückführung ausschließlich der bekannten zwei Appendices und der exakt einen Satzpräzisierung; alle übrigen Objekte und Reihenfolgen exakt",
+    "starterCards": 116
+  },
+  "technicalInventory": {
+    "courses": 198,
+    "flashcards": 1777,
+    "lessons": 894,
+    "questions": 2769
+  },
+  "validation": {
+    "tests": 789,
+    "pass": 789,
+    "fail": 0,
+    "skipped": 0,
+    "files": 75,
+    "newRegressions": 31,
+    "testLog": "tests-final.txt",
+    "scope": "Appropriate selected integration and regression tests; no academic or full exam certification",
+    "build": {
+      "log": "build-final.txt",
+      "staticPages": 510,
+      "exitCode": 0,
+      "existingPlanWarningKb": 366
+    }
+  },
+  "reading": "Volltexte, Übungen und wesentliche Grenzen vor den geschlossenen Quellen am Ende; bestehende Kategorien, Reader, Suche, Quiz, Karten, Druck und signierte Offlinepakete",
+  "limits": [
+    "Gemeinsame Biologie und Forstbegriffe; keine regionalen Rechtsfragen oder neuen örtlichen Jagdfreigaben",
+    "Lehrrahmenbeispiele belegen Relevanz, keine vollständige Abdeckung aller51Profile",
+    "Isolierte Tests und schmale lokale Browseransicht, keine echte Geräteprüfung oder authentifizierte Produktions-Lehrtextprüfung",
+    "Fremde afternoonJSON bleibt unberührt und außerhalb des Commits"
+  ]
+}

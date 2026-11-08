@@ -182,7 +182,7 @@ test('Quota and denied storage are visible session limitations while self-check 
   s.denied = true; await React.act(async () => s.api.clearExamGoalProgress()); assert.deepEqual(s.api.examGoalProgressStore.getSnapshot().entries, {}); assert.match(s.container.textContent, /blockierte Gerätespeicher/);
 });
 
-test('All old goal text, sources and identities remain exact apart from two separately verified complementary links', () => {
+test('All old goal text, sources and identities remain exact apart from three separately verified complementary links', () => {
   const load = createLoader(), files = ['data/exam-alignment/learning-goals-2026-11-01.json', 'data/exam-alignment/ch-2026-11-01.json', 'data/exam-alignment/at-2026-11-01.json', 'data/exam-alignment/de-2026-11-01.json'];
   for (const file of files) {
     const current = fs.readFileSync(path.join(repo, file), 'utf8').replace(/\r\n/g, '\n');
@@ -195,6 +195,10 @@ test('All old goal text, sources and identities remain exact apart from two sepa
         { moduleId: 'wissen-lebensraeume-biotopverbund', lessonId: 'habitat-nische' },
       ]);
       delete matches[0].relatedLessons;
+      const mowing = data.categories.flatMap(category => category.goals).filter(goal => goal.id === 'feld-mahdabstimmung');
+      assert.equal(mowing.length, 1);
+      assert.deepEqual(mowing[0].relatedLessons, [{ moduleId: 'wissen-ausbau-mahd-wildtierrettung', lessonId: 'aenderung' }]);
+      delete mowing[0].relatedLessons;
       assert.deepEqual(data, JSON.parse(previous));
     } else assert.equal(current, previous);
   }

@@ -1,3 +1,4 @@
+const { winterForestBaselineFixture } = require('./helpers/winter-forest-baseline-nov08.cjs');
 // Exact preservation/integration checks; these do not certify scientific claims.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
@@ -7,7 +8,7 @@ const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxin
 const { ecologyConceptBaselineFixture } = require('./helpers/ecology-concepts-addition-nov08.cjs');
 const { digestionAbsorptionBaselineFixture } = require('./helpers/digestion-absorption-addition-nov08.cjs');
 const { rootAbsorptionBaselineFixture } = require('./helpers/root-absorption-additions-nov08.cjs');
-const createLoader = overrides => createProjectLoader(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(featherFieldsBaselineFixture(overrides))))));
+const createLoader = overrides => createProjectLoader(winterForestBaselineFixture(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(featherFieldsBaselineFixture(overrides)))))));
 const { courseId, lessonId, sourceURLs: urls, stripBroodPatchAddition, stripBroodPatchDataset } = require('./helpers/brood-patch-addition-nov08.cjs');
 const { stripDigestionAbsorptionDataset } = require('./helpers/digestion-absorption-addition-nov08.cjs');
 const raw = stripDigestionAbsorptionDataset(require('../data/learning-expansion-biology-2026-10-16.json'));

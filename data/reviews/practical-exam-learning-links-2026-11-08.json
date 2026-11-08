@@ -1,0 +1,139 @@
+{
+  "reviewedOn": "2026-11-08",
+  "baseline": "d5bb4f0cebe387c6875eea9f0e40071c84ef3b8b",
+  "scope": "Fünf interne Lesepfade zu unveränderten vorhandenen Lektionen: ein ergänzender Prüfungsziel-Link und vier Gesprächs-Lektionslinks. Keine neuen Lernbehauptungen, Fragen, Kategorien, Fenster oder Selbstbewertungsziele.",
+  "mowing": {
+    "goalId": "feld-mahdabstimmung",
+    "primaryUnchanged": "/kurse/wissen-ausbau-mahd-wildtierrettung#lesson-team",
+    "relatedLesson": "/kurse/wissen-ausbau-mahd-wildtierrettung#lesson-aenderung",
+    "reason": "Die unveränderte Aufgabe verlangt schon einen bestätigten Änderungsweg zwischen Betrieb, ausführender Person und Rettungsteam. Die vollständig gelesene Lektion aenderung erklärt Suchzeitpunkt, Verschiebung, neuen Befund und erneute gemeinsame Lageklärung. Sie ergänzt die räumliche und organisatorische Primärlektion team.",
+    "oralQuestionId": "mahd",
+    "oralLessons": [
+      "team",
+      "aenderung"
+    ],
+    "oralReason": "Frage, Musterantwort und Nachfrage verlangen eindeutige Fläche, Termin, Verantwortliche und neue Abstimmung bei einer Verschiebung. Genau diese zwei gelesenen Lektionen liefern Grundlagen. Sie ersetzen weder eine örtliche Maßnahme noch eine praktische Suchfreigabe."
+  },
+  "hygiene": {
+    "oralQuestionId": "hygienekette",
+    "courseId": "wissen-ausbau-wildbretprozess",
+    "oralLessons": [
+      "trennung",
+      "kuehlweg"
+    ],
+    "reason": "Die vollständig gelesene Frage und Musterantwort unterscheiden Kontaktverschleppung, Kühlverlauf und Kreuzkontakt mit anderen Lebensmitteln. trennung erklärt Hände, Werkzeuge und saubere Bereiche; kuehlweg erklärt Kapazität, Transport, Kontrolle und Unterbrechung. Beide sind Grundlagen im bereits von der Frage empfohlenen Kurs. Zwei Links behaupten keine vollständige Abdeckung zusätzlicher Kriterien zu Identität, Untersuchungsstatus oder Abgaberecht; der volle Kursüberblick bleibt vorhanden."
+  },
+  "actuallyReadExistingCourseSources": [
+    {
+      "url": "https://www.lfl.bayern.de/maehknigge",
+      "sections": "Verantwortliche und Einzelfallgrenzen57–59; Methoden67–78 und Maßnahmenübersicht120–124",
+      "role": "Planung für konkrete Fläche, Zeitpunkt und Beteiligte sowie fehlende allgemeine Methodengarantie; keine regionalen Rechtsdetails, Zeitvorgaben oder Handlungsanleitung neu übernommen."
+    },
+    {
+      "url": "https://lfl.bayern.de/ilt/pflanzenbau/gruenland/244335/index.php",
+      "sections": "Forschungs-/Gefährdungskulisse54–65",
+      "role": "Ort, Zeitpunkt, Bedingungen und dokumentierter Aufwand begrenzen Aussagen. Projektlaufzeit2020–2024 bleibt historische Forschung, keine neue Wirksamkeitsmessung; dieselbe Institution wie der Mähknigge."
+    },
+    {
+      "url": "https://www.rehkitzrettung.ch/",
+      "sections": "Ausbildungs-/Teamhinweise70–95 und Zuständigkeits-/Kenntnisabgrenzung125",
+      "role": "Zusätzliche organisatorische Einordnung. Marketingaussagen, Rettungszahlen und pauschale Methodenrangfolge werden nicht als neue Fachbelege übernommen."
+    },
+    {
+      "url": "https://www.bfr.bund.de/presse/infografiken/lebensmittelsicherheit-wildbret/",
+      "sections": "Vollständige barrierefreie Sachfassung399–446, für die Links besonders413–419 und Arbeitskette420–446",
+      "role": "Bestehender amtlicher Beleg zu durchgehender Kühlung und Kreuzkontamination über Hände, Oberflächen und Küchenutensilien. Keine Temperaturzahlen, praktische Gewinnungsschritte oder regionale Pflichten neu in Jagdlatein übernommen."
+    },
+    {
+      "url": "https://www.blv.admin.ch/de/schlachtung",
+      "sections": "Abgrenzung Jagdwild27; Selbstkontrolle/Rückverfolgbarkeit36–39; einschlägige Jagdwild-Dokumente139–140",
+      "role": "Örtlich passende Kontrolle und Produktzuordnung als bestehender Kurskontext; kein Ersatz für konkrete Wildbretregeln und kein unabhängiges Experiment zu Keimübertragung."
+    },
+    {
+      "url": "https://www.ages.at/mensch/schwerpunkte/schwerpunktaktionen/detail/authentizitaet-und-mikrobiologie-von-verzehrfertigen-speisen-mit-bezug-auf-wildbreterzeugnisse",
+      "sections": "Endberichtseinordnung567–573",
+      "role": "Tatsächlicher Kontrollbericht zu Tierartangaben und Hygienestatus verzehrfertiger Speisen. Keine Quoten, allgemeine Küchenverfahren oder unabhängige Replikation daraus abgeleitet."
+    }
+  ],
+  "officialExamRelevanceExamples": [
+    {
+      "country": "CH",
+      "region": "ZH",
+      "url": "https://www.zh.ch/content/dam/zhweb/bilder-dokumente/themen/umwelt-tiere/tiere/fischerei-und-jagd/jagd/wie_werde_ich_jaegerin_oder_jaeger_im_kanton_zuerich/Reglement%20mit%20Unterschrift.pdf",
+      "source": "Amt für Landschaft und Natur, Reglement9.Dezember2024",
+      "actuallyRead": "PDF-Seite2 Prüfungsstoff: Wildkunde/Lebensweise/Fortpflanzung, Lebensräume/Ökologie/Biotophege und Jagdkunde/Wildbrethygiene",
+      "scope": "Konkretes kantonales Relevanzbeispiel für gemeinsame biologische und ökologische Grundlagen; keine Aussage über alle Schweizer Kantone oder einzelne zwingende Zellbiologiefragen."
+    },
+    {
+      "country": "DE",
+      "region": "BY",
+      "url": "https://www.gesetze-bayern.de/Content/Document/BayJFPO/true",
+      "source": "Amtliche Bayerische JFPO, §10Sachgebiete",
+      "actuallyRead": "Nr2Biologie: Anatomie, Lebensweise/Verhalten/Fortpflanzung und Lebensräume; Nr4Reviergestaltung/Wildbrethygiene; Nr6Naturschutz/Landbau/Forst",
+      "scope": "Bayerischer Fachrahmen, kein bundesweit identischer Stoffplan und keine Freigabe der Jagdlatein-Fragen als amtlicher Originalkatalog."
+    },
+    {
+      "country": "AT",
+      "region": "NOE",
+      "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=LrNO&Gesetzesnummer=20000559&Paragraf=60&FassungVom=2026-11-08",
+      "source": "RIS NÖJagdgesetz§60Abs4, DokumentLNO40082414",
+      "actuallyRead": "Öffentlicher OriginalabrufHTTP200 in Fassung08.November2026: Z3Erkennungsmerkmale/Lebensweise, Z4Umweltwechselwirkungen, Z7Wildfleischhygiene",
+      "scope": "Niederösterreichisches Relevanzbeispiel; keine neue Jagdkarten-, Zulassungs-, Gebühren- oder Anerkennungsregel übernommen und keine Freigabe aller österreichischen Länder."
+    }
+  ],
+  "preserved": [
+    "Alle36 Ziel-IDs, Aufgaben, Kriterien, Primärlektionen, Karten-/Quizziele und primären Quellenprojektionen; sämtliche anderen Kategorien und bisherigen ergänzenden Links vollständig exakt",
+    "Alle20 Gesprächsfragen mit Musterantworten, Kriterien, Quellen und Prüfdaten unverändert; sämtliche neun bisherigen vollständigen Linkobjekte samt Reihenfolge exakt",
+    "Die beiden vollständigen alten Mahd-/Wildbretkursobjekte samt Lektionsabsätzen, Fragen, Quellen, Länderhinweisen und Datumsfeldern exakt gegen d5bb4f0",
+    "Keine neue Speicher-ID und kein automatischer Lernstandsschreibzugriff; vorhandene Profil- und Kontogrenzen bleiben unverändert",
+    "Keine UI-, Serverprojektions-, Router-, Runden-, Sprach- oder Progresslogik geändert; nur bestehende sichere Projektions-/Darstellungspfade verwendet"
+  ],
+  "validation": {
+    "newTestFile": "scripts/test-exam-practical-links-nov08.cjs",
+    "newTests": 7,
+    "newTestsPassed": 7,
+    "initialAffectedSuiteRun": {
+      "tests": 71,
+      "passed": 70,
+      "failed": 1,
+      "skipped": 0,
+      "failure": "Separater parallel hinzugefügter Winterappendix in lib/learning-wildlife-depth.js traf den historischen Raw-Datei-Guard von test-exam-region-detail-nov02.cjs; kein Linkfehler. Enger fachlicher Appendixnachweis wird getrennt vom Koordinator integriert."
+    },
+    "historicalFollowup": {
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "Nach Integration der unabhängig geprüften präzisen Winter-/Waldprojektionen gesamte zuvor betroffene historische Suite erneut bestanden. Der vollständige Raw-/Export-Guard bleibt aktiv.",
+      "proof": "work/exam-expansion-nov08g/practical-link-historical-followup.txt"
+    },
+    "independentLinkReview": "Der koordinierende Agent hat die vollständigen Ziellessons, Fallprompts/Musterantworten und konkreten Hashziele selbst gelesen und die Linkzuordnung unabhängig freigegeben. Die fachlichen neuen Winter-/Waldtexte stammen von anderen Autoren und wurden durch den Linkautor separat unabhängig geprüft.",
+    "proof": "work/exam-expansion-nov08g/practical-link-tests.txt",
+    "checks": [
+      "Positiver kompletter Goalbankvergleich nach Entfernung ausschließlich der einen validierten neuen Mahd-Referenz",
+      "Komplette Blueprint-/Quellen-/Fall-/Kartenprojektion erhalten",
+      "Neun alte Oral-Linkobjekte exakt plus vier konkrete neue Ziele, echte case.course-Zuordnung und Lektionsvolltext",
+      "CH/AT/DE-Projektion auf exakten Hash ohne Antwort-/Quellenbanktransport",
+      "Echter Goalrenderer ergänzt genau einen normalen internen Link ohne neues Fenster oder Steuerelement",
+      "Echter v1-Fortschrittsspeicher mit isoliertem Double erhält gespeicherte CH/AT/DE-Markierungen und sämtliche Profil-/Goal-IDs; Katalogwechsel0Writes, ausdrücklicher Änderungsakt1Write",
+      "Bestehende URL-/Origin-/Round-/Speech-/Quellenregressionen grün"
+    ],
+    "props": "Nur dieselben fünf Felder pro Link. Tatsächliche13Rows2709Byte statt9Rows1887Byte; Größenobergrenze eng von2200auf2800Byte angepasst, keine Bank-/Antwortfelder erlaubt.",
+    "historicalExpectations": "Nur feld-mahdabstimmung erhält die neue Projektions-Keyerwartung. Ältere Goalbankvergleiche validieren diese eine genaue Referenz vor ihrem Entfernen und vergleichen danach den vollständigen alten Bestand; bisherige Biotop-Referenzen bleiben eng geprüft. Keine pauschale Dateiausnahme.",
+    "finalCombinedRun": {
+      "files": 75,
+      "passed": 789,
+      "proof": "work/exam-expansion-nov08g/tests-final.txt",
+      "tests": 789,
+      "skipped": 0,
+      "historicalAppendices": "Strikt geprüfte Winter-/Waldprojektionen ergänzen den bisherigen Rohdatenvergleich; initialer Parallelstand damit geschlossen",
+      "failed": 0
+    }
+  },
+  "limits": [
+    "Die amtlichen Beispiele belegen Fachrelevanz, keine vollständige Abdeckung aller51Profile oder jedes einzelnen neuen biologischen Begriffs.",
+    "Diese Linkänderung ist keine vollständige neue Fachprüfung der alten Kurse; originale Lehrtexte und deren Prüfstände bleiben erhalten.",
+    "Ausschließlich isolierte Tests und öffentliche Quellenlektüre, keine echten Benutzer-, Browser-, Speicher- oder Zahlungsdaten und keine kostenpflichtigen APIs.",
+    "Fremdes afternoon-JSON bleibt unberührt und wird nicht gestagt; kein Commit durch den Autor."
+  ]
+}

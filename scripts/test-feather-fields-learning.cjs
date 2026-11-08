@@ -1,3 +1,4 @@
+const { winterForestBaselineFixture } = require('./helpers/winter-forest-baseline-nov08.cjs');
 // Narrow preservation/integration tests; scientific reading is recorded separately.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
@@ -6,7 +7,7 @@ const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxin
 const { ecologyConceptBaselineFixture } = require('./helpers/ecology-concepts-addition-nov08.cjs');
 const { digestionAbsorptionBaselineFixture } = require('./helpers/digestion-absorption-addition-nov08.cjs');
 const { rootAbsorptionBaselineFixture } = require('./helpers/root-absorption-additions-nov08.cjs');
-const createLoader = overrides => createProjectLoader(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(overrides)))));
+const createLoader = overrides => createProjectLoader(winterForestBaselineFixture(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(overrides))))));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, stripFeatherFieldsAddition, stripFeatherFieldsDataset } = require('./helpers/feather-fields-additions-nov08.cjs');
 const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);

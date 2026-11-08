@@ -39,6 +39,8 @@ test('Every pre-existing course lesson retains its exact old diagram and unrelat
     if (item.id === 'wissen-lebensraeume-biotopverbund' && part.id === 'biotop-biozoenose') continue;
     if (item.id === 'wissen-ausbau-biologie-verdauungsvergleich-2026' && part.id === 'zotten-mikrovilli') continue;
     if (item.id === 'wissen-pruefung-bodenwasser-wurzelraum-2026' && part.id === 'wurzelhaare') continue;
+    if (item.id === 'wissen-vertiefung-wild-alpine-winterstrategien' && part.id === 'aufwaermphasen') continue;
+    if (item.id === 'wissen-ausbau-waldverjuengung-verbiss' && part.id === 'stockausschlag-wurzelbrut') continue;
     assert.deepEqual(getLessonDiagram(item.id, part.id), prior.exports.getLessonDiagram(item.id, part.id), `${item.id}/${part.id}`);
   }
 });

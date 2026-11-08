@@ -274,6 +274,12 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
       // only the two exact independently tested supplemental links are new.
       for (const key of ['id', 'title', 'task', 'selfCheck', 'moduleId', 'lessonId']) assert.deepEqual(goal[key], baselineGoal[key]);
       delete goal.relatedLessons;
+      const mowing = goals.filter(item => item.id === 'feld-mahdabstimmung');
+      assert.equal(mowing.length, 1);
+      assert.deepEqual(mowing[0].relatedLessons, [{ moduleId: 'wissen-ausbau-mahd-wildtierrettung', lessonId: 'aenderung' }]);
+      const baselineMowing = baseline.categories.flatMap(category => category.goals).find(item => item.id === mowing[0].id);
+      for (const key of ['id', 'title', 'task', 'selfCheck', 'moduleId', 'lessonId']) assert.deepEqual(mowing[0][key], baselineMowing[key]);
+      delete mowing[0].relatedLessons;
       assert.deepEqual(actual, baseline, filename);
       continue;
     }
@@ -311,6 +317,23 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
     if (filename === 'data/learning-expansion-field-science-2026-10-17.json') {
       const { stripFoodSporesToxinsDataset } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
       assert.deepEqual(stripFoodSporesToxinsDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
+      continue;
+    }
+    if (filename === 'lib/learning-wildlife-depth.js' || filename === 'lib/learning-expansion-nature.js') {
+      const exported = source => {
+        const { code } = local('next/dist/build/swc').transformSync(source, { filename, jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
+        const module = { exports: {} };
+        new Function('require', 'module', 'exports', code)(id => id.startsWith('.') ? load(path.resolve(path.dirname(path.join(root, filename)), path.extname(id) ? id : `${id}.js`)) : local(id), module, module.exports);
+        return module.exports;
+      };
+      const actual = exported(current), prior = exported(baselineText(filename));
+      if (filename === 'lib/learning-wildlife-depth.js') {
+        const { stripMarmotHibernationAddition } = require('./helpers/marmot-hibernation-addition-nov08.cjs');
+        assert.deepEqual({ ...actual, wildlifeDepthModules: actual.wildlifeDepthModules.map(stripMarmotHibernationAddition) }, { ...prior }, filename);
+      } else {
+        const { stripForestRegenerationAddition } = require('./helpers/forest-regeneration-additions-nov08.cjs');
+        assert.deepEqual({ ...actual, natureExpansionModules: actual.natureExpansionModules.map(stripForestRegenerationAddition) }, { ...prior }, filename);
+      }
       continue;
     }
     assert.equal(current, baselineText(filename).replace(/\r\n/g, '\n'), filename);

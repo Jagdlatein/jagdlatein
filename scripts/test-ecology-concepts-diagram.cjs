@@ -38,6 +38,8 @@ test('Every diagram that existed at 98fc900 retains its complete original value'
     if (item.id === courseId && lesson.id === lessonId) continue;
     if (item.id === 'wissen-ausbau-biologie-verdauungsvergleich-2026' && lesson.id === 'zotten-mikrovilli') continue;
     if (item.id === 'wissen-pruefung-bodenwasser-wurzelraum-2026' && lesson.id === 'wurzelhaare') continue;
+    if (item.id === 'wissen-vertiefung-wild-alpine-winterstrategien' && lesson.id === 'aufwaermphasen') continue;
+    if (item.id === 'wissen-ausbau-waldverjuengung-verbiss' && lesson.id === 'stockausschlag-wurzelbrut') continue;
     assert.deepEqual(getLessonDiagram(item.id, lesson.id), prior.exports.getLessonDiagram(item.id, lesson.id), `${item.id}/${lesson.id}`);
   }
 });

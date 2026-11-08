@@ -21,12 +21,16 @@ const blueprint = load('lib/exam-blueprint-server.js').getExamBlueprintData();
 const oldBlueprint = createLoader({ '../data/exam-alignment/learning-goals-2026-11-01.json': baseline })('lib/exam-blueprint-server.js').getExamBlueprintData();
 const projectedGoal = data => data.categories.find(category => category.slug === 'natur-revier').goals.find(goal => goal.id === after.id);
 
-test('Exactly two complementary links are the entire authored-bank change; all old objects, IDs, texts and primary selections stay exact', () => {
+test('The historical two-link ecology appendix preserves every old object when the later exact mowing link is separately isolated', () => {
   assert.ok(before && after);
   assert.equal(before.relatedLessons, undefined);
   assert.deepEqual(after.relatedLessons, targets);
   const restored = structuredClone(current);
   delete findGoal(restored).relatedLessons;
+  const mowing = restored.categories.flatMap(category => category.goals).filter(goal => goal.id === 'feld-mahdabstimmung');
+  assert.equal(mowing.length, 1);
+  assert.deepEqual(mowing[0].relatedLessons, [{ moduleId: 'wissen-ausbau-mahd-wildtierrettung', lessonId: 'aenderung' }]);
+  delete mowing[0].relatedLessons;
   assert.deepEqual(restored, baseline);
   assert.equal(current.categories.find(category => category.slug === 'natur-revier').caseQuestionId, 'monitoring');
   assert.equal(current.categories.flatMap(category => category.goals).length, 36);
@@ -38,6 +42,11 @@ test('Actual blueprint keeps every primary projection, source list, practice cas
   assert.deepEqual(goal.relatedLessons.map(item => item.href), targets.map(item => `/kurse/${item.moduleId}#lesson-${item.lessonId}`));
   for (const item of goal.relatedLessons) assert.deepEqual(Object.keys(item).sort(), ['courseTitle', 'href', 'lessonTitle']);
   delete goal.relatedLessons;
+  const mowing = restored.categories.flatMap(category => category.goals).filter(goal => goal.id === 'feld-mahdabstimmung');
+  assert.equal(mowing.length, 1);
+  const mowingCourse = load('lib/learning-curriculum.js').getLearningModule('wissen-ausbau-mahd-wildtierrettung');
+  assert.deepEqual(mowing[0].relatedLessons, [{ courseTitle: load('lib/learning-navigation-labels.js').getLearningNavigationLabel(mowingCourse), lessonTitle: mowingCourse.lessons.find(lesson => lesson.id === 'aenderung').title, href: '/kurse/wissen-ausbau-mahd-wildtierrettung#lesson-aenderung' }]);
+  delete mowing[0].relatedLessons;
   assert.deepEqual(restored, oldBlueprint);
   assert.equal(goal.cardHref, projectedGoal(oldBlueprint).cardHref);
   assert.equal(goal.cardCount, projectedGoal(oldBlueprint).cardCount);

@@ -413,7 +413,13 @@
             "Ich leite aus einem angenommenen Termin keine eigenständige Maschinenfreigabe ab."
           ],
           "moduleId": "wissen-ausbau-mahd-wildtierrettung",
-          "lessonId": "team"
+          "lessonId": "team",
+          "relatedLessons": [
+            {
+              "moduleId": "wissen-ausbau-mahd-wildtierrettung",
+              "lessonId": "aenderung"
+            }
+          ]
         },
         {
           "id": "feld-heckenziel",
