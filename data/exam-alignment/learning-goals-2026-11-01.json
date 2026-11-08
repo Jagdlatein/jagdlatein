@@ -152,7 +152,17 @@
             "Ich trenne eine plausible Kartenverbindung von belegter Nutzung."
           ],
           "moduleId": "wissen-lebensraeume-biotopverbund",
-          "lessonId": "biotop-netz"
+          "lessonId": "biotop-netz",
+          "relatedLessons": [
+            {
+              "moduleId": "wissen-lebensraeume-biotopverbund",
+              "lessonId": "biotop-biozoenose"
+            },
+            {
+              "moduleId": "wissen-lebensraeume-biotopverbund",
+              "lessonId": "habitat-nische"
+            }
+          ]
         },
         {
           "id": "natur-erfassungsaufwand",

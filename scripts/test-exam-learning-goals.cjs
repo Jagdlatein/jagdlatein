@@ -47,7 +47,8 @@ test('The actual blueprint keeps the canonical twelve categories and36 bounded u
       const authored=raw().categories.find(item=>item.slug===category.slug).goals.find(item=>item.id===goal.id);
       const cards=load('lib/learning-flashcards.js').getFlashcardExport({courseId:authored.moduleId,lessonId:authored.lessonId}).cards;
       const cardKeys=!goal.regionalLaw&&goal.lessonPractice&&cards.length?['cardCount','cardHref']:[];
-      assert.deepEqual(Object.keys(goal).sort(), ['courseTitle','href','id','lessonPractice','lessonTitle','quizHref','regionalLaw','selfCheck','sourceIds','sourceScope','task','title',...cardKeys].sort());
+      const relatedKeys=goal.id==='natur-biotopnetz'?['relatedLessons']:[];
+      assert.deepEqual(Object.keys(goal).sort(), ['courseTitle','href','id','lessonPractice','lessonTitle','quizHref','regionalLaw','selfCheck','sourceIds','sourceScope','task','title',...cardKeys,...relatedKeys].sort());
       if(cardKeys.length){assert.equal(goal.cardCount,cards.length);assert.equal(goal.cardHref,`/lernen/lernkarten?kurs=${authored.moduleId}&lektion=${authored.lessonId}`);}
       assert.ok(goal.id && goal.title && goal.task && goal.selfCheck && goal.sourceIds.length);
       assert.ok(['lesson','course'].includes(goal.sourceScope));

@@ -5,9 +5,12 @@ const { createLoader: createProjectLoader, local, root } = require('./helpers/pr
 const { featherFieldsBaselineFixture } = require('./helpers/feather-fields-additions-nov08.cjs');
 const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
 const { ecologyConceptBaselineFixture } = require('./helpers/ecology-concepts-addition-nov08.cjs');
-const createLoader = overrides => createProjectLoader(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(featherFieldsBaselineFixture(overrides))));
+const { digestionAbsorptionBaselineFixture } = require('./helpers/digestion-absorption-addition-nov08.cjs');
+const { rootAbsorptionBaselineFixture } = require('./helpers/root-absorption-additions-nov08.cjs');
+const createLoader = overrides => createProjectLoader(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(featherFieldsBaselineFixture(overrides))))));
 const { courseId, lessonId, sourceURLs: urls, stripBroodPatchAddition, stripBroodPatchDataset } = require('./helpers/brood-patch-addition-nov08.cjs');
-const raw = require('../data/learning-expansion-biology-2026-10-16.json');
+const { stripDigestionAbsorptionDataset } = require('./helpers/digestion-absorption-addition-nov08.cjs');
+const raw = stripDigestionAbsorptionDataset(require('../data/learning-expansion-biology-2026-10-16.json'));
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js');
 const tools = load('lib/learning-flashcards.js'), cards = tools.getFlashcards();
 const course = curriculum.getLearningModule(courseId), lesson = course.lessons.find(item => item.id === lessonId);

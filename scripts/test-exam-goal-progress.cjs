@@ -182,9 +182,22 @@ test('Quota and denied storage are visible session limitations while self-check 
   s.denied = true; await React.act(async () => s.api.clearExamGoalProgress()); assert.deepEqual(s.api.examGoalProgressStore.getSnapshot().entries, {}); assert.match(s.container.textContent, /blockierte Gerätespeicher/);
 });
 
-test('All authored common and regional goals, exact sources and check text are unchanged from HEAD; only local controls are added', () => {
+test('All old goal text, sources and identities remain exact apart from two separately verified complementary links', () => {
   const load = createLoader(), files = ['data/exam-alignment/learning-goals-2026-11-01.json', 'data/exam-alignment/ch-2026-11-01.json', 'data/exam-alignment/at-2026-11-01.json', 'data/exam-alignment/de-2026-11-01.json'];
-  for (const file of files) assert.equal(fs.readFileSync(path.join(repo, file), 'utf8').replace(/\r\n/g, '\n'), execFileSync('git', ['show', `HEAD:${file}`], { cwd: repo, encoding: 'utf8', maxBuffer: 8000000 }).replace(/\r\n/g, '\n'));
+  for (const file of files) {
+    const current = fs.readFileSync(path.join(repo, file), 'utf8').replace(/\r\n/g, '\n');
+    const previous = execFileSync('git', ['show', `e6b1d550d550e14a5571fa4caf43284758fe0c37:${file}`], { cwd: repo, encoding: 'utf8', maxBuffer: 8000000 }).replace(/\r\n/g, '\n');
+    if (file === files[0]) {
+      const data = JSON.parse(current), matches = data.categories.flatMap(category => category.goals).filter(goal => goal.id === 'natur-biotopnetz');
+      assert.equal(matches.length, 1);
+      assert.deepEqual(matches[0].relatedLessons, [
+        { moduleId: 'wissen-lebensraeume-biotopverbund', lessonId: 'biotop-biozoenose' },
+        { moduleId: 'wissen-lebensraeume-biotopverbund', lessonId: 'habitat-nische' },
+      ]);
+      delete matches[0].relatedLessons;
+      assert.deepEqual(data, JSON.parse(previous));
+    } else assert.equal(current, previous);
+  }
   const blueprint = load('lib/exam-blueprint-server.js').getExamBlueprintData(), alignment = load('lib/exam-alignment-server.js').getExamAlignmentData();
   const api = load('lib/exam-goal-progress.js'), catalog = api.buildExamGoalCatalog(blueprint, alignment);
   assert.equal(blueprint.categories.flatMap(category => category.goals).length, 36);

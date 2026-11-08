@@ -715,6 +715,46 @@
             "vogelblinddaerme"
           ],
           "supports": "Originalarbeit vom 11. März 2019 direkt gelesen: Abstract, Einleitung zum paarigen Blinddarm am ileokolischen Übergang sowie Discussion Hemicellulose and starch-hydrolyzing GHs und Conclusions. Unabhängige Einordnung mikrobieller Pflanzenverarbeitung; untersucht wurden Mikroben und genetisches Funktionspotenzial arktischer Alpenschneehühner. Kein direkt gemessener Energieanteil, keine Übertragung auf DACH-Populationen und keine experimentelle Wiederholung des Hühnerbeispiels behauptet."
+        },
+        {
+          "label": "Colorado State University: Small Intestine – Introduction and Index",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/index.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "resorption"
+          ],
+          "supports": "Vollständigen Original-Lehrtext öffentlich per HTTP 200 gelesen. Trennung der enzymatischen Zerlegung von der Aufnahme kleiner Moleküle durch das Epithel; letzte Verdauungsschritte an der Epitheloberfläche. Die ausdrücklich genannte Aufnahme von Fermentationsprodukten an anderen Orten bleibt berücksichtigt. Keine ausschließliche Dünndarmaufnahme sämtlicher Stoffe, Nährstoffanteile oder Fütterungsanweisungen übernommen."
+        },
+        {
+          "label": "Colorado State University: Gross and Microscopic Anatomy of the Small Intestine",
+          "url": "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/anatomy.html",
+          "organization": "Colorado State University, Richard Bowen",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "zotten-mikrovilli"
+          ],
+          "supports": "Originalabschnitt zur Schleimhautoberfläche mit den drei Punkten Mucosal folds, Villi und Microvilli sowie anschließende Bürstensaumerklärung tatsächlich gelesen. Zotten als epithelbedeckte Schleimhautvorsprünge, Mikrovilli an der luminalen Membran einzelner Aufnahmezellen. Keine Längen, Flächen, Vergrößerungsfaktoren, Organquotienten oder Abbildungen übernommen. Dasselbe institutionelle Lehrwerk wie die Einleitung, keine zweite unabhängige Institution."
+        },
+        {
+          "label": "University of Leeds: The Histology Guide – Small Intestine",
+          "url": "https://histology.leeds.ac.uk/home/digestive/small_intestine/",
+          "organization": "University of Leeds",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "zotten-mikrovilli"
+          ],
+          "supports": "Originalabschnitt Structure und Beschreibung des Epitheliums tatsächlich gelesen: Zotten als Schleimhautvorsprünge mit Epithel, Mikrovilli als Fortsätze der zum Lumen gerichteten Zelloberfläche; beide tragen zur Aufnahmefläche bei. Humanhistologisches Lehrmaterial zur Einordnung des Grundprinzips, keine Übertragung menschlicher Darmmaße, Zellzahlen oder Krankheiten auf Wildarten; keine Bilder übernommen."
+        },
+        {
+          "label": "Universität Zürich: Histologie – Bürstensaum des Dünndarmepithels",
+          "url": "https://e-learn.anatomy.uzh.ch/anatomie/Histologie/histo_HTML/histo_A_Epithel/epithel_07.html",
+          "organization": "Universität Zürich, Anatomie",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "zotten-mikrovilli"
+          ],
+          "supports": "Vollständigen öffentlichen Originaltext Bürstensaum (TEM) – Dünndarmepithel nach korrekter Zeichendekodierung gelesen. Mikrovilli der Enterozyten ragen in die Darmlichtung und vergrößern die Oberfläche; gemeinsam erscheinen sie als Bürstensaum. Keine Mikrometerangaben, Aktinmechanismen oder Abbildungen übernommen."
         }
       ],
       "lessons": [
@@ -796,6 +836,32 @@
           ],
           "takeaway": "Beim Huhn unterscheiden sich Muskelmagen und paarige Blinddärme funktionell: mechanische Bearbeitung steht mikrobieller Gärung gegenüber.",
           "exercise": "Eigene Papierübung: Zeichne für das Huhn Dünndarm, den Übergang zum Dickdarm und zwei seitliche, blind endende Taschen. Ergänze den Muskelmagen davor und beschrifte mechanische Bearbeitung und mikrobielle Gärung getrennt."
+        },
+        {
+          "id": "resorption",
+          "title": "Verdauung und Resorption",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Chemische Verdauung und Resorption sind verschiedene Aufgaben. Bei der Verdauung werden größere Nahrungsbestandteile enzymatisch in kleinere, aufnehmbare Bestandteile zerlegt. Resorption meint dagegen deren Aufnahme aus dem Darminhalt durch die Darmauskleidung. Ein im Darminhalt liegender Nährstoffbaustein ist damit noch nicht in den Körper aufgenommen.",
+            "Im Dünndarm sind beide Aufgaben eng verknüpft. Enzymatische Schritte finden auch an der Oberfläche der Aufnahmezellen statt. Die entstehenden Bausteine müssen anschließend die Zellgrenze überwinden; bloßes Weitertransportieren des Darminhalts ist keine Resorption. Zerlegung, Aufnahme und Weiterbeförderung sind deshalb in einer Erklärung auseinanderzuhalten.",
+            "Hier wird das allgemeine Säuger-Dünndarmmodell erklärt. Das bedeutet keine ausschließliche Aufnahme sämtlicher Stoffe an diesem Ort: Die im Kurs behandelten Fermentationsräume bleiben eigene Aufnahmeorte. Daraus folgen weder eine Fütterungsempfehlung noch eine Krankheitsdiagnose. Eigene Prüfungsübung: Zeichne getrennte Pfeile für Zerlegung im Darminhalt und Aufnahme durch die Auskleidung. Beschrifte den Unterschied, statt beide Pfeile nur Verdauung zu nennen."
+          ],
+          "takeaway": "Verdauung zerlegt Nahrungsbestandteile; Resorption nimmt geeignete Bestandteile durch die Darmauskleidung auf.",
+          "exercise": "Zeichne ein eigenes Schema für Zerlegung und Aufnahme. Erkläre, warum ein im Darminhalt vorhandener Baustein noch keinen erfolgten Übertritt belegt."
+        },
+        {
+          "id": "zotten-mikrovilli",
+          "title": "Zotten und Mikrovilli",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Die Innenfläche des Dünndarms ist im hier verwendeten Säugermodell keine glatte Rohrwand. Darmzotten sind Vorsprünge der Schleimhaut in den Darmraum. Sie werden von einer Schicht aus Epithelzellen überzogen. Eine Zotte ist daher eine Gewebestruktur mit vielen Zellen und keine einzelne besonders große Zelle.",
+            "Aufnahmezellen, auch Enterozyten genannt, tragen zusätzlich Mikrovilli an ihrer zum Darminhalt gerichteten Oberfläche. Diese feinen Fortsätze gehören zur Zelloberfläche. Viele dicht nebeneinanderliegende Mikrovilli bilden den sogenannten Bürstensaum. Zotte und Mikrovillus bezeichnen somit unterschiedliche Strukturebenen. Beide vergrößern die für Aufnahmevorgänge verfügbare Oberfläche.",
+            "Die Lehrquellen erklären diesen Grundbauplan; menschliche Flächenwerte und Zellmaße werden hier nicht auf Wildarten übertragen. Das Schema misst keine individuelle Verdauungsleistung. Eigene Prüfungsübung: Zeichne zuerst eine Zotte, vergrößere danach gedanklich eine ihrer Aufnahmezellen und markiere an deren Darmseite die Mikrovilli. Verwende keine einheitliche Größenzeichnung, die Gewebevorsprung und Zellfortsatz als gleich groß erscheinen lässt."
+          ],
+          "takeaway": "Eine Zotte ist ein Schleimhautvorsprung; Mikrovilli sind Fortsätze an der Oberfläche einzelner Aufnahmezellen.",
+          "exercise": "Ordne Zotte, Epithelzelle und Mikrovilli vom Gewebe zur Zelloberfläche. Erkläre den Beitrag zur Aufnahmefläche ohne eine erfundene Flächenzahl."
         }
       ],
       "questions": [
@@ -1279,6 +1345,32 @@
           ],
           "answer": 0,
           "explain": "Beim Huhn bearbeitet der Muskelmagen die Nahrung mechanisch. Die paarigen Blinddärme liegen am Dünn-/Dickdarmübergang; dort können Mikroorganismen verbliebene Nahrungsbestandteile vergären. Das sind unterschiedliche Funktionen und Orte."
+        },
+        {
+          "id": "resorption-unterschied",
+          "lessonId": "resorption",
+          "q": "Wie unterscheidet sich Resorption von der chemischen Verdauung im Säuger-Dünndarmmodell?",
+          "options": [
+            "Resorption nimmt geeignete Bestandteile durch die Darmauskleidung auf; chemische Verdauung zerlegt Nahrungsbestandteile.",
+            "Resorption zerlegt Nahrung im Darminhalt; chemische Verdauung bezeichnet allein den Durchtritt durch die Darmauskleidung.",
+            "Resorption bezeichnet allein das Weiterschieben des Darminhalts, unabhängig von einer Aufnahme.",
+            "Resorption und chemische Verdauung sind zwei Namen für denselben Vorgang ohne unterscheidbare Aufgaben."
+          ],
+          "answer": 0,
+          "explain": "Die Zerlegung kann aufnehmbare Bausteine bereitstellen. Deren Aufnahme durch das Darmepithel ist ein eigener Schritt. Ein vorhandener Baustein im Darminhalt belegt daher noch keinen Übertritt; beide Aufgaben arbeiten im Dünndarm zusammen."
+        },
+        {
+          "id": "zotten-mikrovilli-ebenen",
+          "lessonId": "zotten-mikrovilli",
+          "q": "Wie unterscheiden sich Darmzotten und Mikrovilli im Säuger-Dünndarmmodell?",
+          "options": [
+            "Zotten sind einzelne Zellfortsätze; Mikrovilli sind die davon überzogenen großen Schleimhautvorsprünge.",
+            "Zotten und Mikrovilli bezeichnen dieselbe Struktur in derselben Größenordnung.",
+            "Zotten sind epithelbedeckte Schleimhautvorsprünge; Mikrovilli sind Fortsätze der Oberfläche einzelner Aufnahmezellen.",
+            "Zotten sind epithelbedeckte Schleimhautvorsprünge; Mikrovilli sitzen an der vom Darminhalt abgewandten Seite der Aufnahmezellen."
+          ],
+          "answer": 2,
+          "explain": "Eine Zotte gehört zur Gewebestruktur der Schleimhaut und ist von vielen Epithelzellen bedeckt. Die Mikrovilli sitzen an der zum Darminhalt gerichteten Oberfläche einzelner Aufnahmezellen. Beide Strukturen vergrößern die verfügbare Aufnahmefläche, aber auf unterschiedlichen Ebenen."
         }
       ]
     },
@@ -4792,6 +4884,66 @@
             "https://web.stanford.edu/group/stanfordbirds/text/essays/Brood_Patches.html",
             "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "resorption",
+      "claims": [
+        {
+          "claim": "Chemische Verdauung zerlegt größere Nahrungsbestandteile zu aufnehmbaren Bestandteilen; deren Aufnahme durch die Darmauskleidung ist ein unterscheidbarer Vorgang. Die letzten Verdauungsschritte und die Aufnahme sind an der Dünndarmoberfläche eng verbunden.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/index.html",
+            "https://www.merckvetmanual.com/digestive-system/diseases-of-the-small-intestine-in-small-animals/malabsorption-syndromes-in-small-animals"
+          ],
+          "sourceRoles": {
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/index.html": "Originaleinleitung: Abbau zu kleinen, durch das Epithel transportierbaren Molekülen sowie letzte Verdauungsschritte an der Epitheloberfläche.",
+            "https://www.merckvetmanual.com/digestive-system/diseases-of-the-small-intestine-in-small-animals/malabsorption-syndromes-in-small-animals": "Ausschließlich Normalphysiologie, Absätze zu sequential phases, normal digestive processes und Proteinverdauung: Zerlegung sowie Übertritt durch die luminale Oberfläche der Enterozyten. Die vorhandene Kursquelle wird unverändert wiederverwendet; keine Transporter-, Krankheits- oder Therapiepassagen übernommen."
+          }
+        },
+        {
+          "claim": "Die Erklärung am Säuger-Dünndarmmodell behauptet keine ausschließliche Aufnahme aller Stoffe in diesem Organ. Die Pfeilskizze ist eine eigene Lernübung und weder Fütterungsempfehlung noch Diagnose.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/index.html",
+            "https://www.merckvetmanual.com/digestive-system/diseases-of-the-small-intestine-in-small-animals/malabsorption-syndromes-in-small-animals"
+          ],
+          "sourceRoles": {
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/index.html": "Die Einleitung nennt ausdrücklich bei Pflanzenfressern die Aufnahme kurzkettiger Fettsäuren an anderen Orten. Damit bleibt die alte Kursdarstellung von Fermentationsräumen konsistent.",
+            "https://www.merckvetmanual.com/digestive-system/diseases-of-the-small-intestine-in-small-animals/malabsorption-syndromes-in-small-animals": "Normalphysiologische Darstellung dient nur dem Funktionsvergleich. Die redaktionelle Reichweitenbegrenzung übernimmt keine klinischen Feststellungen über ein Tier und behauptet kein Quellenexperiment mit dem eigenen Schema."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "zotten-mikrovilli",
+      "claims": [
+        {
+          "claim": "Darmzotten sind mit Epithel überzogene Schleimhautvorsprünge. Mikrovilli gehören zur luminalen Zelloberfläche einzelner Aufnahmezellen. Gewebestruktur und Zellfortsatz sind unterschiedliche Ebenen.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/anatomy.html",
+            "https://histology.leeds.ac.uk/home/digestive/small_intestine/",
+            "https://e-learn.anatomy.uzh.ch/anatomie/Histologie/histo_HTML/histo_A_Epithel/epithel_07.html"
+          ],
+          "sourceRoles": {
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/anatomy.html": "Punkte Villi und Microvilli des Originaltextes trennen epithelbedeckte Schleimhautvorsprünge von Fortsätzen der luminalen Plasmamembran der Aufnahmezellen.",
+            "https://histology.leeds.ac.uk/home/digestive/small_intestine/": "Structure beschreibt fingerförmige mucosal projections und davon getrennt microvilli an der apikalen Oberfläche der auskleidenden Epithelzellen.",
+            "https://e-learn.anatomy.uzh.ch/anatomie/Histologie/histo_HTML/histo_A_Epithel/epithel_07.html": "Dünndarmepithel: Mikrovilli an der Oberfläche einzelner Enterozyten ragen in die Darmlichtung."
+          }
+        },
+        {
+          "claim": "Zotten und Mikrovilli vergrößern die verfügbare Aufnahmefläche; die Mikrovilli bilden gemeinsam den Bürstensaum. Die eigene Strukturvergrößerung enthält keine übertragenen Humanmaße und misst keine individuelle Verdauungsleistung.",
+          "sourceUrls": [
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/anatomy.html",
+            "https://histology.leeds.ac.uk/home/digestive/small_intestine/",
+            "https://e-learn.anatomy.uzh.ch/anatomie/Histologie/histo_HTML/histo_A_Epithel/epithel_07.html"
+          ],
+          "sourceRoles": {
+            "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/anatomy.html": "Abschnitt zur Oberflächenvergrößerung und anschließende Erklärung des brush border; keine dortigen Flächenwerte übernommen.",
+            "https://histology.leeds.ac.uk/home/digestive/small_intestine/": "Structure erklärt die vergrößerte Aufnahmefläche. Menschliche Darmmaße, Abbildungen und klinische Folgetexte nicht übernommen.",
+            "https://e-learn.anatomy.uzh.ch/anatomie/Histologie/histo_HTML/histo_A_Epithel/epithel_07.html": "Öffentliche Originalbeschreibung nennt Oberflächenvergrößerung und den lichtmikroskopischen Bürstensaum. Die eigene Skizze ist keine Kopie des TEM-Bilds und keine Messung."
+          }
         }
       ]
     }

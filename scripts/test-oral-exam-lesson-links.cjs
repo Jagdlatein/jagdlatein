@@ -4,15 +4,25 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const{createLoader,local,root:repo}=require('./helpers/project-module.cjs'),{setup,nodes,text}=require('./helpers/field-reader-fixture.cjs');
 const React=local('react'),{JSDOM}=require(process.env.JAGDLATEIN_TEST_DOM||path.join(process.env.TEMP,'jagdlatein-page-menu-dom/node_modules/jsdom'));
 const load=createLoader(),questions=load('lib/oral-exam-trainer.js').oralExamQuestions,server=load('lib/oral-exam-lesson-links-server.js'),links=server.getOralExamLessonLinks(),page=load('pages/lernen/pruefungsgespraech.js');
-const expected={kitzfund:['reh-nachwuchs'],rotte:['sau-sozial'],hundewahl:['passende-auswahl'],sinneseindruck:['qualitaet'],abruflernen:['abruf','abstand'],offlinekarte:['ausfall']};
+const expected={kitzfund:['reh-nachwuchs'],rotte:['sau-sozial'],hundewahl:['passende-auswahl'],sinneseindruck:['qualitaet'],abruflernen:['abruf','abstand'],offlinekarte:['ausfall'],verbund:['biotop-netz','habitat-nische']};
 const row=id=>links.filter(link=>link.questionId===id),sourceNode=h=>h.nodes(node=>node.props?.id==='exam-question-sources')[0];
 function light(t,id,lessonLinks=links){const h=setup('components/OralExamTrainer.js',{eintrag:id},{props:{lessonLinks},router:{isReady:true,asPath:'/lernen/pruefungsgespraech?eintrag='+id}});t.after(()=>h.dispose());return h;}
 function reveal(h){h.nodes(node=>node.type==='textarea')[0].props.onChange({target:{value:'Eigene isolierte Testantwort, keine echte Nutzernotiz.'}});h.render();h.click('Mit der Musterantwort vergleichen');}
 
-test('Only six explicitly reviewed cases project seven exact existing lesson starts and five small fields',()=>{
- assert.equal(links.length,7);assert.deepEqual([...new Set(links.map(link=>link.questionId))],Object.keys(expected));
+test('Only seven explicitly reviewed cases project nine exact existing lesson starts and five small fields',()=>{
+ assert.equal(links.length,9);assert.deepEqual([...new Set(links.map(link=>link.questionId))],Object.keys(expected));
  for(const[id,ids]of Object.entries(expected)){assert.deepEqual(row(id).map(link=>link.lessonId),ids);const question=questions.find(item=>item.id===id),course=load('lib/learning-curriculum.js').getLearningModule(question.course);for(const link of row(id)){assert.deepEqual(Object.keys(link).sort(),['questionId','courseId','lessonId','title','href'].sort());const lesson=course.lessons.find(item=>item.id===link.lessonId);assert.ok(lesson.paragraphs.length>0);assert.equal(link.courseId,question.course);assert.equal(link.title,lesson.title);assert.equal(link.href,'/kurse/'+course.id+load('lib/learning-lesson-navigation.js').lessonHash(lesson.id));}}
  assert.deepEqual(page.getStaticProps(),{props:{lessonLinks:links}});assert.ok(Buffer.byteLength(JSON.stringify(page.getStaticProps().props))<2200);assert.doesNotMatch(JSON.stringify(page.getStaticProps().props),/"(?:model|criteria|mistake|paragraphs|sources|answers|correct|rating)"\s*:/);
+});
+
+test('Only the two reviewed verbund lesson rows append to the exact seven published starts; its question and course source remain unchanged',()=>{
+ const baseline='e6b1d550d550e14a5571fa4caf43284758fe0c37',filename=path.join(repo,'lib/oral-exam-lesson-links-server.js'),original=execFileSync('git',['show',baseline+':lib/oral-exam-lesson-links-server.js'],{cwd:repo,encoding:'utf8'}),old={exports:{}};
+ const{code}=local('next/dist/build/swc').transformSync(original,{filename,disableNextSsg:true,jsc:{parser:{syntax:'ecmascript'},target:'es2022'},module:{type:'commonjs'}});
+ new Function('require','module','exports',code)(id=>id.startsWith('.')?load(path.resolve(repo,'lib',path.extname(id)?id:id+'.js')):local(id),old,old.exports);
+ const previous=old.exports.getOralExamLessonLinks();assert.equal(previous.length,7);assert.deepEqual(links.slice(0,7),previous);
+ const course=load('lib/learning-curriculum.js').getLearningModule('wissen-lebensraeume-biotopverbund'),hash=load('lib/learning-lesson-navigation.js').lessonHash;
+ assert.deepEqual(links.slice(7),['biotop-netz','habitat-nische'].map(lessonId=>({questionId:'verbund',courseId:course.id,lessonId,title:course.lessons.find(lesson=>lesson.id===lessonId).title,href:'/kurse/'+course.id+hash(lessonId)})));
+ for(const file of ['lib/oral-exam-trainer.js','lib/learning-wildlife.js','components/OralExamTrainer.js'])assert.equal(fs.readFileSync(path.join(repo,file),'utf8').replace(/\r\n/g,'\n'),execFileSync('git',['show',baseline+':'+file],{cwd:repo,encoding:'utf8'}).replace(/\r\n/g,'\n'),file);
 });
 
 test('Unknown, cross-course, duplicate or excessive lesson targets fail rather than selecting a course first lesson',()=>{

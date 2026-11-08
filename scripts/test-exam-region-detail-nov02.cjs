@@ -259,6 +259,24 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
   assert.ok(curriculumFiles.length > 60);
   for (const filename of curriculumFiles) {
     const current = fs.readFileSync(path.join(root, filename), 'utf8').replace(/\r\n/g, '\n');
+    if (filename === 'data/exam-alignment/learning-goals-2026-11-01.json') {
+      const actual = JSON.parse(current), baseline = JSON.parse(baselineText(filename));
+      const goals = actual.categories.flatMap(category => category.goals);
+      const matches = goals.filter(goal => goal.id === 'natur-biotopnetz');
+      assert.equal(matches.length, 1);
+      const goal = matches[0];
+      assert.deepEqual(goal.relatedLessons, [
+        { moduleId: 'wissen-lebensraeume-biotopverbund', lessonId: 'biotop-biozoenose' },
+        { moduleId: 'wissen-lebensraeume-biotopverbund', lessonId: 'habitat-nische' },
+      ]);
+      const baselineGoal = baseline.categories.flatMap(category => category.goals).find(item => item.id === goal.id);
+      // First preserve all existing goal text, primary selection and criteria;
+      // only the two exact independently tested supplemental links are new.
+      for (const key of ['id', 'title', 'task', 'selfCheck', 'moduleId', 'lessonId']) assert.deepEqual(goal[key], baselineGoal[key]);
+      delete goal.relatedLessons;
+      assert.deepEqual(actual, baseline, filename);
+      continue;
+    }
     if (filename === 'lib/learning-wildlife.js') {
       const { stripEcologyConceptAddition } = require('./helpers/ecology-concepts-addition-nov08.cjs');
       const exported = source => {
@@ -276,7 +294,13 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
     }
     if (filename === 'data/learning-expansion-biology-2026-10-16.json') {
       const { stripBroodPatchDataset } = require('./helpers/brood-patch-addition-nov08.cjs');
-      assert.deepEqual(stripBroodPatchDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
+      const { stripDigestionAbsorptionDataset } = require('./helpers/digestion-absorption-addition-nov08.cjs');
+      assert.deepEqual(stripBroodPatchDataset(stripDigestionAbsorptionDataset(JSON.parse(current))), JSON.parse(baselineText(filename)), filename);
+      continue;
+    }
+    if (filename === 'data/learning-exam-habitat-2026-10-18.json') {
+      const { stripRootAbsorptionDataset } = require('./helpers/root-absorption-additions-nov08.cjs');
+      assert.deepEqual(stripRootAbsorptionDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
       continue;
     }
     if (filename === 'data/learning-expansion-wildlife-dogs-2026-10-16.json') {

@@ -1,7 +1,10 @@
 // Exact preservation and integration checks; no scientific certification.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { digestionAbsorptionBaselineFixture } = require('./helpers/digestion-absorption-addition-nov08.cjs');
+const { rootAbsorptionBaselineFixture } = require('./helpers/root-absorption-additions-nov08.cjs');
+const createLoader = overrides => createProjectLoader(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(overrides)));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, stripEcologyConceptAddition } = require('./helpers/ecology-concepts-addition-nov08.cjs');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);
 const tools = load('lib/learning-flashcards.js'), cards = tools.getFlashcards();

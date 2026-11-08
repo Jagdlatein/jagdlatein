@@ -79,6 +79,48 @@
           "url": "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/boden/bo-i-1_bo-i-2/indikator",
           "organization": "Umweltbundesamt Deutschland",
           "supports": "nFK als Bezugsgröße für pflanzenverfügbaren Vorrat; hoher Bedarf und Verdunstung können Wasserstress bereits vor vollständiger Entleerung hervorrufen. Keine Indikatorschwelle als universelle biologische Grenze übernommen."
+        },
+        {
+          "label": "Grierson, Nielsen, Ketelaar und Schiefelbein · Root Hairs (2014)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4075452/",
+          "organization": "University of Bristol, University of Michigan und Wageningen University; The Arabidopsis Book",
+          "supports": "Review, Abstract und Introduction: Wurzelhaare als schlauchförmige Ausstülpungen von Wurzelepidermiszellen und Vergrößerung der Aufnahmeoberfläche. Arabidopsis-Zellmuster, Größen, Wachstumsraten und Gene werden nicht auf Waldbäume übertragen. Keine eigene experimentelle Replikation.",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "wurzelhaare"
+          ]
+        },
+        {
+          "label": "OpenStax · Biology 2e, Roots: Root Growth and Anatomy",
+          "url": "https://openstax.org/books/biology-2e/pages/30-3-roots",
+          "organization": "OpenStax, Rice University",
+          "supports": "Abschnitt Root Growth and Anatomy: Herkunft der Wurzelhaare, Oberfläche und Wasser-/Mineralaufnahme; innere Lage der Endodermis und Unterbrechung des freien Zellwandwegs. Die dortige Suberin-Vereinfachung, eine exklusive Beschränkung der Endodermis auf Wurzeln und eine allgemeine Gift-/Erregerfiltergarantie werden nicht übernommen.",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "wurzelhaare",
+            "endodermis"
+          ]
+        },
+        {
+          "label": "Universität Vigo · Atlas of Plant and Animal Histology: Root, Primary Growth",
+          "url": "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1",
+          "organization": "Universidade de Vigo, Department of Functional Biology and Health Sciences; Megías, Molist und Pombal",
+          "supports": "Absätze zur Rhizodermis, zu Wurzelhaaren, Cortex und Endodermis: Oberflächenvergrößerung, Aufnahme, apoplastischer und verbundener Zellinnenraumweg sowie Caspary-Barriere. Eigenständig redigierte Fachübersicht; verschiedene Sprachfassungen zählen nur einmal. Keine Haardichten, Chemie oder allgemeine Leistungswerte übernommen.",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "wurzelhaare",
+            "endodermis"
+          ]
+        },
+        {
+          "label": "Naseer et al. · Casparian strip diffusion barrier in Arabidopsis (2012)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3382560/",
+          "organization": "University of Lausanne, INRA–AgroParisTech und Universität Bonn; Proceedings of the National Academy of Sciences",
+          "supports": "Originalarbeit, Abstract, Introduction und erster Results-Block: Caspary-Streifen als Zellwand-Diffusionsbarriere junger Wurzeln; fluoreszierender apoplastischer Marker in Arabidopsis. Die artspezifischen chemischen Befunde und Zahlen werden nicht als allgemeine Eigenschaften von Waldbäumen gelehrt; keine unabhängige Wiederholung durch Lehrtexte behauptet.",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "endodermis"
+          ]
         }
       ],
       "lessons": [
@@ -237,6 +279,96 @@
                 {
                   "label": "Umweltbundesamt · Bodenwasser in landwirtschaftlich genutzten Böden und Waldböden",
                   "url": "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/boden/bo-i-1_bo-i-2/indikator"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wurzelhaare",
+          "title": "Wurzelhaare",
+          "paragraphs": [
+            "Ein Wurzelhaar ist eine schlauchförmige Ausstülpung einer einzelnen Zelle der Wurzeloberhaut, der Rhizodermis. Es ist kein mehrzelliges Seitenwurzelorgan und kein Pilzfaden. In der Reifungszone einer jungen Wurzel können solche Ausstülpungen die Oberfläche für den Kontakt mit dem Boden vergrößern. Sie tragen zur Aufnahme von Wasser und gelösten mineralischen Nährstoffen bei.",
+            "Die Aufnahmefläche ist eine andere Betrachtungsebene als die bereits erklärte Durchwurzelungstiefe: Der erreichbare Wurzelraum beschreibt den Bodenbereich, das Wurzelhaar einen Teil einer Zelle an der Wurzeloberfläche. Wurzelhaare und Mykorrhizapilze bleiben verschiedene Strukturen. Daraus folgt weder, dass jede Wurzel Wurzelhaare trägt, noch, dass Pflanzen alles Wasser ausschließlich über Wurzelhaare aufnehmen.",
+            "Eigene Prüfungsübung: Beschrifte ein vereinfachtes Schema mit Wurzel, Rhizodermiszelle und Wurzelhaar. Erkläre, welche Oberfläche größer wird und warum ein Pilzfaden anders zuzuordnen ist."
+          ],
+          "takeaway": "Ein Wurzelhaar gehört zu einer einzelnen Rhizodermiszelle und vergrößert die Aufnahmeoberfläche; es ist weder Seitenwurzel noch Pilzhyphe.",
+          "exercise": "Erkläre an einem beschrifteten Lehrschema den Unterschied zwischen Wurzelorgan, einzelner Oberhautzelle, Wurzelhaar und Pilzfaden.",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "evidence": [
+            {
+              "claim": "Wurzelhaare sind Ausstülpungen einzelner Wurzelepidermiszellen; sie vergrößern die Oberfläche der jungen Wurzel. Damit werden Zellfortsatz und Wurzelorgan auseinandergehalten.",
+              "sources": [
+                {
+                  "label": "Grierson, Nielsen, Ketelaar und Schiefelbein · Root Hairs (2014)",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4075452/"
+                },
+                {
+                  "label": "OpenStax · Biology 2e, Roots: Root Growth and Anatomy",
+                  "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+                },
+                {
+                  "label": "Universität Vigo · Atlas of Plant and Animal Histology: Root, Primary Growth",
+                  "url": "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1"
+                }
+              ]
+            },
+            {
+              "claim": "Wurzelhaare tragen zur Aufnahme von Wasser und mineralischen Nährstoffen bei. Das ist keine Aussage, dass jede Wurzel Haare trägt oder sämtliches Wasser ausschließlich über Haare aufgenommen wird.",
+              "sources": [
+                {
+                  "label": "OpenStax · Biology 2e, Roots: Root Growth and Anatomy",
+                  "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+                },
+                {
+                  "label": "Universität Vigo · Atlas of Plant and Animal Histology: Root, Primary Growth",
+                  "url": "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "endodermis",
+          "title": "Endodermis und Caspary-Streifen",
+          "paragraphs": [
+            "Im vereinfachten Querschnitt einer jungen, primär gebauten Wurzel liegt die Endodermis als innerste Schicht der Wurzelrinde um den Zentralzylinder mit den Leitgeweben. Wasser und gelöste Stoffe können sich im äußeren Wurzelgewebe unter anderem entlang von Zellwänden und Zwischenräumen bewegen. Dieser Weg außerhalb der Zellmembranen heißt apoplastischer Weg.",
+            "Die Caspary-Streifen der Endodermis unterbrechen den durchgehenden freien Zellwandweg zum Zentralzylinder. Stoffe können diese Grenze deshalb nicht auf einem rein apoplastischen Weg passieren; ein Membranübertritt wird erforderlich. Er kann bereits weiter außen erfolgt sein: Stoffe, die schon über verbundene Zellinnenräume weitergegeben werden, müssen die Membran nicht zwangsläufig erst an der Endodermis passieren. Membranen ermöglichen eine selektive Kontrolle des Transports.",
+            "Die Barriere ist keine vollständige Sperre gegen jedes Gift oder jeden Krankheitserreger. Das Schema beschreibt weder alle Entwicklungsstadien einer Wurzel noch gemessene Leistungen einer Baumart. Eigene Prüfungsübung: Markiere den unterbrochenen Zellwandweg und ergänze einen möglichen früheren Membranübertritt."
+          ],
+          "takeaway": "Caspary-Streifen unterbrechen den reinen apoplastischen Zellwandweg. Der nötige Membranübertritt kann schon vor der Endodermis erfolgt sein.",
+          "exercise": "Zeichne im jungen Wurzel-Lehrmodell einen Zellwandweg und einen früheren Eintritt in eine Zelle ein. Zeige, welcher Weg durch Caspary-Streifen unterbrochen wird.",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "evidence": [
+            {
+              "claim": "Im primären Wurzelmodell liegt die Endodermis innen an der Wurzelrinde um den Zentralzylinder. Im Cortex bestehen apoplastische Wege und Verbindungen zwischen Zellinnenräumen.",
+              "sources": [
+                {
+                  "label": "OpenStax · Biology 2e, Roots: Root Growth and Anatomy",
+                  "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+                },
+                {
+                  "label": "Universität Vigo · Atlas of Plant and Animal Histology: Root, Primary Growth",
+                  "url": "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1"
+                }
+              ]
+            },
+            {
+              "claim": "Caspary-Streifen bilden eine Barriere des freien apoplastischen Zellwandwegs. Membranpassage ermöglicht Transportkontrolle, kann aber bereits außerhalb der Endodermis erfolgen. Das ist keine universelle Gift-/Erregerfiltergarantie und kein artunabhängiger Leistungswert.",
+              "sources": [
+                {
+                  "label": "OpenStax · Biology 2e, Roots: Root Growth and Anatomy",
+                  "url": "https://openstax.org/books/biology-2e/pages/30-3-roots"
+                },
+                {
+                  "label": "Universität Vigo · Atlas of Plant and Animal Histology: Root, Primary Growth",
+                  "url": "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1"
+                },
+                {
+                  "label": "Naseer et al. · Casparian strip diffusion barrier in Arabidopsis (2012)",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3382560/"
                 }
               ]
             }
@@ -451,6 +583,32 @@
           ],
           "answer": 3,
           "explain": "Gleiche Speicherkapazität bedeutet nicht gleichen gegenwärtigen Füllstand."
+        },
+        {
+          "id": "wurzelhaare-einzelzelle",
+          "lessonId": "wurzelhaare",
+          "q": "Was ist ein Wurzelhaar und welche Grundfunktion erfüllt es?",
+          "options": [
+            "Eine Ausstülpung einer Rhizodermiszelle, die die Oberfläche für Wasser- und Mineralstoffaufnahme vergrößert.",
+            "Eine mehrzellige Seitenwurzel, die ausschließlich den Baum verankert.",
+            "Eine Pilzhyphe, die aus der Wurzeloberhaut hervorwächst.",
+            "Ein Gefäß im Zentralzylinder, das Photosyntheseprodukte aus dem Blatt transportiert."
+          ],
+          "answer": 0,
+          "explain": "Das Wurzelhaar ist der Fortsatz einer einzelnen Oberhautzelle. Es vergrößert die Kontakt- und Aufnahmeoberfläche und ist weder Seitenwurzel noch Pilzfaden. Nicht jede Wurzel trägt Wurzelhaare."
+        },
+        {
+          "id": "endodermis-zellwandweg",
+          "lessonId": "endodermis",
+          "q": "Welche Funktion erfüllen die Caspary-Streifen im Lehrmodell einer jungen Wurzel?",
+          "options": [
+            "Sie vergrößern als Zellhaare die äußere Wurzeloberfläche.",
+            "Sie bilden das Pilzgeflecht einer Mykorrhiza.",
+            "Sie unterbrechen den freien Zellwandweg zum Zentralzylinder und machen einen Membranübertritt nötig.",
+            "Sie leiten als Siebröhren Photosyntheseprodukte durch das Blatt."
+          ],
+          "answer": 2,
+          "explain": "Caspary-Streifen unterbrechen den rein apoplastischen Weg in den Zellwänden. Der erforderliche Membranübertritt kann bereits weiter außen in der Wurzel stattgefunden haben; er muss nicht erstmals an der Endodermis erfolgen."
         }
       ],
       "sourceReview": {
@@ -548,6 +706,52 @@
           ]
         }
       ]
+    },
+    {
+      "moduleId": "wissen-pruefung-bodenwasser-wurzelraum-2026",
+      "lessonId": "wurzelhaare",
+      "claims": [
+        {
+          "claim": "Wurzelhaare sind Ausstülpungen einzelner Wurzelepidermiszellen; sie vergrößern die Oberfläche der jungen Wurzel. Damit werden Zellfortsatz und Wurzelorgan auseinandergehalten.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC4075452/",
+            "https://openstax.org/books/biology-2e/pages/30-3-roots",
+            "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1"
+          ]
+        },
+        {
+          "claim": "Wurzelhaare tragen zur Aufnahme von Wasser und mineralischen Nährstoffen bei. Das ist keine Aussage, dass jede Wurzel Haare trägt oder sämtliches Wasser ausschließlich über Haare aufgenommen wird.",
+          "sourceUrls": [
+            "https://openstax.org/books/biology-2e/pages/30-3-roots",
+            "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1"
+          ]
+        }
+      ],
+      "reviewedOn": "2026-11-08",
+      "scope": "Eng begrenztes Lehrmodell der jungen Wurzel; Originalbefunde und eigenständig redigierte fachliche Einordnungen werden nicht als experimentelle Replikation zusammengezählt."
+    },
+    {
+      "moduleId": "wissen-pruefung-bodenwasser-wurzelraum-2026",
+      "lessonId": "endodermis",
+      "claims": [
+        {
+          "claim": "Im primären Wurzelmodell liegt die Endodermis innen an der Wurzelrinde um den Zentralzylinder. Im Cortex bestehen apoplastische Wege und Verbindungen zwischen Zellinnenräumen.",
+          "sourceUrls": [
+            "https://openstax.org/books/biology-2e/pages/30-3-roots",
+            "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1"
+          ]
+        },
+        {
+          "claim": "Caspary-Streifen bilden eine Barriere des freien apoplastischen Zellwandwegs. Membranpassage ermöglicht Transportkontrolle, kann aber bereits außerhalb der Endodermis erfolgen. Das ist keine universelle Gift-/Erregerfiltergarantie und kein artunabhängiger Leistungswert.",
+          "sourceUrls": [
+            "https://openstax.org/books/biology-2e/pages/30-3-roots",
+            "https://mmegias.webs2.uvigo.es/02-english/2-organos-v/guiada_o_v_rprimario.php?tema=1",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC3382560/"
+          ]
+        }
+      ],
+      "reviewedOn": "2026-11-08",
+      "scope": "Eng begrenztes Lehrmodell der jungen Wurzel; Originalbefunde und eigenständig redigierte fachliche Einordnungen werden nicht als experimentelle Replikation zusammengezählt."
     }
   ],
   "withheldTopics": [

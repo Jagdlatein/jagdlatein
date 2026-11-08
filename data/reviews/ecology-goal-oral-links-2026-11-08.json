@@ -1,0 +1,32 @@
+{
+  "reviewedOn": "2026-11-08",
+  "baseline": "e6b1d550d550e14a5571fa4caf43284758fe0c37",
+  "scope": "Vier ergänzende Lektionslinks im bestehenden Prüfungsplan und Prüfungsgespräch. Keine neue Fachbehauptung, Frage, Kategorie, Oberfläche, Quellenlektüre für Altmaterial oder Änderung einer Selbstbewertungsaufgabe.",
+  "goal": {
+    "id": "natur-biotopnetz",
+    "primaryUnchanged": "/kurse/wissen-lebensraeume-biotopverbund#lesson-biotop-netz",
+    "relatedLessons": ["biotop-biozoenose", "habitat-nische"],
+    "reason": "Der bestehende Auftrag prüft eine Verbindung für eine ausdrücklich benannte Zielart. Die ergänzenden Begriffslektionen erklären Lebensraum und Lebensgemeinschaft sowie artspezifische Voraussetzungen und Ressourcen. Sie ergänzen die Hauptlektion, ersetzen weder ihre Netzfunktionen noch die bestehende Selbstkontrolle.",
+    "preserved": "Titel, Aufgabe, drei Selbstkontrollsätze, ID, Primärlektion, Quiz-/Kartenziele und primäre Quellenprojektion vollständig unverändert. Der Natur-Übungsfall bleibt monitoring. Keine neuen Speicher-IDs oder Lernstandsmarkierungen."
+  },
+  "oral": {
+    "questionId": "verbund",
+    "lessons": ["biotop-netz", "habitat-nische"],
+    "reason": "Die tatsächliche Frage zur Hecke verlangt nutzbare Verbindungen und artbezogene Unterschiede. biotop-netz behandelt Anschlüsse und Barrieren, habitat-nische die unterschiedlichen benötigten Bedingungen und Ressourcen. Beide werden im vorhandenen Bereich Grundlagen nachlesen angeboten; keiner der Links behauptet allein die vollständige Musterantwort einschließlich Pflege und Abstimmung abzudecken.",
+    "preserved": "Alle sieben bisherigen Linkobjekte und ihre Reihenfolge, alle 20 vollständigen Fragen mit Musterantworten, Kriterien, Quellen und Prüfdaten sowie der Kursvolltext und die URL-/Rundensteuerung bleiben exakt. Nun sieben verknüpfte Fälle mit neun Lektionslinks. Nur zwei manuelle Mappingzeilen hinzugefügt; kein UI-Code verändert."
+  },
+  "glossaryDecision": "Keine erzwungene Verknüpfung: Im vorhandenen Glossar fehlen die fünf neuen Ökologiebegriffe. Einstand bezeichnet dort ein bevorzugtes Rückzugsgebiet, Wechsel einen regelmäßig genutzten Weg; beides wurde nicht als Synonym für Habitat, Nische oder Biotopverbund ausgegeben. Äsung behält seinen vorhandenen Reh-Nahrungslink.",
+  "sourcesAndDates": "Die Ziellektionen waren im vorigen Paket mit ihren konkreten Quellen und Grenzen fachlich geprüft. Diese Änderung ergänzt nur interne Lesepfade. Der Prüfungsplan behält genau seine bisherigen primären Quellen-IDs und Prüfstände. Die ergänzenden Lektionsbelege bleiben gesammelt am jeweiligen Kursziel; alte Oralfachtexte erhalten kein neues Prüfdatum.",
+  "validation": {
+    "newTestFile": "scripts/test-exam-ecology-goal-links.cjs",
+    "newGoalTests": 6,
+    "newOralPreservationTest": 1,
+    "passedDistinctTests": 49,
+    "failed": 0,
+    "skipped": 0,
+    "suites": ["scripts/test-exam-ecology-goal-links.cjs", "scripts/test-exam-learning-goals.cjs", "scripts/test-exam-region-detail-nov02.cjs", "scripts/test-oral-exam-lesson-links.cjs"],
+    "evidence": ["Gesamte alte Goalbank nach Entfernung genau der zwei neuen Linkziele positiv vollständig mit e6b1d55 verglichen", "Komplette Projektionsobjekte, Quellenliste, Fälle, Kartenzahl und Primärlinks außer genau relatedLessons erhalten", "Echte CH/AT/DE-Projektion und exakte Lektionshashes ohne Antwort-/Quellenbankexport", "Echter bestehender Renderer zeigt nur zwei zusätzliche normale interne Links und keine neuen Formulare/Fenster", "Echter v1-Fortschrittsspeicher mit isoliertem Speicherdouble: bestehende CH/AT/DE-Markierungen und sämtliche Profil-/Ziel-IDs erhalten, Katalogwechsel schreibt nichts; nur ausdrückliche Markierung schreibt einmal", "Sieben alte Oral-Linkobjekte und alle 20 Fragen exakt; neun kompakte Linkobjekte ergeben 1887 Byte Props, bisherige 2200-Byte-Grenze unverändert", "Bestehende URL-/Origin-/Runden-/Stimmen-/Quellen-Lifecycleregressionen weiterhin grün"],
+    "historicalAdjustments": "Die einzige neue Projektionsschlüssel-Erwartung gilt konkret natur-biotopnetz. Die historische Goalbankprüfung validiert die zwei exakten Linkobjekte und zunächst alle bisherigen Zieltext-/ID-/Primär-/Kriterienfelder, entfernt ausschließlich relatedLessons und vergleicht anschließend den vollständigen alten JSON-Bestand."
+  },
+  "limits": ["Keine neue amtliche Prüfungsabdeckung oder Bewertung des Lernstands behauptet.", "Keine neue Geräte-, Browser- oder authentifizierte Sichtprüfung; ausschließlich isolierte Renderer und Speicherdoubles.", "Keine persönlichen Speicherwerte, Notizen, Konten, bezahlten APIs oder Nachrichten an Dritte verwendet.", "Fremde afternoon-JSON bleibt unberührt und wird nicht gestagt. Kein Commit durch den Autor."]
+}

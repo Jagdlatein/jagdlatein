@@ -1,0 +1,25 @@
+{
+  "reviewedOn": "2026-11-08",
+  "baseCommit": "e6b1d550d550e14a5571fa4caf43284758fe0c37",
+  "scope": "Vier zusätzliche gemeinsame biologische Grundlagenlektionen für CH/AT/DE im bestehenden Kursbestand, zwei eigene Begriffsschemata und vier ergänzende Lektionslinks. Keine neue Kategorie, kein paralleler Kurs und keine fachliche Gesamtzertifizierung.",
+  "newLessons": [
+    {"courseId":"wissen-ausbau-biologie-verdauungsvergleich-2026","lessonId":"resorption","title":"Verdauung und Resorption"},
+    {"courseId":"wissen-ausbau-biologie-verdauungsvergleich-2026","lessonId":"zotten-mikrovilli","title":"Zotten und Mikrovilli"},
+    {"courseId":"wissen-pruefung-bodenwasser-wurzelraum-2026","lessonId":"wurzelhaare","title":"Wurzelhaare"},
+    {"courseId":"wissen-pruefung-bodenwasser-wurzelraum-2026","lessonId":"endodermis","title":"Endodermis und Caspary-Streifen"}
+  ],
+  "learningMaterial": {"ownFourAnswerQuestions":4,"actualNewExportedCards":4,"originalDiagrams":2,"approach":"Vollständige Erklärungen, Merksätze, eigene Zeichen-/Erklärübungen und wichtige Modellgrenzen vor den geschlossenen Schlussquellen. Keine unlizenzierte Abbildung, Messwerte oder Länderunterschiede erfunden."},
+  "sourceReview": "Autor, Root und gesonderter Reviewer haben die konkreten Quellen selbst gelesen. Tierblock: fünf Dokumente aus vier eigenständigen Quellenverantwortungen; zwei CSU-Seiten zählen zusammen. Pflanzenblock: universitäres Lehrbuch, Vigo-Atlas, eigenständiger Arabidopsis-Review und Originalexperiment. Genaue Rollen und Abgrenzungen in digestion-absorption-2026-11-08.md und root-absorption-learning-2026-11-08.md.",
+  "limits": [
+    "Allgemeines Säuger-Dünndarmmodell, keine Übertragung menschlicher Flächenwerte auf Wildarten oder Aussage, sämtliche Stoffe würden ausschließlich dort aufgenommen.",
+    "Junge primär gebaute Wurzel als Modell. Kein Universalfilter gegen Schadstoffe, keine exklusive Wasseraufnahme durch Wurzelhaare, keine chemische Verallgemeinerung oder Artenmessreihe.",
+    "Originale Arabidopsis-Ergebnisse und fachliche Lehrtexte werden nicht als identische experimentelle Replikation ausgegeben. Keine Fütterungs-, Therapie- oder Bewirtschaftungsanweisung."
+  ],
+  "learningPaths": "Beim unveränderten Ziel natur-biotopnetz ergänzen Biotop/Biozönose und Habitat/Nische die weiterhin primäre Netzlektion. Der unveränderte Gesprächsfall verbund erhält Netzlektion und Habitat/Nische als Grundlagen. Alle bisherigen sieben Oral-Lektionszeilen bleiben exakt, insgesamt jetzt neun Links für sieben Fälle. Keine Aussage, eine einzelne Grundlage belege allein die gesamte Musterantwort.",
+  "progress": "Bestehende Ziel- und Profilkennungen, Aufgaben, Selbstkontrollen und primäre Quellen-/Quiz-/Kartenziele erhalten. Isolierte tatsächliche v1-Speicherwiederherstellung für CH/AT/DE bestätigt: ergänzende Links erzeugen keine implizite Speicherung oder neue Selbstbewertung.",
+  "preservation": "Alle 198 alten vollständigen Kursobjekte, alle 1769 alten Karten in Reihenfolge und 116 Starterobjekte nach exakt begrenzter Appendixprojektion positiv gegen e6b1d55 verglichen. Alte Kursdaten 16. beziehungsweise 18. Oktober bleiben; nur neue Lektionen und neue Quellen tragen tatsächlichen 8. November. Bestehendes Merck-Quellenobjekt vollständig erhalten und nicht dupliziert.",
+  "integration": "Vorhandene Themenzweige, Kursleser, gemeinsame Länderfragenpools, echte Suchanker, Kartenexport, Druck und auslaufende isolierte Offlinepakete geprüft. Neue Schemata gehören den tatsächlichen neuen Lektionen; alle sieben vorherigen Diagramme einschließlich interaktivem Wurzelraumspeicher bleiben exakt.",
+  "verification": "758 passende Tests aus 71 unterschiedlichen Dateien bestanden, keine Fehler oder übersprungenen Fälle; darunter 31 neue Regressionen. Produktionsbuild mit 510 statischen Seiten erfolgreich. Tatsächliche lokale Build-JSONs enthalten alle vier Lektionen, beide Diagramme sowie die neuen Plan- und Orallinks. Unabhängiger Rohdaten-/Kurs-/Karten-/Diagrammvergleich separat außerhalb des Repos.",
+  "visualReview": "Isolierte Browseransicht mit echten Komponenten und Styles bei beobachteten 375 CSS-Pixeln: keine horizontale Überbreite, beide Schemata und die zusätzlichen Links lesbar, fünf Quellenboxen anfangs geschlossen. Synthetische Antwort, kein Kundenkonto oder physische Geräteprüfung. Temporärer Tab und lokaler Prüfserver geschlossen, Viewport zurückgesetzt.",
+  "delivery": "Git-/Vercel-Auslieferung und tatsächliche Produktions-DPL werden separat im externen release-final.json nach Veröffentlichung bestätigt. Geschützte Weiterleitungen beweisen keinen angezeigten angemeldeten Lehrtext."
+}
