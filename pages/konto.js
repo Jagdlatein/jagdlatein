@@ -5,6 +5,8 @@ import useAccountOverview from "../hooks/useAccountOverview";
 import WebPushPreferences from "../components/WebPushPreferences";
 import NativePushPreferences from "../components/NativePushPreferences";
 import ExamProfileSummary from "../components/ExamProfileSummary";
+import UsagePreferences from "../components/UsagePreferences";
+import { stopUsageAnalytics } from "../lib/usage-analytics";
 import { cleanupWebPushForAccountChange } from "../lib/firebase-web-push";
 import { cleanupNativePushForAccountChange } from "../lib/native-push-preferences";
 import { getAccountPageProps } from "../lib/account-page";
@@ -63,6 +65,7 @@ function AccountDeletion({ onDeleted, isCurrent = () => true }) {
     setPending(true);
     setMessage("");
     try {
+      stopUsageAnalytics();
       const response = await fetch("/api/account/delete", {
         method: "DELETE", credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
@@ -195,7 +198,7 @@ export default function AccountPage({ courses = [] } = {}) {
               {!account.admin && subscriptionLabel && <div><dt>{apple ? "Apple-Abo" : "PayPal-Abo"}</dt><dd>{subscriptionLabel}</dd></div>}
               <div><dt>Anmeldung</dt><dd>Mit einem Code per E-Mail</dd></div>
             </dl>
-            {account.admin && <p><Link href="/admin/testabos" className={styles.secondaryButton}>Testabos und Abos</Link></p>}
+            {account.admin && <div className={styles.actions}><Link href="/admin" className={styles.button}>Admin-Auswertung</Link><Link href="/admin/testabos" className={styles.secondaryButton}>Testabos und Abos</Link></div>}
             {!account.admin && <p><button type="button" className={styles.secondaryButton} onClick={reload}>Zugang und Abo aktualisieren</button></p>}
             {courtesy && <p className={styles.muted}>
               Dieser Zugang endet automatisch zum angezeigten Termin. Dafür wird kein Abo angelegt und keine Zahlung ausgelöst.
@@ -242,6 +245,7 @@ export default function AccountPage({ courses = [] } = {}) {
           </section>
           <WebPushPreferences account={account} />
           <NativePushPreferences account={account} />
+          <UsagePreferences key={`usage-${currentDeletionIdentity.version}`} account={account} isCurrent={() => deletionIdentity.current === currentDeletionIdentity && !accountDeleted} />
           <section className={styles.card} aria-labelledby="account-privacy">
             <h2 id="account-privacy">Datenschutz und Kontohilfe</h2>
             <p className={styles.muted}>Fragen zu deinen gespeicherten Daten oder eine Anfrage zu Auskunft, Berichtigung oder Löschung kannst du per E-Mail stellen. Eine Datenanfrage kündigt dein Apple- oder PayPal-Abo nicht automatisch.</p>

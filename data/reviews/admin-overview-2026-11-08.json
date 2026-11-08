@@ -1,0 +1,47 @@
+{
+  "reviewedOn": "2026-11-08",
+  "baselineCommit": "709a547ac8dca175870545f6144ef1549f91c61e",
+  "scope": "Zentrale, nur für bestehende Administratoren zugängliche Betreiberauswertung; freiwillige Website- und PWA-Zähler",
+  "entry": "/admin",
+  "areas": ["Konten und Prüfungsziele", "Abgeschlossene Lernrunden", "Gespeicherte Kursstände", "Abos und getrennte Lernzugangsarten", "Zahlungsnachweise nach Umgebung und Währung", "Freiwillige Website-Nutzung", "Community-Zähler", "Begrenzte Betriebsnachweise"],
+  "dataSources": ["userprofile", "activity_results", "course_progress", "paypal_subscriptions", "paypal_subscription_payments", "apple_account_tokens", "apple_subscriptions", "apple_subscription_transactions", "account_access_grants", "community_posts", "community_reports", "photo_recognition_requests", "photo_recognition_months", "operator_trial_notification_outbox", "usage_collection_settings", "usage_daily_counts"],
+  "definitions": {
+    "period": "Maximal 366 Schweizer Kalendertage; Tagesgrenzen berücksichtigen Sommer-/Winterzeit. Bestandskennzahlen sind ausdrücklich als aktueller Stand bezeichnet.",
+    "rounds": "Gespeicherte abgeschlossene Runden; servergeprüfte Quizrunden getrennt von selbst gemeldeten Ergebnissen. Gewichtung nach Fragen, nicht nach ungewichteten Rundenprozenten.",
+    "courses": "Ein aktueller Stand je Konto und Kurs; kein erfundener Übungsverlauf. Erste gespeicherte Abschlüsse im gewählten Zeitraum. Tabelle Top 20, Kennzahlen alle.",
+    "access": "Verträge und eindeutige Konten getrennt; Deckung nach gespeicherten Anbieterfristen. Prüfbedarf darf mit Deckung überlappen. Kulanz, Legacy und Administratoren sind keine bezahlten Abos.",
+    "payments": "PayPal ursprüngliche Bruttobeträge je Währung; Teilrückzahlungen gesondert, keine Nettoumsätze oder MRR. Apple enthält in diesen Tabellen keine Preise. Keine Live-/Sandbox-Mischung. Maximal 30 Währungs-/Statusgruppen in der Tabelle.",
+    "unknown": "Fehlende, unzuverlässige oder noch nicht eingerichtete Quellen bleiben unbekannt; keine künstliche Null. Frühere und nicht mehr aufbewahrte Nutzungstage bleiben Lücken."
+  },
+  "usagePrivacy": {
+    "default": "Aus; separate ausdrückliche Kontoeinwilligung. Alte Cookiebanner-Zustimmung wird nicht umgedeutet.",
+    "scope": "Nur angemeldete Website/PWA in festen Lernbereichen. Native Android-/Apple-Apps senden diese Ereignisse nicht. DNT und GPC werden beachtet.",
+    "eventKinds": ["page_view", "navigation", "action", "expand", "video_play"],
+    "counterFields": ["Schweizer Tag", "Fester Bereichsschlüssel", "Feste Ereignisart", "Zusammengezählte Anzahl", "Letzte Aktualisierung"],
+    "excluded": ["Kontokennung in Zählern", "IP-Adresse in Zählern", "Rohe URLs und Query-/Hashwerte", "Suchbegriffe", "Antworttexte", "Notizen", "Fotos", "Formularwerte", "Drittanbieter-Analytics-SDK", "Tracking-Cookies", "Eindeutige Besucher", "Video-Sehdauer"],
+    "retention": "400 Schweizer Kalendertage für Zähler; 48 Stunden für nicht kontogebundene Batch-UUIDs; zwei Tage für globale Minutenlimits. Bereinigung durch angenommene Erfassungsanfragen, kein neuer Hintergrunddienst.",
+    "consentRace": "Nur Aktivierung benötigt exakten serverseitigen Einwilligungsstand; Ausschalten schreibt auch bei bereits ausgeschaltetem Zustand eine neue Version. Verspätete Aktivierung kann neueren Widerruf nicht aufheben. Zeitstempelpräzision bleibt erhalten.",
+    "lifecycle": "Sofortiger lokaler Stopp vor Widerrufsrequest, Abmeldung und Kontolöschung; veraltete Antworten und Unmount geschützt. Eigentümergebundene Requestbereinigung und feste Fristen."
+  },
+  "security": [
+    "Bestehende aktuelle is_admin-Rolle und Kontogeneration vor und nach API-Aggregation geprüft.",
+    "SQL-Aggregation nur service_role, SECURITY DEFINER mit festem search_path, ausdrücklich beide aktuellen Actor-Header und Administratorrolle erforderlich.",
+    "Neue Zählertabellen mit RLS; keine direkten anon/authenticated-Rechte. Schreibzugriff ausschließlich über begrenzte RPCs mit aktueller Identität und Einwilligung.",
+    "Strikte Origin-/Fetch-Site-/JSON-Prüfung, tatsächliches gestreamtes Größenlimit und Fristen, feste Ereignis-Allowlist, atomare Deduplikation und globale Ratenobergrenzen.",
+    "Keine neuen Konto-Fremdschlüssel; bestehender Löschabhängigkeitsgraph und Kontogenerationsgrenzen bleiben erhalten.",
+    "Private Auswertung ohne Cache und ohne Identifikatoren/Notizen/Fehlerrohdaten im DTO; CSV gegen Formelausführung gesichert.",
+    "Dashboard liest nur; keine Anbieteraktualisierung, Quotenbereinigung, E-Mail-/Pushversendung oder Änderung von Kontorechten/Abos durch Auswertungs-GET."
+  ],
+  "preserved": ["Lokaler Frageneditor und Export", "Bestehende Testabo-Details und gesonderte Versandfreigaben", "Lerninhalte und fachliche Prüfstände", "Bestehende Kontolöschung und Pushbereinigung", "Fremde Änderung learning-expansion-afternoon-2026-10-16.json"],
+  "validation": ["Isolierte echte PostgreSQL-Ausführung mit synthetischen Konten, RLS-/Actor-/Generations-/Rechteprüfungen", "Unabhängiger SQL→Server→UI→CSV-Vertragstest, Read-only-Transaktion und unveränderte Quelltabellen", "Echte React-Lebenszyklen für Filter, History-unabhängige Anfragen, Fristen, Unmount, Zugriffsentzug, Sichtbarkeitsrückkehr und Downloadbereinigung", "Synthetische visuelle Komponenten-Vorschau, ausdrücklich keine echte Kunden-/Geräteansicht", "Bestehende Konto-, Abo-, Prüfungsprofil-, Datenschutz- und Pushbereinigungstests", "Produktionsbuild und separate Prüfung der tatsächlichen Vercel-Auslieferung"],
+  "technicalResults": {
+    "distinctAutomatedTests": 311,
+    "passed": 311,
+    "failed": 0,
+    "skipped": 0,
+    "productionBuild": "Erfolgreich, 510 statische Seiten; bekannte Größenwarnung der unveränderten Prüfungsplan-Daten.",
+    "independentSqlReview": "22 zusätzliche isolierte Usage-SQL-Proben und 27 Grenzenproben; sechs SQL→DTO→UI-Vertragstests im obigen Testbestand enthalten, keine Doppelzählung.",
+    "productiveSchema": "Beide Migrationen erfolgreich über bestehenden Supabase-Weg eingerichtet. Acht anschließende nur lesende Schema-/ACL-/Default-/FK-Prüfungen true; Admin-RPC lehnt fehlende Identität ab. Keine produktiven Testereignisse oder vorgetäuschten Actorheader."
+  },
+  "limits": ["Keine nachträgliche Rekonstruktion früherer Klicks oder Anmeldungen", "Keine vollständige Aktivitäts- oder Finanzbuchhaltung", "Gelöschte Konten und bereits bereinigte Daten sind keine wiederhergestellte Lebenszeithistorie", "Rundendauer ist keine aktive Lernzeit; Videostarts sind keine gesehenen Minuten", "Keine Geräteprüfung oder vollständige fachliche Neuprüfung der Lerninhalte behauptet"]
+}

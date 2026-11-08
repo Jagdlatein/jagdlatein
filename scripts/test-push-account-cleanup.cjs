@@ -13,23 +13,24 @@ function find(node,predicate){if(Array.isArray(node)){for(const item of node){co
 function withGlobals(t,values){const saved=new Map();for(const[key,value]of Object.entries(values)){saved.set(key,Object.getOwnPropertyDescriptor(globalThis,key));Object.defineProperty(globalThis,key,{configurable:true,writable:true,value});}t.after(()=>{for(const[key,value]of saved){if(value)Object.defineProperty(globalThis,key,value);else delete globalThis[key];}});}
 
 function homeFixture(t,{web=Promise.resolve(true),native=Promise.resolve(true),nativePlatform='web',sessionReply=()=>({ok:true})}={}){
-  const calls=[],slots=[],effects=[],cleanups=[];let cursor=0,tree;
+  const calls=[],slots=[],effects=[],cleanups=[],usage=[];let cursor=0,tree;
   const hooks={...React,useRef(initial){const index=cursor++;return slots[index]||(slots[index]={current:initial});},useEffect(callback){const index=cursor++;if(!slots[index]){slots[index]={};effects.push(callback);}}};
   const Home=createLoader({react:hooks,'next/head':()=>null,'next/link':({children,...props})=>React.createElement('a',props,children),'next/image':()=>null,'styled-jsx/style':()=>null,'../lib/firebase-web-push':{cleanupWebPushForAccountChange(options){calls.push(['web',options]);return web;}},
+    '../lib/usage-analytics':{stopUsageAnalytics(){usage.push('stop');}},
     '../lib/native-push-preferences':{cleanupNativePushForAccountChange(options){calls.push(['native',options]);return native;}},
     '../lib/daily-review':{clearReviewHistory(){calls.push(['review']);return true;}},'../lib/offline-learning':{async clearOfflineLearning(){calls.push(['offline']);}},
     '@capacitor/core':{Capacitor:{isNativePlatform:()=>nativePlatform!=='web',getPlatform:()=>nativePlatform}},
     '@capacitor/push-notifications':{PushNotifications:{checkPermissions(){calls.push(['native-permission']);throw new Error('No real permission test');}}},
   })('pages/index.js').default;
-  withGlobals(t,{window:{location:{href:'https://jagdlatein.test/'},alert:message=>calls.push(['alert',message])},fetch:async(url,settings)=>{calls.push(['fetch',url,settings]);return sessionReply();}});
+  withGlobals(t,{window:{location:{href:'https://jagdlatein.test/'},dispatchEvent:event=>usage.push(event.type),alert:message=>calls.push(['alert',message])},fetch:async(url,settings)=>{calls.push(['fetch',url,settings]);return sessionReply();}});
   function render(loggedIn=true){cursor=0;tree=Home({loggedIn});for(const effect of effects.splice(0))cleanups.push(effect());return tree;}
   render();const button=find(tree,node=>node.type==='button'&&text(node)==='Logout');assert.ok(button);
   t.after(()=>cleanups.forEach(cleanup=>cleanup?.()));
-  return{calls,render,logout:()=>button.props.onClick(),location:window.location,unmount(){for(const cleanup of cleanups.splice(0))cleanup?.();}};
+  return{calls,usage,render,logout:()=>button.props.onClick(),location:window.location,unmount(){for(const cleanup of cleanups.splice(0))cleanup?.();}};
 }
 
 function deletionFixture(t,{reply={ok:true,body:{deleted:true}},web=Promise.resolve(true),native=Promise.resolve(true)}={}){
-  const slots=[],effects=[],calls=[],cleanups=[];let cursor=0,tree,current=true;
+  const slots=[],effects=[],calls=[],cleanups=[],usage=[];let cursor=0,tree,current=true;
   withGlobals(t,{window:{dispatchEvent:event=>calls.push(['event',event.type])},fetch:async(url,settings)=>{
     const method=settings?.method||'GET';calls.push(['fetch',url,method]);
     if(method==='GET')return{ok:true,json:async()=>({enabled:true,requiresReauthentication:false})};
@@ -49,6 +50,7 @@ function deletionFixture(t,{reply={ok:true,body:{deleted:true}},web=Promise.reso
     if(id==='../lib/native-push-preferences')return{cleanupNativePushForAccountChange(options){calls.push(['native',options]);return native;}};
     if(id==='../lib/daily-review')return{clearReviewHistory(){calls.push(['review']);return true;}};
     if(id==='../lib/offline-learning')return{async clearOfflineLearning(){calls.push(['offline']);}};
+    if(id==='../lib/usage-analytics')return{stopUsageAnalytics(){usage.push('stop');}};
     if(id.startsWith('../components/')||id==='../hooks/useAccountOverview'||id==='../lib/account-page')return{__esModule:true,default:()=>null};
     throw new Error('Unexpected private-page dependency '+id);
   },module,module.exports);
@@ -56,7 +58,7 @@ function deletionFixture(t,{reply={ok:true,body:{deleted:true}},web=Promise.reso
   const render=()=>{cursor=0;tree=Component({onDeleted:()=>calls.push(['deleted']),isCurrent:()=>current});for(const callback of effects.splice(0))cleanups.push(callback());return tree;};
   render();
   t.after(()=>cleanups.forEach(cleanup=>cleanup?.()));
-  return{calls,render,text:()=>text(tree),setCurrent:value=>{current=value;},unmount(){for(const cleanup of cleanups.splice(0))cleanup?.();},async prepare(){await settle();render();find(tree,node=>node.type==='button'&&text(node)==='Kontolöschung vorbereiten').props.onClick();render();
+  return{calls,usage,render,text:()=>text(tree),setCurrent:value=>{current=value;},unmount(){for(const cleanup of cleanups.splice(0))cleanup?.();},async prepare(){await settle();render();find(tree,node=>node.type==='button'&&text(node)==='Kontolöschung vorbereiten').props.onClick();render();
       find(tree,node=>node.type==='input'&&node.props.type!=='checkbox').props.onChange({target:{value:'KONTO LÖSCHEN'}});
       find(tree,node=>node.type==='input'&&node.props.type==='checkbox').props.onChange({target:{checked:true}});render();},
     submit(){const form=find(tree,node=>node.type==='form');assert.ok(form);return form.props.onSubmit({preventDefault(){}});},
@@ -66,6 +68,7 @@ function deletionFixture(t,{reply={ok:true,body:{deleted:true}},web=Promise.reso
 test('Actual homepage logout waits for both web and native owned-recipient cleanups before deleting the account cookie',async t=>{
   const web=deferred(),native=deferred(),f=homeFixture(t,{web:web.promise,native:native.promise});
   const done=f.logout();assert.deepEqual(f.calls.map(item=>item[0]),['web','native']);
+  assert.deepEqual(f.usage,['stop','jagdlatein-logout'],'Optional measurement stops before pending push cleanup or logout transport.');
   assert.ok(f.calls.every(item=>typeof item[1].isCurrent==='function'&&item[1].isCurrent()===true));
   web.resolve(true);await settle();assert.equal(f.calls.filter(item=>item[0]==='fetch').length,0);
   native.resolve(true);await done;
@@ -101,6 +104,7 @@ test(`An actual logout with ${title} preserves local learning, reports no comple
 test('Confirmed deletion performs only local cleanup after the successful delete response and waits before emitting the account-deleted event',async t=>{
   const deletion=deferred(),web=deferred(),native=deferred(),f=deletionFixture(t,{reply:deletion,web:web.promise,native:native.promise});await f.prepare();
   const done=f.submit();assert.deepEqual(f.calls.map(item=>item[0]),['fetch','fetch']);assert.equal(f.calls[1][2],'DELETE');
+  assert.deepEqual(f.usage,['stop'],'Optional measurement stops before the account-deletion request resolves.');
   deletion.resolve({ok:true,json:async()=>({deleted:true})});await settle();
   assert.deepEqual(f.calls.slice(2).map(item=>item[0]),['deleted','web','native']);
   for(const kind of ['web','native']){const options=f.calls.find(item=>item[0]===kind)[1];assert.equal(options.localOnly,true);assert.equal(typeof options.isCurrent,'function');assert.equal(options.isCurrent(),true);}

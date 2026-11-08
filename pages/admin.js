@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 import { getPaidPageProps } from '../lib/account-access';
+import { isPayPalSandboxTestEnvironment } from '../lib/test-environment';
+import AdminOverview from '../components/AdminOverview';
 import Seo from '../components/Seo';
 
 const blank = {
@@ -8,7 +12,7 @@ const blank = {
   correct:['a'], explain:''
 };
 
-export default function Admin(){
+export default function Admin({ testEnvironment = false } = {}){
   const [items, setItems] = useState([]);
   const [draft, setDraft] = useState(blank);
 
@@ -41,10 +45,24 @@ export default function Admin(){
 
   return (
     <>
-      <Seo title="Admin – Frageneditor" />
+      <Seo title="Admin – Jagdlatein" />
+      <Head><meta name="robots" content="noindex, nofollow" /></Head>
       <section className="section">
-        <div className="container" style={{maxWidth:1000}}>
-          <h1>Fragen-Editor</h1>
+        <div className="container" style={{maxWidth:1180}}>
+          <h1 tabIndex={-1} data-learning-page-start>Admin</h1>
+          <p>Konten, Lernen, Nutzung und Abos an einem Ort.</p>
+          <nav aria-label="Verwaltung" style={{display:'flex',flexWrap:'wrap',gap:10,margin:'18px 0 28px'}}>
+            <Link className="btn" href="/admin/testabos">Testabos</Link>
+            <Link className="btn" href="/admin/import">Import</Link>
+            <Link className="btn" href="/admin/glossar">Glossar</Link>
+            <Link className="btn" href="/admin/push">Push</Link>
+            <Link className="btn" href="/online-kurse?ansicht=verwaltung">Kurse</Link>
+            <Link className="btn" href="/konto">Konto</Link>
+          </nav>
+          <AdminOverview testEnvironment={testEnvironment} />
+          <details className="card" style={{marginTop:28}} id="admin-fragen">
+          <summary style={{cursor:'pointer',padding:'12px 0',fontWeight:700}}>Fragen</summary>
+          <h2>Fragen-Editor</h2>
           <div className="card" style={{display:'grid', gap:10}}>
             <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10}}>
               <input value={draft.id} onChange={e=>setDraft({...draft,id:e.target.value})} placeholder="ID (einzigartig)"/>
@@ -119,6 +137,7 @@ export default function Admin(){
               </div>
             ))}
           </div>
+          </details>
         </div>
       </section>
     </>
@@ -126,5 +145,8 @@ export default function Admin(){
 }
 
 export async function getServerSideProps(context) {
-  return getPaidPageProps(context, { adminOnly: true });
+  const result = await getPaidPageProps(context, { adminOnly: true });
+  if (!result.props) return result;
+  try { return { props: { ...result.props, testEnvironment: isPayPalSandboxTestEnvironment() } }; }
+  catch { return { redirect: { destination: '/konto?access=unavailable', permanent: false } }; }
 }

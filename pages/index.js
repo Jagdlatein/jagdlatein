@@ -18,6 +18,7 @@ import { clearOfflineLearning } from "../lib/offline-learning";
 import { clearReviewHistory } from "../lib/daily-review";
 import { cleanupWebPushForAccountChange } from "../lib/firebase-web-push";
 import { cleanupNativePushForAccountChange } from "../lib/native-push-preferences";
+import { stopUsageAnalytics } from "../lib/usage-analytics";
 import { useEffect, useRef } from "react";
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
@@ -112,6 +113,8 @@ export default function Home({ loggedIn = false, initialNews, revierMoment }) {
   async function logout() {
     if(!canLogOut() || loggingOut.current) return;
     loggingOut.current = true;
+    stopUsageAnalytics();
+    window.dispatchEvent(new Event("jagdlatein-logout"));
     try {
     const pushCleanup = await Promise.all([cleanupWebPushForAccountChange({isCurrent:canLogOut}), cleanupNativePushForAccountChange({isCurrent:canLogOut})]);
     if(!canLogOut()) return;

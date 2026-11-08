@@ -214,6 +214,7 @@ export default function TrialOverviewPage({ testEnvironment = false }) {
   const denied = [401, 403].includes(overview.error?.status);
   const notification = overview.notifications;
   return <AccountLayout title="Testabos und Abos" description="Aktive Testabos und Abos – privat für den Betreiber." active="account" hideCommunity>
+    <p><Link href="/admin" className={accountStyles.secondaryButton}>Gesamtauswertung</Link></p>
     <section className={styles.panel} aria-labelledby="trial-overview-heading">
       <div className={styles.heading}>
         <div><p className={styles.eyebrow}>Betreiberübersicht</p><h2 id="trial-overview-heading">Aktive Abos</h2></div>
