@@ -8,6 +8,7 @@ import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import JagdakademiePromotion from "./JagdakademiePromotion";
 import { oralExamQuestions, getOralExamSummary } from "../lib/oral-exam-trainer";
 import { getLearningCategory } from "../lib/learning-categories";
+import { lessonHash } from "../lib/learning-lesson-navigation";
 import styles from "../styles/LearningExperience.module.css";
 
 const route = "/lernen/pruefungsgespraech";
@@ -15,7 +16,18 @@ const categories = [...new Set(oralExamQuestions.map(entry => entry.categorySlug
 const blankResponse = () => ({ answer: "", spoken: false, revealed: false, criteria: [], rating: "" });
 const queryKey = query => JSON.stringify(Object.keys(query).sort().map(key => [key, query[key]]));
 
-export default function OralExamTrainer() {
+function currentLessonLinks(links, item) {
+  if (!item || !Array.isArray(links)) return [];
+  const selected = links.filter(link => link?.questionId === item.id);
+  if (selected.length > 2 || new Set(selected.map(link => link.href)).size !== selected.length) return [];
+  return selected.filter(link => {
+    if (link.courseId !== item.course || typeof link.lessonId !== "string" || !/^[a-z][a-z0-9-]{1,159}$/.test(link.lessonId)
+      || typeof link.title !== "string" || !link.title.trim() || typeof link.href !== "string") return false;
+    return link.href === `/kurse/${item.course}${lessonHash(link.lessonId)}`;
+  });
+}
+
+export default function OralExamTrainer({ lessonLinks = [] } = {}) {
   const router = useRouter();
   const ready = router.isReady === true;
   const requestedCategory = router.query.kategorie;
@@ -34,6 +46,7 @@ export default function OralExamTrainer() {
   const questions = activePractice.ids ? activePractice.ids.map(id => oralExamQuestions.find(entry => entry.id === id)) : baseQuestions;
   const index = item ? questions.findIndex(entry => entry.id === item.id) : -1;
   const response = responses[item?.id] || blankResponse();
+  const learningStarts = currentLessonLinks(lessonLinks, item);
   const summary = getOralExamSummary(questions, responses);
   const [canSpeak, setCanSpeak] = useState(false);
   const [speechNotice, setSpeechNotice] = useState("");
@@ -47,7 +60,13 @@ export default function OralExamTrainer() {
   const [speechToken, setSpeechToken] = useState(0);
   const pending = useRef(null);
   const focusIntent = useRef(null);
-  const viewKey = JSON.stringify([ready, router.asPath, router.query]);
+  const readRawView = () => JSON.stringify([router.isReady === true, router.asPath, router.query, typeof window === "undefined" ? null : [window.location?.pathname, window.location?.search, window.location?.hash]]);
+  const viewKey = readRawView();
+  // Retire event closures as soon as they observe a real address change, while
+  // the separate committed-view flow still owns accepted reset/repeat commits.
+  const actionView = useRef({ key: viewKey });
+  if (actionView.current.key !== viewKey) actionView.current = { key: viewKey };
+  const actionOrigin = actionView.current;
   const committedView = useRef({ key: viewKey });
   if (committedView.current.key !== viewKey) {
     const previousOrigin = committedView.current;
@@ -68,7 +87,16 @@ export default function OralExamTrainer() {
   const origin = committedView.current;
   const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
   const finished = activePractice.finishedOrigin === origin;
-  function currentView() { return mounted.current && ready && !!item && committedView.current === origin && roundRef.current === round; }
+  function currentNavigationView() {
+    if (!mounted.current || !ready || roundRef.current !== round || committedView.current !== origin) return false;
+    const actual = readRawView();
+    if (actual !== viewKey) {
+      if (actionView.current === actionOrigin) { actionView.current = { key: actual }; cancelSpeech(); }
+      return false;
+    }
+    return actionView.current === actionOrigin;
+  }
+  function currentView() { return !!item && currentNavigationView(); }
   function canAnswer() {
     // Wait for the accepted repeat/reset before admitting a fresh draft that
     // this same deferred action would otherwise immediately erase.
@@ -99,7 +127,7 @@ export default function OralExamTrainer() {
     writePractice({ category: action.category, ids: action.ids, repeating: action.type === "repeat", finishedOrigin: null });
   }
   function completeNavigation(operation) {
-    if (!operation || !mounted.current || pending.current !== operation || operation.invalidated || !operation.accepted || operation.commitOrigin !== committedView.current) return;
+    if (!operation || !mounted.current || pending.current !== operation || operation.invalidated || !operation.accepted || operation.commitOrigin !== committedView.current || committedView.current.key !== readRawView()) return;
     pending.current = null;
     if (operation.action) applyRound(operation.action);
     return !!operation.action;
@@ -128,7 +156,7 @@ export default function OralExamTrainer() {
   }, [origin, round, finished]);
 
   async function navigate(id, nextCategory = category, action = null, anchor = !!action) {
-    if (!mounted.current || !ready || committedView.current !== origin || roundRef.current !== round || !(nextCategory === "all" || categories.includes(nextCategory))) return;
+    if (!currentNavigationView() || !(nextCategory === "all" || categories.includes(nextCategory))) return;
     const targetItem = oralExamQuestions.find(entry => entry.id === id && (nextCategory === "all" || entry.categorySlug === nextCategory));
     if (!targetItem) return;
     cancelSelectionFocus();
@@ -147,13 +175,13 @@ export default function OralExamTrainer() {
       if (!mounted.current || pending.current !== operation || operation.invalidated) return;
       if (accepted === false) { pending.current = null; return; }
       operation.accepted = true;
-      if (!operation.commitOrigin && committedView.current === origin && item?.id === id && queryKey(router.query) === operation.target && (router.asPath || "").split("#")[1] === "exam-question-title") operation.commitOrigin = origin;
+      if (!operation.commitOrigin && committedView.current === origin && readRawView() === viewKey && item?.id === id && queryKey(router.query) === operation.target && (router.asPath || "").split("#")[1] === "exam-question-title") operation.commitOrigin = origin;
       completeNavigation(operation);
       if (!action && operation.commitOrigin === origin && committedView.current === origin) { closePageMenu(); focusContent(anchor); }
     } catch (error) {
       if (!mounted.current || pending.current !== operation || operation.invalidated) return;
       pending.current = null;
-      if (committedView.current !== origin) return;
+      if (!currentNavigationView()) return;
       if (!error?.cancelled) { setNavigationError("Die Frage konnte nicht geöffnet werden. Bitte wähle sie erneut."); openPageMenu("exam-question-select"); }
     }
   }
@@ -217,8 +245,9 @@ export default function OralExamTrainer() {
     <p className={styles.note}>Eigene Übungsfragen mit Selbsteinschätzung, kein amtlicher Fragenkatalog. Deine Antworttexte bleiben nur in dieser geöffneten Seite und werden nicht hochgeladen. Vorlesen nutzt, soweit verfügbar, eine lokale Gerätestimme; es ist keine menschliche Originalaufnahme.</p>
     {!item ? <p className={styles.note}>{ready ? "Diese Frage oder Themenauswahl ist nicht verfügbar. Wähle unten im Menü einen Themenbereich und eine Frage." : "Die gewählte Frage wird geladen."}</p> : finished ? <section className={styles.panel} aria-live="polite"><h2 ref={roundHeading} tabIndex={-1}>Deine Gesprächsrunde</h2><p>{summary.practiced} Fragen verglichen; {summary.secure} davon selbst als sicher eingeschätzt. Diese Einschätzung ersetzt keine Prüfung durch eine ausbildende Person.</p><div className={styles.actions}>{summary.repeatIds.length > 0 && <button type="button" className={styles.primary} onClick={repeat}>Offene Fragen erneut erklären</button>}<button type="button" className={styles.secondary} onClick={restart}>Neue Runde beginnen</button></div></section> : <section className={styles.panel} aria-labelledby="exam-question-title"><p className={styles.muted}>{getLearningCategory(item.categorySlug).title}</p><h2 id="exam-question-title" ref={heading} tabIndex={-1}>{item.title}</h2><p>{item.prompt}</p>{canSpeak && <div className={styles.actions}><button className={styles.secondary} type="button" onClick={readPrompt}>Frage vorlesen</button><button type="button" className={styles.secondary} onClick={stopReading}>Vorlesen stoppen</button></div>}{speechNotice && <p role="status" className={styles.muted}>{speechNotice}</p>}
       <label className={styles.field}>Deine Antwort in eigenen Worten<textarea maxLength={4000} value={response.answer} onChange={event => change({ answer: event.target.value, rating: "" })} placeholder="Sachverhalt, Begründung, offene Voraussetzungen und nächster Schritt." /></label><label><input type="checkbox" checked={response.spoken} onChange={event => change({ spoken: event.target.checked, rating: "" })} /> Ich habe meine Antwort selbst laut erklärt.</label><div className={styles.actions}><button type="button" className={styles.primary} disabled={!response.answer.trim() && !response.spoken} onClick={reveal}>Mit der Musterantwort vergleichen</button></div>
-      {response.revealed && <><div className={styles.feedback}><h3>Eine mögliche strukturierte Antwort</h3><p>{item.model}</p><p><strong>Typischer Denkfehler:</strong> {item.mistake}</p><p><strong>Nachfrage:</strong> {item.followUp}</p></div><h3>Was war in deiner Antwort enthalten?</h3><p className={styles.muted}>Hake nur Punkte ab, die du selbst erklärt hast. Die App bewertet deinen Text nicht automatisch.</p><div className={styles.choices}>{item.criteria.map((criterion, position) => <label className={styles.choice} key={criterion}><input type="checkbox" checked={response.criteria.includes(position)} onChange={event => toggleCriterion(position, event.target.checked)} />{criterion}</label>)}</div><p>{response.criteria.length} von {item.criteria.length} Punkten selbst wiedergegeben.</p><h3>Wie sicher war deine eigene Erklärung?</h3><div className={styles.modeButtons}>{[["offen", "Noch offene Lücken"], ["teilweise", "Teilweise sicher"], ["sicher", "Sicher erklärt"]].map(([value, label]) => <button key={value} type="button" aria-pressed={response.rating === value} className={response.rating === value ? styles.primary : styles.secondary} onClick={() => rate(value)}>{label}</button>)}</div><Link className={styles.secondary} href={`/kurse/${item.course}`}>Im passenden Kurs vertiefen</Link><details className={styles.sources}><summary>Fachquellen · geprüft am 04.10.2026</summary><ul>{item.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul></details><div className={styles.actions}><button type="button" className={styles.primary} disabled={!response.rating || !ownAnswer(response)} onClick={next}>{index + 1 === questions.length ? "Runde auswerten" : "Nächste Frage"}</button></div></>}
+      {response.revealed && <><div className={styles.feedback}><h3>Eine mögliche strukturierte Antwort</h3><p>{item.model}</p><p><strong>Typischer Denkfehler:</strong> {item.mistake}</p><p><strong>Nachfrage:</strong> {item.followUp}</p></div><h3>Was war in deiner Antwort enthalten?</h3><p className={styles.muted}>Hake nur Punkte ab, die du selbst erklärt hast. Die App bewertet deinen Text nicht automatisch.</p><div className={styles.choices}>{item.criteria.map((criterion, position) => <label className={styles.choice} key={criterion}><input type="checkbox" checked={response.criteria.includes(position)} onChange={event => toggleCriterion(position, event.target.checked)} />{criterion}</label>)}</div><p>{response.criteria.length} von {item.criteria.length} Punkten selbst wiedergegeben.</p><h3>Wie sicher war deine eigene Erklärung?</h3><div className={styles.modeButtons}>{[["offen", "Noch offene Lücken"], ["teilweise", "Teilweise sicher"], ["sicher", "Sicher erklärt"]].map(([value, label]) => <button key={value} type="button" aria-pressed={response.rating === value} className={response.rating === value ? styles.primary : styles.secondary} onClick={() => rate(value)}>{label}</button>)}</div>{learningStarts.length > 0 && <p><strong>Grundlagen nachlesen:</strong>{" "}{learningStarts.map((link, position) => <span key={link.href}>{position > 0 && " · "}<Link href={link.href} prefetch={false} aria-label={`${item.title}: Grundlage ${link.title}`}>{link.title}</Link></span>)}</p>}<Link className={styles.secondary} href={`/kurse/${item.course}`}>Im passenden Kurs vertiefen</Link><div className={styles.actions}><button type="button" className={styles.primary} disabled={!response.rating || !ownAnswer(response)} onClick={next}>{index + 1 === questions.length ? "Runde auswerten" : "Nächste Frage"}</button></div></>}
     </section>}
     <JagdakademiePromotion />
+    {item && !finished && response.revealed && <details key={viewKey} id="exam-question-sources" className={styles.sources}><summary>Fachquellen · geprüft am 04.10.2026</summary><ul>{item.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul></details>}
   </LearningToolLayout>;
 }

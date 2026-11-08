@@ -1,0 +1,35 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Technische Rangfolge und passende Lektions-/Textausschnittauswahl der bestehenden Lernsuche. Keine neue Fachbehauptung, Suchkategorie, Menüebene, Indexquelle oder Änderung der bisherigen Treffermenge.",
+  "before": "Tatsächlich reproduziert: Nische ergab 103 Treffer auf vier Seiten. Finnischer Laufhund, Finnischer Spitz und Amerikanischer Nerz standen wegen der zufälligen inneren Zeichenfolge nische vor dem passenden Volltext. Die neue Habitat-und-Nische-Lektion lag nicht auf der ersten Seite. Der bisherige Titelteiltreffer erhielt fünf Punkte, der genaue reine Volltexttreffer keinen Bonus.",
+  "change": {
+    "ranking": "Ein echter Wortanfang erhält einen Qualitätsbonus von 100, ein vollständiges Wort zusätzlich 10. Die bisherigen 20 Punkte für exakte Titel-/Aliasübereinstimmung und fünf für Teiltreffer im Titel bleiben als Feinsortierung erhalten. Das sind bewusst gewählte technische Gewichtungen, keine Messwerte über Lernerfolg.",
+    "lesson": "Dieselbe Wortqualität priorisiert die tatsächlich passende Lektion und ihren konkreten Textabschnitt gegenüber zufälligen Zeichenfolgen innerhalb anderer Wörter.",
+    "excerpt": "Enthält ein langer Absatz sowohl technische als auch Nische, wählt der Ausschnitt die echte Begriffsposition. Positionen werden aus dem unveränderten Originalwort einschließlich Unicode-Kombinationszeichen bestimmt, sodass Umlaut- und ae/oe/ue-Normalisierung keine falschen Zeichenabstände erzeugt.",
+    "recall": "Auch bisherige innere Teilworttreffer bleiben erreichbar. Der bisherige includesTerm-Filter und die Normalisierung werden nicht geändert. Kurze Begriffe wie Reh, Uhu und HEV behalten ihre bisherigen Wortanfangsgrenzen."
+  },
+  "actualResult": {
+    "query": "Nische",
+    "totalBefore": 103,
+    "totalAfter": 103,
+    "firstAfter": "/kurse/wissen-lebensraeume-biotopverbund#lesson-habitat-nische",
+    "firstLessonTitle": "Habitat und Nische",
+    "substringStillAvailable": "Finnischer Laufhund und weitere frühere Teilworttreffer bleiben in derselben Trefferbank vorhanden."
+  },
+  "preserved": [
+    "Die gesamte Indexdefinition einschließlich importierter Banken, Auswahl von Lektionsfeldern, Aliassen, Normalisierer und Tippfehlerkorrektur ist im Quelltext bis matchRank bytegleich mit Commit 98fc900.",
+    "includesTerm bleibt bytegleich; keine Fragenantworten oder Erklärungsschlüssel werden neu indexiert.",
+    "Gesamttrefferzahl, Seitenanzahl, Vorschläge, vollständige ID-Mitgliedschaft, Titel, Typen, Kategorien und Zielpfade stimmen in 23 vollständigen Vergleichskombinationen einschließlich Länder-/Kategorie-/Typfiltern mit der bisherigen Implementierung überein.",
+    "Doppelte Treffer über Seitengrenzen werden weiterhin ausgeschlossen. Die gezielte Reihenfolge und ausgewählte Lektionsanker/Textausschnitte dürfen sich entsprechend der verbesserten Rangfolge ändern.",
+    "Konto-/Paid-API-Grenzen, Suchzustand, Quellen und fachliche Prüfdaten unverändert; fremde afternoon-Datei unberührt."
+  ],
+  "validation": {
+    "newRegressionFile": "scripts/test-learning-search-ranking.cjs",
+    "newTests": 7,
+    "passedTogether": 41,
+    "skipped": 0,
+    "existingSuites": ["scripts/test-learning-search-offline.cjs", "scripts/test-learning-search-state.cjs"],
+    "checks": ["Reale Nische-Reproduktion mit 103 unveränderten Treffern", "Exakter Titel und Alias behalten Vorrang", "Echte Wörter und Wortanfänge vor zufälligen inneren Teilworten", "Lektions- und Passagenauswahl", "Später Begriff statt früher technische-Zeichenfolge im langen Absatz", "Originaloffset trotz NFD/Umlauten/ae/oe/ue", "Vollständige positive Treffermengen-/Filter-/Paginationvergleiche gegen vorherigen Code", "Kein Indexieren versteckter Quiz-/Erklärungsschlüssel"],
+    "method": "Rein lesende reale Suchbank und synthetische Inhaltsfixtures, keine Browser-/Nutzerdaten und keine Live-API-Aufrufe."
+  }
+}

@@ -6,7 +6,8 @@ const { createLoader: createProjectLoader, local } = require('./helpers/project-
 const { broodPatchBaselineFixture } = require('./helpers/brood-patch-addition-nov08.cjs');
 const { featherFieldsBaselineFixture } = require('./helpers/feather-fields-additions-nov08.cjs');
 const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
-const createLoader = overrides => createProjectLoader(foodSporesToxinsBaselineFixture(featherFieldsBaselineFixture(broodPatchBaselineFixture(overrides))));
+const { ecologyConceptBaselineFixture } = require('./helpers/ecology-concepts-addition-nov08.cjs');
+const createLoader = overrides => createProjectLoader(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(featherFieldsBaselineFixture(broodPatchBaselineFixture(overrides)))));
 const raw = require('../data/learning-expansion-ecology-2026-10-16.json');
 const load = createLoader();
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');

@@ -66,9 +66,10 @@ test('Every old question URL preserves its exact prompt, revealed teaching text,
     assert.ok(text(panel).includes(question.prompt)); reveal(h);
     const revealed = h.nodes(node => node.props?.['aria-labelledby'] === 'exam-question-title')[0];
     for (const exact of [question.model, question.mistake, question.followUp, ...question.criteria]) assert.ok(text(revealed).includes(exact), question.id);
-    const sources = nodes(revealed, node => node.type === 'details')[0];
+    const sources = h.nodes(node => node.props?.id === 'exam-question-sources')[0];
     assert.ok(sources && !sources.props.open); assert.match(text(sources), /geprüft am 04\.10\.2026/);
     assert.deepEqual(nodes(sources, node => node.type === 'a').map(node => ({ href: node.props.href, label: text(node) })), question.sources.map(source => ({ href: source.url, label: source.title })));
+    assert.equal(h.tree.props.children.filter(Boolean).at(-1), sources, 'Source credits are the final content after exercises and promotion');
     assert.ok(nodes(revealed, node => node.props?.href === `/kurse/${question.course}`).length);
     assert.equal(nodes(revealed, node => node.type === 'select').length, 0);
     assert.equal(h.nodes(node => node.type === 'select').length, nodes(menu(h), node => node.type === 'select').length);

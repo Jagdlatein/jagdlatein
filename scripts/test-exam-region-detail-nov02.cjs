@@ -253,10 +253,22 @@ test('Regional-law datasets and their release gates remain exact; preparation as
 
 test('Every tracked course source, shared goal bank and oral case bank stays exact apart from the separately tested Nov 8 appendices; the foreign afternoon file is excluded', () => {
   const tracked = execFileSync('git', ['ls-tree', '-r', '--name-only', BASELINE, '--', 'lib', 'data'], { cwd: root, encoding: 'utf8' }).trim().split('\n');
-  const curriculumFiles = tracked.filter(filename => /^(?:lib\/learning[^/]*\.js|data\/learning[^/]*\.json|lib\/oral-exam-trainer\.js|data\/exam-alignment\/learning-goals-2026-11-01\.json)$/.test(filename) && filename !== 'data/learning-expansion-afternoon-2026-10-16.json');
+  // The search ranking utility has a separate index-fidelity regression; it is
+  // not an authored course bank. Keep all course data and oral questions here.
+  const curriculumFiles = tracked.filter(filename => /^(?:lib\/learning[^/]*\.js|data\/learning[^/]*\.json|lib\/oral-exam-trainer\.js|data\/exam-alignment\/learning-goals-2026-11-01\.json)$/.test(filename) && !['data/learning-expansion-afternoon-2026-10-16.json', 'lib/learning-search.js'].includes(filename));
   assert.ok(curriculumFiles.length > 60);
   for (const filename of curriculumFiles) {
     const current = fs.readFileSync(path.join(root, filename), 'utf8').replace(/\r\n/g, '\n');
+    if (filename === 'lib/learning-wildlife.js') {
+      const { stripEcologyConceptAddition } = require('./helpers/ecology-concepts-addition-nov08.cjs');
+      const exported = source => {
+        const { code } = local('next/dist/build/swc').transformSync(source, { filename, jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
+        const module = { exports: {} }; new Function('module', 'exports', code)(module, module.exports); return module.exports;
+      };
+      const actual = exported(current);
+      assert.deepEqual({ ...actual, wildlifeModules: actual.wildlifeModules.map(stripEcologyConceptAddition) }, { ...exported(baselineText(filename)) }, filename);
+      continue;
+    }
     if (filename === 'data/learning-expansion-ecology-2026-10-16.json') {
       // Keep every old object exact; only the separately tested Nov 8 appendix is projected.
       assert.deepEqual(stripLenticelDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);

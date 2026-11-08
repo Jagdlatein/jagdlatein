@@ -1,0 +1,30 @@
+{
+  "reviewedOn": "2026-11-08",
+  "baseCommit": "98fc900a6825bfa1c1c7f3520814eb954e4498f5",
+  "scope": "Gemeinsame biologische Prüfungsgrundlagen für CH/AT/DE und einfachere, genauer zugeordnete Lernwege; keine Behauptung einer vollständigen Prüfungsvorbereitung oder neuen regionalen Rechtsfreigabe.",
+  "knowledge": {
+    "course": "wissen-lebensraeume-biotopverbund",
+    "lessons": ["biotop-biozoenose", "habitat-nische"],
+    "ownQuestions": 2,
+    "optionsEach": 4,
+    "newCards": 2,
+    "sources": "Sieben tatsächlich gelesene Dokumente von sechs unabhängigen Institutionen; genaue Rollen, Grenzen und Quellen im gesonderten ecology-concepts-Bericht.",
+    "dates": "Vorhandenes Kursdatum 4. Oktober und sämtliche alten Lektions-/Frage-/Quellenobjekte erhalten; neue Lektionen und Quellen tatsächlich am 8. November abgeglichen.",
+    "diagram": "Eigenes dreiteiliges Begriffsschema im bestehenden LessonDiagram: Biotop als Lebensraum, Biozönose als Gemeinschaft verschiedener Arten und Ökosystem mit unbelebter Umwelt und Wechselwirkungen. Die sichtbare Notiz schließt eine räumliche Landschaftsaufteilung aus; kein fremdes Foto oder neues Fenster."
+  },
+  "learningPaths": {
+    "oralCases": 6,
+    "exactLessonLinks": 7,
+    "projectionBytes": 1469,
+    "meaning": "Kuratierte Grundlagen zum Nachlesen, keine pauschale Aussage, jede Lektion allein belege die vollständige Musterantwort. Vierzehn andere Fälle behalten den Kursüberblick. Alle zwanzig Originalfrageobjekte unverändert.",
+    "sourcePlacement": "Im Prüfungsgespräch stehen die unveränderten geschlossenen Fachquellen zuletzt nach Übungen und vorhandener Werbung. Ihr fachliches Datum bleibt 4. Oktober.",
+    "lifetime": "Zusätzliche frühe Prüfung der echten Router- und Browseradresse sperrt unabhängig reproduzierte alte Antwort-, Auswahl- und Stimmaktionen schon vor Reacts Neuzeichnen. Vorhandene Reset/Repeat-Bedingungen aus tatsächlichem Commit und angenommener Navigation bleiben erhalten.",
+    "privacy": "Antworten verbleiben im Arbeitsspeicher der geöffneten Gesprächsseite. Kein neuer Speicher, keine Übertragung und kein erfundener Antworterhalt über einen Kursbesuch."
+  },
+  "search": "Zusätzliche gezielt geprüfte Rangfolge für echte Wörter und Wortanfänge vor zufälligen Binnenworttreffern. Suchindex, Teilworttreffermenge, Filter und Normalisierung bleiben erhalten; keine Quizantworten oder Lösungserklärungen werden neu indiziert.",
+  "preservation": "Positive vollständige Altobjektvergleiche aller 198 Kurse und 1767 Karten einschließlich 116 Starterkarten und Reihenfolge; fremdes afternoon-JSON weder bearbeitet noch gestagt.",
+  "inventoryAfterAddition": { "courses": 198, "lessons": 886, "questions": 2761, "cards": 1769, "meaning": "Technische Bestandszählung, keine fachliche Gesamtzertifizierung" },
+  "verification": "727 passende Tests aus 67 unterschiedlichen Dateien bestanden, keine Fehler oder übersprungenen Fälle. Darunter 33 neue Regressionen zu den Ergänzungen; neun weitere unabhängige Origin- und Suchproben außerhalb des Repos bestanden. Spezifische Quellenscope-, vieroptionige Fragen-, Karten-, Kurs-, Such-, Druck-, Offline- und Zugriffsgrenzen sowie echte React-Lebenszyklen mit isolierten Doubles. Produktionsbuild mit 510 statischen Seiten abgeschlossen. Die tatsächliche Auslieferung wird separat im externen release-final.json dokumentiert.",
+  "visualCheck": "Isolierte Browser-Lesbarkeitsprüfung mit tatsächlichen Komponenten und Styles bei beobachteten 375 CSS-Pixeln Breite; keine horizontale Überbreite, Quellen zunächst geschlossen. Synthetische Antwort, kein echtes Benutzerkonto und keine physische Geräteprüfung.",
+  "independentReview": "Separate fachliche Quellenlektüre, Lektionszuordnung, vollständige Altobjektvergleiche und sechs unabhängige frühe Origin-Regressionsproben außerhalb des Repos dokumentiert."
+}

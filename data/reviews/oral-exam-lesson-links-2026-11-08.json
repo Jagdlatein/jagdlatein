@@ -1,0 +1,41 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Sechs bewusst kuratierte Gesprächsfälle mit sieben vorhandenen Lektionsstarts; keine Änderung der zwanzig Originalfragen, keine neue Fachbehauptung, Kartenbank oder Lerntext-API.",
+  "mapping": {
+    "kitzfund": ["wissen-rehwild-jahreslauf / reh-nachwuchs"],
+    "rotte": ["wissen-schwarzwild-lebensweise / sau-sozial"],
+    "hundewahl": ["wissen-vertiefung-jagdhunderassen / passende-auswahl"],
+    "sinneseindruck": ["wissen-ausbau-wildbretqualitaet / qualitaet"],
+    "abruflernen": ["wissen-ausbau-lernmethoden / abruf", "wissen-ausbau-lernmethoden / abstand"],
+    "offlinekarte": ["wissen-ausbau-karten-gps / ausfall"]
+  },
+  "editorialReview": {
+    "method": "Die bestehenden Prompts, Musterantworten und Selbstkriterien wurden mit den tatsächlich gelesenen vollständigen sieben Ausgangslektionen einschließlich Merksatz und Übungsauftrag verglichen. Root und unabhängiger Reviewer lasen diese Inhalte zusätzlich.",
+    "meaning": "Grundlagen nachlesen führt zu einem passenden Lernstart. Es behauptet nicht, dass die einzelne Lektion allein jeden Satz der Musterantwort belege oder die gesamte Prüfung abdecke.",
+    "withheld": "Vierzehn weitere Gesprächsfälle erhalten keinen geratenen exakten Lektionsanker. Der bisherige Kursüberblick bleibt bei allen zwanzig Fragen erhalten. Insbesondere wird aus dem allgemeinen Baumartenkurs kein nicht vorhandener Winterknospenabschnitt abgeleitet.",
+    "dates": "Die Originalquellen und das tatsächliche alte fachliche Prüfdatum 4. Oktober 2026 bleiben exakt. Der neue 8.-November-Bericht betrifft die Verknüpfungs- und Darstellungsprüfung, keine neue vollständige externe Quellenlektüre aller Fragen."
+  },
+  "implementation": {
+    "projection": "Build-only Projektion im Seiten-getStaticProps mit lediglich questionId, courseId, lessonId, title und href. Die neuen Props umfassen 1469 UTF-8-Bytes. Tatsächliche Kurszuordnung, kanonische Kategorie, gemeinsame drei Länder, eindeutige Lektionskennung und nichtleere vorhandene Volltexte werden validiert. Unbekannte, fremde, doppelte oder mehr als zwei Ziele je Fall werden zurückgewiesen.",
+    "presentation": "Kurze Grundlagenlinks nach dem eigenen Antwortvergleich; kein neuer Dialog, keine Menüebene und keine neue Schaltflächenleiste. Die Anzeige prüft zusätzlich den aktuellen Fall, seinen Kurs und den exakten queryfreien Lektionsanker.",
+    "sources": "Die unveränderte zunächst geschlossene Fachquellenbox steht als letzter Inhalt nach Nächste Frage und der bestehenden Promotion. Ein tatsächlicher URL-/Fragewechsel beginnt mit einer geschlossenen Quellenbox.",
+    "originFix": "Ein unabhängig reproduzierter Restfehler wurde eng geschlossen: echte Router- und physische Browseradresse werden vor Antwort-, Stimm-, Auswahl- und Fehleraktionen geprüft. Schon das Beobachten eines Wechsels vor Reacts Neuzeichnen entwertet alte Closures auch nach A-B-A. Laufende alte Stimme wird dabei beendet, ohne einen alten Hinweis in die neue Ansicht zu schreiben.",
+    "pending": "Die bisherige doppelte Voraussetzung aus angenommener Navigation und tatsächlichem passendem URL-Commit für Reset/Repeat bleibt getrennt vom neuen Ereignisguard. Eine echte Commit-vor-Acceptance-Probe bestätigt: frische Entwürfe bleiben bis zur angenommenen Wiederholung gesperrt und nur deren konkrete Fragen werden anschließend zurückgesetzt."
+  },
+  "preserved": [
+    "Alle zwanzig Frageobjekte mit Prompts, Musterantworten, vier Kriterien, Denkfehlern, Nachfragen, Kursen, Originalquellen und Datum positiv gegen HEAD 98fc900 verglichen.",
+    "Zwölf Themenbereiche, existierende URLs, aktuelle eigene Antworten und lokale Selbsteinschätzung.",
+    "Lokale deutsche Stimme, Speech-Tickets, Unmount- und Rundengrenzen sowie tatsächliche Annahme-/Commitbedingungen.",
+    "Bestehender Authentifizierungs- und Paid-Seitenschutz; keine neue API, kein Nutzerdatenzugriff und keine Konto-/Zahlungsänderung.",
+    "Fremde afternoon-Datei unberührt."
+  ],
+  "validation": {
+    "newRegressionFile": "scripts/test-oral-exam-lesson-links.cjs",
+    "newTests": 12,
+    "passedTogether": 46,
+    "existingSuites": ["test-oral-exam-navigation", "test-oral-exam-round-lifecycle", "test-practice-tools"],
+    "independentOriginProbes": "Sechs separat verfasste Proben außerhalb des Repos bestanden, darunter die beiden zunächst roten Reproduktionen sowie tatsächliche URL ohne Routeränderung, Query/Hash, beobachtetes Prepaint-A-B-A und verspäteter Fehler.",
+    "method": "Serverprojektionen, positiver Altobjektvergleich, vollständige bestehende Navigations-/Rundenharnesses und neue tatsächliche React-/DOM-/Effect-Cleanup-Lebenszyklen mit ausschließlich isolierten Speicher-, Router- und Stimm-Doubles.",
+    "client": "Der Clienttransform entfernt den Serverprojektor und das Curriculum vollständig; keine neue vollständige Karten-/Fragen-/Lektionsbank in den Seitenprops."
+  }
+}

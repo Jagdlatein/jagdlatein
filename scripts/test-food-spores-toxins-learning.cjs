@@ -1,7 +1,9 @@
 // Narrow source-scope, preservation and integration tests; no scientific certification.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { ecologyConceptBaselineFixture } = require('./helpers/ecology-concepts-addition-nov08.cjs');
+const createLoader = overrides => createProjectLoader(ecologyConceptBaselineFixture(overrides));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, stripFoodSporesToxinsAddition, stripFoodSporesToxinsDataset } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
 const raw = require('../data/learning-expansion-field-science-2026-10-17.json');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);
