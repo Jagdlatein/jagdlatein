@@ -8,7 +8,7 @@ export function ExamLearningGoal({ goal, profile, goalProgress }) {
   const target = normalizeExamProfile(profile);
   const href = goal.regionalLaw ? target && examProfileLawHref(target) : goal.href;
   const quizHref = goal.regionalLaw ? target && examProfileLawHref(target, "uebung") : goal.quizHref;
-  return <li className={styles.examGoal}>
+  return <li className={styles.examGoal} onFocus={() => goalProgress?.focus?.(goal, true)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) goalProgress?.focus?.(goal, false); }}>
     <h4>{goal.title}</h4>
     <p>{goal.task}</p>
     {goal.caseText && <p><strong>Eigener Übungsfall:</strong> {goal.caseText}</p>}
@@ -20,6 +20,7 @@ export function ExamLearningGoal({ goal, profile, goalProgress }) {
         <option value="offen">Offen</option><option value="ueben">Üben</option><option value="erklaert">Erklärt</option>
       </select>
     </label>}
+    {goalProgress?.retained?.(goal) && <p className={styles.retainedGoal}>Stand geändert. Dieser Eintrag bleibt sichtbar, bis du die Auswahl im Menü erneut anwendest.</p>}
     {internal(href) ? <div className={styles.links}>
       <Link href={href} prefetch={false} aria-label={`${goal.title}: ${goal.regionalLaw ? "Regionales Recht lesen" : goal.lessonPractice ? "Lektion lesen und üben" : "Lektion lesen"}`}>{goal.regionalLaw ? "Regionales Recht" : goal.lessonPractice ? "Lektion lesen & üben" : "Lektion lesen"}</Link>
       {internal(quizHref) && <Link href={quizHref} prefetch={false} aria-label={`${goal.title}: ${goal.regionalLaw ? "Regionale Rechtsfragen" : "Kurscheck"}`}>{goal.regionalLaw ? "Rechtsfragen" : "Kurscheck"}</Link>}

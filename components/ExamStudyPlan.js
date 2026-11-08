@@ -64,6 +64,32 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
   const goalCatalog = useRef(null);
   if (!goalCatalog.current || goalCatalog.current.blueprint !== examBlueprint || goalCatalog.current.alignment !== examAlignment) goalCatalog.current = { blueprint: examBlueprint, alignment: examAlignment, value: buildExamGoalCatalog(examBlueprint, examAlignment) };
   const goalProgress = useExamGoalProgress({ catalog: goalCatalog.current.value, profile, ready, persistence, accountKey, enabled: Boolean(examBlueprint) });
+  // A changed control stays in place until the reading selection is applied
+  // again. Marking must never remove the focused control or move the page.
+  const [, redrawRetained] = useState(0);
+  const retainedView = useRef(null);
+  const retentionIdentity = [topicSelection.origin, topicSelection.selectionRevision, key, accountKey, persistence, ready, goalProgress.ready, goalCatalog.current.value];
+  if (!retainedView.current || retentionIdentity.some((value, index) => retainedView.current.identity[index] !== value)) retainedView.current = { identity: retentionIdentity, ids: new Set() };
+  const retained = retainedView.current;
+  const stateFilter = topicSelection.stand;
+  const filterReady = stateFilter === "alle" || goalProgress.ready;
+  const matchesGoal = goal => stateFilter === "alle" || Boolean(stateFilter && goalProgress.ready && goalProgress.state(goal) === stateFilter);
+  const focusedGoal = goalCatalog.current.value.profiles.get(key)?.get(retained.focusedId);
+  if (focusedGoal && stateFilter && filterReady && !matchesGoal(focusedGoal)) retained.ids.add(focusedGoal.id);
+  const showGoal = goal => Boolean(stateFilter && filterReady && (matchesGoal(goal) || retained.ids.has(goal.id)));
+  const readingProgress = { ...goalProgress,
+    retained: goal => retained.ids.has(goal.id) && !matchesGoal(goal),
+    focus(goal, inside) {
+      if (retainedView.current !== retained || !topicSelection.isCurrent() || !goalProgress.ready || goalCatalog.current.value.profiles.get(key)?.get(goal.id) !== goal) return;
+      if (inside) retained.focusedId = goal.id;
+      else if (retained.focusedId === goal.id) retained.focusedId = null;
+    },
+    set(goal, value) {
+      const changed = goalProgress.set(goal, value);
+      if (changed && retainedView.current === retained && stateFilter && stateFilter !== "alle" && value !== stateFilter) { retained.ids.add(goal.id); redrawRetained(version => version + 1); }
+      return changed;
+    },
+  };
   const [draft, setDraft] = useState(emptyDraft);
   const [notice, setNotice] = useState("");
   const [saveRequest, setSaveRequest] = useState(0);
@@ -169,7 +195,11 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
   const regionData = countryData?.regions.find(region => region.code === profile?.region);
   const alignment = ready && profile ? examAlignment?.regions?.find(item => item.country === profile.country && item.region === profile.region) : null;
   const isDraftValid = Boolean(normalizeExamProfile(draft));
-  const goalCategories = examBlueprint?.categories.filter(category => topicSelection.topic === "alle" || category.slug === topicSelection.topic) || [];
+  const candidateCategories = examBlueprint?.categories.filter(category => topicSelection.topic === "alle" || category.slug === topicSelection.topic) || [];
+  const goalCategories = candidateCategories.map(category => ({ ...category, goals: category.goals.filter(showGoal) })).filter(category => category.goals.length);
+  const candidateGoals = [...candidateCategories.flatMap(category => category.goals), ...(alignment?.subjectAreas || []).flatMap(area => area.goals)];
+  const matchingGoals = filterReady && stateFilter ? candidateGoals.filter(matchesGoal).length : null;
+  const retainedGoals = candidateGoals.filter(goal => showGoal(goal) && !matchesGoal(goal)).length;
   const goalSourceIds = new Set(goalCategories.flatMap(category => category.goals.flatMap(goal => goal.sourceIds)));
   const visibleBlueprint = examBlueprint && goalCategories.length ? { categories: goalCategories, sources: examBlueprint.sources.filter(source => goalSourceIds.has(source.id)) } : null;
 
@@ -178,6 +208,10 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
       <MenuChoice label="Lerngebiet" id="exam-plan-topic" value={topicSelection.topic || ""} disabled={!topicSelection.ready} aria-controls="exam-plan-learning" onChange={event => topicSelection.select(event.target.value)}>
         <option value="" disabled>Lerngebiet wählen</option><option value="alle">Alle Lerngebiete</option>{data.categories.map(category => <option key={category.slug} value={category.slug}>{category.title}</option>)}
       </MenuChoice>
+      {examBlueprint && <MenuChoice label="Lernstand" id="exam-plan-state" value={stateFilter || ""} disabled={!topicSelection.ready} aria-controls="exam-plan-learning" onChange={event => topicSelection.selectStand(event.target.value)}>
+        <option value="" disabled>Lernstand wählen</option><option value="alle">Alle</option><option value="ueben">Üben</option><option value="offen">Offen</option><option value="erklaert">Erklärt</option>
+      </MenuChoice>}
+      {examBlueprint && <p className={styles.menuHint}>Das Lerngebiet begrenzt das gemeinsame Fachwissen. Der Lernstand filtert zusätzlich die Lernziele deiner Region. Die Auswahl verändert keine Markierungen.</p>}
       {topicSelection.error && <p role="alert">{topicSelection.error}</p>}
       <form onSubmit={save} aria-label="Prüfungsziel wählen">
         <label className={styles.field} htmlFor="exam-plan-country">Land<select id="exam-plan-country" value={draft.country} disabled={!ready || accountSaving} onChange={event => changeCountry(event.target.value)}><option value="">Land wählen</option>{examCountries.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}</select></label>
@@ -200,14 +234,18 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
       <p>Gemeinsames Fachwissen und regionales Recht für dein Prüfungsziel.</p>
       <button type="button" className={`${styles.button} ${styles.secondary}`} disabled={!topicSelection.ready} onClick={topicSelection.open}>Lerngebiet wählen</button>
       {!topicSelection.topic && <p role="status">{topicSelection.ready ? "Dieses Lerngebiet ist nicht verfügbar. Wähle unten im Menü ein Lerngebiet oder alle Lerngebiete. Dein Prüfungsziel und deine bisherigen Antworten bleiben erhalten." : "Deine Lerngebiete werden geladen."}</p>}
+      {examBlueprint && topicSelection.ready && !stateFilter && <p role="status">Dieser Lernstand ist nicht verfügbar. Wähle unten im Menü Alle, Üben, Offen oder Erklärt. Deine Markierungen bleiben erhalten.</p>}
+      {examBlueprint && stateFilter && !filterReady && <p role="status">{profile ? "Dein Lernstand wird geladen. Danach erscheinen die passenden Lernziele." : "Wähle dein Prüfungsziel, um nach deinem persönlichen Lernstand zu filtern. Unter Alle kannst du die Lernziele bereits lesen."}</p>}
+      {examBlueprint && topicSelection.topic && matchingGoals !== null && <p className={styles.filterCount}>{matchingGoals} von {candidateGoals.length} Lernzielen passen zur Auswahl.{retainedGoals > 0 ? ` ${retainedGoals} geänderte Einträge bleiben zur weiteren Bedienung sichtbar. Wähle den Lernstand im Menü erneut, um die Ansicht zu aktualisieren.` : ""}</p>}
+      {examBlueprint && topicSelection.topic && matchingGoals === 0 && !retainedGoals && <p role="status">Keine Lernziele mit diesem Stand in deiner Auswahl. Wähle einen anderen Lernstand oder ein anderes Lerngebiet im Menü.</p>}
       {examBlueprint && <p className={styles.note}>Prüfungslernziele: Erkennen, Erklären und Begründen. Bearbeite die folgenden eigenen Lernziele mit ihrer Selbstkontrolle. „Lektion lesen &amp; üben“ führt zum genauen Lerntext und dessen Lektionsübung; der Kurscheck umfasst auch andere Lektionen. Die Kriterien sind Lernhilfen und keine amtlichen Bestehensregeln.</p>}
       {!examBlueprint && <ol className={styles.steps}><li><strong>Verstehen:</strong> Lies den Lerntext und erkläre den Zusammenhang mit eigenen Worten.</li><li><strong>Anwenden:</strong> Löse die zugehörigen Fragen. Prüfe auch bei einem Treffer, warum die anderen Antworten nicht passen.</li><li><strong>Wiederholen:</strong> Kehre zu offenen Fragen zurück und verknüpfe das Wissen mit einem eigenen Prüfungsfall.</li></ol>}
 
-      <ul className={`${styles.categoryList}${topicSelection.topic && topicSelection.topic !== "alle" ? ` ${styles.focusedCategory}` : ""}`}>{data.categories.filter(category => topicSelection.topic === "alle" || topicSelection.topic === category.slug).map(category => {
+      <ul className={`${styles.categoryList}${topicSelection.topic && topicSelection.topic !== "alle" ? ` ${styles.focusedCategory}` : ""}`}>{data.categories.filter(category => (topicSelection.topic === "alle" || topicSelection.topic === category.slug) && (!examBlueprint || goalCategories.some(item => item.slug === category.slug))).map(category => {
         const status = progress.summary?.byCategory[category.slug];
         return <li key={category.slug}>
           <Link href={`/lernen/${category.slug}`} prefetch={false}>{category.title}</Link>
-          {examBlueprint?.categories?.find(item => item.slug === category.slug) ? <ExamLearningGoals category={examBlueprint.categories.find(item => item.slug === category.slug)} profile={ready ? profile : null} goalProgress={goalProgress} /> : <p>{category.focus.join(" · ")}</p>}
+          {examBlueprint ? <ExamLearningGoals category={goalCategories.find(item => item.slug === category.slug)} profile={ready ? profile : null} goalProgress={readingProgress} /> : <p>{category.focus.join(" · ")}</p>}
           {status && <><p className={styles.reviewCount}>{status.answered ? `${status.answered} beantwortet · ${status.due} fällig · ${status.mistakes} zuletzt falsch` : "Noch keine Antworten im Wiederholungsverlauf"}</p>
             <div className={styles.links}>{status.due > 0 && <Link href={examReviewHref("faellig", category.slug)} prefetch={false} aria-label={`Fällige Fragen: ${category.title}`}>Wiederholen</Link>}{status.mistakes > 0 && <Link href={examReviewHref("fehler", category.slug)} prefetch={false} aria-label={`Fehler üben: ${category.title}`}>Fehler</Link>}</div></>}
         </li>;
@@ -232,7 +270,7 @@ export default function ExamStudyPlan({ data, reviewCatalog, examAlignment, exam
       </section>
     </section>
 
-    {alignment && <ExamRegionPreparation region={alignment} learningCatalog={examAlignment.learningCatalog} goalProgress={examBlueprint ? goalProgress : undefined} />}
+    {alignment && <ExamRegionPreparation region={alignment} learningCatalog={examAlignment.learningCatalog} goalProgress={examBlueprint ? readingProgress : undefined} goalFilter={examBlueprint ? showGoal : undefined} filtered={Boolean(examBlueprint && stateFilter !== "alle")} />}
 
     {details && regionData && <section className={styles.section} aria-labelledby="exam-plan-law">
       <h2 id="exam-plan-law">Regionales Recht</h2>

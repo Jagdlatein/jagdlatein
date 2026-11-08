@@ -2266,6 +2266,36 @@
           "url": "https://afs.mgcafe.uky.edu/files/eggandi.pdf",
           "organization": "University of Kentucky, Poultry Extension",
           "supports": "Dotterhaut, Hagelschnüre, Luftkammer zwischen Schalenhäuten und poröse Kalkschale; dieselbe Institution wie ASC-201."
+        },
+        {
+          "label": "BTO: Incubation – Keeping the eggs warm",
+          "url": "https://www.bto.org/learn/about-birds/behaviour/incubation",
+          "organization": "British Trust for Ornithology",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "brutfleck"
+          ],
+          "supports": "Eigenständig redigierter Fachtext, Abschnitt Keeping the eggs warm tatsächlich gelesen: gefäßreicher Brutfleck an Brust/Bauch, Federverlust und Wärmeübertragung vom Altvogel zu den Eiern. Keine Temperatur-, Zeit- oder universellen Artenangaben übernommen; keine eigene Originalmessreihe."
+        },
+        {
+          "label": "Ehrlich, Dobkin und Wheye (1988): Brood Patches",
+          "url": "https://web.stanford.edu/group/stanfordbirds/text/essays/Brood_Patches.html",
+          "organization": "Stanford University – Stanford Birds",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "brutfleck"
+          ],
+          "supports": "Fachessay im Universitätsarchiv, Absätze 2–6 tatsächlich gelesen: Federisolation, unbefiederte Brutfleckhaut, oberflächennahe Gefäßversorgung und Eikontakt; ausdrücklich Unterschiede der Arten und Elternbeteiligung. Eigenständige fachliche Einordnung, keine experimentelle Replikation. Keine Fleckanzahlen, Fristen oder Geschlechtsdiagnosen gelehrt."
+        },
+        {
+          "label": "Cornell Bird Academy: Glossar – brood patch",
+          "url": "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/",
+          "organization": "Cornell Lab of Ornithology",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "brutfleck"
+          ],
+          "supports": "Nur der Original-Glossareintrag brood patch tatsächlich gelesen: ergänzende Begriffsbestätigung für unbefiederte, gefäßversorgte Brust-/Bauchhaut, Wärmeübergang und artabhängige Ausbildung. Kein vollständiger Abgleich des übrigen Glossars, keine eigene neue Versuchsmessung."
         }
       ],
       "lessons": [
@@ -2308,6 +2338,18 @@
           ],
           "takeaway": "Ovar und aufeinanderfolgende Eileiterabschnitte bilden verschiedene Bestandteile des Eies.",
           "exercise": "Ordne Ovar, Infundibulum, Magnum, Isthmus, Schalendrüse und Vagina."
+        },
+        {
+          "id": "brutfleck",
+          "title": "Brutfleck",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bei vielen brütenden Vögeln bildet sich ein Brutfleck: ein Hautbereich an Brust oder Bauch, der seine Federn verliert. Sein Gefäßreichtum bringt warmes Blut nahe an die Hautoberfläche. Beim Kontakt mit den Eiern erleichtert dieser Bereich die Wärmeübertragung vom Elternvogel zum Gelege. Der Brutfleck liegt damit am Altvogel, nicht als Fleck auf der Eischale. Die sonst isolierende Befiederung ist an dieser Stelle vermindert.",
+            "Die Ausbildung ist artabhängig; nicht jeder Vogel besitzt dieselbe Zahl oder Anordnung solcher Hautstellen. Deshalb wird der Brutfleck hier als Funktionsprinzip erklärt und nicht als allgemeiner Geschlechts- oder Brutstadiennachweis. Ein entfernter Nestfilm zeigt die Hautstelle nicht zwangsläufig. Eigene Prüfungsübung: Beschreibe den Wärmeweg Körper → gut durchblutete Haut → Ei und benenne die Lage der beteiligten Strukturen."
+          ],
+          "takeaway": "Ein gefäßreicher, unbefiederter Brutfleck erleichtert bei vielen brütenden Vögeln den Wärmeübergang vom Elternvogel zum Ei.",
+          "exercise": "Erkläre Brutfleck und Eischale als getrennte Strukturen. Zeige den Wärmeweg an einer eigenen beschrifteten Skizze, ohne Tiere oder Nester aufzusuchen."
         }
       ],
       "questions": [
@@ -2726,6 +2768,19 @@
           ],
           "answer": 1,
           "explain": "Das fertig ergänzte Ei passiert den letzten Eileiterabschnitt zur Kloake."
+        },
+        {
+          "id": "brutfleck-waermeweg",
+          "lessonId": "brutfleck",
+          "q": "Wie unterstützt ein Brutfleck beim Bebrüten die Wärmeübertragung zu den Eiern?",
+          "options": [
+            "Gut durchblutete, unbefiederte Haut des Elternvogels kommt mit den Eiern in Kontakt.",
+            "Eine besonders dichte Federschicht hält die Haut des Elternvogels von den Eiern getrennt.",
+            "Eine verdickte Stelle der Eischale übernimmt die Aufgabe der elterlichen Haut.",
+            "Der gefäßreiche Hautbereich dient dabei ausschließlich der Abkühlung des Geleges."
+          ],
+          "answer": 0,
+          "explain": "Der Brutfleck gehört zur Haut des Altvogels. Gefäßversorgung und verminderte Befiederung erleichtern beim Kontakt den Wärmeübergang zum Ei. Die Ausbildung ist artabhängig; daraus folgt kein allgemeiner Geschlechts- oder Brutstadiennachweis."
         }
       ]
     },
@@ -4715,6 +4770,27 @@
             "https://gf.nd.gov/wildlife-notes/look-bird-legs",
             "https://reidparkzoo.org/why-do-birds-knees-bend-backwards/",
             "https://abcbirds.org/news/why-are-owl-legs-so-long-the-science-behind-those-lengthy-bird-limbs/"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-fortpflanzung-2026",
+      "lessonId": "brutfleck",
+      "claims": [
+        {
+          "claim": "Bei vielen brütenden Vögeln entsteht ein unbefiederter, gefäßreicher Hautbereich an Brust oder Bauch. Oberflächennahe Versorgung und Kontakt mit den Eiern erleichtern Wärmeübertragung vom Elternvogel zum Gelege; diese Hautstruktur gehört zum Altvogel und nicht zur Eischale.",
+          "sourceUrls": [
+            "https://www.bto.org/learn/about-birds/behaviour/incubation",
+            "https://web.stanford.edu/group/stanfordbirds/text/essays/Brood_Patches.html",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/"
+          ]
+        },
+        {
+          "claim": "Die Ausbildung unterscheidet sich zwischen Arten. Das Funktionsprinzip begründet keine einheitliche Zahl oder Anordnung, keine universelle Elternbeteiligung und keinen allgemeinen Geschlechts- oder Brutstadiennachweis. Eine nicht sichtbare Hautstelle wird aus einem entfernten Nestfilm nicht als Beobachtungsbefund ausgegeben.",
+          "sourceUrls": [
+            "https://web.stanford.edu/group/stanfordbirds/text/essays/Brood_Patches.html",
+            "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/"
           ]
         }
       ]

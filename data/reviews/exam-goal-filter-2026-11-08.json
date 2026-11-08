@@ -1,0 +1,35 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Technischer Lesefilter für bestehende persönliche Prüfungslernziele; keine neue fachliche oder rechtliche Zertifizierung.",
+  "before": "Offen, Üben und Erklärt änderten nur die Markierung und Summen. Die drei tatsächlich gerenderten Wildkundeziele behielten in allen drei Zuständen dieselben vollständigen Texte und Links; eine gezielte Leseauswahl nach Lernstand fehlte.",
+  "selection": {
+    "route": "/lernen/pruefungsplan",
+    "field": "stand",
+    "values": ["alle", "ueben", "offen", "erklaert"],
+    "missing": "alle",
+    "invalid": "Explizit leer, unbekannt und mehrfach führt zur Auswahlhilfe ohne Ersatzlernziele.",
+    "navigation": "Verbindliche bereite Router-URL, echte push-Schritte; Fokus und Seitenanfang erst nach tatsächlicher Übernahme. Erneute aktuelle Wahl benötigt keinen zusätzlichen Verlaufseintrag.",
+    "otherFields": "kategorie und anderer Such-/Herkunftskontext bleiben erhalten. Neue Aktionen verbinden ausschließlich tatsächlich angezeigte Felder, keine noch ausstehenden Ziele."
+  },
+  "presentation": {
+    "location": "Ein zusätzliches kurzes Lernstandfeld im bestehenden unteren PageMenu; kein Dialog und keine neue Kategorie.",
+    "scope": "Lerngebiet begrenzt wie bisher das gemeinsame Fachwissen; Lernstand filtert auch die bestehenden regionalen Lernziele. Ohne belastbare Kategoriezuteilung werden regionale Ziele nicht künstlich auf Lerngebiete verteilt.",
+    "counts": "Aktuell passende Ziele werden getrennt von vorübergehend gehaltenen geänderten Einträgen gezählt. Die gesamte Selbstkontrolle je Prüfungsziel bleibt daneben unverändert.",
+    "focus": "Ein durch Markierung nicht mehr passender Eintrag behält seinen konkreten Selektor und Fokus. Auch ein gerade fokussiertes Ziel bleibt bei externer Speicheränderung bedienbar, ohne diese Änderung zu überschreiben oder alle anderen Zeilen festzuhalten. Eine sichtbare Kennzeichnung erklärt die Ausnahme. Erneute Anwendung der Auswahl, URL-/Katalog-/Prüfungsziel-/Konto-/Bereitschaftswechsel beendet diese rein flüchtige Ausnahme.",
+    "sources": "Vollständige Aufgaben und Selbstkontrollen bleiben sichtbar. Nachweise der dargestellten gemeinsamen Ziele werden passend projiziert; regionale Rahmen- und Rechtsnachweise bleiben zu den weiterhin sichtbaren Abschnitten gesammelt geschlossen am Ende.",
+    "unready": "Ein noch nicht geladener persönlicher Lernstand wird nicht als leere Trefferliste ausgegeben. Alle bleibt auch ohne markierten Lernstand lesbar."
+  },
+  "preserved": [
+    "Alle bestehenden Lernzieltexte, Selbstkontrollen, Übungsfälle, Kurs-/Lektions-/Quizlinks und Quellenprüfdaten.",
+    "Alle gespeicherten Markierungen, getrennte Prüfungsziele, Kontobindung, Speicherformat und Wiederholungsverlauf.",
+    "Authentifizierungs-, Zahlungs- und regionale Rechtsfreigaben.",
+    "Fremde data/learning-expansion-afternoon-2026-10-16.json unberührt."
+  ],
+  "validation": {
+    "newTests": 12,
+    "file": "scripts/test-exam-goal-filter.cjs",
+    "suite": "60 passende neue und bestehende Tests bestanden, keine übersprungenen Fälle: Filter, bestehende Lerngebietnavigation, persönlicher Lernzielstand, regionaler Lernplan und Prüfungsplan. Vier unabhängig verfasste Zusatzproben außerhalb des Repos nach Korrektur ebenfalls bestanden.",
+    "method": "Tatsächliche React-Effects, echte MenuChoice-Schaltflächen, mutierbarer isolierter Router und ausschließlich synthetische Speicherdoubles.",
+    "boundaries": ["Pending/Commit/false/Fehler/Abbruch", "History/Raw-URL/Hash und Callback vor Render", "Auswahlkombination ohne unbestätigtes Ziel", "Fokus bei Markierung und erneuter Filterwahl", "Region-/Konto-/Readinesswechsel", "Echter Unmount", "Keine Schreibaktion durch Filterwahl"]
+  }
+}

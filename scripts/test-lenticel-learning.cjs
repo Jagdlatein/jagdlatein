@@ -2,7 +2,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
+const { broodPatchBaselineFixture } = require('./helpers/brood-patch-addition-nov08.cjs');
+const createLoader = overrides => createProjectLoader(broodPatchBaselineFixture(overrides));
 const raw = require('../data/learning-expansion-ecology-2026-10-16.json');
 const load = createLoader();
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');

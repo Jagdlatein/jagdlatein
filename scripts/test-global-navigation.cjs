@@ -521,6 +521,25 @@ test('Exam plan Back tracks its exact category choice and all-category return wh
   for (const instance of [s, all, native, immediate, unrelated]) instance.unmount();
 });
 
+test('Exam plan Back keeps learning-state choices without saving every unrelated search edit', () => {
+  const base = '/lernen/pruefungsplan';
+  const all = `${base}?kategorie=wildkunde#exam-plan-learning`;
+  const practice = `${base}?kategorie=wildkunde&stand=ueben#exam-plan-learning`;
+  const open = `${base}?kategorie=wildkunde&stand=offen#exam-plan-learning`;
+  const s = setup(all, ['/lernen']); s.route(practice); s.route(open);
+  s.route(`${base}?q=Reh&kategorie=wildkunde&stand=offen#exam-plan-learning`);
+  assert.equal(s.history.length, 4);
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, practice);
+  const reset = setup(practice, ['/lernen']); reset.route(all);
+  reset.render().props.children[0].props.onClick(); assert.equal(reset.destination, practice);
+  const immediate = setup(all, ['/lernen']); immediate.navigateBeforeEffects(practice);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, all);
+  const other = setup('/lernen/anderes', ['/lernen']);
+  other.route('/lernen/anderes?stand=ueben'); other.route('/lernen/anderes?stand=offen');
+  assert.equal(other.history.length, 2, 'State selection is tracked only on its concrete route');
+  for (const instance of [s, reset, immediate, other]) instance.unmount();
+});
+
 test('Dog journal Back follows exercise reading while search context, native Back and immediate Back retain their correct stop', () => {
   const base = '/lernen/hundetraining-tagebuch';
   const first = base + '?eintrag=pflege#exercise-title';

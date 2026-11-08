@@ -62,3 +62,5 @@
 .goalState select:disabled { opacity: .65; }
 .goalProgress { margin: 22px 0; padding: 16px 0; border-top: 1px solid #dfd0ab; border-bottom: 1px solid #dfd0ab; }
 .goalProgress h3 { margin: 0 0 12px; }
+.filterCount { color: #4b3d23; font-size: 16px; line-height: 1.65; }
+.examGoal .retainedGoal { color: #614917; font-size: 14px; }

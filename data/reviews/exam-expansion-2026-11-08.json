@@ -1,0 +1,42 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Gezieltes Weiterlernen und ein ergänzter biologischer Zusammenhang für die Jagdprüfungsvorbereitung CH/AT/DE.",
+  "learningSelection": {
+    "route": "/lernen/pruefungsplan",
+    "field": "stand",
+    "values": ["alle", "ueben", "offen", "erklaert"],
+    "presentation": "Kurze Auswahl im vorhandenen unteren Menü. Vollständige Aufgaben, Selbstkontrollen und genaue Lektionslinks bleiben bei den passenden Lernzielen sichtbar. Keine neue Kategorie oder Dialogfläche.",
+    "navigation": "Bereite verbindliche URL, echte push-Schritte und Seitenanfang/Fokus nach Commit; Fehler, Abbruch, Pending, History und Unmount unabhängig geprüft. Der eigene untere Zurück-Verlauf unterscheidet dieses konkrete Auswahlfeld, Suchkontext bleibt ein Stop.",
+    "state": "Filterwahl liest nur und verändert weder Markierungen noch Prüfungsziel oder Wiederholungsverlauf. Treffer, flüchtig gehaltene gerade bediente Einträge und Gesamtsummen bleiben getrennt. Eigene Markierung und externe Speicheränderung verlieren nicht den konkreten Bedienfokus. Konto-/Profil-/URL-/Katalogwechsel entwerten die flüchtige Ausnahme.",
+    "sourceScope": "Quellen der dargestellten gemeinsamen Ziele werden passend projiziert. Weiterhin sichtbare regionale Rahmen- und Rechtsabschnitte behalten ihre Nachweise gesammelt geschlossen am Schluss. Bestehende Fachtexte und Prüfdaten sind unverändert."
+  },
+  "knowledge": {
+    "course": "wissen-ausbau-biologie-fortpflanzung-2026",
+    "lesson": "brutfleck",
+    "words": 118,
+    "newQuestions": 1,
+    "answerOptions": 4,
+    "newFlashcards": 1,
+    "claim": "Gefäßreiche, vermindert befiederte Haut am Altvogel erleichtert beim Kontakt die Wärmeübertragung zum Ei; Ausprägung ist artabhängig.",
+    "review": "Root, Autor und unabhängiger Reviewer lasen BTO Incubation/Keeping the eggs warm, Stanford Brood Patches Absätze 2–6 und Cornell Bird Academy Glossar/brood patch tatsächlich. Drei eigenständig verfasste Fachtexte, keine drei Originalexperimente und keine experimentelle Replikation.",
+    "limits": "Keine Temperatur-/Zeit-/Zahlenwerte, keine allgemeine Geschlechts- oder Brutstadienbestimmung, keine aus einem Nestfilm erfundene Sichtbeobachtung, keine übernommenen Lehrfotos.",
+    "integration": ["Vorhandener Kurs und Wissenscheck", "Exakter Such-/Lektionslink", "Gemeinsames CH/AT/DE-Lernen", "Lernkarte und geschützte Karten-API", "Druckansicht", "Ablaufendes Offlinepaket"],
+    "preservation": "Alle 198 vorherigen vollständigen Kursobjekte und 1761 vorherigen Karten einschließlich der 116 Starterobjekte und Reihenfolge positiv erhalten. Nur neue Lektion/Quellenrollen datiert; Kursdatum 16. Oktober unverändert."
+  },
+  "validation": {
+    "currentTests": { "passed": 456, "failed": 0, "skipped": 0 },
+    "newRegressions": 21,
+    "independentExtraProbes": { "passed": 4, "failed": 0, "skipped": 0 },
+    "build": "Produktionsbuild bestanden, 510 statische Seiten. Vorbestehende 362-kB-Prüfungsplan-Datenwarnung unverändert.",
+    "visual": "Statische Vorschau echter Komponenten/Styles mit ausdrücklichen Testdaten und schmalem Browserviewport; klare Auswahl und kein horizontaler Überlauf. Keine Kundendaten, kein Gerätemodell oder authentifizierter Lehrtext-Test behauptet.",
+    "historicalPhotoTests": "Vier bereits bestehende Fehler alter Inventar-/Karten-/Props-Erwartungen in test-lesson-photo-mapping wurden mit derselben HEAD-Testdatei und vollständigem HEAD-Biologie-Override positiv reproduziert: vorher und nachher 5/9 bestanden, exakt dieselben vier Fehlertestnamen. Nicht als grüne Suite ausgegeben. Neue Brutfleck-/Lenticellenprüfungen kontrollieren die heutige Integration und Bestandserhaltung positiv.",
+    "historicalFixtureUpdates": "Lenticellen- und regionaler Detail-Bestandstest projizieren ausschließlich den separat geprüften exakten neuen Brutfleck-Appendix heraus; alle alten Aussagen/Hash-Vergleiche bleiben erhalten.",
+    "evidence": "Chat-Workspace work/exam-expansion-nov08b sowie work/exam-preparation-nov08b/brood-patch; tatsächliche Auslieferung nach Commit separat prüfen."
+  },
+  "preserved": [
+    "Fremde data/learning-expansion-afternoon-2026-10-16.json unverändert und nicht gestagt: SHA256 23E6E8FC8FD6C3E1B5AD115B92036B901D0DC3613332D4EDD0DEB0C283A607C9",
+    "Regionale Rechtsdaten und Freigabesperren; keine neue Rechtsfreigabe",
+    "Benutzer-, Zahlungs- und Abonnementdaten; keine Kontorechte oder Store-Veröffentlichung geändert"
+  ],
+  "limits": "Eigene Lernhilfe und eng geprüfte Ergänzung, keine vollständige amtliche Prüfungsabdeckung, Bestehensgarantie oder fachliche Neuprüfung der gesamten App."
+}

@@ -12,7 +12,7 @@ function learningStarts(region, learningCatalog) {
   });
 }
 
-export default function ExamRegionPreparation({ region, learningCatalog, goalProgress }) {
+export default function ExamRegionPreparation({ region, learningCatalog, goalProgress, goalFilter, filtered = false }) {
   if (!region || !region.country || !region.region) return null;
   const confirmed = region.status === "confirmed";
   const special = region.status === "special";
@@ -22,6 +22,7 @@ export default function ExamRegionPreparation({ region, learningCatalog, goalPro
   const detailed = Boolean(region.subjectAreas?.length);
   const focus = detailed ? [] : region.focus || [];
   const starts = detailed ? [] : learningStarts(region, learningCatalog);
+  const shownAreas = (region.subjectAreas || []).map(area => ({ ...area, goals: area.goals.filter(goalFilter || (() => true)) })).filter(area => area.goals.length);
 
   return <section className={styles.section} aria-labelledby="exam-plan-regional-exam">
     <h2 id="exam-plan-regional-exam">Deine Prüfung</h2>
@@ -36,7 +37,8 @@ export default function ExamRegionPreparation({ region, learningCatalog, goalPro
     {region.subjectAreas?.length > 0 && <div className={styles.regionPreparation}>
       <h3>Prüfungsstoff deiner Region</h3>
       <p>Die folgenden Fachbezüge einschließlich ausgewählter Teilgebiete sind mit den bezeichneten Prüfungsunterlagen abgeglichen. Dazu stehen eigene Lernziele. Die Einträge sind keine Zählung amtlicher Hauptfächer und bilden weder den gesamten Stoff noch amtliche Bewertungsregeln ab.</p>
-      {region.subjectAreas.map(area => <section key={area.id} aria-labelledby={`exam-subject-${area.id}`}>
+      {filtered && <p className={styles.menuHint}>{!goalProgress?.ready ? "Die regionalen Lernziele erscheinen nach dem Laden deines persönlichen Lernstands." : `${shownAreas.reduce((total, area) => total + area.goals.length, 0)} von ${region.subjectAreas.reduce((total, area) => total + area.goals.length, 0)} regionalen Lernzielen sind sichtbar. Geänderte Einträge können vorübergehend sichtbar bleiben.`}</p>}
+      {shownAreas.map(area => <section key={area.id} aria-labelledby={`exam-subject-${area.id}`}>
         <h4 id={`exam-subject-${area.id}`}>{area.label}</h4>
         <ol className={styles.examGoalList}>{area.goals.map(goal => <ExamLearningGoal key={goal.id} goal={goal} profile={region} goalProgress={goalProgress} />)}</ol>
         <p className={styles.menuHint}>{area.limit}</p>

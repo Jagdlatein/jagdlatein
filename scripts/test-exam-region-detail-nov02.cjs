@@ -251,7 +251,7 @@ test('Regional-law datasets and their release gates remain exact; preparation as
   for (const filename of ['lib/regional-law-data.js', 'lib/regional-law-core.js', 'lib/jagdrecht-reader.js']) assert.equal(fs.readFileSync(path.join(root, filename), 'utf8').replace(/\r\n/g, '\n'), baselineText(filename).replace(/\r\n/g, '\n'), filename);
 });
 
-test('Every tracked course source, shared goal bank and oral case bank stays exact; the known foreign afternoon file is not part of this package', () => {
+test('Every tracked course source, shared goal bank and oral case bank stays exact apart from the separately tested Nov 8 appendices; the foreign afternoon file is excluded', () => {
   const tracked = execFileSync('git', ['ls-tree', '-r', '--name-only', BASELINE, '--', 'lib', 'data'], { cwd: root, encoding: 'utf8' }).trim().split('\n');
   const curriculumFiles = tracked.filter(filename => /^(?:lib\/learning[^/]*\.js|data\/learning[^/]*\.json|lib\/oral-exam-trainer\.js|data\/exam-alignment\/learning-goals-2026-11-01\.json)$/.test(filename) && filename !== 'data/learning-expansion-afternoon-2026-10-16.json');
   assert.ok(curriculumFiles.length > 60);
@@ -260,6 +260,11 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
     if (filename === 'data/learning-expansion-ecology-2026-10-16.json') {
       // Keep every old object exact; only the separately tested Nov 8 appendix is projected.
       assert.deepEqual(stripLenticelDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
+      continue;
+    }
+    if (filename === 'data/learning-expansion-biology-2026-10-16.json') {
+      const { stripBroodPatchDataset } = require('./helpers/brood-patch-addition-nov08.cjs');
+      assert.deepEqual(stripBroodPatchDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
       continue;
     }
     assert.equal(current, baselineText(filename).replace(/\r\n/g, '\n'), filename);
