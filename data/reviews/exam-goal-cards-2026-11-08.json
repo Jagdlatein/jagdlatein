@@ -1,0 +1,39 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Direkte Verknüpfung vorhandener Prüfungslernziele mit bereits vorhandenen Karten ihrer präzisen Ausgangslektion. Keine neuen Lehrbehauptungen, keine neue fachliche Gesamtprüfung, keine Änderung von Karten oder Quellendaten.",
+  "before": "Mit tatsächlicher Serverprojektion, scoped Kartenexport und SSR reproduziert: 15 gemeinsame und 22 regionale Lernziel-Einträge besaßen bereits passende Lektionskarten, aber keinen direkten Kartenlink. Der Kursleser bot diesen Weg erst nach einem zusätzlichen Aufruf der Lektion an.",
+  "implementation": {
+    "projection": "Der Server ergänzt ausschließlich cardCount und cardHref, und nur bei positiver belegter Lektionskartenanzahl. Fragetexte, Antworten, Kartenquellen und Bewertungsverläufe werden nicht in die Prüfungsplanprops kopiert.",
+    "scope": "Die konkrete vorhandene Lektion und ihre Fragen müssen gemeinsames DACH-Wissen außerhalb des regionalen Rechts sein. Auch der Kurs muss die drei tatsächlichen Länder einschließen. Aus unbekannter oder leerer Kartenauswahl wird kein allgemeines Starterdeck als Ersatz angeboten.",
+    "validation": "Zähler müssen eigene gültige Integerwerte sein, ihre Summe muss stimmen, alle Lektionskennungen müssen exakt einmal im Kurs existieren und die Zählwerte dürfen den tatsächlichen Fragenbestand nicht überschreiten. Die Auswahl wird durch den bestehenden kurs/lektion-Parser begrenzt.",
+    "cache": "Eine validierte, privat kopierte Zählerzuordnung je aktuellem Kursobjekt wird wiederverwendet. Ausgetauschte Lektions-/Fragenarrays oder veränderte Längen fordern eine neue Zusammenfassung. Fremde Summaryobjekte werden nicht verändert.",
+    "presentation": "Ein kurzer Lernkarten-Anzahl-Textlink steht in der bestehenden Linkreihe. Der Client prüft zusätzlich die erlaubte Kartenroute, genau zwei Auswahlfelder und den exakten Zusammenhang mit dem vorhandenen Kurs-/Lektionsanker. Kein Dialog, keine neue Kategorie, keine zusätzliche Schaltflächenleiste.",
+    "meaning": "Die Zahl bezeichnet Karten der genannten Lektion. Sie ist kein Nachweis, dass ein Lernziel vollständig geprüft oder beherrscht wird."
+  },
+  "preserved": [
+    "Alle alten Lernzieltexte, Kriterien, Übungsfälle, Kurs-/Quiz-/Rechtslinks und Quellenzuordnungen positiv gegen den bisherigen Projektor verglichen.",
+    "Originale Kartenobjekte, IDs, Inhalte, Quellen, Prüfdaten und Reihenfolge einschließlich Starterbestand unverändert.",
+    "Persönlicher Lernstand, Filter, Prüfungszielwahl und Kontogrenzen unverändert.",
+    "Bestehende private/no-store-Karten- und Druckseiten sowie authentifizierte paid/admin-API-Grenzen unverändert.",
+    "Fremde afternoon-Datei unberührt; keine Konto-, Abo-, Zahlungs- oder Benutzerdaten verwendet."
+  ],
+  "payload": {
+    "firstReadBeforeBytes": 361585,
+    "comparison": "Bisheriger Projektor aus Commit 0d9e2f5 mit demselben aktuellen darunterliegenden Curriculum wie der neue Projektor, damit parallele Wissenszuwächse getrennt bleiben.",
+    "isolatedBeforeBytes": 361657,
+    "afterBytes": 365354,
+    "featureDeltaBytes": 3697,
+    "blueprintDeltaBytes": 1499,
+    "alignmentDeltaBytes": 2198,
+    "knownLimit": "Die bereits vorhandene 128-KB-Seitendatenwarnung des gesamten Prüfungsplans bleibt bestehen. Dieser kleine Linkausbau erhöht dessen Umfang um rund ein Prozent."
+  },
+  "validation": {
+    "newRegressionFile": "scripts/test-exam-goal-cards.cjs",
+    "newTests": 10,
+    "passedTogether": 96,
+    "skipped": 0,
+    "suites": ["test-exam-goal-cards", "test-exam-learning-goals", "test-exam-goal-filter", "test-exam-goal-progress", "test-flashcard-selection", "test-exam-plan-topic-navigation", "test-exam-study-plan", "test-exam-region-preparation"],
+    "independentProbes": "Vier unabhängig geschriebene Zusatzproben bestanden: zunächst leere Lektionsauswahl beeinflusst andere Lektionszähler nicht; spätere Mutation eines Summaryobjekts ändert die private Kopie nicht; neues Kursobjekt erhält eine neue Zusammenfassung; ergänzende Lektionslinks werden nicht als Hauptziel substituiert.",
+    "positiveChecks": ["Alle 37 positiven Einträge öffnen nur Karten ihrer tatsächlichen Lektion", "Null-/Rechts-/fremde Länderfälle erhalten keinen Ersatz", "SSG und Druck erhalten konkrete Originalkarten und Rücksprunganker", "API 401/403 ohne Karteninhalt, paid/admin mit exaktem Bestand", "Kleine Metadaten bleiben serverseitig und keine Bank erreicht den Clientimport", "Quellen, Datumsrollen, Filter und lokale Selbstkontrolle erhalten"]
+  }
+}

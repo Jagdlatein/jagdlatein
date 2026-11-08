@@ -1,7 +1,9 @@
 // Narrow preservation/integration tests; scientific reading is recorded separately.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
+const createLoader = overrides => createProjectLoader(foodSporesToxinsBaselineFixture(overrides));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, stripFeatherFieldsAddition, stripFeatherFieldsDataset } = require('./helpers/feather-fields-additions-nov08.cjs');
 const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);

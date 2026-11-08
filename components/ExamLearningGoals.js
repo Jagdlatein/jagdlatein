@@ -1,13 +1,25 @@
 import Link from "next/link";
 import { examProfileLawHref, normalizeExamProfile } from "../lib/exam-profile";
+import { readFlashcardSelection } from "../lib/flashcard-selection";
+import { lessonHash } from "../lib/learning-lesson-navigation";
 import styles from "../styles/ExamStudyPlan.module.css";
 
 const internal = value => typeof value === "string" && value.startsWith("/") && !value.startsWith("//") && !/[\\\s\u0000-\u001f\u007f]/.test(value);
+
+function lessonCardHref(goal) {
+  if (goal.regionalLaw || !Number.isSafeInteger(goal.cardCount) || goal.cardCount <= 0 || !internal(goal.cardHref) || !internal(goal.href)) return null;
+  const cards = new URL(goal.cardHref, "https://jagdlatein.invalid"), lesson = new URL(goal.href, "https://jagdlatein.invalid");
+  const selection = readFlashcardSelection(cards.searchParams);
+  if (cards.pathname !== "/lernen/lernkarten" || cards.hash || [...cards.searchParams.keys()].length !== 2 || !selection || selection.invalid || !selection.lessonId
+    || lesson.pathname !== `/kurse/${selection.courseId}` || lesson.hash !== lessonHash(selection.lessonId)) return null;
+  return goal.cardHref;
+}
 
 export function ExamLearningGoal({ goal, profile, goalProgress }) {
   const target = normalizeExamProfile(profile);
   const href = goal.regionalLaw ? target && examProfileLawHref(target) : goal.href;
   const quizHref = goal.regionalLaw ? target && examProfileLawHref(target, "uebung") : goal.quizHref;
+  const cardHref = lessonCardHref(goal);
   return <li className={styles.examGoal} onFocus={() => goalProgress?.focus?.(goal, true)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) goalProgress?.focus?.(goal, false); }}>
     <h4>{goal.title}</h4>
     <p>{goal.task}</p>
@@ -24,6 +36,7 @@ export function ExamLearningGoal({ goal, profile, goalProgress }) {
     {internal(href) ? <div className={styles.links}>
       <Link href={href} prefetch={false} aria-label={`${goal.title}: ${goal.regionalLaw ? "Regionales Recht lesen" : goal.lessonPractice ? "Lektion lesen und üben" : "Lektion lesen"}`}>{goal.regionalLaw ? "Regionales Recht" : goal.lessonPractice ? "Lektion lesen & üben" : "Lektion lesen"}</Link>
       {internal(quizHref) && <Link href={quizHref} prefetch={false} aria-label={`${goal.title}: ${goal.regionalLaw ? "Regionale Rechtsfragen" : "Kurscheck"}`}>{goal.regionalLaw ? "Rechtsfragen" : "Kurscheck"}</Link>}
+      {cardHref && <Link href={cardHref} prefetch={false} aria-label={`${goal.title}: ${goal.cardCount} Lernkarten zur Lektion ${goal.lessonTitle}`}>Lernkarten ({goal.cardCount})</Link>}
     </div> : goal.regionalLaw && <p>Wähle dein Prüfungsziel im unteren Menü, um das passende Recht zu öffnen.</p>}
     {!goal.regionalLaw && <p className={styles.goalLesson}>{goal.courseTitle} · {goal.lessonTitle}</p>}
     {goal.relatedLessons?.length > 0 && <div className={styles.links}>{goal.relatedLessons.filter(item => internal(item.href)).map(item => <Link key={item.href} href={item.href} prefetch={false}>{item.lessonTitle}</Link>)}</div>}

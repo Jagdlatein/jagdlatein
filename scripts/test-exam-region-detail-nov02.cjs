@@ -272,6 +272,11 @@ test('Every tracked course source, shared goal bank and oral case bank stays exa
       assert.deepEqual(stripFeatherFieldsDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
       continue;
     }
+    if (filename === 'data/learning-expansion-field-science-2026-10-17.json') {
+      const { stripFoodSporesToxinsDataset } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
+      assert.deepEqual(stripFoodSporesToxinsDataset(JSON.parse(current)), JSON.parse(baselineText(filename)), filename);
+      continue;
+    }
     assert.equal(current, baselineText(filename).replace(/\r\n/g, '\n'), filename);
   }
 });

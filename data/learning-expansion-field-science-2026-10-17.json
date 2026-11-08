@@ -1714,6 +1714,46 @@
           "url": "https://www.foodstandards.gov.au/sites/default/files/publications/Documents/Compendium_revised%20Dec%202022.pdf",
           "organization": "Food Standards Australia New Zealand",
           "supports": "Gedruckte Seiten 63–64 tatsächlich gelesen: Campylobacter als gramnegative nicht sporenbildende Bakterien, Darmreservoire, mikroaerobe Bedingungen, Rohmilch/Geflügel, Überleben ohne übliche Vermehrung im Lebensmittel. Biologische Einordnung; keine Übernahme australischer Lebensmittelgrenzwerte oder Verfahren."
+        },
+        {
+          "label": "BfR: Bacillus cereus – Sporen und vegetative Zellen",
+          "url": "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/bacillus-cereus/",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "bakteriensporen"
+          ],
+          "supports": "Original-HTML direkt gelesen, Einleitung und Merkmale: Sporen als Überdauerungsform, mögliches Überleben üblicher Hitzebehandlungen, Auskeimen und anschließende Vermehrung vegetativer Zellen. Keine Dosis-, Temperatur-, Zeit-, Krankheits- oder Herstellungsangaben übernommen. Behördliche fachliche Zusammenfassung, keine eigene neue Messreihe."
+        },
+        {
+          "label": "OpenStax Microbiology 3.3: Endospores",
+          "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells",
+          "organization": "OpenStax, Rice University / American Society for Microbiology",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "bakteriensporen"
+          ],
+          "supports": "Originallehrabschnitt Endospores einschließlich Tabelle 3.1 direkt gelesen: ruhende widerstandsfähige Dauerform gegenüber aktiver vegetativer Zelle, Auskeimen und Rückkehr zu Wachstum und Zellteilung; nicht alle Bakterien bilden Endosporen. Keine Detailchemie, Haltbarkeitsrekorde, Krankheiten, Kultur- oder Sterilisationsverfahren übernommen. Unabhängige fachliche Einordnung, keine experimentelle Wiederholung der BfR-Darstellung."
+        },
+        {
+          "label": "BfR (2020): Schutz vor Erkrankungen durch bakterielle Toxine – S. aureus",
+          "url": "https://www.bfr.bund.de/cm/350/verbrauchertipps-schutz-vor-lebensmittelbedingten-erkrankungen-durch-bakterielle-toxine.pdf",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "vorgebildete-toxine"
+          ],
+          "supports": "Originalmerkblatt Stand 2020, gedruckte/PDF-Seite 1, Einleitung und Kasten zu Staphylococcus aureus tatsächlich gelesen: Toxine als gesundheitsschädliche Stoffwechselprodukte, Bildung im Lebensmittel, S.-aureus-Enterotoxine durch küchentechnisches Erhitzen nicht sicher inaktiviert. Die Einleitung begrenzt Hitzestabilität ausdrücklich auf einen Teil der Toxine. Haushaltsinformation, keine gewerbliche oder örtliche Wildbretfreigabe; keine Mengen, Zeiten, Temperaturen, Symptome oder Behandlung übernommen."
+        },
+        {
+          "label": "CDC: About Staph Food Poisoning – vorgebildetes Toxin",
+          "url": "https://www.cdc.gov/staph-food-poisoning/about/index.html",
+          "organization": "Centers for Disease Control and Prevention, NCEZID",
+          "checkedOn": "2026-11-08",
+          "lessonIds": [
+            "vorgebildete-toxine"
+          ],
+          "supports": "Original-HTML direkt gelesen: Highlights, Overview, Risk factors und How it spreads. S. aureus kann sich in kontaminiertem Lebensmittel vermehren und Toxin bilden; Kochen kann die Bakterien abtöten, beseitigt jedoch das Toxin nicht. Auf S.-aureus-Lebensmittelintoxikation begrenzte unabhängige Behördeninformation, keine neue Messreihe. Keine US-Grenzwerte, Prävalenzen, Diagnose- oder Behandlungsempfehlungen übernommen. CDC nennt Reviewed 28.10.2026 getrennt vom älteren Published/Updated; eigenes enges Lesedatum ist 08.11.2026."
         }
       ],
       "lessons": [
@@ -1756,6 +1796,32 @@
           ],
           "takeaway": "Kälte schließt Listerienwachstum nicht aus; nachträglicher Eintrag ist bei verzehrfertigen Produkten besonders relevant.",
           "exercise": "Vergleiche einen möglichen Umwelteintrag vor der Verarbeitung und eine Rekontamination eines bereits verarbeiteten Produkts."
+        },
+        {
+          "id": "bakteriensporen",
+          "title": "Bakteriensporen",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Einige Bakterien können Endosporen bilden. Das sind widerstandsfähige Überdauerungsformen, die von den aktiven, sogenannten vegetativen Zellen zu unterscheiden sind. Die Bildung einer Dauerform ist nicht dasselbe wie die Vermehrung aktiver Bakterien. Unter geeigneten Bedingungen können Endosporen auskeimen. Daraus entstehen wieder aktive Zellen, die sich anschließend vermehren können.",
+            "Am Beispiel von Bacillus cereus beschreibt das BfR, dass übliche Hitzebehandlungen vegetative Zellen abtöten können, während Sporen überleben. Deshalb beantwortet die Aussage erhitzt noch nicht, ob ein Lebensmittel frei von überlebensfähigen Keimen ist. Der weitere Lagerverlauf bleibt ein eigener Teil der Hygienekette.",
+            "Nicht alle Bakterien bilden solche Dauerformen. Der vorgestellte Sporenbildner ist ein Beispiel und liefert weder eine Sterilisationsanleitung noch die Freigabe einer konkreten Wildbretpartie. Eigene Prüfungsübung: Trenne in einem Schema aktive Zelle, Überdauerungsform und erneutes Auskeimen. Benenne, weshalb Überleben und Vermehrung unterschiedliche Vorgänge bleiben."
+          ],
+          "takeaway": "Sporen sind Überdauerungsformen; ihr mögliches Überleben ist von der Abtötung aktiver Zellen zu trennen.",
+          "exercise": "Zeichne auf Papier den Wechsel zwischen aktiver Zelle und Dauerform. Ordne Auskeimen und spätere Vermehrung als getrennte Vorgänge zu; aus dem Schema folgt kein Verfahren zur Lebensmittelbehandlung."
+        },
+        {
+          "id": "vorgebildete-toxine",
+          "title": "Bakterientoxine",
+          "reviewedOn": "2026-11-08",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bestimmte Bakterien können gesundheitsschädliche Stoffwechselprodukte bilden, die Toxine heißen. Bei Staphylococcus aureus können solche Enterotoxine bereits im Lebensmittel entstehen, wenn sich die Bakterien dort vermehren. Beim späteren Verzehr wird dann der vorher gebildete Stoff aufgenommen. Bakterienzelle und Toxin sind deshalb unterschiedliche Dinge.",
+            "Die Enterotoxine dieses Beispiels sind hitzestabil. Küchentechnisches Erhitzen kann die Bakterien abtöten, beseitigt aber bereits vorhandene S.-aureus-Enterotoxine nicht sicher. Eine geringere Zahl lebender Bakterien ist somit kein Beweis, dass auch ein zuvor gebildetes Toxin verschwunden ist. Nicht jedes Bakterientoxin hat dieselbe Hitzeempfindlichkeit; die Aussage wird nicht auf alle Giftstoffe übertragen.",
+            "Für die Wildbrethygiene bedeutet das: Ein späterer Erhitzungsschritt ersetzt keine nachvollziehbare hygienische Vorgeschichte. Diese Erklärung gibt keine Speise frei und nennt kein Verfahren, mit dem sich ein unklarer Zustand nachträglich sicher beheben ließe. Eigene Prüfungsübung: Prüfe den Satz Die Bakterien sind abgetötet, also ist jedes Toxin entfernt. Benenne die darin vermischten Fragen."
+          ],
+          "takeaway": "Die Abtötung von S. aureus belegt nicht die sichere Inaktivierung seiner bereits im Lebensmittel gebildeten Enterotoxine.",
+          "exercise": "Erkläre die zwei getrennten Fragen: Sind die Bakterien noch lebensfähig? Ist ein vorher gebildetes Toxin noch vorhanden? Beziehe die Wärmegrenze ausdrücklich auf das benannte Beispiel."
         }
       ],
       "questions": [
@@ -2070,6 +2136,32 @@
           ],
           "answer": 3,
           "explain": "AGES und BfR beschreiben immungeschwächte Menschen als empfindliche Gruppe. Schwangerschaft und höheres Alter sind ebenfalls besonders zu beachten."
+        },
+        {
+          "id": "bakteriensporen-ueberdauern",
+          "lessonId": "bakteriensporen",
+          "q": "Was unterscheidet eine bakterielle Endospore von einer aktiven vegetativen Zelle im beschriebenen Grundmodell?",
+          "options": [
+            "Die Endospore ist eine widerstandsfähige Überdauerungsform; nach Auskeimen kann wieder eine aktive Zelle entstehen.",
+            "Die Endospore ist die sich fortlaufend teilende Form; die vegetative Zelle kann grundsätzlich nicht wachsen.",
+            "Endospore bezeichnet ausschließlich einen bereits aus der Zelle ausgeschiedenen Giftstoff.",
+            "Beide Begriffe bezeichnen denselben aktiven Zustand und lassen sich nur an der Farbe des Lebensmittels unterscheiden."
+          ],
+          "answer": 0,
+          "explain": "Endosporen ermöglichen das Überdauern. Auskeimen führt zurück zum vegetativen Zustand; danach kann Vermehrung folgen. Deshalb ist die Abtötung aktiver Zellen nicht gleichbedeutend mit einer sicheren Entfernung aller Dauerformen. Nicht alle Bakterien bilden Endosporen."
+        },
+        {
+          "id": "vorgebildete-toxine-hitze",
+          "lessonId": "vorgebildete-toxine",
+          "q": "Was ist bei bereits im Lebensmittel gebildeten Enterotoxinen von Staphylococcus aureus gegenüber der späteren Bakterienabtötung zu beachten?",
+          "options": [
+            "Die Enterotoxine dieses Bakteriums können küchentechnisches Erhitzen überstehen.",
+            "Ein bakterielles Toxin wird erst im Moment des Absterbens der letzten Zelle zwangsläufig harmlos.",
+            "Lebensfähige Bakterien und die zuvor gebildeten Giftstoffe sind grundsätzlich derselbe Nachweis.",
+            "Jeder Erhitzungsschritt entfernt unabhängig vom Produkt sämtliche bakteriellen Giftstoffe."
+          ],
+          "answer": 0,
+          "explain": "Das Bakterium und sein bereits gebildetes Enterotoxin sind verschiedene Beurteilungsgegenstände. S.-aureus-Enterotoxine werden durch küchentechnisches Erhitzen nicht sicher inaktiviert. Das ist keine Aussage, alle bakteriellen Toxine seien gleich hitzestabil, und keine Freigabe einer konkreten Speise."
         }
       ]
     },
@@ -3551,6 +3643,46 @@
             "https://www.vims.edu/ccrm/research/marine_debris/problems/plastics/shotgun_wads/": "Absatz The term wad refers: Trennung von shot und powder.",
             "https://nij.ojp.gov/nij-hosted-online-training-courses/firearms-examiner-training/glossary": "Einträge Wad und Wad, cup: Komponenten trennen beziehungsweise powder and shot separator."
           }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "lessonId": "bakteriensporen",
+      "claims": [
+        {
+          "claim": "Einige Bakterien bilden widerstandsfähige Endosporen als Überdauerungsformen; vegetative aktive Zellen, Dauerform, Auskeimen und anschließende Vermehrung sind zu unterscheiden. OpenStax erklärt den allgemeinen Zellzustandswechsel, BfR ordnet Auskeimen und Vermehrung am Lebensmittelbeispiel B. cereus ein.",
+          "sourceUrls": [
+            "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells",
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/bacillus-cereus/"
+          ]
+        },
+        {
+          "claim": "Bei B. cereus können Sporen übliche Hitzebehandlungen überleben, die vegetative Zellen abtöten. Der allgemeine Endosporenbau erklärt diesen Widerstand; daraus folgt keine pauschale Sterilitäts- oder Wildbretfreigabe und keine Anweisung zu einem Sterilisationsverfahren.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/lebensmittel-und-futtermittelsicherheit/bewertung-mikrobieller-risiken-von-lebensmitteln/gesundheitliche-bewertung-von-bakterien/bacillus-cereus/",
+            "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "lessonId": "vorgebildete-toxine",
+      "claims": [
+        {
+          "claim": "S. aureus kann bei Vermehrung im Lebensmittel bereits vor dem Verzehr Enterotoxine bilden. Das Toxin als Stoffwechselprodukt und die lebende Bakterienzelle sind verschiedene Beurteilungsgegenstände.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/cm/350/verbrauchertipps-schutz-vor-lebensmittelbedingten-erkrankungen-durch-bakterielle-toxine.pdf",
+            "https://www.cdc.gov/staph-food-poisoning/about/index.html"
+          ]
+        },
+        {
+          "claim": "Bereits gebildete S.-aureus-Enterotoxine werden durch küchentechnisches Erhitzen nicht sicher inaktiviert, auch wenn Bakterienzellen abgetötet werden. Diese Grenze gilt für das benannte Beispiel und wird nicht auf jedes Bakterientoxin verallgemeinert. Das eigene Lernbeispiel erteilt keine Produktfreigabe und enthält keine Zeit-/Temperatur- oder Behandlungsanleitung.",
+          "sourceUrls": [
+            "https://www.bfr.bund.de/cm/350/verbrauchertipps-schutz-vor-lebensmittelbedingten-erkrankungen-durch-bakterielle-toxine.pdf",
+            "https://www.cdc.gov/staph-food-poisoning/about/index.html"
+          ]
         }
       ]
     }

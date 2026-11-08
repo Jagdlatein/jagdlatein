@@ -20,7 +20,7 @@ const raw = () => JSON.parse(fs.readFileSync(path.join(root, 'data/exam-alignmen
 const blueprint = () => createLoader()('lib/exam-blueprint-server.js').getExamBlueprintData();
 function fixture(change = () => {}, courseTransform = course => course) {
   const data = raw(); change(data);
-  return createLoader({ [RAW_PATH]: data, './learning-curriculum': { getLearningModule(id) { const course = getLearningModule(id); return course ? courseTransform(clone(course)) : null; } } })('lib/exam-blueprint-server.js').getExamBlueprintData();
+  return createLoader({ [RAW_PATH]: data, './learning-curriculum': { learningModules, getLearningModule(id) { const course = getLearningModule(id); return course ? courseTransform(clone(course)) : null; } } })('lib/exam-blueprint-server.js').getExamBlueprintData();
 }
 const goalFixture = extra => ({ id: 'independent-goal', title: 'Sicherheitsentscheidung begründen', task: 'Erkläre deine Entscheidung an einem eigenen Fall.', selfCheck: ['Beobachtung und Schluss getrennt', 'Offene Voraussetzung benannt'], moduleId: 'wissen-waffensicherheit', lessonId: 'regeln', ...extra });
 function Link({ href, children, prefetch, ...props }) { return React.createElement('a', { href, ...props }, children); }
@@ -44,7 +44,11 @@ test('The actual blueprint keeps the canonical twelve categories and36 bounded u
   for (const category of data.categories) {
     assert.deepEqual(Object.keys(category).sort(), ['goals', 'practiceCase', 'slug']); assert.equal(category.goals.length, 3);
     for (const goal of category.goals) {
-      assert.deepEqual(Object.keys(goal).sort(), ['courseTitle','href','id','lessonPractice','lessonTitle','quizHref','regionalLaw','selfCheck','sourceIds','sourceScope','task','title'].sort());
+      const authored=raw().categories.find(item=>item.slug===category.slug).goals.find(item=>item.id===goal.id);
+      const cards=load('lib/learning-flashcards.js').getFlashcardExport({courseId:authored.moduleId,lessonId:authored.lessonId}).cards;
+      const cardKeys=!goal.regionalLaw&&goal.lessonPractice&&cards.length?['cardCount','cardHref']:[];
+      assert.deepEqual(Object.keys(goal).sort(), ['courseTitle','href','id','lessonPractice','lessonTitle','quizHref','regionalLaw','selfCheck','sourceIds','sourceScope','task','title',...cardKeys].sort());
+      if(cardKeys.length){assert.equal(goal.cardCount,cards.length);assert.equal(goal.cardHref,`/lernen/lernkarten?kurs=${authored.moduleId}&lektion=${authored.lessonId}`);}
       assert.ok(goal.id && goal.title && goal.task && goal.selfCheck && goal.sourceIds.length);
       assert.ok(['lesson','course'].includes(goal.sourceScope));
     }
@@ -209,7 +213,7 @@ test('A selected lesson or whole-course check is not advertised as shared practi
   function project(questionChange) {
     const course=clone(base), question=course.questions.find(item=>item.lessonId==='regeln');
     assert.ok(question); Object.assign(question,questionChange);
-    return createLoader({'./learning-curriculum':{getLearningModule(id){return id===course.id?course:getLearningModule(id);}}})('lib/exam-learning-goal-server.js').projectExamLearningGoal(goalFixture());
+    return createLoader({'./learning-curriculum':{learningModules,getLearningModule(id){return id===course.id?course:getLearningModule(id);}}})('lib/exam-learning-goal-server.js').projectExamLearningGoal(goalFixture());
   }
   for(const change of [{countries:['DE']},{countries:['DE','DE','DE']},{countries:['DE','AT','UNKNOWN']},{topic:'Recht'}]){
     const goal=project(change);assert.equal(goal.lessonPractice,false,JSON.stringify(change));assert.equal(goal.quizHref,null,JSON.stringify(change));

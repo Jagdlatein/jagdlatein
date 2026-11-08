@@ -1,0 +1,40 @@
+{
+  "reviewedOn": "2026-11-08",
+  "scope": "Präzises Wiederholen aus dem Prüfungsplan und zwei zusammengehörende Grundlagen der Wildbrethygiene mit eigenem Begriffsschema.",
+  "goalCards": {
+    "before": "Lernziele verwiesen auf Lesetext und Kurscheck; bereits vorhandene genaue Lektionskarten waren erst über den Kursleser erreichbar.",
+    "after": "15 gemeinsame und 22 regionale Lernziel-Einträge erhalten einen kurzen Textlink mit echter Anzahl zur genau passenden bestehenden Lektionsauswahl. Dies sind Metadaten vorhandener Karten, keine 37 neu geschriebenen Wissensblöcke.",
+    "boundaries": "Keine Karten bei null Bestand, fehlender eindeutiger Lektionszuordnung, fremdem Länderumfang oder regionalem Recht. Kein Ersatzdeck, keine Umformulierung der alten Fragen, kein neues Deckschema und keine Veränderung gespeicherter Markierungen.",
+    "server": "Validierte Zusammenfassungen mit kleiner Metadatenkopie je Kursidentität; keine Kartenfragen, Antworten oder Quellenkörper in der zusätzlichen Projektion und kein Kartenbankimport im Clientreader.",
+    "size": "Der isolierte Linkausbau erhöht die vorhandenen Prüfungsplanprops um 3697 Bytes, rund ein Prozent. Die bereits vorhandene Warnung zu mehr als 128KB Seitendaten besteht damit weiter."
+  },
+  "knowledge": {
+    "course": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+    "lessons": [{ "id": "bakteriensporen", "words": 132 }, { "id": "vorgebildete-toxine", "words": 144 }],
+    "newQuestions": 2,
+    "answerOptionsEach": 4,
+    "actualNewFlashcards": 2,
+    "claims": "Endosporen sind Überdauerungsformen einiger Bakterien; Auskeimen und spätere Vermehrung sind getrennte Vorgänge. Am Beispiel B.cereus können Sporen übliche Hitzebehandlung überleben. Bereits im Lebensmittel gebildete Enterotoxine von S.aureus sind getrennt von der Lebensfähigkeit ihrer Erzeugerbakterien zu beurteilen.",
+    "sourceReview": "Autor, Root und unabhängiger Reviewer lasen die relevanten Abschnitte der BfR-Cereusseite, OpenStax Microbiology3.3/Endospores, BfR-Toxinmerkblatt2020/S1–2 und CDC Staph Food Poisoning/Risk factors/How it spreads selbst. Vier Originalseiten von drei unabhängigen geeigneten Herausgebern; die zwei BfR-Nachweise zählen nicht als zwei unabhängige Organisationen. Keine neue experimentelle Messreihe oder Replikation behauptet.",
+    "excludedSource": "Die zusätzlich gelesene AGES-Rückrufinformation wurde wegen ihres fremden Säuglings-/Rückrufkontexts nicht in die Produktquellen übernommen. Eine allgemeine AGES-Seite mit HTTP200 aber ohne positiv lesbare Vollpassage wird nicht als geprüfter Beleg ausgegeben.",
+    "diagram": "Eigenes, ausdrücklich bezeichnetes Begriffsschema ausschließlich bei vorgebildete-toxine: Bakterienzelle, vorgebildetes S.aureus-Enterotoxin sowie getrennte Abtötung/Inaktivierung. Es verwendet den bestehenden Renderer und nennt die Grenze vor den Kästen. Keine übernommenen Lehrfotos oder fremden Abbildungen.",
+    "limits": "S.aureus-spezifische Hitzeaussage, keine Regel alle Bakterientoxine seien hitzestabil. Keine Temperaturen, Zeiten, Dosen, Kultur-/Konservierungsverfahren oder Produktfreigaben. Keine Sterilisationsanleitung, Diagnose oder Therapie.",
+    "integration": "Vorhandener Wildbret-Kurs, Quiz, genaue Such-/Lektionsziele, Lernkarten, Druckansicht und ablaufendes Offlinepaket einschließlich des eigenen Schemas. Quellen stehen geschlossen am Ende; Grenzen bleiben unmittelbar beim Lerntext.",
+    "preservation": "Alte vier Lektionen/24 Fragen/acht Quellen und Kursdatum 17. Oktober bleiben exakt. Alle 198 vorherigen Kursobjekte, 1765 vorherigen vollständigen Karten und die 116 Starterobjekte samt Reihenfolge sind positiv erhalten. Die beiden neuen Lektions- und Quellenprüfdaten bezeichnen nur den tatsächlichen engen Abgleich am 8. November."
+  },
+  "validation": {
+    "tests": { "passed": 617, "failed": 0, "skipped": 0 },
+    "newRegressions": { "goalCards": 10, "knowledge": 10, "originalSchematic": 4 },
+    "independentAdditionalProbes": 4,
+    "build": "Produktionsbuild bestanden, 510 statische Seiten; Seitendatenwarnung für den Prüfungsplan nun 366KB mit dem dokumentierten kleinen Metadatendelta.",
+    "preservationTests": "Die historischen Brutfleck-/Lenticellen-/Federfluren- und regionalen Detailprüfungen projizieren ausschließlich den separat geprüften exakten neuen Hygiene-Appendix aus ihren alten Ansichten. Alle alten Hash-/Objekt-/Reihenfolgenprüfungen bleiben erhalten. Alle bisherigen Diagrammzuordnungen zusätzlich positiv gegen 0d9e2f5 verglichen.",
+    "visual": "Lokale Vorschau tatsächlicher Lernziel-, Schema- und Belegkomponenten mit echten lokalen Styles in klar bezeichnetem QA-Rahmen; schmale Ansicht ohne horizontalen Überlauf, kurzer Kartenlink und Quellen geschlossen. Kein Benutzerkonto, kein Speicherzugriff, keine authentifizierte Produktionsanzeige oder physische Geräteprüfung behauptet.",
+    "releaseProof": "Git/Vercel-Status und tatsächliche HTTP-/Manifest-/Ressourcenauslieferung werden nach Commit gesondert im Chat-Workspace work/exam-expansion-nov08d geprüft."
+  },
+  "preserved": [
+    "data/learning-expansion-afternoon-2026-10-16.json bleibt unberührt und ungestagt; SHA256 23E6E8FC8FD6C3E1B5AD115B92036B901D0DC3613332D4EDD0DEB0C283A607C9",
+    "Keine Benutzer-, Zahlungs-, Abonnement-, Kontorechte-, Einwilligungs- oder Store-Veröffentlichungsänderung; keine neuen kostenpflichtigen Dienste.",
+    "Regionale Rechtsdaten und gesperrte Fragen bleiben unverändert."
+  ],
+  "limits": "Gezielte eigene Lernhilfe und geprüfte Ergänzung, keine vollständige amtliche Prüfungsabdeckung, Bestehensgarantie oder fachliche Neuprüfung der gesamten App."
+}
