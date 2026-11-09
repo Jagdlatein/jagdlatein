@@ -72,7 +72,8 @@ test('The real selected page-data and print renderer preserve exact card IDs, le
  for(const filename of ['pages/lernen/lernkarten.js','pages/lernen/lernkarten-drucken.js']){
   const headers={},context={req:{},res:{setHeader:(key,value)=>headers[key]=value},query,resolvedUrl:selected.cardHref};
   const page=createLoader({'../../lib/account-access':{getPaidPageProps:async actual=>{assert.equal(actual,context);actual.res.setHeader('Cache-Control','private, no-store, max-age=0');return{props:{}};}}})(filename),result=await page.getServerSideProps(context),data=load('lib/flashcard-payload.js').unpackFlashcards(result.props.deck);
-  assert.match(headers['Cache-Control'],/private, no-store/);assert.equal(result.props.totalCount,selected.cardCount);assert.equal(result.props.remote,false);assert.deepEqual(data.cards,expected.cards);assert.equal(data.selection.returnHref,selected.href);
+  const expectedPage = cards.getFlashcardExport(selection, { withChoices: filename.endsWith('/lernkarten.js') });
+  assert.match(headers['Cache-Control'],/private, no-store/);assert.equal(result.props.totalCount,selected.cardCount);assert.equal(result.props.remote,false);assert.deepEqual(data.cards,expectedPage.cards);assert.equal(data.selection.returnHref,selected.href);
   if(filename.includes('drucken')){const Print=createLoader({'next/router':{useRouter:()=>({isReady:true,query,asPath:selected.cardHref.replace('/lernkarten','/lernkarten-drucken')})},'next/head':wrap(()=>null),'next/link':wrap(Link),'../../components/PageMenu':{...wrap(()=>null),closePageMenu(){}}})(filename).default;const markup=renderToStaticMarkup(React.createElement(Print,result.props));assert.ok(markup.includes(expected.selection.lessonTitle));assert.doesNotMatch(markup,/Welche Wildart zeigt dieses Foto/);}
  }
  assert.equal(JSON.stringify(cards.getFlashcards()),before,'Links and projections never mutate original cards or starter order');

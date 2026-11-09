@@ -59,7 +59,8 @@ test('Private server-rendered lesson selections immediately contain their comple
     assert.match(headers['Cache-Control'], /private, no-store/);
     assert.equal(result.props.remote, false);
     assert.equal(result.props.totalCount, actual.cards.length);
-    assert.deepEqual(unpackFlashcards(result.props.deck).cards, actual.cards);
+    const expected = getFlashcardExport(scope, { withChoices: filename.endsWith('/lernkarten.js') });
+    assert.deepEqual(unpackFlashcards(result.props.deck).cards, expected.cards);
     assert.ok(Buffer.byteLength(JSON.stringify(result.props)) < 32 * 1024);
     const unsigned = await createLoader({ '../../lib/account-access': { getPaidPageProps: async () => ({ redirect: { destination: '/login?next=' + encodeURIComponent(context.resolvedUrl), permanent: false } }) } })(filename).getServerSideProps(context);
     assert.equal(unsigned.redirect.destination, '/login?next=' + encodeURIComponent(context.resolvedUrl));

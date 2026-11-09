@@ -52,10 +52,10 @@
 .answerOptions { display: grid; gap: 13px; }
 .answerOption { display: flex; align-items: flex-start; gap: 15px; width: 100%; min-height: 64px; padding: 18px 22px; border: 1px solid #cbb98d; border-radius: 14px; background: #fffefb; color: #3e321b; font: inherit; font-size: 19px; line-height: 1.65; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
 button.answerOption { display: block; }
-.answerOption:hover:enabled, .answerOption:has(input:enabled):hover { background: #f7efd9; border-color: #9c7e3d; }
+.answerOption:hover:enabled:not([aria-disabled="true"]), .answerOption:has(input:enabled):hover { background: #f7efd9; border-color: #9c7e3d; }
 .answerOption input { width: 23px; height: 23px; min-width: 23px; margin: 5px 0 0; accent-color: #526f39; }
 .answerOption strong { display: block; font-size: 15px; margin-top: 5px; }
-.answerOption:disabled { cursor: default; opacity: 1; }
+.answerOption:disabled, .answerOption[aria-disabled="true"] { cursor: default; opacity: 1; }
 .answerCorrect { border: 2px solid #6d864e; background: #eef4e4; color: #344d23; }
 .answerWrong { border: 2px solid #ad6a50; background: #f9eee7; color: #743d2c; }
 .sequenceOptions { display: grid; gap: 16px; }

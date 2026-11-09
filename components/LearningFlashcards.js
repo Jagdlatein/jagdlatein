@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { answerOrder } from "../lib/answer-order";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import PageMenu, { closePageMenu } from "./PageMenu";
@@ -45,6 +46,19 @@ function pendingCards(cards, review, now, againIds = []) {
   return cards.filter(card => !Object.hasOwn(ratings, card.id) || due.has(card.id) || again.has(card.id));
 }
 
+function getAnswerChoices(card) {
+  const choices = card?.choices;
+  if (!Array.isArray(choices) || choices.length < 2 || !choices.includes(card.answer)) return null;
+  const unique = new Set();
+  for (const choice of choices) {
+    if (typeof choice !== "string") return null;
+    const key = choice.normalize("NFKC").trim();
+    if (!key || unique.has(key)) return null;
+    unique.add(key);
+  }
+  return choices;
+}
+
 export default function LearningFlashcards({ cards = [], categories = [], selection = null, totalCount = cards.length, loading = false, incomplete = false, loadError = "", onReload }) {
   const router = useRouter();
   const [navigation, setNavigation] = useState(() => readFlashcardNavigation(router.query, categories, selection));
@@ -56,13 +70,14 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const [rated, setRated] = useState(0);
   const [againIds, setAgainIds] = useState([]);
   const [message, setMessage] = useState("");
-  const [answerKey, setAnswerKey] = useState(null);
+  const [openAnswer, setOpenAnswerState] = useState(null);
   const reviewRef = useRef(EMPTY_REVIEW);
   const generation = useRef(0);
   const againRef = useRef([]);
   const active = useRef(null);
   const answerRef = useRef(null);
   const headingRef = useRef(null);
+  const feedbackRef = useRef(null);
   const navigationRef = useRef(navigation);
   const routerRef = useRef(router);
   const contextRef = useRef({ categories, selection });
@@ -75,9 +90,9 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const categoryIds = categories.map(item => item.id).join("|");
   routerRef.current = router;
   contextRef.current = { categories, selection };
-  function setOpenAnswer(key) {
-    answerRef.current = key;
-    setAnswerKey(key);
+  function setOpenAnswer(answer) {
+    answerRef.current = answer;
+    setOpenAnswerState(answer);
   }
   if (!syncRef.current) syncRef.current = createFlashcardURLSync({
     getRouter: () => routerRef.current,
@@ -145,14 +160,20 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const available = mode === "all" ? filtered : pendingCards(filtered, review, now, againIds);
   const waitingForCard = incomplete && currentId && !cards.some(card => card.id === currentId);
   const current = waitingForCard ? null : available.find(card => card.id === currentId) || available[0] || null;
+  const choices = getAnswerChoices(current);
   const cardKey = current ? `${scope}:${current.id}` : null;
-  const answerShown = cardKey !== null && answerKey === cardKey;
+  const answerShown = cardKey !== null && openAnswer?.key === cardKey;
+  const selectedChoice = answerShown ? openAnswer.choice : null;
+  const choiceFeedbackShown = Boolean(choices && answerShown);
   useEffect(() => {
-    if (answerRef.current !== null && answerRef.current !== cardKey) {
+    if (answerRef.current && answerRef.current.key !== cardKey) {
       answerRef.current = null;
-      setAnswerKey(null);
+      setOpenAnswerState(null);
     }
   }, [cardKey]);
+  useEffect(() => {
+    if (choiceFeedbackShown) feedbackRef.current?.focus();
+  }, [choiceFeedbackShown, cardKey]);
   useEffect(() => {
     if (!selectionFocusRequested.current || waitingForCard) return;
     selectionFocusRequested.current = false;
@@ -220,7 +241,13 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   }
   function toggleAnswer() {
     if (!current || generation.current !== token || active.current !== current.id) return;
-    setOpenAnswer(answerRef.current === cardKey ? null : cardKey);
+    const alreadyShown = answerRef.current?.key === cardKey;
+    if (choices && alreadyShown) return;
+    setOpenAnswer(alreadyShown ? null : { key: cardKey, choice: null });
+  }
+  function chooseAnswer(choice) {
+    if (!current || generation.current !== token || active.current !== current.id || answerRef.current?.key === cardKey || !choices?.includes(choice)) return;
+    setOpenAnswer({ key: cardKey, choice });
   }
   function nextWithoutRating() {
     if (!current || available.length < 2 || generation.current !== token || active.current !== current.id) return;
@@ -233,7 +260,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     showCurrentQuestion();
   }
   function rate(rating) {
-    if (!loaded || !current || generation.current !== token || active.current !== current.id || answerRef.current !== cardKey) return;
+    if (!loaded || !current || generation.current !== token || active.current !== current.id || answerRef.current?.key !== cardKey) return;
     selectionFocusRequested.current = false; cancelSelectionFocus();
     generation.current++;
     active.current = null;
@@ -272,9 +299,22 @@ export default function LearningFlashcards({ cards = [], categories = [], select
       <h2 id="lernkarten-frage" ref={headingRef} tabIndex={-1}>{current.question}</h2>
       <FlashcardImage image={current.image} showCredit={false} />
       <div className={styles.back}>
-        <button type="button" onClick={toggleAnswer} className={answerShown ? styles.secondary : styles.primary} aria-expanded={answerShown} aria-controls="lernkarten-antwort">{answerShown ? "Antwort ausblenden" : "Antwort zeigen"}</button>
+        {choices && <div className={styles.choices} role="group" aria-label="Antwort wählen">
+          {answerOrder(choices, current.id).map(index => {
+            const choice = choices[index];
+            const correct = answerShown && choice === current.answer;
+            const wrong = selectedChoice === choice && !correct;
+            return <button type="button" key={choice} disabled={answerShown} aria-pressed={selectedChoice === choice} onClick={() => chooseAnswer(choice)} className={`${styles.choice} ${correct ? styles.correctChoice : wrong ? styles.wrongChoice : ""}`}>
+              <span>{choice}</span>
+              {correct && <span className={styles.choiceLabel}>Richtige Antwort</span>}
+              {wrong && <span className={styles.choiceLabel}>Deine Antwort</span>}
+            </button>;
+          })}
+        </div>}
+        {(!choices || !answerShown) && <button type="button" onClick={toggleAnswer} className={choices || answerShown ? styles.secondary : styles.primary} aria-expanded={answerShown} aria-controls="lernkarten-antwort">{answerShown ? "Antwort ausblenden" : "Antwort zeigen"}</button>}
         <div id="lernkarten-antwort" hidden={!answerShown}>
           {answerShown && <>
+            {choices && <h3 className={styles.feedbackTitle} ref={feedbackRef} tabIndex={-1}>{selectedChoice === null ? "Auflösung" : selectedChoice === current.answer ? "Richtig beantwortet" : "Das ist noch nicht richtig"}</h3>}
             <p className={styles.answer}>{current.answer}</p>
             <p className={styles.explanation}>{current.explanation}</p>
             <div className={styles.rating} aria-label="Freiwillige Selbsteinschätzung"><button type="button" onClick={() => rate("again")} disabled={!loaded} className={styles.secondary}>Noch üben</button><button type="button" onClick={() => rate("known")} disabled={!loaded} className={styles.primary}>Gewusst</button></div>

@@ -7,9 +7,11 @@ import PageMenu, { closePageMenu, openPageMenu, resetPageMenuPosition } from "./
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { useExamProfile } from "../lib/use-exam-profile";
 import ExamProfileSummary from "./ExamProfileSummary";
+import { answerOrder } from "../lib/answer-order";
 import { legalCountries, legalTopics, legalSelection, legalSelectionHref, readLegalRegionPreference,
   saveLegalRegionPreference } from "../lib/regional-law-core";
 import styles from "../styles/RegionalLaw.module.css";
+import quizStyles from "../styles/ResearchForPractice.module.css";
 
 function ArticleSources({ article }) {
   return <div className={styles.sources}>
@@ -37,26 +39,46 @@ function LegalArticle({ article, headingRef }) {
   </article>;
 }
 
+function LegalCatalogQuestion({ question, article, index }) {
+  const [selectedId, setSelectedId] = useState(null);
+  const answered = selectedId !== null;
+  const orderedOptions = answerOrder(question.options, question.id).map(position => question.options[position]);
+
+  return <details className={styles.question}>
+    <summary>{index + 1}. {question.prompt}</summary>
+    <p className={styles.scope}>{question.context}</p>
+    <div className={quizStyles.answerOptions} role="group" aria-label="Eine Antwort wählen">
+      {orderedOptions.map(option => {
+        const selected = option.id === selectedId;
+        const showCorrect = answered && question.correctIds.includes(option.id);
+        const feedbackStyle = showCorrect ? quizStyles.answerCorrect : selected ? quizStyles.answerWrong : "";
+        return <button key={option.id} type="button" className={[quizStyles.answerOption, feedbackStyle].filter(Boolean).join(" ")}
+          aria-pressed={selected} aria-disabled={answered}
+          onClick={() => { if (!answered) setSelectedId(current => current ?? option.id); }}>
+          {option.text}
+          {showCorrect ? <strong>Richtige Antwort</strong> : selected && <strong>Deine Antwort</strong>}
+        </button>;
+      })}
+    </div>
+    <div role="status">{answered && <p>{question.correctIds.includes(selectedId) ? "Richtig gewählt." : "Deine Antwort ist falsch."}</p>}</div>
+    <details>
+      <summary>Lösung anzeigen</summary>
+      <p><strong>Richtige Antwort:</strong> {question.options.find(option => question.correctIds.includes(option.id))?.text}</p>
+      <p>{question.explanation}</p>
+      {article && <><p className={styles.citation}>{article.lawTitle} · {article.citation}</p>
+        <p className={styles.scope}>Amtlicher Auszug: {article.officialTextCitation}</p>
+        <blockquote className={styles.original} lang={article.officialLanguage || undefined}>{article.officialText}</blockquote>
+      </>}
+    </details>
+  </details>;
+}
+
 function LegalQuestionCatalog({ questions, articles }) {
   return <section aria-labelledby="law-catalog-heading">
     <h2 id="law-catalog-heading">Rechtsfragen zum Nachlesen ({questions.length})</h2>
-    <p className={styles.hint}>Öffne eine Frage und überlege dir deine Antwort. Klappe danach die Lösung mit der genauen Rechtsgrundlage auf. Die Fragen stammen von Jagdlatein.</p>
-    {questions.map((question, index) => {
-      const article = articles.find(article => article.id === question.articleId);
-      return <details key={question.id} className={styles.question}><summary>{index + 1}. {question.prompt}</summary>
-        <p className={styles.scope}>{question.context}</p>
-        <ul>{question.options.map(option => <li key={option.id}>{option.text}</li>)}</ul>
-        <details>
-          <summary>Lösung anzeigen</summary>
-          <p><strong>Richtige Antwort:</strong> {question.options.find(option => question.correctIds.includes(option.id))?.text}</p>
-          <p>{question.explanation}</p>
-          {article && <><p className={styles.citation}>{article.lawTitle} · {article.citation}</p>
-            <p className={styles.scope}>Amtlicher Auszug: {article.officialTextCitation}</p>
-            <blockquote className={styles.original} lang={article.officialLanguage || undefined}>{article.officialText}</blockquote>
-          </>}
-        </details>
-      </details>;
-    })}
+    <p className={styles.hint}>Öffne eine Frage und wähle eine Antwort. Unter «Lösung anzeigen» findest du die Begründung und die genaue Rechtsgrundlage. Die Fragen stammen von Jagdlatein.</p>
+    {questions.map((question, index) => <LegalCatalogQuestion key={question.id} question={question}
+      article={articles.find(article => article.id === question.articleId)} index={index} />)}
   </section>;
 }
 

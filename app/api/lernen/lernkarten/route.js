@@ -18,7 +18,10 @@ export async function GET(req) {
     if (selection?.invalid) return response({ message: "Die Lernkartenauswahl ist ungültig." }, 400);
     const page = readFlashcardPageRequest(query);
     if (page?.invalid) return response({ message: "Das Lernkartenpaket ist ungültig." }, 400);
-    const data = getFlashcardExport(selection);
+    const choices = query.getAll("choices");
+    const withChoices = choices.length === 1 && choices[0] === "1";
+    if (choices.length && !withChoices) return response({ message: "Das Lernkartenformat ist ungültig." }, 400);
+    const data = getFlashcardExport(selection, { withChoices });
     if (page) {
       const snapshot = getFlashcardSnapshot(data);
       if (page.revision !== snapshot.manifest.revision) return response({ message: "Der Lernkartenbestand wurde aktualisiert. Bitte öffne diese Seite neu." }, 409);

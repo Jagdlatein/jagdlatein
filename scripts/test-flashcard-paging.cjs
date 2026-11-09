@@ -56,6 +56,40 @@ test('Actual source-preserving content and a synthetic 10,000-card bank round-tr
   }
 });
 
+test('The real digital seed requests the matching choice-enabled pages without changing the original cards', async () => {
+  const { getFlashcardExport } = load('lib/learning-flashcards.js');
+  const plain = getFlashcardExport();
+  const practice = getFlashcardExport(null, { withChoices: true });
+  const { deck } = load('lib/flashcard-page-data.js').getFlashcardPageData(null, { withChoices: true });
+  const initial = unpackFlashcards(deck);
+  const api = createLoader({ '../../../../lib/account-access': { getSignedAccountAccess: async () => ({ paid: true }) } })('app/api/lernen/lernkarten/route.js');
+  const origin = 'https://jagdlatein.test';
+  assert.equal(initial.withChoices, true);
+  assert.notEqual(initial.paging.revision, getFlashcardSnapshot(plain).manifest.revision);
+  assert.ok(Buffer.byteLength(JSON.stringify(deck), 'utf8') <= 64 * 1024);
+  const restored = await getDeck(initial, async href => {
+    const url = new URL(href, origin);
+    assert.deepEqual(url.searchParams.getAll('choices'), ['1']);
+    const response = await api.GET(new Request(url));
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('Cache-Control'), 'private, no-store');
+    return response;
+  });
+  assert.deepEqual(restored, practice);
+  assert.deepEqual(restored.cards.map(({ choices, ...card }) => card), plain.cards);
+  const questions = new Map(load('lib/learning-curriculum.js').learningModules.flatMap(course =>
+    course.questions.map(question => [`flash-${question.id}`, question])));
+  for (const card of restored.cards) {
+    assert.equal(card.choices.length, 4, card.id);
+    assert.equal(new Set(card.choices.map(choice => choice.normalize('NFKC').trim())).size, 4, card.id);
+    assert.equal(card.choices.filter(choice => choice === card.answer).length, 1, card.id);
+    if (card.kind !== 'photo') assert.deepEqual(card.choices, questions.get(card.id).answers.map(answer => answer.text), card.id);
+  }
+  const partUrl = `${origin}/api/lernen/lernkarten?part=0&revision=${initial.paging.revision}`;
+  assert.equal((await api.GET(new Request(partUrl))).status, 409);
+  assert.equal((await api.GET(new Request(`${partUrl}&choices=1&choices=1`))).status, 400);
+});
+
 test('Package boundaries adapt to large records and even one oversized record fails before delivery', () => {
   const deck = exampleDeck(600);
   for (const card of deck.cards) card.explanation = 'ä'.repeat(1500);

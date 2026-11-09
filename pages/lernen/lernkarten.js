@@ -6,7 +6,7 @@ import { readFlashcardSelection } from "../../lib/flashcard-selection";
 
 export async function getServerSideProps(context) {
   const access = await getPaidPageProps(context);
-  return access.props ? { props: getFlashcardPageData(readFlashcardSelection(context.query)) } : access;
+  return access.props ? { props: getFlashcardPageData(readFlashcardSelection(context.query), { withChoices: true }) } : access;
 }
 
 export default function LearningFlashcardsPage(props) {

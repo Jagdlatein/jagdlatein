@@ -80,43 +80,96 @@ test('Regional scope remains visible before the closed final source panel', asyn
   } finally { s.close(); }
 });
 
-test('Opening a catalog question shows its options before the separate solution disclosure', async () => {
-  const s = harness({ region: 'SG', ansicht: 'fragen' });
+test('Catalog answers work independently and preserve the separate solution and official excerpt', async () => {
+  const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || require('node:path').join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
+  const asPath = '/jagdrecht/ch?region=SG&ansicht=fragen';
+  const dom = new JSDOM('<div id="root"></div>', { url: `https://jagdlatein.test${asPath}`, pretendToBeVisual: true });
+  const { document } = dom.window;
+  const saved = new Map();
+  for (const [key, value] of Object.entries({ window: dom.window, document, IS_REACT_ACT_ENVIRONMENT: true })) {
+    saved.set(key, Object.getOwnPropertyDescriptor(global, key));
+    Object.defineProperty(global, key, { configurable: true, writable: true, value });
+  }
+  dom.window.scrollTo = () => {};
+  const value = bundle();
+  const item = {
+    ...value.questions[0],
+    prompt: 'Synthetic exam question?',
+    context: 'Synthetic jurisdiction',
+    options: [{ id: 'a', text: 'First option' }, { id: 'b', text: 'Second option' }],
+    correctIds: ['b'],
+    explanation: 'Synthetic answer explanation.',
+  };
+  value.questions = [item, { ...item, id: 'sg-q-two', prompt: 'Another exam question?' }];
+  const oldFetch = global.fetch;
+  global.fetch = async () => ({ ok: true, json: async () => value });
+  const pushes = [];
+  const router = { isReady: true, asPath, query: { region: 'SG', ansicht: 'fragen' }, push(href) { pushes.push(href); return Promise.resolve(false); } };
+  const emptyComponent = { __esModule: true, default: () => null };
+  const load = createLoader({ 'next/router': { useRouter: () => router }, './Seo': emptyComponent, './ExamProfileSummary': emptyComponent,
+    '../lib/use-exam-profile': { useExamProfile: () => ({ profile: null, ready: true }) },
+    './PageMenu': { ...emptyComponent, openPageMenu: () => {}, closePageMenu: () => {}, resetPageMenuPosition: () => {} } });
+  const Component = load('components/RegionalLawLearning.js').default;
+  const root = local('react-dom/client').createRoot(document.getElementById('root'));
+
   try {
-    const value = bundle();
-    value.questions[0] = {
-      ...value.questions[0],
-      prompt: 'Synthetic exam question?',
-      context: 'Synthetic jurisdiction',
-      options: [{ id: 'a', text: 'First option' }, { id: 'b', text: 'Second option' }],
-      correctIds: ['b'],
-      explanation: 'Synthetic answer explanation.',
-    };
-    await s.respond(0, value);
-    const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || require('node:path').join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
-    const dom = new JSDOM(s.html());
-    try {
-      const catalog = dom.window.document.querySelector('section[aria-labelledby="law-catalog-heading"]');
-      const question = catalog.querySelector(':scope > details');
-      const solution = question.querySelector(':scope > details');
-      assert.equal(question.open, false);
-      assert.equal(solution.open, false);
+    await React.act(async () => {
+      root.render(React.createElement(Component, { country: 'CH', name: 'Schweiz', regionLabel: 'Kanton', regions: [{ code: 'SG', name: 'St. Gallen' }] }));
+    });
+    const catalog = document.querySelector('section[aria-labelledby="law-catalog-heading"]');
+    const [question, anotherQuestion] = catalog.querySelectorAll(':scope > details');
+    const solution = question.querySelector(':scope > details');
+    assert.equal(question.open, false);
+    assert.equal(solution.open, false);
 
-      question.querySelector(':scope > summary').click();
-      assert.equal(question.open, true);
-      assert.deepEqual([...question.querySelectorAll(':scope > ul > li')].map(option => option.textContent), ['First option', 'Second option']);
-      assert.equal(solution.open, false);
-      assert.ok([...question.querySelectorAll('p, blockquote')]
-        .filter(node => /Richtige Antwort|Synthetic answer explanation|Synthetic official text/.test(node.textContent))
-        .every(node => node.closest('details') === solution));
+    question.querySelector(':scope > summary').click();
+    assert.equal(question.open, true);
+    const options = [...question.querySelectorAll(':scope > [role="group"] > button')];
+    assert.deepEqual(options.map(option => option.textContent).sort(), ['First option', 'Second option']);
+    assert.ok(options.every(option => option.getAttribute('aria-pressed') === 'false' && option.getAttribute('aria-disabled') === 'false'));
+    assert.equal(question.querySelector('[role="status"]').textContent, '');
+    assert.equal(solution.open, false);
+    assert.ok([...question.querySelectorAll('p, blockquote')]
+      .filter(node => /Richtige Antwort|Synthetic answer explanation|Synthetic official text/.test(node.textContent))
+      .every(node => node.closest('details') === solution));
 
-      solution.querySelector(':scope > summary').click();
-      assert.equal(solution.open, true);
-      assert.match(solution.textContent, /Richtige Antwort:\s*Second option/);
-      assert.match(solution.textContent, /Synthetic answer explanation/);
-      assert.equal(solution.querySelector('blockquote').textContent, norm.officialText);
-    } finally { dom.window.close(); }
-  } finally { s.close(); }
+    const wrong = options.find(option => option.textContent === 'First option');
+    const correct = options.find(option => option.textContent === 'Second option');
+    wrong.focus();
+    await React.act(async () => wrong.click());
+    assert.equal(document.activeElement, wrong);
+    assert.equal(wrong.getAttribute('aria-pressed'), 'true');
+    assert.match(wrong.textContent, /Deine Antwort/);
+    assert.match(correct.textContent, /Richtige Antwort/);
+    assert.equal(question.querySelector('[role="status"]').textContent, 'Deine Antwort ist falsch.');
+    assert.ok(options.every(option => option.getAttribute('aria-disabled') === 'true'));
+    await React.act(async () => correct.click());
+    assert.equal(wrong.getAttribute('aria-pressed'), 'true');
+    assert.equal(solution.open, false);
+    assert.equal(anotherQuestion.open, false);
+    assert.deepEqual(pushes, []);
+
+    solution.querySelector(':scope > summary').click();
+    assert.equal(solution.open, true);
+    assert.match(solution.textContent, /Richtige Antwort:\s*Second option/);
+    assert.match(solution.textContent, /Synthetic answer explanation/);
+    assert.equal(solution.querySelector('blockquote').textContent, norm.officialText);
+
+    anotherQuestion.querySelector(':scope > summary').click();
+    const anotherSolution = anotherQuestion.querySelector(':scope > details');
+    anotherSolution.querySelector(':scope > summary').click();
+    assert.equal(anotherSolution.open, true, 'Manual reveal also works before answering');
+    const anotherCorrect = [...anotherQuestion.querySelectorAll('[role="group"] > button')].find(option => option.textContent === 'Second option');
+    assert.equal(anotherCorrect.getAttribute('aria-pressed'), 'false');
+    await React.act(async () => anotherCorrect.click());
+    assert.equal(anotherQuestion.querySelector('[role="status"]').textContent, 'Richtig gewählt.');
+    assert.equal(question.querySelector('[role="status"]').textContent, 'Deine Antwort ist falsch.');
+  } finally {
+    await React.act(async () => root.unmount());
+    global.fetch = oldFetch;
+    dom.window.close();
+    for (const [key, previous] of saved) { if (previous) Object.defineProperty(global, key, previous); else delete global[key]; }
+  }
 });
 
 test('The personal exam target restores a bare country page before a different last-viewed region', () => {

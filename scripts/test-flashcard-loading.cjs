@@ -164,10 +164,12 @@ function assertPrivate(response) {
   assert.equal(response.headers.get('vary'), 'Cookie');
 }
 
-test('Real SSR page data contain at most 24 cards and remain below the 128 KB page budget', async () => {
-  const actual = load('lib/learning-flashcards.js').getFlashcardExport();
-  assert.ok(actual.cards.length > 24, 'the real expanded bank exercises incremental loading');
+test('Real SSR starts digital cards with choices and keeps both page seeds below the 128 KB budget', async () => {
+  const { getFlashcardExport } = load('lib/learning-flashcards.js');
   for (const file of ['pages/lernen/lernkarten.js', 'pages/lernen/lernkarten-drucken.js']) {
+    const withChoices = file.endsWith('/lernkarten.js');
+    const actual = getFlashcardExport(null, { withChoices });
+    assert.ok(actual.cards.length > 24, 'the real expanded bank exercises incremental loading');
     const headers = {};
     const { props } = await load(file, { '../../lib/account-access': { getPaidPageProps: async context => { context.res.setHeader('Cache-Control', 'private, no-store, max-age=0'); return { props: {} }; } } }).getServerSideProps({ req: {}, res: { setHeader: (key, value) => headers[key] = value }, resolvedUrl: '/lernen/lernkarten', query: {} });
     assert.match(headers['Cache-Control'], /private, no-store/);
@@ -176,6 +178,7 @@ test('Real SSR page data contain at most 24 cards and remain below the 128 KB pa
     assert.equal(seed.cards.length, 24);
     assert.equal(props.totalCount, actual.cards.length);
     assert.equal(props.remote, true);
+    assert.equal(seed.withChoices, withChoices ? true : undefined);
     assert.deepEqual(seed.cards, actual.cards.slice(0, 24));
     assert.deepEqual(seed.categories, actual.categories, 'all categories remain available before fetching');
   }
@@ -359,8 +362,10 @@ test('A completed bank is invalidated immediately when its seed changes', async 
   } finally { h.cleanup(); b.restore(); }
 });
 
-test('Expanded cards preserve the active category, typed search and intentionally revealed answer in the learning UI', async () => {
-  const pending = deferred(); const b = browser(() => pending.promise); const h = hookHarness(); const e = engine();
+test('Expanded cards preserve the active category, typed search and quiz feedback in the learning UI', async () => {
+  const addChoices = deck => deck.map(item => item.id === 'flash-hund-eins' ? { ...item, choices: [item.answer, 'In die Wochenübersicht.'] } : item);
+  const pending = deferred(); const b = browser(() => pending.promise);
+  const h = hookHarness({ ...baseProps, deck: makeDeck(addChoices(seedCards)) }); const e = engine();
   const UI = load('components/LearningFlashcards.js', { react: e.hooks }).default;
   let tree;
   const render = () => { tree = e.render(() => UI(h.value)); };
@@ -369,15 +374,15 @@ test('Expanded cards preserve the active category, typed search and intentionall
     h.flush(); settle();
     chooseCategory(tree, 'hundewesen'); settle();
     find(tree, node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value: 'Belohnung' } }); settle();
-    assert.doesNotMatch(words(tree), /In den Tagesplan/);
-    const reveal = find(tree, node => node.type === 'button' && /Antwort zeigen/.test(words(node)));
-    assert.ok(reveal);
-    reveal.props.onClick(); settle();
-    assert.match(words(tree), /In den Tagesplan/);
-    pending.resolve(response()); await h.settle(); settle();
+    assert.doesNotMatch(words(tree), /Richtige Antwort|Die Erklärung bleibt/);
+    const choice = find(tree, node => node.type === 'button' && words(node).trim() === 'In den Tagesplan.');
+    assert.ok(choice);
+    choice.props.onClick(); settle();
+    assert.match(words(tree), /Richtig beantwortet/);
+    pending.resolve(response(200, makeDeck(addChoices(fullCards)))); await h.settle(); settle();
     assert.equal(categoryChoice(tree).props.value, 'hundewesen');
     assert.equal(find(tree, node => node.type === 'input' && node.props.type === 'search').props.value, 'Belohnung');
-    assert.match(words(tree), /In den Tagesplan/);
+    assert.match(words(tree), /Richtig beantwortet/);
     assert.match(words(tree), /2 Karten offen oder fällig/);
     const printLink = find(tree, node => node.props?.href?.pathname === '/lernen/lernkarten-drucken');
     assert.deepEqual(printLink.props.href.query, { kategorie: 'hundewesen', q: 'Belohnung', karte: 'flash-hund-eins' });

@@ -50,7 +50,9 @@ test('Both page props use a small immediate seed; the separately loaded complete
   for (const file of ['pages/lernen/lernkarten.js', 'pages/lernen/lernkarten-drucken.js']) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
     assert.match(source, /getServerSideProps\(context\)/);
-    assert.match(source, /props:\s*getFlashcardPageData\(readFlashcardSelection\(context.query\)\)/);
+    assert.match(source, file.endsWith('/lernkarten.js')
+      ? /props:\s*getFlashcardPageData\(readFlashcardSelection\(context.query\), \{ withChoices: true \}\)/
+      : /props:\s*getFlashcardPageData\(readFlashcardSelection\(context.query\)\)/);
     assert.match(source, /useFlashcardDeck/);
   }
   const pure = fs.readFileSync(path.join(root, 'lib/flashcard-payload.js'), 'utf8');

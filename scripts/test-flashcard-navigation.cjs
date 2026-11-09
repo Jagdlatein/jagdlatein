@@ -115,14 +115,15 @@ function ui({ href = '/lernen/lernkarten', initialProps = {} } = {}) {
 }
 
 test('Current card/category survive new category array instances, then reload from the saved URL without ratings', async () => {
-  const s = ui({ href: '/lernen/lernkarten?kategorie=wildkunde&karte=flash-gams' });
+  const studyCards = cards.map(card => card.id === 'flash-gams' ? { ...card, choices: ['Antwort Gams', 'Andere Gamsantwort'] } : card);
+  const s = ui({ href: '/lernen/lernkarten?kategorie=wildkunde&karte=flash-gams', initialProps: { cards: studyCards } });
   try {
     await s.settle(); const baseline = s.writes;
-    assert.doesNotMatch(text(s.tree), /Antwort Gams/);
-    s.click('Antwort zeigen');
-    assert.match(text(s.tree), /Antwort Gams/);
+    assert.doesNotMatch(text(s.tree), /Richtige Antwort|Vorhandene Erklärung Gams/);
+    s.click('Andere Gamsantwort');
+    assert.match(text(s.tree), /Das ist noch nicht richtig/);
     s.setProps({ categories: categories.map(item => ({ ...item })) }); await s.settle();
-    assert.match(text(s.tree), /Antwort Gams/); assert.equal(s.find(node => node.type?.name === 'MenuChoice').props.value, 'wildkunde');
+    assert.match(text(s.tree), /Das ist noch nicht richtig/); assert.equal(s.find(node => node.type?.name === 'MenuChoice').props.value, 'wildkunde');
     s.click('Weiter ohne Bewertung'); await s.settle(); await s.complete(0);
     assert.equal(new URL(s.router.asPath, 'https://jagdlatein.de').searchParams.get('karte'), 'flash-reh');
     assert.equal(s.writes, baseline); assert.deepEqual(JSON.parse(s.saved).cards, {});
@@ -130,7 +131,8 @@ test('Current card/category survive new category array instances, then reload fr
     assert.doesNotMatch(text(s.tree), /Antwort Reh/);
     await s.back('/lernen/lernkarten?kategorie=wildkunde&karte=flash-gams');
     assert.match(text(s.tree), /Was erklärt das Gams-Beispiel/);
-    assert.doesNotMatch(text(s.tree), /Antwort Gams/);
+    assert.match(text(s.tree), /Andere Gamsantwort/);
+    assert.doesNotMatch(text(s.tree), /Richtige Antwort|Vorhandene Erklärung Gams|Das ist noch nicht richtig/);
   } finally { s.cleanup(); }
 });
 

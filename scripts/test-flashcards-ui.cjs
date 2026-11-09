@@ -49,14 +49,14 @@ function engine() {
     }, render(fn) { cursor = 0; return fn(); }, flush() { const pending = effects; effects = []; pending.forEach(fn => fn()); }, unmount() { slots.forEach(slot => slot?.cleanup?.()); },
   };
 }
-function setup({ stored = null, blocked = false, query = {} } = {}) {
+function setup({ stored = null, blocked = false, query = {}, studyCards = cards } = {}) {
   const e = engine(); let value = stored; let writes = 0;
   const previousWindow = global.window; const originalNow = Date.now; let tick = 0;
   Date.now = () => 1792137600000 + tick++;
   global.window = { localStorage: { getItem() { if (blocked) throw new Error('blocked'); return value; }, setItem(key, next) { if (blocked) throw new Error('blocked'); writes++; value = next; } }, setInterval: () => 1, clearInterval() {}, addEventListener() {}, removeEventListener() {}, requestAnimationFrame(fn) { fn(); } };
   const Component = load('components/LearningFlashcards.js', { react: e.hooks, 'next/router': { useRouter: () => ({ query, isReady: true }) } }).default;
   let tree;
-  const render = () => { tree = e.render(() => Component({ cards, categories })); };
+  const render = () => { tree = e.render(() => Component({ cards: studyCards, categories })); };
   render();
   return { get tree() { return tree; }, get saved() { return value; }, get writes() { return writes; }, render,
     flush() { e.flush(); render(); },
@@ -187,6 +187,71 @@ test('Visible answers retain the correct source scope and an explicit rating per
     assert.equal(stored.cards['flash-photo-example'].intervalDays, 1);
     assert.equal(Object.keys(stored.cards).length, 1);
     assert.ok(s.writes > 0);
+  } finally { s.cleanup(); }
+});
+
+test('A card with options checks a single answer, focuses feedback and records only the explicit rating', () => {
+  const studyCards = [
+    { ...cards[0], choices: ['Andere Art', 'Beispielart', 'Dritte Art'] },
+    { ...cards[1], answer: 'A/a.', choices: ['A/a.', 'A/A.', 'a/a.'] },
+    { ...cards[2], answer: 'Ein einzelnes A', choices: ['Ein einzelnes a', 'Ein einzelnes A'] },
+  ];
+  const s = setup({ studyCards });
+  try {
+    s.flush(); s.flush();
+    const writes = s.writes;
+    const group = () => find(s.tree, node => node.props?.['aria-label'] === 'Antwort wählen');
+    const optionOrder = group().props.children.map(option => words(option).trim());
+    const { answerOrder } = load('lib/answer-order.js');
+    assert.deepEqual(optionOrder, answerOrder(studyCards[0].choices, studyCards[0].id).map(index => studyCards[0].choices[index]));
+    assert.doesNotMatch(words(s.tree), /Richtige Antwort|Dokumentiertes Motiv|Gewusst/);
+    const staleCorrect = s.button('Beispielart');
+    s.click('Andere Art');
+    const feedback = find(s.tree, node => node.type === 'h3' && node.props?.className === 'feedbackTitle');
+    let focused = 0;
+    feedback.props.ref.current = { focus() { focused++; } };
+    s.flush();
+    assert.equal(focused, 1);
+    assert.match(words(s.tree), /Das ist noch nicht richtig/);
+    assert.match(words(s.tree), /Dokumentiertes Motiv/);
+    assert.match(words(group()), /Richtige Antwort/);
+    assert.match(words(group()), /Deine Antwort/);
+    assert.equal(group().props.children.find(option => option.key === 'Andere Art').props['aria-pressed'], true);
+    assert.ok(group().props.children.every(option => option.props.disabled));
+    staleCorrect.props.onClick(); s.render();
+    assert.match(words(s.tree), /Das ist noch nicht richtig/);
+    assert.equal(s.writes, writes);
+    s.click('Noch üben'); s.flush();
+    assert.equal(JSON.parse(s.saved).cards[studyCards[0].id].rating, 'again');
+    assert.doesNotMatch(words(s.tree), /Richtige Antwort|Deine Antwort|Zweite vorhandene Erklärung/);
+    staleCorrect.props.onClick(); s.render();
+    assert.doesNotMatch(words(s.tree), /Richtige Antwort|Richtig beantwortet/);
+    assert.deepEqual(new Set(group().props.children.map(option => option.key)), new Set(['A/a.', 'A/A.', 'a/a.']));
+    s.click('A/a.');
+    assert.match(words(s.tree), /Richtig beantwortet/);
+    s.click('Weiter ohne Bewertung');
+    s.click('Ein einzelnes a');
+    assert.match(words(s.tree), /Das ist noch nicht richtig/);
+    assert.equal(group().props.children.find(option => option.key === 'Ein einzelnes A').props['aria-pressed'], false);
+  } finally { s.cleanup(); }
+});
+
+test('Intentional reveal skips the quiz choice and malformed options retain the flashcard flow', () => {
+  const valid = { ...cards[0], choices: ['Andere Art', 'Beispielart'] };
+  const duplicate = { ...cards[1], choices: ['Zweite Antwort', ' Zweite Antwort ', 'Andere Antwort'] };
+  const s = setup({ studyCards: [valid, duplicate] });
+  try {
+    s.flush();
+    s.click('Antwort zeigen');
+    assert.match(words(s.tree), /Auflösung|Richtige Antwort/);
+    assert.doesNotMatch(words(s.tree), /Richtig beantwortet|Das ist noch nicht richtig|Deine Antwort/);
+    s.click('Weiter ohne Bewertung');
+    assert.equal(find(s.tree, node => node.props?.['aria-label'] === 'Antwort wählen'), null);
+    assert.doesNotMatch(words(s.tree), /Zweite Antwort|Zweite vorhandene Erklärung/);
+    s.click('Antwort zeigen');
+    assert.match(words(s.tree), /Zweite Antwort/);
+    s.click('Antwort ausblenden');
+    assert.doesNotMatch(words(s.tree), /Zweite Antwort/);
   } finally { s.cleanup(); }
 });
 
