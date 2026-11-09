@@ -66,19 +66,18 @@ function setup({ stored = null, blocked = false, query = {} } = {}) {
   };
 }
 
-test('SSR immediately shows the current question, answer, explanation and sources', () => {
+test('SSR shows the question and photo attribution while withholding the answer and content sources', () => {
   const Component = load('components/LearningFlashcards.js').default;
   const html = renderToStaticMarkup(React.createElement(Component, { cards, categories }));
   assert.equal((html.match(/<h1/g) || []).length, 1);
   assert.match(html, /Welche Wildart zeigt dieses Foto/);
   assert.match(html, /Tierfoto für diese Bestimmungskarte/);
   assert.match(html, /Fotograf/);
-  assert.match(html, /Beispielart/);
-  assert.match(html, /Dokumentiertes Motiv aus dem vorhandenen Bildnachweis/);
-  assert.match(html, /Bildnachweis und Artenporträt/);
-  assert.match(html, /https:\/\/example.org\/lesson/);
-  assert.doesNotMatch(html, /Zweite Antwort|Dritte Antwort|Antwort zeigen/);
-  assert.match(html, /Freiwillige Selbsteinschätzung/);
+  assert.match(html, /aria-expanded="false" aria-controls="lernkarten-antwort">Antwort zeigen/);
+  assert.match(html, /<div id="lernkarten-antwort" hidden=""><\/div>/);
+  assert.match(html, /Bildnachweis/);
+  assert.doesNotMatch(html, /Beispielart|Dokumentiertes Motiv aus dem vorhandenen Bildnachweis|Artenporträt|https:\/\/example.org\/lesson/);
+  assert.doesNotMatch(html, /Zweite Antwort|Dritte Antwort|Freiwillige Selbsteinschätzung/);
   assert.match(html, /Weiter ohne Bewertung/);
   assert.match(html, /nur in diesem Browser auf diesem Gerät/);
   assert.doesNotMatch(html, /lernkarten-drucken|PDF-Starterset/, 'Export navigation belongs to the lower main menu');
@@ -87,21 +86,29 @@ test('SSR immediately shows the current question, answer, explanation and source
 test('Seeing and browsing cards does not rate them or write learning progress', () => {
   const s = setup();
   try {
+    assert.doesNotMatch(words(s.tree), /Beispielart/);
+    s.click('Antwort zeigen');
     assert.match(words(s.tree), /Beispielart/);
     assert.equal(s.button('Gewusst').props.disabled, true);
     s.button('Gewusst').props.onClick(); s.render();
     s.flush(); s.flush();
     const writes = s.writes;
     const stale = s.button('Weiter ohne Bewertung');
+    s.click('Antwort ausblenden');
+    const staleReveal = s.button('Antwort zeigen');
     s.click('Weiter ohne Bewertung');
-    assert.match(words(s.tree), /Zweite Antwort/);
-    assert.match(words(s.tree), /Zweite vorhandene Erklärung/);
+    assert.match(words(s.tree), /Wie wird die nächste Frage/);
+    assert.doesNotMatch(words(s.tree), /Zweite Antwort|Zweite vorhandene Erklärung|Hunde verstehen|Vorhandene Lektion/);
     stale.props.onClick(); s.render();
-    assert.match(words(s.tree), /Zweite Antwort/);
+    staleReveal.props.onClick(); s.render();
+    assert.match(words(s.tree), /Wie wird die nächste Frage/);
+    assert.doesNotMatch(words(s.tree), /Zweite Antwort|Beispielart/);
     s.click('Weiter ohne Bewertung');
-    assert.match(words(s.tree), /Dritte Antwort/);
+    assert.match(words(s.tree), /Was gehört zum dritten Beispiel/);
+    assert.doesNotMatch(words(s.tree), /Dritte Antwort/);
     s.click('Weiter ohne Bewertung');
-    assert.match(words(s.tree), /Beispielart/);
+    assert.match(words(s.tree), /Welche Wildart zeigt dieses Foto/);
+    assert.doesNotMatch(words(s.tree), /Beispielart/);
     s.flush();
     assert.doesNotMatch(words(s.tree), /in dieser Sitzung bewertet/);
     assert.deepEqual(JSON.parse(s.saved).cards, {});
@@ -126,6 +133,7 @@ test('Both card changes focus and scroll the newly rendered question into view',
     attachHeading('second');
     assert.equal(frames.length, 1);
     frames.shift()();
+    s.click('Antwort zeigen');
     s.click('Gewusst');
     attachHeading('third');
     assert.equal(frames.length, 1);
@@ -136,7 +144,8 @@ test('Both card changes focus and scroll the newly rendered question into view',
       ['third', 'focus', { preventScroll: true }],
       ['third', 'scroll', { block: 'start', behavior: 'auto' }],
     ]);
-    assert.match(words(s.tree), /Dritte Antwort/);
+    assert.match(words(s.tree), /Was gehört zum dritten Beispiel/);
+    assert.doesNotMatch(words(s.tree), /Dritte Antwort/);
     s.flush();
     assert.deepEqual(Object.keys(JSON.parse(s.saved).cards), ['flash-example-two']);
   } finally { s.cleanup(); }
@@ -146,6 +155,8 @@ test('Visible answers retain the correct source scope and an explicit rating per
   const s = setup();
   try {
     s.flush();
+    s.click('Antwort zeigen');
+    assert.equal(s.button('Antwort ausblenden').props['aria-expanded'], true);
     assert.match(words(s.tree), /Beispielart/);
     assert.match(words(s.tree), /Bildnachweis und Artenporträt/);
     assert.match(words(s.tree), /Bildnachweis geprüft/);
@@ -154,9 +165,16 @@ test('Visible answers retain the correct source scope and an explicit rating per
     assert.equal(find(sourcePanel, node => node.props?.className === 'answer'), null, 'The learning answer never requires opening sources');
     assert.ok(find(s.tree, node => node.props?.className === 'courseLink'), 'The full existing lesson remains directly reachable');
     const stale = s.button('Gewusst');
+    s.click('Antwort ausblenden');
+    stale.props.onClick(); s.render();
+    assert.doesNotMatch(words(s.tree), /Beispielart|in dieser Sitzung bewertet/);
+    s.click('Antwort zeigen');
     s.click('Gewusst');
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
-    assert.match(words(s.tree), /Hunde verstehen\s+· Vorhandene Lektion/);
+    assert.doesNotMatch(words(s.tree), /Zweite Antwort|Hunde verstehen|Vorhandene Lektion/);
+    s.click('Antwort zeigen');
+    assert.match(words(s.tree), /Hunde verstehen/);
+    assert.match(words(s.tree), /Vorhandene Lektion/);
     assert.match(words(s.tree), /Zweite Antwort/);
     assert.match(words(s.tree), /Zweite vorhandene Erklärung/);
     assert.match(words(s.tree), /Quellen der Ausgangslektion/);
@@ -175,13 +193,14 @@ test('Visible answers retain the correct source scope and an explicit rating per
 test('Noch üben moves the card after the remaining cards and known cards leave the pending round', () => {
   const s = setup();
   try {
-    s.flush(); s.click('Noch üben');
+    s.flush(); s.click('Antwort zeigen'); s.click('Noch üben');
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
-    s.click('Gewusst');
+    s.click('Antwort zeigen'); s.click('Gewusst');
     assert.match(words(s.tree), /Was gehört zum dritten Beispiel/);
-    s.click('Gewusst');
+    s.click('Antwort zeigen'); s.click('Gewusst');
     assert.match(words(s.tree), /Welche Wildart zeigt dieses Foto/);
-    s.click('Gewusst');
+    assert.doesNotMatch(words(s.tree), /Beispielart/);
+    s.click('Antwort zeigen'); s.click('Gewusst');
     assert.match(words(s.tree), /Für jetzt ist deine Auswahl wiederholt/);
     assert.match(words(s.tree), /Selbsteinschätzung/);
   } finally { s.cleanup(); }
@@ -190,13 +209,13 @@ test('Noch üben moves the card after the remaining cards and known cards leave 
 test('Filter changes reject previous-card handlers and keep search/category on the print link', () => {
   const s = setup();
   try {
-    s.flush(); const stale = s.button('Gewusst'); const staleNext = s.button('Weiter ohne Bewertung');
+    s.flush(); s.click('Antwort zeigen'); const stale = s.button('Gewusst'); const staleNext = s.button('Weiter ohne Bewertung');
     const select = find(s.tree, node => node.type?.name === 'MenuChoice');
     select.props.onChange({ target: { value: 'hundewesen' } }); s.render();
     stale.props.onClick(); s.render();
     staleNext.props.onClick(); s.render();
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
-    assert.match(words(s.tree), /Zweite Antwort/);
+    assert.doesNotMatch(words(s.tree), /Zweite Antwort/);
     assert.doesNotMatch(words(s.tree), /in dieser Sitzung bewertet/);
     const input = find(s.tree, node => node.type === 'input' && node.props.type === 'search');
     input.props.onChange({ target: { value: 'nächste' } }); s.render();
@@ -211,7 +230,7 @@ test('Stored local ratings survive a new session, and blocked storage remains us
   const s = setup({ stored: JSON.stringify(state), query: { kategorie: 'hundewesen' } });
   try { s.flush(); assert.match(words(s.tree), /Wie wird die nächste Frage/); assert.doesNotMatch(words(s.tree), /Welche Wildart/); } finally { s.cleanup(); }
   const blocked = setup({ blocked: true });
-  try { blocked.flush(); blocked.click('Gewusst'); assert.match(words(blocked.tree), /nur für diese geöffnete Sitzung/); assert.equal(blocked.writes, 0); } finally { blocked.cleanup(); }
+  try { blocked.flush(); blocked.click('Antwort zeigen'); blocked.click('Gewusst'); assert.match(words(blocked.tree), /nur für diese geöffnete Sitzung/); assert.equal(blocked.writes, 0); } finally { blocked.cleanup(); }
 });
 
 test('Print view keeps compact numbered source references and lists every full URL once in an appendix', () => {

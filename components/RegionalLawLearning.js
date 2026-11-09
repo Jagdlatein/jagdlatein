@@ -40,18 +40,21 @@ function LegalArticle({ article, headingRef }) {
 function LegalQuestionCatalog({ questions, articles }) {
   return <section aria-labelledby="law-catalog-heading">
     <h2 id="law-catalog-heading">Rechtsfragen zum Nachlesen ({questions.length})</h2>
-    <p className={styles.hint}>Eigene Lernfragen mit Lösung und genauer Rechtsgrundlage. Keine amtlichen Originalprüfungsfragen.</p>
+    <p className={styles.hint}>Öffne eine Frage und überlege dir deine Antwort. Klappe danach die Lösung mit der genauen Rechtsgrundlage auf. Die Fragen stammen von Jagdlatein.</p>
     {questions.map((question, index) => {
       const article = articles.find(article => article.id === question.articleId);
       return <details key={question.id} className={styles.question}><summary>{index + 1}. {question.prompt}</summary>
         <p className={styles.scope}>{question.context}</p>
         <ul>{question.options.map(option => <li key={option.id}>{option.text}</li>)}</ul>
-        <p><strong>Richtige Antwort:</strong> {question.options.find(option => question.correctIds.includes(option.id))?.text}</p>
-        <p>{question.explanation}</p>
-        {article && <><p className={styles.citation}>{article.lawTitle} · {article.citation}</p>
-          <p className={styles.scope}>Amtlicher Auszug: {article.officialTextCitation}</p>
-          <blockquote className={styles.original} lang={article.officialLanguage || undefined}>{article.officialText}</blockquote>
+        <details>
+          <summary>Lösung anzeigen</summary>
+          <p><strong>Richtige Antwort:</strong> {question.options.find(option => question.correctIds.includes(option.id))?.text}</p>
+          <p>{question.explanation}</p>
+          {article && <><p className={styles.citation}>{article.lawTitle} · {article.citation}</p>
+            <p className={styles.scope}>Amtlicher Auszug: {article.officialTextCitation}</p>
+            <blockquote className={styles.original} lang={article.officialLanguage || undefined}>{article.officialText}</blockquote>
           </>}
+        </details>
       </details>;
     })}
   </section>;

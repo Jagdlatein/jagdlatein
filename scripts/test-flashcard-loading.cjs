@@ -359,7 +359,7 @@ test('A completed bank is invalidated immediately when its seed changes', async 
   } finally { h.cleanup(); b.restore(); }
 });
 
-test('Expanded cards preserve the active category, typed search and immediately visible answer in the learning UI', async () => {
+test('Expanded cards preserve the active category, typed search and intentionally revealed answer in the learning UI', async () => {
   const pending = deferred(); const b = browser(() => pending.promise); const h = hookHarness(); const e = engine();
   const UI = load('components/LearningFlashcards.js', { react: e.hooks }).default;
   let tree;
@@ -369,7 +369,10 @@ test('Expanded cards preserve the active category, typed search and immediately 
     h.flush(); settle();
     chooseCategory(tree, 'hundewesen'); settle();
     find(tree, node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value: 'Belohnung' } }); settle();
-    assert.equal(find(tree, node => node.type === 'button' && /Antwort zeigen/.test(words(node))), null);
+    assert.doesNotMatch(words(tree), /In den Tagesplan/);
+    const reveal = find(tree, node => node.type === 'button' && /Antwort zeigen/.test(words(node)));
+    assert.ok(reveal);
+    reveal.props.onClick(); settle();
     assert.match(words(tree), /In den Tagesplan/);
     pending.resolve(response()); await h.settle(); settle();
     assert.equal(categoryChoice(tree).props.value, 'hundewesen');

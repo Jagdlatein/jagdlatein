@@ -118,6 +118,8 @@ test('Current card/category survive new category array instances, then reload fr
   const s = ui({ href: '/lernen/lernkarten?kategorie=wildkunde&karte=flash-gams' });
   try {
     await s.settle(); const baseline = s.writes;
+    assert.doesNotMatch(text(s.tree), /Antwort Gams/);
+    s.click('Antwort zeigen');
     assert.match(text(s.tree), /Antwort Gams/);
     s.setProps({ categories: categories.map(item => ({ ...item })) }); await s.settle();
     assert.match(text(s.tree), /Antwort Gams/); assert.equal(s.find(node => node.type?.name === 'MenuChoice').props.value, 'wildkunde');
@@ -125,6 +127,10 @@ test('Current card/category survive new category array instances, then reload fr
     assert.equal(new URL(s.router.asPath, 'https://jagdlatein.de').searchParams.get('karte'), 'flash-reh');
     assert.equal(s.writes, baseline); assert.deepEqual(JSON.parse(s.saved).cards, {});
     const restored = readURL(s.router.asPath, categories); assert.equal(restored.cardId, 'flash-reh'); assert.equal(restored.category, 'wildkunde');
+    assert.doesNotMatch(text(s.tree), /Antwort Reh/);
+    await s.back('/lernen/lernkarten?kategorie=wildkunde&karte=flash-gams');
+    assert.match(text(s.tree), /Was erklärt das Gams-Beispiel/);
+    assert.doesNotMatch(text(s.tree), /Antwort Gams/);
   } finally { s.cleanup(); }
 });
 
@@ -133,14 +139,16 @@ test('An initial card beyond the seed waits for complete data, retaining the req
   try {
     await s.settle(); assert.doesNotMatch(text(s.tree), /Antwort Reh/);
     s.setProps({ cards, categories: categories.map(item => ({ ...item })), incomplete: false, loading: false }); await s.settle();
-    assert.match(text(s.tree), /Antwort Hund/); assert.equal(s.replacements.length, 0);
+    assert.match(text(s.tree), /Was erklärt das Hund-Beispiel/);
+    assert.doesNotMatch(text(s.tree), /Antwort Hund/);
+    assert.equal(s.replacements.length, 0);
   } finally { s.cleanup(); }
 });
 
 test('A course click flushes delayed search/card URL before navigating and a later click takes priority', async () => {
   const s = ui();
   try {
-    await s.settle(); const baseline = s.writes; s.input('Gams');
+    await s.settle(); const baseline = s.writes; s.input('Gams'); s.click('Antwort zeigen');
     const course = s.find(node => node.props?.href === '/kurse/gams'), first = s.event();
     course.props.onClick(first); assert.equal(first.prevented, true); await tick();
     assert.equal(s.pushes.length, 0); assert.equal(s.replacements.length, 1);
@@ -156,7 +164,7 @@ test('Back or another route before a pending course click completes cancels that
   for (const navigationType of ['back', 'other-route', 'unmount']) {
     const s = ui();
     try {
-      await s.settle(); s.input('Gams'); const event = s.event(); s.find(node => node.props?.href === '/kurse/gams').props.onClick(event); await tick();
+      await s.settle(); s.input('Gams'); s.click('Antwort zeigen'); const event = s.event(); s.find(node => node.props?.href === '/kurse/gams').props.onClick(event); await tick();
       if (navigationType === 'back') await s.back('/lernen/lernkarten?karte=flash-reh');
       if (navigationType === 'other-route') { const cancelled = s.router.replace('/kurse/anderes-ziel'); cancelled.catch(() => {}); }
       if (navigationType === 'unmount') s.unmount();
@@ -169,11 +177,13 @@ test('Back or another route before a pending course click completes cancels that
 
 const lowerMenu = { __esModule: true, default: ({ title, children }) => React.createElement('section', { 'data-lower-menu': title }, children), closePageMenu() {} };
 
-test('Print/PDF choices and filters appear once in the lower menu while the card itself keeps only its three study actions', () => {
+test('Print/PDF choices and filters appear once in the lower menu while the unrevealed card offers reveal and skip', () => {
   const Component = createLoader({ ...framework, 'next/router': { useRouter: () => ({ query: {}, isReady: true }) } })('components/LearningFlashcards.js').default;
   const html = renderToStaticMarkup(React.createElement(Component, { cards, categories }));
   assert.doesNotMatch(html, /Diese Auswahl drucken|Starterset als PDF|<select|Karten anzeigen/);
-  assert.equal((html.match(/<button/g) || []).length, 3);
+  assert.equal((html.match(/<button/g) || []).length, 2);
+  assert.match(html, /Antwort zeigen/);
+  assert.match(html, /Weiter ohne Bewertung/);
   const WithMenu = createLoader({ ...framework, './PageMenu': lowerMenu, 'next/router': { useRouter: () => ({ query: {}, isReady: true }) } })('components/LearningFlashcards.js').default;
   const withMenu = renderToStaticMarkup(React.createElement(WithMenu, { cards, categories }));
   assert.match(withMenu, /data-lower-menu="Lernkarten auswählen"/);
@@ -207,14 +217,15 @@ test('An old shallow route error preserves a newer draft and its scheduled repla
     s.timer.flush(); s.replacements[0].task.reject(new Error('temporary router failure')); await tick();
     assert.equal(s.replacements.length, 2);
     assert.equal(new URL(s.replacements[1].href, 'https://jagdlatein.de').searchParams.get('q'), 'Gams');
-    await s.complete(1); assert.match(text(s.tree), /Antwort Gams/);
+    await s.complete(1); assert.match(text(s.tree), /Was erklärt das Gams-Beispiel/);
+    assert.doesNotMatch(text(s.tree), /Antwort Gams/);
   } finally { s.cleanup(); }
 });
 
 test('A hung shallow replacement cannot trap a course link and keeps the current entry for Back', async () => {
   const s = ui();
   try {
-    await s.settle(); s.input('Gams'); const event = s.event(); s.find(node => node.props?.href === '/kurse/gams').props.onClick(event); await tick();
+    await s.settle(); s.input('Gams'); s.click('Antwort zeigen'); const event = s.event(); s.find(node => node.props?.href === '/kurse/gams').props.onClick(event); await tick();
     s.timer.flush(); await tick();
     assert.deepEqual(s.assigned, ['/kurse/gams']); assert.equal(s.pushes.length, 0); assert.equal(s.history.length, 1);
     const remembered = new URL(s.history[0].href, 'https://jagdlatein.de');

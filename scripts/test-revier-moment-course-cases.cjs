@@ -52,7 +52,7 @@ test('Scoped lesson or course references retain exact existing source labels/URL
   assert.equal(lessonCount, 19); assert.equal(courseCount, 41);
 });
 
-test('All sixty actual daily readers start with four choices, literal lesson context and one final closed source box', () => {
+test('All sixty daily cases start with four choices and the topic, without the lesson heading giving a hint', () => {
   const Component = component();
   for (const item of cases) {
     const dom = new JSDOM(renderToStaticMarkup(React.createElement(Component, { moment: stamp(item) })));
@@ -61,7 +61,7 @@ test('All sixty actual daily readers start with four choices, literal lesson con
       assert.equal(document.querySelectorAll('.answerOptions button').length, 4); assert.equal(document.querySelectorAll('input[type="checkbox"],select').length, 0);
       assert.equal(document.querySelectorAll('details').length, 1); assert.equal(source.open, false); assert.equal(main.lastElementChild, source);
       assert.equal(document.querySelector('img,video,figure,audio,iframe'), null);
-      assert.ok(document.querySelector('.topic').textContent.includes(item.reading.title)); assert.ok(document.querySelector('.topic').textContent.includes(item.topic.title));
+      assert.equal(document.querySelector('.topic').textContent, `Thema ${item.topic.title}`);
       assert.ok(document.querySelector('.topic').compareDocumentPosition(document.querySelector('#revierwissen-tagesfall')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
       assert.equal(document.querySelector('section[aria-labelledby="moment-deeper-title"]'), null, 'Read first by answering or consciously skipping, then show the full explanation');
       for (const paragraph of item.reading.paragraphs) assert.equal(main.textContent.includes(paragraph), false);
@@ -146,6 +146,7 @@ test('All sixty actual answered readers reveal every literal paragraph, takeaway
       await React.act(async () => document.querySelector('.answerOptions button').click());
       const feedback = document.querySelector('.quizFeedback'), reading = document.querySelector('section[aria-labelledby="moment-deeper-title"]');
       assert.ok(feedback.textContent.includes(item.question.explanation)); assert.ok(reading); assert.equal(reading.closest('[role="status"]'), null);
+      assert.equal(reading.querySelector('h2').textContent, item.reading.title);
       assert.ok(feedback.compareDocumentPosition(reading) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
       for (const paragraph of item.reading.paragraphs) assert.ok(reading.textContent.includes(paragraph));
       for (const key of ['takeaway', 'exercise']) if (item.reading[key]) assert.ok(reading.textContent.includes(item.reading[key]));

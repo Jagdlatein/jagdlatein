@@ -20,7 +20,7 @@ export default function RevierMoment({ moment }) {
   return <LearningToolLayout title="Fall des Tages" description="Eine Lernsituation aus unseren Kursen: vier Antworten, eine richtige Antwort und der passende Lerntext." category="jagdpraxis" icon="binoculars" headingOnly searchHref="/lernen#lernen-suche" hideCommunity className={styles.page}>
     <p className={styles.date}><time dateTime={moment.dateKey}>{moment.displayDate}</time> · Ohne Zeitlimit</p>
     <p className={styles.small}>Gemeinsames Lernwissen für Deutschland, Österreich und die Schweiz. Ein eigener Lernfall, keine amtliche Prüfungsfrage. Örtliches Recht und praktische Ausbildung werden dadurch nicht ersetzt.</p>
-    <p className={styles.topic}>Lernsituation: {reading.title} · {topic.title}</p>
+    <p className={styles.topic}>Thema {topic.title}</p>
     <ResearchQuestionRound key={`${moment.dateKey}:${question.id}`} questions={[question]} sources={topic.sources} daily title="Deine Entscheidung" showSources={false} afterAnswer={readingSection} />
     <nav className={styles.nextSteps} aria-label="Passend weiterlernen"><Link href="/lernen/fuenf-minuten"><AppIcon name="book" size={20} /><span>Persönlich wiederholen<small>Kurze Runde mit deinem Verlauf auf diesem Gerät</small></span><AppIcon name="arrow-right" size={18} /></Link><Link href="/quiz-app"><AppIcon name="trophy" size={20} /><span>Quiz mit Rangliste<small>Gewertete Runde mit Zeit und Punkten</small></span><AppIcon name="arrow-right" size={18} /></Link></nav>
     <p className={styles.small}>Die Auswahl umfasst 60 Lernfälle und wiederholt sich nach 60 Tagen. Es werden hier keine Antworten gespeichert und keine Ranglistenpunkte vergeben.</p>

@@ -80,6 +80,45 @@ test('Regional scope remains visible before the closed final source panel', asyn
   } finally { s.close(); }
 });
 
+test('Opening a catalog question shows its options before the separate solution disclosure', async () => {
+  const s = harness({ region: 'SG', ansicht: 'fragen' });
+  try {
+    const value = bundle();
+    value.questions[0] = {
+      ...value.questions[0],
+      prompt: 'Synthetic exam question?',
+      context: 'Synthetic jurisdiction',
+      options: [{ id: 'a', text: 'First option' }, { id: 'b', text: 'Second option' }],
+      correctIds: ['b'],
+      explanation: 'Synthetic answer explanation.',
+    };
+    await s.respond(0, value);
+    const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || require('node:path').join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
+    const dom = new JSDOM(s.html());
+    try {
+      const catalog = dom.window.document.querySelector('section[aria-labelledby="law-catalog-heading"]');
+      const question = catalog.querySelector(':scope > details');
+      const solution = question.querySelector(':scope > details');
+      assert.equal(question.open, false);
+      assert.equal(solution.open, false);
+
+      question.querySelector(':scope > summary').click();
+      assert.equal(question.open, true);
+      assert.deepEqual([...question.querySelectorAll(':scope > ul > li')].map(option => option.textContent), ['First option', 'Second option']);
+      assert.equal(solution.open, false);
+      assert.ok([...question.querySelectorAll('p, blockquote')]
+        .filter(node => /Richtige Antwort|Synthetic answer explanation|Synthetic official text/.test(node.textContent))
+        .every(node => node.closest('details') === solution));
+
+      solution.querySelector(':scope > summary').click();
+      assert.equal(solution.open, true);
+      assert.match(solution.textContent, /Richtige Antwort:\s*Second option/);
+      assert.match(solution.textContent, /Synthetic answer explanation/);
+      assert.equal(solution.querySelector('blockquote').textContent, norm.officialText);
+    } finally { dom.window.close(); }
+  } finally { s.close(); }
+});
+
 test('The personal exam target restores a bare country page before a different last-viewed region', () => {
   const exam = { ready: true, profile: { country: 'CH', region: 'ZH' } };
   const s = harness({}, { country: 'CH', region: 'SG' }, exam);

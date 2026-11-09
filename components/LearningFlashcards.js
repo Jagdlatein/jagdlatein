@@ -56,10 +56,12 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const [rated, setRated] = useState(0);
   const [againIds, setAgainIds] = useState([]);
   const [message, setMessage] = useState("");
+  const [answerKey, setAnswerKey] = useState(null);
   const reviewRef = useRef(EMPTY_REVIEW);
   const generation = useRef(0);
   const againRef = useRef([]);
   const active = useRef(null);
+  const answerRef = useRef(null);
   const headingRef = useRef(null);
   const navigationRef = useRef(navigation);
   const routerRef = useRef(router);
@@ -73,12 +75,17 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const categoryIds = categories.map(item => item.id).join("|");
   routerRef.current = router;
   contextRef.current = { categories, selection };
+  function setOpenAnswer(key) {
+    answerRef.current = key;
+    setAnswerKey(key);
+  }
   if (!syncRef.current) syncRef.current = createFlashcardURLSync({
     getRouter: () => routerRef.current,
     getState: () => ({ ...navigationRef.current, cardId: active.current || navigationRef.current.cardId }),
     getContext: () => contextRef.current,
     onRestore: next => {
       if (sameFlashcardNavigation(navigationRef.current, next)) return;
+      setOpenAnswer(null);
       generation.current++; active.current = null;
       navigationRef.current = next; setNavigation(next); setMessage("");
     },
@@ -121,6 +128,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     if (typeof window === "undefined") return;
     const restoreHistory = () => {
       const location = window.location;
+      setOpenAnswer(null);
       syncRef.current.restore(`${location.pathname}${location.search}${location.hash}`);
     };
     window.addEventListener("popstate", restoreHistory);
@@ -137,6 +145,14 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const available = mode === "all" ? filtered : pendingCards(filtered, review, now, againIds);
   const waitingForCard = incomplete && currentId && !cards.some(card => card.id === currentId);
   const current = waitingForCard ? null : available.find(card => card.id === currentId) || available[0] || null;
+  const cardKey = current ? `${scope}:${current.id}` : null;
+  const answerShown = cardKey !== null && answerKey === cardKey;
+  useEffect(() => {
+    if (answerRef.current !== null && answerRef.current !== cardKey) {
+      answerRef.current = null;
+      setAnswerKey(null);
+    }
+  }, [cardKey]);
   useEffect(() => {
     if (!selectionFocusRequested.current || waitingForCard) return;
     selectionFocusRequested.current = false;
@@ -148,6 +164,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const printHref = { pathname: "/lernen/lernkarten-drucken", query: printQuery };
 
   function updateNavigation(next, delay = 0) {
+    setOpenAnswer(null);
     navigationRef.current = next;
     setNavigation(next);
     syncRef.current.schedule(delay);
@@ -201,6 +218,10 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     if (sameFlashcardNavigation(navigationRef.current, navigation)) focusSelection(headingRef.current);
     else selectionFocusRequested.current = true;
   }
+  function toggleAnswer() {
+    if (!current || generation.current !== token || active.current !== current.id) return;
+    setOpenAnswer(answerRef.current === cardKey ? null : cardKey);
+  }
   function nextWithoutRating() {
     if (!current || available.length < 2 || generation.current !== token || active.current !== current.id) return;
     selectionFocusRequested.current = false; cancelSelectionFocus();
@@ -212,7 +233,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     showCurrentQuestion();
   }
   function rate(rating) {
-    if (!loaded || !current || generation.current !== token || active.current !== current.id) return;
+    if (!loaded || !current || generation.current !== token || active.current !== current.id || answerRef.current !== cardKey) return;
     selectionFocusRequested.current = false; cancelSelectionFocus();
     generation.current++;
     active.current = null;
@@ -247,21 +268,27 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     <PageMenu title="Lernkarten drucken und speichern"><nav className={`${styles.exportLinks} ${styles.cardExports}`} aria-label="Lernkarten drucken und speichern">{!selection?.invalid && <Link href={printHref} aria-label="Diese Auswahl drucken" onClick={event => rememberBeforeLeaving(event, printHref)}><AppIcon name="book" size={21} />Drucken</Link>}<a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download aria-label="Starterset als PDF">PDF-Starterset</a></nav></PageMenu>
     <div className={styles.status} role="status" aria-live="polite">{loadError || (loading ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : message)}{loadError && onReload && <button className={styles.textButton} type="button" onClick={onReload}>Erneut laden</button>}</div>
     {current ? <article className={styles.card} aria-labelledby="lernkarten-frage" key={current.id}>
-      <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>Frage und Antwort</span></div>
-      {current.context && (!selection?.lessonId || selection.lessonId !== current.lessonId) && <p className={styles.context}>{current.context}{current.lessonTitle && current.lessonTitle !== current.context ? ` · ${current.lessonTitle}` : ""}</p>}
+      <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>Lernkarte</span></div>
       <h2 id="lernkarten-frage" ref={headingRef} tabIndex={-1}>{current.question}</h2>
       <FlashcardImage image={current.image} showCredit={false} />
       <div className={styles.back}>
-          <p className={styles.answer}>{current.answer}</p>
-          <p className={styles.explanation}>{current.explanation}</p>
-          <div className={styles.rating} aria-label="Freiwillige Selbsteinschätzung"><button type="button" onClick={() => rate("again")} disabled={!loaded} className={styles.secondary}>Noch üben</button><button type="button" onClick={() => rate("known")} disabled={!loaded} className={styles.primary}>Gewusst</button><button type="button" onClick={nextWithoutRating} disabled={available.length < 2} className={styles.nextCard}>Weiter ohne Bewertung</button></div>
-          <Link href={current.courseHref} className={styles.courseLink} onClick={event => rememberBeforeLeaving(event, current.courseHref)}>{current.moduleTitle}<AppIcon name="arrow-right" size={19} /></Link>
+        <button type="button" onClick={toggleAnswer} className={answerShown ? styles.secondary : styles.primary} aria-expanded={answerShown} aria-controls="lernkarten-antwort">{answerShown ? "Antwort ausblenden" : "Antwort zeigen"}</button>
+        <div id="lernkarten-antwort" hidden={!answerShown}>
+          {answerShown && <>
+            <p className={styles.answer}>{current.answer}</p>
+            <p className={styles.explanation}>{current.explanation}</p>
+            <div className={styles.rating} aria-label="Freiwillige Selbsteinschätzung"><button type="button" onClick={() => rate("again")} disabled={!loaded} className={styles.secondary}>Noch üben</button><button type="button" onClick={() => rate("known")} disabled={!loaded} className={styles.primary}>Gewusst</button></div>
+            {current.lessonTitle && current.lessonTitle !== current.moduleTitle && (!selection?.lessonId || selection.lessonId !== current.lessonId) && <p className={styles.context}>{current.lessonTitle}</p>}
+            <Link href={current.courseHref} className={styles.courseLink} onClick={event => rememberBeforeLeaving(event, current.courseHref)}>{current.moduleTitle}<AppIcon name="arrow-right" size={19} /></Link>
+          </>}
         </div>
+        <button type="button" onClick={nextWithoutRating} disabled={available.length < 2} className={styles.nextCard}>Weiter ohne Bewertung</button>
+      </div>
     </article> : <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer">{incomplete ? "Deine Auswahl wird vollständig geladen." : filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{incomplete ? "Die Suche berücksichtigt den vollständigen Bestand, sobald der Abruf abgeschlossen ist." : filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Im unteren Menü kannst du den Filter ausschalten und alle passenden Karten erneut ansehen." : "Wähle im unteren Menü eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
     <p className={styles.deviceNote}>{canSave ? "Deine Bewertungen werden nur in diesem Browser auf diesem Gerät gespeichert. Sie werden nicht als Prüfungs- oder Ranglistenpunkte gewertet." : "Dieser Browser lässt das Speichern gerade nicht zu. Deine Bewertungen gelten nur für diese geöffnete Sitzung."}</p>
-    {current && <details className={styles.sources} key={`sources-${current.id}`}>
-      <summary>{current.sourceScope === "photo" ? "Bildnachweis und Artenporträt" : current.sourceScope === "lesson" ? "Quellen der Ausgangslektion und Prüfstand" : "Quellen des Ausgangskurses und Prüfstand"}</summary>
-      <ul>{current.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul>
+    {current && (answerShown || current.image) && <details className={styles.sources} key={`sources-${current.id}-${answerShown}`}>
+      <summary>{current.sourceScope === "photo" ? (answerShown ? "Bildnachweis und Artenporträt" : "Bildnachweis") : current.sourceScope === "lesson" ? "Quellen der Ausgangslektion und Prüfstand" : "Quellen des Ausgangskurses und Prüfstand"}</summary>
+      {answerShown && <ul>{current.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul>}
       {current.image && <p>Foto: <a href={current.image.creditUrl} target="_blank" rel="noopener noreferrer">{current.image.author}</a> · <a href={current.image.licenseUrl} target="_blank" rel="noopener noreferrer">{current.image.license}</a></p>}
       {formatFlashcardDate(current.reviewedOn) && <p>{current.sourceScope === "photo" ? "Bildnachweis geprüft" : current.sourceScope === "lesson" ? "Stand der Ausgangslektion" : "Übernommener Prüfstand"}: {formatFlashcardDate(current.reviewedOn)}.</p>}
     </details>}
