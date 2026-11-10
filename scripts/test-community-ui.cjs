@@ -27,6 +27,11 @@ function load(relative, overrides = {}, cache = new Map()) {
   cache.set(filename, mod.exports); return mod.exports;
 }
 const render = (Component, props = {}) => renderToStaticMarkup(React.createElement(Component, props));
+function findNode(element, match) {
+  if (!React.isValidElement(element)) return null;
+  if (match(element)) return element;
+  return React.Children.toArray(element.props.children).map(child => findNode(child, match)).find(Boolean) || null;
+}
 
 test('Community introduction is public, requires sign-in for contributions, and preserves the learning context through login', () => {
   const { default: Community } = load('components/Community.js');
@@ -63,10 +68,12 @@ test('User contributions render as plain text and reveal only their public learn
   assert.ok(!html.includes('Eigenen Beitrag entfernen') && !html.includes('Ausblenden'));
 });
 
-test('Community keeps writing visible and moves views and moderator options into the lower menu', () => {
+test('Community offers one separate exchange action and keeps moderator options in the lower menu', () => {
   const { CommunityToolbar } = load('components/Community.js');
   const html = render(CommunityToolbar, { viewer: { displayName: 'Lernfuchs', canModerate: false }, view: 'posts' });
-  assert.match(html, /Frage stellen/);
+  assert.equal((html.match(/Austausch starten/g) || []).length, 1);
+  assert.doesNotMatch(html, /Frage stellen/);
+  assert.doesNotMatch(render(CommunityToolbar, { viewer: {}, view: 'posts', threadId: 'thread-id' }), /Austausch starten/);
   assert.doesNotMatch(html, /Community-Ansicht|Meine Einreichungen|Weitere Optionen|Neue Beiträge prüfen|Gemeldete Beiträge prüfen/);
   const MenuToolbar = load('components/Community.js', { './PageMenu': { __esModule: true, default: ({ title, children }) => React.createElement('section', { 'data-lower-menu': title }, children), closePageMenu() {} } }).CommunityToolbar;
   const menu = render(MenuToolbar, { viewer: { canModerate: false }, view: 'posts' });
@@ -78,7 +85,7 @@ test('Community keeps writing visible and moves views and moderator options into
   const moderator = render(MenuToolbar, { viewer: { canModerate: true }, view: 'moderation' });
   assert.ok(moderator.includes('Neue Beiträge prüfen') && moderator.includes('Gemeldete Beiträge prüfen'));
   const writing = render(MenuToolbar, { viewer: { canModerate: true }, compose: true });
-  assert.doesNotMatch(writing, /Frage stellen|Community-Ansicht|Neue Beiträge prüfen/);
+  assert.doesNotMatch(writing, /Austausch starten|Frage stellen|Community-Ansicht|Neue Beiträge prüfen/);
 });
 
 test('Search defaults to compact inputs and keeps selected restrictions understandable', () => {
@@ -99,10 +106,69 @@ test('New contribution forms start with the text and retain explicit review cons
   assert.ok(html.indexOf('>Titel<') < html.indexOf('>Beschreibung<'));
   assert.ok(html.indexOf('>Beschreibung<') < html.indexOf('>Themenbereich<'));
   assert.match(html, /id="community-compose" tabindex="-1"/);
-  assert.ok(html.includes('Wildkunde · Frage · ändern') && html.includes('Zur Prüfung einreichen'));
+  assert.ok(html.includes('Wildkunde · Austausch · ändern') && html.includes('Zur Prüfung einreichen'));
+  assert.doesNotMatch(html, /Beitragsart|Deine Frage stellen/);
   const profile = render(ProfileForm, { onSubmit() {} });
   assert.ok(profile.includes('3–30 Zeichen') && profile.includes('sind reserviert'));
   assert.ok(profile.includes('type="checkbox"') && profile.includes('disabled=""'));
+});
+
+test('A new topic sends a discussion while a thread still accepts replies with the same consent', async () => {
+  const payloads = [];
+  const body = 'Unser Ansatz beim Rückruf mit dem Jagdhund.';
+  const title = 'Austausch zum Rückruf';
+  const threadId = '11111111-1111-4111-8111-111111111111';
+  for (const target of [undefined, threadId]) {
+    const values = ['hundewesen', title, body, true];
+    const fakeReact = { ...React, useState: () => [values.shift(), () => {}] };
+    const { Compose } = load('components/Community.js', { react: fakeReact });
+    const tree = Compose({ initialCategory: 'hundewesen', threadId: target, onSubmit: async value => { payloads.push(value); } });
+    await findNode(tree, element => element.type === 'form').props.onSubmit({ preventDefault() {} });
+  }
+  assert.deepEqual(payloads, [
+    { action: 'post', category: 'hundewesen', type: 'discussion', title, body, acceptedRules: true },
+    { action: 'reply', threadId, body, acceptedRules: true },
+  ]);
+});
+
+test('An incoming topic link stays in the reading list and supplies context only on an explicit exchange', () => {
+  const props = { signedIn: true, initialCategory: 'hundewesen', context: 'Rückruf üben', sourceContext: 'https://example.invalid/thema' };
+  const viewer = { displayName: 'Lernfuchs', profileRequired: false };
+  const selection = JSON.stringify([undefined, 'hundewesen', '', 1, 'all', false, 'posts']);
+  const writes = [], effects = [];
+  let position = 0;
+  const fakeReact = {
+    ...React,
+    useState(initial) {
+      const index = position++;
+      const value = index === 17 ? { result: { viewer, posts: [], total: 0 }, selection } : index === 19 ? false : initial;
+      return [value, next => writes.push([index, next])];
+    },
+    useEffect: (effect, deps) => effects.push({ effect, deps }),
+    useCallback: callback => callback,
+    useRef: value => ({ current: value }),
+  };
+  const { default: Community, CommunityToolbar, Compose } = load('components/Community.js', { react: fakeReact });
+  const tree = Community(props);
+  assert.equal(findNode(tree, node => node.type === Compose), null);
+  assert.ok(findNode(tree, node => node.props.id === 'community-results'));
+  const routeEffect = effects.find(({ deps }) => deps.length === 4 && deps[1] === props.context && deps[2] === props.sourceContext);
+  assert.ok(routeEffect);
+  routeEffect.effect();
+  assert.ok(writes.some(([index, value]) => index === 7 && value === false));
+  assert.ok(!writes.some(([, value]) => value === 'community-compose'));
+
+  writes.length = 0;
+  findNode(tree, node => node.type === CommunityToolbar).props.onCompose();
+  assert.deepEqual(writes.find(([index]) => index === 11)?.[1], { title: 'Austausch zu Rückruf üben', source: props.sourceContext });
+  assert.ok(writes.some(([index, value]) => index === 7 && value === true));
+
+  writes.length = 0;
+  const weekly = findNode(tree, node => node.type?.name === 'CommunityWeeklyCase');
+  weekly.props.onDiscuss({ discussionTitle: 'Lernfall zur Beobachtung', category: 'natur-revier' });
+  assert.deepEqual(writes.find(([index]) => index === 11)?.[1], { title: 'Lernfall zur Beobachtung', source: '' });
+  assert.ok(writes.some(([index, value]) => index === 0 && value === 'natur-revier'));
+  assert.ok(writes.some(([index, value]) => index === 7 && value === true));
 });
 
 test('Changing search keeps viewer context and inputs available without returning old results', () => {

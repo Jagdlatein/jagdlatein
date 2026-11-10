@@ -9,18 +9,19 @@ import { PAGE_MENU_OUTLET_ID, PAGE_MENU_ROUTE_ATTRIBUTE } from "./PageMenu";
 import AppUpdateStatus from "./AppUpdateStatus";
 import WebCoursePlatformEntry from "./WebCoursePlatformEntry";
 import { learningCategoryDetails } from "../lib/learning-categories";
+import { siteBranding } from "../lib/brand-config";
 import { getCategoryNavigationKey } from "../lib/category-navigation";
 import { installSingleViewNavigation, setSingleMenuOpen } from "../lib/single-view-navigation";
 import styles from "../styles/GlobalNavigation.module.css";
 
 const HISTORY_KEY = "jl_page_history";
+const CHAT_PATH = "/lernen/jagdlatein-chat";
 export const mainMenuItems = [
   { href: "/", title: "Startseite", icon: "home" },
   { href: "/lernen", title: "Lernbereich", icon: "book" },
   { href: "/lernen/pruefungsplan", title: "Meine Prüfung", icon: "progress" },
   { href: "/wildkunde", title: "Wildarten", icon: "deer" },
   { href: "/fotohelfer", title: "Fotohelfer", icon: "camera" },
-  { href: "/lernen/jagdlatein-chat", title: "Jagdlatein-Chat", icon: "help" },
   { href: "/lernen/lernkarten", title: "Lernkarten", icon: "book" },
   { href: "/kurse", title: "Kursverzeichnis", icon: "book" },
   { href: "/quiz-app", title: "Quiz & Rangliste", icon: "quiz" },
@@ -273,7 +274,7 @@ export default function GlobalHomeButton() {
     if (item.href === "/konto") return accountCurrent && !["/meine-kurse", "/auswertungen"].some(section => inSection(pathname, section));
     if (item.href === "/quiz-app") return inSection(pathname, "/quiz-app") && !inSection(pathname, "/quiz-app/leaderboard");
     if (item.href === "/lernen/videos") return videoCurrent;
-    if (item.href === "/lernen") return pathname === "/lernen" || inSection(pathname, "/kurse") || inSection(pathname, "/lernen") && !["/lernen/lernkarten", "/lernen/jagdlatein-chat"].some(section => inSection(pathname, section)) && !videoCurrent;
+    if (item.href === "/lernen") return pathname === "/lernen" || inSection(pathname, "/kurse") || inSection(pathname, "/lernen") && !inSection(pathname, "/lernen/lernkarten") && !videoCurrent;
     return inSection(pathname, item.href);
   }
   function closeMenu(event) {
@@ -319,6 +320,10 @@ export default function GlobalHomeButton() {
           <AppUpdateStatus offline={pathname === "/lernen/offline-rucksack"} />
         </div>
       </details>
+      <Link href={pathname === CHAT_PATH ? "#jagdlatein-chat-question" : CHAT_PATH} prefetch={false}
+        className={styles.chatLauncher} aria-label="Jagdlatein-Chat öffnen" title="Jagdlatein-Chat" onClick={closeMenu}>
+        <img src={siteBranding.icon192} width={54} height={54} alt="" />
+      </Link>
     </nav>
   );
 }

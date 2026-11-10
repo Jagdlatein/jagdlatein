@@ -23,7 +23,11 @@
 .moreLinks a:hover, .moreLinks a[aria-current] { background: #f3e5bd; }
 .moreLinks a:focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }
 .pageMenu:empty { display: none; }
+.chatLauncher { position: fixed; z-index: 1; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(var(--navigation-bottom-inset, 0px) + max(16px, env(safe-area-inset-bottom, 0px))); display: grid; place-items: center; width: 58px; height: 58px; border: 2px solid #fffaf0; border-radius: 50%; overflow: hidden; background: #f3e5bd; box-shadow: 0 4px 16px #3e321b55; }
+.chatLauncher img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.chatLauncher:hover, .chatLauncher:focus-visible { outline: 3px solid #aa812b; outline-offset: 2px; }
 @media (max-width: 620px) {
+  .chatLauncher { right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(var(--navigation-panel-bottom, 90px) + 4px); }
   .nav { left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); bottom: calc(var(--navigation-bottom-inset, 0px) + max(8px, env(safe-area-inset-bottom, 0px))); max-width: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; padding: 5px; border-radius: 16px; }
   .more > summary { width: 100%; }
   .button { flex-direction: column; gap: 3px; padding: 7px 2px; font-size: 17px; min-height: 64px; white-space: normal; }

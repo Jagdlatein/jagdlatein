@@ -187,3 +187,50 @@ test('Unmount aborts the request, ignores its late body and rejects a retained s
   await h.act(() => { oldSubmit(submitEvent()); });
   assert.equal(h.calls.length, 1);
 });
+
+test('An official law answer names its jurisdiction and checked provision above collapsed original sources', async t => {
+  const h = await fixture(t);
+  await h.type('Welches Jagdsystem gilt in Zürich?');
+  await h.submit();
+  const official = { ...answer, law: {
+    jurisdiction: 'Kanton Zürich · Schweiz', lawTitle: 'Kantonales Jagdgesetz', citation: '§ 2 Abs. 1', reviewedOn: '2026-10-23',
+  } };
+  await h.reply(0, official);
+  const article = h.container.querySelector('article');
+  assert.match(article.textContent, /Kanton Zürich · Schweiz · Kantonales Jagdgesetz, § 2 Abs\. 1 · Geprüft am 23\.10\.2026/);
+  assert.equal(article.querySelector('time').dateTime, '2026-10-23');
+  const sources = article.querySelector('details');
+  assert.equal(sources.open, false);
+  assert.equal(sources.querySelector('summary').textContent, 'Amtliche Originalquellen');
+  assert.equal(article.lastElementChild, sources);
+});
+
+test('A region switch invalidates the previous form and aborts an unfinished answer', async t => {
+  const h = await fixture(t);
+  await h.type('Welches Jagdsystem gilt in meiner Region?');
+  const stale = nativeProps(h.form).onSubmit;
+  await h.submit();
+  const bern = { country: 'CH', region: 'BE' };
+  await h.setExam({ profile: bern, ready: true });
+  assert.equal(h.calls[0].options.signal.aborted, true);
+  assert.equal(h.input.value, 'Welches Jagdsystem gilt in meiner Region?');
+  await h.act(() => stale(submitEvent()));
+  assert.equal(h.calls.length, 1);
+  await h.submit();
+  assert.deepEqual(JSON.parse(h.calls[1].options.body).examProfile, bern);
+  await h.reply(0, answer);
+  assert.equal(h.container.querySelector('article'), null);
+  await h.reply(1, { kind: 'region', text: 'Berner Lerninhalt', links: [] });
+  assert.match(h.container.querySelector('article').textContent, /Berner Lerninhalt/);
+});
+
+test('An account change removes previous answers and a private draft from the shared page', async t => {
+  const h = await fixture(t, { exam: { profile: zurich, ready: true, phase: 'ready', accountKey: 'first' } });
+  await h.type('Persönliche Lernfrage');
+  await h.submit();
+  await h.reply(0, answer);
+  await h.type('Ein privater Entwurf');
+  await h.setExam({ profile: zurich, ready: true, phase: 'ready', accountKey: 'second' });
+  assert.equal(h.input.value, '');
+  assert.equal(h.container.querySelector('article'), null);
+});

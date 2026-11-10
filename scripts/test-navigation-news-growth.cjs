@@ -305,7 +305,7 @@ function hookFrames() {
   };
 }
 
-test('A signed-in news discussion opens a prefilled editable draft but sends no post without an explicit submit', async () => {
+test('A signed-in news discussion keeps the topic list and prefills a draft only after an explicit exchange action', async () => {
   const originals = { fetch: global.fetch, setTimeout: global.setTimeout, clearTimeout: global.clearTimeout, document: global.document, window: global.window };
   const requests = []; const timers = new Map(); let timerId = 0;
   global.setTimeout = (fn, delay) => { const id = ++timerId; timers.set(id, { fn, delay }); return id; }; global.clearTimeout = id => timers.delete(id);
@@ -318,14 +318,20 @@ test('A signed-in news discussion opens a prefilled editable draft but sends no 
   const run = () => { tree = e.render('community', () => Community(props)); e.flush(); };
   try {
     run(); await new Promise(resolve => setImmediate(resolve)); run(); run();
-    const draft = nodes(tree, node => typeof node.type === 'function' && node.type.name === 'Compose')[0];
-    assert.ok(draft, 'the authenticated learner receives a composer immediately');
-    assert.equal(draft.props.initialTitle, 'Frage zu Fernglas sinnvoll auswählen'); assert.equal(draft.props.initialSource, swarovski.homepage);
+    const composer = () => nodes(tree, node => typeof node.type === 'function' && node.type.name === 'Compose')[0];
+    assert.equal(composer(), undefined, 'the authenticated learner first sees the topics');
+    assert.ok(nodes(tree, node => node.props.id === 'community-results').length);
+    const toolbar = nodes(tree, node => typeof node.type === 'function' && node.type.name === 'CommunityToolbar')[0];
+    toolbar.props.onCompose();
+    run();
+    const draft = composer();
+    assert.ok(draft);
+    assert.equal(draft.props.initialTitle, 'Austausch zu Fernglas sinnvoll auswählen'); assert.equal(draft.props.initialSource, swarovski.homepage);
     const draftTree = e.render('compose', () => draft.type(draft.props)); e.flush();
     const title = nodes(draftTree, node => node.type === 'input' && node.props.maxLength === 140)[0];
     const body = nodes(draftTree, node => node.type === 'textarea')[0];
-    assert.equal(title.props.value, 'Frage zu Fernglas sinnvoll auswählen'); assert.ok(body.props.value.includes(`Quelle: ${swarovski.homepage}`));
-    assert.ok(body.props.value.includes('Meine Frage oder Einordnung:')); assert.equal(body.props.disabled, false);
+    assert.equal(title.props.value, 'Austausch zu Fernglas sinnvoll auswählen'); assert.ok(body.props.value.includes(`Quelle: ${swarovski.homepage}`));
+    assert.ok(body.props.value.includes('Meine Einordnung:')); assert.equal(body.props.disabled, false);
     const consent = nodes(draftTree, node => node.type === 'input' && node.props.type === 'checkbox')[0];
     assert.equal(consent.props.checked, false); assert.equal(consent.props.required, true);
     const submit = nodes(draftTree, node => node.type === 'button' && words(node).includes('Zur Prüfung einreichen'))[0];

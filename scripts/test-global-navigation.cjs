@@ -61,6 +61,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
     if (id === './PageMenu') return { PAGE_MENU_OUTLET_ID: 'jl-page-menu', PAGE_MENU_ROUTE_ATTRIBUTE: 'data-page-menu-route' };
     if (id === './AppUpdateStatus') return { __esModule: true, default: () => null };
     if (id === './WebCoursePlatformEntry') return load('components/WebCoursePlatformEntry.js');
+    if (id === '../lib/brand-config') return load('lib/brand-config.js');
     if (id === '../lib/learning-categories') return load('lib/learning-categories.js');
     if (id === '../lib/category-navigation') return load('lib/category-navigation.js');
     if (id === '../lib/single-view-navigation') return load('lib/single-view-navigation.js');
@@ -83,7 +84,7 @@ function setup(pathname = '/login', history = [], appRouter = false, navigation 
 
 test('Shared dock retains Back, learning, search, community and Start and adds account access', () => {
   const tree = setup('/lernen/wildkunde').tree;
-  assert.equal(tree.props.children.length, 4);
+  assert.equal(tree.props.children.length, 5);
   assert.equal(tree.props.children[3].type, 'details');
   assert.equal(tree.props.children[3].props.children[0].type, 'summary');
   const html = setup('/lernen/wildkunde').html();
@@ -99,7 +100,7 @@ test('Dock links use client navigation without preloading private destinations o
   const s = setup('/konto');
   const children = s.tree.props.children;
   const links = collectLinks(children);
-  assert.equal(links.length, 33, 'The exam plan and learning chat are explicit menu destinations');
+  assert.equal(links.length, 33, 'The floating chat shortcut replaces its former menu entry');
   for (const link of links) {
     assert.notEqual(link.type, 'a');
     assert.equal(link.props.prefetch, false);
@@ -138,7 +139,7 @@ test('Account grouping follows entry and pricing while records and leaderboard k
   for (const route of ['/login', '/registrieren', '/preise', '/konto']) {
     assert.match(setup(route).html(), /aria-label="Konto und Abo öffnen" aria-current="page"/, route);
   }
-  for (const route of ['/meine-kurse', '/auswertungen', '/quiz-app/leaderboard', '/lernen/jagdlatein-chat']) {
+  for (const route of ['/meine-kurse', '/auswertungen', '/quiz-app/leaderboard']) {
     const links = collectLinks(setup(route).tree.props.children[3].props.children[1]);
     assert.deepEqual(links.filter(link => link.props['aria-current']).map(link => link.props.href), [route]);
   }
@@ -150,7 +151,7 @@ test('Menu exposes one expandable category branch and highlights the specific cu
   const details = s.tree.props.children[3];
   const links = collectLinks(details.props.children[1]);
   const categories = load('lib/learning-categories.js').learningCategoryDetails;
-  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/lernen/pruefungsplan', '/wildkunde', '/fotohelfer', '/lernen/jagdlatein-chat', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
+  assert.deepEqual(links.map(link => link.props.href), ['/', '/lernen', ...categories.map(c => `/lernen/${c.slug}`), '/lernen/pruefungsplan', '/wildkunde', '/fotohelfer', '/lernen/lernkarten', '/kurse', '/quiz-app', '/quiz-app/leaderboard', '/jagdpraxis', '/glossar', '/community', '/news', '/lernen/videos', '/konto', '/meine-kurse', '/auswertungen', '/hilfe']);
   assert.equal(new Set(links.map(link => link.props.href)).size, links.length);
   assert.equal(links.filter(link => link.props['aria-current']).length, 1);
   assert.equal(links.find(link => link.props['aria-current']).props.href, '/lernen/lernkarten');
@@ -624,4 +625,24 @@ test('Wildlife video Back returns to the prior committed scene while search cont
   const immediate = setup(base, ['/lernen/videos']); immediate.route(first); immediate.navigateBeforeEffects(second);
   immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
   s.unmount(); immediate.unmount();
+});
+
+test('One shared Jagdlatein logo opens the chat on the same page shell, including on mobile', () => {
+  const { siteBranding } = load('lib/brand-config.js');
+  for (const [route, appRouter] of [['/', false], ['/jagdrecht/ch', false], ['/quiz-app', true]]) {
+    const s = setup(route, [], appRouter);
+    const launcher = s.tree.props.children[4];
+    assert.equal(launcher.props.href, '/lernen/jagdlatein-chat');
+    assert.equal(launcher.props.target, undefined);
+    assert.equal(launcher.props['aria-label'], 'Jagdlatein-Chat öffnen');
+    assert.equal(launcher.props.children.props.src, siteBranding.icon192);
+    assert.equal(collectLinks(s.tree).filter(link => link.props.href === launcher.props.href).length, 1);
+    s.menu.open = true;
+    launcher.props.onClick({ button: 0 });
+    assert.equal(s.menu.open, false);
+    s.resizeViewport(470);
+    assert.equal(s.render().props.style['--navigation-bottom-inset'], '330px');
+    s.unmount();
+  }
+  assert.equal(setup('/lernen/jagdlatein-chat').tree.props.children[4].props.href, '#jagdlatein-chat-question');
 });

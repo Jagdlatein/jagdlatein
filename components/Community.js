@@ -14,7 +14,7 @@ import learning from "../styles/LearningExperience.module.css";
 
 export function CommunityInvite({ category, context }) {
   const href = { pathname: "/community", query: { ...(category ? { category } : {}), ...(context ? { thema: context.slice(0, 120) } : {}) } };
-  return <section className={styles.invite} aria-label="Gemeinsam lernen"><span className={styles.inviteIcon}><AppIcon name="community" size={32} /></span><div><p className={styles.eyebrow}>Gemeinsam weiterkommen</p><h2>Deine Jagdlatein-Community</h2><p>Fragen stellen, Zusammenhänge besprechen und Erfahrungen mit anderen Lernenden austauschen.</p><Link href={href} className={learning.secondary}>Zur Community<AppIcon name="arrow-right" size={19} /></Link></div></section>;
+  return <section className={styles.invite} aria-label="Gemeinsam lernen"><span className={styles.inviteIcon}><AppIcon name="community" size={32} /></span><div><p className={styles.eyebrow}>Gemeinsam weiterkommen</p><h2>Deine Jagdlatein-Community</h2><p>Zusammenhänge besprechen und Erfahrungen mit anderen Lernenden austauschen.</p><Link href={href} className={learning.secondary}>Zur Community<AppIcon name="arrow-right" size={19} /></Link></div></section>;
 }
 
 function displayDate(value) {
@@ -37,7 +37,7 @@ function focusSection(id) {
 function CommunityToolbar({ threadId, view, viewer, compose, loading, busy, onView, onCompose, onReload }) {
   return <div className={styles.toolbar}>
     <div className={styles.toolbarMain}>
-      {!threadId && viewer && !compose && <button className={learning.primary} type="button" onClick={onCompose} disabled={busy}><AppIcon name="community" size={18} />Frage stellen</button>}
+      {!threadId && view === "posts" && viewer && !compose && <button className={learning.primary} type="button" onClick={onCompose} disabled={busy}><AppIcon name="community" size={18} />Austausch starten</button>}
     </div>
     <PageMenu title="Community auswählen">
       {threadId && <Link className={learning.secondary} href="/community" onClick={closePageMenu}><AppIcon name="arrow-left" size={18} />Alle Themen</Link>}
@@ -118,17 +118,17 @@ function ProfileForm({ onSubmit, busy, onCancel }) {
 
 function Compose({ initialCategory, initialTitle = "", initialSource = "", threadId, onSubmit, busy, onCancel }) {
   const [category, setCategory] = useState(initialCategory === "all" ? "allgemein" : initialCategory);
-  const [type, setType] = useState("question"); const [title, setTitle] = useState(initialTitle);
-  const [body, setBody] = useState(initialSource && !threadId ? `Quelle: ${initialSource}\n\nMeine Frage oder Einordnung:\n` : ""); const [accepted, setAccepted] = useState(false);
+  const [title, setTitle] = useState(initialTitle);
+  const [body, setBody] = useState(initialSource && !threadId ? `Quelle: ${initialSource}\n\nMeine Einordnung:\n` : ""); const [accepted, setAccepted] = useState(false);
   async function submit(event) {
     event.preventDefault();
-    const result = await onSubmit(threadId ? { action: "reply", threadId, body, acceptedRules: accepted } : { action: "post", category, type, title, body, acceptedRules: accepted });
+    const result = await onSubmit(threadId ? { action: "reply", threadId, body, acceptedRules: accepted } : { action: "post", category, type: "discussion", title, body, acceptedRules: accepted });
     if (result) { setBody(""); setAccepted(false); }
   }
-  return <section className={`${learning.panel} ${styles.composePanel}`} id="community-compose" tabIndex={-1} aria-labelledby="community-compose-heading"><h2 id="community-compose-heading">{threadId ? "Deine Antwort" : "Deine Frage stellen"}</h2><form onSubmit={submit}>
-    {!threadId && <label className={learning.field}>Titel<input required minLength={8} maxLength={140} value={title} onChange={event => setTitle(event.target.value)} disabled={busy} placeholder="Welche Frage möchtest du klären?" aria-describedby="community-title-hint" /><span className={styles.hint} id="community-title-hint">8–140 Zeichen · Fasse dein Thema kurz zusammen.</span></label>}
-    <label className={learning.field}>{threadId ? "Antwort" : "Beschreibung"}<textarea required minLength={threadId ? 2 : 10} maxLength={threadId ? 4000 : 6000} value={body} onChange={event => setBody(event.target.value)} disabled={busy} placeholder={threadId ? "Schreibe deine Antwort und nenne bei fachlichen Aussagen eine Quelle." : "Was möchtest du wissen? Beschreibe kurz, wo du noch unsicher bist."} aria-describedby="community-body-hint" /></label><p className={styles.hint} id="community-body-hint">{body.length} / {threadId ? 4000 : 6000} Zeichen · Keine persönlichen Daten oder genauen Revierstandorte.</p>
-    {!threadId && <details className={styles.composeOptions}><summary>{categoryName(category)} · {type === "question" ? "Frage" : "Austausch"} · ändern</summary><div className={styles.formRow}><label className={learning.field}>Themenbereich<select value={category} onChange={event => setCategory(event.target.value)} disabled={busy}>{communityCategories.map(item => <option value={item.slug} key={item.slug}>{item.title}</option>)}</select></label><label className={learning.field}>Beitragsart<select value={type} onChange={event => setType(event.target.value)} disabled={busy}><option value="question">Frage</option><option value="discussion">Austausch</option></select></label></div></details>}
+  return <section className={`${learning.panel} ${styles.composePanel}`} id="community-compose" tabIndex={-1} aria-labelledby="community-compose-heading"><h2 id="community-compose-heading">{threadId ? "Deine Antwort" : "Neues Thema für den Austausch"}</h2><form onSubmit={submit}>
+    {!threadId && <label className={learning.field}>Titel<input required minLength={8} maxLength={140} value={title} onChange={event => setTitle(event.target.value)} disabled={busy} placeholder="Worüber möchtest du dich austauschen?" aria-describedby="community-title-hint" /><span className={styles.hint} id="community-title-hint">8–140 Zeichen · Fasse dein Thema kurz zusammen.</span></label>}
+    <label className={learning.field}>{threadId ? "Antwort" : "Beschreibung"}<textarea required minLength={threadId ? 2 : 10} maxLength={threadId ? 4000 : 6000} value={body} onChange={event => setBody(event.target.value)} disabled={busy} placeholder={threadId ? "Schreibe deine Antwort und nenne bei fachlichen Aussagen eine Quelle." : "Teile eine Erfahrung oder einen Lernansatz und nenne bei fachlichen Aussagen eine Quelle."} aria-describedby="community-body-hint" /></label><p className={styles.hint} id="community-body-hint">{body.length} / {threadId ? 4000 : 6000} Zeichen · Keine persönlichen Daten oder genauen Revierstandorte.</p>
+    {!threadId && <details className={styles.composeOptions}><summary>{categoryName(category)} · Austausch · ändern</summary><div className={styles.formRow}><label className={learning.field}>Themenbereich<select value={category} onChange={event => setCategory(event.target.value)} disabled={busy}>{communityCategories.map(item => <option value={item.slug} key={item.slug}>{item.title}</option>)}</select></label></div></details>}
     <p className={styles.composerStatus}>Neue Themen und Antworten werden vor der Veröffentlichung geprüft. Bis zur Freigabe sehen nur du und die Moderation deinen Beitrag.</p><label className={styles.checkbox}><input required type="checkbox" checked={accepted} onChange={event => setAccepted(event.target.checked)} disabled={busy} />Mein Beitrag hält die Community-Regeln ein.</label><div className={learning.actions}><button className={learning.primary} disabled={busy || !accepted}>{busy ? "Wird gesendet …" : "Zur Prüfung einreichen"}</button>{onCancel && <button className={learning.secondary} type="button" onClick={onCancel} disabled={busy}>Abbrechen</button>}</div>
   </form></section>;
 }
@@ -150,8 +150,8 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   const router = useRouter();
   const [category, setCategory] = useState(initialCategory); const [query, setQuery] = useState(""); const [search, setSearch] = useState("");
   const [page, setPage] = useState(1); const [type, setType] = useState("all"); const [unanswered, setUnanswered] = useState(false); const [view, setView] = useState("posts");
-  const [compose, setCompose] = useState(Boolean(context)); const [busy, setBusy] = useState(false); const [mutationError, setMutationError] = useState(null); const [notice, setNotice] = useState("");
-  const [discussionTitle, setDiscussionTitle] = useState(context ? `Frage zu ${context}`.slice(0, 140) : "");
+  const [compose, setCompose] = useState(false); const [busy, setBusy] = useState(false); const [mutationError, setMutationError] = useState(null); const [notice, setNotice] = useState("");
+  const [discussion, setDiscussion] = useState(null);
   const [report, setReportState] = useState(null); const [reportReason, setReportReason] = useState(""); const [removal, setRemovalState] = useState(null);
   const [block, setBlockState] = useState(null);
   const [focusTarget, setFocusTarget] = useState(null);
@@ -187,7 +187,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   const requestedCase = communityWeeklyCases.some(item => item.id === router.query?.fall) ? router.query.fall : null;
   const initialQuery = new URLSearchParams({ ...(initialCategory !== "all" ? { category: initialCategory } : {}), ...(context ? { thema: context } : {}), ...(sourceContext ? { quelle: sourceContext } : {}), ...(requestedCase ? { fall: requestedCase } : {}) }).toString();
   const next = threadId ? `/community/${threadId}` : `/community${initialQuery ? `?${initialQuery}` : ""}${requestedCase ? "#community-wochenfall" : ""}`;
-  useEffect(() => { setCategory(initialCategory); setCompose(Boolean(context)); setDiscussionTitle(context ? `Frage zu ${context}`.slice(0, 140) : ""); setPage(1); setReport(null); setRemoval(null); setBlock(null); setNotice(""); setMutationError(null); setFocusTarget(context ? "community-compose" : null); resultFocusRequested.current = false; }, [initialCategory, context, sourceContext, threadId]);
+  useEffect(() => { setCategory(initialCategory); setCompose(false); setDiscussion(null); setPage(1); setReport(null); setRemoval(null); setBlock(null); setNotice(""); setMutationError(null); setFocusTarget(null); resultFocusRequested.current = false; }, [initialCategory, context, sourceContext, threadId]);
   async function mutate(body, method = "POST") {
     if (busy) return null;
     setBusy(true); setMutationError(null); setNotice("");
@@ -228,14 +228,14 @@ export default function Community({ signedIn = false, threadId, initialCategory 
   }
   function startCompose() {
     closePageMenu();
-    setDiscussionTitle(context ? `Frage zu ${context}`.slice(0, 140) : "");
+    setDiscussion({ title: context ? `Austausch zu ${context}`.slice(0, 140) : "", source: sourceContext });
     resultFocusRequested.current = false;
     setView("posts"); setPage(1); setCompose(true); setFocusTarget("community-compose");
     setMutationError(null); setNotice("");
   }
   function cancelCompose() { setCompose(false); setMutationError(null); setFocusTarget(threadId ? "community-replies" : "community-results"); }
   function discussWeeklyCase(item) {
-    setDiscussionTitle(item.discussionTitle); setCategory(item.category);
+    setDiscussion({ title: item.discussionTitle, source: "" }); setCategory(item.category);
     resultFocusRequested.current = false;
     setView("posts"); setPage(1); setCompose(true); setFocusTarget("community-compose");
     setMutationError(null); setNotice("");
@@ -250,7 +250,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
       {mutationError && <p id="community-error" tabIndex={-1} role="alert" className={`${styles.error} ${styles.errorFocus}`}>{mutationError}</p>}{notice && <p id="community-notice" tabIndex={-1} role="status" className={`${styles.notice} ${styles.confirmation}`}>{notice}</p>}
       {loading && (!viewer || (!compose && (threadId || view !== "posts"))) && <p role="status">Community wird geladen …</p>}{error && <section id="community-load-error" tabIndex={-1} className={`${styles.error} ${styles.errorFocus}`} role="alert"><h2>{error.setupRequired ? "Die Community wird vorbereitet" : "Community nicht erreichbar"}</h2><p>{error.message}</p>{error.code === "SESSION_RENEWAL_REQUIRED" || error.code === "AUTH_REQUIRED" ? <Link href={`/login?next=${encodeURIComponent(next)}`}>Erneut anmelden</Link> : <button className={learning.secondary} onClick={reload}>Erneut versuchen</button>}</section>}
       {compose && viewer?.profileRequired && <ProfileForm onSubmit={mutate} busy={busy || sessionNeedsRenewal} onCancel={cancelCompose} />}
-      {compose && canPost && <Compose key={threadId || `${initialCategory}:${discussionTitle}:${sourceContext}`} initialCategory={category} initialTitle={discussionTitle} initialSource={sourceContext} threadId={threadId} onSubmit={mutate} busy={busy || sessionNeedsRenewal} onCancel={cancelCompose} />}
+      {compose && canPost && <Compose key={threadId || `${initialCategory}:${discussion?.title}:${discussion?.source}`} initialCategory={category} initialTitle={discussion?.title} initialSource={discussion?.source} threadId={threadId} onSubmit={mutate} busy={busy || sessionNeedsRenewal} onCancel={cancelCompose} />}
       {!error && (data || viewer) && <>
         {!compose && !threadId && ["moderation", "submissions"].includes(view) && <section id="community-view" tabIndex={-1} className={`${learning.panel} ${styles.confirmation}`}><h2>{view === "moderation" ? "Neue Beiträge prüfen" : "Meine Einreichungen"}</h2><p>{view === "moderation" ? "Diese Warteschlange ist nur für die Moderation sichtbar. Prüfe auch den öffentlichen Lernnamen; Freigaben bestätigen die Community-Regeln, keine fachliche Richtigkeit." : "Hier siehst du deine noch nicht freigegebenen Themen und Antworten. Freigegebene Beiträge findest du in der Themenübersicht."}</p>{posts.map(post => <CommunitySubmission key={post.id} post={post} admin={view === "moderation" && admin} busy={busy} mutate={mutate} setRemoval={setRemoval} />)}{!loading && posts.length === 0 && <p>{view === "moderation" ? "Keine neuen Beiträge warten auf Prüfung." : "Du hast keine offenen oder abgelehnten Einreichungen."}</p>}</section>}
         {!compose && view === "blocks" && !threadId && <section id="community-view" tabIndex={-1} className={`${learning.panel} ${styles.confirmation}`}><h2>Blockierte Nutzer</h2><p>Ihr seht die Beiträge des jeweils anderen nicht mehr und könnt nicht aufeinander antworten. Eine Blockierung kannst du hier aufheben. Für eine Prüfung durch die Moderation melde den betreffenden Beitrag zusätzlich.</p>{(data?.blocks || []).map(item => <article className={styles.post} key={item.id}><h3>{item.displayName}</h3><p>Blockiert am {displayDate(item.createdAt)}</p><button className={learning.secondary} disabled={busy} onClick={() => mutate({ action: "unblock", blockId: item.id }, "PATCH")}>Blockierung aufheben</button></article>)}{!loading && !(data?.blocks || []).length && <p>Du hast keine Nutzer blockiert.</p>}</section>}
@@ -258,7 +258,7 @@ export default function Community({ signedIn = false, threadId, initialCategory 
           <PageMenu title="Community durchsuchen"><CommunitySearch {...{ query, category, type, unanswered, search, total, loading }} onQuery={changeQuery} onCategory={value => changeFilter(setCategory, value)} onType={value => changeFilter(setType, value)} onUnanswered={value => changeFilter(setUnanswered, value)} onSearch={showResults} onReset={reset} /></PageMenu>
           <section id="community-results" tabIndex={-1} className={styles.confirmation} aria-label="Gefundene Community-Themen">
             <div className={styles.topics}>{posts.map(post => <article className={styles.topicCard} key={post.id}><div className={styles.badges}><span>{categoryName(post.category)}</span><span>{post.type === "question" ? "Frage" : "Austausch"}</span>{post.solved && <span className={styles.solved}>Als geklärt markiert</span>}</div><h2><Link className={styles.topicLink} href={`/community/${post.id}`}>{post.title}<AppIcon name="arrow-right" size={20} /></Link></h2><p className={styles.preview}>{post.body.slice(0, 220)}{post.body.length > 220 ? " …" : ""}</p><div className={styles.postMeta}><span>{post.displayName}</span><time dateTime={post.createdAt}>{displayDate(post.createdAt)}</time><span>{post.replyCount || 0} {post.replyCount === 1 ? "Antwort" : "Antworten"}</span></div><PostActions {...{ post, admin, busy, mutate, setReport, setRemoval, setBlock }} /></article>)}</div>
-            {!loading && posts.length === 0 && <section className={learning.panel}><h2>{search || category !== "all" || type !== "all" || unanswered ? "Keine passenden Themen" : "Hier beginnt euer Austausch"}</h2><p>{search || category !== "all" || type !== "all" || unanswered ? "Ändere die Auswahl oder stelle deine eigene Frage." : "Stelle die erste Frage oder teile einen Lernansatz."}</p>{viewer && <button className={learning.primary} onClick={startCompose}>Frage stellen</button>}</section>}
+            {!loading && posts.length === 0 && <section className={learning.panel}><h2>{search || category !== "all" || type !== "all" || unanswered ? "Keine passenden Themen" : "Hier beginnt euer Austausch"}</h2><p>{search || category !== "all" || type !== "all" || unanswered ? "Ändere die Auswahl, um andere Themen zu finden." : "Teile eine Erfahrung oder einen Lernansatz."}</p></section>}
           </section>
         </div>}
         {!compose && threadId && thread && <><div className={styles.badges}><span>{categoryName(thread.category)}</span><span>{thread.type === "question" ? "Frage" : "Austausch"}</span>{thread.solved && <span className={styles.solved}>Als geklärt markiert</span>}</div><PostContent post={thread} {...{ admin, busy, mutate, setReport, setRemoval, setBlock }} />{thread.status === "visible" && thread.type === "question" && (thread.owned || admin) && <button className={learning.secondary} disabled={busy} onClick={() => mutate({ action: "mark-solved", postId: thread.id, solved: !thread.solved }, "PATCH")}>{thread.solved ? "Frage wieder öffnen" : "Frage als geklärt markieren"}</button>}<section id="community-replies" tabIndex={-1} className={styles.confirmation} aria-label="Antworten"><div className={styles.filterFooter}><h2>{total} {total === 1 ? "Antwort" : "Antworten"}</h2>{viewer && thread.status === "visible" && <button className={learning.primary} type="button" onClick={startCompose}>Antwort schreiben</button>}</div>{replies.map(post => <PostContent key={post.id} post={post} {...{ admin, busy, mutate, setReport, setRemoval, setBlock }} />)}{replies.length === 0 && !loading && <p>Noch keine Antwort. Teile dein Wissen und nenne passende Quellen.</p>}</section></>}

@@ -179,3 +179,25 @@ test('Only bounded question strings and an optional exact validated region are a
   const response = await POST(request({ question: stockente, examProfile: null }));
   assert.equal(response.status, 200);
 });
+
+test('The protected chat API returns directly sourced law only for the intended selected scope', async () => {
+  for (const [question, examProfile, citation, host, code] of [
+    ['Welches Jagdsystem gilt in Zürich?', { country: 'CH', region: 'ZH' }, /§ 2/, 'www.zh.ch', 'ZH'],
+    ['Welche Mindestgrösse hat ein Eigenjagdrevier in Bayern?', { country: 'DE', region: 'BY' }, /Art\. 8/, 'www.gesetze-bayern.de', 'BY'],
+    ['Was ist das Mindestalter für die Jahresjagdkarte in Salzburg?', { country: 'AT', region: 'S' }, /§ 42/, 'www.ris.bka.gv.at', 'S'],
+  ]) {
+    const result = await POST(request({ question, examProfile }));
+    assert.equal(result.status, 200, question);
+    assertPrivate(result);
+    const body = await result.json();
+    assert.equal(body.kind, 'region', question);
+    assert.match(body.law.citation, citation, question);
+    assert.equal(new URL(body.links[0].href, origin).searchParams.get('region'), code);
+    assert.equal(new URL(body.links[1].href).hostname, host);
+  }
+  const withheld = await POST(request({ question: 'Wie alt darf mein Treffsicherheitsnachweis sein?', examProfile: profile }));
+  const body = await withheld.json();
+  assert.equal(body.kind, 'region');
+  assert.equal(body.law, undefined);
+  assert.ok(body.links.every(link => link.href.startsWith('/jagdrecht')));
+});

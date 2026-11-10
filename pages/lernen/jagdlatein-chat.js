@@ -18,7 +18,7 @@ function isLearningLink(link) {
   return typeof link?.href === "string" && /^\/(?![\/\\])/.test(link.href) && !/[\\\u0000-\u001f]/.test(link.href);
 }
 
-function AnswerLinks({ links }) {
+function AnswerLinks({ links, official }) {
   const entries = Array.isArray(links) ? links.filter(link => typeof link?.label === "string" && link.label.trim()) : [];
   const learning = entries.filter(isLearningLink);
   const sources = entries.filter(link => typeof link.href === "string" && link.href.startsWith("https://"));
@@ -27,16 +27,17 @@ function AnswerLinks({ links }) {
       <li key={`${link.href}:${index}`}><Link href={link.href}>{link.label}</Link></li>
     ))}</ul>}
     {sources.length > 0 && <details className={styles.sources}>
-      <summary>Quellen</summary>
+      <summary>{official ? "Amtliche Originalquellen" : "Quellen"}</summary>
       <ul>{sources.map(link => <li key={link.href}><a href={link.href} rel="noreferrer">{link.label}</a></li>)}</ul>
     </details>}
   </>;
 }
 
 export default function JagdlateinChatPage() {
-  const { profile, ready, phase } = useExamProfile();
+  const { profile, ready, phase, accountKey } = useExamProfile();
   const loadingExam = phase === "loading";
   const exam = ready ? getExamProfileDetails(profile) : null;
+  const scope = JSON.stringify([accountKey, loadingExam, exam?.country.code, exam?.region.code]);
   const [question, setQuestion] = useState("");
   const [turns, setTurns] = useState([]);
   const [busy, setBusy] = useState(false);
@@ -44,15 +45,37 @@ export default function JagdlateinChatPage() {
   const request = useRef(null);
   const mounted = useRef(false);
   const draft = useRef("");
+  const currentScope = useRef(scope);
+  const previousAccount = useRef(accountKey);
+  currentScope.current = scope;
 
   useEffect(() => {
     mounted.current = true;
     return () => {
       mounted.current = false;
-      request.current?.abort();
+      request.current?.controller.abort();
       request.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    const pending = request.current;
+    if (!pending || pending.scope === scope) return;
+    request.current = null;
+    pending.controller.abort();
+    setBusy(false);
+  }, [scope]);
+
+  useEffect(() => {
+    if (loadingExam) return;
+    if (previousAccount.current && previousAccount.current !== accountKey) {
+      draft.current = "";
+      setQuestion("");
+      setTurns([]);
+      setError("");
+    }
+    previousAccount.current = accountKey;
+  }, [accountKey, loadingExam]);
 
   function changeQuestion(text) {
     draft.current = text;
@@ -62,9 +85,11 @@ export default function JagdlateinChatPage() {
   async function ask(event) {
     event.preventDefault();
     const text = question.trim();
-    if (!mounted.current || question !== draft.current || !text || text.length > MAX_JAGDLATEIN_QUESTION_LENGTH || loadingExam || request.current) return;
+    if (!mounted.current || scope !== currentScope.current || question !== draft.current || !text || text.length > MAX_JAGDLATEIN_QUESTION_LENGTH || loadingExam || request.current) return;
     const controller = new AbortController();
-    request.current = controller;
+    const pending = { controller, scope };
+    request.current = pending;
+    const isCurrent = () => request.current === pending && currentScope.current === scope;
     setBusy(true);
     setError("");
     try {
@@ -75,21 +100,21 @@ export default function JagdlateinChatPage() {
         signal: controller.signal,
         body: JSON.stringify({ question: text, examProfile: exam ? profile : null }),
       });
-      if (request.current !== controller) return;
+      if (!isCurrent()) return;
       if (response.status === 401 || response.status === 403) {
         setError(response.status === 401 ? "Bitte melde dich erneut an." : "Für den Lernchat brauchst du einen aktiven Lernzugang.");
         return;
       }
       if (!response.ok) throw new Error("Chat unavailable");
       const reply = await response.json();
-      if (request.current !== controller) return;
+      if (!isCurrent()) return;
       if (typeof reply?.text !== "string" || !reply.text.trim()) throw new Error("Missing answer");
       setTurns(previous => [{ id: (previous[0]?.id ?? 0) + 1, question: text, reply }, ...previous].slice(0, MAX_TURNS));
       changeQuestion("");
     } catch {
-      if (request.current === controller) setError("Die Frage konnte gerade nicht beantwortet werden. Versuche es erneut.");
+      if (isCurrent()) setError("Die Frage konnte gerade nicht beantwortet werden. Versuche es erneut.");
     } finally {
-      if (request.current === controller) {
+      if (request.current === pending) {
         request.current = null;
         setBusy(false);
       }
@@ -99,7 +124,7 @@ export default function JagdlateinChatPage() {
   return <LearningToolLayout title="Jagdlatein" description="Stell eine Frage zur Jagdprüfung und finde den passenden Lerninhalt." headingOnly className={styles.page} robots="noindex">
     <form onSubmit={ask} className={`${layout.panel} ${styles.form}`} aria-busy={busy}>
       <label htmlFor="jagdlatein-chat-question">Deine Frage an Jagdlatein</label>
-      <p id="jagdlatein-chat-hint">Stell eine konkrete Frage oder gib einen Fachbegriff ein. Jagdlatein sucht in den vorhandenen Lerntexten.</p>
+      <p id="jagdlatein-chat-hint">Stell eine konkrete Frage oder gib einen Fachbegriff ein. Jagdlatein findet passende Lerninhalte. Geprüfte Rechtsantworten beziehen sich auf deine Prüfungsregion.</p>
       <textarea id="jagdlatein-chat-question" aria-describedby="jagdlatein-chat-hint" value={question} onChange={event => changeQuestion(event.target.value)} readOnly={busy} rows={3} maxLength={MAX_JAGDLATEIN_QUESTION_LENGTH} placeholder="Zum Beispiel: Wozu hat die Stockente Schnabellamellen?" required />
       <div className={styles.actions}>
         <button type="submit" className={layout.primary} disabled={busy || loadingExam || !question.trim()}>Frage stellen</button>
@@ -112,8 +137,13 @@ export default function JagdlateinChatPage() {
       {turns.map(({ id, question: asked, reply }) => <article key={id} className={layout.panel}>
         <p className={styles.asked}><strong>Du</strong> {asked}</p>
         <h2>Jagdlatein</h2>
+        {reply.law && <p className={styles.lawContext}>
+          <strong>{reply.law.jurisdiction}</strong>
+          {" · "}{reply.law.lawTitle && `${reply.law.lawTitle}, `}{reply.law.citation}
+          {typeof reply.law.reviewedOn === "string" && /^\d{4}-\d{2}-\d{2}$/.test(reply.law.reviewedOn) && <>{" · Geprüft am "}<time dateTime={reply.law.reviewedOn}>{reply.law.reviewedOn.split("-").reverse().join(".")}</time></>}
+        </p>}
         <p className={styles.answer}>{reply.text}</p>
-        <AnswerLinks links={reply.links} />
+        <AnswerLinks links={reply.links} official={Boolean(reply.law)} />
       </article>)}
     </div>
   </LearningToolLayout>;
