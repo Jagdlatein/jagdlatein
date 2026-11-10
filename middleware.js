@@ -38,7 +38,7 @@ const PROMO_DOWNLOADS = new Set([
 // the middleware check below; never broaden this to a path-prefix exception.
 const SERVER_GUARDED_PAGES = new Set([
   "/ebook", "/protected/ebook", "/glossar",
-  "/lernen/lernkarten", "/lernen/lernkarten-drucken",
+  "/lernen/lernkarten", "/lernen/lernkarten-drucken", "/lernen/jagdlatein-chat",
   "/admin", "/admin/glossar", "/admin/glossar-import", "/admin/import",
   "/admin/push", "/admin/quiz", "/admin/testabos",
   "/online-kurse",

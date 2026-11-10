@@ -49,7 +49,7 @@ function engine() {
     }, render(fn) { cursor = 0; return fn(); }, flush() { const pending = effects; effects = []; pending.forEach(fn => fn()); }, unmount() { slots.forEach(slot => slot?.cleanup?.()); },
   };
 }
-function setup({ stored = null, blocked = false, query = {}, studyCards = cards } = {}) {
+function setup({ stored = null, blocked = false, query = { kategorie: 'all' }, studyCards = cards } = {}) {
   const e = engine(); let value = stored; let writes = 0;
   const previousWindow = global.window; const originalNow = Date.now; let tick = 0;
   Date.now = () => 1792137600000 + tick++;
@@ -67,7 +67,7 @@ function setup({ stored = null, blocked = false, query = {}, studyCards = cards 
 }
 
 test('SSR shows the question and photo attribution while withholding the answer and content sources', () => {
-  const Component = load('components/LearningFlashcards.js').default;
+  const Component = load('components/LearningFlashcards.js', { 'next/router': { useRouter: () => ({ query: { kategorie: 'all' }, isReady: true }) } }).default;
   const html = renderToStaticMarkup(React.createElement(Component, { cards, categories }));
   assert.equal((html.match(/<h1/g) || []).length, 1);
   assert.match(html, /Welche Wildart zeigt dieses Foto/);
@@ -275,7 +275,7 @@ test('Filter changes reject previous-card handlers and keep search/category on t
   const s = setup();
   try {
     s.flush(); s.click('Antwort zeigen'); const stale = s.button('Gewusst'); const staleNext = s.button('Weiter ohne Bewertung');
-    const select = find(s.tree, node => node.type?.name === 'MenuChoice');
+    const select = find(s.tree, node => node.type === 'select' && node.props['aria-label'] === 'Kategorie');
     select.props.onChange({ target: { value: 'hundewesen' } }); s.render();
     stale.props.onClick(); s.render();
     staleNext.props.onClick(); s.render();
@@ -345,7 +345,7 @@ test('Flashcard export and selection links are owned by the existing page-menu o
     const notice = FlashcardSelectionNotice({ selection: { title: 'Gewählte Lektion', returnHref: '/kurse/beispiel#lektion' } });
     const selectionMenu = find(notice, node => node.props?.title === 'Lernkartenauswahl');
     assert.ok(find(selectionMenu, node => node.props?.href === '/kurse/beispiel#lektion'));
-    assert.ok(find(selectionMenu, node => node.props?.href === '/lernen/lernkarten'));
+    assert.ok(find(selectionMenu, node => node.props?.href === '/lernen/lernkarten?kategorie=all'));
   } finally { s.cleanup(); }
 });
 

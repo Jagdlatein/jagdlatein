@@ -24,7 +24,7 @@ test('Browsing URL contains only navigation fields and preserves exact scoped/ot
   assert.equal(parsed.searchParams.get('hinweis'), 'behalten'); assert.equal(parsed.hash, '#lernkarten-suche');
   assert.equal(parsed.searchParams.has('kategorie'), false);
   assert.deepEqual(readURL(href, categories, scoped), { ...state, category: 'all' });
-  assert.deepEqual(read({ kategorie: ['wildkunde', 'hundewesen'], q: ['Reh', 'Gams'], karte: '../falsch', modus: 'anders' }, categories), { category: 'all', query: '', mode: 'pending', cardId: null });
+  assert.deepEqual(read({ kategorie: ['wildkunde', 'hundewesen'], q: ['Reh', 'Gams'], karte: '../falsch', modus: 'anders' }, categories), { category: null, query: '', mode: 'pending', cardId: null });
   assert.equal(read({ q: 'a'.repeat(300) }, categories).query.length, 160);
   assert.equal(url('/kurse/beispiel', state, categories), null);
   assert.equal(new URL(url('/lernen/lernkarten?kurs=ungültig', state, categories, { invalid: true }), 'https://jagdlatein.de').searchParams.get('kurs'), 'ungültig');
@@ -89,19 +89,31 @@ const cards = [
   { id: 'flash-gams', question: 'Was erklärt das Gams-Beispiel?', answer: 'Antwort Gams', categoryId: 'wildkunde', categoryTitle: 'Wildkunde', explanation: 'Vorhandene Erklärung Gams.', sources: [], courseHref: '/kurse/gams' },
   { id: 'flash-hund', question: 'Was erklärt das Hund-Beispiel?', answer: 'Antwort Hund', categoryId: 'hundewesen', categoryTitle: 'Hundewesen', explanation: 'Vorhandene Erklärung Hund.', sources: [], courseHref: '/kurse/hund' },
 ];
-function ui({ href = '/lernen/lernkarten', initialProps = {} } = {}) {
+function ui({ href = '/lernen/lernkarten?kategorie=all', initialProps = {}, isReady = true } = {}) {
   const oldWindow = global.window, timer = clock(), e = engine(), handlers = {}, events = {}, replacements = [], pushes = [];
   let writes = 0, saved = null, tree, props = { cards, categories, ...initialProps };
   function queryFor(url) { return Object.fromEntries(new URL(url, 'https://jagdlatein.de').searchParams); }
-  const router = { isReady: true, asPath: href, query: queryFor(href), replace(next) { const task = deferred(); replacements.push({ href: next, task }); events.routeChangeStart?.(next); return task.promise; }, push(next) { pushes.push(next); return Promise.resolve(true); }, events: { on(name, fn) { events[name] = fn; }, off(name) { delete events[name]; } } };
-  const assigned = [], history = [];
-  global.window = { history: { state: { __N: true, key: 'same-history-entry', url: href, as: href }, replaceState(state, title, href) { history.push({ state, href }); } }, location: { pathname: '/lernen/lernkarten', search: '', hash: '', assign: href => assigned.push(href) }, localStorage: { getItem() { return saved; }, setItem(key, value) { writes++; saved = value; } }, setTimeout: timer.setTimer, clearTimeout: timer.clearTimer, setInterval: () => 1, clearInterval() {}, requestAnimationFrame(fn) { fn(); }, addEventListener(name, fn) { handlers[name] = fn; }, removeEventListener(name) { delete handlers[name]; } };
+  const router = { isReady, asPath: href, query: queryFor(href), replace(next) { const task = deferred(); replacements.push({ href: next, task }); events.routeChangeStart?.(next); return task.promise; }, push(next) { pushes.push(next); return Promise.resolve(true); }, events: { on(name, fn) { events[name] = fn; }, off(name) { delete events[name]; } } };
+  const assigned = [], history = [], scrolls = [];
+  global.window = { history: { state: { __N: true, key: 'same-history-entry', url: href, as: href }, replaceState(state, title, href) { history.push({ state, href }); } }, location: { pathname: '/lernen/lernkarten', search: '', hash: '', assign: href => assigned.push(href) }, localStorage: { getItem() { return saved; }, setItem(key, value) { writes++; saved = value; } }, setTimeout: timer.setTimer, clearTimeout: timer.clearTimer, setInterval: () => 1, clearInterval() {}, requestAnimationFrame(fn) { fn(); }, scrollTo(options) { scrolls.push(options); }, addEventListener(name, fn) { handlers[name] = fn; }, removeEventListener(name) { delete handlers[name]; } };
   const Component = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router }, '../lib/flashcard-navigation': { ...navigation, createFlashcardURLSync: args => synchronizer({ ...args, ...timer }) } })('components/LearningFlashcards.js').default;
   const render = () => { tree = e.render(() => Component(props)); };
   const settle = async () => { for (let i = 0; i < 4; i++) { e.flush(); render(); await tick(); } };
   render();
-  return { get tree() { return tree; }, get writes() { return writes; }, get saved() { return saved; }, replacements, pushes, assigned, history, router, timer, render, settle,
+  return { get tree() { return tree; }, get writes() { return writes; }, get saved() { return saved; }, replacements, pushes, assigned, history, scrolls, router, timer, render, settle,
     find(predicate) { return all(tree, predicate)[0]; },
+    categoryButton(value) {
+      const chooser = this.find(node => node.type?.name === 'MenuChoice' && node.props.id === 'lernkarten-kategorien');
+      assert.ok(chooser);
+      const choice = all(chooser.type(chooser.props), node => node.type === 'button' && node.props['data-menu-choice'] === value)[0];
+      assert.ok(choice, value);
+      return choice;
+    },
+    chooseCategory(value) {
+      const choice = this.categoryButton(value);
+      assert.notEqual(choice.props.disabled, true);
+      choice.props.onClick(); render();
+    },
     input(value) { this.find(node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value } }); render(); },
     click(label) { const node = this.find(item => item.type === 'button' && text(item).trim() === label); assert.ok(node); node.props.onClick(); render(); },
     setProps(next) { props = { ...props, ...next }; render(); },
@@ -114,6 +126,111 @@ function ui({ href = '/lernen/lernkarten', initialProps = {} } = {}) {
   };
 }
 
+const isCategorySelect = node => node.type === 'select' && node.props['aria-label'] === 'Kategorie';
+
+test('The bare digital deck offers a visible category choice without opening or rating a card', async () => {
+  const s = ui({ href: '/lernen/lernkarten' });
+  try {
+    await s.settle();
+    const chooser = s.find(node => node.type?.name === 'MenuChoice' && node.props.id === 'lernkarten-kategorien');
+    assert.equal(chooser?.props.label, 'Kategorie wählen');
+    assert.ok(!s.find(node => node.type === 'article'));
+    s.timer.flush(); await s.settle();
+    assert.equal(s.replacements.length, 0, 'arrival alone does not select a category');
+    const writes = s.writes;
+    s.chooseCategory('hundewesen');
+    await s.settle(); s.timer.flush(); await s.settle();
+    await s.complete(0);
+    assert.equal(s.find(isCategorySelect)?.props.value, 'hundewesen');
+    assert.match(text(s.tree), /Was erklärt das Hund-Beispiel/);
+    assert.doesNotMatch(text(s.tree), /Was erklärt das Reh-Beispiel|Antwort Hund/);
+    assert.equal(new URL(s.router.asPath, 'https://jagdlatein.de').searchParams.get('kategorie'), 'hundewesen');
+    assert.equal(s.writes, writes);
+    assert.ok(s.scrolls.length, 'the category selection returns to the top of the page');
+    assert.ok(s.scrolls.every(scroll => scroll.top === 0));
+    await s.back('/lernen/lernkarten');
+    assert.ok(!s.find(node => node.type === 'article'));
+    assert.ok(s.find(node => node.type?.name === 'MenuChoice' && node.props.id === 'lernkarten-kategorien'));
+  } finally { s.cleanup(); }
+});
+
+test('The chooser is present before router readiness and opens a category only after readiness', async () => {
+  const s = ui({ href: '/lernen/lernkarten', isReady: false });
+  try {
+    await s.settle();
+    const button = s.categoryButton('hundewesen');
+    assert.equal(button.props.disabled, true);
+    button.props.onClick(); s.render(); await s.settle();
+    assert.ok(!s.find(node => node.type === 'article'));
+    assert.equal(s.replacements.length, 0);
+    s.router.isReady = true; s.render(); await s.settle();
+    s.chooseCategory('hundewesen'); await s.settle(); await s.complete(0);
+    assert.match(text(s.tree), /Was erklärt das Hund-Beispiel/);
+  } finally { s.cleanup(); }
+});
+
+test('An old category click cannot open a deck during an external route change', async () => {
+  const s = ui({ href: '/lernen/lernkarten' });
+  try {
+    await s.settle();
+    const button = s.categoryButton('hundewesen');
+    s.emit('routeChangeStart', '/kurse/reh');
+    button.props.onClick(); s.render(); await s.settle();
+    assert.ok(!s.find(node => node.type === 'article'));
+    assert.equal(s.replacements.length, 0);
+    s.emit('routeChangeError', new Error('temporary router failure'), '/kurse/reh');
+    s.chooseCategory('hundewesen'); await s.settle(); await s.complete(0);
+    assert.match(text(s.tree), /Was erklärt das Hund-Beispiel/);
+  } finally { s.cleanup(); }
+});
+
+test('A category outside the seed is selectable and waits for the matching cards to arrive', async () => {
+  const s = ui({ href: '/lernen/lernkarten', initialProps: { cards: cards.slice(0, 2), incomplete: true, loading: true } });
+  try {
+    await s.settle(); s.chooseCategory('hundewesen'); await s.settle();
+    await s.complete(0);
+    assert.equal(s.find(isCategorySelect)?.props.value, 'hundewesen');
+    assert.ok(!s.find(node => node.type === 'article'));
+    assert.match(text(s.tree), /Deine Auswahl wird vollständig geladen/);
+    s.setProps({ cards, incomplete: false, loading: false }); await s.settle();
+    assert.match(text(s.tree), /Was erklärt das Hund-Beispiel/);
+    assert.doesNotMatch(text(s.tree), /Was erklärt das Reh-Beispiel|Antwort Hund/);
+  } finally { s.cleanup(); }
+});
+
+test('Explicitly choosing all categories survives URL restoration and a fresh deck', async () => {
+  const s = ui({ href: '/lernen/lernkarten' });
+  let href;
+  try {
+    await s.settle(); s.chooseCategory('all');
+    await s.settle(); s.timer.flush(); await s.settle();
+    await s.complete(0);
+    href = s.router.asPath;
+    assert.equal(new URL(href, 'https://jagdlatein.de').searchParams.get('kategorie'), 'all');
+    assert.equal(s.find(isCategorySelect)?.props.value, 'all');
+    assert.match(text(s.tree), /Was erklärt das Reh-Beispiel/);
+  } finally { s.cleanup(); }
+  const reopened = ui({ href });
+  try {
+    await reopened.settle();
+    assert.equal(reopened.find(isCategorySelect)?.props.value, 'all');
+    assert.match(text(reopened.tree), /Was erklärt das Reh-Beispiel/);
+    assert.equal(reopened.replacements.length, 0);
+  } finally { reopened.cleanup(); }
+});
+
+test('Legacy deep links with search, a card or browsing mode enter directly', async () => {
+  for (const [query, question] of [['q=Hund', 'Hund'], ['karte=flash-hund', 'Hund'], ['modus=alle', 'Reh']]) {
+    const s = ui({ href: '/lernen/lernkarten?' + query });
+    try {
+      await s.settle();
+      assert.equal(s.find(isCategorySelect)?.props.value, 'all', query);
+      assert.ok(text(s.tree).includes('Was erklärt das ' + question + '-Beispiel?'), query);
+      assert.equal(s.replacements.length, 0, query);
+    } finally { s.cleanup(); }
+  }
+});
+
 test('Current card/category survive new category array instances, then reload from the saved URL without ratings', async () => {
   const studyCards = cards.map(card => card.id === 'flash-gams' ? { ...card, choices: ['Antwort Gams', 'Andere Gamsantwort'] } : card);
   const s = ui({ href: '/lernen/lernkarten?kategorie=wildkunde&karte=flash-gams', initialProps: { cards: studyCards } });
@@ -123,7 +240,7 @@ test('Current card/category survive new category array instances, then reload fr
     s.click('Andere Gamsantwort');
     assert.match(text(s.tree), /Das ist noch nicht richtig/);
     s.setProps({ categories: categories.map(item => ({ ...item })) }); await s.settle();
-    assert.match(text(s.tree), /Das ist noch nicht richtig/); assert.equal(s.find(node => node.type?.name === 'MenuChoice').props.value, 'wildkunde');
+    assert.match(text(s.tree), /Das ist noch nicht richtig/); assert.equal(s.find(isCategorySelect).props.value, 'wildkunde');
     s.click('Weiter ohne Bewertung'); await s.settle(); await s.complete(0);
     assert.equal(new URL(s.router.asPath, 'https://jagdlatein.de').searchParams.get('karte'), 'flash-reh');
     assert.equal(s.writes, baseline); assert.deepEqual(JSON.parse(s.saved).cards, {});
@@ -179,17 +296,36 @@ test('Back or another route before a pending course click completes cancels that
 
 const lowerMenu = { __esModule: true, default: ({ title, children }) => React.createElement('section', { 'data-lower-menu': title }, children), closePageMenu() {} };
 
-test('Print/PDF choices and filters appear once in the lower menu while the unrevealed card offers reveal and skip', () => {
-  const Component = createLoader({ ...framework, 'next/router': { useRouter: () => ({ query: {}, isReady: true }) } })('components/LearningFlashcards.js').default;
+test('The entry selection is server-rendered in the page before any card', () => {
+  for (const query of [{}, { kategorie: '' }, { kategorie: 'falsch' }, { kategorie: ['wildkunde', 'hundewesen'] }]) {
+    const Component = createLoader({ ...framework, 'next/router': { useRouter: () => ({ query, isReady: false }) } })('components/LearningFlashcards.js').default;
+    const html = renderToStaticMarkup(React.createElement(Component, { cards, categories }));
+    assert.match(html, /id="lernkarten-kategorien"/);
+    assert.match(html, /<legend[^>]*>Kategorie wählen<\/legend>/);
+    assert.match(html, /data-menu-choice="all"[^>]*>Alle Kategorien/);
+    assert.match(html, /data-menu-choice="wildkunde"[^>]*>Wildkunde/);
+    assert.match(html, /data-menu-choice="hundewesen"[^>]*>Hundewesen/);
+    assert.doesNotMatch(html, /<article|Antwort zeigen|Weiter ohne Bewertung/);
+  }
+});
+
+test('The category stays in the page while other choices stay in the lower menu and the card offers reveal and skip', () => {
+  const router = { useRouter: () => ({ query: { kategorie: 'all' }, isReady: true }) };
+  const Component = createLoader({ ...framework, 'next/router': router })('components/LearningFlashcards.js').default;
   const html = renderToStaticMarkup(React.createElement(Component, { cards, categories }));
-  assert.doesNotMatch(html, /Diese Auswahl drucken|Starterset als PDF|<select|Karten anzeigen/);
-  assert.equal((html.match(/<button/g) || []).length, 2);
-  assert.match(html, /Antwort zeigen/);
-  assert.match(html, /Weiter ohne Bewertung/);
-  const WithMenu = createLoader({ ...framework, './PageMenu': lowerMenu, 'next/router': { useRouter: () => ({ query: {}, isReady: true }) } })('components/LearningFlashcards.js').default;
+  assert.doesNotMatch(html, /Diese Auswahl drucken|Starterset als PDF|Karten anzeigen/);
+  assert.equal((html.match(/<select[^>]*aria-label="Kategorie"/g) || []).length, 1);
+  const card = html.match(/<article[^>]*>.*?<\/article>/)?.[0] || '';
+  assert.equal((card.match(/<button/g) || []).length, 2);
+  assert.match(card, /Antwort zeigen/);
+  assert.match(card, /Weiter ohne Bewertung/);
+  const WithMenu = createLoader({ ...framework, './PageMenu': lowerMenu, 'next/router': router })('components/LearningFlashcards.js').default;
   const withMenu = renderToStaticMarkup(React.createElement(WithMenu, { cards, categories }));
-  assert.match(withMenu, /data-lower-menu="Lernkarten auswählen"/);
+  assert.match(withMenu, /data-lower-menu="Lernkarten suchen und filtern"/);
   assert.match(withMenu, /data-lower-menu="Lernkarten drucken und speichern"/);
+  const filterMenu = withMenu.match(/<section data-lower-menu="Lernkarten suchen und filtern">.*?<\/section>/)?.[0];
+  assert.ok(filterMenu);
+  assert.doesNotMatch(filterMenu, /<select|Kategorie wählen|data-menu-choice="wildkunde"/);
   assert.equal((withMenu.match(/Diese Auswahl drucken/g) || []).length, 1);
   assert.equal((withMenu.match(/Starterset als PDF/g) || []).length, 1);
 });
@@ -206,6 +342,11 @@ test('Print and its visible digital return link preserve the current card and br
   assert.deepEqual(Object.fromEntries(new URL(backHref, 'https://jagdlatein.de').searchParams), query);
   assert.match(printed, /data-lower-menu="Weitere Lernkarten"/);
   assert.equal((printed.match(/Digital wiederholen/g) || []).length, 1);
+
+  const AllPrint = createLoader({ ...framework, '../../components/PageMenu': lowerMenu, 'next/link': linking, 'next/router': { useRouter: () => ({ query: {}, isReady: true }) } })('pages/lernen/lernkarten-drucken.js').default;
+  const printAll = renderToStaticMarkup(React.createElement(AllPrint, { cards, categories }));
+  assert.match(printAll, /href="\/lernen\/lernkarten\?kategorie=all"/);
+  assert.equal((printAll.match(/<article\b/g) || []).length, cards.length);
 });
 
 test('An old shallow route error preserves a newer draft and its scheduled replacement', async () => {

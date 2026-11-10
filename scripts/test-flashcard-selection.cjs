@@ -126,7 +126,7 @@ test('Scoped learning and print UI show the chosen lesson, preserve its round tr
   assert.equal(printTarget.pathname, '/lernen/lernkarten-drucken');
   assert.equal(printTarget.searchParams.get('kurs'), courseId);
   assert.equal(printTarget.searchParams.get('lektion'), scope.lessonId);
-  assert.doesNotMatch(lowerMenus.get('Lernkarten auswählen'), /<select/);
+  assert.doesNotMatch(lowerMenus.get('Lernkarten suchen und filtern'), /<select/);
   const printed = renderToStaticMarkup(React.createElement(Print, props));
   assert.doesNotMatch(printed, /<select|Druckauswahl wird geladen|Welche Wildart zeigt dieses Foto/);
   assert.doesNotMatch(printed, /Digital wiederholen/, 'The print-to-digital return link also belongs to the lower menu');

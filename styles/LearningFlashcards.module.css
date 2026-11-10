@@ -10,6 +10,7 @@
 .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-size: 16px; font-weight: 700; }
 .field select, .searchInput { min-height: 54px; width: 100%; border: 1px solid #cdbb91; border-radius: 12px; background: #fffdf7; color: #3e321b; }
 .field select { padding: 12px; font-size: 17px; }
+.categorySwitch { max-width: 24rem; }
 .searchInput { display: flex; align-items: center; gap: 9px; padding: 0 13px; }
 .searchInput svg { flex-shrink: 0; color: #796021; }
 .searchInput input { flex: 1; min-width: 0; width: 100%; border: 0; background: transparent; padding: 14px 0; font-size: 17px; }

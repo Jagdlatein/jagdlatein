@@ -69,8 +69,8 @@ export default function PrintableFlashcards(props) {
   const { sourceList, sourceByUrl } = getPrintSourceIndex(filtered);
   const selectedCategory = selection?.title ? [selection.title, selection.lessonTitle].filter(Boolean).join(" · ") : categories.find(item => item.id === category)?.title || "Alle Kategorien";
   const navigation = readFlashcardNavigation(router.query, categories, selection);
-  const sameSelection = navigation.category === category && navigation.query.trim() === query.trim();
-  const backQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}), ...(navigation.mode === "all" ? { modus: "alle" } : {}), ...(sameSelection && navigation.cardId ? { karte: navigation.cardId } : {}) };
+  const sameSelection = (navigation.category || "all") === category && navigation.query.trim() === query.trim();
+  const backQuery = { ...flashcardSelectionQuery(selection), ...(!selection ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}), ...(navigation.mode === "all" ? { modus: "alle" } : {}), ...(sameSelection && navigation.cardId ? { karte: navigation.cardId } : {}) };
   return <LearningToolLayout title="Lernkarten drucken" description="Frage und Antwort nebeneinander auf A4 drucken, ausschneiden und zu einer Karte zusammenfalten." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-druckauswahl" hideCommunity robots="noindex,follow" className={styles.printPage}>
     <FlashcardSelectionNotice selection={selection} />
     <PageMenu title="Druckauswahl ändern"><form className={styles.filters} id="lernkarten-druckauswahl" onSubmit={event => { event.preventDefault(); closePageMenu(); requestedFocus.current = false; focusSelection(printHeading.current); }}>

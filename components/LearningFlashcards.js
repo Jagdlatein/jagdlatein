@@ -24,7 +24,7 @@ export function FlashcardSelectionNotice({ selection, onNavigate }) {
   return <aside className={styles.selectionNotice} aria-label="Gewählte Lernkartenauswahl">
     <strong>{selection.invalid ? "Diese Lernkartenauswahl wurde nicht gefunden." : selection.title}</strong>
     {selection.lessonTitle && <p>{selection.lessonTitle}</p>}
-    <PageMenu title="Lernkartenauswahl"><div>{selection.returnHref && <Link href={selection.returnHref} onClick={event => onNavigate?.(event, selection.returnHref)} prefetch={false}>Zur Lektion</Link>}<Link href="/lernen/lernkarten" onClick={event => onNavigate?.(event, "/lernen/lernkarten")} prefetch={false}>Alle Lernkarten</Link></div></PageMenu>
+    <PageMenu title="Lernkartenauswahl"><div>{selection.returnHref && <Link href={selection.returnHref} onClick={event => onNavigate?.(event, selection.returnHref)} prefetch={false}>Zur Lektion</Link>}<Link href="/lernen/lernkarten?kategorie=all" onClick={event => onNavigate?.(event, "/lernen/lernkarten?kategorie=all")} prefetch={false}>Alle Lernkarten</Link></div></PageMenu>
   </aside>;
 }
 export function formatFlashcardDate(value) {
@@ -156,7 +156,8 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     catch { setCanSave(false); }
   }, [review, loaded, canSave]);
 
-  const filtered = useMemo(() => filterFlashcards(cards, category, query, selection), [cards, category, query, selection]);
+  const choosingCategory = !selection && category === null;
+  const filtered = useMemo(() => choosingCategory ? [] : filterFlashcards(cards, category, query, selection), [cards, category, query, selection, choosingCategory]);
   const available = mode === "all" ? filtered : pendingCards(filtered, review, now, againIds);
   const waitingForCard = incomplete && currentId && !cards.some(card => card.id === currentId);
   const current = waitingForCard ? null : available.find(card => card.id === currentId) || available[0] || null;
@@ -181,7 +182,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   }, [navigation, waitingForCard]);
   const token = generation.current;
   active.current = current?.id || null;
-  const printQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category !== "all" ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}), ...(mode === "all" ? { modus: "alle" } : {}), ...(current?.id ? { karte: current.id } : {}) };
+  const printQuery = { ...flashcardSelectionQuery(selection), ...(!selection && category ? { kategorie: category } : {}), ...(query.trim() ? { q: query.trim() } : {}), ...(mode === "all" ? { modus: "alle" } : {}), ...(current?.id ? { karte: current.id } : {}) };
   const printHref = { pathname: "/lernen/lernkarten-drucken", query: printQuery };
 
   function updateNavigation(next, delay = 0) {
@@ -195,7 +196,15 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     generation.current++;
     active.current = null;
     setMessage("");
-    updateNavigation({ ...navigationRef.current, [key]: value, cardId: null }, key === "query" ? 220 : 0);
+    const next = { ...navigationRef.current, [key]: value, cardId: null };
+    if (key === "query" && next.category === null && value.trim()) next.category = "all";
+    updateNavigation(next, key === "query" ? 220 : 0);
+  }
+  function selectCategory(value) {
+    if (generation.current !== token || routerRef.current.isReady === false || !syncRef.current.available() || value === navigationRef.current.category) return;
+    if (value !== "all" && !categories.some(item => item.id === value)) return;
+    changeFilter("category", value);
+    showSelection();
   }
   function rememberBeforeLeaving(event, href) {
     const modified = event?.metaKey || event?.ctrlKey || event?.shiftKey || event?.altKey || event?.button > 0;
@@ -283,17 +292,26 @@ export default function LearningFlashcards({ cards = [], categories = [], select
 
   return <LearningToolLayout title="Lernkarten" description="Wildwissen mit Frage und Antwort wiederholen, auf diesem Gerät vormerken oder als Lernkarten ausdrucken." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-suche" hideCommunity className={styles.page}>
     <FlashcardSelectionNotice selection={selection} onNavigate={rememberBeforeLeaving} />
-    <PageMenu title="Lernkarten auswählen"><form className={`${styles.filters} ${selection ? styles.scopedFilters : ""}`} id="lernkarten-suche" onSubmit={event => { event.preventDefault(); showSelection(); }}>
-      {!selection && <MenuChoice label="Kategorie" value={category} onChange={event => { changeFilter("category", event.target.value); showSelection(); }}><option value="all">Alle Kategorien</option>{categories.map(item => <option key={item.id} value={item.id}>{item.title} ({item.count})</option>)}</MenuChoice>}
+    {choosingCategory ? <MenuChoice id="lernkarten-kategorien" label="Kategorie wählen" disabled={router.isReady === false} onChange={event => selectCategory(event.target.value)}>
+      {categories.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
+      <option value="all">Alle Kategorien</option>
+    </MenuChoice> : !selection && <label className={`${styles.field} ${styles.categorySwitch}`}>
+      Kategorie
+      <select aria-label="Kategorie" value={category} disabled={router.isReady === false} onChange={event => selectCategory(event.target.value)}>
+        <option value="all">Alle Kategorien</option>
+        {categories.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
+      </select>
+    </label>}
+    <PageMenu title="Lernkarten suchen und filtern"><form className={`${styles.filters} ${styles.scopedFilters}`} id="lernkarten-suche" onSubmit={event => { event.preventDefault(); showSelection(); }}>
       <label className={styles.field}>Karten suchen<div className={styles.searchInput}><AppIcon name="search" size={21} /><input type="search" value={query} onChange={event => changeFilter("query", event.target.value.slice(0, 160))} placeholder="Zum Beispiel Gams, Hund oder Wald" autoComplete="off" enterKeyHint="search" /></div></label>
-      <label className={styles.mode}><input type="checkbox" checked={mode === "pending"} onChange={event => { changeFilter("mode", event.target.checked ? "pending" : "all"); showSelection(); }} />Nur offene und fällige Karten</label>
+      <label className={styles.mode}><input type="checkbox" checked={mode === "pending"} disabled={choosingCategory} onChange={event => { changeFilter("mode", event.target.checked ? "pending" : "all"); showSelection(); }} />Nur offene und fällige Karten</label>
       <button type="submit" className={styles.textButton}>Karten anzeigen</button>
     </form></PageMenu>
-    <div className={styles.summary}>
+    {!choosingCategory && <div className={styles.summary}>
       <p>{incomplete ? `${cards.length} von ${totalCount} Karten geladen` : `${available.length} ${available.length === 1 ? "Karte" : "Karten"}${mode === "pending" ? " offen oder fällig" : " in deiner Auswahl"}`}{rated > 0 ? ` · ${rated} in dieser Sitzung bewertet` : ""}</p>
-    </div>
+    </div>}
     <PageMenu title="Lernkarten drucken und speichern"><nav className={`${styles.exportLinks} ${styles.cardExports}`} aria-label="Lernkarten drucken und speichern">{!selection?.invalid && <Link href={printHref} aria-label="Diese Auswahl drucken" onClick={event => rememberBeforeLeaving(event, printHref)}><AppIcon name="book" size={21} />Drucken</Link>}<a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download aria-label="Starterset als PDF">PDF-Starterset</a></nav></PageMenu>
-    <div className={styles.status} role="status" aria-live="polite">{loadError || (loading ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : message)}{loadError && onReload && <button className={styles.textButton} type="button" onClick={onReload}>Erneut laden</button>}</div>
+    <div className={styles.status} role="status" aria-live="polite">{loadError || (loading && !choosingCategory ? (current ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : "Weitere Lernkarten werden geladen.") : message)}{loadError && onReload && <button className={styles.textButton} type="button" onClick={onReload}>Erneut laden</button>}</div>
     {current ? <article className={styles.card} aria-labelledby="lernkarten-frage" key={current.id}>
       <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>Lernkarte</span></div>
       <h2 id="lernkarten-frage" ref={headingRef} tabIndex={-1}>{current.question}</h2>
@@ -324,7 +342,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
         </div>
         <button type="button" onClick={nextWithoutRating} disabled={available.length < 2} className={styles.nextCard}>Weiter ohne Bewertung</button>
       </div>
-    </article> : <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer">{incomplete ? "Deine Auswahl wird vollständig geladen." : filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{incomplete ? "Die Suche berücksichtigt den vollständigen Bestand, sobald der Abruf abgeschlossen ist." : filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Im unteren Menü kannst du den Filter ausschalten und alle passenden Karten erneut ansehen." : "Wähle im unteren Menü eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
+    </article> : !choosingCategory && <section className={styles.empty} aria-labelledby="lernkarten-leer"><h2 id="lernkarten-leer" ref={headingRef} tabIndex={-1}>{incomplete ? "Deine Auswahl wird vollständig geladen." : filtered.length ? "Für jetzt ist deine Auswahl wiederholt." : "Keine passenden Karten gefunden."}</h2><p>{incomplete ? "Die Suche berücksichtigt den vollständigen Bestand, sobald der Abruf abgeschlossen ist." : filtered.length ? "Deine Bewertungen sind eine Selbsteinschätzung. Im unteren Menü kannst du den Filter ausschalten und alle passenden Karten erneut ansehen." : "Wähle eine andere Kategorie oder verkürze deinen Suchbegriff."}</p></section>}
     <p className={styles.deviceNote}>{canSave ? "Deine Bewertungen werden nur in diesem Browser auf diesem Gerät gespeichert. Sie werden nicht als Prüfungs- oder Ranglistenpunkte gewertet." : "Dieser Browser lässt das Speichern gerade nicht zu. Deine Bewertungen gelten nur für diese geöffnete Sitzung."}</p>
     {current && (answerShown || current.image) && <details className={styles.sources} key={`sources-${current.id}-${answerShown}`}>
       <summary>{current.sourceScope === "photo" ? (answerShown ? "Bildnachweis und Artenporträt" : "Bildnachweis") : current.sourceScope === "lesson" ? "Quellen der Ausgangslektion und Prüfstand" : "Quellen des Ausgangskurses und Prüfstand"}</summary>

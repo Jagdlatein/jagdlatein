@@ -70,8 +70,8 @@ function find(node, predicate) {
   return predicate(node) ? node : find(node.props?.children, predicate);
 }
 function categoryChoice(tree) {
-  const choice = find(tree, node => node.type?.name === 'MenuChoice' && node.props.label === 'Kategorie');
-  assert.ok(choice, 'category selection is contributed by the actual lower-menu MenuChoice');
+  const choice = find(tree, node => node.type?.name === 'MenuChoice' && ['Kategorie', 'Kategorie wählen'].includes(node.props.label));
+  assert.ok(choice, 'category selection uses the actual MenuChoice');
   return choice;
 }
 function chooseCategory(tree, value) {
@@ -372,6 +372,8 @@ test('Expanded cards preserve the active category, typed search and quiz feedbac
   const settle = () => { render(); e.flush(); render(); e.flush(); render(); };
   try {
     h.flush(); settle();
+    assert.equal(categoryChoice(tree).props.id, 'lernkarten-kategorien');
+    assert.equal(find(tree, node => node.type === 'article'), null);
     chooseCategory(tree, 'hundewesen'); settle();
     find(tree, node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value: 'Belohnung' } }); settle();
     assert.doesNotMatch(words(tree), /Richtige Antwort|Die Erklärung bleibt/);
@@ -380,7 +382,7 @@ test('Expanded cards preserve the active category, typed search and quiz feedbac
     choice.props.onClick(); settle();
     assert.match(words(tree), /Richtig beantwortet/);
     pending.resolve(response(200, makeDeck(addChoices(fullCards)))); await h.settle(); settle();
-    assert.equal(categoryChoice(tree).props.value, 'hundewesen');
+    assert.equal(find(tree, node => node.type === 'select' && node.props['aria-label'] === 'Kategorie')?.props.value, 'hundewesen');
     assert.equal(find(tree, node => node.type === 'input' && node.props.type === 'search').props.value, 'Belohnung');
     assert.match(words(tree), /Richtig beantwortet/);
     assert.match(words(tree), /2 Karten offen oder fällig/);
