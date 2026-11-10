@@ -144,3 +144,16 @@ test('Effective dates use the existing legal publication gate and historical or 
   assertReviewedAnswer(night, 'CH', 'ZH', 'ch-bund-nachtjagd-wald', 'BUND');
   assert.match(night.text, /nicht schon daraus.*selbst einen Schaden vermutet/);
 });
+
+test('St. Gallen links the applicable enactment for both the hunting system and proof of marksmanship', () => {
+  const system = ask('Welches Jagdsystem gilt in St. Gallen?', 'CH', 'SG');
+  assertReviewedAnswer(system, 'CH', 'SG', 'ch-sg-jagdpacht');
+  assert.match(system.text, /Jagdpachtsystem/);
+  const proof = ask('Wie lange ist der JFK-Treffsicherheitsnachweis nach der geltenden St. Galler Grundregel gültig?', 'CH', 'SG');
+  assertReviewedAnswer(proof, 'CH', 'SG', 'ch-sg-treffsicherheitsnachweis');
+  assert.equal(proof.law.lawTitle, 'Jagdverordnung (JV), sGS 853.11');
+  assert.match(proof.law.citation, /Art\. 24.+Art\. 26/);
+  assert.deepEqual(proof.links.slice(1).map(link => link.href), [
+    'https://www.gesetzessammlung.sg.ch/api/de/versions/3479/pdf_file_with_annexes',
+  ]);
+});
