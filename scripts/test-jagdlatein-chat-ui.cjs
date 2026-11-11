@@ -23,13 +23,22 @@ const answer = {
 
 async function fixture(t, { exam = { profile: zurich, ready: true } } = {}) {
   const dom = new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>', { url: 'https://jagdlatein.invalid/lernen/jagdlatein-chat' });
-  const calls = [], globals = new Map();
+  const calls = [], globals = new Map(), timers = new Map();
+  const realSetTimeout = global.setTimeout, realClearTimeout = global.clearTimeout;
+  let timerId = 0;
+  const controlledTimeout = (callback, delay, ...args) => {
+    if (delay !== 20000) return realSetTimeout(callback, delay, ...args);
+    const id = --timerId;
+    timers.set(id, { callback, args });
+    return id;
+  };
+  const controlledClearTimeout = id => { if (!timers.delete(id)) realClearTimeout(id); };
   const fetcher = (url, options) => {
     const pending = deferred();
     calls.push({ url, options, ...pending });
     return pending.promise;
   };
-  for (const [key, value] of Object.entries({ window: dom.window, document: dom.window.document, navigator: dom.window.navigator, IS_REACT_ACT_ENVIRONMENT: true, fetch: fetcher })) {
+  for (const [key, value] of Object.entries({ window: dom.window, document: dom.window.document, navigator: dom.window.navigator, IS_REACT_ACT_ENVIRONMENT: true, fetch: fetcher, setTimeout: controlledTimeout, clearTimeout: controlledClearTimeout })) {
     globals.set(key, Object.getOwnPropertyDescriptor(globalThis, key));
     Object.defineProperty(globalThis, key, { configurable: true, writable: true, value });
   }
@@ -48,16 +57,18 @@ async function fixture(t, { exam = { profile: zurich, ready: true } } = {}) {
   }
   t.after(async () => {
     await unmount();
+    const remainingTimers = timers.size;
     dom.window.close();
     for (const [key, descriptor] of globals) {
       if (descriptor) Object.defineProperty(globalThis, key, descriptor);
       else delete globalThis[key];
     }
+    assert.equal(remainingTimers, 0, 'each request timer is cleared before leaving the page');
   });
   const render = () => act(() => root.render(React.createElement(Chat)));
   await render();
   return {
-    act, calls, container, unmount,
+    act, calls, container, unmount, timers,
     get input() { return container.querySelector('#jagdlatein-chat-question'); },
     get button() { return container.querySelector('button[type="submit"]'); },
     get form() { return container.querySelector('form'); },
@@ -233,4 +244,127 @@ test('An account change removes previous answers and a private draft from the sh
   await h.setExam({ profile: zurich, ready: true, phase: 'ready', accountKey: 'second' });
   assert.equal(h.input.value, '');
   assert.equal(h.container.querySelector('article'), null);
+});
+
+test('Question ideas fill and focus the draft while leaving submission under the learner\'s control', async t => {
+  const h = await fixture(t);
+  const expected = [
+    ['Schnüffeln beim Hund', 'Wie funktioniert das Schnüffeln beim Hund?'],
+    ['Lernkarten Wildkunde', 'Lernkarten Wildkunde'],
+    ['Video vom Biber', 'Zeige mir einen Film über einen Biber'],
+  ];
+  for (const [label, question] of expected) {
+    await h.type('');
+    const choice = [...h.container.querySelectorAll('button')].find(button => button.textContent === label);
+    assert.ok(choice, label);
+    await h.act(() => nativeProps(choice).onClick());
+    assert.equal(h.input.value, question);
+    assert.equal(h.input.ownerDocument.activeElement, h.input);
+    assert.equal(h.calls.length, 0);
+    assert.equal(h.button.disabled, false);
+  }
+});
+
+test('Cancel keeps the current draft and neither its late response nor an old Cancel handler can affect the next request', async t => {
+  const h = await fixture(t);
+  const firstQuestion = 'Erste konkrete Frage';
+  await h.type(firstQuestion); await h.submit();
+  assert.equal(h.timers.size, 1);
+  const cancel = [...h.container.querySelectorAll('button')].find(button => button.textContent === 'Abbrechen');
+  const cancelFirst = nativeProps(cancel).onClick;
+  const oldBody = deferred();
+  await h.act(() => h.calls[0].resolve({ ok: true, status: 200, json: () => oldBody.promise }));
+  await h.act(() => cancelFirst());
+  assert.equal(h.calls[0].options.signal.aborted, true);
+  assert.equal(h.timers.size, 0);
+  assert.equal(h.input.readOnly, false);
+  assert.equal(h.input.value, firstQuestion);
+  assert.match(h.form.querySelector('[role="status"]').textContent, /Anfrage beendet/);
+
+  await h.type('Neue konkrete Frage'); await h.submit();
+  await h.act(() => cancelFirst());
+  assert.equal(h.calls[1].options.signal.aborted, false);
+  assert.equal(h.input.readOnly, true);
+  assert.equal(h.timers.size, 1);
+  let oldAnswerRead = false;
+  await h.act(() => oldBody.resolve({ get text() { oldAnswerRead = true; return 'Veraltete Antwort'; } }));
+  assert.equal(oldAnswerRead, false);
+  assert.equal(h.container.querySelector('article'), null);
+  await h.reply(1, { kind: 'lesson', text: 'Neue belegte Antwort', links: [] });
+  assert.match(h.container.querySelector('article').textContent, /Neue konkrete Frage/);
+  assert.doesNotMatch(h.container.textContent, /Veraltete Antwort/);
+  assert.equal(h.timers.size, 0);
+});
+
+test('The request deadline releases the composer and keeps its draft available for an explicit retry', async t => {
+  const h = await fixture(t);
+  const question = 'Welche Merkmale kann ich vergleichen?';
+  await h.type(question); await h.submit();
+  assert.equal(h.timers.size, 1);
+  const [id, timer] = [...h.timers][0];
+  h.timers.delete(id);
+  await h.act(() => timer.callback(...timer.args));
+  assert.equal(h.calls[0].options.signal.aborted, true);
+  assert.equal(h.input.value, question);
+  assert.equal(h.input.readOnly, false);
+  assert.equal(h.button.disabled, false);
+  assert.match(h.form.querySelector('[role="alert"]').textContent, /dauert zu lange/);
+
+  await h.submit();
+  assert.equal(h.calls.length, 2);
+  await h.act(() => timer.callback(...timer.args));
+  assert.equal(h.calls[1].options.signal.aborted, false, 'the expired deadline belongs only to the original request');
+  await h.reply(0, { kind: 'lesson', text: 'Antwort nach dem Ablauf', links: [] });
+  assert.equal(h.container.querySelector('article'), null);
+  await h.reply(1, answer);
+  assert.ok(h.container.querySelector('article'));
+  assert.equal(h.form.querySelector('[role="alert"]'), null);
+  assert.equal(h.timers.size, 0);
+});
+
+test('Starting again clears the in-memory transcript and pending request without reusing completed answer identities', async t => {
+  const h = await fixture(t);
+  await h.type('Abgeschlossene Frage'); await h.submit(); await h.reply(0, answer);
+  const previousId = h.container.querySelector('article h2').id;
+  const staleStart = nativeProps([...h.container.querySelectorAll('button')].find(button => button.textContent === 'Neu beginnen')).onClick;
+  await h.type('Laufende Frage'); await h.submit();
+  const start = [...h.container.querySelectorAll('button')].find(button => button.textContent === 'Neu beginnen');
+  await h.act(() => nativeProps(start).onClick());
+  assert.equal(h.calls[1].options.signal.aborted, true);
+  assert.equal(h.timers.size, 0);
+  assert.equal(h.input.value, '');
+  assert.equal(h.container.querySelector('article'), null);
+  assert.equal(h.input.ownerDocument.activeElement, h.input);
+  await h.reply(1, { kind: 'lesson', text: 'Verspätet aus der alten Unterhaltung', links: [] });
+  assert.equal(h.container.querySelector('article'), null);
+
+  await h.type('Frage nach dem Neubeginn'); await h.submit();
+  await h.act(() => staleStart());
+  assert.equal(h.calls[2].options.signal.aborted, false);
+  await h.reply(2, answer);
+  const currentHeading = h.container.querySelector('article h2');
+  assert.notEqual(currentHeading.id, previousId);
+  assert.equal(currentHeading.ownerDocument.activeElement, currentHeading);
+  assert.match(h.container.querySelector('article').textContent, /Frage nach dem Neubeginn/);
+});
+
+test('Only the latest answer receives focus and earlier questions and their sources reopen collapsed', async t => {
+  const h = await fixture(t);
+  await h.type('Erste Frage'); await h.submit(); await h.reply(0, answer);
+  const firstHeading = h.container.querySelector('article h2');
+  assert.equal(firstHeading.ownerDocument.activeElement, firstHeading);
+  await h.act(() => { h.container.querySelector('article details').open = true; });
+  await h.type('Zweite Frage'); await h.submit(); await h.reply(1, answer);
+  const articles = [...h.container.querySelectorAll('article')];
+  const headings = articles.map(article => article.querySelector('h2'));
+  assert.equal(headings[0].ownerDocument.activeElement, headings[0]);
+  assert.equal(new Set(headings.map(heading => heading.id)).size, 2);
+  for (const article of articles) {
+    assert.equal(article.getAttribute('aria-labelledby'), article.querySelector('h2').id);
+    assert.equal(article.querySelector('details').open, false);
+  }
+  const history = [...h.container.querySelectorAll('summary')].find(summary => summary.textContent === 'Bisherige Fragen (1)').parentElement;
+  assert.equal(history.tagName, 'DETAILS');
+  assert.equal(history.open, false);
+  assert.equal(history.querySelector('article'), articles[1]);
 });

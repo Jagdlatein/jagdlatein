@@ -69,3 +69,32 @@ test("Mentions of a lookalike, unsafe categories, and arbitrary inputs do not be
     assert.doesNotMatch(JSON.stringify(reply), /fremd\.invalid/);
   }
 });
+
+test("Spoken requests and inflected animal names find the exact recording, video or exercise", () => {
+  const cases = [
+    ["Zeige mir bitte einen Film über einen Biber", "/lernen/wildtier-videofaelle?eintrag=biber-schwimmen"],
+    ["Ich suche Videos über Füchse", "/lernen/wildtier-videofaelle?eintrag=fuchs"],
+    ["Kannst du mir den Ruf eines Rothirsches zeigen?", "/lernen/tierstimmen?stimme=rothirsch"],
+    ["Wie hört sich ein Rothirsch an?", "/lernen/tierstimmen?stimme=rothirsch"],
+    ["Wie finde ich passende Übungen zur Nachsuche?", "/jagdpraxis/nachsuche"],
+    ["Kannst du mir etwas über den Dachs erzählen?", "/wildkunde/dachs"],
+  ];
+  for (const [question, href] of cases) {
+    const reply = answer(question);
+    assert.equal(reply.kind, "clarify", question);
+    assert.equal(reply.links[0].href, href, question);
+  }
+});
+
+test("A more natural question preserves the same evidence while an animal name alone cannot pick an arbitrary fact", () => {
+  assert.deepEqual(answer("Erklär mir bitte das Schnüffeln eines Hundes."), answer("Wie funktioniert das Schnüffeln beim Hund?"));
+  assert.deepEqual(answer("Was machen die Schnabellamellen einer Stockente?"), answer("Wozu hat die Stockente Schnabellamellen?"));
+  for (const question of ["Kannst du den Hund bitte erklären?", "Was ist die Stockente?", "Was ist ein Biber?"]) {
+    const reply = answer(question);
+    assert.equal(reply.kind, "clarify", question);
+    assert.ok(reply.links.every(link => link.href.startsWith("/")), question);
+  }
+  assert.equal(answer("Was ist die Stockente?").links[0].href, "/wildkunde/stockente");
+  assert.equal(answer("Was ist ein Biber?").links[0].href, "/wildkunde/biber");
+  assert.deepEqual(answer("Erzähl mir bitte etwas über Dachsbau.").links.map(link => link.href), ["/lernen"]);
+});

@@ -1,19 +1,37 @@
-.page { max-width: 780px; }
-.form { display: grid; gap: 12px; }
-.form label { font-size: 19px; font-weight: 750; }
-.form p { margin: 0; }
-.form textarea { width: 100%; resize: vertical; }
-.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
-.actions a, .turns a { color: #654815; text-underline-offset: 3px; }
-.asked { border-bottom: 1px solid #e0c989; margin: 0 0 16px; padding-bottom: 12px; white-space: pre-wrap; }
-.asked strong { margin-right: 7px; }
-.turns h2 { font-size: 22px; margin: 0 0 10px; }
-.lawContext { margin: 0 0 8px; color: #685736; font-size: .9rem; }
-.answer { white-space: pre-wrap; margin: 0 0 12px; }
+.page { max-width: 860px; }
+.page .form { display: grid; gap: 14px; border-color: #c9d3c5; background: linear-gradient(150deg, #fffdf7, #f5f6ec); }
+.formTop { display: flex; flex-wrap: wrap; gap: 10px 16px; justify-content: space-between; align-items: center; }
+.eyebrow { font-size: 13px; font-weight: 750; letter-spacing: .04em; color: #46614c; }
+.form label { font-size: clamp(21px, 4vw, 25px); font-weight: 750; color: #284936; line-height: 1.35; }
+.form p { margin: 0; color: #625c48; font-size: 15px; }
+.form .region { color: #284936; font-size: 14px; font-weight: 650; text-underline-offset: 3px; }
+.form textarea { width: 100%; resize: vertical; min-height: 112px; line-height: 1.65; background: #fffefa; border-color: #b5c4b3; }
+.form textarea:focus-visible { border-color: #284936; outline-color: #46614c; }
+.examples { display: flex; flex-wrap: wrap; gap: 8px; }
+.examples button { border: 1px solid #d6d8c5; border-radius: 20px; padding: 9px 13px; min-height: 44px; background: #fffdf7; color: #36523b; font-size: 14px; line-height: 1.45; text-align: left; }
+.examples button:hover { background: #e9efdf; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+.textButton { border: 0; background: transparent; color: #3d593f; padding: 11px 0; min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
+.form p[role="alert"] { padding: 12px 14px; border-radius: 10px; background: #fff0e7; color: #813b1f; }
+.turns a { color: #284936; text-underline-offset: 3px; }
+.reply { border: 1px solid #d1dacb; border-top: 3px solid #46614c; border-radius: 18px; background: #fffefa; padding: 26px; margin-bottom: 20px; overflow-wrap: anywhere; scroll-margin-top: 20px; }
+.asked { display: grid; gap: 4px; margin: 0 0 20px; padding: 0 0 16px; border-bottom: 1px solid #e4e6d8; white-space: pre-wrap; color: #5d624c; font-size: 15px; }
+.asked strong { color: #46614c; font-size: 13px; }
+.answerIdentity { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; }
+.answerIdentity img { flex-shrink: 0; border-radius: 50%; }
+.turns .answerIdentity h2 { font-size: 21px; margin: 0; color: #284936; scroll-margin-top: 20px; }
+.lawContext { margin: 0 0 14px; padding: 10px 12px; border-left: 3px solid #c1cfaf; background: #f3f5e9; color: #536044; font-size: 14px; }
+.answer { white-space: pre-wrap; margin: 0 0 20px; max-width: 68ch; }
+.linkLabel { margin: 20px 0 6px; font-size: 14px; font-weight: 750; color: #46614c; }
 .learningLinks { list-style: none; padding: 0; margin: 0; }
-.learningLinks a { display: inline-block; padding: 8px 0; font-weight: 700; }
-.sources { margin-top: 12px; }
+.learningLinks a { display: block; padding: 11px 0; font-weight: 650; line-height: 1.55; }
+.sources { margin-top: 18px; padding-top: 14px; border-top: 1px solid #e4e6d8; font-size: 14px; }
+.sources summary { color: #46614c; font-weight: 650; min-height: 32px; }
 .sources ul { padding-inline-start: 1.35em; }
+.history { margin: 24px 0; }
+.history > summary { color: #46614c; padding: 12px 0; font-weight: 650; }
+.history[open] > summary { margin-bottom: 12px; }
 @media (max-width: 520px) {
-  .form, .turns article { padding: 16px; }
+  .page .form, .reply { padding: 18px 16px; border-radius: 14px; }
+  .formTop { align-items: flex-start; }
 }

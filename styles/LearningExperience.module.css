@@ -8,7 +8,7 @@
 .main :where(input, select, textarea) { border: 1px solid #cdbb91; background: #fff; color: #3e321b; border-radius: 12px; padding: 12px; }
 .main :where(button, summary) { cursor: pointer; }
 .main button:disabled { cursor: default; }
-.main :where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid #796021; outline-offset: 3px; }
+.main :where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid #355746; outline-offset: 3px; }
 .main :where(audio, video, img) { max-width: 100%; }
 .nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
 .nav a, .footer a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; min-height: 44px; border: 1px solid #dec894; border-radius: 12px; color: #73571a; background: #fffdf7; text-decoration: none; font-weight: 700; font-size: 14px; }
@@ -17,8 +17,8 @@
 .nav a:hover { background: transparent; text-decoration: underline; text-underline-offset: 4px; }
 .footer a { border: 0; border-radius: 0; padding: 10px 4px; background: transparent; font-weight: 600; }
 .footer a:hover { background: transparent; text-decoration: underline; text-underline-offset: 4px; }
-.header { padding: clamp(22px, 5vw, 40px); border: 1px solid #dfcc9b; border-radius: 24px; background: linear-gradient(125deg, #fffaf0, #f3e3b7); margin-bottom: 26px; }
-.heroIcon { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 18px; background: #fffaf0; border: 1px solid #dfcc9b; color: #856523; margin-bottom: 16px; }
+.header { padding: clamp(22px, 5vw, 40px); border: 1px solid #dfd5bb; border-left: 4px solid #355746; border-radius: 24px; background: linear-gradient(125deg, #fffdf7, #f3efdf); margin-bottom: 26px; }
+.heroIcon { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 18px; background: #edf1e8; border: 1px solid #cdd8c7; color: #355746; margin-bottom: 16px; }
 .eyebrow { color: #796021; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
 .reviewContext { font-size: 14px; line-height: 1.65; letter-spacing: .03em; }
 .header h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 16px; overflow-wrap: anywhere; }
@@ -38,13 +38,14 @@
 .stats dt, .stats dd { margin: 0; min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
 .stats dd { order: -1; font-weight: 800; }
 .content { min-width: 0; }
-.panel, .card { border: 1px solid #e0c989; border-radius: 18px; padding: 26px; background: #fffdf7; margin: 0 0 22px; min-width: 0; }
+.panel, .card { border: 1px solid #ded5be; border-radius: 18px; padding: 26px; background: #fffdf7; box-shadow: 0 4px 18px #3e321b05; margin: 0 0 22px; min-width: 0; }
+.panel > p, .card > p, .reviewReading p { max-width: 74ch; }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .gridThree { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .toolbar, .actions, .modeButtons, .tags { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 18px 0; }
 .primary, .secondary, .modeButtons button, .choice, .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; border: 1px solid #c5a966; border-radius: 12px; padding: 12px 18px; font: inherit; font-weight: 700; line-height: 1.5; text-decoration: none; color: #614917; background: #fffcf4; }
-.primary, .modeButtons button[aria-pressed="true"] { background: #80601d; color: #fff; border-color: #80601d; }
-.primary:hover:enabled { background: #654815; }
+.primary, .modeButtons button[aria-pressed="true"] { background: #284936; color: #fff; border-color: #284936; }
+.primary:hover:enabled { background: #1e3b2a; border-color: #1e3b2a; }
 .secondary:hover:enabled, .choice:hover:enabled, .button:hover { background: #f7e8bf; }
 .primary:disabled, .secondary:disabled { opacity: .6; }
 .choices { display: grid; gap: 12px; margin: 20px 0; }
@@ -64,21 +65,24 @@
 .figure { margin: 0 0 18px; }
 .figure img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 12px; background: #f4eee0; }
 .figure figcaption { font-size: 12px; line-height: 1.65; color: #6e6249; margin-top: 8px; }
-.sources { font-size: 13px; line-height: 1.7; margin-top: 18px; }
-.sources summary { font-weight: 700; min-height: 44px; display: flex; align-items: center; }
+.sources { font-size: 14px; line-height: 1.7; margin-top: 18px; }
+.sources summary { font-weight: 700; min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; color: #355746; }
+.sources summary::after { content: "+"; flex-shrink: 0; font-size: 21px; line-height: 1; font-weight: 500; }
+.sources[open] > summary::after { content: "−"; }
 .sources a { overflow-wrap: anywhere; color: #72541d; text-underline-offset: 3px; }
-.progress { display: block; width: 100%; height: 9px; margin: 15px 0 24px; accent-color: #96702c; }
+.progress { display: block; width: 100%; height: 9px; margin: 15px 0 24px; accent-color: #355746; }
 .tableWrap { overflow-x: auto; }
 .tableWrap table { width: 100%; border-collapse: collapse; }
+.tableWrap th { color: #284936; background: #f5f1e6; }
 .tableWrap :where(th, td) { text-align: left; padding: 12px; border-bottom: 1px solid #decfa9; line-height: 1.6; }
 .footer { border-top: 1px solid #e0d2af; margin-top: 30px; padding-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
 @media (max-width: 850px) { .gridThree { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .main { padding: 18px 12px 40px; } .header { padding: 24px 18px; border-radius: 18px; } .header > p:last-of-type { font-size: 16px; } .panel, .card { padding: 20px 16px; border-radius: 16px; } .grid, .gridThree { grid-template-columns: minmax(0, 1fr); } .nav { gap: 8px; } .nav a { padding: 10px 12px; font-size: 13px; } .toolbar > .field { width: 100%; } }
 @media (max-width: 620px) { .titleHeader { padding: 14px 18px; } }
-/* Shared reading scale: large text, generous controls, unchanged content order. */
+/* Shared reading scale for the learning tools. */
 .main { max-width: 1240px; font-size: 18px; }
-.main h2 { font-size: clamp(26px, 3.5vw, 32px); }
-.main h3 { font-size: 22px; }
+.main h2 { font-size: clamp(26px, 3.5vw, 32px); color: #284936; }
+.main h3 { font-size: 22px; color: #284936; }
 .nav a, .footer a { font-size: 16px; }
 .muted { font-size: 16px; }
 .primary, .secondary, .modeButtons button, .choice, .button { min-height: 54px; }

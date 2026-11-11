@@ -4,6 +4,7 @@ const { createLoader } = require('./helpers/project-module.cjs');
 
 const load = createLoader();
 const { answerJagdlateinLawQuestion: answer } = load('lib/jagdlatein-chat-law.js');
+const { answerJagdlateinQuestion: dispatch } = load('lib/jagdlatein-chat.js');
 const { getLegalDataset } = load('lib/regional-law-data.js');
 const { buildRegionalLawBundle } = load('lib/regional-law-core.js');
 const asOf = '2026-11-10';
@@ -156,4 +157,45 @@ test('St. Gallen links the applicable enactment for both the hunting system and 
   assert.deepEqual(proof.links.slice(1).map(link => link.href), [
     'https://www.gesetzessammlung.sg.ch/api/de/versions/3479/pdf_file_with_annexes',
   ]);
+});
+
+test('Natural validity questions retain the document, jurisdiction and complete reviewed conditions', () => {
+  for (const question of [
+    'Wie lange gilt die Jagdgastkarte?',
+    'Wie lange ist eine Jagdgastkarte in Niederösterreich gültig?',
+  ]) {
+    const result = dispatch(question, selected('AT', 'NOE'));
+    assertReviewedAnswer(result, 'AT', 'NOE', 'at-noe-gastkarte-ausfolgung');
+    assert.match(result.text, /drei oder vierzehn Tage ab der Ausfolgung/);
+    assert.match(result.text, /weiteren Voraussetzungen/);
+  }
+  for (const question of [
+    'Wie lange gilt mein Treffsicherheitsnachweis?',
+    'Wie lange ist der Nachweis der Treffsicherheit gültig?',
+    'Wie alt darf mein Treffsicherheitsnachweis sein?',
+  ]) {
+    const result = dispatch(question, selected('CH', 'SG'));
+    assertReviewedAnswer(result, 'CH', 'SG', 'ch-sg-treffsicherheitsnachweis');
+    assert.match(result.text, /zwölf Monate ab dem erfüllten Schiessprogramm/);
+    assert.match(result.text, /Anerkennung des ANJF/);
+  }
+  assertAbstains(dispatch('Wie lange ist eine Jagdgastkarte in Niederösterreich gültig?', selected('AT', 'S')));
+  assertAbstains(dispatch('Wie lange ist der Nachweis der Treffsicherheit gültig?', selected('CH', 'ZH')));
+});
+
+test('The age of a proof is distinct from a person’s minimum age', () => {
+  assertAbstains(dispatch('Wie alt muss ich für den Treffsicherheitsnachweis sein?', selected('CH', 'SG')));
+  const age = dispatch('Ab welchem Alter bekomme ich eine Jahresjagdkarte?', selected('AT', 'S'));
+  assertReviewedAnswer(age, 'AT', 'S', 'at-s-jahresjagdkarte');
+  assert.match(age.text, /16\. Lebensjahr/);
+  assertAbstains(dispatch('Wie alt darf mein Treffsicherheitsnachweis sein?', selected('CH', 'ZH')));
+});
+
+test('A choice between hunting systems is a scoped legal question', () => {
+  assertReviewedAnswer(dispatch('Ist im Kanton Zürich Revierjagd oder Patentjagd?', selected('CH', 'ZH')),
+    'CH', 'ZH', 'ch-zh-revierpacht');
+  assertReviewedAnswer(dispatch('Ist im Kanton Bern Patentjagd oder Revierjagd?', selected('CH', 'BE')),
+    'CH', 'BE', 'ch-be-patentjagd');
+  assertAbstains(dispatch('Ist in der Schweiz Revierjagd oder Patentjagd?', selected('CH', 'ZH')));
+  assertAbstains(dispatch('Ist im Kanton Bern Patentjagd oder Revierjagd?', selected('CH', 'ZH')));
 });
