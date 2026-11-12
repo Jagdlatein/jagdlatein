@@ -41,7 +41,20 @@ test('A natural question returns the exact relevant evidence and its own sources
   assert.equal(result.kind, 'lesson');
   assert.equal(result.text, evidence.claim);
   assert.equal(result.links[0].href, `/kurse/${courseId}#lesson-${lessonId}`);
-  assert.deepEqual(result.links.slice(1), evidence.sources.map(({ label, url }) => ({ label, href: new URL(url).href })));
+  assert.deepEqual(result.links.filter(link => link.href.startsWith('https://')), evidence.sources.map(({ label, url }) => ({ label, href: new URL(url).href })));
+  assert.ok(result.links.some(link => link.href === `/lernen/lernkarten?kurs=${courseId}&lektion=${lessonId}`));
+  assert.equal(result.practice, undefined, 'The multipart lesson is linked without guessing a claim-specific quiz');
+});
+
+test('A single-topic sourced answer offers its original practice through the main dispatcher', () => {
+  const result = answer('Wie funktioniert das Schnüffeln beim Hund?');
+  const course = getLearningModule('wissen-vertiefung-hunde-nase-spur-laut');
+  const question = course.questions.find(item => item.lessonId.endsWith('-ausatemrichtung'));
+  assert.equal(result.kind, 'lesson');
+  assert.equal(result.practice.prompt, question.q);
+  assert.deepEqual(result.practice.options, question.answers);
+  assert.equal(result.practice.correctId, question.correct[0]);
+  assert.equal(result.practice.explanation, question.explain);
 });
 
 test('Question filler, inflections and subject context allow matching additional specialties', () => {
@@ -55,7 +68,8 @@ test('Question filler, inflections and subject context allow matching additional
     assert.equal(result.kind, 'lesson', question);
     assert.ok(result.links[0].href.endsWith(id), question);
     assert.match(result.text, expected);
-    assert.ok(result.links.slice(1).every(link => new URL(link.href).protocol === 'https:'));
+    assert.ok(result.links.filter(link => link.href.startsWith('https://')).length >= 2);
+    assert.ok(result.links.slice(1).every(link => link.href.startsWith('/lernen/lernkarten?') || new URL(link.href).protocol === 'https:'));
   }
 });
 

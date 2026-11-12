@@ -1,0 +1,20 @@
+.practice { margin-top: 20px; padding-top: 18px; border-top: 1px solid #dce2d2; }
+.start, .repeat { border: 1px solid #bccbb5; border-radius: 10px; min-height: 46px; padding: 10px 16px; background: #f1f4e8; color: #284936; font: inherit; font-weight: 650; line-height: 1.5; cursor: pointer; }
+.start:hover, .repeat:hover { background: #e5ecd9; }
+.eyebrow { margin: 0 0 6px; color: #46614c; font-size: 13px; font-weight: 750; }
+.context { margin: 0 0 10px; color: #536044; font-size: 14px; }
+.practice .prompt { margin: 0 0 16px; color: #284936; font-size: 20px; line-height: 1.5; }
+.practice .prompt:focus { outline: 2px solid #b5c4b3; outline-offset: 5px; border-radius: 4px; }
+.options { display: grid; gap: 10px; }
+.option { display: grid; gap: 6px; width: 100%; min-height: 50px; padding: 13px 15px; border: 1px solid #d0d8c5; border-radius: 10px; background: #fffefa; color: #3c432f; font: inherit; line-height: 1.55; text-align: left; overflow-wrap: anywhere; cursor: pointer; }
+.option:hover:enabled { border-color: #627e5e; background: #f4f6ec; }
+.option:disabled { cursor: default; opacity: 1; }
+.option.correct { border-color: #477348; background: #eaf3e4; }
+.option.incorrect { border-color: #ad7855; background: #fff2e7; }
+.label { font-size: 14px; font-weight: 750; }
+.feedback { margin-top: 16px; }
+.feedback p { margin: 0 0 12px; white-space: pre-wrap; }
+.feedback .result { color: #284936; font-weight: 750; }
+.repeat { background: transparent; }
+.inactive { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid #dce2d2; font-size: 14px; color: #62654f; }
+.practice button:focus-visible { outline: 3px solid #46614c; outline-offset: 3px; }

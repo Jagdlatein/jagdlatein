@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import LearningToolLayout from "../../components/LearningToolLayout";
+import ChatPractice from "../../components/ChatPractice";
+import AppIcon from "../../components/AppIcon";
 import { getPaidPageProps } from "../../lib/account-access";
 import { getExamProfileDetails } from "../../lib/exam-profile";
 import { MAX_JAGDLATEIN_QUESTION_LENGTH } from "../../lib/jagdlatein-chat-limits";
@@ -37,7 +39,7 @@ function AnswerLinks({ links, official }) {
   const sources = entries.filter(link => typeof link.href === "string" && link.href.startsWith("https://"));
   return <>
     {learning.length > 0 && <><p className={styles.linkLabel}>Weiterlernen</p><ul className={styles.learningLinks}>{learning.map((link, index) => (
-      <li key={`${link.href}:${index}`}><Link href={link.href}>{link.label}</Link></li>
+      <li key={`${link.href}:${index}`}><Link href={link.href}><span>{link.label}</span><AppIcon name="arrow-right" size={18} /></Link></li>
     ))}</ul></>}
     {sources.length > 0 && <details className={styles.sources}>
       <summary>{official ? "Amtliche Originalquellen" : "Quellen"}</summary>
@@ -46,7 +48,7 @@ function AnswerLinks({ links, official }) {
   </>;
 }
 
-function ChatAnswer({ turn, headingRef }) {
+function ChatAnswer({ turn, headingRef, active }) {
   const { id, question, reply } = turn;
   return <article className={styles.reply} aria-labelledby={`chat-answer-${id}`}>
     <p className={styles.asked}><strong>Deine Frage</strong>{question}</p>
@@ -60,6 +62,7 @@ function ChatAnswer({ turn, headingRef }) {
       {typeof reply.law.reviewedOn === "string" && /^\d{4}-\d{2}-\d{2}$/.test(reply.law.reviewedOn) && <>{" · Geprüft am "}<time dateTime={reply.law.reviewedOn}>{reply.law.reviewedOn.split("-").reverse().join(".")}</time></>}
     </p>}
     <p className={styles.answer}>{reply.text}</p>
+    {reply.practice && <ChatPractice practice={reply.practice} active={active} />}
     <AnswerLinks links={reply.links} official={Boolean(reply.law)} />
   </article>;
 }
@@ -183,7 +186,7 @@ export default function JagdlateinChatPage() {
       const reply = await response.json();
       if (!isCurrent()) return;
       if (typeof reply?.text !== "string" || !reply.text.trim()) throw new Error("Missing answer");
-      const turn = { id: ++turnNumber.current, question: text, reply };
+      const turn = { id: ++turnNumber.current, question: text, reply, scope };
       transcriptRevision.current++;
       setTurns(previous => [turn, ...previous].slice(0, MAX_TURNS));
       changeQuestion("");
@@ -222,10 +225,10 @@ export default function JagdlateinChatPage() {
       {notice && <p role="status">{notice}</p>}
     </form>
     <div className={styles.turns} aria-live="polite" aria-relevant="additions">
-      {turns[0] && <ChatAnswer key={turns[0].id} turn={turns[0]} headingRef={latestHeading} />}
+      {turns[0] && <ChatAnswer key={turns[0].id} turn={turns[0]} headingRef={latestHeading} active={!turns[0].reply.law || turns[0].scope === scope} />}
       {turns.length > 1 && <details className={styles.history}>
         <summary>Bisherige Fragen ({turns.length - 1})</summary>
-        {turns.slice(1).map(turn => <ChatAnswer key={turn.id} turn={turn} />)}
+        {turns.slice(1).map(turn => <ChatAnswer key={turn.id} turn={turn} active={!turn.reply.law || turn.scope === scope} />)}
       </details>}
     </div>
   </LearningToolLayout>;

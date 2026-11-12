@@ -22,6 +22,7 @@
 .eyebrow { color: #796021; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
 .reviewContext { font-size: 14px; line-height: 1.65; letter-spacing: .03em; }
 .header h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 16px; overflow-wrap: anywhere; }
+.header h1:focus { outline: 2px solid #b5c4b3; outline-offset: 5px; border-radius: 4px; }
 .header > p:last-of-type { max-width: 860px; font-size: 18px; line-height: 1.7; margin: 0; color: #65563b; }
 .compactHeader { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 6px 14px; padding: 20px 24px; margin-bottom: 20px; }
 .compactHeader .heroIcon { grid-row: 1 / span 2; width: 48px; height: 48px; border-radius: 14px; margin: 0; }

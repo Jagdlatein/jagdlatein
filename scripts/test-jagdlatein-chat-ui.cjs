@@ -368,3 +368,50 @@ test('Only the latest answer receives focus and earlier questions and their sour
   assert.equal(history.open, false);
   assert.equal(history.querySelector('article'), articles[1]);
 });
+
+test('A chat answer offers an optional original practice question before its closed sources', async t => {
+  const h = await fixture(t);
+  await h.type('Passender Lerninhalt');
+  await h.submit();
+  const practice = {
+    id: 'chat-fixture-question', prompt: 'Welche Antwort gehört zum Lernbeispiel?',
+    options: ['a', 'b', 'c', 'd'].map((id, index) => ({ id, text: 'Auswahl ' + (index + 1) })),
+    correctId: 'c', explanation: 'Die Erklärung des geprüften Lernbeispiels.', context: 'Lernbeispiel',
+    href: '/kurse/beispiel#lesson-eins',
+  };
+  await h.reply(0, { ...answer, kind: 'lesson', practice });
+  const article = h.container.querySelector('article');
+  const sources = article.querySelector('details');
+  assert.equal(article.lastElementChild, sources);
+  assert.equal(sources.open, false);
+  assert.doesNotMatch(article.textContent, /Welche Antwort|Auswahl 3|Erklärung des geprüften/);
+  const start = [...article.querySelectorAll('button')].find(button => button.textContent === 'Kurz üben');
+  await h.act(() => nativeProps(start).onClick());
+  const options = article.querySelectorAll('[aria-label="Antwort wählen"] button');
+  assert.equal(options.length, 4);
+  assert.doesNotMatch(article.textContent, /Richtige Antwort/);
+  const correct = [...options].find(button => button.textContent === 'Auswahl 3');
+  await h.act(() => nativeProps(correct).onClick());
+  assert.match(article.textContent, /Richtig beantwortet/);
+  assert.match(article.textContent, /Erklärung des geprüften Lernbeispiels/);
+  assert.equal(article.lastElementChild, sources);
+  assert.equal(sources.open, false);
+});
+
+test('A completed law practice becomes inactive after the exam region changes', async t => {
+  const h = await fixture(t);
+  await h.type('Rechtsfrage für Zürich');
+  await h.submit();
+  await h.reply(0, { ...answer, law: { jurisdiction: 'Zürich', citation: '§ 2', reviewedOn: '2026-10-23' },
+    practice: { id: 'law-fixture', prompt: 'Zürcher Lernbeispiel',
+      options: ['a', 'b', 'c', 'd'].map(id => ({ id, text: id })), correctId: 'b',
+      explanation: 'Erläuterung des Zürcher Lernbeispiels.', context: 'Zürich', href: '/jagdrecht/ch?region=ZH' } });
+  let start = [...h.container.querySelectorAll('button')].find(button => button.textContent === 'Kurz üben');
+  await h.act(() => nativeProps(start).onClick());
+  const oldChoice = nativeProps(h.container.querySelector('[aria-label="Antwort wählen"] button')).onClick;
+  await h.setExam({ profile: { country: 'CH', region: 'BE' }, ready: true });
+  assert.match(h.container.textContent, /früheren Prüfungsregion/);
+  assert.equal(h.container.querySelector('[aria-label="Antwort wählen"]'), null);
+  await h.act(() => oldChoice());
+  assert.doesNotMatch(h.container.textContent, /Richtig beantwortet|Erläuterung des Zürcher/);
+});
