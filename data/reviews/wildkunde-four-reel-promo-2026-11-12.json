@@ -1,0 +1,106 @@
+{
+  "createdOn": "2026-11-12",
+  "purpose": "Vom Betreiber beauftragtes anspruchsvolleres Wildkunde-Kommentar-Reel mit vier Antworten und direktem Handy-Download; keine Veröffentlichung auf Instagram.",
+  "quiz": {
+    "question": "Rehbrunft im Sommer, Kitze im folgenden Frühjahr oder Frühsommer: Was erklärt den Abstand?",
+    "answerA": "Eisprung erst Monate nach der Paarung",
+    "answerB": "Gleichmässiges Wachstum ohne Verzögerung",
+    "answerC": "Verzögerte frühe Embryonalentwicklung",
+    "answerD": "Befruchtung erst im folgenden Frühjahr",
+    "category": "Wildkunde"
+  },
+  "quizOrigin": {
+    "file": "lib/learning-wildlife.js",
+    "courseId": "wissen-rehwild-jahreslauf",
+    "lessonId": "reh-nachwuchs",
+    "questionId": "reh-q3",
+    "adaptation": "Eigene kurze Frage und vier gekürzte Mechanismus-Optionen auf Grundlage der bestehenden Lehrfrage. Keine amtliche Originalprüfungsfrage und keine Auflösung im Video oder Begleittext."
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "frames": 600,
+    "duration": 20,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "audio": "none",
+    "answerCount": 4,
+    "fastStart": true,
+    "fullDecode": true,
+    "blackFrames": false
+  },
+  "sources": [
+    {
+      "title": "Embryonalentwicklung in Zeitlupe",
+      "url": "https://ethz.ch/de/news-und-veranstaltungen/eth-news/news/2021/08/embryonalentwicklung-in-zeitlupe.html",
+      "organization": "ETH Zürich",
+      "author": "Peter Rüegg",
+      "publishedOn": "2021-08-27",
+      "readOn": "2026-11-12",
+      "scope": "Einleitung und Absätze zur Entwicklung nach sommerlicher Paarung/Befruchtung. Verzögerte frühe Entwicklung statt vollständigem Entwicklungsstopp; keine Zellteilungswerte oder Wirkstoff-/Signalbehauptungen übernommen.",
+      "role": "Institutioneller Bericht über eigene Forschung."
+    },
+    {
+      "title": "Reh (Capreolus capreolus), Abschnitt Fortpflanzung",
+      "url": "https://www.jagdverband.de/zahlen-fakten/tiersteckbriefe/reh-capreolus-capreolus",
+      "organization": "Deutscher Jagdverband",
+      "readOn": "2026-11-12",
+      "scope": "Sommerliche Paarungszeit, verzögerte Entwicklung nach der Befruchtung und Geburt im folgenden Frühjahr oder Frühsommer. Keine konkreten Monatszahlen, Jagdzeiten oder umgebenden Verhaltens-/Behandlungsangaben übernommen.",
+      "role": "Unabhängige fachliche Einordnung; keine experimentelle Replikation der ETH-Arbeit."
+    }
+  ],
+  "forest": {
+    "title": "Beech forest, Ehrenbach, foliage against sun",
+    "author": "Gerda Arendt",
+    "source": "https://commons.wikimedia.org/wiki/File:Beech_forest,_Ehrenbach,_foliage_against_sun.jpg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourceSha256": "09167dbe9128a662068fff6f285eb5e7ac426ca692852260f19202936a997085",
+    "changes": "Hochformat-Ausschnitt, langsamer Zoom und dunkelgrüne Farbüberlagerung; Wald keiner konkreten Tierbeobachtung zugeordnet."
+  },
+  "brand": {
+    "role": "Bestehendes freigegebenes illustriertes Jagdlatein-Markenmotiv",
+    "sourceFile": "mobile/branding/jagdlatein-logo.png",
+    "sha256": "96480878aea7652bd43497a103854e0ba93a3e0d932b96c3583d6be23ea880ca"
+  },
+  "fonts": [
+    {
+      "name": "Manrope",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "name": "Fraunces",
+      "license": "SIL Open Font License 1.1"
+    }
+  ],
+  "delivery": {
+    "anonymousExactFilesOnly": true,
+    "downloadQuery": "download=1",
+    "downloadName": "Jagdlatein-Wildkunde-4-Antworten.mp4",
+    "inlinePreviewWithoutAutoplay": true,
+    "physicalPhoneTest": false
+  },
+  "files": [
+    {
+      "path": "/werbung/jagdlatein-wildkunde-4antworten-2026-11-12.html",
+      "bytes": 4882,
+      "sha256": "3aacaae7c07e6251d99e0aa03ef20d7baceaa8fbe6e5dd52b9afe3171de6b3bc"
+    },
+    {
+      "path": "/werbung/jagdlatein-wildkunde-4antworten-2026-11-12.mp4",
+      "bytes": 16423189,
+      "sha256": "405aef4864045d26b79fba8568f266a4b549e614c0b2f7a642075fecc6d2e31f"
+    },
+    {
+      "path": "/werbung/jagdlatein-wildkunde-4antworten-2026-11-12.png",
+      "bytes": 3245276,
+      "sha256": "748d2ba88d4c9805749df767880754ca987f698a475176954c0be3b2372b3536"
+    },
+    {
+      "path": "/werbung/jagdlatein-wildkunde-4antworten-2026-11-12.txt",
+      "bytes": 889,
+      "sha256": "a9191051e729a904748e809d02abb009ec6477648022f5cbc616cd614083e7af"
+    }
+  ]
+}
