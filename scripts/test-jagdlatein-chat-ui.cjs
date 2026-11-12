@@ -250,8 +250,8 @@ test('Question ideas fill and focus the draft while leaving submission under the
   const h = await fixture(t);
   const expected = [
     ['Schnüffeln beim Hund', 'Wie funktioniert das Schnüffeln beim Hund?'],
-    ['Lernkarten Wildkunde', 'Lernkarten Wildkunde'],
-    ['Video vom Biber', 'Zeige mir einen Film über einen Biber'],
+    ['Parasitismus', 'Was ist Parasitismus?'],
+    ['Federaufbau', 'Wie hält eine Federfahne zusammen?'],
   ];
   for (const [label, question] of expected) {
     await h.type('');

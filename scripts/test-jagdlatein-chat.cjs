@@ -35,7 +35,8 @@ function assertPrivate(response) {
 test('A natural question returns the exact relevant evidence and its own sources', () => {
   const courseId = 'wissen-federwild-beobachtung';
   const lessonId = 'vogel-lamellen';
-  const lesson = getLearningModule(courseId).lessons.find(item => item.id === lessonId);
+  const course = getLearningModule(courseId);
+  const lesson = course.lessons.find(item => item.id === lessonId);
   const evidence = lesson.evidence.find(item => item.claim.startsWith('Die Stockente kann'));
   const result = answer(stockente);
   assert.equal(result.kind, 'lesson');
@@ -43,7 +44,7 @@ test('A natural question returns the exact relevant evidence and its own sources
   assert.equal(result.links[0].href, `/kurse/${courseId}#lesson-${lessonId}`);
   assert.deepEqual(result.links.filter(link => link.href.startsWith('https://')), evidence.sources.map(({ label, url }) => ({ label, href: new URL(url).href })));
   assert.ok(result.links.some(link => link.href === `/lernen/lernkarten?kurs=${courseId}&lektion=${lessonId}`));
-  assert.equal(result.practice, undefined, 'The multipart lesson is linked without guessing a claim-specific quiz');
+  assert.equal(result.practice.prompt, course.questions.find(item => item.lessonId === lessonId).q);
 });
 
 test('A single-topic sourced answer offers its original practice through the main dispatcher', () => {

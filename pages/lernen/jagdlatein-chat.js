@@ -15,8 +15,8 @@ const MAX_TURNS = 8;
 const QUESTION_ID = "jagdlatein-chat-question";
 const EXAMPLES = [
   { label: "Schnüffeln beim Hund", question: "Wie funktioniert das Schnüffeln beim Hund?" },
-  { label: "Lernkarten Wildkunde", question: "Lernkarten Wildkunde" },
-  { label: "Video vom Biber", question: "Zeige mir einen Film über einen Biber" },
+  { label: "Parasitismus", question: "Was ist Parasitismus?" },
+  { label: "Federaufbau", question: "Wie hält eine Federfahne zusammen?" },
 ];
 
 function disposeRequest(pending) {

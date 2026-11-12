@@ -12,6 +12,7 @@ const { getLegalDataset } = load("lib/regional-law-data.js");
 const { buildRegionalLawBundle, legalSelectionHref } = load("lib/regional-law-core.js");
 const { getExamProfileDetails } = load("lib/exam-profile.js");
 const { lessonHash } = load("lib/learning-lesson-navigation.js");
+const { chatPracticeBindings } = load("lib/jagdlatein-chat-bindings.js");
 
 const clone = value => JSON.parse(JSON.stringify(value));
 function freeze(value) {
@@ -130,8 +131,12 @@ test("Every current eligible sourced lesson keeps question/answer/source identit
     if (!result.practice) continue;
     attached++;
     const original = course.questions.find(question => question.id === result.practice.id);
-    assert.equal(lesson.evidence.length, 1, "Only a single source claim is eligible");
-    assert.equal(course.questions.filter(question => question.lessonId === lesson.id).length, 1, "No first-question guessing in multipart lessons");
+    const binding = chatPracticeBindings.find(item => item.courseId === course.id && item.lessonId === lesson.id && item.claim === evidence.claim);
+    if (binding) assert.equal(original.id, binding.questionId, "Only the explicitly linked original question is eligible");
+    else {
+      assert.equal(lesson.evidence.length, 1, "Unmapped lessons need one source claim");
+      assert.equal(course.questions.filter(question => question.lessonId === lesson.id).length, 1, "No first-question guessing in multipart lessons");
+    }
     assert.equal(original.lessonId, lesson.id);
     assert.equal(original.q, result.practice.prompt);
     assert.deepEqual(original.answers, result.practice.options);
@@ -200,13 +205,14 @@ test("Incomplete, duplicated, multiple-answer and oversized questions are skippe
   assert.equal(f.attach(f.reply), f.reply, "Multiple questions do not identify the question belonging to this claim");
 });
 
-test("Multipart evidence and multi-question lessons retain exact cards without guessing a claim exercise", () => {
-  for (const question of ["Was bedeutet operante Konditionierung?", "Was ist Parasitismus?", "Wozu hat die Stockente Schnabellamellen?"]) {
+test("Explicit multipart pairs retain exact cards and exercise the matching claim", () => {
+  for (const [question, expectedPrompt] of [["Was bedeutet operante Konditionierung?", /gedachter Verlauf/],
+    ["Was ist Parasitismus?", /Papierfall/], ["Wozu hat die Stockente Schnabellamellen?", /Schnabellamellen/]]) {
     const reply = learningAnswer(question);
     assert.equal(reply.kind, "lesson", question);
     const before = clone(reply);
     const result = attach(reply);
-    assert.equal(result.practice, undefined, question);
+    assert.match(result.practice.prompt, expectedPrompt, question);
     assert.ok(result.links.some(link => link.label === "Lernkarten zur Lektion"), question);
     assert.equal(result.text, before.text);
     assert.deepEqual(result.links.filter(link => !link.href.startsWith("/")), before.links.slice(1));
