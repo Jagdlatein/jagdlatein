@@ -76,6 +76,12 @@ const nextConfig = {
       headers: [
         { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Story-Paket.zip"' },
       ],
+    }, {
+      source: "/werbung/jagdlatein-wildkunde-quiz-2026-11-12.mp4",
+      has: [{ type: "query", key: "download", value: "1" }],
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Wildkunde-Quiz.mp4"' },
+      ],
     }];
   },
 

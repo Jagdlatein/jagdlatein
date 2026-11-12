@@ -198,7 +198,7 @@ test('The mobile HTML provides deliberate downloads and a locally hosted inline 
 test('Next header rules keep preview inline and attach only the exact requested MP4 download and ZIP', async () => {
   const headerRules = await nextConfig.headers();
   const attachments = headerRules.filter(rule => rule.headers.some(header => header.key.toLowerCase() === 'content-disposition'));
-  assert.deepEqual(attachments.map(rule => rule.source), [`${stem}.mp4`, `${stem}.zip`, '/werbung/jagdlatein-reel-30s-2026-11-01.mp4', '/werbung/jagdlatein-reel-30s-2026-11-01.zip', '/werbung/jagdlatein-story-2026-11-07-30s.mp4', '/werbung/jagdlatein-story-2026-11-07-15s.mp4', '/werbung/jagdlatein-story-2026-11-07.zip']);
+  assert.deepEqual(attachments.map(rule => rule.source), [`${stem}.mp4`, `${stem}.zip`, '/werbung/jagdlatein-reel-30s-2026-11-01.mp4', '/werbung/jagdlatein-reel-30s-2026-11-01.zip', '/werbung/jagdlatein-story-2026-11-07-30s.mp4', '/werbung/jagdlatein-story-2026-11-07-15s.mp4', '/werbung/jagdlatein-story-2026-11-07.zip', '/werbung/jagdlatein-wildkunde-quiz-2026-11-12.mp4']);
   assert.deepEqual(attachments[0].has, [{ type: 'query', key: 'download', value: '1' }]);
   assert.equal(attachments[1].has, undefined);
   const expectedSecurity = {

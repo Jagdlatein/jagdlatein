@@ -1,0 +1,102 @@
+{
+  "createdOn": "2026-11-12",
+  "purpose": "Vom Betreiber beauftragtes Wildkunde-Kommentar-Reel mit direktem Handy-Download; keine Veröffentlichung auf Instagram.",
+  "quiz": {
+    "question": "Welche Beziehung zwischen Reh und Rothirsch stimmt?",
+    "answerA": "Das Reh ist ein weiblicher Rothirsch.",
+    "answerB": "Es sind unterschiedliche Arten.",
+    "answerC": "Das Reh ist ein junger Rothirsch.",
+    "category": "Wildkunde"
+  },
+  "quizOrigin": {
+    "file": "lib/learning-wildlife-depth.js",
+    "courseId": "wissen-vertiefung-wild-hirsche-vergleichen",
+    "lessonId": "koerper",
+    "questionId": "h2",
+    "adaptation": "Originalfrage; drei kurze Antworten für das Reel statt vier im Lernquiz. Keine Auflösung im Video oder Begleittext."
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "frames": 600,
+    "duration": 20,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "audio": "none",
+    "fastStart": true,
+    "fullDecode": true,
+    "blackFrames": false
+  },
+  "sources": [
+    {
+      "title": "Das Reh im Porträt; Ein Reh wird zum Hirsch / Reh und Hirsch im Vergleich",
+      "url": "https://www.nabu.de/natur-und-artenwissen/saeugetiere/portraets-saeugetiere/das-reh-im-portraet",
+      "organization": "NABU – Naturschutzbund Deutschland e.V.",
+      "author": "Frank Griesel",
+      "readOn": "2026-11-12",
+      "claim": "Enger Abgleich der biologischen Artunterscheidung und der falschen Alters-/Geschlechtszuordnungen; keine übrigen Richtwerte übernommen."
+    },
+    {
+      "title": "Wer ist hier eigentlich mit wem verwandt? Deutschlands Hirsche im Überblick",
+      "url": "https://www.deutschewildtierstiftung.de/aktuelles/artikel/deutschlands-hirsche-im-ueberblick",
+      "organization": "Deutsche Wildtier Stiftung",
+      "publishedOn": "2026-02-13",
+      "readOn": "2026-11-12",
+      "claim": "Einleitung sowie getrennte Abschnitte zu Rothirsch und Reh. Eigenständig redigierter Fachtext; keine experimentelle Replikation."
+    }
+  ],
+  "forest": {
+    "title": "Beech forest, Ehrenbach, foliage against sun",
+    "author": "Gerda Arendt",
+    "source": "https://commons.wikimedia.org/wiki/File:Beech_forest,_Ehrenbach,_foliage_against_sun.jpg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourceSha256": "09167dbe9128a662068fff6f285eb5e7ac426ca692852260f19202936a997085",
+    "changes": "Hochformat-Ausschnitt, langsamer Zoom und dunkelgrüne Farbüberlagerung; Wald keiner konkreten Tierbeobachtung zugeordnet."
+  },
+  "brand": {
+    "role": "Bestehendes freigegebenes illustriertes Jagdlatein-Markenmotiv",
+    "sourceFile": "mobile/branding/jagdlatein-logo.png",
+    "sha256": "96480878aea7652bd43497a103854e0ba93a3e0d932b96c3583d6be23ea880ca"
+  },
+  "fonts": [
+    {
+      "name": "Manrope",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "name": "Fraunces",
+      "license": "SIL Open Font License 1.1"
+    }
+  ],
+  "delivery": {
+    "anonymousExactFilesOnly": true,
+    "downloadQuery": "download=1",
+    "downloadName": "Jagdlatein-Wildkunde-Quiz.mp4",
+    "inlinePreviewWithoutAutoplay": true,
+    "physicalPhoneTest": false
+  },
+  "files": [
+    {
+      "path": "/werbung/jagdlatein-wildkunde-quiz-2026-11-12.html",
+      "bytes": 4624,
+      "sha256": "4f5ae9728ae93cd549132829761d383f995b84eb6911139c19a772d9f01e1ab4"
+    },
+    {
+      "path": "/werbung/jagdlatein-wildkunde-quiz-2026-11-12.mp4",
+      "bytes": 16702615,
+      "sha256": "92f435c5d6d0135a31140de4c7e8d04fb6881e7afeebbf777a74eb02da50e1b9"
+    },
+    {
+      "path": "/werbung/jagdlatein-wildkunde-quiz-2026-11-12.png",
+      "bytes": 3240710,
+      "sha256": "f500e73e1bf808324ab55df30fd8382d0b6c1b1f31efe63cc14fddbd11fb22db"
+    },
+    {
+      "path": "/werbung/jagdlatein-wildkunde-quiz-2026-11-12.txt",
+      "bytes": 852,
+      "sha256": "049a636442abda7be20058746f41e4b2d5c6fb0cb152ca1d9f9ea68917149196"
+    }
+  ]
+}
