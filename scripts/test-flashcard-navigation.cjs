@@ -93,9 +93,11 @@ function ui({ href = '/lernen/lernkarten?kategorie=all', initialProps = {}, isRe
   const oldWindow = global.window, timer = clock(), e = engine(), handlers = {}, events = {}, replacements = [], pushes = [];
   let writes = 0, saved = null, tree, props = { cards, categories, ...initialProps };
   function queryFor(url) { return Object.fromEntries(new URL(url, 'https://jagdlatein.de').searchParams); }
-  const router = { isReady, asPath: href, query: queryFor(href), replace(next) { const task = deferred(); replacements.push({ href: next, task }); events.routeChangeStart?.(next); return task.promise; }, push(next) { pushes.push(next); return Promise.resolve(true); }, events: { on(name, fn) { events[name] = fn; }, off(name) { delete events[name]; } } };
+  const request = (kind, next) => { const task = deferred(); replacements.push({ kind, href: next, task }); events.routeChangeStart?.(next); return task.promise; };
+  const router = { isReady, asPath: href, query: queryFor(href), replace(next) { return request('replace', next); }, push(next) { if (typeof next === 'string' && new URL(next, 'https://jagdlatein.de').pathname === '/lernen/lernkarten') return request('push', next); pushes.push(next); return Promise.resolve(true); }, events: { on(name, fn) { events[name] = fn; }, off(name) { delete events[name]; } } };
   const assigned = [], history = [], scrolls = [];
-  global.window = { history: { state: { __N: true, key: 'same-history-entry', url: href, as: href }, replaceState(state, title, href) { history.push({ state, href }); } }, location: { pathname: '/lernen/lernkarten', search: '', hash: '', assign: href => assigned.push(href) }, localStorage: { getItem() { return saved; }, setItem(key, value) { writes++; saved = value; } }, setTimeout: timer.setTimer, clearTimeout: timer.clearTimer, setInterval: () => 1, clearInterval() {}, requestAnimationFrame(fn) { fn(); }, scrollTo(options) { scrolls.push(options); }, addEventListener(name, fn) { handlers[name] = fn; }, removeEventListener(name) { delete handlers[name]; } };
+  const initialURL = new URL(href, 'https://jagdlatein.de');
+  global.window = { history: { state: { __N: true, key: 'same-history-entry', url: href, as: href }, replaceState(state, title, href) { history.push({ state, href }); } }, location: { pathname: initialURL.pathname, search: initialURL.search, hash: initialURL.hash, assign: href => assigned.push(href) }, localStorage: { getItem() { return saved; }, setItem(key, value) { writes++; saved = value; } }, setTimeout: timer.setTimer, clearTimeout: timer.clearTimer, setInterval: () => 1, clearInterval() {}, requestAnimationFrame(fn) { fn(); }, scrollTo(options) { scrolls.push(options); }, addEventListener(name, fn) { handlers[name] = fn; }, removeEventListener(name) { delete handlers[name]; } };
   const Component = createLoader({ ...framework, react: e.hooks, 'next/router': { useRouter: () => router }, '../lib/flashcard-navigation': { ...navigation, createFlashcardURLSync: args => synchronizer({ ...args, ...timer }) } })('components/LearningFlashcards.js').default;
   const render = () => { tree = e.render(() => Component(props)); };
   const settle = async () => { for (let i = 0; i < 4; i++) { e.flush(); render(); await tick(); } };
@@ -117,7 +119,7 @@ function ui({ href = '/lernen/lernkarten?kategorie=all', initialProps = {}, isRe
     input(value) { this.find(node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value } }); render(); },
     click(label) { const node = this.find(item => item.type === 'button' && text(item).trim() === label); assert.ok(node); node.props.onClick(); render(); },
     setProps(next) { props = { ...props, ...next }; render(); },
-    async complete(index) { const call = replacements[index]; router.asPath = call.href; router.query = queryFor(call.href); call.task.resolve(true); await settle(); },
+    async complete(index) { const call = replacements[index]; assert.ok(call, `navigation ${index}`); const parsed = new URL(call.href, 'https://jagdlatein.de'); Object.assign(window.location, { pathname: parsed.pathname, search: parsed.search, hash: parsed.hash }); router.asPath = call.href; router.query = queryFor(call.href); call.task.resolve(true); await settle(); },
     async back(next) { const parsed = new URL(next, 'https://jagdlatein.de'); window.location = { pathname: parsed.pathname, search: parsed.search, hash: parsed.hash }; router.asPath = next; router.query = queryFor(next); handlers.popstate(); await settle(); },
     event() { return { prevented: false, preventDefault() { this.prevented = true; } }; },
     emit(name, ...args) { events[name]?.(...args); },
@@ -267,8 +269,9 @@ test('An initial card beyond the seed waits for complete data, retaining the req
 test('A course click flushes delayed search/card URL before navigating and a later click takes priority', async () => {
   const s = ui();
   try {
-    await s.settle(); const baseline = s.writes; s.input('Gams'); s.click('Antwort zeigen');
-    const course = s.find(node => node.props?.href === '/kurse/gams'), first = s.event();
+    await s.settle(); const baseline = s.writes; s.click('Antwort zeigen'); s.input('Gams');
+    assert.match(text(s.tree), /Was erklärt das Reh-Beispiel/);
+    const course = s.find(node => node.props?.href === '/kurse/reh'), first = s.event();
     course.props.onClick(first); assert.equal(first.prevented, true); await tick();
     assert.equal(s.pushes.length, 0); assert.equal(s.replacements.length, 1);
     const written = new URL(s.replacements[0].href, 'https://jagdlatein.de'); assert.equal(written.searchParams.get('q'), 'Gams'); assert.equal(written.searchParams.get('karte'), 'flash-gams');
@@ -283,7 +286,7 @@ test('Back or another route before a pending course click completes cancels that
   for (const navigationType of ['back', 'other-route', 'unmount']) {
     const s = ui();
     try {
-      await s.settle(); s.input('Gams'); s.click('Antwort zeigen'); const event = s.event(); s.find(node => node.props?.href === '/kurse/gams').props.onClick(event); await tick();
+      await s.settle(); s.click('Antwort zeigen'); s.input('Gams'); const event = s.event(); s.find(node => node.props?.href === '/kurse/reh').props.onClick(event); await tick();
       if (navigationType === 'back') await s.back('/lernen/lernkarten?karte=flash-reh');
       if (navigationType === 'other-route') { const cancelled = s.router.replace('/kurse/anderes-ziel'); cancelled.catch(() => {}); }
       if (navigationType === 'unmount') s.unmount();
@@ -368,9 +371,9 @@ test('An old shallow route error preserves a newer draft and its scheduled repla
 test('A hung shallow replacement cannot trap a course link and keeps the current entry for Back', async () => {
   const s = ui();
   try {
-    await s.settle(); s.input('Gams'); s.click('Antwort zeigen'); const event = s.event(); s.find(node => node.props?.href === '/kurse/gams').props.onClick(event); await tick();
+    await s.settle(); s.click('Antwort zeigen'); s.input('Gams'); const event = s.event(); s.find(node => node.props?.href === '/kurse/reh').props.onClick(event); await tick();
     s.timer.flush(); await tick();
-    assert.deepEqual(s.assigned, ['/kurse/gams']); assert.equal(s.pushes.length, 0); assert.equal(s.history.length, 1);
+    assert.deepEqual(s.assigned, ['/kurse/reh']); assert.equal(s.pushes.length, 0); assert.equal(s.history.length, 1);
     const remembered = new URL(s.history[0].href, 'https://jagdlatein.de');
     assert.equal(remembered.searchParams.get('q'), 'Gams'); assert.equal(remembered.searchParams.get('karte'), 'flash-gams');
     assert.equal(s.history[0].state.key, 'same-history-entry'); assert.equal(s.history[0].state.url, s.history[0].href); assert.equal(s.history[0].state.as, s.history[0].href);

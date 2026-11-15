@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-11-15",
+  "campaign": "Dein Wissen. Dein Moment.",
+  "files": [
+    {
+      "path": "/werbung/jagdlatein-dein-moment-2026-11-15.html",
+      "bytes": 5172,
+      "sha256": "18d306d5073ea29af507d8e27074d9524df7370ad387268fc91db5d63cdbcaf7"
+    },
+    {
+      "path": "/werbung/jagdlatein-dein-moment-2026-11-15.mp4",
+      "bytes": 23253861,
+      "sha256": "97ad560b8bd96c0f3a3ffdd035d1a1a0b513a75149be0605a8143f8b73c53173"
+    },
+    {
+      "path": "/werbung/jagdlatein-dein-moment-2026-11-15.png",
+      "bytes": 2960640,
+      "sha256": "78f8d4a1b0d2d9c43479651ef16c26353c7063b11c118975f0e0c1e70f3c8b14"
+    },
+    {
+      "path": "/werbung/jagdlatein-dein-moment-2026-11-15.txt",
+      "bytes": 1515,
+      "sha256": "45f74444caeb43d5047503edf33e580ef4b301bbf257e4a90e4871c602545336"
+    },
+    {
+      "path": "/werbung/jagdlatein-dein-moment-2026-11-15.zip",
+      "bytes": 26154321,
+      "sha256": "1f7f05db583a9e5cceaf1f9fe78e69e339779b0324ca95886ef8dc8dd0813839"
+    }
+  ],
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "frames": 900,
+    "seconds": 30
+  },
+  "audio": {
+    "checkedAt": "2026-11-15T08:37:26.548Z",
+    "file": "jagdlatein-werbevideo.mp4",
+    "duration": 30,
+    "width": 1080,
+    "height": 1920,
+    "frames": 900,
+    "fps": "30/1",
+    "video": "h264",
+    "pixelFormat": "yuv420p",
+    "audio": "aac",
+    "channels": 2,
+    "sampleRate": "48000",
+    "blackFrames": 0,
+    "minFrameMean": 34.31539351851852,
+    "audioSamplePeakDbFS": -1.337345504309375,
+    "audioRmsDbFS": -19.746750809298227,
+    "sha256": "97ad560b8bd96c0f3a3ffdd035d1a1a0b513a75149be0605a8143f8b73c53173",
+    "coverSha256": "78f8d4a1b0d2d9c43479651ef16c26353c7063b11c118975f0e0c1e70f3c8b14",
+    "limits": "Automatische Datei-/Decode-/Sampleprüfung; Lesbarkeit und Timing separat an echten exportierten Frames prüfen. Keine Geräteprüfung."
+  },
+  "scope": "Datei-/Renderprüfung und echte exportierte Einzelbilder, keine Geräteprüfung. Keine neuen Curriculumobjekte oder Fachprüfdaten geändert."
+}

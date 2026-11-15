@@ -37,6 +37,11 @@ const PROMO_DOWNLOADS = new Set([
   "/werbung/jagdlatein-wildkunde-4antworten-2026-11-12.mp4",
   "/werbung/jagdlatein-wildkunde-4antworten-2026-11-12.png",
   "/werbung/jagdlatein-wildkunde-4antworten-2026-11-12.txt",
+  "/werbung/jagdlatein-dein-moment-2026-11-15.html",
+  "/werbung/jagdlatein-dein-moment-2026-11-15.mp4",
+  "/werbung/jagdlatein-dein-moment-2026-11-15.png",
+  "/werbung/jagdlatein-dein-moment-2026-11-15.txt",
+  "/werbung/jagdlatein-dein-moment-2026-11-15.zip",
 ]);
 
 // These exact Pages Router routes run getPaidPageProps before rendering any

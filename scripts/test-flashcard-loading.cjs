@@ -366,16 +366,21 @@ test('Expanded cards preserve the active category, typed search and quiz feedbac
   const addChoices = deck => deck.map(item => item.id === 'flash-hund-eins' ? { ...item, choices: [item.answer, 'In die Wochenübersicht.'] } : item);
   const pending = deferred(); const b = browser(() => pending.promise);
   const h = hookHarness({ ...baseProps, deck: makeDeck(addChoices(seedCards)) }); const e = engine();
-  const UI = load('components/LearningFlashcards.js', { react: e.hooks }).default;
+  const router = { query: {}, isReady: true, asPath: '/lernen/lernkarten' };
+  const commit = href => { const url = new URL(href, 'https://jagdlatein.de'); router.asPath = url.pathname + url.search + url.hash; router.query = Object.fromEntries(url.searchParams); return Promise.resolve(true); };
+  router.push = commit; router.replace = commit;
+  const UI = load('components/LearningFlashcards.js', { react: e.hooks, 'next/router': { useRouter: () => router } }).default;
   let tree;
   const render = () => { tree = e.render(() => UI(h.value)); };
   const settle = () => { render(); e.flush(); render(); e.flush(); render(); };
+  const commitEffects = async () => { for (let i = 0; i < 4; i++) { await settlePromises(); settle(); } };
   try {
     h.flush(); settle();
     assert.equal(categoryChoice(tree).props.id, 'lernkarten-kategorien');
     assert.equal(find(tree, node => node.type === 'article'), null);
-    chooseCategory(tree, 'hundewesen'); settle();
+    chooseCategory(tree, 'hundewesen'); settle(); await commitEffects();
     find(tree, node => node.type === 'input' && node.props.type === 'search').props.onChange({ target: { value: 'Belohnung' } }); settle();
+    find(tree, node => node.type === 'form').props.onSubmit({ preventDefault() {} }); settle(); await commitEffects();
     assert.doesNotMatch(words(tree), /Richtige Antwort|Die Erklärung bleibt/);
     const choice = find(tree, node => node.type === 'button' && words(node).trim() === 'In den Tagesplan.');
     assert.ok(choice);

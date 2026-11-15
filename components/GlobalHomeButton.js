@@ -93,6 +93,7 @@ const toolSelectionFields = {
   "/lernen/anatomie": ["bereich", "thema", "eintrag"],
   "/lernen/kiefer-3d": ["art", "vergleich"],
   "/lernen/fuenf-minuten": ["kategorie", "modus"],
+  "/lernen/lernkarten": ["kategorie", "category", "modus", "karte", "lektion"],
   "/online-kurse": ["ansicht", "kategorie", "angebot", "termin", "lernstand"],
 };
 function tracksToolSelection(path) {
@@ -111,8 +112,10 @@ function rememberCurrentPath(history, current) {
     ["region", "thema", "artikel", "ansicht", "bund"].some(key => new URL(previous, "https://jagdlatein.invalid").searchParams.get(key) !== new URL(current, "https://jagdlatein.invalid").searchParams.get(key));
   const topicStep = tracksTopicFragments(current) && previous?.split("#")[0] === current.split("#")[0] && previous?.split("#")[1] !== current.split("#")[1];
   const selectionFields = tracksToolSelection(current);
+  const flashcardSearchStep = current.split(/[?#]/)[0] === "/lernen/lernkarten" && previous &&
+    JSON.stringify(new URL(previous, "https://jagdlatein.invalid").searchParams.getAll("q")) !== JSON.stringify(new URL(current, "https://jagdlatein.invalid").searchParams.getAll("q"));
   const toolStep = selectionFields && previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && selectionFields.some(key =>
-    JSON.stringify(new URL(previous, "https://jagdlatein.invalid").searchParams.getAll(key)) !== JSON.stringify(new URL(current, "https://jagdlatein.invalid").searchParams.getAll(key)));
+    !(flashcardSearchStep && key === "karte") && JSON.stringify(new URL(previous, "https://jagdlatein.invalid").searchParams.getAll(key)) !== JSON.stringify(new URL(current, "https://jagdlatein.invalid").searchParams.getAll(key)));
   // A chosen tree branch is a navigation step; typing a search remains one stop.
   if (previous?.split(/[?#]/)[0] === current.split(/[?#]/)[0] && previousBranch === currentBranch && previousCourse === currentCourse && !topicStep && !lawStep && !toolStep) history[history.length - 1] = current;
   else history.push(current);

@@ -53,13 +53,19 @@ function setup({ stored = null, blocked = false, query = { kategorie: 'all' }, s
   const e = engine(); let value = stored; let writes = 0;
   const previousWindow = global.window; const originalNow = Date.now; let tick = 0;
   Date.now = () => 1792137600000 + tick++;
-  global.window = { localStorage: { getItem() { if (blocked) throw new Error('blocked'); return value; }, setItem(key, next) { if (blocked) throw new Error('blocked'); writes++; value = next; } }, setInterval: () => 1, clearInterval() {}, addEventListener() {}, removeEventListener() {}, requestAnimationFrame(fn) { fn(); } };
-  const Component = load('components/LearningFlashcards.js', { react: e.hooks, 'next/router': { useRouter: () => ({ query, isReady: true }) } }).default;
+  const initial = new URL('/lernen/lernkarten?' + new URLSearchParams(query), 'https://jagdlatein.de');
+  global.window = { location: { pathname: initial.pathname, search: initial.search, hash: initial.hash }, localStorage: { getItem() { if (blocked) throw new Error('blocked'); return value; }, setItem(key, next) { if (blocked) throw new Error('blocked'); writes++; value = next; } }, setTimeout, clearTimeout, setInterval: () => 1, clearInterval() {}, addEventListener() {}, removeEventListener() {}, requestAnimationFrame(fn) { fn(); }, scrollTo() {} };
+  const router = { query: { ...query }, isReady: true, asPath: initial.pathname + initial.search };
+  const commit = href => { const url = new URL(href, 'https://jagdlatein.de'); router.asPath = url.pathname + url.search + url.hash; router.query = Object.fromEntries(url.searchParams); Object.assign(window.location, { pathname: url.pathname, search: url.search, hash: url.hash }); return Promise.resolve(true); };
+  router.push = commit; router.replace = commit;
+  const Component = load('components/LearningFlashcards.js', { react: e.hooks, 'next/router': { useRouter: () => router } }).default;
   let tree;
   const render = () => { tree = e.render(() => Component({ cards: studyCards, categories })); };
   render();
   return { get tree() { return tree; }, get saved() { return value; }, get writes() { return writes; }, render,
     flush() { e.flush(); render(); },
+    async settle() { for (let i = 0; i < 5; i++) { e.flush(); render(); for (let j = 0; j < 8; j++) await Promise.resolve(); } },
+    async applySearch() { find(tree, node => node.type === 'form').props.onSubmit({ preventDefault() {} }); render(); await this.settle(); },
     button(label) { const node = find(tree, item => item.type === 'button' && words(item).trim() === label); assert.ok(node, label); return node; },
     click(label) { const button = this.button(label); assert.ok(!button.props.disabled, label); button.props.onClick(); render(); },
     cleanup() { e.unmount(); global.window = previousWindow; Date.now = originalNow; },
@@ -83,7 +89,7 @@ test('SSR shows the question and photo attribution while withholding the answer 
   assert.doesNotMatch(html, /lernkarten-drucken|PDF-Starterset/, 'Export navigation belongs to the lower main menu');
 });
 
-test('Seeing and browsing cards does not rate them or write learning progress', () => {
+test('Seeing and browsing cards does not rate them or write learning progress', async () => {
   const s = setup();
   try {
     assert.doesNotMatch(words(s.tree), /Beispielart/);
@@ -97,6 +103,7 @@ test('Seeing and browsing cards does not rate them or write learning progress', 
     s.click('Antwort ausblenden');
     const staleReveal = s.button('Antwort zeigen');
     s.click('Weiter ohne Bewertung');
+    await s.settle();
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
     assert.doesNotMatch(words(s.tree), /Zweite Antwort|Zweite vorhandene Erklärung|Hunde verstehen|Vorhandene Lektion/);
     stale.props.onClick(); s.render();
@@ -104,9 +111,11 @@ test('Seeing and browsing cards does not rate them or write learning progress', 
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
     assert.doesNotMatch(words(s.tree), /Zweite Antwort|Beispielart/);
     s.click('Weiter ohne Bewertung');
+    await s.settle();
     assert.match(words(s.tree), /Was gehört zum dritten Beispiel/);
     assert.doesNotMatch(words(s.tree), /Dritte Antwort/);
     s.click('Weiter ohne Bewertung');
+    await s.settle();
     assert.match(words(s.tree), /Welche Wildart zeigt dieses Foto/);
     assert.doesNotMatch(words(s.tree), /Beispielart/);
     s.flush();
@@ -116,10 +125,11 @@ test('Seeing and browsing cards does not rate them or write learning progress', 
   } finally { s.cleanup(); }
 });
 
-test('Both card changes focus and scroll the newly rendered question into view', () => {
+test('Both card changes focus the committed question and return the whole page to the top', async () => {
   const s = setup();
   const frames = [], actions = [];
   global.window.requestAnimationFrame = callback => frames.push(callback);
+  global.window.scrollTo = options => actions.push(['page', 'scroll', options]);
   const attachHeading = label => {
     find(s.tree, node => node.type === 'h2' && node.props.id === 'lernkarten-frage').props.ref.current = {
       focus(options) { actions.push([label, 'focus', options]); },
@@ -131,18 +141,22 @@ test('Both card changes focus and scroll the newly rendered question into view',
     attachHeading('first');
     s.click('Weiter ohne Bewertung');
     attachHeading('second');
+    await s.settle();
     assert.equal(frames.length, 1);
     frames.shift()();
     s.click('Antwort zeigen');
     s.click('Gewusst');
     attachHeading('third');
+    await s.settle();
     assert.equal(frames.length, 1);
     frames.shift()();
     assert.deepEqual(actions, [
       ['second', 'focus', { preventScroll: true }],
-      ['second', 'scroll', { block: 'start', behavior: 'auto' }],
+      ['page', 'scroll', { left: 0, top: 0, behavior: 'instant' }],
+      ['page', 'scroll', { left: 0, top: 0, behavior: 'instant' }],
       ['third', 'focus', { preventScroll: true }],
-      ['third', 'scroll', { block: 'start', behavior: 'auto' }],
+      ['page', 'scroll', { left: 0, top: 0, behavior: 'instant' }],
+      ['page', 'scroll', { left: 0, top: 0, behavior: 'instant' }],
     ]);
     assert.match(words(s.tree), /Was gehört zum dritten Beispiel/);
     assert.doesNotMatch(words(s.tree), /Dritte Antwort/);
@@ -151,7 +165,7 @@ test('Both card changes focus and scroll the newly rendered question into view',
   } finally { s.cleanup(); }
 });
 
-test('Visible answers retain the correct source scope and an explicit rating persists locally', () => {
+test('Visible answers retain the correct source scope and an explicit rating persists locally', async () => {
   const s = setup();
   try {
     s.flush();
@@ -170,6 +184,7 @@ test('Visible answers retain the correct source scope and an explicit rating per
     assert.doesNotMatch(words(s.tree), /Beispielart|in dieser Sitzung bewertet/);
     s.click('Antwort zeigen');
     s.click('Gewusst');
+    await s.settle();
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
     assert.doesNotMatch(words(s.tree), /Zweite Antwort|Hunde verstehen|Vorhandene Lektion/);
     s.click('Antwort zeigen');
@@ -190,7 +205,7 @@ test('Visible answers retain the correct source scope and an explicit rating per
   } finally { s.cleanup(); }
 });
 
-test('A card with options checks a single answer, focuses feedback and records only the explicit rating', () => {
+test('A card with options checks a single answer, focuses feedback and records only the explicit rating', async () => {
   const studyCards = [
     { ...cards[0], choices: ['Andere Art', 'Beispielart', 'Dritte Art'] },
     { ...cards[1], answer: 'A/a.', choices: ['A/a.', 'A/A.', 'a/a.'] },
@@ -221,7 +236,7 @@ test('A card with options checks a single answer, focuses feedback and records o
     staleCorrect.props.onClick(); s.render();
     assert.match(words(s.tree), /Das ist noch nicht richtig/);
     assert.equal(s.writes, writes);
-    s.click('Noch üben'); s.flush();
+    s.click('Noch üben'); await s.settle();
     assert.equal(JSON.parse(s.saved).cards[studyCards[0].id].rating, 'again');
     assert.doesNotMatch(words(s.tree), /Richtige Antwort|Deine Antwort|Zweite vorhandene Erklärung/);
     staleCorrect.props.onClick(); s.render();
@@ -230,13 +245,14 @@ test('A card with options checks a single answer, focuses feedback and records o
     s.click('A/a.');
     assert.match(words(s.tree), /Richtig beantwortet/);
     s.click('Weiter ohne Bewertung');
+    await s.settle();
     s.click('Ein einzelnes a');
     assert.match(words(s.tree), /Das ist noch nicht richtig/);
     assert.equal(group().props.children.find(option => option.key === 'Ein einzelnes A').props['aria-pressed'], false);
   } finally { s.cleanup(); }
 });
 
-test('Intentional reveal skips the quiz choice and malformed options retain the flashcard flow', () => {
+test('Intentional reveal skips the quiz choice and malformed options retain the flashcard flow', async () => {
   const valid = { ...cards[0], choices: ['Andere Art', 'Beispielart'] };
   const duplicate = { ...cards[1], choices: ['Zweite Antwort', ' Zweite Antwort ', 'Andere Antwort'] };
   const s = setup({ studyCards: [valid, duplicate] });
@@ -246,6 +262,7 @@ test('Intentional reveal skips the quiz choice and malformed options retain the 
     assert.match(words(s.tree), /Auflösung|Richtige Antwort/);
     assert.doesNotMatch(words(s.tree), /Richtig beantwortet|Das ist noch nicht richtig|Deine Antwort/);
     s.click('Weiter ohne Bewertung');
+    await s.settle();
     assert.equal(find(s.tree, node => node.props?.['aria-label'] === 'Antwort wählen'), null);
     assert.doesNotMatch(words(s.tree), /Zweite Antwort|Zweite vorhandene Erklärung/);
     s.click('Antwort zeigen');
@@ -255,23 +272,23 @@ test('Intentional reveal skips the quiz choice and malformed options retain the 
   } finally { s.cleanup(); }
 });
 
-test('Noch üben moves the card after the remaining cards and known cards leave the pending round', () => {
+test('Noch üben moves the card after the remaining cards and known cards leave the pending round', async () => {
   const s = setup();
   try {
-    s.flush(); s.click('Antwort zeigen'); s.click('Noch üben');
+    s.flush(); s.click('Antwort zeigen'); s.click('Noch üben'); await s.settle();
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
-    s.click('Antwort zeigen'); s.click('Gewusst');
+    s.click('Antwort zeigen'); s.click('Gewusst'); await s.settle();
     assert.match(words(s.tree), /Was gehört zum dritten Beispiel/);
-    s.click('Antwort zeigen'); s.click('Gewusst');
+    s.click('Antwort zeigen'); s.click('Gewusst'); await s.settle();
     assert.match(words(s.tree), /Welche Wildart zeigt dieses Foto/);
     assert.doesNotMatch(words(s.tree), /Beispielart/);
-    s.click('Antwort zeigen'); s.click('Gewusst');
+    s.click('Antwort zeigen'); s.click('Gewusst'); await s.settle();
     assert.match(words(s.tree), /Für jetzt ist deine Auswahl wiederholt/);
     assert.match(words(s.tree), /Selbsteinschätzung/);
   } finally { s.cleanup(); }
 });
 
-test('Filter changes reject previous-card handlers and keep search/category on the print link', () => {
+test('Filter changes reject previous-card handlers and keep committed search/category on the print link', async () => {
   const s = setup();
   try {
     s.flush(); s.click('Antwort zeigen'); const stale = s.button('Gewusst'); const staleNext = s.button('Weiter ohne Bewertung');
@@ -279,11 +296,13 @@ test('Filter changes reject previous-card handlers and keep search/category on t
     select.props.onChange({ target: { value: 'hundewesen' } }); s.render();
     stale.props.onClick(); s.render();
     staleNext.props.onClick(); s.render();
+    await s.settle();
     assert.match(words(s.tree), /Wie wird die nächste Frage/);
     assert.doesNotMatch(words(s.tree), /Zweite Antwort/);
     assert.doesNotMatch(words(s.tree), /in dieser Sitzung bewertet/);
     const input = find(s.tree, node => node.type === 'input' && node.props.type === 'search');
     input.props.onChange({ target: { value: 'nächste' } }); s.render();
+    await s.applySearch();
     const link = find(s.tree, node => node.props?.href?.pathname === '/lernen/lernkarten-drucken');
     assert.deepEqual(link.props.href.query, { kategorie: 'hundewesen', q: 'nächste', karte: cards[1].id });
   } finally { s.cleanup(); }

@@ -12,7 +12,7 @@ const scope = { courseId, lessonId: 'messung' };
 const actual = getFlashcardExport(scope);
 const route = '/lernen/lernkarten';
 const uiOverrides = {
-  'next/router': { useRouter: () => ({ query: {}, isReady: true, asPath: route }) },
+  'next/router': { useRouter: () => ({ query: { kurs: courseId, lektion: scope.lessonId }, isReady: true, asPath: route + '?' + new URLSearchParams({ kurs: courseId, lektion: scope.lessonId }) }) },
   'next/head': ({ children }) => React.createElement(React.Fragment, null, children),
   'next/link': ({ href, children, prefetch, ...props }) => React.createElement('a', { ...props, href: typeof href === 'string' ? href : href.pathname + '?' + new URLSearchParams(href.query) }, children),
 };
@@ -171,7 +171,8 @@ function harness(props) {
 }
 
 test('A direct scoped search is applied on the first server render and an invalid selection cannot silently print the full bank', () => {
-  const ui = createLoader({ ...uiOverrides, 'next/router': { useRouter: () => ({ query: { q: 'unauffindbarerlernbegriffxyz' }, isReady: true, asPath: route }) } });
+  const query = { kurs: courseId, lektion: scope.lessonId, q: 'unauffindbarerlernbegriffxyz' };
+  const ui = createLoader({ ...uiOverrides, 'next/router': { useRouter: () => ({ query, isReady: true, asPath: route + '?' + new URLSearchParams(query) }) } });
   const Cards = ui('components/LearningFlashcards.js').default;
   const Printed = ui('pages/lernen/lernkarten-drucken.js').default;
   const html = renderToStaticMarkup(React.createElement(Cards, actual));

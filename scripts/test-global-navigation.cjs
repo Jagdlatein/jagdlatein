@@ -15,6 +15,26 @@ function collectLinks(node) {
   return [...(node.props?.href ? [node] : []), ...collectLinks(node.props?.children)];
 }
 
+test('Flashcard dock Back retains category, mode and card choices while a search clearing the card stays one stop', () => {
+  const base='/lernen/lernkarten', category=`${base}?kategorie=wildkunde`, all=`${category}&modus=alle`, first=`${all}&karte=reh-eins`, next=`${all}&karte=reh-zwei`;
+  const s=setup('/lernen');s.route(base);s.route(category);s.route(all);s.route(first);s.route(next);
+  assert.deepEqual(s.history,['/lernen',base,category,all,first,next]);
+  s.route(`${all}&q=Reh`);s.route(`${all}&q=Hund`);
+  assert.deepEqual(s.history,['/lernen',base,category,all,first,`${all}&q=Hund`]);
+  s.render().props.children[0].props.onClick();assert.equal(s.destination,first);
+});
+
+test('Flashcard lesson and legacy category selections are scoped stops; native and immediate Back keep the prior entry', () => {
+  const base='/lernen/lernkarten', first=`${base}?kurs=kurs-a&lektion=eins`, second=`${base}?kurs=kurs-a&lektion=zwei`;
+  const s=setup('/lernen');s.route(base);s.route(first);s.route(second);s.route(second+'&ref=kurs');
+  assert.equal(s.history.length,4);s.render().props.children[0].props.onClick();assert.equal(s.destination,first);
+  const legacy=setup('/lernen');legacy.route(base);legacy.route(base+'?category=wildkunde');legacy.route(base+'?category=hundewesen');
+  legacy.render().props.children[0].props.onClick();assert.equal(legacy.destination,base+'?category=wildkunde');
+  const native=setup(base,['/lernen']);native.route(first);native.route(second);native.route(first);native.render().props.children[0].props.onClick();assert.equal(native.destination,base);
+  const immediate=setup(base,['/lernen']);immediate.route(first);immediate.navigateBeforeEffects(second);immediate.render().props.children[0].props.onClick();assert.equal(immediate.destination,first);
+  const other=setup('/lernen');other.route('/wildkunde?kategorie=wildkunde');other.route('/wildkunde?kategorie=hundewesen&karte=x');assert.equal(other.history.length,2);
+});
+
 function setup(pathname = '/login', history = [], appRouter = false, navigation = null, viewportSupported = true) {
   let state;
   const effects = [], cleanups = [], listeners = new Map(), windowListeners = new Map(), viewportListeners = new Map(), timers = new Map();

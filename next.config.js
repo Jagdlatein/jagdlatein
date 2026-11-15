@@ -88,6 +88,17 @@ const nextConfig = {
       headers: [
         { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Wildkunde-4-Antworten.mp4"' },
       ],
+    }, {
+      source: "/werbung/jagdlatein-dein-moment-2026-11-15.mp4",
+      has: [{ type: "query", key: "download", value: "1" }],
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="jagdlatein-werbevideo.mp4"' },
+      ],
+    }, {
+      source: "/werbung/jagdlatein-dein-moment-2026-11-15.zip",
+      headers: [
+        { key: "Content-Disposition", value: 'attachment; filename="Jagdlatein-Dein-Moment.zip"' },
+      ],
     }];
   },
 
