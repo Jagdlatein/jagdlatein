@@ -7,9 +7,10 @@ const { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader();
 const Picker = load('components/WildYearSpeciesPicker.js').default;
 const { wildYearCatalog } = load('lib/wild-year-catalog.js');
+const { getWildYearPhotograph } = load('lib/wild-year-photographs.js');
 const buttons = tree => nodes(tree, node => node.type === 'button' && node.props['data-wildjahr-species']);
 
-test('The actual species picker presents every canonical species once as short grouped buttons without another selection window or search', () => {
+test('The actual species picker presents every canonical species once as a labelled photo button without another selection window or search', () => {
   const tree = Picker({ selectedSlug: null, disabled: false, onSelect() {} });
   const choices = buttons(tree);
   assert.equal(choices.length, wildYearCatalog.length);
@@ -22,12 +23,19 @@ test('The actual species picker presents every canonical species once as short g
     assert.equal(button.props.type, 'button');
     assert.equal(button.props.disabled, false);
     assert.equal(button.props['aria-pressed'], false);
+    const pictures=nodes(button,node=>node.props?.src);
+    assert.equal(pictures.length,1,entry.slug);
+    const photo=getWildYearPhotograph(entry.slug);assert.ok(photo,entry.slug);
+    assert.equal(pictures[0].props.src,photo.src);assert.equal(pictures[0].props.alt,'');
+    assert.equal(pictures[0].props.loading,'lazy');assert.equal(pictures[0].props.priority,undefined);
+    assert.equal(pictures[0].props.width,photo.width);assert.equal(pictures[0].props.height,photo.height);
   }
   assert.deepEqual(nodes(tree, node => /^h[2-6]$/.test(node.type)).map(text), groups);
-  assert.equal(nodes(tree, node => ['select', 'option', 'input', 'dialog', 'details', 'form', 'a', 'img'].includes(node.type)).length, 0);
+  assert.equal(nodes(tree, node => ['select', 'option', 'input', 'dialog', 'details', 'form', 'a'].includes(node.type)).length, 0);
   const html = renderToStaticMarkup(React.createElement(Picker, { selectedSlug: null, disabled: false }));
   assert.equal((html.match(/<button\b/g) || []).length, wildYearCatalog.length);
-  assert.doesNotMatch(html, /<select|<dialog|<details|<form|<input|<img/);
+  assert.equal((html.match(/<img\b/g)||[]).length,wildYearCatalog.length);
+  assert.doesNotMatch(html, /<select|<dialog|<details|<form|<input/);
 });
 
 test('Each real species button delegates only its own canonical slug; selection is committed by the parent rather than changed locally', () => {

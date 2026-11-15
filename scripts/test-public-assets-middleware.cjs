@@ -91,7 +91,7 @@ test('Every published learning image path is exact, unique and backed by a real 
   assert.ok(learningImagePaths.every(pathname => fs.existsSync(path.join(root, 'public', pathname))));
 });
 
-test('Only the ten exact media attribution documents are public; neighboring files and learning access remain guarded', async () => {
+test('Only the fourteen exact media attribution documents are public; neighboring files and learning access remain guarded', async () => {
   const { mediaExperienceDocumentationPaths } = load('lib/media-experience-asset-paths.js');
   assert.deepEqual(Array.from(mediaExperienceDocumentationPaths), [
     '/lernen/videos-2026-10-26/mediennachweise.json',
@@ -104,12 +104,21 @@ test('Only the ten exact media attribution documents are public; neighboring fil
     '/lernen/videos-wildarten-2026-11-01/MEDIEN-LIZENZEN.md',
     '/lernen/videos-wildkunde-2026-11-01/mediennachweise.json',
     '/lernen/videos-wildkunde-2026-11-01/MEDIEN-LIZENZEN.md',
+    '/lernen/videos-2026-11-15/mediennachweise.json',
+    '/lernen/videos-2026-11-15/MEDIEN-LIZENZEN.md',
+    '/lernen/videos-saeugetiere-2026-11-15/mediennachweise.json',
+    '/lernen/videos-saeugetiere-2026-11-15/MEDIEN-LIZENZEN.md',
   ]);
   for (const pathname of mediaExperienceDocumentationPaths) {
     assert.ok(fs.existsSync(path.join(root, 'public', pathname)));
     const response = await middleware(request(pathname));
     assert.equal(response.headers.get('x-middleware-next'), '1');
     assert.equal(response.headers.get('location'), null);
+    for (const neighbor of [`${pathname}.bak`, `${pathname}/private`]) {
+      const guarded = await middleware(request(neighbor));
+      assert.equal(guarded.headers.get('x-middleware-next'), null, neighbor);
+      assert.equal(new URL(guarded.headers.get('location')).pathname, '/preise', neighbor);
+    }
   }
   for (const pathname of [
     '/lernen/videos-2026-10-26/private.json',
@@ -142,6 +151,12 @@ test('Only the ten exact media attribution documents are public; neighboring fil
     '/lernen/videos-wildkunde-2026-11-01/MEDIEN-LIZENZEN.md.bak',
     '/lernen/videos-wildkunde-2026-11-01/loesungen.json',
     '/lernen/videos-wildkunde-2026-11-01',
+    '/lernen/videos-2026-11-15/private.json',
+    '/lernen/videos-2026-11-15/loesungen.json',
+    '/lernen/videos-2026-11-15',
+    '/lernen/videos-saeugetiere-2026-11-15/private.json',
+    '/lernen/videos-saeugetiere-2026-11-15/loesungen.json',
+    '/lernen/videos-saeugetiere-2026-11-15',
     '/lernen/pruefungswissen-2026-11-01/private.jpg',
     '/lernen/pruefungswissen-2026-11-01/blaesshuhn-schwimmlappen.jpg.bak',
     '/lernen/pruefungswissen-2026-11-01/private.json',

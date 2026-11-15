@@ -13,7 +13,7 @@ const page = load('pages/lernen/wildjahr.js');
 const { wildYearCatalog } = load('lib/wild-year-catalog.js');
 const { wildYearSpecies, wildYearSources, getWildYearProfile } = load('lib/wild-year.js');
 const { getWildYearOverview } = load('lib/wild-year-overview-server.js');
-const { wildlifePhotographs } = load('lib/wildlife-photographs.js');
+const { wildYearPhotographs } = load('lib/wild-year-photographs.js');
 const { readWildYearSelection } = load('lib/wild-year-selection.js');
 const base = '/lernen/wildjahr';
 const propsFor = query => page.getServerSideProps({ query }).props;
@@ -127,9 +127,9 @@ test('All 114 actual server selections render the exact selected knowledge in SS
     assert.doesNotMatch(html, /<details[^>]*\bopen(?:=|\s|>)/);
     assert.equal(Boolean(range(h)), monthly, entry.slug);
     const figure = nodes(h.tree, node => node.type === 'figure');
-    assert.equal(figure.length, wildlifePhotographs[entry.slug] ? 1 : 0, entry.slug);
-    if (wildlifePhotographs[entry.slug]) { assert.ok(html.includes(wildlifePhotographs[entry.slug].src)); pictured++; }
-    else assert.doesNotMatch(html, /<figure/);
+    assert.equal(figure.length,1,entry.slug);
+    assert.ok(wildYearPhotographs[entry.slug],entry.slug);
+    assert.ok(html.includes(wildYearPhotographs[entry.slug].src));pictured++;
     assert.equal(select(h).props.disabled, true);
     h.router.isReady = true; h.navigate(query);
     assert.equal(text(heading(h)), firstHeading);
@@ -138,7 +138,7 @@ test('All 114 actual server selections render the exact selected knowledge in SS
     if (!monthly) { overviews++; assert.ok(!/ im Juni$/.test(firstHeading)); }
     h.dispose(); checked++;
   }
-  assert.equal(checked, 114); assert.equal(pictured, 47); assert.equal(overviews, 114 - wildYearSpecies.length);
+  assert.equal(checked, 114); assert.equal(pictured, 114); assert.equal(overviews, 114 - wildYearSpecies.length);
 });
 
 test('The lower selector retains all canonical groups and entries, while an invalid selection never leaks old server knowledge', t => {

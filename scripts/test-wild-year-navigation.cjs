@@ -4,7 +4,7 @@ const { setup, nodes, text } = require('./helpers/field-reader-fixture.cjs');
 const { createLoader } = require('./helpers/project-module.cjs');
 const load = createLoader();
 const { wildYearSpecies, wildYearSources, getWildYearProfile } = load('lib/wild-year.js');
-const { wildlifePhotographs } = load('lib/wildlife-photographs.js');
+const { wildYearPhotographs } = load('lib/wild-year-photographs.js');
 const { readWildYearSelection } = load('lib/wild-year-selection.js');
 const file = 'components/WildYear.js';
 const base = '/lernen/wildjahr';
@@ -82,7 +82,8 @@ test('All 384 detailed views retain exact visible claims, immediate limits, avai
   for (const animal of wildYearSpecies) for (let month = 1; month <= 12; month++) {
     history(h, { art: animal.slug, monat: String(month) });
     const expected = getWildYearProfile(animal.slug, month);
-    const picture = wildlifePhotographs[animal.slug];
+    const picture = wildYearPhotographs[animal.slug];
+    assert.ok(picture,animal.slug);
     assert.equal(text(heading(h)), `${animal.name} im ${expected.monthName}`);
     assert.equal(range(h).props.value, month);
     assert.equal(species(h).props.selectedSlug, animal.slug);
@@ -106,14 +107,11 @@ test('All 384 detailed views retain exact visible claims, immediate limits, avai
         section.claim.sourceIds.map(id => ({ href: wildYearSources[id].url, label: wildYearSources[id].label })));
     }
     const credit = nodes(footer, node => node.type?.name === 'LearningPhotoCredit');
-    if (picture) {
-      assert.equal(credit.length, 1); assert.deepEqual(credit[0].props.media, picture);
+    {
+      assert.equal(credit.length, 1); assert.deepEqual(credit[0].props.media, picture);assert.equal(credit[0].props.full,true);
       const image = h.nodes(node => node.props?.src === picture.src)[0];
       assert.ok(image); assert.equal(image.props.width, picture.width); assert.equal(image.props.height, picture.height);
       assert.equal(image.props.alt, `${picture.name}: dokumentarisches Artporträt, unabhängig vom ausgewählten Monat`);
-    } else {
-      assert.ok(['murmeltier', 'waldschnepfe'].includes(animal.slug)); assert.equal(credit.length, 0);
-      assert.equal(h.nodes(node => node.type === 'figure').length, 0);
     }
     const shown = text(h.tree), beforeSources = shown.slice(0, shown.indexOf('Quellen und Bildnachweis'));
     for (const limitation of [animal.uncertainty,
@@ -132,7 +130,7 @@ test('A real month push preserves committed text/photo until commit, carries con
   const initial = { art: 'rehwild', monat: '6', ref: 'suche', q: 'Reh' };
   const h = fixture(t, initial), requests = pendingRouter(h), focus = focusProbe(h);
   const path = mountPath(h.tree, 'wildjahr-month');
-  const photo = h.nodes(node => node.props?.src === wildlifePhotographs.rehwild.src)[0].props.src;
+  const photo = h.nodes(node => node.props?.src === wildYearPhotographs.rehwild.src)[0].props.src;
   const action = chooseMonth(h, 7); h.render();
   assert.deepEqual(requests[0].href, { pathname: base, query: { ...initial, monat: '7' }, hash: 'wildjahr-top' });
   assert.deepEqual(requests[0].options, { shallow: true, scroll: false }); assert.equal(requests[0].as, undefined);

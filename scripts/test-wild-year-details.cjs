@@ -37,15 +37,15 @@ test('All 384 detailed species-month views contain exactly one phase per biologi
   assert.equal(year.wildYearSpecies.length, 32);
   assert.equal(new Set(year.wildYearSpecies.map(item => item.slug)).size, 32);
   const { dachWildlifeBySlug } = load('lib/dach-wildlife.js');
-  const { wildlifePhotographs } = load('lib/wildlife-photographs.js');
+  const { wildYearPhotographs } = load('lib/wild-year-photographs.js');
+  const evidence=JSON.parse(fs.readFileSync(path.join(root,'data/reviews/wild-year-photographs-2026-11-15.json'),'utf8'));
   for (const item of year.wildYearSpecies) {
     assert.ok(dachWildlifeBySlug[item.slug], item.slug);
     assert.ok(item.uncertainty.length > 60, `${item.slug}: transitions need context`);
-    const photo = wildlifePhotographs[item.slug];
-    if (photo) {
-      assert.equal(photo.aiGenerated, false);
-      assert.ok(fs.existsSync(path.join(root, 'public', photo.src)), photo.src);
-    } else assert.ok(['murmeltier', 'waldschnepfe'].includes(item.slug), 'No other selected profile may lose its existing photograph');
+    const photo = wildYearPhotographs[item.slug];
+    assert.ok(photo,item.slug);
+    assert.equal(evidence.records.find(record=>record.slug===item.slug).aiGenerated,false);
+    assert.ok(fs.existsSync(path.join(root, 'public', photo.src)), photo.src);
     for (const key of ['coat', 'crown', 'reproduction', 'behavior']) {
       for (const claim of item[key]) checkSources(claim, year.wildYearSources);
       for (let month = 1; month <= 12; month++) {
