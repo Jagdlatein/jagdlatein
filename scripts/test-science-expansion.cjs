@@ -3,12 +3,16 @@ const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-o
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
+const { novemberLearningBaselineFixture } = require('./helpers/november-learning-baseline.cjs');
 // Structure, integration and concrete editorial regressions. Source reading is
 // separately recorded in data/reviews/; these checks are not scientific review.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createLoader: createLinkedProjectLoader } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createLinkedProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides)));
+// The published c5a015 HEAD already contained seven later Nov01/Nov08 science
+// questions beyond this 576+8 snapshot. Their separate regressions retain the
+// live content; project only those precisely named appendices here.
+const createLoader = overrides => createLinkedProjectLoader(novemberLearningBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides))));
 const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture())));
 const { scienceExpansionDatasets: datasets, scienceExpansionModules: added } = load('lib/learning-science-expansion.js');
 const { learningCategories, learningModules, learningQuestions } = load('lib/learning-curriculum.js');

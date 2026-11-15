@@ -1,5 +1,6 @@
 // Historical comparisons isolate only these two precisely named appendices.
 const assert = require('node:assert/strict');
+const { stripAlulaAddition, stripAlulaDataset } = require('./alula-addition-nov15.cjs');
 const courseId = 'wissen-ausbau-federaufbau-funktion-2026';
 const lessonIds = ['federfluren', 'fadenfedern'];
 const questionIds = ['federfluren-ueberdeckung', 'fadenfedern-form', 'fadenfedern-rezeptorort'];
@@ -10,6 +11,7 @@ const sourceURLs = [
   'https://link.springer.com/article/10.1007/BF00610731',
 ];
 function stripFeatherFieldsAddition(module) {
+  module = stripAlulaAddition(module);
   if (module?.id !== courseId || !module.lessons.some(item => lessonIds.includes(item.id))) return module;
   assert.deepEqual(module.lessons.slice(-2).map(item => item.id), lessonIds);
   assert.ok(module.lessons.slice(-2).every(item => item.reviewedOn === '2026-11-08'));
@@ -24,6 +26,7 @@ function stripFeatherFieldsAddition(module) {
     questions: module.questions.filter(item => !lessonIds.includes(item.lessonId)) };
 }
 function stripFeatherFieldsDataset(dataset) {
+  dataset = stripAlulaDataset(dataset);
   return { ...dataset, modules: dataset.modules.map(stripFeatherFieldsAddition),
     evidence: dataset.evidence.filter(item => !(item.moduleId === courseId && lessonIds.includes(item.lessonId))) };
 }

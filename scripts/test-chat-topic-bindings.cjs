@@ -35,6 +35,8 @@ const expectedPairs = [
   [feather, "waerme", "Lockere Federn halten", "waerme-q1"],
   ["wissen-vertiefung-kiefernzapfen-round6-2026", "hygroskopische-bewegung", "Unterschiedliche Quellung/Schwindung", "hygroskopische-bewegung"],
   ["wissen-vertiefung-laubblatt-merkmale-round4-2026", "blattstellung", "Wechselständigkeit kann", "q2"],
+  [feather, "alula", "Die Alula ist eine kleine Federgruppe", "alula-lage"],
+  [feather, "alula", "Bei langsamem Flug mit stark angestelltem Flügel", "alula-funktion"],
 ];
 
 function originalPair([courseId, lessonId, claimPrefix, questionSuffix]) {

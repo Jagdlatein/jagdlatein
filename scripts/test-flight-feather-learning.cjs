@@ -4,17 +4,23 @@ const { sensesBaselineFixture } = require('./helpers/senses-learning-additions-o
 const { dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions-oct27.cjs');
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
+const { novemberLearningBaselineFixture } = require('./helpers/november-learning-baseline.cjs');
+const { stripFeatherFieldsDataset } = require('./helpers/feather-fields-additions-nov08.cjs');
+const { avianCecaBaselineFixture } = require('./helpers/avian-ceca-addition-oct29.cjs');
 // Editorial preservation and real reader/export integration. Source reading is
 // documented separately; these checks do not certify scientific correctness.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)))));
+const createLoader = overrides => createProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(sensesBaselineFixture(dogLearningProcessesBaselineFixture(overrides)))))));
 const { courseId, lessonIds, questionIds, sourceURLs, stripFlightFeatherAddition,
   stripFlightFeatherDataset, isFlightFeatherCard } = require('./helpers/flight-feather-additions-oct27.cjs');
 const { stripFirearmTermsAddition, isFirearmTermsCard } = require('./helpers/firearm-terms-additions-oct27.cjs');
-const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
+// Published c5a015 already had 10 lessons/25 questions: Nov08's tail pair
+// made the old slice(-2) stale before Alula. Their live-data tests cover that
+// appendix; project its exact IDs and Nov15's Alula out of this Oct27 snapshot.
+const raw = stripFeatherFieldsDataset(require('../data/learning-expansion-wildlife-dogs-2026-10-16.json'));
 const load = createLoader(plantEnergyBaselineFixture(adiposeBaselineFixture())), { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const course = getLearningModule(courseId), original = raw.modules.find(item => item.id === courseId);
 const lessons = course.lessons.slice(-2), cards = load('lib/learning-flashcards.js').getFlashcards();

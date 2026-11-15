@@ -470,6 +470,36 @@
             "fadenfedern"
           ],
           "supports": "Vollständige öffentlich lesbare Original-Summary (DOI 10.1007/BF00610731) tatsächlich gelesen, kein Volltext: elektrophysiologische Reaktion eines langsam adaptierenden Mechanorezeptors an der Basis von Fadenfedern bei Tauben; Reaktion bei seitlicher Konturfederverschiebung oder Fadenfederbewegung und fachliche Deutung als Gefiedersensor. Keine Messwerte, universellen Artleistungen, Kälterezeptorvergleiche oder experimentell bewiesene allgemeine Flugfunktion gelehrt. Institutionelle Lehrtexte sind eine unabhängige funktionelle Einordnung, keine Wiederholung dieses Versuchs."
+        },
+        {
+          "label": "Ginn und Melville: Moult in Birds – Alula, S. 13",
+          "url": "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf#page=14",
+          "organization": "British Trust for Ornithology; H. B. Ginn und D. S. Melville",
+          "checkedOn": "2026-11-15",
+          "lessonIds": [
+            "alula"
+          ],
+          "supports": "Originalhandbuch 1983, Nachdruck 1995, Abschnitt 3 Alula or bastard wing, gedruckte S. 13 (PDF-Blatt 14) tatsächlich gelesen: kleine Federgruppe am Pollex, obere Flügelvorderkante unmittelbar distal des Handgelenks. Historische Anatomiebeschreibung; keine Federzahlen, Mausertermine oder Flugleistungswerte übernommen. Seitenlink hält den bisherigen allgemeinen BTO-Nachweis unverändert."
+        },
+        {
+          "label": "Lee und andere (2015): The function of the alula in avian flight – Originalabstract",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25951056/",
+          "organization": "Seoul National University und Polish Academy of Sciences; Sang-im Lee, Jooha Kim, Hyungmin Park, Piotr G. Jabłoński und Haecheon Choi",
+          "checkedOn": "2026-11-15",
+          "lessonIds": [
+            "alula"
+          ],
+          "supports": "Originalabstract und veröffentlichte Abbildungslegenden auf PubMed tatsächlich gelesen, kein gelesener Volltext: Lage zwischen Hand- und Armflügel, langsamer Flug bei hohem Anstellwinkel, Flugaufgaben und Windkanalversuche; höherer Auftrieb und häufig verzögerter Strömungsabriss. Keine Versuchszahlen, Winkel-, Geschwindigkeits- oder Prozentwerte auf Wildvögel übertragen."
+        },
+        {
+          "label": "Linehan und Mohseni (2020): Scaling trends of bird’s alular feathers",
+          "url": "https://www.nature.com/articles/s41598-020-63181-7",
+          "organization": "University of Florida; Thomas Linehan und Kamran Mohseni",
+          "checkedOn": "2026-11-15",
+          "lessonIds": [
+            "alula"
+          ],
+          "supports": "Scientific Reports 10, 7905, DOI 10.1038/s41598-020-63181-7: Originalabstract über PubMed sowie Originalvolltext beim Publisher, besonders Abstract, Einleitung und Methoden, für den Quellenabgleich tatsächlich gelesen. Alula am Daumen in Handgelenksnähe; eigene Modellflügel-Windkanalversuche und Vergleich mit Präparaten stützen die enge Auftriebsfunktion bei langsamem, stark angestelltem Flug. Eigenständige Untersuchung, keine identische Wiederholung von Lee 2015. Kein Zahlenvergleich und keine Optimalaussage für alle Arten."
         }
       ],
       "lessons": [
@@ -589,6 +619,20 @@
           ],
           "takeaway": "Fadenfedern sind haarähnliche Federn; Rezeptoren in ihrem Haut- und Follikelbereich liefern Rückmeldung über Bewegungen im Gefieder.",
           "exercise": "Beschrifte in einer eigenen Fadenfeder-Skizze Schaft, gegebenenfalls vorhandene Äste an der Spitze, Hautgrenze und Rezeptorbereich. Erkläre den Unterschied zwischen Federform und nervösem Empfang."
+        },
+        {
+          "id": "alula",
+          "title": "Daumenfittich (Alula)",
+          "reviewedOn": "2026-11-15",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Der Daumenfittich heisst fachsprachlich Alula. Diese kleine Federgruppe sitzt am Daumen des Vogelflügels, an seiner Vorderkante nahe dem Handgelenk. Er gehört damit weder zu den Steuerfedern am Schwanz noch zur Reihe der Armschwingen an der Elle. Verfolge beim Beschriften zuerst den Ansatzort, nicht nur die Grösse einzelner Federn.",
+            "Beim langsamen Flug mit stark angestelltem Flügel kann die Alula den Auftrieb erhöhen und einen Strömungsabriss hinauszögern. Stark angestellt beschreibt hier einen grossen Winkel des Flügels zur anströmenden Luft. Die kleine Federgruppe unterstützt unter solchen Bedingungen die tragende Wirkung des Flügels; sie ersetzt nicht die übrigen am Flug beteiligten Strukturen.",
+            "Der Beitrag ist von anderen Gefiederfunktionen zu unterscheiden. Steuerfedern unterstützen Richtungsänderungen, lockere Dunen begrenzen Wärmeverlust. Die Alula wird durch ihre Flugfunktion weder zur Schwanzfeder noch zum isolierenden Dunenpolster. Die Wirkung ist nicht bei jeder Art und Flugsituation gleich; eine sichere Landung wird damit nicht garantiert.",
+            "Eigene Prüfungsübung: Ordne Daumenfittich, Schwungfedern und Steuerfedern ihren Körperabschnitten zu. Ein entfernter Flugfilm kann die kleine Alula unaufgelöst lassen. Aus ihm wird deshalb weder ihre genaue Stellung noch die Stärke ihrer Wirkung abgelesen. Das Begriffsschema ist keine massstäbliche Anatomiezeichnung."
+          ],
+          "takeaway": "Die Alula sitzt am Daumen nahe der Flügelvorderkante und kann bei langsamem, stark angestelltem Flug den Auftrieb unterstützen.",
+          "exercise": "Beschrifte in einem eigenen Begriffsschema Daumenfittich, Hand- und Armschwingen sowie Steuerfedern. Erkläre Ort und Funktionsbeitrag getrennt; bewerte keine Flugleistung aus einem entfernten Film."
         }
       ],
       "questions": [
@@ -916,6 +960,32 @@
           ],
           "answer": 0,
           "explain": "Die Fadenfeder überträgt Bewegung auf ihren hautnahen Rezeptorbereich. Der freie haarähnliche Schaft ist nicht mit dem nervösen Empfangsgewebe gleichzusetzen. Die Taubenbefunde und fachliche Einordnung begründen keine identische Empfindlichkeit aller Vogelarten."
+        },
+        {
+          "id": "alula-lage",
+          "lessonId": "alula",
+          "q": "Wo sitzt der Daumenfittich, auch Alula genannt?",
+          "options": [
+            "An der Elle des Unterarms in der Reihe der Armschwingen.",
+            "Am Daumen an der Flügelvorderkante nahe dem Handgelenk.",
+            "Am Schwanzansatz in der Reihe der Steuerfedern.",
+            "Am Oberarm zwischen Schulter und Ellenbogen."
+          ],
+          "answer": 1,
+          "explain": "Die Alula ist eine kleine Federgruppe am Daumen, an der Vorderkante des Flügels nahe dem Handgelenk. Diese Lage unterscheidet sie von Armschwingen an der Elle und Steuerfedern am Schwanz."
+        },
+        {
+          "id": "alula-funktion",
+          "lessonId": "alula",
+          "q": "Welchen Beitrag kann die Alula beim langsamen Flug mit stark angestelltem Flügel leisten?",
+          "options": [
+            "Sie unterstützt Richtungsänderungen als Federgruppe am Schwanz.",
+            "Sie hält körpernahe Luft zwischen lockeren Dunen zur Wärmeisolierung fest.",
+            "Sie schliesst die Fahne einer einzelnen Feder durch Häkchenverbindungen.",
+            "Sie kann den Auftrieb erhöhen und einen Strömungsabriss hinauszögern."
+          ],
+          "answer": 3,
+          "explain": "Die Alula kann beim langsamen Flug und hoher Flügelanstellung den Auftrieb unterstützen und Strömungsabriss hinauszögern. Die Wirkung ist von Art und Flugsituation abhängig; daraus folgt keine Garantie einer sicheren Landung."
         }
       ]
     },
@@ -2747,6 +2817,49 @@
             "https://link.springer.com/article/10.1007/BF00610731": "Einzige hier verwendete Originalmessquelle: nur die öffentlich lesbare Summary der Tauben-Elektrophysiologie.",
             "https://academy.allaboutbirds.org/bird-academys-a-to-z-glossary-of-bird-terms/": "Unabhängige Begriffs- und Funktionsbestätigung mit ausdrücklicher Lage der Rezeptoren in der Haut bei den Follikeln; keine Wiederholung der Messreihe.",
             "https://rubegalab.uconn.edu/lecture-notes-feathers/": "Unabhängige Lehrdarstellung zur sensorischen Rolle und Federstellung; keine neue Versuchsmessung."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "alula",
+      "claims": [
+        {
+          "claim": "Die Alula ist eine kleine Federgruppe am Pollex beziehungsweise Daumen, an der Flügelvorderkante in Handgelenksnähe. Die anatomische Zuordnung trennt sie von Armschwingen an der Elle und Steuerfedern am Schwanz.",
+          "sourceUrls": [
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf#page=14",
+            "https://www.nature.com/articles/s41598-020-63181-7",
+            "https://pubmed.ncbi.nlm.nih.gov/25951056/"
+          ],
+          "sourceRoles": {
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf#page=14": "Direkt gelesener Abschnitt 3, gedruckte S. 13: Pollex, Vorderkante und Lage unmittelbar distal des Carpal-Gelenks; benachbarte Abschnitte ordnen Armschwingen der Ulna und Rectrices dem Schwanz zu. Keine Federzahlen übernommen.",
+            "https://www.nature.com/articles/s41598-020-63181-7": "Unabhängiger Originalbeleg: Abstract nennt Handgelenksnähe; die Einleitung im Originalvolltext beschreibt die Daumen-Zuordnung. Keine anatomischen Einzelwerte oder universellen Optimalaussagen übernommen.",
+            "https://pubmed.ncbi.nlm.nih.gov/25951056/": "Originalabstract beschreibt die Position am Übergang von Hand- und Armflügel. Das bestätigt die Region, ersetzt für die konkrete Pollex-Zuordnung aber nicht BTO und die zweite Originalarbeit."
+          }
+        },
+        {
+          "claim": "Bei langsamem Flug mit stark angestelltem Flügel kann die Alula Auftrieb erhöhen und Strömungsabriss hinauszögern. Das ist kein für alle Arten und Flugsituationen identischer Effekt und keine Landegarantie; es werden keine universellen Winkel-, Geschwindigkeits- oder Prozentwerte gelehrt.",
+          "sourceUrls": [
+            "https://pubmed.ncbi.nlm.nih.gov/25951056/",
+            "https://www.nature.com/articles/s41598-020-63181-7"
+          ],
+          "sourceRoles": {
+            "https://pubmed.ncbi.nlm.nih.gov/25951056/": "Einzig für diese Lektüre beansprucht: vollständiger Originalabstract und Abbildungslegenden; Flugaufgaben und Windkanalversuche mit höherem Auftrieb und häufig verzögertem Stall. Kein Volltext behauptet.",
+            "https://www.nature.com/articles/s41598-020-63181-7": "Eigener Modellflügel-Windkanalversuch und Präparatvergleich; Originalabstract auf PubMed und ergänzend Originaltext beim Publisher tatsächlich gelesen. Forschungsteam und Versuchsanordnung sind von Lee verschieden, keine identische experimentelle Replikation. Keine Zahlenwerte übernommen."
+          }
+        },
+        {
+          "claim": "Im Vergleich der bereits behandelten Gefiederfunktionen unterstützen Steuerfedern des Schwanzes Richtungsänderungen; lockere Dunen halten körpernahe Luft fest und begrenzen Wärmeverlust. Diese Beiträge sind von der aerodynamischen Rolle der Alula zu unterscheiden.",
+          "sourceUrls": [
+            "https://academy.allaboutbirds.org/feathers-article/",
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf",
+            "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight"
+          ],
+          "sourceRoles": {
+            "https://academy.allaboutbirds.org/feathers-article/": "Vorhandener unverändert datierter Kursbeleg: Feather Anatomy, Tail feathers sowie Down und Feather structure tatsächlich gelesen; Schwanzfedern unterstützen Steuerung, lockere Dunen halten körpernahe Luft fest. Keine universellen Federzahlen übernommen.",
+            "https://www.bto.org/sites/default/files/moult-in-birds-web.pdf": "Vorhandener unverändert datierter Kursbeleg: gedruckte S. 13 Rectrices ordnet die Federgruppe dem Schwanz zu; S. 15 Streamlining and insulation erklärt körpernahe Luft und Beitrag der Dunen zur Isolation. Kein eigenständiger Beleg für jede einzelne Richtungsbewegung.",
+            "https://www.sciencelearn.org.nz/resources/308-feathers-and-flight": "Vorhandener unverändert datierter unabhängiger Kursbeleg: Abschnitt Rectrices erklärt den Steuerbeitrag des Schwanzes. Dieser Teil bestätigt Cornell unabhängig; keine neue experimentelle Messung oder allgemeine Leistungsquote."
           }
         }
       ]

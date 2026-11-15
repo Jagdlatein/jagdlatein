@@ -4,9 +4,11 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { withoutFlightNov15Cases, withoutFlightNov15Paths } = require('./helpers/flight-video-addition-nov15.cjs');
 const load = createLoader();
 const added = load('lib/wildlife-video-expansion-field-2026-11-01.js').wildlifeVideoFieldExpansionNov01Cases;
 const videos = load('lib/wildlife-video-cases.js');
+const priorFlightCases = withoutFlightNov15Cases(videos.wildlifeVideoCases);
 const dogs = load('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
 const dir = '/lernen/videos-wildkunde-2026-11-01';
 const records = load(`public${dir}/mediennachweise.json`);
@@ -16,6 +18,19 @@ const expected = [
   { id:'reiherente-petrosawodsk', slug:'reiherente', title:'Reiherente auf dem Wasser', author:'Olksolo', license:'CC BY-SA 4.0', course:'/kurse/wissen-federwild-beobachtung#lesson-vogel-merkmale', duration:27.975, frames:839, bytes:13055904, hash:'8c25c2e535df8042e5a48f9ceecf043d7c2dc46e46ec63a5fd2a7ab09c35f263', posterTime:3, posterBytes:219369, posterHash:'d2b94de2346eba71c41fbfde45bcc7f5ec37eb76de0967d5262bd86668ba5209', times:[3,11] },
 ];
 const addedIds = new Set(expected.map(item => item.id));
+
+test('Historical Nov15 isolation removes only the two exact IDs and six exact paths while preserving old objects and neighbours', () => {
+  const retained = [{ id:'stockente', questions:[{ question:'Unchanged old question' }] }, { id:'stockente-flugstart-future' }, { id:'wild-graugans-landung' }, { id:'__proto__' }];
+  const input = [retained[0], { id:'stockente-flugstart' }, ...retained.slice(1), { id:'graugans-landung' }];
+  const result = withoutFlightNov15Cases(input);
+  assert.deepEqual(result, retained);
+  for (const [index,item] of retained.entries()) assert.equal(result[index],item, 'No cloning or rewriting of a historical object');
+  assert.equal(input.length,6);
+  const exact = ['stockente-flugstart.mp4','stockente-flugstart-vorschau.jpg','graugans-landung.mp4','graugans-landung-vorschau.jpg','mediennachweise.json','MEDIEN-LIZENZEN.md'].map(file=>`/lernen/videos-2026-11-15/${file}`);
+  const neighbours = ['/lernen/videos-2026-11-15', '/lernen/videos-2026-11-15/future.mp4', ...exact.map(value=>`${value}/extra`), ...exact.map(value=>`${value}?download=1`)];
+  assert.deepEqual(withoutFlightNov15Paths([...exact,...neighbours]),neighbours);
+});
+
 function historicalLoader() {
   const cache = new Map(), swc = local('next/dist/build/swc');
   function old(relative) {
@@ -125,11 +140,11 @@ test('All23 prior full video objects,63 prior questions, lightweight links and o
   const old = historicalLoader(), beforeWild = old('lib/wildlife-video-cases.js').wildlifeVideoCases;
   const beforeDogs = old('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
   assert.equal(beforeWild.length+beforeDogs.length,23); assert.equal([...beforeWild,...beforeDogs].flatMap(item=>item.questions).length,63);
-  assert.deepEqual(videos.wildlifeVideoCases.filter(item=>!addedIds.has(item.id)),beforeWild);
+  assert.deepEqual(priorFlightCases.filter(item=>!addedIds.has(item.id)),beforeWild);
   assert.deepEqual(videos.wildlifeVideoCases.slice(0,beforeWild.length),beforeWild); assert.deepEqual(dogs,beforeDogs);
-  assert.deepEqual(load('lib/learning-video-links.js').learningVideoLinks.filter(item=>!addedIds.has(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
-  assert.equal(videos.wildlifeVideoCases.length+dogs.length,25); assert.equal(videos.wildlifeVideoQuestionCount,59);
-  assert.equal([...videos.wildlifeVideoCases,...dogs].flatMap(item=>item.questions).length,67);
+  assert.deepEqual(withoutFlightNov15Cases(load('lib/learning-video-links.js').learningVideoLinks).filter(item=>!addedIds.has(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
+  assert.equal(priorFlightCases.length+dogs.length,25); assert.equal(priorFlightCases.flatMap(item=>item.questions).length,59);
+  assert.equal([...priorFlightCases,...dogs].flatMap(item=>item.questions).length,67);
 });
 
 test('Both whole-frame JPEG posters fully decode at1280by720 without a hidden crop or broken payload', async()=>{
@@ -173,7 +188,7 @@ test('New films resolve precise existing courses, portraits, search entries and 
     const options={query,type:'entry',category:'wildkunde'}, first=searchLearning(options);
     return [first.results,...Array.from({length:first.pages-1},(_,index)=>searchLearning({...options,page:index+2}).results)].flat();
   };
-  assert.equal(library.length,25);
+  assert.equal(library.length,27);
   for (const item of added) {
     const target=new URL(item.course,'https://jagdlatein.invalid'), moduleId=target.pathname.slice(7), course=getLearningModule(moduleId);
     assert.ok(course); if(target.hash) assert.ok(course.lessons.some(lesson=>'#lesson-'+lesson.id===target.hash));
@@ -197,8 +212,8 @@ test('Only the exact4new media files and2attribution documents extend the public
   const old=historicalLoader()('lib/media-experience-asset-paths.js');
   const media=expected.flatMap(item=>[`${dir}/${item.id}.mp4`,`${dir}/${item.id}-vorschau.jpg`]);
   const docs=[`${dir}/mediennachweise.json`,`${dir}/MEDIEN-LIZENZEN.md`];
-  assert.deepEqual(mediaExperienceAssetPaths.filter(value=>!media.includes(value)),old.mediaExperienceAssetPaths);
-  assert.deepEqual(mediaExperienceDocumentationPaths.filter(value=>!docs.includes(value)),old.mediaExperienceDocumentationPaths);
+  assert.deepEqual(withoutFlightNov15Paths(mediaExperienceAssetPaths).filter(value=>!media.includes(value)),old.mediaExperienceAssetPaths);
+  assert.deepEqual(withoutFlightNov15Paths(mediaExperienceDocumentationPaths).filter(value=>!docs.includes(value)),old.mediaExperienceDocumentationPaths);
   for(const item of media) assert.ok(mediaExperienceAssetPaths.includes(item));
   for(const item of docs) assert.ok(mediaExperienceDocumentationPaths.includes(item));
   assert.equal(mediaExperienceDocumentationPaths.includes(dir),false);

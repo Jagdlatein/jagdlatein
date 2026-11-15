@@ -7,9 +7,10 @@ const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxin
 const { ecologyConceptBaselineFixture } = require('./helpers/ecology-concepts-addition-nov08.cjs');
 const { digestionAbsorptionBaselineFixture } = require('./helpers/digestion-absorption-addition-nov08.cjs');
 const { rootAbsorptionBaselineFixture } = require('./helpers/root-absorption-additions-nov08.cjs');
-const createLoader = overrides => createProjectLoader(winterForestBaselineFixture(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(overrides))))));
+const { alulaBaselineFixture, stripAlulaDataset } = require('./helpers/alula-addition-nov15.cjs');
+const createLoader = overrides => createProjectLoader(alulaBaselineFixture(winterForestBaselineFixture(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(overrides)))))));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, stripFeatherFieldsAddition, stripFeatherFieldsDataset } = require('./helpers/feather-fields-additions-nov08.cjs');
-const raw = require('../data/learning-expansion-wildlife-dogs-2026-10-16.json');
+const raw = stripAlulaDataset(require('../data/learning-expansion-wildlife-dogs-2026-10-16.json'));
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);
 const tools = load('lib/learning-flashcards.js'), cards = tools.getFlashcards();
 const newIds = questionIds.map(id => `${courseId}-${id}`), newCardIds = newIds.map(id => `flash-${id}`);

@@ -42,6 +42,8 @@ test('Server-prepared summaries resolve original scenes and exact courses withou
         'wild-muffelwild-granat|wissen-ausbau-jaegersprache':'/kurse/wissen-ausbau-jaegersprache#lesson-kopfschmuck',
         'wild-steinwild-ljubljana|wissen-gams-steinbock':'/kurse/wissen-gams-steinbock#lesson-berg-merkmale',
         'wild-reiherente-petrosawodsk|wissen-federwild-beobachtung':'/kurse/wissen-federwild-beobachtung#lesson-vogel-merkmale',
+        'wild-stockente-flugstart|wissen-ausbau-federaufbau-funktion-2026':'/kurse/wissen-ausbau-federaufbau-funktion-2026#lesson-alula',
+        'wild-graugans-landung|wissen-vertiefung-wild-wasservoegel-jahreslauf':'/kurse/wissen-vertiefung-wild-wasservoegel-jahreslauf#lesson-familien',
       };
       return { title: module.title, href: primaryTargets[item.id+'|'+id] || `/kurse/${id}` };
     }));
