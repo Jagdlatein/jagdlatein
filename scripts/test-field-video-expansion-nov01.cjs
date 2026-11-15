@@ -5,10 +5,11 @@ const fs = require('node:fs'), path = require('node:path'), { createHash } = req
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { withoutFlightNov15Cases, withoutFlightNov15Paths } = require('./helpers/flight-video-addition-nov15.cjs');
+const { withoutMammalNov15Cases, withoutMammalNov15Paths, beforeMammalNov15Links } = require('./helpers/mammal-video-addition-nov15.cjs');
 const load = createLoader();
 const added = load('lib/wildlife-video-expansion-field-2026-11-01.js').wildlifeVideoFieldExpansionNov01Cases;
 const videos = load('lib/wildlife-video-cases.js');
-const priorFlightCases = withoutFlightNov15Cases(videos.wildlifeVideoCases);
+const priorFlightCases = withoutFlightNov15Cases(withoutMammalNov15Cases(videos.wildlifeVideoCases));
 const dogs = load('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
 const dir = '/lernen/videos-wildkunde-2026-11-01';
 const records = load(`public${dir}/mediennachweise.json`);
@@ -29,6 +30,29 @@ test('Historical Nov15 isolation removes only the two exact IDs and six exact pa
   const exact = ['stockente-flugstart.mp4','stockente-flugstart-vorschau.jpg','graugans-landung.mp4','graugans-landung-vorschau.jpg','mediennachweise.json','MEDIEN-LIZENZEN.md'].map(file=>`/lernen/videos-2026-11-15/${file}`);
   const neighbours = ['/lernen/videos-2026-11-15', '/lernen/videos-2026-11-15/future.mp4', ...exact.map(value=>`${value}/extra`), ...exact.map(value=>`${value}?download=1`)];
   assert.deepEqual(withoutFlightNov15Paths([...exact,...neighbours]),neighbours);
+});
+
+test('Historical mammal isolation keeps every neighbouring ID/path and projects only three validated course-link tails', () => {
+  const old = { id:'fuchs', kind:'wild', title:'Changed fields remain visible', marker:{ unchanged:true }, moduleIds:['wissen-ausbau-raubwildoekologie','wissen-spuren-systematisch'] };
+  const unrelated = [{ id:'murmeltier-klausenpass-future' }, { id:'wild-fischotter-fellpflege' }, { id:'__proto__' }];
+  const input = [old, { id:'murmeltier-klausenpass' }, ...unrelated, { id:'fischotter-fellpflege' }];
+  assert.deepEqual(withoutMammalNov15Cases(input),[old,...unrelated]);
+  const projected = beforeMammalNov15Links(input);
+  assert.deepEqual(projected,[{...old,moduleIds:['wissen-ausbau-raubwildoekologie']},...unrelated]);
+  assert.equal(projected[0].marker,old.marker); assert.equal(projected[0].title,old.title);
+  for (const [index,item] of unrelated.entries()) assert.equal(projected[index+1],item);
+  assert.deepEqual(old.moduleIds,['wissen-ausbau-raubwildoekologie','wissen-spuren-systematisch']);
+  for (const moduleIds of [['wissen-ausbau-raubwildoekologie'],['wissen-spuren-systematisch','wissen-ausbau-raubwildoekologie'],[...old.moduleIds,'future-course']]) {
+    assert.throws(()=>beforeMammalNov15Links([{...old,moduleIds}]),assert.AssertionError);
+  }
+  assert.throws(()=>beforeMammalNov15Links([{...old,kind:'hund'}]),assert.AssertionError);
+  for (const [id,base] of [['dachs-fellpflege','wissen-ausbau-raubwildoekologie'],['rehwild','wissen-rehwild-jahreslauf']]) {
+    const row={id,kind:'wild',title:'Keep this',moduleIds:[base,'wissen-spuren-systematisch']};
+    assert.deepEqual(beforeMammalNov15Links([row]),[{...row,moduleIds:[base]}]);
+  }
+  const exact=['murmeltier-klausenpass.mp4','murmeltier-klausenpass-vorschau.jpg','fischotter-fellpflege.mp4','fischotter-fellpflege-vorschau.jpg','mediennachweise.json','MEDIEN-LIZENZEN.md'].map(name=>`/lernen/videos-saeugetiere-2026-11-15/${name}`);
+  const neighbours=['/lernen/videos-saeugetiere-2026-11-15','/lernen/videos-saeugetiere-2026-11-15/future.mp4',...exact.map(value=>value+'/extra'),...exact.map(value=>value+'?download=1')];
+  assert.deepEqual(withoutMammalNov15Paths([...exact,...neighbours]),neighbours);
 });
 
 function historicalLoader() {
@@ -142,7 +166,7 @@ test('All23 prior full video objects,63 prior questions, lightweight links and o
   assert.equal(beforeWild.length+beforeDogs.length,23); assert.equal([...beforeWild,...beforeDogs].flatMap(item=>item.questions).length,63);
   assert.deepEqual(priorFlightCases.filter(item=>!addedIds.has(item.id)),beforeWild);
   assert.deepEqual(videos.wildlifeVideoCases.slice(0,beforeWild.length),beforeWild); assert.deepEqual(dogs,beforeDogs);
-  assert.deepEqual(withoutFlightNov15Cases(load('lib/learning-video-links.js').learningVideoLinks).filter(item=>!addedIds.has(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
+  assert.deepEqual(withoutFlightNov15Cases(beforeMammalNov15Links(load('lib/learning-video-links.js').learningVideoLinks)).filter(item=>!addedIds.has(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
   assert.equal(priorFlightCases.length+dogs.length,25); assert.equal(priorFlightCases.flatMap(item=>item.questions).length,59);
   assert.equal([...priorFlightCases,...dogs].flatMap(item=>item.questions).length,67);
 });
@@ -188,7 +212,7 @@ test('New films resolve precise existing courses, portraits, search entries and 
     const options={query,type:'entry',category:'wildkunde'}, first=searchLearning(options);
     return [first.results,...Array.from({length:first.pages-1},(_,index)=>searchLearning({...options,page:index+2}).results)].flat();
   };
-  assert.equal(library.length,27);
+  assert.equal(library.length,29);
   for (const item of added) {
     const target=new URL(item.course,'https://jagdlatein.invalid'), moduleId=target.pathname.slice(7), course=getLearningModule(moduleId);
     assert.ok(course); if(target.hash) assert.ok(course.lessons.some(lesson=>'#lesson-'+lesson.id===target.hash));
@@ -212,8 +236,8 @@ test('Only the exact4new media files and2attribution documents extend the public
   const old=historicalLoader()('lib/media-experience-asset-paths.js');
   const media=expected.flatMap(item=>[`${dir}/${item.id}.mp4`,`${dir}/${item.id}-vorschau.jpg`]);
   const docs=[`${dir}/mediennachweise.json`,`${dir}/MEDIEN-LIZENZEN.md`];
-  assert.deepEqual(withoutFlightNov15Paths(mediaExperienceAssetPaths).filter(value=>!media.includes(value)),old.mediaExperienceAssetPaths);
-  assert.deepEqual(withoutFlightNov15Paths(mediaExperienceDocumentationPaths).filter(value=>!docs.includes(value)),old.mediaExperienceDocumentationPaths);
+  assert.deepEqual(withoutFlightNov15Paths(withoutMammalNov15Paths(mediaExperienceAssetPaths)).filter(value=>!media.includes(value)),old.mediaExperienceAssetPaths);
+  assert.deepEqual(withoutFlightNov15Paths(withoutMammalNov15Paths(mediaExperienceDocumentationPaths)).filter(value=>!docs.includes(value)),old.mediaExperienceDocumentationPaths);
   for(const item of media) assert.ok(mediaExperienceAssetPaths.includes(item));
   for(const item of docs) assert.ok(mediaExperienceDocumentationPaths.includes(item));
   assert.equal(mediaExperienceDocumentationPaths.includes(dir),false);

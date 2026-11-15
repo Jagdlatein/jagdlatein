@@ -12,12 +12,13 @@ const { ecologyConceptBaselineFixture } = require('./ecology-concepts-addition-n
 const { winterForestBaselineFixture } = require('./winter-forest-baseline-nov08.cjs');
 const { avianNictitatingBaselineFixture } = require('./avian-nictitating-addition-nov01.cjs');
 const { cootSwimmingLobesBaselineFixture } = require('./coot-swimming-lobes-addition-nov01.cjs');
+const { trackPostureBaselineFixture } = require('./track-posture-addition-nov15.cjs');
 
 function novemberLearningBaselineFixture(overrides = {}) {
   return [alulaBaselineFixture, featherFieldsBaselineFixture, broodPatchBaselineFixture,
     lenticelBaselineFixture, digestionAbsorptionBaselineFixture, rootAbsorptionBaselineFixture,
     foodSporesToxinsBaselineFixture, ecologyConceptBaselineFixture, winterForestBaselineFixture,
-    avianNictitatingBaselineFixture, cootSwimmingLobesBaselineFixture]
+    avianNictitatingBaselineFixture, cootSwimmingLobesBaselineFixture, trackPostureBaselineFixture]
     .reduce((result, project) => project(result), overrides);
 }
 module.exports = { novemberLearningBaselineFixture };

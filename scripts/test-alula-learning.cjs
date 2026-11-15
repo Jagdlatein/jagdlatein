@@ -2,7 +2,11 @@
 // verify preservation and the real learning/quiz/card/print/offline adapters.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { trackPostureBaselineFixture } = require('./helpers/track-posture-addition-nov15.cjs');
+// Keep this published Alula snapshot exact while the separately tested
+// Wildspuren appendix retains its own full-current positive object comparison.
+const createLoader = overrides => createProjectLoader(trackPostureBaselineFixture(overrides));
 const { courseId, lessonId, questionIds, sourceURLs, stripAlulaAddition, stripAlulaDataset, alulaBaselineFixture } = require('./helpers/alula-addition-nov15.cjs');
 const revision = 'c5a015713b2fc7181af09f1dfca23bc57be53730';
 const rawPath = 'data/learning-expansion-wildlife-dogs-2026-10-16.json';

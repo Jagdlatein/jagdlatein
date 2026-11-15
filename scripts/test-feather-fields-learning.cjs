@@ -3,12 +3,13 @@ const { winterForestBaselineFixture } = require('./helpers/winter-forest-baselin
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { trackPostureBaselineFixture } = require('./helpers/track-posture-addition-nov15.cjs');
 const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
 const { ecologyConceptBaselineFixture } = require('./helpers/ecology-concepts-addition-nov08.cjs');
 const { digestionAbsorptionBaselineFixture } = require('./helpers/digestion-absorption-addition-nov08.cjs');
 const { rootAbsorptionBaselineFixture } = require('./helpers/root-absorption-additions-nov08.cjs');
 const { alulaBaselineFixture, stripAlulaDataset } = require('./helpers/alula-addition-nov15.cjs');
-const createLoader = overrides => createProjectLoader(alulaBaselineFixture(winterForestBaselineFixture(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(overrides)))))));
+const createLoader = overrides => createProjectLoader(trackPostureBaselineFixture(alulaBaselineFixture(winterForestBaselineFixture(rootAbsorptionBaselineFixture(digestionAbsorptionBaselineFixture(ecologyConceptBaselineFixture(foodSporesToxinsBaselineFixture(overrides))))))));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, stripFeatherFieldsAddition, stripFeatherFieldsDataset } = require('./helpers/feather-fields-additions-nov08.cjs');
 const raw = stripAlulaDataset(require('../data/learning-expansion-wildlife-dogs-2026-10-16.json'));
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);

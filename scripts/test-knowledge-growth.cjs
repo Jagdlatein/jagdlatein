@@ -3,7 +3,11 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createLoader } = require('./helpers/project-module.cjs');
-const load = createLoader();
+const { growthWaterSnapshotFixture } = require('./helpers/growth-water-snapshot-nov15.cjs');
+// Keep the original 72+1 lesson / 288+2 question snapshot exact. The later
+// independently tested feather-growth, flight, dog and November appendices
+// remain visible in their own positive complete-current checks.
+const load = createLoader(growthWaterSnapshotFixture());
 const { knowledgeGrowthModules: added } = load('lib/learning-knowledge-growth.js');
 const { learningModules, learningQuestions } = load('lib/learning-curriculum.js');
 const { learningCategories } = load('lib/learning-categories.js');

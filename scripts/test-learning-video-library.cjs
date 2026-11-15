@@ -20,6 +20,7 @@ test('Server-prepared summaries resolve original scenes and exact courses withou
   const dogs = load('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
   const links = load('lib/learning-video-links.js').learningVideoLinks;
   const modules = load('lib/learning-curriculum.js').learningModules;
+  assert.equal(videos.length, 29);
   assert.equal(videos.length, wildlife.length + dogs.length);
   assert.equal(new Set(videos.map(item => item.id)).size, videos.length);
   const keys = ['id', 'group', 'title', 'subject', 'duration', 'tags', 'href', 'poster', 'credit', 'focus', 'concepts', 'courses'].sort();
@@ -44,6 +45,8 @@ test('Server-prepared summaries resolve original scenes and exact courses withou
         'wild-reiherente-petrosawodsk|wissen-federwild-beobachtung':'/kurse/wissen-federwild-beobachtung#lesson-vogel-merkmale',
         'wild-stockente-flugstart|wissen-ausbau-federaufbau-funktion-2026':'/kurse/wissen-ausbau-federaufbau-funktion-2026#lesson-alula',
         'wild-graugans-landung|wissen-vertiefung-wild-wasservoegel-jahreslauf':'/kurse/wissen-vertiefung-wild-wasservoegel-jahreslauf#lesson-familien',
+        'wild-murmeltier-klausenpass|wissen-vertiefung-wild-alpine-winterstrategien':'/kurse/wissen-vertiefung-wild-alpine-winterstrategien#lesson-protokoll',
+        'wild-fischotter-fellpflege|wissen-ausbau-gewaesser-feuchtgebiete':'/kurse/wissen-ausbau-gewaesser-feuchtgebiete#lesson-ufer',
       };
       return { title: module.title, href: primaryTargets[item.id+'|'+id] || `/kurse/${id}` };
     }));

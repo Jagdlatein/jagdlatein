@@ -8,6 +8,7 @@ const { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { withoutFlightNov15Cases } = require('./helpers/flight-video-addition-nov15.cjs');
+const { withoutMammalNov15Cases } = require('./helpers/mammal-video-addition-nov15.cjs');
 const load = createLoader();
 const { wildlifeVideoExamExpansionNov01Cases: added } = load('lib/wildlife-video-expansion-exam-2026-11-01.js');
 const { wildlifeVideoCases, wildlifeVideoQuestionCount } = load('lib/wildlife-video-cases.js');
@@ -80,7 +81,7 @@ test('Two exact new scenes retain their documented source, existing species/cour
 test('All nineteen prior video objects, their 53 questions and ordering remain exact against Git 6cb07b1', () => {
   assert.equal(oldWild.length, 15); assert.equal(oldDogs.length, 4);
   assert.equal([...oldWild, ...oldDogs].flatMap(item => item.questions).length, 53);
-  assert.deepEqual(withoutFlightNov15Cases(wildlifeVideoCases).filter(item => !ids.has(item.id) && !['muffelwild-granat', 'graugans-dresden', 'steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)), oldWild);
+  assert.deepEqual(withoutFlightNov15Cases(withoutMammalNov15Cases(wildlifeVideoCases)).filter(item => !ids.has(item.id) && !['muffelwild-granat', 'graugans-dresden', 'steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)), oldWild);
   assert.deepEqual(wildlifeVideoCases.slice(0, oldWild.length), oldWild);
   assert.deepEqual(huntingDogVideoLessons, oldDogs);
 });
@@ -132,7 +133,7 @@ test('The combined directory and exact reciprocal links include only the two new
   const { getWildlifeVideoLinks, getCourseVideoLinks, learningVideoLinks } = load('lib/learning-video-links.js');
   const { searchLearning } = load('lib/learning-search.js');
   const library = getLearningVideoLibrary();
-  assert.equal(wildlifeVideoCases.length, 23); assert.equal(wildlifeVideoQuestionCount, 65); assert.equal(library.length, 27);
+  assert.equal(wildlifeVideoCases.length, 25); assert.equal(wildlifeVideoQuestionCount, 71); assert.equal(library.length, 29);
   assert.deepEqual(wildlifeVideoCases.filter(item => ids.has(item.id)), added);
   for (const item of added) {
     const url = new URL(item.course, 'https://jagdlatein.invalid');

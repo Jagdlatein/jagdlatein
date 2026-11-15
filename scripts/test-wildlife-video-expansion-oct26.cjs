@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { createLoader } = require('./helpers/project-module.cjs');
 const { withoutFlightNov15Cases } = require('./helpers/flight-video-addition-nov15.cjs');
+const { withoutMammalNov15Cases } = require('./helpers/mammal-video-addition-nov15.cjs');
 const load = createLoader();
 const added = load('lib/wildlife-video-expansion-2026-10-26.js').wildlifeVideoExpansionCases;
 const { wildlifeVideoCases, wildlifeVideoQuestionCount, wildlifeVideoAssetPaths } = load('lib/wildlife-video-cases.js');
@@ -51,7 +52,7 @@ test('The five original video objects, all fifteen old questions and their order
     ...load('lib/wildlife-video-expansion-linked-2026-11-01.js').wildlifeVideoLinkedExpansionNov01Cases,
     ...load('lib/wildlife-video-expansion-field-2026-11-01.js').wildlifeVideoFieldExpansionNov01Cases];
   assert.deepEqual(later.map(item => item.id), ['maeusebussard-flug', 'fasan-sandbad', 'ringeltaube-ast', 'wildkaninchen-park', 'damwild-dyrehaven', 'blaesshuhn-bled', 'muffelwild-granat', 'graugans-dresden', 'steinwild-ljubljana', 'reiherente-petrosawodsk']);
-  const priorFlightCases = withoutFlightNov15Cases(wildlifeVideoCases);
+  const priorFlightCases = withoutFlightNov15Cases(withoutMammalNov15Cases(wildlifeVideoCases));
   assert.deepEqual(wildlifeVideoCases.slice(0, 11), [...old, ...added]);
   assert.deepEqual(priorFlightCases.slice(11), later);
   assert.equal(priorFlightCases.length, 11 + later.length);

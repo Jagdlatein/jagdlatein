@@ -5,10 +5,11 @@ const fs = require('node:fs'), path = require('node:path'), { createHash } = req
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { withoutFlightNov15Cases, withoutFlightNov15Paths } = require('./helpers/flight-video-addition-nov15.cjs');
+const { withoutMammalNov15Cases, withoutMammalNov15Paths, beforeMammalNov15Links } = require('./helpers/mammal-video-addition-nov15.cjs');
 const load = createLoader();
 const added = load('lib/wildlife-video-expansion-linked-2026-11-01.js').wildlifeVideoLinkedExpansionNov01Cases;
 const videos = load('lib/wildlife-video-cases.js');
-const priorFlightCases = withoutFlightNov15Cases(videos.wildlifeVideoCases);
+const priorFlightCases = withoutFlightNov15Cases(withoutMammalNov15Cases(videos.wildlifeVideoCases));
 const dogs = load('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
 const dir = '/lernen/videos-wildarten-2026-11-01';
 const records = load(`public${dir}/mediennachweise.json`);
@@ -129,7 +130,7 @@ test('All21 prior full video objects,59 prior questions, lightweight links and o
   assert.equal(beforeWild.length+beforeDogs.length,21); assert.equal([...beforeWild,...beforeDogs].flatMap(item=>item.questions).length,59);
   assert.deepEqual(priorFlightCases.filter(item=>!addedIds.has(item.id) && !['steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)),beforeWild);
   assert.deepEqual(videos.wildlifeVideoCases.slice(0,beforeWild.length),beforeWild); assert.deepEqual(dogs,beforeDogs);
-  assert.deepEqual(withoutFlightNov15Cases(load('lib/learning-video-links.js').learningVideoLinks).filter(item=>!addedIds.has(item.id) && !['steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
+  assert.deepEqual(withoutFlightNov15Cases(beforeMammalNov15Links(load('lib/learning-video-links.js').learningVideoLinks)).filter(item=>!addedIds.has(item.id) && !['steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)),old('lib/learning-video-links.js').learningVideoLinks);
   assert.equal(priorFlightCases.length+dogs.length,25); assert.equal(priorFlightCases.flatMap(item=>item.questions).length,59);
   assert.equal([...priorFlightCases,...dogs].flatMap(item=>item.questions).length,67);
 });
@@ -170,7 +171,7 @@ test('New films resolve precise existing courses, portraits, search entries and 
   const {europeanWildlifeBySlug}=load('lib/european-wildlife-discovery.js');
   const {mediaSearchEntries}=load('lib/media-search-entries.js'), {searchLearning}=load('lib/learning-search.js');
   const {filterLearningVideos}=load('lib/video-library-search.js');
-  assert.equal(library.length,27);
+  assert.equal(library.length,29);
   for (const item of added) {
     const target=new URL(item.course,'https://jagdlatein.invalid'), moduleId=target.pathname.slice(7), course=getLearningModule(moduleId);
     assert.ok(course); if(target.hash) assert.ok(course.lessons.some(lesson=>'#lesson-'+lesson.id===target.hash));
@@ -195,8 +196,8 @@ test('Only the exact4new media files and2attribution documents extend the public
   const laterDir='/lernen/videos-wildkunde-2026-11-01';
   const laterMedia=['steinwild-ljubljana','reiherente-petrosawodsk'].flatMap(id=>[`${laterDir}/${id}.mp4`,`${laterDir}/${id}-vorschau.jpg`]);
   const laterDocs=[`${laterDir}/mediennachweise.json`,`${laterDir}/MEDIEN-LIZENZEN.md`];
-  assert.deepEqual(withoutFlightNov15Paths(mediaExperienceAssetPaths).filter(value=>!media.includes(value)&&!laterMedia.includes(value)),old.mediaExperienceAssetPaths);
-  assert.deepEqual(withoutFlightNov15Paths(mediaExperienceDocumentationPaths).filter(value=>!docs.includes(value)&&!laterDocs.includes(value)),old.mediaExperienceDocumentationPaths);
+  assert.deepEqual(withoutFlightNov15Paths(withoutMammalNov15Paths(mediaExperienceAssetPaths)).filter(value=>!media.includes(value)&&!laterMedia.includes(value)),old.mediaExperienceAssetPaths);
+  assert.deepEqual(withoutFlightNov15Paths(withoutMammalNov15Paths(mediaExperienceDocumentationPaths)).filter(value=>!docs.includes(value)&&!laterDocs.includes(value)),old.mediaExperienceDocumentationPaths);
   for(const item of media) assert.ok(mediaExperienceAssetPaths.includes(item));
   for(const item of docs) assert.ok(mediaExperienceDocumentationPaths.includes(item));
   assert.equal(mediaExperienceDocumentationPaths.includes(dir),false);

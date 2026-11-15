@@ -18,17 +18,28 @@ const beforeLinks=baseline('lib/learning-video-links.js').learningVideoLinks,old
 const wild=load('lib/wildlife-video-cases.js').wildlifeVideoCases,dogs=load('lib/hunting-dog-video-lessons.js');
 const search=load('lib/learning-search.js').searchLearning;
 const hrefBase=href=>href.split('#')[0];
+// Exact additions from the separately reviewed foot-posture lesson. Keep the
+// earlier full-object comparison; allow no changes to other discovery fields.
+const postureAppendices=new Map([
+ ['fuchs',{concept:'Zehengänger',note:'Kursbezug: Zehengänger. Der Film beweist keinen vollständig sichtbaren Fusskontakt oder erhaltenen Pfotenabdruck.'}],
+ ['dachs-fellpflege',{concept:'Sohlengänger',note:'Kursbezug: Sohlengänger. Der Film beweist keinen vollständig sichtbaren Sohlenkontakt oder erhaltenen Pfotenabdruck.'}],
+ ['rehwild',{concept:'Zehenspitzengänger',note:'Kursbezug: Zehenspitzengänger. Der Film ersetzt keine vollständige Ansicht des Fusskontakts oder eines Trittsiegels.'}],
+]);
 function results(query,category){
   const options={query,type:'entry',...(category?{category}:{})},first=search(options);
   return [first.results,...Array.from({length:first.pages-1},(_,index)=>search({...options,page:index+2}).results)].flat();
 }
 
-test('All23 authored discovery rows retain exact prior directory objects except the explicit Bled course/visibility note',()=>{
+test('All23 authored discovery rows retain exact prior objects except the explicit Bled and three reviewed posture appendices',()=>{
   assert.equal(oldIDs.size,23);
   const before=baseline('lib/learning-video-library.js').getLearningVideoLibrary().filter(item=>oldIDs.has(item.id));
   assert.equal(before.length,23);
   const actual=library.filter(item=>oldIDs.has(item.id));
-  assert.deepEqual(actual,before.map(item=>item.id==='wild-blaesshuhn-bled'?{...item,focus:'Helle Kopfpartien und Wasserreflexe unterscheiden. Kursbezug: Schwimmlappen; die Füße bleiben im Film unsichtbar.'}:item));
+  assert.deepEqual(actual,before.map(item=>{
+    if(item.id==='wild-blaesshuhn-bled')return {...item,focus:'Helle Kopfpartien und Wasserreflexe unterscheiden. Kursbezug: Schwimmlappen; die Füße bleiben im Film unsichtbar.'};
+    const appendix=postureAppendices.get(item.id.slice('wild-'.length));
+    return appendix?{...item,focus:`${item.focus} ${appendix.note}`,concepts:[...item.concepts,appendix.concept,'Auftrittsform']}:item;
+  }));
   for(const item of actual){const id=new URL(item.href,'https://test.invalid').searchParams.get('eintrag'),shared=discovery.getLearningVideoDiscovery(id);assert.ok(shared,id);assert.equal(item.focus,shared.focus);assert.deepEqual(item.concepts,shared.concepts);}
 });
 
@@ -70,11 +81,12 @@ test('Actual global Bled results directly state course context and invisible fee
   assert.equal(results('Nasenleistung','wildkunde').some(row=>row.href.includes('basset-faehrtenende')),false);
 });
 
-test('All prior media entry fields, IDs, categories, links and nonvideo entries remain exact except the explicit Bled description and appended search text',()=>{
+test('All prior media entry fields, IDs, categories, links and nonvideo entries remain exact except explicit Bled/posture descriptions and appended search text',()=>{
   const before=baseline('lib/media-search-entries.js').mediaSearchEntries,current=load('lib/media-search-entries.js').mediaSearchEntries;
   for(const old of before.filter(item=>!item.id.startsWith('video-')||oldIDs.has(`wild-${item.id.slice(6)}`))){const entry=current.find(item=>item.id===old.id);assert.ok(entry);if(!old.id.startsWith('video-')){assert.deepEqual(entry,old);continue;}
     const id=old.id.slice(6),expected={...old,text:`${old.text} ${discovery.learningVideoDiscoveryText(id)}`};
     if(id==='blaesshuhn-bled')expected.description+=' Kursbezug: Schwimmlappen; die Füße bleiben im Film unsichtbar.';
+    if(postureAppendices.has(id))expected.description+=` ${postureAppendices.get(id).note}`;
     assert.deepEqual(entry,expected);
   }
 });

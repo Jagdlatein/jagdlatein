@@ -12,6 +12,7 @@ const sharp = pr('sharp');
 const swc = pr('next/dist/build/swc');
 const routerStateByCache = new WeakMap();
 const pageMenuByCache = new WeakMap();
+const examProfileByCache = new WeakMap();
 const htmlValue = value => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 function knowledgeSection(html) {
   const start = html.indexOf('<section id="learning-modules"');
@@ -25,6 +26,7 @@ function load(relative, cache = new Map()) {
   const mod = {exports: {}};
   const {code} = swc.transformSync(fs.readFileSync(filename, 'utf8'), {filename, disableNextSsg: true, jsc: {parser: {syntax: 'ecmascript', jsx: true}, target: 'es2022', transform: {react: {runtime: 'automatic'}}}, module: {type: 'commonjs'}});
   const resolve = id => {
+    if (id.endsWith('/use-exam-profile') && examProfileByCache.has(cache)) return { __esModule: true, default: () => examProfileByCache.get(cache) };
     if (id.endsWith('/PageMenu')) return { __esModule: true, default: ({ children }) => { pageMenuByCache.set(cache, children); return null; } };
     if (id === 'next/link') return ({href, children, prefetch, scroll, ...props}) => React.createElement('a', {href, ...props}, children);
     if (id === 'next/head') return ({children}) => children;
@@ -283,6 +285,12 @@ test('Practice and law discovery cards retain their original three courses and c
     ['pages/jagdpraxis/index.js', 'Jagdpraxis', 'Vor den Simulatoren: Praxiswissen vertiefen'],
     ['pages/jagdrecht/index.js', 'Jagdrecht', 'Jagdrecht Schritt für Schritt lernen'],
   ]) {
+    if (category === 'Jagdrecht') {
+      // This assertion concerns the generic ready country chooser, not the
+      // newer account-profile loading screen. No account/storage is consulted.
+      examProfileByCache.set(cache, { ready: true, profile: null });
+      routerStateByCache.set(cache, { isReady: true, query: {}, asPath: '/jagdrecht', replace: async () => true });
+    }
     const Page = load(filename, cache);
     const props = (await Page.getStaticProps()).props;
     const original = learningModules.filter(module => module.category === category).slice(0, 3);

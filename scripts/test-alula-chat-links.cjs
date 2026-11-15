@@ -20,10 +20,11 @@ test('Natural Alula questions return the exact anatomical or functional four-ans
   assert.equal(JSON.stringify({course,chatPracticeBindings,chatTopicBindings}),before);
 });
 
-test('All published chat bindings remain complete and ordered; only the two reviewed Alula pairs are appended',()=>{
+test('All pre-Alula chat bindings remain complete and ordered; both reviewed Alula pairs retain their published positions',()=>{
   const source=execFileSync('git',['show','c5a015713b2fc7181af09f1dfca23bc57be53730:lib/jagdlatein-chat-bindings.js'],{cwd:root,encoding:'utf8'}),module={exports:{}};
   const {code}=local('next/dist/build/swc').transformSync(source,{filename:'bindings.js',jsc:{parser:{syntax:'ecmascript'},target:'es2022'},module:{type:'commonjs'}});
   new Function('module','exports',code)(module,module.exports);
-  assert.deepEqual(chatPracticeBindings.slice(0,-2),module.exports.chatPracticeBindings);assert.deepEqual(chatTopicBindings,module.exports.chatTopicBindings);
-  assert.deepEqual(chatPracticeBindings.slice(-2).map(x=>[x.courseId,x.lessonId,x.questionId]),['alula-lage','alula-funktion'].map(x=>[courseId,'alula',`${courseId}-${x}`]));
+  const before=module.exports.chatPracticeBindings;
+  assert.deepEqual(chatPracticeBindings.slice(0,before.length),before);assert.deepEqual(chatTopicBindings,module.exports.chatTopicBindings);
+  assert.deepEqual(chatPracticeBindings.slice(before.length,before.length+2).map(x=>[x.courseId,x.lessonId,x.questionId]),['alula-lage','alula-funktion'].map(x=>[courseId,'alula',`${courseId}-${x}`]));
 });
