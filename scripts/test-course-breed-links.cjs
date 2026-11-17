@@ -8,11 +8,42 @@ const { firearmTermsBaselineFixture } = require('./helpers/firearm-terms-additio
 // Navigation projection and unchanged corpus checks, not a new genetics review.
 const { digestiveIgnitionBaselineFixture } = require('./helpers/digestive-ignition-additions-oct27.cjs');
 const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-addition.cjs');
+const { novemberLearningBaselineFixture } = require('./helpers/november-learning-baseline.cjs');
+const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { avianCecaBaselineFixture } = require('./helpers/avian-ceca-addition-oct29.cjs');
 const test = require('node:test'), assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const fs = require('node:fs'), path = require('node:path');
 const { createLoader: createLinkedProjectLoader, local, root } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createLinkedProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides)));
+// Keep the original positive October hashes while composing later exact
+// appendices before preparing source references. In particular, Alula reuses a
+// flight-feather source and must leave together with its own evidence records.
+function measurementBaselineFixture(overrides = {}) {
+  const key = './learning-practice';
+  const corpus = Object.hasOwn(overrides, key) ? overrides[key] : createLinkedProjectLoader(overrides)('lib/learning-practice.js');
+  const additions = [
+    { courseId: 'wissen-optik', lessonId: 'fernglas-einstellungen', questionIds: ['fernglas-dioptrie', 'fernglas-fokus'], urls: [
+      'https://imaging.nikon.com/sport-optics/guide/binoculars/using/using_01/',
+      'https://leica-camera.com/sites/default/files/2021-10/Trinovid_DE_Upd%2B2021.pdf',
+      'https://imaging.nikon.com/sport-optics/guide/binoculars/using/using_04/',
+    ] },
+    { courseId: 'wissen-wildbrethygiene', lessonId: 'messort-temperatur', questionIds: ['temperatur-oberflaeche', 'temperatur-kuehlgeraet'], urls: [
+      'https://www.foodstandards.gov.au/business/food-safety/thermometers',
+      'https://www.lwk-niedersachsen.de/lwk/news/42763_Thermometer_im_Einsatz_fuer_die_Hygiene_-_Wissen_fuer_die_Praxis',
+      'https://www.foodstandards.gov.scot/business-guidance/running-a-food-business/publications/cooksafe-guide/cooksafe-guide-web-version/cooksafe-guide-web-version-section-3',
+    ] },
+  ];
+  return { ...overrides, [key]: { ...corpus, practiceModules: corpus.practiceModules.map(module => {
+    const item = additions.find(item => item.courseId === module.id);
+    if (!item || !module.lessons.some(lesson => lesson.id === item.lessonId)) return module;
+    assert.equal(module.lessons.at(-1).id, item.lessonId); assert.equal(module.lessons.at(-1).reviewedOn, '2026-11-17');
+    assert.deepEqual(module.questions.slice(-2).map(question => question.id), item.questionIds);
+    assert.deepEqual(module.sources.slice(-3).map(source => source.url), item.urls);
+    assert.ok(module.sources.slice(-3).every(source => JSON.stringify(source.lessonIds) === JSON.stringify([item.lessonId])));
+    return { ...module, lessons: module.lessons.slice(0, -1), questions: module.questions.slice(0, -2), sources: module.sources.slice(0, -3) };
+  }) } };
+}
+const createLoader = overrides => createLinkedProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(forestExamBaselineFixture(measurementBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides)))))));
 const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture())))))));
@@ -123,7 +154,7 @@ test('The complete curriculum, all cards and existing course SSG payload shape r
   const cards = load('lib/learning-flashcards.js').getFlashcards();
   assert.equal(hash(cards.filter(card => !isFeatherGrowthCard(card))), 'e01e7e45482cc7eac2d3ab980cd40a0188eabae531e90d712276ccab5bdd44c6');
   const page = load('pages/kurse/[slug].js');
-  for (const module of learningModules) assert.deepEqual(Object.keys(page.getStaticProps({ params: { slug: module.id } }).props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks', 'oralExamLinks', 'practiceLinks'].sort());
+  for (const module of learningModules) assert.deepEqual(Object.keys(page.getStaticProps({ params: { slug: module.id } }).props).sort(), ['module', 'flashcards', 'wildlifeLinks', 'miniCourseLinks', 'glossaryLinks', 'oralExamLinks', 'practiceLinks', 'lessonPhotos'].sort());
   const geneticsCards = cards.filter(card => expected.some(item => item.courseId === card.moduleId));
   assert.equal(geneticsCards.length, 5);
   for (const card of geneticsCards) {

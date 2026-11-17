@@ -47,17 +47,27 @@ test('Filtering cannot mutate authored countries, questions, readings or source 
   assert.deepEqual(api.getDailyReviewQuestions([pool[0].id]),pool);
 });
 
-test('Every real maintained question already has exact shared scope and the entire prior pool remains semantically identical', () => {
+test('All prior shared questions retain their exact semantic fields and order, excluding only two known CH overrides and correcting exact lesson sources', () => {
   const source=execFileSync('git',['show',`${BASELINE}:lib/daily-review-pool.js`],{cwd:root,encoding:'utf8'});
   const {code}=local('next/dist/build/swc').transformSync(source,{filename:path.join(root,'lib/daily-review-pool.js'),disableNextSsg:true,jsc:{parser:{syntax:'ecmascript'},target:'es2022'},module:{type:'commonjs'}});
   const module={exports:{}};
   new Function('require','module','exports',code)(id=>id.startsWith('.')?actual(path.join('lib',path.extname(id)?id:`${id}.js`)):local(id),module,module.exports);
   const oldPool=module.exports.getDailyReviewPool(),nextPool=actual('lib/daily-review-pool.js').getDailyReviewPool();
   assert.ok(nextPool.length>2000);
+  const removed=['wissen-ausbau-wildkameras-datenschutzlaender-2','wissen-ausbau-wildkameras-bilderzugriff-1'];
+  assert.deepEqual(oldPool.filter(item=>!nextPool.some(next=>next.id===item.id)).map(item=>item.id),removed);
+  const previousExpected=oldPool.filter(item=>!removed.includes(item.id)).map(item=>{
+    const course=learningModules.find(course=>course.questions.some(question=>question.id===item.id));
+    const question=course.questions.find(question=>question.id===item.id),lesson=course.lessons.find(lesson=>lesson.id===question.lessonId);
+    const evidence=(lesson.evidence||[]).flatMap(claim=>claim.sources||[]);
+    const candidates=(evidence.length?evidence:course.sources).filter(source=>source.lessonIds===undefined||Array.isArray(source.lessonIds)&&source.lessonIds.includes(lesson.id));
+    const sources=[...new Map(candidates.map(source=>[source.url,{label:source.label,url:source.url}])).values()];
+    return {...item,sources};
+  });
   // The November expansion adds the rest of this exact lesson's prose,
   // takeaway and exercise; every pre-existing field remains identical.
   const previousShape=nextPool.map(item=>({...item,...(item.reading?{reading:{title:item.reading.title,paragraph:item.reading.paragraph}}:{})}));
-  assert.deepEqual(previousShape,oldPool);
+  assert.deepEqual(previousShape,previousExpected);
   for(const item of nextPool){
     const course=learningModules.find(course=>course.questions.some(question=>question.id===item.id));
     const question=course.questions.find(question=>question.id===item.id);
@@ -67,7 +77,9 @@ test('Every real maintained question already has exact shared scope and the enti
     if(lesson.exercise)assert.equal(item.reading.exercise,lesson.exercise);
   }
   const questions=new Map(learningModules.flatMap(item=>item.questions.map(question=>[question.id,question])));
-  for(const item of nextPool){const question=questions.get(item.id);assert.ok(question);assert.deepEqual([...question.countries].sort(),['AT','CH','DE']);assert.notEqual(question.topic,'Recht');}
-  assert.deepEqual(actual('lib/daily-review-pool.js').getDailyReviewCatalog(),module.exports.getDailyReviewCatalog());
-  assert.deepEqual(actual('lib/daily-review-pool.js').getPackedDailyReviewCatalog(),module.exports.getPackedDailyReviewCatalog());
+  const {quizQuestionCountries,quizQuestionTopic}=actual('lib/quiz-learning-scope.js');
+  for(const item of nextPool){const question=questions.get(item.id);assert.ok(question);assert.deepEqual([...quizQuestionCountries(question)].sort(),['AT','CH','DE']);assert.notEqual(quizQuestionTopic(question),'Recht');}
+  const expectedCatalog=module.exports.getDailyReviewCatalog().filter(item=>!removed.includes(item.id));
+  assert.deepEqual(actual('lib/daily-review-pool.js').getDailyReviewCatalog(),expectedCatalog);
+  assert.deepEqual(actual('lib/daily-review-pool.js').getPackedDailyReviewCatalog(),actual('lib/daily-review-catalog.js').packDailyReviewCatalog(expectedCatalog));
 });

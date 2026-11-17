@@ -1,0 +1,298 @@
+{
+  "reviewedOn": "2026-11-17",
+  "baselineCommit": "b9ed55f832c73b5cb7805759ed0b0809267e7e20",
+  "scope": "Two bounded, nonredundant appendices in existing Wald/Pflanzen and Natur/Revier courses: Hähersaat and Buchdrucker-Brutbild. Four original four-choice questions and four actual derived flashcards. No new course/category, no new media and no biological or legal full-coverage certification.",
+  "status": "author_original_sources_read_and_tests_passed",
+  "sourceProcedure": "Concrete original institutional texts and original study sections actually read. WSL article variants count as one institution; Vogelwarte authorship is distinguished from WSL editorial hosting. LWF is independent from WSL. The2001 field study is not a modern total survey or a replication of the other texts.",
+  "preservation": {
+    "oldNatureSourceObjects": "exact after removing only this appendix",
+    "oldHabitatDataset": "exact after removing only this appendix",
+    "allOldCurriculumObjects": "exact positive comparison with the same rest-of-current graph and both published source files from baseline Git",
+    "allOldFlashcards": "exact content and relative order after removing these4 IDs",
+    "starterObjects": "all116 exact",
+    "courseAndDatasetDates": "unchanged; only new lessons/sources carry2026-11-17",
+    "foreignAfternoonJSON": "never edited or staged",
+    "marketing": "untouched"
+  },
+  "additions": [
+    {
+      "courseId": "wissen-ausbau-waldverjuengung-verbiss",
+      "courseTitle": "Waldverjüngung und Verbiss sachlich beurteilen",
+      "category": "Wald & Pflanzen",
+      "lessonId": "haehersaat",
+      "title": "Hähersaat",
+      "courseDate": "2026-10-04",
+      "lessonDate": "2026-11-17",
+      "paragraphWords": 165,
+      "questions": [
+        {
+          "id": "wissen-ausbau-waldverjuengung-verbiss-haehersaat-samenweg",
+          "answers": 4
+        },
+        {
+          "id": "wissen-ausbau-waldverjuengung-verbiss-haehersaat-erfolg",
+          "answers": 4
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "flash-wissen-ausbau-waldverjuengung-verbiss-haehersaat-samenweg",
+          "sourceScope": "lesson",
+          "reviewedOn": "2026-11-17"
+        },
+        {
+          "id": "flash-wissen-ausbau-waldverjuengung-verbiss-haehersaat-erfolg",
+          "sourceScope": "lesson",
+          "reviewedOn": "2026-11-17"
+        }
+      ],
+      "sources": [
+        {
+          "label": "WSL Mastweb: Stieleiche, Abschnitt Früchte",
+          "url": "https://mastweb.wsl.ch/de/samenmast-erkennen/stieleiche/",
+          "organization": "Eidgenössische Forschungsanstalt WSL",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "haehersaat"
+          ],
+          "supports": "Tatsächlich gelesener Abschnitt Früchte: Eicheln als Nahrung, Wintervorräte durch Eichelhäher und Beitrag zur Samenausbreitung. Eigenständige institutionelle Einordnung; keine Mengen, Distanzen, Mastprognosen oder ausschliessliche Vogel-Pflanzen-Beziehung übernommen."
+        },
+        {
+          "label": "Vullmer, Hanstein und Vauk (2001): Eichelhäher und Eichenverjüngung im Forstamt Sellhorn, S. 151–156",
+          "url": "https://www.nna.niedersachsen.de/download/100685/B01-2_Wald_und_Naturschutz_-_Forschungsergebnisse_aus_dem_Forstamt_Sellhorn.pdf#page=153",
+          "organization": "Heike Vullmer, Udo Hanstein und Gottfried Vauk; NNA-Berichte 2/2001",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "haehersaat"
+          ],
+          "supports": "Originalarbeit zur Untersuchung 1992/1993: Einleitung, Methoden, Ergebnisse, Diskussion und Zusammenfassung auf gedruckten S. 151–156, PDF-S. 153–158, tatsächlich gelesen; S. 151 und 156 auch visuell geprüft. Versteckte Eicheln können keimen; Versteck, Keimung und Aufwachsen sind getrennt. Die Wuchsorte bereits aufgelaufener Eichen allein erlauben keine zuverlässige Saatprognose. Keine Fang-, Distanz-, Mengen-, Verbiss- oder Erfolgswerte und keine Massnahmenempfehlung übernommen. Die Studie ist keine aktuelle Gesamterhebung und keine unabhängige Wiederholung der WSL-Einordnung."
+        },
+        {
+          "label": "Schweizerische Vogelwarte (2005/Online 2022): Der Eichelhäher, Nahrung",
+          "url": "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/voegel/der-eichelhaeher",
+          "organization": "Schweizerische Vogelwarte Sempach; WSL als Redaktion",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "haehersaat"
+          ],
+          "supports": "Tatsächlich gelesener Originaltext der Vogelwarte, Abschnitte Einleitung und Nahrung, mit Autoren- und Originalartikelangabe: Eicheln werden gesammelt und als Nahrung zwischen Wurzeln, im Laub oder im Boden versteckt. Die WSL-Redaktion macht daraus keine zweite WSL-Forschungsstudie; keine Zahlen, Rechtsangaben, Vergessensquote oder Verhaltensabsicht übernommen."
+        }
+      ],
+      "claims": [
+        {
+          "claim": "Eichelhäher transportieren Eicheln und verstecken sie als Nahrungsvorrat; dadurch tragen sie zur Samenausbreitung bei. Nicht genutzte, keimfähige Eicheln können keimen und zur natürlichen Eichenverjüngung beitragen.",
+          "sources": [
+            {
+              "label": "WSL Mastweb: Stieleiche, Abschnitt Früchte",
+              "url": "https://mastweb.wsl.ch/de/samenmast-erkennen/stieleiche/"
+            },
+            {
+              "label": "Vullmer, Hanstein und Vauk (2001): Eichelhäher und Eichenverjüngung im Forstamt Sellhorn, S. 151–156",
+              "url": "https://www.nna.niedersachsen.de/download/100685/B01-2_Wald_und_Naturschutz_-_Forschungsergebnisse_aus_dem_Forstamt_Sellhorn.pdf#page=153"
+            },
+            {
+              "label": "Schweizerische Vogelwarte (2005/Online 2022): Der Eichelhäher, Nahrung",
+              "url": "https://www.waldwissen.net/de/lebensraum-wald/tiere-im-wald/voegel/der-eichelhaeher"
+            }
+          ]
+        },
+        {
+          "claim": "Der Versteckvorgang und die spätere erfolgreiche Verjüngung sind verschiedene Schritte. Das Aufwachsen hängt von weiteren Einflüssen ab; ein einzelner Jungbaum belegt für sich keinen konkreten Vogeltransport und die Hähersaat liefert keine sichere Pflanzprognose.",
+          "sources": [
+            {
+              "label": "Vullmer, Hanstein und Vauk (2001): Eichelhäher und Eichenverjüngung im Forstamt Sellhorn, S. 151–156",
+              "url": "https://www.nna.niedersachsen.de/download/100685/B01-2_Wald_und_Naturschutz_-_Forschungsergebnisse_aus_dem_Forstamt_Sellhorn.pdf#page=153"
+            },
+            {
+              "label": "WSL Mastweb: Stieleiche, Abschnitt Früchte",
+              "url": "https://mastweb.wsl.ch/de/samenmast-erkennen/stieleiche/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "courseId": "wissen-ausbau-habitat-insektenentwicklung-2026",
+      "courseTitle": "Insekten im Wandel: Häutung, Metamorphose und Winterruhe",
+      "category": "Natur & Revier",
+      "lessonId": "buchdrucker-brutbild",
+      "title": "Buchdrucker-Brutbild",
+      "courseDate": "2026-10-17",
+      "lessonDate": "2026-11-17",
+      "paragraphWords": 185,
+      "questions": [
+        {
+          "id": "wissen-ausbau-habitat-insektenentwicklung-2026-buchdrucker-eiablage",
+          "answers": 4
+        },
+        {
+          "id": "wissen-ausbau-habitat-insektenentwicklung-2026-buchdrucker-gangmuster",
+          "answers": 4
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "flash-wissen-ausbau-habitat-insektenentwicklung-2026-buchdrucker-eiablage",
+          "sourceScope": "lesson",
+          "reviewedOn": "2026-11-17"
+        },
+        {
+          "id": "flash-wissen-ausbau-habitat-insektenentwicklung-2026-buchdrucker-gangmuster",
+          "sourceScope": "lesson",
+          "reviewedOn": "2026-11-17"
+        }
+      ],
+      "sources": [
+        {
+          "label": "WSL Waldschutz Schweiz: Der Buchdrucker, Entwicklungszyklus",
+          "url": "https://waldschutz.wsl.ch/de/wald/krankheiten-schaedlinge-stoerungen/waldschaedlinge/der-buchdrucker/",
+          "organization": "Eidgenössische Forschungsanstalt WSL, Waldschutz Schweiz",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "buchdrucker-brutbild"
+          ],
+          "supports": "Originaler institutioneller Arttext tatsächlich gelesen: Buchdrucker an Fichten, Eiablage durch Weibchen entlang der Muttergänge, anschliessender Larvenfrass und Verpuppung vor dem Jungkäfer. Keine Grössen-, Temperatur-, Alters-, Zeit-, Generationen- oder Befallsprognose übernommen. Zusammen mit der weiteren WSL-Darstellung eine Organisation, nicht zwei unabhängige Bestätigungen."
+        },
+        {
+          "label": "LWF (März 2025): Buchdrucker und Kupferstecher – Befall erkennen, PDF-S. 21–25 und 32",
+          "url": "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf#page=21",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft; Karin Bork und Tobias Frühbrodt",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "buchdrucker-brutbild"
+          ],
+          "supports": "Unabhängige originale Praxishilfe, Impressum März2025, physische PDF-S. 21–25 und 32 tatsächlich gelesen; PDF-S. 21, 25 und 32 auch visuell angesehen. Eiablage am Muttergang, Larvenfraß und Verpuppung; typisches längsgerichtetes Muttergangsystem mit seitlichen Larvengängen. PDF-S. 32 zeigt ausdrücklich ein verlassenes Brutbild. Keine Abbildungen, Zahlen, Eingriffsfristen, Rindenentnahme-, Bekämpfungs- oder Rechtsanleitung übernommen."
+        },
+        {
+          "label": "Wermelinger / WSL (2022, Online 2023): Wichtige Borkenkäferarten, Abschnitt Buchdrucker",
+          "url": "https://www.waldwissen.net/de/waldwirtschaft/schadensmanagement/insekten/wichtige-borkenkaeferarten-und-ihre-oekologische-bedeutung",
+          "organization": "Beat Wermelinger; ergänzt durch Doris Hölling, Eidgenössische Forschungsanstalt WSL",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "buchdrucker-brutbild"
+          ],
+          "supports": "Originalautor und Publikation Bündnerwald75(3),16–23 sowie Onlineergänzung tatsächlich geprüft. Abschnitte Holz- und Rindenbrüter sowie Buchdrucker gelesen: Muttergänge zur Eiablage, seitlicher Larvenfrass; konkret beim Buchdrucker längsverlaufende Muttergänge und quer abzweigende Larvengänge. Nicht als zweiter unabhängiger Beleg neben WSL Waldschutz gezählt. Keine Zahlen, Flugzeiten, Vermehrungs- oder Schadprognosen übernommen."
+        }
+      ],
+      "claims": [
+        {
+          "claim": "Buchdrucker entwickeln sich unter Fichtenrinde. Weibchen legen Eier entlang eines Muttergangs ab; Larvenfrass und Puppe führen zum erwachsenen Käfer. Die Stadien bilden eine vollständige Metamorphose.",
+          "sources": [
+            {
+              "label": "WSL Waldschutz Schweiz: Der Buchdrucker, Entwicklungszyklus",
+              "url": "https://waldschutz.wsl.ch/de/wald/krankheiten-schaedlinge-stoerungen/waldschaedlinge/der-buchdrucker/"
+            },
+            {
+              "label": "LWF (März 2025): Buchdrucker und Kupferstecher – Befall erkennen, PDF-S. 21–25 und 32",
+              "url": "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf#page=21"
+            }
+          ]
+        },
+        {
+          "claim": "Das typische Buchdrucker-Brutbild verbindet längs zur Stammachse verlaufende Muttergänge mit seitlich abzweigenden Larvengängen. Gangmuster und aktuelle Besetzung sind unterschiedliche Aussagen; ein verlassenes Brutbild ist möglich. Die genaue Form wird nicht auf sämtliche Borkenkäfer übertragen.",
+          "sources": [
+            {
+              "label": "WSL Waldschutz Schweiz: Der Buchdrucker, Entwicklungszyklus",
+              "url": "https://waldschutz.wsl.ch/de/wald/krankheiten-schaedlinge-stoerungen/waldschaedlinge/der-buchdrucker/"
+            },
+            {
+              "label": "LWF (März 2025): Buchdrucker und Kupferstecher – Befall erkennen, PDF-S. 21–25 und 32",
+              "url": "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf#page=21"
+            },
+            {
+              "label": "Wermelinger / WSL (2022, Online 2023): Wichtige Borkenkäferarten, Abschnitt Buchdrucker",
+              "url": "https://www.waldwissen.net/de/waldwirtschaft/schadensmanagement/insekten/wichtige-borkenkaeferarten-und-ihre-oekologische-bedeutung"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "originalPDFs": [
+    {
+      "url": "https://www.nna.niedersachsen.de/download/100685/B01-2_Wald_und_Naturschutz_-_Forschungsergebnisse_aus_dem_Forstamt_Sellhorn.pdf",
+      "sha256": "71efcf5093b0c1729f9a5dc66bc44dff5f52d1fc5c4b36df9e0da70c4514a897",
+      "physicalPagesRead": [
+        153,
+        154,
+        155,
+        156,
+        157,
+        158
+      ],
+      "printedPagesRead": "151–156",
+      "physicalPagesVisuallyReviewed": [
+        153,
+        158
+      ],
+      "role": "Vullmer/Hanstein/Vauk2001 original one-year field-study report; introduction/methods/results/discussion/summary; no measures, counts or intervention instructions reused"
+    },
+    {
+      "url": "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf",
+      "sha256": "e791e0d0254149b8bc49141b5438b547b3a483f47532ce4367926eb8c9a56343",
+      "physicalPagesRead": [
+        2,
+        21,
+        22,
+        23,
+        24,
+        25,
+        32
+      ],
+      "physicalPagesVisuallyReviewed": [
+        21,
+        25,
+        32
+      ],
+      "role": "Original LWF March2025 authorship/imprint; egg laying, larval feeding/pupa, typical gallery including explicitly abandoned case; no photo reuse or control advice"
+    }
+  ],
+  "directLimits": [
+    "Hähersaat is seed dispersal through food caches, not vegetative regeneration; a cache does not guarantee germination or further growth.",
+    "An individual young oak alone does not document the responsible bird or provide a reliable planting forecast.",
+    "Ips typographus is a concrete spruce example; characteristic longitudinal maternal/lateral larval galleries are not assigned to all bark beetles.",
+    "An abandoned gallery does not prove a currently occupied brood. The exercise asks the learner to draw an own simplified paper scheme; no missing image is promised or bark removal requested."
+  ],
+  "excluded": [
+    "Measurements and statistics from the sources",
+    "Fixed distances, time/temperature thresholds, generations or damage forecasts",
+    "Forgetting-rate and exclusive-food assumptions",
+    "Current hunting permissions or control deadlines",
+    "Pesticide, felling or bark-removal instructions",
+    "Third-party graphics or teaching photos",
+    "Whole-app content recertification"
+  ],
+  "checks": {
+    "node": "22.23.3",
+    "testFile": "scripts/test-forest-exam-expansion-nov17.cjs",
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "log": "work/category-knowledge-nov17/tests-final.txt",
+    "historicalRegressionFiles": [
+      "scripts/test-depth-expansion-oct17.cjs",
+      "scripts/test-forest-regeneration-learning.cjs",
+      "scripts/test-science-expansion.cjs"
+    ],
+    "historicalPassed": 17,
+    "historicalFailed": 0,
+    "historicalSkipped": 0,
+    "historicalLog": "work/category-knowledge-nov17/historical-tests-final.txt",
+    "historicalProjection": "Old assertions, hashes and negative cases unchanged. Exact Nov17 forest/practice additions projected using strict named helpers; previously published Nov08 spores/toxins and Nov15 Alula/track-posture additions projected only where their exact later IDs fall outside these older snapshots. No count inequality or new expected hash substituted.",
+    "coverage": [
+      "Positive full-source/course/card preservation",
+      "Exactly4 actual standalone source-specific dated flashcards with4 choices",
+      "DACH country quiz inclusion",
+      "Actual course getStaticProps and shared lesson search",
+      "Actual course renderer: complete text before closed final scoped sources",
+      "Protected exact-lesson card API:401 denied,private no-store and choices=1 authenticated isolated double"
+    ]
+  },
+  "productHashes": {
+    "lib/learning-expansion-nature.js": "a2c1841274bc1eb62b6ce4093fc27c94be25bc33b3f4898e81b228167cb2c38d",
+    "data/learning-expansion-habitat-depth-2026-10-17.json": "35794517040ef4f8e6d87247ba42f332a5ee2a6f56a1800c29c232cca5785f25",
+    "scripts/helpers/forest-exam-additions-nov17.cjs": "fec90dd920f806e37508b03f1c560792bde55d3651fee430d7a8613af3bd3607",
+    "scripts/test-forest-exam-expansion-nov17.cjs": "21e8633e1d5766b12c5e862d6f2bb1d27e6e10031f61f25c8e728a8dd7727ba6"
+  },
+  "independentReview": "Root independently read the concrete original texts and relevant PDF pages. category_practice_audit separately reread all concrete sources, freshly downloaded and hashed both original PDFs, viewed relevant pages and approved final lesson/question wording and both product hashes. PASS is recorded in work/category-expansion-nov17/independent-forest-review.json. Release delivery is recorded separately in the root task evidence, not inferred from these tests."
+}

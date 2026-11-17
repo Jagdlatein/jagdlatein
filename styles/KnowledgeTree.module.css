@@ -36,4 +36,14 @@
 .lessonLinks li + li { border-top: 1px solid #eee4cd; }
 .lessonLinks svg { flex-shrink: 0; }
 .lessonLinks a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.courseObjectives { padding: 0 20px; color: #6e6249; line-height: 1.6; }
+.courseObjectives h3 { margin: 0 0 8px; font-size: 16px; color: #3e321b; }
+.courseObjectives ul { margin: 0 0 12px; padding-left: 20px; }
+.courseObjectives li + li { margin-top: 5px; }
+.coursePractice { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 20px 18px; padding-top: 14px; border-top: 1px solid #e5d6b6; }
+.coursePractice a { display: flex; align-items: center; gap: 10px; flex: 1 1 200px; min-width: 0; min-height: 58px; padding: 10px 12px; border: 1px solid #c9b98f; border-radius: 10px; background: #f7efdb; color: #57431d; font-weight: 650; text-decoration: none; }
+.coursePractice a > span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.coursePractice small { display: block; margin-top: 4px; color: #6e6249; font-size: 13px; font-weight: 400; line-height: 1.45; }
+.coursePractice svg { flex-shrink: 0; }
+.coursePractice a:hover { background: #efe1bc; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 620px) { .branches { grid-template-columns: minmax(0, 1fr); } .topics > li { padding: 18px 14px; } .topics h3 { font-size: 20px; } }

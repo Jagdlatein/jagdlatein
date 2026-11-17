@@ -1,0 +1,80 @@
+{
+  "reviewedOn": "2026-11-17",
+  "baselineCommit": "b9ed55f832c73b5cb7805759ed0b0809267e7e20",
+  "scope": "Zwei eng begrenzte neue Lektionen in vorhandenen Kursen. Messmethoden und Fernglaseinstellungen, keine neue Rechtsfreigabe oder vollständige Fachzertifizierung.",
+  "additions": [
+    {
+      "courseId": "wissen-optik",
+      "lessonId": "fernglas-einstellungen",
+      "title": "Fernglas einstellen",
+      "position": "Am Ende hinter den drei unveränderten bisherigen Lektionen.",
+      "questions": ["fernglas-dioptrie", "fernglas-fokus"],
+      "flashcards": ["flash-wissen-optik-fernglas-dioptrie", "flash-wissen-optik-fernglas-fokus"],
+      "claims": [
+        { "claim": "Okularabstand ist eine persönliche geometrische Anpassung; beide Sehfelder sollen zu einem Kreis verschmelzen.", "sourceIds": ["nikonCF", "leicaTrinovid"] },
+        { "claim": "Beim beschriebenen Zentralfokusprinzip berücksichtigt der Dioptrienausgleich Unterschiede zwischen den Augen; bei verändertem Beobachtungsabstand wird danach mit dem Mitteltrieb nachfokussiert.", "sourceIds": ["nikonCF", "leicaTrinovid"] },
+        { "claim": "Mit Ferngläsern nie direkt in die Sonne blicken. Die konkrete Bedienung bleibt geräteabhängig.", "sourceIds": ["leicaTrinovid", "nikonPrecautions"] }
+      ],
+      "limits": [
+        "Kein identischer Bedienablauf für sämtliche Fokussierbauarten.",
+        "Keine modellübergreifenden Dioptrienzahlen, medizinische Sehstärkenbestimmung oder Reparaturanleitung.",
+        "Keine Herstellerbilder oder fremden Grafiken übernommen.",
+        "Optische Schärfe ersetzt keine Ansprache, Sicherheitsentscheidung oder örtliche Rechtsprüfung."
+      ]
+    },
+    {
+      "courseId": "wissen-wildbrethygiene",
+      "lessonId": "messort-temperatur",
+      "title": "Temperatur messen",
+      "position": "Am Ende hinter den drei unveränderten bisherigen Lektionen.",
+      "questions": ["temperatur-oberflaeche", "temperatur-kuehlgeraet"],
+      "flashcards": ["flash-wissen-wildbrethygiene-temperatur-oberflaeche", "flash-wissen-wildbrethygiene-temperatur-kuehlgeraet"],
+      "claims": [
+        { "claim": "Geräteanzeige beziehungsweise Lufttemperatur und Lebensmittelinneres sind verschiedene Messorte; Temperaturen im Lebensmittel können beim Kühlen und Erwärmen unterschiedlich sein.", "sourceIds": ["fsanzThermometers", "scotlandCookSafe"] },
+        { "claim": "Infrarot misst Oberflächen, nicht den Lebensmittelkern; eine Messung im Lebensmittelinneren braucht ein dafür geeignetes Einstechthermometer und passendes Verfahren.", "sourceIds": ["fsanzThermometers", "lwkThermometers", "scotlandCookSafe"] },
+        { "claim": "Fühlerhygiene vor und nach Benutzung vermindert das Risiko einer Verschleppung durch den Fühler.", "sourceIds": ["fsanzThermometers", "lwkThermometers", "scotlandCookSafe"] }
+      ],
+      "limits": [
+        "Keine Temperaturzahlen, Einstechtiefen, Messfristen, gesetzlichen Grenzwerte oder allgemeine Wildbretfreigabe.",
+        "Australische und schottische Rechts-/Temperaturwerte werden nicht nach CH/A/D übertragen.",
+        "Keine konkrete Desinfektionschemie, Kalibrieranleitung oder Zubereitungsfreigabe.",
+        "Ein Messwert ersetzt weder erforderliche Untersuchungen noch die Beurteilung des gesamten Verlaufs."
+      ]
+    }
+  ],
+  "sourcesActuallyRead": [
+    { "id": "nikonCF", "organization": "Nikon Corporation", "title": "How to use CF binoculars / Nomenclature", "url": "https://imaging.nikon.com/sport-optics/guide/binoculars/using/using_01/", "sectionsRead": "Abschnitte 2, 3 und 4: interpupillary distance, diopter adjustment, focusing ring.", "role": "Original-Herstelleranleitung für Zentralfokusmodelle; keine unabhängige biologische Studie." },
+    { "id": "leicaTrinovid", "organization": "Leica Camera AG", "title": "Trinovid Anleitung, Ausgabe 2021/08", "url": "https://leica-camera.com/sites/default/files/2021-10/Trinovid_DE_Upd%2B2021.pdf", "sectionsRead": "Gedruckte S. 4, 9 und 10. Originaltext gelesen; S. 9 und 10 zusätzlich mit Poppler gerendert und visuell angesehen.", "role": "Unabhängige zweite Original-Herstelleranleitung zum selben begrenzten Einstellprinzip." },
+    { "id": "nikonPrecautions", "organization": "Nikon Corporation", "title": "Precautions", "url": "https://imaging.nikon.com/sport-optics/guide/binoculars/using/using_04/", "sectionsRead": "Never look at the sun directly through binoculars.", "role": "Original-Sicherheitswarnung. Dieselbe Organisation wie nikonCF, daher keine weitere unabhängige Quelle." },
+    { "id": "fsanzThermometers", "organization": "Food Standards Australia New Zealand", "title": "Thermometers, Seitenstand 1. Oktober 2025", "url": "https://www.foodstandards.gov.au/business/food-safety/thermometers", "sectionsRead": "Which thermometer is best, Getting it right.", "role": "Amtliche Messmethodenbeschreibung. Zahlen und australischer Rechtsrahmen nicht übernommen." },
+    { "id": "lwkThermometers", "organization": "Landwirtschaftskammer Niedersachsen", "title": "Thermometer im Einsatz für die Hygiene – Wissen für die Praxis", "url": "https://www.lwk-niedersachsen.de/lwk/news/42763_Thermometer_im_Einsatz_fuer_die_Hygiene_-_Wissen_fuer_die_Praxis", "sectionsRead": "Verschiedene Thermometer für unterschiedliche Aufgaben; Tipps aus der Praxis.", "role": "Unabhängige deutsche Fachinformation für Lebensmittelhygiene; keine neue pauschale Wildbret-Grenztemperatur." },
+    { "id": "scotlandCookSafe", "organization": "Food Standards Scotland", "title": "CookSafe, Section 3", "url": "https://www.foodstandards.gov.scot/business-guidance/running-a-food-business/publications/cooksafe-guide/cooksafe-guide-web-version/cooksafe-guide-web-version-section-3", "sectionsRead": "Temperature Monitoring using a Thermometer; Cold Temperature Monitoring; Hot Temperature Monitoring.", "role": "Unabhängige amtliche Bestätigung für Luft-/Lebensmittelmessung und Fühlerhygiene. Schottische Grenz-/Pflichtangaben nicht übernommen." }
+  ],
+  "otherMaterialReadButNotPublished": [
+    { "url": "https://imaging.nikon.com/sport-optics/guide/binoculars/using/using_02/", "reason": "Einzelfokussierung als Gegenprüfung der Bauartgrenze; keine zusätzliche universelle Bedienanleitung daraus konstruiert." }
+  ],
+  "failedCandidatesNotUsed": [
+    "Zwei zuerst gefundene FSA-Prove-it-PDF-URLs lieferten beim tatsächlichen Abruf HTTP404; Suchausschnitte sind keine gelesenen Originalquellen.",
+    "ZEISS-Terra-PDF nicht erreichbar; Conquest-HD-X-PDF überschritt die Ausgabelängengrenze. Keine nur aus Suchausschnitten abgeleitete ZEISS-Aussage veröffentlicht."
+  ],
+  "integration": {
+    "routeCountUnchanged": true,
+    "courseDatesPreserved": "Beide Kurse behalten den übernommenen 4. Oktober 2026. Nur neue Lektionen und davon abgeleitete Karten erhalten 17. November 2026.",
+    "sourcesScopedToNewLesson": true,
+    "quizChoicesPerQuestion": 4,
+    "newQuestions": 4,
+    "newCards": 4,
+    "preservedStarterCards": 116,
+    "existingMechanisms": ["Kurs-Lektionslinks", "Suche", "Quizbank", "Lernkarten mit Antwortauswahl", "Kartenexport", "Druck und Offline über bestehenden Kurs-/Kartendatensatz"],
+    "sourcePosition": "Vorhandene geschlossene Quellenbereiche am Ende der Lerninhalte bleiben zuständig. Keine UI-Datei verändert."
+  },
+  "verification": {
+    "ownRegressionFile": "scripts/test-practice-measurement-lessons-nov17.cjs",
+    "ownTestsPassed": 4,
+    "testsSkipped": 0,
+    "nodeVersion": "22.23.3",
+    "positivePreservation": "Gesamte bisherige rohe practiceModules-Liste nach Abzug genau dieser zwei Anhänge gegen b9ed55f unverändert; alle bisherigen Kartenobjekte in Reihenfolge und alle 116 Starter exakt erhalten.",
+    "scopeLimit": "Technische Schema-/Verknüpfungsprüfung ist keine vollständige fachliche Zertifizierung der Anwendung. Unabhängige Root-Gegenprüfung und abschliessender gemeinsamer Release bleiben erforderlich.",
+    "outsideRepositoryEvidence": "Chat-Workspace work/category-expansion-nov17/practice-tests.txt und practice-sources/Leica-Trinovid-DE-2021.pdf plus leica-page-09.png und leica-page-10.png."
+  }
+}

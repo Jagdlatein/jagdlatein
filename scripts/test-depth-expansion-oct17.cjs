@@ -5,7 +5,14 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createLoader, root } = require('./helpers/project-module.cjs');
-const load = createLoader();
+const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
+const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
+// Keep this historical snapshot exact; the positive Nov17 suite checks the
+// complete two-appendix delta against b9ed55f rather than weakening old counts.
+// The published Nov08 spores/toxins pair was also already outside this older
+// exact 151-question field snapshot before Nov17. Its strict helper retains IDs.
+const load = createLoader(foodSporesToxinsBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture())));
 const { depthExpansionDatasets: datasets, depthExpansionModules: added } = load('lib/learning-expansion-oct17.js');
 const { learningModules, learningQuestions, learningCategories } = load('lib/learning-curriculum.js');
 const { QUESTIONS } = load('data/questions-full.js');

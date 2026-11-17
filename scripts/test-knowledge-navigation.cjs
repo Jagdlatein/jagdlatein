@@ -143,8 +143,11 @@ test('Every branch exposes its short course accordions and exact lesson links wi
       const choices = [...tree.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
       assert.equal(choices.length, group.moduleIds.length);
       assert.ok(choices.every(choice => !choice[0].split('>')[0].includes('open=')), 'Bare branch starts with compact closed topics');
-      const branchLessons = group.moduleIds.flatMap(id => getLearningModule(id).lessons.map(lesson => htmlValue(`/kurse/${id}${lessonHash(lesson.id)}`)));
-      assert.deepEqual([...tree.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]), branchLessons);
+      const branchCourseLinks = group.moduleIds.flatMap(id => [
+        ...getLearningModule(id).lessons.map(lesson => htmlValue(`/kurse/${id}${lessonHash(lesson.id)}`)),
+        ...(byId.get(id).practice.quizHref ? [htmlValue(byId.get(id).practice.quizHref)] : []),
+      ]);
+      assert.deepEqual([...tree.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]), branchCourseLinks);
       for (const [courseIndex, id] of group.moduleIds.entries()) {
         const module = byId.get(id);
         const original = getLearningModule(id);
@@ -165,7 +168,7 @@ test('Every branch exposes its short course accordions and exact lesson links wi
           return htmlValue(href);
         });
         const actual = [...coursePanel.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]);
-        assert.deepEqual(actual, expected, `${category.slug}/${group.id}/${id}: no duplicated or foreign lessons`);
+        assert.deepEqual(actual, [...expected, ...(module.practice.quizHref ? [htmlValue(module.practice.quizHref)] : [])], `${category.slug}/${group.id}/${id}: exact lessons followed only by the validated course check`);
         assert.doesNotMatch(courseTree, /<button|<img/);
       }
     }
@@ -187,7 +190,10 @@ test('A foreign, missing or array-valued course cannot escape the selected branc
     const panels = [...tree.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
     assert.equal(panels.length, group.moduleIds.length);
     assert.ok(panels.every(panel => !panel[0].split('>')[0].includes('open=')), 'Invalid course values never expand another course');
-    const expected = group.moduleIds.flatMap(id => data.modules.find(module => module.id === id).topics.map(topic => htmlValue(topic.href)));
+    const expected = group.moduleIds.flatMap(id => {
+      const module = data.modules.find(item => item.id === id);
+      return [...module.topics.map(topic => htmlValue(topic.href)), ...(module.practice.quizHref ? [htmlValue(module.practice.quizHref)] : [])];
+    });
     assert.deepEqual([...tree.matchAll(/href="(\/kurse\/[^\"]+)"/g)].map(match => match[1]), expected);
   }
 });
@@ -260,7 +266,12 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
     assert.deepEqual(data.paths, expectedPaths);
     const expectedResources = slug ? [...practiceHighlights, ...learningExperiences, ...learningTools, ...(slug === 'jagdrecht' ? legalLearningHubs : [])]
       .filter(tool => tool.categories.includes(slug) && tool.subcategoryOf !== slug).filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index)
-      .map(({ href, icon, title, description, featured }) => ({ href, icon, title, description, ...(featured ? { featured: true } : {}) })) : [];
+      .filter(tool => !(slug === 'jagdrecht' && tool.href === '/quiz-app'))
+      .map(({ href, icon, title, description, featured }) => ({
+        href: href === '/lernen/lernkarten' || href === '/lernen/fuenf-minuten' ? `${href}?kategorie=${encodeURIComponent(slug)}`
+          : href === '/quiz-app' ? `/quiz-app?topic=${encodeURIComponent(learningCategoryDetails.find(category => category.slug === slug).title)}` : href,
+        icon, title, description, ...(featured ? { featured: true } : {}),
+      })) : [];
     assert.deepEqual(data.resources, expectedResources);
     assert.ok(data.covers.every(cover => !cover.pictures && !cover.diagram && !cover.caption && !cover.originalWidth && !cover.verification));
     assert.doesNotThrow(() => JSON.stringify(data));
@@ -338,7 +349,8 @@ test('All eight extensions appear once in existing categories and deep searches 
     for (const category of tool.categories) {
       assert.ok(categories.includes(category));
       const html = renderToStaticMarkup(React.createElement(Component, {data: getData(category)}));
-      assert.equal((html.match(new RegExp('href="' + tool.href + '"', 'g')) || []).length, 1, `${category}: ${tool.href}`);
+      const target = tool.href === '/lernen/fuenf-minuten' ? `${tool.href}?kategorie=${encodeURIComponent(category)}` : tool.href;
+      assert.equal(html.split(`href="${htmlValue(target)}"`).length - 1, 1, `${category}: ${target}`);
     }
   }
   const search = load('lib/learning-search.js').searchLearning;

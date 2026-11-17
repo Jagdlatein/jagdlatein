@@ -32,7 +32,15 @@ export default function LearningTopicTree({ category, groups = [], modules = [],
     {group ? <ul className={styles.courseList}>{selected.map(module => <li key={module.id}>
       <details className={styles.course} name="learning-topic-course" open={course?.id === module.id || undefined}>
         <summary ref={course?.id === module.id ? courseHeading : undefined}>{getLearningNavigationLabel(module)}</summary>
+        {module.practice?.objectives?.length > 0 && <div className={styles.courseObjectives}>
+          <h3>Lernziele</h3>
+          <ul>{module.practice.objectives.map((objective, index) => <li key={index}>{objective}</li>)}</ul>
+        </div>}
         <ul className={styles.lessonLinks}>{module.topics.map(topic => <li key={topic.href}><Link href={topic.href} prefetch={false}>{topic.title}<AppIcon name="arrow-right" size={17} /></Link></li>)}</ul>
+        {(module.practice?.quizHref || module.practice?.cardHref) && <nav className={styles.coursePractice} data-category-course-practice={module.id} aria-label={`Üben und wiederholen: ${getLearningNavigationLabel(module)}`}>
+          {module.practice.quizHref && <Link href={module.practice.quizHref} prefetch={false}><AppIcon name="quiz" size={18} /><span>Wissenscheck<small>{module.practice.questionCount} Fragen · je vier Antworten</small></span><AppIcon name="arrow-right" size={17} /></Link>}
+          {module.practice.cardHref && <Link href={module.practice.cardHref} prefetch={false}><AppIcon name="book" size={18} /><span>Lernkarten<small>{module.practice.cardCount} Karten aus diesem Kurs</small></span><AppIcon name="arrow-right" size={17} /></Link>}
+        </nav>}
       </details>
     </li>)}</ul> : <>
       {category.slug === "jagdrecht" && <>

@@ -2,10 +2,17 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const { forestExamBaselineFixture, stripForestExamCourse } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
+const { alulaBaselineFixture } = require('./helpers/alula-addition-nov15.cjs');
+const { trackPostureBaselineFixture } = require('./helpers/track-posture-addition-nov15.cjs');
 const { marmotHibernationBaselineFixture } = require('./helpers/marmot-hibernation-addition-nov08.cjs');
 const { courseId, lessonIds, questionIds, sourceURLs: urls, sourceScopes, originalParagraph, correctedParagraph, stripForestRegenerationAddition, forestRegenerationBaselineFixture } = require('./helpers/forest-regeneration-additions-nov08.cjs');
-const createLoader = overrides => createProjectLoader(marmotHibernationBaselineFixture(overrides));
-const load = createLoader(), rawModules = load('lib/learning-expansion-nature.js').natureExpansionModules;
+// Project only the exactly named later appendices before all Nov08 snapshots;
+// their full positive b9ed55f preservation check is a separate live-data suite.
+const historicalOverrides = overrides => marmotHibernationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(overrides)))));
+const createLoader = overrides => createProjectLoader(historicalOverrides(overrides));
+const load = createLoader(), rawModules = load('lib/learning-expansion-nature.js').natureExpansionModules.map(stripForestExamCourse);
 const raw = rawModules.find(item => item.id === courseId), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);
 const tools = load('lib/learning-flashcards.js'), cards = tools.getFlashcards();
 const newIds = questionIds.map(id => `${courseId}-${id}`), newCardIds = newIds.map(id => `flash-${id}`);
@@ -32,7 +39,7 @@ test('All 198 old course objects after only that sentence restoration and all 17
   assert.equal(cards.length, 1775);
   assert.equal(hash(cards.filter(item => !newCardIds.includes(item.id))), '527bfdba701b5785a6ba9c12d1449e4f2bfd10e7fbc1ae538b91549a74535b1c');
   assert.equal(hash(cards.slice(0, 116)), '54163a2927f5c3f0e57c2075cea70bd26fe05c4b999620a8f82be93ffd7e2ef9');
-  assert.deepEqual(createLoader(forestRegenerationBaselineFixture())('lib/learning-curriculum.js').learningModules, curriculum.learningModules.map(stripForestRegenerationAddition));
+  assert.deepEqual(createLoader(forestRegenerationBaselineFixture(historicalOverrides()))('lib/learning-curriculum.js').learningModules, curriculum.learningModules.map(stripForestRegenerationAddition));
 });
 
 test('The first new lesson separates biological seed or plant-part origin from natural regeneration, sowing and planting', () => {

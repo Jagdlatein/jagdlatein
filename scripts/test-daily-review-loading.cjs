@@ -104,7 +104,9 @@ test('Selected questions carry the full unchanged lesson text with matching sour
     assert.deepEqual(Object.keys(item.reading).sort(), ['exercise', 'paragraph', 'paragraphs', 'takeaway', 'title']);
     assert.ok(!('lessons' in item) && !('objectives' in item));
     const evidence = (lesson.evidence || []).flatMap(record => record.sources || []);
-    const expected = [...new Set((evidence.length ? evidence : course.sources).map(source => source.url))];
+    const expected = [...new Set((evidence.length ? evidence : course.sources)
+      .filter(source => source.lessonIds === undefined || Array.isArray(source.lessonIds) && source.lessonIds.includes(lesson.id))
+      .map(source => source.url))];
     assert.deepEqual(item.sources.map(source => source.url), expected);
     assert.equal(item.sourceScope, evidence.length ? 'lesson' : 'course');
   }

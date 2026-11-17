@@ -2751,6 +2751,36 @@
           "url": "https://www.nature.com/articles/srep10484",
           "organization": "Mun et al., Originalstudie in Scientific Reports",
           "supports": "Originaleinleitung und Resultatauszüge über den Suchindex eingesehen: Epidermis als Cuticulabildner, Wachstumsbegrenzung und Vernetzung bei Cuticulareifung. Direkter Volltextabruf am 17.10.2026 durch Publisher-Anmeldung beziehungsweise PMC-Captcha verhindert; daher keine vollständige Studienlektüre behauptet und keine experimentellen Zahlen übernommen."
+        },
+        {
+          "label": "WSL Waldschutz Schweiz: Der Buchdrucker, Entwicklungszyklus",
+          "url": "https://waldschutz.wsl.ch/de/wald/krankheiten-schaedlinge-stoerungen/waldschaedlinge/der-buchdrucker/",
+          "organization": "Eidgenössische Forschungsanstalt WSL, Waldschutz Schweiz",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "buchdrucker-brutbild"
+          ],
+          "supports": "Originaler institutioneller Arttext tatsächlich gelesen: Buchdrucker an Fichten, Eiablage durch Weibchen entlang der Muttergänge, anschliessender Larvenfrass und Verpuppung vor dem Jungkäfer. Keine Grössen-, Temperatur-, Alters-, Zeit-, Generationen- oder Befallsprognose übernommen. Zusammen mit der weiteren WSL-Darstellung eine Organisation, nicht zwei unabhängige Bestätigungen."
+        },
+        {
+          "label": "LWF (März 2025): Buchdrucker und Kupferstecher – Befall erkennen, PDF-S. 21–25 und 32",
+          "url": "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf#page=21",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft; Karin Bork und Tobias Frühbrodt",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "buchdrucker-brutbild"
+          ],
+          "supports": "Unabhängige originale Praxishilfe, Impressum März2025, physische PDF-S. 21–25 und 32 tatsächlich gelesen; PDF-S. 21, 25 und 32 auch visuell angesehen. Eiablage am Muttergang, Larvenfraß und Verpuppung; typisches längsgerichtetes Muttergangsystem mit seitlichen Larvengängen. PDF-S. 32 zeigt ausdrücklich ein verlassenes Brutbild. Keine Abbildungen, Zahlen, Eingriffsfristen, Rindenentnahme-, Bekämpfungs- oder Rechtsanleitung übernommen."
+        },
+        {
+          "label": "Wermelinger / WSL (2022, Online 2023): Wichtige Borkenkäferarten, Abschnitt Buchdrucker",
+          "url": "https://www.waldwissen.net/de/waldwirtschaft/schadensmanagement/insekten/wichtige-borkenkaeferarten-und-ihre-oekologische-bedeutung",
+          "organization": "Beat Wermelinger; ergänzt durch Doris Hölling, Eidgenössische Forschungsanstalt WSL",
+          "checkedOn": "2026-11-17",
+          "lessonIds": [
+            "buchdrucker-brutbild"
+          ],
+          "supports": "Originalautor und Publikation Bündnerwald75(3),16–23 sowie Onlineergänzung tatsächlich geprüft. Abschnitte Holz- und Rindenbrüter sowie Buchdrucker gelesen: Muttergänge zur Eiablage, seitlicher Larvenfrass; konkret beim Buchdrucker längsverlaufende Muttergänge und quer abzweigende Larvengänge. Nicht als zweiter unabhängiger Beleg neben WSL Waldschutz gezählt. Keine Zahlen, Flugzeiten, Vermehrungs- oder Schadprognosen übernommen."
         }
       ],
       "lessons": [
@@ -2797,6 +2827,19 @@
           ],
           "takeaway": "Unterkühlung vermeidet Eis, Frosttoleranz erlaubt begrenzte Eisbildung; Dauer, Stadium und Mikroklima bestimmen die Belastung mit.",
           "exercise": "Vergleiche drei fiktive Winterbeobachtungen und trenne Temperatur, Expositionsdauer, Ruheprogramm und Eisbildung."
+        },
+        {
+          "id": "buchdrucker-brutbild",
+          "title": "Buchdrucker-Brutbild",
+          "reviewedOn": "2026-11-17",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Am Buchdrucker (Ips typographus) lässt sich vollständige Insektenentwicklung mit einer Lebensspur verbinden. Dieser Borkenkäfer entwickelt sich unter der Rinde von Fichten. Das Weibchen legt seine Eier entlang eines Muttergangs ab. Aus den Eiern schlüpfen Larven, die eigene Frassgänge anlegen. Auf das Larvenstadium folgt die Puppe und daraus entsteht der erwachsene Käfer. Ei, Larve, Puppe und Käfer sind verschiedene Entwicklungsstadien, keine vier Arten.",
+            "Das Muster der Mutter- und Larvengänge heisst Brutbild. Beim typischen Buchdrucker-Brutbild verlaufen die Muttergänge längs zur Stammachse beziehungsweise Holzfaser; von ihnen zweigen die Larvengänge seitlich ab. Die Bezeichnungen beziehen sich somit auf verschiedene Urheber und Funktionen: Das Weibchen legt am Muttergang Eier ab, die Larven fressen ihre abgehenden Gänge. Das Gangmuster ist von einem einzelnen Loch an der Rindenoberfläche zu unterscheiden.",
+            "Die beschriebene Form ist ein Buchdrucker-Beispiel und keine Regel sämtlicher Borkenkäfer. Ein bereits verlassenes Brutbild beweist zudem keine gegenwärtig besetzte Brut. Eigene Papierübung: Zeichne ein vereinfachtes Schema mit längsgerichtetem Muttergang und seitlich abgehenden Larvengängen. Beschrifte Eiablage und Larvenfrass und ordne die Entwicklungsstadien zu. Für diese Übung wird keine Rinde an lebenden Bäumen entfernt; eine aktuelle Waldschutzdiagnose oder Bekämpfungsentscheidung wird daraus nicht abgeleitet."
+          ],
+          "takeaway": "Beim Buchdrucker legt das Weibchen Eier am längsgerichteten Muttergang ab; Larven erzeugen seitlich abgehende Frassgänge. Das Brutbild ist eine Lebensspur, keine Garantie einer aktuell besetzten Brut.",
+          "exercise": "Zeichne ein eigenes vereinfachtes Schema aus Muttergang und Larvengängen und erkläre den Zusammenhang mit Eiablage und Larvenfrass. Trenne die Spur vom aktuellen Besatz."
         }
       ],
       "questions": [
@@ -3215,6 +3258,32 @@
           ],
           "answer": 3,
           "explain": "Ruheprogramm, Vorbereitung und konkrete Kältetoleranz müssen getrennt untersucht werden."
+        },
+        {
+          "id": "buchdrucker-eiablage",
+          "lessonId": "buchdrucker-brutbild",
+          "q": "Wo legt das Buchdruckerweibchen im beschriebenen Brutsystem seine Eier ab?",
+          "options": [
+            "Entlang des Muttergangs unter der Rinde.",
+            "Ausschliesslich am Ende bereits von Larven gefressener Gänge.",
+            "In den Puppenhüllen der erwachsenen Käfer.",
+            "Im Mark des Fichtenstamms, ohne Bezug zum Muttergang."
+          ],
+          "answer": 0,
+          "explain": "Das Weibchen legt Eier entlang des Muttergangs ab. Die daraus schlüpfenden Larven fressen seitlich abgehende Larvengänge. Eiablage und Larvenfrass erzeugen unterschiedliche Teile des Brutbildes."
+        },
+        {
+          "id": "buchdrucker-gangmuster",
+          "lessonId": "buchdrucker-brutbild",
+          "q": "Wie sind Mutter- und Larvengänge im typischen Buchdrucker-Brutbild zueinander angeordnet?",
+          "options": [
+            "Muttergänge verlaufen quer zur Stammachse, Larvengänge nur längs.",
+            "Sämtliche Gänge verlaufen ohne Abzweigung genau übereinander.",
+            "Muttergänge verlaufen längs zur Stammachse; Larvengänge zweigen seitlich ab.",
+            "Muttergänge bilden ausschliesslich eine kreisförmig geschlossene Röhre ohne Larvengänge."
+          ],
+          "answer": 2,
+          "explain": "Typisch sind längsgerichtete Muttergänge und seitlich abzweigende Larvengänge. Das ist das beschriebene Buchdrucker-Beispiel; andere Borkenkäfer können andere Muster bilden. Ein altes Gangbild belegt für sich keinen aktuellen Besatz."
         }
       ]
     }
@@ -3563,6 +3632,27 @@
           "sourceUrls": [
             "https://genent.cals.ncsu.edu/bug-bytes/survival/",
             "https://crops.extension.iastate.edu/encyclopedia/cold-hardiness-insects-and-impact-fluctuating-temperatures"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-habitat-insektenentwicklung-2026",
+      "lessonId": "buchdrucker-brutbild",
+      "claims": [
+        {
+          "claim": "Buchdrucker entwickeln sich unter Fichtenrinde. Weibchen legen Eier entlang eines Muttergangs ab; Larvenfrass und Puppe führen zum erwachsenen Käfer. Die Stadien bilden eine vollständige Metamorphose.",
+          "sourceUrls": [
+            "https://waldschutz.wsl.ch/de/wald/krankheiten-schaedlinge-stoerungen/waldschaedlinge/der-buchdrucker/",
+            "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf#page=21"
+          ]
+        },
+        {
+          "claim": "Das typische Buchdrucker-Brutbild verbindet längs zur Stammachse verlaufende Muttergänge mit seitlich abzweigenden Larvengängen. Gangmuster und aktuelle Besetzung sind unterschiedliche Aussagen; ein verlassenes Brutbild ist möglich. Die genaue Form wird nicht auf sämtliche Borkenkäfer übertragen.",
+          "sourceUrls": [
+            "https://waldschutz.wsl.ch/de/wald/krankheiten-schaedlinge-stoerungen/waldschaedlinge/der-buchdrucker/",
+            "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf#page=21",
+            "https://www.waldwissen.net/de/waldwirtschaft/schadensmanagement/insekten/wichtige-borkenkaeferarten-und-ihre-oekologische-bedeutung"
           ]
         }
       ]
