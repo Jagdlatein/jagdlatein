@@ -2,6 +2,7 @@ import Link from "next/link";
 import AppIcon from "./AppIcon";
 import LearningToolLayout from "./LearningToolLayout";
 import ResearchQuestionRound from "./ResearchQuestionRound";
+import { getLearningCategory } from "../lib/learning-categories";
 import styles from "../styles/RevierMoment.module.css";
 
 function reviewedDate(value) {
@@ -10,6 +11,10 @@ function reviewedDate(value) {
 
 export default function RevierMoment({ moment }) {
   const { question, topic, reading } = moment;
+  const category = getLearningCategory(moment.categorySlug);
+  const practice = category && category.slug !== "jagdrecht" && moment.practice?.categorySlug === category.slug ? moment.practice : null;
+  const reviewHref = practice?.reviewHref === `/lernen/fuenf-minuten?kategorie=${encodeURIComponent(category?.slug)}` ? practice.reviewHref : null;
+  const quizHref = practice?.quizHref === `/quiz-app?topic=${encodeURIComponent(category?.title)}` ? practice.quizHref : null;
   const readingSection = <section className={styles.deeper} aria-labelledby="moment-deeper-title">
     <p className={styles.kicker}>Passender Lerntext</p><h2 id="moment-deeper-title">{reading.title}</h2>
     {reading.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
@@ -17,12 +22,12 @@ export default function RevierMoment({ moment }) {
     {reading.exercise && <p><strong>Selbst erklären: </strong>{reading.exercise}</p>}
     <Link href={moment.href} className={styles.textLink} prefetch={false}>In dieser Lektion weiterlernen<AppIcon name="arrow-right" size={18} /></Link>
   </section>;
-  return <LearningToolLayout title="Fall des Tages" description="Eine Lernsituation aus unseren Kursen: vier Antworten, eine richtige Antwort und der passende Lerntext." category="jagdpraxis" icon="binoculars" headingOnly searchHref="/lernen#lernen-suche" hideCommunity className={styles.page}>
+  return <LearningToolLayout title="Fall des Tages" description="Eine Lernsituation aus unseren Kursen: vier Antworten, eine richtige Antwort und der passende Lerntext." category={category?.slug !== "jagdrecht" ? category?.slug : undefined} icon="binoculars" headingOnly searchHref="/lernen#lernen-suche" hideCommunity className={styles.page}>
     <p className={styles.date}><time dateTime={moment.dateKey}>{moment.displayDate}</time> · Ohne Zeitlimit</p>
     <p className={styles.small}>Gemeinsames Lernwissen für Deutschland, Österreich und die Schweiz. Ein eigener Lernfall, keine amtliche Prüfungsfrage. Örtliches Recht und praktische Ausbildung werden dadurch nicht ersetzt.</p>
     <p className={styles.topic}>Thema {topic.title}</p>
     <ResearchQuestionRound key={`${moment.dateKey}:${question.id}`} questions={[question]} sources={topic.sources} daily title="Deine Entscheidung" showSources={false} afterAnswer={readingSection} />
-    <nav className={styles.nextSteps} aria-label="Passend weiterlernen"><Link href="/lernen/fuenf-minuten"><AppIcon name="book" size={20} /><span>Persönlich wiederholen<small>Kurze Runde mit deinem Verlauf auf diesem Gerät</small></span><AppIcon name="arrow-right" size={18} /></Link><Link href="/quiz-app"><AppIcon name="trophy" size={20} /><span>Quiz mit Rangliste<small>Gewertete Runde mit Zeit und Punkten</small></span><AppIcon name="arrow-right" size={18} /></Link></nav>
+    {(reviewHref || quizHref) && <nav className={styles.nextSteps} aria-label="Passend weiterlernen">{reviewHref && <Link href={reviewHref} prefetch={false}><AppIcon name="book" size={20} /><span>Persönlich wiederholen<small>{category.title} · Verlauf auf diesem Gerät</small></span><AppIcon name="arrow-right" size={18} /></Link>}{quizHref && <Link href={quizHref} prefetch={false}><AppIcon name="trophy" size={20} /><span>Quiz mit Rangliste<small>{category.title} · mit Zeit und Punkten</small></span><AppIcon name="arrow-right" size={18} /></Link>}</nav>}
     <p className={styles.small}>Die Auswahl umfasst 60 Lernfälle und wiederholt sich nach 60 Tagen. Es werden hier keine Antworten gespeichert und keine Ranglistenpunkte vergeben.</p>
     <details className={styles.sources} id="reviermoment-quellen">
       <summary>Quellen und übernommener Prüfstand</summary>

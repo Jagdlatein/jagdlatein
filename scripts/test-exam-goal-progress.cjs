@@ -121,7 +121,10 @@ test('Actual SSR and hydration are neutral, then restore local exact-target mark
   const s = await hookFixture(t, { hydrate: true, raw: stateBody({ 'CH:ZH': { [goal.id]: 'erklaert' } }) });
   assert.deepEqual(s.serverReads, []); assert.deepEqual(s.serverWrites, []); assert.match(s.serverHtml, /disabled=""/); assert.match(s.serverHtml, /Wird geladen/); assert.deepEqual(s.errors, []);
   assert.equal(s.container.querySelector('select').value, 'erklaert'); assert.equal(s.controller.counts.total, 2); assert.equal(s.controller.counts.erklaert, 1); assert.equal(s.writes.length, 0);
-  await s.mark('ueben'); assert.equal(s.controller.state(goal), 'ueben'); assert.equal(s.writes.length, 1); assert.match(s.container.textContent, /Merkmale benannt · Unsicherheit benannt/);
+  await s.mark('ueben'); assert.equal(s.controller.state(goal), 'ueben'); assert.equal(s.writes.length, 1);
+  const check = s.container.querySelector('details.goalSelfCheck'); assert.ok(check); assert.equal(check.open, false);
+  assert.equal(check.querySelector('summary').textContent, 'Selbstkontrolle');
+  assert.deepEqual([...check.querySelectorAll('li')].map(node => node.textContent), goal.selfCheck);
 });
 
 test('Unready profiles, unready routers and disabled legacy projections never read storage or invent open counts', async t => {
@@ -204,7 +207,22 @@ test('All old goal text, sources and identities remain exact apart from three se
   }
   const blueprint = load('lib/exam-blueprint-server.js').getExamBlueprintData(), alignment = load('lib/exam-alignment-server.js').getExamAlignmentData();
   const api = load('lib/exam-goal-progress.js'), catalog = api.buildExamGoalCatalog(blueprint, alignment);
-  assert.equal(blueprint.categories.flatMap(category => category.goals).length, 36);
+  const priorModule = { exports: {} }, priorSource = execFileSync('git', ['show', '69e4417ffc881e88432dfc04e3e444f1b1357659:lib/exam-blueprint-server.js'], { cwd: repo, encoding: 'utf8' });
+  const priorCode = local('next/dist/build/swc').transformSync(priorSource, { filename: path.join(repo, 'lib/exam-blueprint-server.js'), disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } }).code;
+  new Function('require', 'module', 'exports', priorCode)(id => id.startsWith('.') ? load(path.resolve(repo, 'lib', path.extname(id) ? id : `${id}.js`)) : local(id), priorModule, priorModule.exports);
+  const previousBlueprint = priorModule.exports.getExamBlueprintData(), previousCatalog = api.buildExamGoalCatalog(previousBlueprint, alignment);
+  assert.equal(previousBlueprint.categories.flatMap(category => category.goals).length, 36);
+  assert.equal(blueprint.categories.flatMap(category => category.goals).length, 48);
+  for (const previous of previousBlueprint.categories) {
+    const current = blueprint.categories.find(category => category.slug === previous.slug);
+    assert.deepEqual(current.goals.slice(0, 3), previous.goals); assert.deepEqual(current.practiceCase, previous.practiceCase);
+    assert.equal(current.goals.length, previous.goals.length + 1);
+  }
+  assert.deepEqual(blueprint.sources.slice(0, previousBlueprint.sources.length), previousBlueprint.sources);
+  for (const [key, oldGoals] of previousCatalog.profiles) {
+    const current = catalog.profiles.get(key); assert.equal(current.size, oldGoals.size + 12);
+    for (const [id, oldGoal] of oldGoals) assert.deepEqual(current.get(id), oldGoal);
+  }
   assert.equal(alignment.regions.flatMap(region => (region.subjectAreas || []).flatMap(area => area.goals)).length, 54);
   for (const region of alignment.regions) {
     const all = [...blueprint.categories.flatMap(category => category.goals), ...(region.subjectAreas || []).flatMap(area => area.goals)];
@@ -227,11 +245,13 @@ test('The complete real plan shares one mark per common/regional goal, counts th
   const summary = () => s.container.querySelector('#exam-goal-progress').parentElement;
   const counts = () => [...summary().querySelectorAll('dd')].map(node => Number(node.textContent));
   const allControls = () => [...s.container.querySelectorAll('select[aria-label$=": Mein Stand"]')];
-  assert.equal(allControls().length, 43); assert.deepEqual(counts(), [43, 0, 0]); assert.equal(s.writes.length, 0);
+  assert.equal(blueprint.categories.flatMap(category => category.goals).length, 48);
+  assert.equal(alignment.regions.find(region => region.country === CH.country && region.region === CH.region).subjectAreas.flatMap(area => area.goals).length, 7);
+  assert.equal(allControls().length, 55, 'The prior 43 target goals gain exactly twelve common transfers'); assert.deepEqual(counts(), [55, 0, 0]); assert.equal(s.writes.length, 0);
   const commonControl = allControls()[0], regionalControl = s.container.querySelector('[aria-labelledby="exam-plan-regional-exam"] select');
   await React.act(async () => nativeProps(commonControl).onChange({ target: { value: 'erklaert' } }));
   await React.act(async () => nativeProps(regionalControl).onChange({ target: { value: 'ueben' } }));
-  assert.deepEqual(counts(), [41, 1, 1]);
+  assert.deepEqual(counts(), [53, 1, 1]);
   const raw = JSON.parse(s.dom.window.localStorage.getItem('jagdlatein-exam-goals-v1'));
   assert.equal(Object.keys(raw.profiles['CH:ZH']).length, 2); assert.equal(raw.profiles['CH:ZH'][blueprint.categories[0].goals[0].id], 'erklaert');
   assert.match(summary().textContent, /Selbstbewertungen, keine Prüfungsergebnisse/); assert.match(summary().textContent, /nur auf diesem Gerät/);
@@ -242,11 +262,11 @@ test('The complete real plan shares one mark per common/regional goal, counts th
   assert.ok(s.container.textContent.indexOf('Meine Selbstkontrolle') < s.container.textContent.indexOf('Originalquellen und Prüfungsunterlagen'));
   const storedBeforeReading = s.writes.length;
   router.query = { kategorie: 'wildkunde' }; router.asPath = '/lernen/pruefungsplan?kategorie=wildkunde'; await s.render();
-  assert.equal(allControls().length, 10, 'Three selected common goals plus seven regional goals'); assert.deepEqual(counts(), [41, 1, 1]); assert.equal(s.writes.length, storedBeforeReading);
+  assert.equal(allControls().length, 11, 'Four selected common goals plus seven unchanged regional goals'); assert.deepEqual(counts(), [53, 1, 1]); assert.equal(s.writes.length, storedBeforeReading);
   await s.select('exam-plan-country', 'AT'); await s.select('exam-plan-region', 'NOE'); const { task } = await s.submit(); await s.respond(1, AT); await task;
-  assert.deepEqual(counts(), [40, 0, 0]); assert.equal(allControls()[0].value, 'offen');
+  assert.deepEqual(counts(), [52, 0, 0]); assert.equal(allControls()[0].value, 'offen');
   await s.select('exam-plan-country', 'CH'); await s.select('exam-plan-region', 'ZH'); const second = await s.submit(); await s.respond(2, CH); await second.task;
-  assert.deepEqual(counts(), [41, 1, 1]); assert.equal(allControls()[0].value, 'erklaert');
+  assert.deepEqual(counts(), [53, 1, 1]); assert.equal(allControls()[0].value, 'erklaert');
   const clear = s.product('lib/exam-goal-progress.js').clearExamGoalProgress; await React.act(async () => clear());
-  assert.deepEqual(counts(), [43, 0, 0]); assert.equal(s.dom.window.localStorage.getItem('jagdlatein-exam-goals-v1'), null);
+  assert.deepEqual(counts(), [55, 0, 0]); assert.equal(s.dom.window.localStorage.getItem('jagdlatein-exam-goals-v1'), null);
 });

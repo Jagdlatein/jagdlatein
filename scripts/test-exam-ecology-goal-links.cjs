@@ -4,6 +4,7 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { assertPreservedBaseBlueprint, restoreGoalSelfCheckSource } = require('./helpers/category-transfer-contract-nov17.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const BASELINE = 'e6b1d550d550e14a5571fa4caf43284758fe0c37';
 const RAW = 'data/exam-alignment/learning-goals-2026-11-01.json';
@@ -122,8 +123,10 @@ test('Actual v1 progress store restores existing profile/goal marks and keeps th
   unsubscribe();
 });
 
-test('No server helper, renderer, progress implementation or regional alignment file changes are needed for these links', () => {
+test('Existing goal-link, progress and regional contracts stay exact; the later transfer extension preserves all36 original projected goals', () => {
   for (const file of ['lib/exam-learning-goal-server.js', 'lib/exam-blueprint-server.js', 'components/ExamLearningGoals.js', 'lib/exam-goal-progress.js', 'data/exam-alignment/ch-2026-11-01.json', 'data/exam-alignment/at-2026-11-01.json', 'data/exam-alignment/de-2026-11-01.json']) {
-    assert.equal(fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n'), readBaseline(file).replace(/\r\n/g, '\n'), file);
+    if (file === 'lib/exam-blueprint-server.js') { assertPreservedBaseBlueprint(); continue; }
+    const current = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.equal(file === 'components/ExamLearningGoals.js' ? restoreGoalSelfCheckSource(current) : current.replace(/\r\n/g, '\n'), readBaseline(file).replace(/\r\n/g, '\n'), file);
   }
 });

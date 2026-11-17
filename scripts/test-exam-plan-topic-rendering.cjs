@@ -1,10 +1,19 @@
 // Independent component integration: actual plan/goals/region/source components,
 // synthetic ready account and router snapshots, no network or customer storage.
-const test=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
-const{createLoader,local}=require('./helpers/project-module.cjs');
+const test=require('node:test'),assert=require('node:assert/strict'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const{createLoader,local,root}=require('./helpers/project-module.cjs');
 const React=local('react'),{renderToStaticMarkup}=local('react-dom/server');
 const{JSDOM}=require(process.env.JAGDLATEIN_TEST_DOM||path.join(process.env.TEMP,'jagdlatein-page-menu-dom/node_modules/jsdom'));
 const data=createLoader()('pages/lernen/pruefungsplan.js').getStaticProps().props;
+const baselineRevision='69e4417ffc881e88432dfc04e3e444f1b1357659';
+function originalBlueprint(){
+ const load=createLoader(),mod={exports:{}},file=path.join(root,'lib/exam-blueprint-server.js');
+ const source=execFileSync('git',['show',`${baselineRevision}:lib/exam-blueprint-server.js`],{cwd:root,encoding:'utf8'});
+ const code=local('next/dist/build/swc').transformSync(source,{filename:file,disableNextSsg:true,jsc:{parser:{syntax:'ecmascript'},target:'es2022'},module:{type:'commonjs'}}).code;
+ new Function('require','module','exports',code)(id=>id.startsWith('.')?load(path.resolve(root,'lib',path.extname(id)?id:`${id}.js`)):local(id),mod,mod.exports);
+ return mod.exports.getExamBlueprintData();
+}
+const prior=originalBlueprint();
 function fixture(t,{query={},routerReady=true,profileReady=true,profile={country:'AT',region:'S'}}={}){
  const calls=[],saved=new Map();
  const storage={getItem(key){calls.push(['read',key]);throw new Error('Unexpected profile/review read during static integration');},setItem(key){calls.push(['write',key]);throw new Error('Unexpected write');},removeItem(key){calls.push(['remove',key]);throw new Error('Unexpected remove');}};
@@ -17,11 +26,15 @@ function fixture(t,{query={},routerReady=true,profileReady=true,profile={country
  const dom=new JSDOM(markup),document=dom.window.document;t.after(()=>dom.window.close());return{markup,document,calls,learning:document.querySelector('section[aria-labelledby="exam-plan-learning"]'),sources:document.getElementById('exam-plan-sources')};
 }
 
-test('Every focused category renders its complete three goals first, its own case and only its corresponding closed final lesson-source subset',t=>{
+test('Every focused category retains its original three goals, adds its fourth transfer and shows only its corresponding closed final lesson-source subset',t=>{
  for(const category of data.examBlueprint.categories){
+  const original=prior.categories.find(item=>item.slug===category.slug);
+  assert.deepEqual(category.goals.slice(0,3),original.goals);assert.deepEqual(category.practiceCase,original.practiceCase);
   const h=fixture(t,{query:{kategorie:category.slug}}),text=h.learning.textContent;
   for(const goal of category.goals){assert.ok(text.includes(goal.title));assert.ok(text.includes(goal.task));for(const criterion of goal.selfCheck)assert.ok(text.includes(criterion));}
-  assert.equal(h.learning.querySelectorAll('.examGoal').length,3);
+  assert.equal(h.learning.querySelectorAll('.examGoal').length,4);
+  assert.equal(h.learning.querySelectorAll('details.goalSelfCheck').length,4);
+  assert.ok([...h.learning.querySelectorAll('details.goalSelfCheck')].every(node=>!node.open));
   for(const other of data.examBlueprint.categories.filter(item=>item.slug!==category.slug))for(const goal of other.goals)assert.ok(!text.includes(goal.task),'No substituted or duplicate category teaching text');
   if(category.practiceCase){assert.ok(text.includes(category.practiceCase.text));assert.ok(text.includes(category.practiceCase.followUp));assert.ok([...h.learning.querySelectorAll('a')].some(link=>link.getAttribute('href')===category.practiceCase.href));}
   const expectedIds=new Set(category.goals.flatMap(goal=>goal.sourceIds));
@@ -34,13 +47,23 @@ test('Every focused category renders its complete three goals first, its own cas
  }
 });
 
-test('All-category view preserves all36 complete goals and139 inherited source records in the only final closed source section',t=>{
+test('All-category view preserves all36 complete goals and139 inherited sources while adding twelve transfers and closed self-controls',t=>{
  const h=fixture(t),text=h.learning.textContent;
- assert.equal(h.learning.querySelectorAll('.examGoal').length,36);
+ assert.equal(prior.categories.flatMap(category=>category.goals).length,36);
+ assert.equal(prior.sources.length,139);
+ assert.deepEqual(data.examBlueprint.sources.slice(0,139),prior.sources);
+ for(const original of prior.categories)assert.deepEqual(data.examBlueprint.categories.find(item=>item.slug===original.slug).goals.slice(0,3),original.goals);
+ assert.equal(h.learning.querySelectorAll('.examGoal').length,48);
+ assert.equal(data.examBlueprint.categories.flatMap(category=>category.goals).length-36,12);
  for(const category of data.examBlueprint.categories)for(const goal of category.goals)assert.ok(text.includes(goal.task));
  const sourceList=h.sources.querySelector('section[aria-labelledby="exam-plan-goal-sources"] > ul');
- assert.equal(sourceList.children.length,data.examBlueprint.sources.length);assert.equal(sourceList.children.length,139);
- assert.equal(h.document.querySelectorAll('details').length,1);assert.equal(h.sources.open,false);assert.equal(h.sources.parentElement.lastElementChild,h.sources);
+ assert.equal(sourceList.children.length,data.examBlueprint.sources.length);assert.ok(sourceList.children.length>139);
+ const checks=[...h.document.querySelectorAll('details.goalSelfCheck')],regional=data.examAlignment.regions.find(region=>region.country==='AT'&&region.region==='S');
+ assert.equal(checks.length,48+(regional?.subjectAreas||[]).flatMap(area=>area.goals).length);
+ assert.ok(checks.every(node=>!node.open));
+ assert.equal(h.document.querySelectorAll('details').length,checks.length+1);
+ assert.ok([...h.document.querySelectorAll('details')].every(node=>node===h.sources||node.classList.contains('goalSelfCheck')));
+ assert.equal(h.sources.open,false);assert.equal(h.sources.parentElement.lastElementChild,h.sources);
  assert.ok(h.document.getElementById('exam-plan-field').compareDocumentPosition(h.sources)&4);assert.deepEqual(h.calls,[]);
 });
 

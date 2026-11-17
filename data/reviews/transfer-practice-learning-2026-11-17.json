@@ -1,0 +1,135 @@
+{
+  "id": "transfer-practice-learning-2026-11-17",
+  "reviewedOn": "2026-11-17",
+  "baselineCommit": "69e4417ffc881e88432dfc04e3e444f1b1357659",
+  "scope": "Vier eigene schriftliche Transferlernziele zu bestehenden vollständigen Lektionen. Keine neuen Fachlektionen, Prüfungsfragen, Behandlungsverfahren, offiziellen Prüfungsanforderungen oder behauptete DACH-Vollabdeckung.",
+  "productFile": "data/exam-alignment/transfer-practice-2026-11-17.json",
+  "audit": {
+    "categories": [
+      { "slug": "hundewesen", "courses": 27, "lessons": 128, "questions": 396, "shortReviewQuestions": 396, "dailyCases": 6 },
+      { "slug": "wildbret-gesundheit", "courses": 16, "lessons": 73, "questions": 249, "shortReviewQuestions": 246, "dailyCases": 6 },
+      { "slug": "ausruestung-technik", "courses": 13, "lessons": 57, "questions": 170, "shortReviewQuestions": 168, "dailyCases": 4 },
+      { "slug": "tierschutz-verantwortung", "courses": 9, "lessons": 42, "questions": 115, "shortReviewQuestions": 114, "dailyCases": 4 }
+    ],
+    "existingNavigation": "Bestehende Kursgruppen, kategorisierte Kurzübungen und Quizwege sind bereits vorhanden. Regional oder als Recht eingeordnete Fragen werden nicht künstlich in den gemeinsamen DACH-Kurzübungsvorrat aufgenommen. Die neuen Ziele ergänzen die bisherigen drei Ziele je Kategorie um jeweils eine andere Transferfrage.",
+    "notRepeated": "Die neue Extinktionslektion, Fernglaseinstellung und Temperatur-Messort werden nicht erneut ausgebaut. Vorhandene 36 Lernziele und sämtliche Fachtexte, Fragen, Karten und Prüfdaten bleiben unverändert."
+  },
+  "goals": [
+    {
+      "id": "hund-suchprotokoll-transfer",
+      "moduleId": "wissen-vertiefung-hunde-nase-spur-laut",
+      "lessonId": "wissen-vertiefung-hunde-nase-spur-laut-fundkontrolle",
+      "claimScope": "Die eigene Vier-Fälle-Tabelle trennt bekannten Zielgeruch und gemeldete Reaktion. Menschliches Vorwissen wird als zusätzliche Auswertungsinformation erfragt, nicht als universeller Grund jeder Fehlanzeige behauptet.",
+      "sources": [
+        {
+          "title": "DeChant, Ford und Hall: Effect of Handler Knowledge of the Detection Task on Canine Search Behavior and Performance, 2020",
+          "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2020.00250/full",
+          "organization": "Texas Tech University / Ford K9",
+          "actuallyRead": "Tabelle 1 mit Hit/False/Correct rejection/Miss; Abschnitte zu bekannter/unbekannter Versteckzahl, Ergebnisse zu Fehlanzeigen und Discussion.",
+          "role": "Originalarbeit für die getrennten Suchergebnisse und die begrenzte Wirkung menschlichen Vorwissens. Keine veränderte Fehlanzeigenrate unter den dortigen Bedingungen nachgewiesen.",
+          "limits": "Keine allgemeine Jagdhunde-Fehlerquote und kein Auftrag zum Nachstellen des Versuchs."
+        },
+        {
+          "title": "Lit, Schweitzer und Oberbauer: Handler beliefs affect scent detection dog outcomes, 2011",
+          "url": "https://link.springer.com/article/10.1007/s10071-010-0373-2",
+          "organization": "University of California, Davis",
+          "actuallyRead": "Originalabstract und Discussion: Suchszenarien ohne Drogen-/Sprengstoff-Zielgeruch, menschliche Hinweise und Verteilung gemeldeter Anzeigen.",
+          "role": "Unabhängige Originalstudie, die den Wert kontrollierter Aufgaben ohne Zielgeruch und die Relevanz menschlicher Erwartungen bestätigt.",
+          "limits": "Andere Versuchsanordnung als DeChant; keine identische Replikation oder sichere individuelle Ursachendiagnose. Keine Zahlen oder Stoffe in den Lernfall übernommen."
+        }
+      ],
+      "visibleBoundary": "Papierfall ohne Hund, Wild oder Geruchsstoffe; keine Leistungsquote und keine individuelle Erklärung jeder Anzeige."
+    },
+    {
+      "id": "wildbret-toxinbefund-transfer",
+      "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+      "lessonId": "vorgebildete-toxine",
+      "claimScope": "S.-aureus-Bakterienzellen und ihre bereits im Lebensmittel gebildeten Enterotoxine sind verschiedene Beurteilungsgegenstände. Aus der Bakterienabtötung folgt keine sichere Toxin-Inaktivierung.",
+      "sources": [
+        {
+          "title": "BfR: Schutz vor lebensmittelbedingten Erkrankungen durch bakterielle Toxine, Stand 2020",
+          "url": "https://www.bfr.bund.de/cm/350/verbrauchertipps-schutz-vor-lebensmittelbedingten-erkrankungen-durch-bakterielle-toxine.pdf",
+          "organization": "Bundesinstitut für Risikobewertung",
+          "actuallyRead": "Original-PDF Seite 1, Einleitung und Kasten Von Staphylococcus aureus verursachte Erkrankungen; zusätzlich gerenderte Originalseite visuell geprüft.",
+          "role": "Eigenständiger amtlicher Fachtext zu vorgebildeten Enterotoxinen und Grenze küchentechnischer Erhitzung.",
+          "limits": "Keine Temperatur-, Mengen-, Zeit-, Symptomen- oder Behandlungsangaben übernommen; keine Übertragung auf jedes Toxin.",
+          "originalSha256": "B158F35F989200EE93F6D303337C606777E6E145303D79C7B6C27B6F013E1056"
+        },
+        {
+          "title": "CDC: About Staph Food Poisoning",
+          "url": "https://www.cdc.gov/staph-food-poisoning/about/index.html",
+          "organization": "Centers for Disease Control and Prevention / NCEZID",
+          "actuallyRead": "Highlights, Overview, Risk factors und How it spreads, zuletzt fachlich geprüft 28. Oktober 2026.",
+          "role": "Unabhängige amtliche Erläuterung: Vermehrung und Toxinbildung im Lebensmittel, Bakterienabtötung beseitigt vorgebildetes Toxin nicht zuverlässig.",
+          "limits": "US-Temperaturbereiche, klinische Hinweise und Therapie nicht übernommen. Reiner schriftlicher Begriffsvergleich, keine Produktfreigabe."
+        }
+      ],
+      "visibleBoundary": "Benanntes S.-aureus-Beispiel; kein Zeit-Temperatur-Verfahren, keine Speisefreigabe und keine Behandlung."
+    },
+    {
+      "id": "technik-punktwolke-transfer",
+      "moduleId": "wissen-wachstum-gps-wald-2026",
+      "lessonId": "streuung",
+      "claimScope": "Streuung wiederholter Positionswerte und Vergleich mit einer unabhängig bestimmten Referenz sind getrennte Prüfpunkte; ein enger Punkteschwarm beweist die richtige Lage nicht allein.",
+      "sources": [
+        {
+          "title": "JCGM: International vocabulary of metrology, VIM 2.13 und 2.15",
+          "url": "https://jcgm.bipm.org/vim/en/2.13.html",
+          "additionalUrl": "https://jcgm.bipm.org/vim/en/2.15.html",
+          "organization": "Joint Committee for Guides in Metrology / BIPM",
+          "actuallyRead": "Beide Definitionen samt Hinweisen zu Messgenauigkeit und Messpräzision.",
+          "role": "Original-Begriffsnorm für Nähe zum wahren Wert gegenüber Übereinstimmung wiederholter Werte unter benannten Bedingungen.",
+          "limits": "Zwei Abschnitte derselben Organisation, nicht zwei unabhängige Nachweise; keine Geräteprüfung oder numerische Genauigkeitsgarantie."
+        },
+        {
+          "title": "Strunk und andere: An examination of GNSS positioning under dense conifer forest canopy in the Pacific Northwest, USA, 2025",
+          "url": "https://research.fs.usda.gov/treesearch/68916",
+          "originalPdf": "https://research.fs.usda.gov/download/treesearch/68916.pdf",
+          "organization": "USDA Forest Service, Pacific Northwest Research Station",
+          "actuallyRead": "Originalabstract und Original-PDF Seiten 8–10, insbesondere 2.5.2 Naïve accuracy estimation und 3.1 Accuracy estimator performance. Originalseiten 8 und 10 visuell geprüft.",
+          "role": "Originalbeleg zum begrenzten Aussagewert interner Streuung gegenüber unabhängiger Referenz unter den untersuchten Wald-/Messbedingungen.",
+          "limits": "Keine Meter-, Geräte-, Aufnahmezeit-, Marken- oder Grenzvermessungsangabe übernommen.",
+          "originalSha256": "C895D9AA65206242A06EB46D3D6E7A5C19560A34108A96268AE18B8AB7E57526"
+        },
+        {
+          "title": "Lee und andere: The effects of nearby trees on the positional accuracy of GNSS receivers in a forest environment, 2023",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0283090",
+          "organization": "University of Georgia, Warnell School of Forestry and Natural Resources",
+          "actuallyRead": "Materials and methods: unabhängig vermessene Kontrollpunkte, Referenzaufbau und Standortgrenzen.",
+          "role": "Unabhängige Originalarbeit für das Referenzprinzip, keine Replikation von Strunks konkretem Streuungsbefund.",
+          "limits": "Keine Aufnahme- oder Vermessungsanleitung und kein pauschaler Gerätevergleich."
+        }
+      ],
+      "visibleBoundary": "Erfundene Papierprotokolle ohne Messwerte; keine Grenzvermessung, Gerätegarantie oder Reviergrenzenfeststellung."
+    },
+    {
+      "id": "verantwortung-wahlzugang-transfer",
+      "moduleId": "wissen-vertiefung-tierwohl-empfindung-round6-2026",
+      "lessonId": "wahl-kontrolle",
+      "claimScope": "Wahlmöglichkeiten müssen tatsächlich verfügbar sein; Kontrolle betrifft vorhersagbaren Einfluss eigener Handlungen. Ein gezähltes Angebot oder einmalige Nichtnutzung ist keine vollständige Tierwohlbewertung.",
+      "sources": [
+        {
+          "title": "Englund und Cronin: Choice, control, and animal welfare: definitions and essential inquiries to advance animal welfare science, 2023",
+          "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1250251/full",
+          "organization": "Lincoln Park Zoo / Georgia State University",
+          "actuallyRead": "2.1 The difference between choice, control, and related constructs; Abschnitte 3.1–3.3 zu Zahl/Verfügbarkeit/artspezifischen Grenzen und Nichtnutzung.",
+          "role": "Originalautoren-Fachübersicht mit expliziten Begriffsdefinitionen und offenen Forschungsfragen.",
+          "limits": "Kein Hundetherapieversuch, keine allgemeine optimale Zahl an Angeboten und keine automatische Tierwohlverbesserung."
+        },
+        {
+          "title": "Littlewood, Heslop und Cobb: The agency domain and behavioral interactions: assessing positive animal welfare using the Five Domains Model, 2023",
+          "url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1284869/full",
+          "equivalentCourseUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10656766/",
+          "organization": "Massey University / University of Melbourne",
+          "actuallyRead": "4.3 Choice and control und 5.1 Impediments to agency being exercised: vorhersagbare Folgen, freiwillige Interaktion/Nichtinteraktion, beschränkter Zugang.",
+          "role": "Unabhängig verfasste Konzept-/Forschungsübersicht aus anderer Autorengruppe; dieselbe Publikationsplattform macht sie nicht zur selben Quelle.",
+          "limits": "Keine eigenständige Tierwohlmessung am Papierhund und keine Eingriffs-/Trainingsanweisung. PMC lieferte nach erster Ansicht eine Browserprüfung; relevanter Originaltext wurde direkt beim Verlag gelesen."
+        }
+      ],
+      "visibleBoundary": "Kein Tier versuchsweise einschränken; fehlenden Kontext offenhalten, keine Diagnose oder Tierwohlgarantie."
+    }
+  ],
+  "preservation": "Keine Änderung an bestehenden Kurs-, Lektions-, Fragen-, Karten-, Rechts-, Medien- oder Quelldateien. Frühere Prüfstände bleiben übernommen. Quellen werden im bestehenden Prüfungsplan beziehungsweise in der verknüpften Lektion am Ende angezeigt; wichtige Grenzen stehen bereits im jeweiligen Lernauftrag.",
+  "media": "Keine neuen Medien; Original-PDF-PNGs dienen ausschliesslich der Quellenprüfung ausserhalb des Repositories.",
+  "validationScope": "Gezielte Tests prüfen Schema, tatsächliche Lektions- und Vierantwortfragenbezüge, weiterführende Ziele, Projektion, klare Grenzen und die unveränderten bisherigen 36 Lernziele/Fachdateien. Sie sind keine vollständige fachliche Zertifizierung. Die zentrale Integration der zwölf Kategorien wird separat geprüft."
+}

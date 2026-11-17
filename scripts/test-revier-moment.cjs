@@ -73,7 +73,9 @@ test('A case copies exactly one inherited course question, full reading and scop
   for (const moment of moments) {
     const original = data.find(item => item.question.id === moment.question.id);
     assert.deepEqual(moment.question, original.question);
-    assert.deepEqual(Object.keys(moment).sort(), ['dateKey', 'displayDate', 'href', 'question', 'reading', 'sourceScope', 'topic']);
+    assert.deepEqual(Object.keys(moment).sort(), ['categorySlug', 'dateKey', 'displayDate', 'href', 'practice', 'question', 'reading', 'sourceScope', 'topic']);
+    assert.equal(moment.categorySlug, original.categorySlug);
+    assert.deepEqual(moment.practice, original.practice);
     assert.deepEqual(Object.keys(moment.topic).sort(), ['id', 'sources', 'title']);
     assert.deepEqual(moment.topic.sources, original.topic.sources);
     assert.equal(moment.topic.sources.length, moment.question.sourceIds.length);

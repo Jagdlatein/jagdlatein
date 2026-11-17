@@ -2,16 +2,19 @@
 // lesson fixtures. No live API, browser data or user answers are accessed.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 const{createLoader,local,root}=require('./helpers/project-module.cjs'),swc=local('next/dist/build/swc');
-const load=createLoader(),current=load('lib/learning-search.js'),filename=path.join(root,'lib/learning-search.js'),source=fs.readFileSync(filename,'utf8'),baseline=execFileSync('git',['show','98fc900a6825bfa1c1c7f3520814eb954e4498f5:lib/learning-search.js'],{cwd:root,encoding:'utf8'}),old={exports:{}};
+const{restoreTransferSearchSource}=require('./helpers/category-transfer-contract-nov17.cjs');
+// Compare the exact original index population here. The twelve new, real
+// transfer entries have independent all-category positive discovery checks.
+const load=createLoader(),current=createLoader({'./exam-transfer-goals-server':{getExamTransferGoals:()=>[]}})('lib/learning-search.js'),filename=path.join(root,'lib/learning-search.js'),source=fs.readFileSync(filename,'utf8'),baseline=execFileSync('git',['show','98fc900a6825bfa1c1c7f3520814eb954e4498f5:lib/learning-search.js'],{cwd:root,encoding:'utf8'}),old={exports:{}};
 const{code}=swc.transformSync(baseline,{filename,jsc:{parser:{syntax:'ecmascript'},target:'es2022'},module:{type:'commonjs'}});
 new Function('require','module','exports',code)(id=>id.startsWith('.')?load(path.resolve(root,'lib',path.extname(id)?id:id+'.js')):local(id),old,old.exports);
 const lessons=(id,title,paragraphs)=>({id,title,paragraphs,takeaway:'Eigenes synthetisches Lernbeispiel.',exercise:'Teste den Suchbegriff.'});
 const course=(id,title,entries)=>({id,title,description:'Rein synthetischer Rankingtest.',category:'Wildkunde',countries:['DE','AT','CH'],lessons:entries,questions:[{q:'SECRET_QUIZ_MUST_NOT_BE_INDEXED',correct:['SECRET_QUIZ_MUST_NOT_BE_INDEXED'],explain:'SECRET_EXPLANATION_MUST_NOT_BE_INDEXED'}]});
-const synthetic=fixtures=>createLoader({'./learning-curriculum':{learningModules:fixtures},'./course-catalog':{miniCourses:[]},'./mini-course-details':{miniCourseDetails:{}}})('lib/learning-search.js');
+const synthetic=fixtures=>createLoader({'./learning-curriculum':{learningModules:fixtures},'./course-catalog':{miniCourses:[]},'./mini-course-details':{miniCourseDetails:{}},'./exam-transfer-goals-server':{getExamTransferGoals:()=>[]}})('lib/learning-search.js');
 function all(api,args){const first=api.searchLearning(args),results=[...first.results];for(let page=2;page<=first.pages;page++)results.push(...api.searchLearning({...args,page}).results);return{...first,results};}
 
-test('The entire index definition, included lesson fields, aliases, normalizer and typo correction stay byte-identical to HEAD98fc900',()=>{
- assert.equal(source.slice(0,source.indexOf('function matchRank')),baseline.slice(0,baseline.indexOf('function matchRank')));
+test('The original index, included lesson fields, aliases, normalizer and typo correction stay byte-identical after the exact12-transfer appendix',()=>{
+ const original=restoreTransferSearchSource(source);assert.equal(original.slice(0,original.indexOf('function matchRank')),baseline.slice(0,baseline.indexOf('function matchRank')).replaceAll('\r\n','\n'));
  const includes=s=>s.match(/function includesTerm\(value, term\) \{[\s\S]*?\n\}/)[0];assert.equal(includes(source),includes(baseline));
  const fixtures=[course('safe-course','Neutraler Titel',[{...lessons('safe','Sichere Lektion',['Öffentlicher Testtext.']),questions:[{q:'SECRET_QUIZ_MUST_NOT_BE_INDEXED'}],explain:'SECRET_EXPLANATION_MUST_NOT_BE_INDEXED'}])],api=synthetic(fixtures);
  assert.equal(api.searchLearning({query:'SECRET_QUIZ_MUST_NOT_BE_INDEXED',type:'course'}).total,0);assert.equal(api.searchLearning({query:'SECRET_EXPLANATION_MUST_NOT_BE_INDEXED',type:'course'}).total,0);

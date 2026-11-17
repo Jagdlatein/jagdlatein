@@ -22,7 +22,12 @@ function oldProjection(){
 test('Each positive common or regional goal link resolves to exactly its existing lesson cards and no full-course or foreign fallback',()=>{
  const groups=[blueprint.categories.flatMap(c=>c.goals),alignment.regions.flatMap(r=>(r.subjectAreas||[]).flatMap(a=>a.goals))];let counts=[];
  for(const goals of groups){let positive=0;for(const goal of goals){if(goal.cardHref){positive++;const selection=scoped(goal),deck=cards.getFlashcardExport(selection);assert.ok(!selection.invalid&&!deck.selection.invalid);assert.equal(goal.cardCount,deck.cards.length);assert.ok(goal.cardCount>0);assert.equal(deck.selection.returnHref,goal.href);assert.ok(deck.cards.every(card=>card.moduleId===selection.courseId&&card.lessonId===selection.lessonId));assert.deepEqual(cardAnchor(html(goal)),[{href:goal.cardHref,count:deck.cards.length}]);}else{assert.equal(goal.cardCount,undefined);assert.deepEqual(cardAnchor(html(goal)),[]);}}counts.push(positive);}
- assert.deepEqual(counts,[15,22]);
+ // The original15 common decks remain, plus exactly the11 new nonlegal tasks;
+ // the22 regional decks keep their existing scope and count.
+ assert.deepEqual(counts,[26,22]);
+ const addedIds=new Set(load('lib/exam-transfer-goals-server.js').getExamTransferGoals().map(item=>item.goal.id));
+ assert.equal(blueprint.categories.flatMap(category=>category.goals).filter(goal=>!addedIds.has(goal.id)&&goal.cardHref).length,15);
+ assert.equal(blueprint.categories.flatMap(category=>category.goals).filter(goal=>addedIds.has(goal.id)&&goal.cardHref).length,11);
 });
 
 test('The server adds only tiny positive count and exact href fields; every pre-existing projected goal field is positively preserved',()=>{

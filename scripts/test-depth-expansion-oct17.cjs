@@ -12,7 +12,13 @@ const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxin
 // complete two-appendix delta against b9ed55f rather than weakening old counts.
 // The published Nov08 spores/toxins pair was also already outside this older
 // exact 151-question field snapshot before Nov17. Its strict helper retains IDs.
-const load = createLoader(foodSporesToxinsBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture())));
+// These deliberately reduced historical courses cannot back the new twelve
+// current transfer cases. Their real search entries have separate full-corpus
+// coverage; keep this older course/lesson discovery fixture independent.
+const load = createLoader({
+  ...foodSporesToxinsBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture())),
+  './exam-transfer-goals-server': { getExamTransferGoals: () => [] },
+});
 const { depthExpansionDatasets: datasets, depthExpansionModules: added } = load('lib/learning-expansion-oct17.js');
 const { learningModules, learningQuestions, learningCategories } = load('lib/learning-curriculum.js');
 const { QUESTIONS } = load('data/questions-full.js');

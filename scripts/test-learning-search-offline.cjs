@@ -80,7 +80,7 @@ test('Course search shows the matching lesson passage and deep link, with quiz d
   assert.equal(match.lessonTitle, 'Kühlung ist ein kontrollierter Prozess');
   assert.match(match.description, /Kühlkette/); assert.ok(match.description.length <= 260);
   const fixtures = [{ id: 'search-fixture', title: 'Fixture', description: 'Neutral', category: 'Wildkunde', countries: ['DE'], lessons: [{ id: 'safe', title: 'Sichere Lektion', paragraphs: ['Öffentlicher Lehrtext über Merkmale.'], takeaway: 'Merkmale prüfen.', exercise: 'Merkmale nennen.', questions: [{ q: 'SecretProbe', options: ['SecretProbe'], explain: 'SecretProbe' }] }], questions: [{ q: 'SecretProbe', correct: ['SecretProbe'] }] }];
-  const isolated = load('lib/learning-search.js', { './learning-curriculum': { learningModules: fixtures } });
+  const isolated = load('lib/learning-search.js', { './learning-curriculum': { learningModules: fixtures }, './exam-transfer-goals-server': { getExamTransferGoals: () => [] } });
   assert.equal(isolated.searchLearning({ query: 'SecretProbe', type: 'course' }).total, 0, 'Only selected teaching fields are searchable');
 });
 test('Search API rejects unauthenticated and unpaid access and never caches account results', async () => {

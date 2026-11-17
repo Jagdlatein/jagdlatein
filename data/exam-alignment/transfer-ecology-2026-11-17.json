@@ -1,0 +1,112 @@
+{
+  "categories": [
+    {
+      "slug": "wildkunde",
+      "goal": {
+        "id": "wild-verdauungswege-transfer",
+        "title": "Verdauungswege vergleichen",
+        "task": "Vergleiche im eigenen Papierfall Caecotrophie beim Feldhasen mit dem Wiederkauen beim Reh. Zeichne für beide Vorgänge den Weg des Materials und ordne den Gärraum im Verhältnis zum Dünndarm ein. Daraus folgt keine Fütterungsanweisung oder feste Verdauungszeit.",
+        "selfCheck": [
+          "Ich unterscheide die Herkunft des erneut aufgenommenen beziehungsweise hochgebrachten Materials.",
+          "Ich ordne Gärraum, Magen und Dünndarm im jeweiligen Weg nachvollziehbar an.",
+          "Ich begrenze den Vergleich auf die beschriebenen Vorgänge und leite keine einheitlichen Passagezeiten ab."
+        ],
+        "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+        "lessonId": "caecotrophie",
+        "caseText": "Eigener Papierfall: Ein Lernprotokoll beschreibt beim Feldhasen die Wiederaufnahme speziell gebildeten weichen Blinddarmmaterials. Daneben steht das Reh, das einen Bissen aus dem Vormagen zum erneuten Kauen zurückbringt. Über beiden Notizen steht die Überschrift «Wiederkäuer». Prüfe diese Zusammenfassung und stelle die unterschiedlichen Wege in einer eigenen Skizze dar; ein Versuch am Tier gehört nicht zur Aufgabe.",
+        "followUp": "Lies die Erklärung zum Blinddarm und die Wiederkaulektion. Präzisiere danach die Überschrift und erkläre, wie beide Systeme Mikroorganismen nutzen, ohne die Vorgänge gleichzusetzen.",
+        "relatedLessons": [
+          {
+            "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+            "lessonId": "blinddarm"
+          },
+          {
+            "moduleId": "wissen-ausbau-biologie-wiederkaeuer-2026",
+            "lessonId": "wiederkauen"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "natur-revier",
+      "goal": {
+        "id": "natur-gewaesserprofil-transfer",
+        "title": "Gewässerprofile vergleichen",
+        "task": "Prüfe die Vergleichsaussage des Papierfalls und ergänze eine nachvollziehbare Protokollvorlage. Unterscheide dabei Sauerstoffmessung und Temperaturprofil. Nutze die vorhandenen Lerntexte; eigene Messfahrten oder das Betreten von Uferbereichen sind nicht Teil dieser Übung.",
+        "selfCheck": [
+          "Ich prüfe Messort, Tiefe, Zeitpunkt, Einheit und Messverfahren auf Vergleichbarkeit.",
+          "Ich unterscheide Temperatur und gelösten Sauerstoff als verschiedene Messgrössen.",
+          "Ich begrenze die Aussage auf die dokumentierten Messpunkte und ergänze keinen unbelegten Zustand des ganzen Gewässers."
+        ],
+        "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+        "lessonId": "messprofil",
+        "caseText": "Ein eigener Papierfall enthält zwei Sauerstoffprotokolle desselben Gewässers: eines von der Oberfläche am Morgen und eines aus einem tieferen Bereich am Abend. In der Zusammenfassung steht «besser geworden». Genaue Messstelle, Einheit und Verfahren fehlen. Prüfe den Vergleich, ohne Messwerte oder einen Gewässerzustand zu erfinden.",
+        "followUp": "Lies die Erklärung zur Schichtung und die Monitoring-Lektion zu Begleitangaben. Formuliere danach eine begrenzte Aussage und benenne die Angaben, die vor einem belastbaren Vergleich ergänzt werden müssen.",
+        "relatedLessons": [
+          {
+            "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+            "lessonId": "schichtung"
+          },
+          {
+            "moduleId": "wissen-ausbau-monitoring",
+            "lessonId": "daten"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "wald-pflanzen",
+      "goal": {
+        "id": "wald-mykorrhiza-transfer",
+        "title": "Mykorrhiza erklären",
+        "task": "Entwerfe für den Papierfall ein eigenes Austauschschema zwischen grüner Partnerpflanze und Mykorrhizapilz. Beschrifte die Stoffgruppen und prüfe, was die beschriebene Beobachtung belegt. Die Aufgabe erfordert weder das Freilegen von Wurzeln noch eine Pilzbestimmung oder eine Aussage zur Essbarkeit.",
+        "selfCheck": [
+          "Ich ordne die Beiträge beider Partner zu und unterscheide Wasser, mineralische Nährstoffe und organische Kohlenstoffverbindungen.",
+          "Ich trenne den sichtbaren Fruchtkörper vom funktionellen Kontakt zwischen Pilz und Feinwurzel.",
+          "Ich beschreibe die unterstützende Grundfunktion ohne eine allgemeine Garantie gegen Trockenstress."
+        ],
+        "moduleId": "wissen-ausbau-pilze-lebensweisen-2026",
+        "lessonId": "partnerschaft",
+        "caseText": "Eigener Papierfall: In einer Waldnotiz steht ein Pilzfruchtkörper nahe bei einem Baum. Daraus wird ohne weitere Untersuchung eine bestimmte Mykorrhizapartnerschaft dieses Baums abgeleitet. Erkläre zunächst die Grundfunktion einer solchen Partnerschaft in einem selbst gezeichneten Schema und prüfe dann den Beweisanspruch der Notiz. Die räumliche Nähe wird nicht als fertiger Nachweis behandelt.",
+        "followUp": "Verbinde den Pilzaufbau mit der Blattfunktion. Ergänze in deinem Schema die Herkunft der organischen Kohlenstoffverbindungen und benenne, welche Beziehung ein Fruchtkörper neben einem Stamm allein offenlässt.",
+        "relatedLessons": [
+          {
+            "moduleId": "wissen-ausbau-pilze-lebensweisen-2026",
+            "lessonId": "geflecht"
+          },
+          {
+            "moduleId": "wissen-ausbau-oekologie-blattfunktion-2026",
+            "lessonId": "photosynthese"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "landwirtschaft-lebensraeume",
+      "goal": {
+        "id": "feld-gerstenaufbau-transfer",
+        "title": "Gerstenähre gliedern",
+        "task": "Gliedere die beschriebene Kulturgerstenähre auf dem Papier in Ährenachse, Ährchen und einzelne Blüte. Prüfe anschliessend die Kornzuordnung. Der Vergleich gilt für das behandelte Kulturgerstenmodell; er ist kein vollständiger Schlüssel aller Gerstenarten und keine Ertragsbewertung.",
+        "selfCheck": [
+          "Ich halte Ährenachse, Ährchen und einzelne Blüte als verschiedene Bauebenen auseinander.",
+          "Ich erkläre die Kornbildung der beschriebenen Dreiergruppe, ohne Kornzahl und Anzahl der Ährchen gleichzusetzen.",
+          "Ich begrenze die Zuordnung auf das beschriebene Kulturmodell und ergänze keine unbelegten Sorten- oder Ertragsangaben."
+        ],
+        "moduleId": "wissen-vertiefung-getreidearten-round6-2026",
+        "lessonId": "gerste-dreiergruppen",
+        "caseText": "Ein eigener Papierfall beschreibt an jedem Ansatz einer Kulturgerstenähre drei einblütige Ährchen, von denen nur das mittlere ein Korn trägt. In der Auswertung steht dagegen «drei Körner je Ährchen». Zeichne den beschriebenen Aufbau selbst und prüfe die Verwechslung der Bauebenen. Ein reales Pflanzenfoto oder ein Feldbestand wird dabei nicht behauptet.",
+        "followUp": "Nutze den allgemeinen Ährchenbau und den Weizenvergleich. Erkläre danach, warum eine Gruppe benachbarter Ährchen und ein einzelnes mehrblütiges Ährchen verschieden beschrieben werden müssen.",
+        "relatedLessons": [
+          {
+            "moduleId": "wissen-vertiefung-graeser-bau-2026",
+            "lessonId": "aehrchen-spelzen"
+          },
+          {
+            "moduleId": "wissen-vertiefung-getreidearten-round6-2026",
+            "lessonId": "weizen-aehrchen"
+          }
+        ]
+      }
+    }
+  ]
+}

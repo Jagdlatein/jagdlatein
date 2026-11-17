@@ -1,0 +1,180 @@
+{
+  "checkedOn": "2026-11-17",
+  "baselineCommit": "69e4417ffc881e88432dfc04e3e444f1b1357659",
+  "scope": "Vier eigene Transfer-Papierfälle im bestehenden Prüfungsplan. Keine neuen Kurse, Lektionen, Quizfragen, Karten oder Medien. Die vorhandenen vollständigen Erklärungen, Vierantwortfragen, Quellen und redaktionellen Prüfdaten werden unverändert verknüpft. Dies ist keine fachliche Gesamtzertifizierung der Plattform.",
+  "dataFile": "data/exam-alignment/transfer-ecology-2026-11-17.json",
+  "audit": {
+    "existingGoals": 36,
+    "goalGap": "Die vier Kategorien besitzen bereits vollständige thematische Lektionen und technische Kurzübungsabdeckung. Die Erweiterung ergänzt je einen gezielten Transferfall mit drei Bewertungskriterien und zwei ergänzenden Lektionsbezügen statt weitere inhaltlich doppelte Fragen anzulegen.",
+    "categoryCountsAtBaseline": [
+      { "slug": "wildkunde", "courses": 39, "lessons": 180, "questions": 564, "editorialDailyCases": 6 },
+      { "slug": "natur-revier", "courses": 16, "lessons": 69, "questions": 217, "editorialDailyCases": 6 },
+      { "slug": "wald-pflanzen", "courses": 18, "lessons": 86, "questions": 286, "editorialDailyCases": 6 },
+      { "slug": "landwirtschaft-lebensraeume", "courses": 12, "lessons": 56, "questions": 172, "editorialDailyCases": 6 }
+    ],
+    "preservation": "Die ursprünglichen 36 Lernziele und sämtliche verwendeten Kurs-, Lektions-, Fragen-, Antwort-, Quellen- und Kartenobjekte bleiben erhalten. Keine Neubewertung alter Kursprüfdaten. Fremdes afternoon-JSON und marketing werden nicht verändert."
+  },
+  "goals": [
+    {
+      "id": "wild-verdauungswege-transfer",
+      "category": "wildkunde",
+      "moduleId": "wissen-ausbau-biologie-verdauungsvergleich-2026",
+      "lessonId": "caecotrophie",
+      "existingQuestionForDailyCase": "wissen-ausbau-biologie-verdauungsvergleich-2026-caecotrophie-q4",
+      "existingPrimaryLessonCardCount": 7,
+      "claims": [
+        "Caecotrophie des Feldhasen führt speziell gebildetes weiches Blinddarmmaterial durch erneutes Schlucken wieder in den Magen-/Dünndarmweg. Das wird vom Wiederkaubissen aus dem Vormagen unterschieden.",
+        "Der Papiervergleich ordnet den Gärraum vor beziehungsweise hinter dem Dünndarm ein und trennt unterschiedliche Wege, ohne aus beiden Vorgängen dieselbe Verdauungsstrategie zu machen."
+      ],
+      "sources": [
+        {
+          "title": "Digestive strategies in two sympatrically occurring lagomorphs",
+          "authors": "Kuijper, van Wieren und Bakker",
+          "url": "https://zslpublications.onlinelibrary.wiley.com/doi/10.1017/S0952836904005722",
+          "organization": "Journal of Zoology; beteiligte Universitäten Groningen und Wageningen",
+          "read": "Originalabstract direkt vollständig gelesen; keinen Volltext behauptet.",
+          "role": "Originalvergleich von Feldhase und Kaninchen; Blinddarmfermentation, Caecotrophie und unterschiedliche Verdauungsstrategien.",
+          "limits": "Keine Messwerte, Passagezeiten, Organquotienten oder Fütterungsempfehlungen. Die bibliografische Jahresangabe des bestehenden Kurses bleibt unverändert."
+        },
+        {
+          "title": "Comparative in vitro study of caecal microbial activity in brown hares and domestic rabbits which were offered the same diet",
+          "authors": "Miśta und andere, 2018",
+          "url": "https://link.springer.com/article/10.1007/s13364-018-0357-1",
+          "organization": "Mammal Research; Wrocław University of Environmental and Life Sciences und Mitautoren",
+          "read": "Originalabstract und Introduction direkt gelesen; keine vollständige Methoden-/Ergebnislektüre behauptet.",
+          "role": "Unabhängige Originalarbeit; Einleitung erklärt weiche Blinddarmfraktion und Wiederaufnahme im Unterschied zur festeren Faserfraktion.",
+          "limits": "Die Kaninchen dieser Arbeit sind Hauskaninchen. Keine unabhängige Replikation des Kuijper-Fütterungsversuchs behauptet."
+        },
+        {
+          "title": "Gastrointestinal Anatomy and Physiology of Ruminants, LPM-00500",
+          "authors": "Joanne McCrea, 2026",
+          "url": "https://www.uaf.edu/ces/publications/database/agriculture-livestock/ruminant-gastrointestinal-anatomy.php",
+          "organization": "University of Alaska Fairbanks, Cooperative Extension Service",
+          "read": "Originaltext direkt gelesen, insbesondere Wiederkauen, Speiseröhre und Retikulorumen; Absätze zu Regurgitation und erneutem Kauen/Schlucken.",
+          "role": "Institutionelle Einordnung der begrenzten Wiederkaufolge: Inhalt aus dem Vormagen zurück durch die Speiseröhre ins Maul, erneutes Kauen und Schlucken.",
+          "limits": "Kein Versuch am Reh und keine Replikation der Hasenarbeiten. Andere Aussagen der Seite zu Stoffwechsel, Säuren, Ernährung, Krankheiten oder Zeitwerten werden nicht übernommen."
+        }
+      ],
+      "accessLimits": "CSU-Rumination und die Minnesota-Physiologieseite waren direkt nicht lesbar (Timeout beziehungsweise403); sie werden in dieser neuen Review nicht als frisch gelesene Bestätigung gezählt. Bestehende Quellenrecords werden nicht umgeschrieben.",
+      "visibleLimits": "Eigenes Papierbeispiel, kein Versuch am Tier, keine Fütterungsanweisung und keine feste Verdauungszeit."
+    },
+    {
+      "id": "natur-gewaesserprofil-transfer",
+      "category": "natur-revier",
+      "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "messprofil",
+      "existingQuestionForDailyCase": "wissen-ausbau-gewaesser-sauerstoff-2026-q16",
+      "existingPrimaryLessonCardCount": 3,
+      "claims": [
+        "Eine Sauerstoffbeobachtung braucht Ort, Tiefe, Zeitpunkt, Einheit und Verfahren. Unterschiedliche Tiefe und Tageszeit begrenzen einen direkten Vergleich.",
+        "Temperatur und gelöster Sauerstoff sind getrennte Messgrössen. Ein einzelner Messpunkt beschreibt nicht automatisch den gesamten See."
+      ],
+      "sources": [
+        {
+          "title": "Thermische Regime von Seen und Fliessgewässern",
+          "url": "https://www.thermdis.eawag.ch/de/lakes-rivers/",
+          "organization": "Eawag, Forschungsinstitut des ETH-Bereichs",
+          "read": "Originalabschnitte zu Seen direkt gelesen: Oberfläche, Schichtung, Mischung und Sauerstoffnachschub in tiefere Bereiche.",
+          "role": "Institutionelle Erklärung, warum Tiefenlage und Schichtung bei der Interpretation wichtig sind.",
+          "limits": "Keine universellen Saison-, Tiefen- oder Sauerstoffgrenzwerte und keine neue Gewässerzustandsbewertung."
+        },
+        {
+          "title": "Water Quality Conditions in Upper Klamath and Agency Lakes, Oregon, 2005; SIR 2008-5026, Section 7",
+          "authors": "Hoilman, Lindenberg und Wood",
+          "url": "https://pubs.usgs.gov/sir/2008/5026/section7.html",
+          "organization": "U.S. Geological Survey",
+          "read": "Relevante Originalabschnitte Stratification and Wind Speed sowie Timing of Daily Extremes vollständig im Original-Suchindex gelesen; direkter Seitenabruf lieferte403.",
+          "role": "Unabhängiger amtlicher Originalbericht mit Messungen über Tiefe, Ort und Tageszeit; methodisches Beispiel für die Begrenzung verschiedener Profile.",
+          "limits": "Die Messreihe betrifft Oregon 2005 und wird weder als DACH-Messreihe noch als unabhängige Wiederholung der Eawag-Erklärung ausgegeben. Keine Messwerte, Einheitenwerte oder Ergebnisse in den eigenen Fall übertragen."
+        }
+      ],
+      "visibleLimits": "Eigener Papierfall ohne erfundene Messwerte; keine Messfahrt oder Uferbegehung. Fehlende Begleitangaben werden benannt, statt sie zu erfinden."
+    },
+    {
+      "id": "wald-mykorrhiza-transfer",
+      "category": "wald-pflanzen",
+      "moduleId": "wissen-ausbau-pilze-lebensweisen-2026",
+      "lessonId": "partnerschaft",
+      "existingQuestionForDailyCase": "wissen-ausbau-pilze-lebensweisen-2026-q5",
+      "existingPrimaryLessonCardCount": 3,
+      "claims": [
+        "Beim behandelten Grundmodell unterstützt der Pilz die Wasser-/Mineralstofferschliessung und erhält von der grünen Partnerpflanze organische Kohlenstoffverbindungen aus der Photosynthese.",
+        "Ein Fruchtkörper neben einem Baum ist nicht mit dem nachgewiesenen funktionellen Pilz-Feinwurzelkontakt gleichzusetzen. Die Grundfunktion ist keine allgemeine Garantie gegen Trockenstress."
+      ],
+      "sources": [
+        {
+          "title": "Mykorrhiza – Genetic Expo",
+          "url": "https://genetic-expo.wsl.ch/de/funga/mykorrhiza/",
+          "organization": "Eidgenössische Forschungsanstalt WSL",
+          "read": "Originaltext direkt gelesen, Abschnitt Was ist eine Mykorrhiza? einschliesslich Austausch und Wurzelkontakt.",
+          "role": "Institutioneller Originaltext zu Pilzhyphen, Wasser/Mineralstoffen, Pflanzenzucker und Ektomykorrhiza.",
+          "limits": "Keine Garantie für den Einzelbaum und keine Bestimmung einer Partnerschaft nur aus einem Fruchtkörperstandort."
+        },
+        {
+          "title": "Die Pilzflora der Bayerischen Naturwaldreservate, LWF Wissen 43",
+          "authors": "Markus Blaschke, Christoph Hahn und Wolfgang Helfer",
+          "url": "https://lwf.bayern.de/mam/cms04/service/dateien/w43-die-pilzflora-der-bayerischen-naturwaldreservate.pdf",
+          "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft",
+          "read": "Originaltext gedruckte Seiten 6–7 gelesen und beide PDF-Seiten visuell kontrolliert; physische PDF-Seiten 2–3.",
+          "role": "Unabhängige fachliche Erklärung Mykorrhiza – gegenseitige Hilfe sowie Trennung von Fruchtkörper, Geflecht und funktionellem Wurzelkontakt.",
+          "limits": "Ältere starke Netzwerk-/gerichtete Baumhilfeaussagen und Pilzzuchtpauschalen werden nicht übernommen. Keine Grafik oder Lehrfotografie kopiert."
+        }
+      ],
+      "accessLimits": "WSL Wurzeln und Rhizosphäre lieferte direkt404; der indexierte Originaltext war lesbar, zählt aber nicht als weitere unabhängige Organisation neben WSL Genetic Expo. Keine Umgehung und keine Änderung bestehender Quellenrecords.",
+      "pdfEvidenceOutsideRepository": "work/transfer-ecology-nov17/sources/lwf-pilzflora-w43.pdf; lwf-physical-02.png und lwf-physical-03.png",
+      "visibleLimits": "Eigenes Schema ohne Wurzeln freizulegen; keine Pilzbestimmung, Essbarkeitsbewertung oder Trockenheitsgarantie."
+    },
+    {
+      "id": "feld-gerstenaufbau-transfer",
+      "category": "landwirtschaft-lebensraeume",
+      "moduleId": "wissen-vertiefung-getreidearten-round6-2026",
+      "lessonId": "gerste-dreiergruppen",
+      "existingQuestionForDailyCase": "wissen-vertiefung-getreidearten-round6-2026-gerste-dreiergruppen",
+      "existingPrimaryLessonCardCount": 1,
+      "claims": [
+        "Im behandelten Kulturgerstenmodell stehen an einem Ansatz drei einblütige Ährchen; beim zweizeiligen Typ bildet nur das mittlere ein Korn.",
+        "Eine Gruppe dreier Ährchen ist nicht ein mehrblütiges Ährchen. Der Vergleich zum Weizen verknüpft Bauebenen, ohne eine Bestimmung aller Gerstenarten oder eine Ertragsregel zu liefern."
+      ],
+      "sources": [
+        {
+          "title": "Hordeum vulgare / Triticum aestivum, Flora Helvetica 2018",
+          "url": "https://www.infoflora.ch/de/flora/hordeum-vulgare.html",
+          "additionalUrl": "https://www.infoflora.ch/de/flora/triticum-aestivum.html",
+          "organization": "InfoFlora / Flora Helvetica",
+          "read": "Beide Original-Artbeschreibungen direkt gelesen: Gerste mit dreierweisen einblütigen Ährchen, Weizen mit mehrblütigen Ährchen.",
+          "role": "Schweizer Flora als taxonomische und morphologische Grundlage; beide Seiten sind eine Quellenfamilie.",
+          "limits": "Keine Masse, Blühmonate, Schutz-/Herkunftsangaben oder exakten Kornzahlen eines Feldbestandes übertragen."
+        },
+        {
+          "title": "2-Row vs 6-Row",
+          "authors": "Hannah Turner",
+          "url": "https://nios.montana.edu/barleybreeding/learning-center/maltster-resources/articles-posters/2r-v-6r.html",
+          "organization": "Montana State University, Barley Breeding Program",
+          "read": "Vollständigen relevanten Originalabschnitt im Original-Suchindex gelesen; direkter Abruf zeigte nur die Überschrift.",
+          "role": "Unabhängige institutionelle Erklärung der Dreiergruppen und der Fruchtbarkeit nur der mittleren Einheit beim zweizeiligen Kulturtyp.",
+          "limits": "Keine pauschale Ein-Gen-Aussage, Malz-, Protein-, Anbau- oder Ertragsvergleiche."
+        },
+        {
+          "title": "Barley, Botanical description / Seed description",
+          "url": "https://sarep.ucdavis.edu/covercrop/barley",
+          "organization": "UC Davis, Sustainable Agriculture Research and Education Program",
+          "read": "Relevante vollständige Originalbeschreibung im Original-Suchindex gelesen; direkter Abruf enthielt überwiegend Navigation.",
+          "role": "Weitere institutionelle Bestätigung von Ährchendreiergruppen und mittlerer Fruchtbarkeit bei zweizeiliger Gerste; vorhandene Zitatbasis Hitchcock 1971 berücksichtigt.",
+          "limits": "Keine unabhängige experimentelle Replikation behauptet und keine Saat-, Pflanzenschutz- oder Ertragsanleitung."
+        },
+        {
+          "title": "PLB 102 Lab 8, Poaceae",
+          "url": "https://psfaculty.plantsciences.ucdavis.edu/courses/plb102/lab8.html",
+          "organization": "UC Davis, Plant Sciences",
+          "read": "Originalabschnitt Poaceae direkt gelesen: floret, spikelet und inflorescence sowie Gliederung des Ährchens.",
+          "role": "Begriffliche Einordnung verschiedener Bauebenen. Mit SAREP eine UC-Davis-Quellenfamilie, keine zusätzliche unabhängige Organisation.",
+          "limits": "Keine kalifornische Artenbestimmung, Laboranleitung, Grafik oder Präparationsübung übernommen."
+        }
+      ],
+      "taxonomicLimit": "PlantNET Hordeum-Originalbeschreibung ergänzend im Originalindex gelesen. Das dort engere Taxonkonzept mit getrenntem H.distichon wird nicht mit der weiteren Kulturgruppe des Kurses vermischt.",
+      "visibleLimits": "Eigenes Papiermodell, kein behauptetes Pflanzenfoto; keine Vollbestimmung aller Gerstenarten, Sorten- oder Ertragsbewertung."
+    }
+  ],
+  "media": "Keine neuen Medien. Die zwei LWF-PDF-Seiten wurden ausschliesslich zur Quellenprüfung gerendert, nicht als Produktabbildungen übernommen.",
+  "reviewBoundary": "Automatisierte Tests prüfen echte Verknüpfungen, unveränderte Bestandsobjekte und Auswahlgrenzen. Sie ersetzen weder die dokumentierte Fachlektüre noch eine unabhängige Inhaltsgegenprüfung."
+}

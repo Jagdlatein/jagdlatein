@@ -1,0 +1,88 @@
+{
+  "categories": [
+    {
+      "slug": "hundewesen",
+      "goal": {
+        "id": "hund-suchprotokoll-transfer",
+        "title": "Eine Geruchssuche anhand von Protokollen bewerten",
+        "task": "Ordne in einer Tabelle den bekannten Zielgeruch und die gemeldete Reaktion getrennt zu. Erkläre anschliessend, welche zusätzlichen Informationen du für die Auswertung brauchst. Löse den Papierfall ohne Hund, Wild oder Geruchsstoffe; leite daraus keine allgemeine Leistungsquote ab.",
+        "selfCheck": [
+          "Ich berücksichtige für jeden Eintrag sowohl den Zielgeruch als auch die gemeldete Reaktion.",
+          "Ich verwende die Ergebnisbegriffe nachvollziehbar und prüfe die Vollständigkeit der Zusammenfassung.",
+          "Ich benenne fehlende Angaben zum menschlichen Vorwissen und begrenze die Aussage über ein einzelnes Team."
+        ],
+        "moduleId": "wissen-vertiefung-hunde-nase-spur-laut",
+        "lessonId": "wissen-vertiefung-hunde-nase-spur-laut-fundkontrolle",
+        "caseText": "Eigener Papierfall: In Protokoll A war der Zielgeruch vorhanden und eine Anzeige wurde gemeldet. In B fehlte der Zielgeruch und es wurde keine Anzeige gemeldet. In C fehlte er ebenfalls, trotzdem wurde eine Anzeige gemeldet. In D war der Zielgeruch vorhanden, eine Anzeige blieb aus. Die Zusammenfassung nennt nur die Zahl der Anzeigen; wer den Auftrag im Voraus kannte, ist nicht vermerkt.",
+        "followUp": "Welche Angaben würdest du in der schriftlichen Zusammenfassung ergänzen? Begründe, warum eine Beobachtung aus diesem Fall weder jede Anzeige erklärt noch eine feste Fehlerquote für Jagdhunde liefert.",
+        "relatedLessons": [
+          { "moduleId": "wissen-vertiefung-hunde-nase-spur-laut", "lessonId": "wissen-vertiefung-hunde-nase-spur-laut-protokoll" },
+          { "moduleId": "wissen-ausbau-anschussmeldung", "lessonId": "uebergabenotiz" }
+        ]
+      }
+    },
+    {
+      "slug": "wildbret-gesundheit",
+      "goal": {
+        "id": "wildbret-toxinbefund-transfer",
+        "title": "Bakterien und vorgebildete Toxine getrennt beurteilen",
+        "task": "Prüfe die Schlussfolgerung im schriftlichen Fall und benenne die unterschiedlichen Beurteilungsgegenstände. Begrenze deine Erklärung ausdrücklich auf die beschriebenen S.-aureus-Enterotoxine. Erstelle weder ein Zeit-Temperatur-Verfahren noch eine Speisefreigabe oder eine Behandlungsanweisung.",
+        "selfCheck": [
+          "Ich unterscheide die im Fall benannten Gegenstände und beziehe den Befund genau auf seinen Untersuchungsgegenstand.",
+          "Ich begründe die Aussagegrenze des späteren Befunds mit der zugehörigen Lektion.",
+          "Ich halte den benannten Toxintyp, die unbekannte Vorgeschichte und die Grenze einer eigenen Freigabe sichtbar."
+        ],
+        "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026",
+        "lessonId": "vorgebildete-toxine",
+        "caseText": "Eigener Papierfall: Eine erfundene Hygienenotiz beschreibt ein Lebensmittel, in dem S.-aureus-Enterotoxine bereits gebildet waren. Ein späterer Befund betrifft die Abtötung der Bakterienzellen. Eine Person folgert daraus, damit sei jede weitere Frage zu den zuvor gebildeten Stoffen erledigt. Es geht um eine Begriffsprüfung, nicht um ein tatsächlich zu verzehrendes Produkt.",
+        "followUp": "Welche getrennten Fragen würdest du an die Notiz stellen? Vergleiche danach Bakterienzelle, Spore und vorgebildetes Toxin anhand der verknüpften Lektionen, ohne ihre Eigenschaften gleichzusetzen.",
+        "relatedLessons": [
+          { "moduleId": "wissen-ausbau-revierpraxis-lebensmittelbakterien-2026", "lessonId": "bakteriensporen" },
+          { "moduleId": "wissen-vertiefung-wildbret-kontaktwege-2026", "lessonId": "trennen" }
+        ]
+      }
+    },
+    {
+      "slug": "ausruestung-technik",
+      "goal": {
+        "id": "technik-punktwolke-transfer",
+        "title": "Messwertstreuung und richtige Lage getrennt prüfen",
+        "task": "Vergleiche die beiden erfundenen Messprotokolle auf dem Papier. Beschreibe, was die Punktverteilung und was ein unabhängig bekannter Bezug zur Bewertung beitragen. Verwende keine erfundenen Meterwerte; die Aufgabe ist keine Vermessung und legt keine Revier- oder Grundstücksgrenze fest.",
+        "selfCheck": [
+          "Ich beschreibe die Streuung und den Bezug zur bekannten Position als getrennte Prüfpunkte.",
+          "Ich benenne, welche Vergleichsinformation im jeweiligen Protokoll tatsächlich vorliegt oder fehlt.",
+          "Ich begrenze den Vergleich auf die beschriebenen Messbedingungen und vermeide eine pauschale Gerätegarantie."
+        ],
+        "moduleId": "wissen-wachstum-gps-wald-2026",
+        "lessonId": "streuung",
+        "caseText": "Eigener Papierfall: Zwei Protokolle zeigen jeweils eng gebündelte Positionspunkte. Für A ist zusätzlich eine unabhängig bestimmte Referenzposition dokumentiert. Für B nennt der Bericht nur die Streuung der aufgezeichneten Punkte. Eine Person bewertet beide Aufnahmen allein wegen der engen Punktgruppen als gleich zuverlässig.",
+        "followUp": "Welche Angaben zu Referenz, Gerät, Einstellungen, Umgebung und Aufnahmebedingungen würdest du nachfordern? Erkläre, welche zusätzliche Frage ein ungeklärtes Koordinatensystem aufwirft.",
+        "relatedLessons": [
+          { "moduleId": "wissen-wachstum-gps-wald-2026", "lessonId": "vergleich" },
+          { "moduleId": "wissen-ausbau-karten-gps", "lessonId": "koordinaten" }
+        ]
+      }
+    },
+    {
+      "slug": "tierschutz-verantwortung",
+      "goal": {
+        "id": "verantwortung-wahlzugang-transfer",
+        "title": "Angebot, Zugang und Wahlmöglichkeit unterscheiden",
+        "task": "Beurteile im Papierplan die angebotenen Möglichkeiten, ihre tatsächliche Nutzbarkeit und den Einfluss eigener Handlungen. Verwende die Begriffe aus der Lektion und halte fehlende Informationen offen. Schränke dafür kein Tier versuchsweise ein; leite aus dem Plan keine Diagnose oder Tierwohlgarantie ab.",
+        "selfCheck": [
+          "Ich prüfe die tatsächliche Verfügbarkeit der beschriebenen Angebote aus Sicht des Tieres.",
+          "Ich verwende Wahl und Kontrolle mit begründeter Zuordnung zum Fall.",
+          "Ich trenne beobachtete Nutzung von einer weitergehenden Deutung und nenne die Grenzen des Papierplans."
+        ],
+        "moduleId": "wissen-vertiefung-tierwohl-empfindung-round6-2026",
+        "lessonId": "wahl-kontrolle",
+        "caseText": "Eigener Papierfall: Ein Plan zählt zwei Decken als Ruheplätze für einen Hund auf. Eine liegt jedoch hinter einer im Plan verschlossenen Tür. Die bisherige Notiz sagt nur, dass der Hund den anderen Platz nicht verlassen hat. Weitere Angaben zur Situation und zur freiwilligen Nutzung fehlen.",
+        "followUp": "Welche zusätzlichen Angaben brauchst du, bevor du die Nutzung oder Nichtnutzung deutest? Verbinde deine Begründung mit dem Ruheplatz und der Beobachtung des gesamten Hundes, ohne dafür eine Begegnung oder Belastung herzustellen.",
+        "relatedLessons": [
+          { "moduleId": "wissen-ausbau-hund-ruhe-schlaf-2026", "lessonId": "ruheplatz" },
+          { "moduleId": "wissen-ausbau-hund-koerpersprache-2026", "lessonId": "gesamtbild" }
+        ]
+      }
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { assertPreservedBaseBlueprint, restoreGoalSelfCheckSource } = require('./helpers/category-transfer-contract-nov17.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const BASELINE = 'd5bb4f0cebe387c6875eea9f0e40071c84ef3b8b';
 const RAW = 'data/exam-alignment/learning-goals-2026-11-01.json';
@@ -110,6 +111,8 @@ test('Full target course objects and existing question/renderer/progress sources
     assert.deepEqual(load(file)[key].find(course => course.id === courseId), previous.exports[key].find(course => course.id === courseId), courseId);
   }
   for (const file of ['lib/oral-exam-trainer.js', 'components/OralExamTrainer.js', 'components/ExamLearningGoals.js', 'lib/exam-goal-progress.js', 'lib/exam-learning-goal-server.js', 'lib/exam-blueprint-server.js', 'data/exam-alignment/ch-2026-11-01.json', 'data/exam-alignment/at-2026-11-01.json', 'data/exam-alignment/de-2026-11-01.json']) {
-    assert.equal(fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n'), oldText(file).replace(/\r\n/g, '\n'), file);
+    if (file === 'lib/exam-blueprint-server.js') { assertPreservedBaseBlueprint(); continue; }
+    const current = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.equal(file === 'components/ExamLearningGoals.js' ? restoreGoalSelfCheckSource(current) : current.replace(/\r\n/g, '\n'), oldText(file).replace(/\r\n/g, '\n'), file);
   }
 });

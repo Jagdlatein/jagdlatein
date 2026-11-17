@@ -47,7 +47,9 @@ function Sources({ region, federal, alignment, blueprint }) {
       <h3 id="exam-plan-goal-sources">Nachweise der Ausgangslektionen</h3>
       <p>Die Lernziele und Selbstkontrollen sind eigene Lernhilfen, keine amtlichen Bewertungskriterien. Datumsangaben und Nachweise werden aus den Ausgangslektionen übernommen. Lektionszuordnungen stammen aus deren konkreten Evidenzabschnitten; Kursreferenzen aus dem allgemeinen Quellenverzeichnis des jeweiligen Kurses. Das ist keine neue externe Quellenlektüre oder vollständige Fachprüfung sämtlicher Lernziele.</p>
       <ul>{blueprint.sources.map(source => <li key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a><small>Übernommener Prüfstand {formatDate(source.reviewedOn)}</small>{["lesson", "course"].map(scope => {
-        const titles = blueprint.categories.flatMap(category => category.goals).filter(goal => goal.sourceScope === scope && goal.sourceIds.includes(source.id)).map(goal => goal.title);
+        const titles = blueprint.categories.flatMap(category => category.goals).flatMap(goal => goal.sourceContexts
+          ? goal.sourceContexts.filter(context => context.sourceScope === scope && context.sourceIds.includes(source.id)).map(context => `${goal.title} · ${context.lessonTitle}`)
+          : goal.sourceScope === scope && goal.sourceIds.includes(source.id) ? [goal.title] : []);
         return titles.length > 0 ? <p key={scope}>{scope === "lesson" ? "Lektionszuordnung" : "Kursreferenz"}: {titles.join(" · ")}</p> : null;
       })}</li>)}</ul>
     </section>}

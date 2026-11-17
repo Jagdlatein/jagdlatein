@@ -15,7 +15,13 @@ const { createLoader: createLinkedProjectLoader } = require('./helpers/project-m
 // questions beyond this 576+8 snapshot. Their separate regressions retain the
 // live content; project only those precisely named appendices here.
 const createLoader = overrides => createLinkedProjectLoader(novemberLearningBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(overrides))))));
-const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture())));
+// This intentionally narrowed science snapshot does not include the current
+// transfer-case prerequisites. Full-corpus tests cover those twelve new search
+// entries; preserve the exact historical course/lesson assertions here.
+const load = createLoader({
+  ...examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture())),
+  './exam-transfer-goals-server': { getExamTransferGoals: () => [] },
+});
 const { scienceExpansionDatasets: datasets, scienceExpansionModules: added } = load('lib/learning-science-expansion.js');
 const { learningCategories, learningModules, learningQuestions } = load('lib/learning-curriculum.js');
 const { QUESTIONS } = load('data/questions-full.js');

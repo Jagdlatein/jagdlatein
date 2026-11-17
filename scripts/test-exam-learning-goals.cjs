@@ -17,6 +17,9 @@ const RAW_PATH = '../data/exam-alignment/learning-goals-2026-11-01.json';
 const BASELINE = '514b51091325bf27ecdd53458f78b00854e4a7d3';
 const clone = value => JSON.parse(JSON.stringify(value));
 const raw = () => JSON.parse(fs.readFileSync(path.join(root, 'data/exam-alignment/learning-goals-2026-11-01.json'), 'utf8'));
+const transfers = load('lib/exam-transfer-goals-server.js').getExamTransferGoals();
+const transferIds = new Set(transfers.map(item => item.goal.id));
+function authoredRaw() { const data = raw(); for (const entry of transfers) data.categories.find(category => category.slug === entry.slug).goals.push(clone(entry.goal)); return data; }
 const blueprint = () => createLoader()('lib/exam-blueprint-server.js').getExamBlueprintData();
 function fixture(change = () => {}, courseTransform = course => course) {
   const data = raw(); change(data);
@@ -35,20 +38,21 @@ function fullPlan(profile, options = {}) {
 function hrefs(markup) { return [...markup.matchAll(/href="([^"]*)"/g)].map(match => match[1].replace(/&amp;/g, '&')); }
 const escaped = value => renderToStaticMarkup(React.createElement('span', null, value)).replace(/^<span>|<\/span>$/g, '');
 
-test('The actual blueprint keeps the canonical twelve categories and36 bounded unique lesson goals', () => {
+test('The actual blueprint keeps the canonical twelve categories and all36 original plus12 bounded transfer goals', () => {
   const before = JSON.stringify(raw()), data = blueprint();
   assert.deepEqual(Object.keys(data).sort(), ['categories', 'sources']);
   assert.deepEqual(data.categories.map(category => category.slug), learningCategoryDetails.map(category => category.slug));
   const goals = data.categories.flatMap(category => category.goals);
-  assert.equal(goals.length, 36); assert.equal(new Set(goals.map(goal => goal.id)).size, 36);
+  assert.equal(goals.length, 48); assert.equal(new Set(goals.map(goal => goal.id)).size, 48);
   for (const category of data.categories) {
-    assert.deepEqual(Object.keys(category).sort(), ['goals', 'practiceCase', 'slug']); assert.equal(category.goals.length, 3);
+    assert.deepEqual(Object.keys(category).sort(), ['goals', 'practiceCase', 'slug']); assert.equal(category.goals.length, 4);
     for (const goal of category.goals) {
-      const authored=raw().categories.find(item=>item.slug===category.slug).goals.find(item=>item.id===goal.id);
+      const authored=authoredRaw().categories.find(item=>item.slug===category.slug).goals.find(item=>item.id===goal.id);
       const cards=load('lib/learning-flashcards.js').getFlashcardExport({courseId:authored.moduleId,lessonId:authored.lessonId}).cards;
       const cardKeys=!goal.regionalLaw&&goal.lessonPractice&&cards.length?['cardCount','cardHref']:[];
-      const relatedKeys=['natur-biotopnetz','feld-mahdabstimmung'].includes(goal.id)?['relatedLessons']:[];
-      assert.deepEqual(Object.keys(goal).sort(), ['courseTitle','href','id','lessonPractice','lessonTitle','quizHref','regionalLaw','selfCheck','sourceIds','sourceScope','task','title',...cardKeys,...relatedKeys].sort());
+      const relatedKeys=['natur-biotopnetz','feld-mahdabstimmung'].includes(goal.id)||transferIds.has(goal.id)?['relatedLessons']:[];
+      const transferKeys=transferIds.has(goal.id)?['caseText','followUp','sourceContexts']:[];
+      assert.deepEqual(Object.keys(goal).sort(), ['courseTitle','href','id','lessonPractice','lessonTitle','quizHref','regionalLaw','selfCheck','sourceIds','sourceScope','task','title',...cardKeys,...relatedKeys,...transferKeys].sort());
       if(cardKeys.length){assert.equal(goal.cardCount,cards.length);assert.equal(goal.cardHref,`/lernen/lernkarten?kurs=${authored.moduleId}&lektion=${authored.lessonId}`);}
       assert.ok(goal.id && goal.title && goal.task && goal.selfCheck && goal.sourceIds.length);
       assert.ok(['lesson','course'].includes(goal.sourceScope));
@@ -59,7 +63,7 @@ test('The actual blueprint keeps the canonical twelve categories and36 bounded u
 });
 
 test('Every authored goal points to its exact existing lesson, while regional law receives no generic course fallback', () => {
-  const source = raw(), data = blueprint(); let regional = 0, direct = 0;
+  const source = authoredRaw(), data = blueprint(); let regional = 0, direct = 0;
   for (const category of data.categories) for (const goal of category.goals) {
     const authored = source.categories.find(item => item.slug === category.slug).goals.find(item => item.id === goal.id);
     const course = getLearningModule(authored.moduleId), lesson = course?.lessons.find(item => item.id === authored.lessonId);
@@ -169,12 +173,14 @@ test('Shared goals require all three actual DACH countries and trustworthy nonem
   assert.throws(()=>fixture(undefined,course=>{if(course.id!==authored.moduleId)return course;course.sources=[];course.lessons.find(item=>item.id===authored.lessonId).evidence=[];return course;}),/Lektionsnachweise/);
 });
 
-test('Actual category SSR shows complete authored objectives and criteria before the exact existing practice case, without a model or new controls', () => {
+test('Actual category SSR preserves complete objectives and criteria in closed self-checks before the exact existing practice case', () => {
   const data=blueprint();
   for(const category of data.categories){
     const markup=categoryHtml(category,{country:'DE',region:'BY'});
     for(const goal of category.goals){assert.ok(markup.includes(escaped(goal.title)));assert.ok(markup.includes(escaped(goal.task)));for(const check of Array.isArray(goal.selfCheck)?goal.selfCheck:[goal.selfCheck])assert.ok(markup.includes(escaped(check)));}
-    assert.doesNotMatch(markup,/<form|<select|<input|<button|target="_blank"|<details/);
+    assert.doesNotMatch(markup,/<form|<select|<input|<button|target="_blank"/);
+    assert.equal((markup.match(/<details class="goalSelfCheck">/g)||[]).length,category.goals.length);
+    assert.doesNotMatch(markup,/<details[^>]*\bopen/);
     if(category.practiceCase){assert.ok(markup.includes(escaped(category.practiceCase.text)));assert.ok(markup.includes(escaped(category.practiceCase.followUp)));assert.ok(markup.indexOf('Übungsfall')>markup.indexOf(escaped(category.goals.at(-1).task)));assert.ok(hrefs(markup).includes(category.practiceCase.href));}
   }
 });

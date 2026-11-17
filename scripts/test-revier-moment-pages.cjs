@@ -59,8 +59,8 @@ test('Daily page links to the exact selected lesson and separates local repetiti
   const Page = load('components/RevierMoment.js', { 'next/router': { useRouter: () => ({ query: {} }) } }).default;
   const html = renderToStaticMarkup(React.createElement(Page, { moment }));
   assert.ok(!html.includes(`href="${moment.href}"`), 'Full reading and its link follow only after answer or skip');
-  assert.match(html, /href="\/lernen\/fuenf-minuten"/);
-  assert.match(html, /href="\/quiz-app"/);
+  assert.ok(html.includes(`href="${moment.practice.reviewHref}"`));
+  assert.ok(html.includes(`href="${moment.practice.quizHref}"`));
   assert.doesNotMatch(html, /href="\/lernen#lernen-suche"/);
   assert.match(html, /class="header titleHeader"/);
   assert.match(html, /<h1[^>]*>Fall des Tages<\/h1>/); assert.match(html, /Deine Entscheidung/);

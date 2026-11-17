@@ -1,0 +1,89 @@
+{
+  "categories": [
+    {
+      "slug": "waffen-sicherheit",
+      "goal": {
+        "id": "transfer-sicherheit-schutz-verstaendigung",
+        "title": "Schutz und Verständigung gemeinsam prüfen",
+        "task": "Besprich den Fall ausschliesslich am Tisch, ohne Waffen oder Lärmbelastung. Trenne die Prüfung der Schutzkombination von einer verständlichen Anweisung. Benenne die offene Frage für die Aufsicht, statt selbst eine technische Lösung freizugeben.",
+        "selfCheck": [
+          "Ich berücksichtige die Kombination aus Brille und Gehörschutz statt nur einer Dämmangabe.",
+          "Ich kläre die Verständigung vor der Belastung und plane keine Schutzlücke zum Zuhören.",
+          "Ich lasse den entscheidenden Inhalt einer Anweisung verständlich bestätigen."
+        ],
+        "moduleId": "wissen-vertiefung-gehoerschutz-passform-2026",
+        "lessonId": "kommunikation",
+        "caseText": "Bei der ruhigen Vorbereitung eines betreuten Standbesuchs sitzt der Kapselgehörschutz mit einer anderen Schutzbrille ungewohnt. Eine Teilnehmerin versteht die Ansage nicht eindeutig. Jemand schlägt vor, später bei jeder Ansage kurz eine Kapsel anzuheben. Eine Lärmbelastung hat noch nicht begonnen.",
+        "followUp": "Welche zwei offenen Punkte bleiben bestehen, selbst wenn die Teilnehmerin die Ansage ohne Gehörschutz sofort versteht?",
+        "relatedLessons": [
+          { "moduleId": "wissen-vertiefung-gehoerschutz-passform-2026", "lessonId": "sitz" },
+          { "moduleId": "wissen-ausbau-sicherheitskommunikation", "lessonId": "bestaetigung" }
+        ]
+      }
+    },
+    {
+      "slug": "jagdpraxis",
+      "goal": {
+        "id": "transfer-praxis-notruf-dialog",
+        "title": "Auf die Rückfrage der Leitstelle antworten",
+        "task": "Spiele den Gesprächsausschnitt nur als Papierübung, ohne einen echten Notruf zu wählen. Ordne die vorhandenen Angaben der tatsächlichen Rückfrage zu. Trenne Notfallort, eigenen Standort und Unbekanntes; im Ernstfall wird die Alarmierung nicht für einen perfekten Merkzettel aufgeschoben.",
+        "selfCheck": [
+          "Ich antworte auf die konkrete Rückfrage, statt eine auswendig gelernte Liste weiterzusprechen.",
+          "Ich unterscheide den Ort der betroffenen Person vom Standort der anrufenden Person.",
+          "Ich kennzeichne fehlende Angaben und bleibe für die weitere Gesprächsführung erreichbar."
+        ],
+        "moduleId": "wissen-ausbau-notruf-revier-2026",
+        "lessonId": "dialog",
+        "caseText": "In einem erfundenen Übungsgespräch meldet eine Person einen Unfall bei einem nur im Jagdteam bekannten Platznamen. Sie selbst steht inzwischen an einem anderen Weg. Auf dem Merkzettel fehlen noch Angaben. Die gespielte Leitstelle fragt zuerst nach dem genauen Notfallort; die anrufende Person möchte zunächst ihre vorbereitete Liste zu Ende lesen.",
+        "followUp": "Wie formulierst du die nächste Antwort, wenn du deinen eigenen Kartenpunkt kennst, den Notfallpunkt aber noch nicht sicher zuordnen kannst?",
+        "relatedLessons": [
+          { "moduleId": "wissen-ausbau-notruf-revier-2026", "lessonId": "ort" },
+          { "moduleId": "wissen-orientierung", "lessonId": "standort" }
+        ]
+      }
+    },
+    {
+      "slug": "jagdrecht",
+      "goal": {
+        "id": "transfer-recht-fassungen-vergleichen",
+        "title": "Zwei Fassungen, ein Prüfungsfall",
+        "task": "Vergleiche in einem Papierfall Fundstelle, eingestelltes Fassungsdatum, Ereignisdatum und Abrufdatum. Öffne für die konkrete Rechtsfrage die regionale Ansicht deines bestätigten Prüfungsprofils. Unklare zeitliche oder örtliche Geltung bleibt offen; die RIS-Beispiele erklären keine einheitliche Bedienung aller Rechtsportale und erteilen keine Jagderlaubnis.",
+        "selfCheck": [
+          "Ich behandle ein neueres Abrufdatum nicht als Beweis für die passende Normfassung.",
+          "Ich halte Ort, Ereigniszeitpunkt und einschlägige amtliche Grundlage zusammen fest.",
+          "Ich prüfe die zugehörige Kundmachung und kennzeichne offene Übergangs- oder Regionalfragen."
+        ],
+        "moduleId": "wissen-vertiefung-rechtsfassung-pruefen-2026",
+        "lessonId": "fassung",
+        "regionalLaw": true,
+        "caseText": "Zwei Lernende teilen unterschiedliche Ausschnitte aus einer österreichischen RIS-Normansicht. Einer wurde heute geöffnet, der andere früher; zusätzlich sind verschiedene Fassungsdaten eingestellt. Der Übungsfall betrifft einen bestimmten früheren Zeitpunkt. Aus dem jüngeren Abruf allein wird eine fertige rechtliche Antwort abgeleitet, während der genaue örtliche Bezug noch fehlt.",
+        "followUp": "Welche Angaben und amtlichen Fundstellen brauchst du, bevor du entscheidest, ob die beiden Ausschnitte überhaupt denselben Fall beantworten?",
+        "relatedLessons": [
+          { "moduleId": "wissen-ausbau-pruefungsfaelle", "lessonId": "sachverhalt" },
+          { "moduleId": "wissen-ausbau-pruefungsfaelle", "lessonId": "quellenantwort" }
+        ]
+      }
+    },
+    {
+      "slug": "pruefung-sprache",
+      "goal": {
+        "id": "transfer-sprache-fehler-erklaeren",
+        "title": "Aus der falschen Antwort eine Erklärung machen",
+        "task": "Wähle eine vorhandene falsch beantwortete Lernfrage und formuliere die sachlich richtige Aussage mit ihrem entscheidenden Unterschied zur gewählten Alternative. Schliesse danach die Antwortliste und erkläre die Korrektur an einer eigenen Fallvariante. Das ist eine Lernübung und keine Garantie für ein Prüfungsergebnis.",
+        "selfCheck": [
+          "Ich korrigiere den Gedanken hinter meiner Antwort statt nur einen Buchstaben zu merken.",
+          "Ich kann die richtige Aussage ohne sichtbare Antwortliste verständlich erklären.",
+          "Ich ändere eine Bedingung im Fall und begründe, ob meine Erklärung weiterhin passt."
+        ],
+        "moduleId": "wissen-vertiefung-antwortsicherheit-feedback-2026",
+        "lessonId": "korrektur",
+        "caseText": "Nach einem Quiz merkt sich ein Lernender nur den Buchstaben der richtigen Option. Im nächsten Durchgang stehen die Antworten anders, und er wählt wieder falsch. Er kennt die Markierung der alten Lösung, kann den fachlichen Unterschied zwischen den beiden Aussagen aber noch nicht erklären.",
+        "followUp": "Welche kurze Korrektur und welche neue Fallvariante zeigen mehr Verständnis als ein sofortiger weiterer Klick auf dieselbe Liste?",
+        "relatedLessons": [
+          { "moduleId": "wissen-ausbau-lernmethoden", "lessonId": "fehleranalyse" },
+          { "moduleId": "wissen-ausbau-pruefungsfaelle", "lessonId": "begruenden" }
+        ]
+      }
+    }
+  ]
+}

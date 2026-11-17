@@ -25,7 +25,9 @@ export function ExamLearningGoal({ goal, profile, goalProgress }) {
     <p>{goal.task}</p>
     {goal.caseText && <p><strong>Eigener Übungsfall:</strong> {goal.caseText}</p>}
     {goal.followUp && <p><strong>Nachfrage:</strong> {goal.followUp}</p>}
-    <p className={styles.goalSelfCheck}><strong>Selbstkontrolle:</strong> {Array.isArray(goal.selfCheck) ? goal.selfCheck.join(" · ") : goal.selfCheck}</p>
+    <details className={styles.goalSelfCheck}><summary>Selbstkontrolle</summary>
+      {Array.isArray(goal.selfCheck) ? <ul>{goal.selfCheck.map((criterion, index) => <li key={index}>{criterion}</li>)}</ul> : <p>{goal.selfCheck}</p>}
+    </details>
     {goalProgress && <label className={styles.goalState}>Mein Stand
       <select aria-label={`${goal.title}: Mein Stand`} value={goalProgress.state(goal)} disabled={!goalProgress.ready} onChange={event => goalProgress.set(goal, event.target.value)}>
         {!goalProgress.ready && <option value="">{target ? "Wird geladen …" : "Prüfungsziel wählen"}</option>}

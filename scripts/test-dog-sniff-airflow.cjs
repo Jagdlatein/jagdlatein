@@ -28,7 +28,12 @@ const { isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const load = createLoader(examKnowledgeBaselineFixture());
+// The narrowed historical curriculum predates the twelve transfer cases.
+// Their actual current search entries are checked by the full-corpus suite.
+const load = createLoader({
+  ...examKnowledgeBaselineFixture(),
+  './exam-transfer-goals-server': { getExamTransferGoals: () => [] },
+});
 const courseId = 'wissen-vertiefung-hunde-nase-spur-laut';
 const lessonId = `${courseId}-ausatemrichtung`;
 const rawCourses = load('lib/learning-dog-depth.js').dogDepthModules.map(stripDogExtinctionAddition).map(stripDogLearningProcessesAddition);
