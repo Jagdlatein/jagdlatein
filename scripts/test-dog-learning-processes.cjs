@@ -1,5 +1,6 @@
 const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
+const { dogExtinctionBaselineFixture, stripDogExtinctionAddition } = require('./helpers/dog-extinction-addition-nov17.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -7,7 +8,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const { createLoader: createLinkedProjectLoader, root, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createLinkedProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides)));
+const createLoader = overrides => createLinkedProjectLoader(dogExtinctionBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides))));
 const { courseId, lessonIds, sourceURLs, stripDogLearningProcessesAddition,
   isDogLearningProcessesCard, dogLearningProcessesBaselineFixture } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const React = local('react');
@@ -15,7 +16,7 @@ const { renderToStaticMarkup } = local('react-dom/server');
 const swc = local('next/dist/build/swc');
 const revision = '96eb237a9b9ccf2289f7a135c9b8886f18ff4f9e';
 const load = createLoader();
-const rawCourses = load('lib/learning-dog-depth.js').dogDepthModules;
+const rawCourses = load('lib/learning-dog-depth.js').dogDepthModules.map(stripDogExtinctionAddition);
 const curriculum = load('lib/learning-curriculum.js');
 const course = curriculum.getLearningModule(courseId);
 const lessons = lessonIds.map(id => course.lessons.find(item => item.id === id));

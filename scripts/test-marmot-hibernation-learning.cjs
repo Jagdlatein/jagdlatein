@@ -3,7 +3,16 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const { forestRegenerationBaselineFixture } = require('./helpers/forest-regeneration-additions-nov08.cjs');
-const createLoader = overrides => createProjectLoader(forestRegenerationBaselineFixture(overrides));
+const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
+const { alulaBaselineFixture } = require('./helpers/alula-addition-nov15.cjs');
+const { trackPostureBaselineFixture } = require('./helpers/track-posture-addition-nov15.cjs');
+const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addition-nov17.cjs');
+const { capercaillieToeBaselineFixture, stripCapercaillieToeCourse } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
+// Restore only the known named appendices before the original positive hashes.
+// Each newer package keeps its own exact live-data preservation regression.
+const historicalOverrides = overrides => forestRegenerationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(overrides)))))));
+const createLoader = overrides => createProjectLoader(historicalOverrides(overrides));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, sourceScopes, stripMarmotHibernationAddition } = require('./helpers/marmot-hibernation-addition-nov08.cjs');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);
 const tools = load('lib/learning-flashcards.js'), cards = tools.getFlashcards();
@@ -11,7 +20,7 @@ const newIds = questionIds.map(id => `${courseId}-${id}`), newCardIds = newIds.m
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
 test('Only two tail lessons/questions and three scoped sources extend the complete d5bb4f0 wildlife-depth export and alpine course', () => {
-  assert.equal(hash(load('lib/learning-wildlife-depth.js').wildlifeDepthModules.map(stripMarmotHibernationAddition)), '628e4f40b97325bff81524a0b1e41d1375df7eb81f60a9f0ef4222f7bdbc47db');
+  assert.equal(hash(load('lib/learning-wildlife-depth.js').wildlifeDepthModules.map(stripCapercaillieToeCourse).map(stripMarmotHibernationAddition)), '628e4f40b97325bff81524a0b1e41d1375df7eb81f60a9f0ef4222f7bdbc47db');
   assert.equal(hash(stripMarmotHibernationAddition(course)), '815f7bb8602d168b714af273db8e99e219e956e66b571fd75fc84813bef87cfe');
   assert.equal(course.reviewedOn, '2026-10-12');
   assert.equal(course.lessons.length, 7); assert.equal(course.questions.length, 12); assert.equal(course.sources.length, 13);

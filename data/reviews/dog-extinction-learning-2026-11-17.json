@@ -1,0 +1,63 @@
+{
+  "id": "dog-extinction-learning-2026-11-17",
+  "reviewedOn": "2026-11-17",
+  "scope": "Eine zusätzliche Begriffslektion im bestehenden Hundekurs; keine vollständige fachliche Neuprüfung aller Hundeinhalte oder Jagdprüfungen.",
+  "courseId": "wissen-vertiefung-hunde-klare-lernsignale",
+  "lessonId": "wissen-vertiefung-hunde-klare-lernsignale-extinktion-erholung",
+  "changes": "Eine vollständige Schlusslektion mit eigenem tatsächlichem Prüfdatum, zwei selbst erstellten Vierantwortfragen und zwei über den bestehenden Adapter erzeugten Lernkarten. Keine neue Kategorie, Route, Kurs-ID oder Medienbehauptung.",
+  "claims": [
+    {
+      "claim": "Operante Extinktion beschreibt den Rückgang eines erlernten Verhaltens, wenn die bisherige Verstärkung ausbleibt; dies betrifft Handlung und Konsequenz statt bloßer Reizwiederholung.",
+      "sourceIds": ["bentosela-2008", "merck-pankratz-carney", "bouton-maren-mcnally-2021"]
+    },
+    {
+      "claim": "Die Abnahme beweist kein dauerhaftes Vergessen. Eine zuvor verminderte Reaktion kann nach einer Pause zurückkehren; die begrenzte Hundestudie zeigt einen solchen Befund am Blicken zu einer Person.",
+      "sourceIds": ["bentosela-2008", "bouton-maren-mcnally-2021"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "bentosela-2008",
+      "title": "Effect of reinforcement, reinforcer omission and extinction on a communicative response in domestic dogs (Canis familiaris)",
+      "authors": "Mariana Bentosela, Gabriela Barrera, Adriana Jakovcevic, Angel M. Elgier und Alba E. Mustaca",
+      "organization": "CONICET / Universidad de Buenos Aires",
+      "url": "https://www.pawsoflife.org/Library/Learning/Bentosela%202008.pdf",
+      "doi": "10.1016/j.beproc.2008.03.004",
+      "actuallyRead": "Original-PDF, Einleitung sowie Studie 1 Methoden und Ergebnisse 2.2.3/2.2.4 auf gedruckten Seiten 464–467; Seite 467 zusätzlich als gerenderte Originalseite visuell geprüft.",
+      "role": "Originaldaten erwachsener Haushunde: Zuvor verstärkte Blickdauer nahm in der Extinktionsgruppe ab; nach der Pause zwischen erstem und zweitem Extinktionsdurchgang wurde ein Wiederanstieg nachgewiesen.",
+      "limits": "Keine allgemeine Wiederholungs-, Minuten- oder Erfolgszahl. Der Wiederanstieg wurde nicht auch zwischen zweitem und drittem Durchgang nachgewiesen. Keine Übernahme von Studie 2, dortigen Ausbildungs-/aversiven Methoden oder Versuchsaufbau als Lernendenübung. Keine jagdliche Einsatzfreigabe.",
+      "localOriginalSha256": "C9935B169A9EA821A3FD65067C03CBA891AD647AFD2DA959392CE053F83C6D6D"
+    },
+    {
+      "id": "bouton-maren-mcnally-2021",
+      "title": "Behavioral and neurobiological mechanisms of pavlovian and instrumental extinction learning",
+      "authors": "Mark E. Bouton, Stephen Maren und Gavan P. McNally",
+      "organization": "University of Vermont / Texas A&M University / University of New South Wales",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8428921/",
+      "doi": "10.1152/physrev.00016.2020",
+      "actuallyRead": "Abstract, Einleitung und Tabellen 1 und 2. Ausgabe April 2021, Onlineveröffentlichung September 2020.",
+      "role": "Unabhängig verfasste Forschungssynthese zur operanten Handlungskonsequenz, möglicher Rückkehr nach Zeitintervall und Grenze einer Auslöschungs-/Vergessensdeutung.",
+      "limits": "Keine eigene Hunde-Replikation von Bentoselas Experiment. Keine neuronalen Detailbehauptungen, Therapie- oder Expositionsverfahren und keine Übertragung von Versuchsdauern auf den einzelnen Jagdhund. Klassische und operante Lernform werden getrennt gehalten."
+    },
+    {
+      "id": "merck-pankratz-carney",
+      "title": "Treatment of Behavior Problems in Animals – Extinction",
+      "authors": "Katherine Pankratz; fachliche Gegenprüfung Patrick Carney",
+      "organization": "MSD / Merck Veterinary Manual",
+      "url": "https://www.merckvetmanual.com/behavior/behavioral-medicine-introduction/treatment-of-behavior-problems-in-animals",
+      "actuallyRead": "Abschnitt Extinction sowie Abgrenzung zu Habituation und Operant Conditioning; Autorenreview September 2024, Aktualisierung September 2025.",
+      "role": "Eigenständige veterinärmedizinische Begriffserklärung neben Originalexperiment und Forschungssynthese.",
+      "limits": "Dieselbe Publikation wie der bereits ältere MSD-Nachweis im Kurs; Domain oder Markenname erzeugen keine zusätzliche unabhängige Bestätigung. Der unter Habituation erklärte Wiederkehrbegriff wird nicht als Nachweis operanter Extinktionserholung genutzt. Keine Ignorier-, Straf-, Extinktionsburst- oder Behandlungsanweisung übernommen."
+    }
+  ],
+  "visibleBoundaries": "Nur ein eigener schriftlicher Verlaufsvergleich. Kein Versuch zur Verstärkungsentziehung am Hund. Angst, Schmerz, Aggression und Bedürfnisse werden weder ausgelöst noch ignoriert. Reale Schwierigkeiten benötigen geeignete fachliche Abklärung; keine universelle Lerndauer oder Garantie.",
+  "preserved": [
+    "Alle zehn bisherigen Lektionen und zwanzig bisherigen Fragen des Kurses vollständig und in Reihenfolge.",
+    "Alle vier übrigen dogDepth-Kurse und alle älteren Quellen-/Lektionsreview-Objekte unverändert, einschliesslich course.sourceReview und Kursprüfdatum 12. Oktober 2026.",
+    "Alle vorherigen Karten und die 116 Starterkarten; keine Änderung des Karten- oder Fragenadapters.",
+    "Bestehende Kategorien, Such-, Kurs-, Quiz-, Kurzübungs-, Druck- und Offlinewege.",
+    "Fremdes afternoon-JSON und marketing-Verzeichnis unberührt."
+  ],
+  "media": "Keine neuen Fotos, Videos, Audiodateien oder Produktabbildungen. Original-PDF-Seiten dienen nur der Quellenprüfung ausserhalb des Repositories.",
+  "verification": "Sieben neue gezielte automatisierte Regressionen sichern Umfang, alte Vollobjekte, Quellenrollen, neue tatsächliche Daten, vier eindeutige Antworten, Karten und bestehende Verknüpfungen. Alle 26 bestehenden eng betroffenen Hundetests bleiben mit benannten historischen Appendix-Projektionen und unveränderten Erwartungen grün. Root und separater Reviewer haben Bentoselas Methoden/Ergebnisse inklusive Originalseite 467, Boutons Begriffsabschnitte und Mercks einschlägige Abschnitte unabhängig gelesen und die engen Claims bestätigt. Automatisierte Checks sind keine fachliche Zertifizierung."
+}

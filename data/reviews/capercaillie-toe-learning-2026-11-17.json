@@ -1,0 +1,215 @@
+{
+  "reviewedOn": "2026-11-17",
+  "baselineCommit": "a0b078b800c5eafd2a31fa5c6a95c0ee3718132c",
+  "status": "author_original_institutional_texts_read_and_targeted_tests_passed",
+  "scope": "One nonredundant tail lesson in the existing Wildkunde course: seasonal lateral toe pectinations of the European capercaillie, compared with existing Alpine ptarmigan toe feathers. Two four-choice questions and two actual derived flashcards; no new course, category, media or legal claims.",
+  "audit": {
+    "existingCourseCount": 198,
+    "existingLessonCount": 900,
+    "targetPriorLessonIds": [
+      "kueken",
+      "feldhuehner",
+      "auerwald",
+      "birkmosaik",
+      "vergleich"
+    ],
+    "targetPriorQuestionIds": [
+      "v1",
+      "v2",
+      "v3",
+      "v4",
+      "v5",
+      "v6",
+      "v7",
+      "v8",
+      "v9",
+      "v10"
+    ],
+    "nonredundancy": "Course lessons, questions and generated-card inputs plus lib/data/species pages were searched for Zehenstifte, Balzstifte, Hornstifte, Zehenkamm and variants. Capercaillie portraits and the complete target course were read. Existing Alpine ptarmigan feathered-toe and winter-strategy explanations remain; the new subject is the separate lateral pectination structure of capercaillie.",
+    "rejectedDuplicate": "Proventriculus, gizzard and grit already have a full lesson and questions in wissen-ausbau-biologie-verdauungsvergleich-2026#vogelmagen; not repeated."
+  },
+  "preservation": {
+    "sourceFile": "lib/learning-wildlife-depth.js",
+    "oldSourceObjects": "Positive exact comparison against the baseline Git source after removing only the named lesson, two final question IDs and four final scoped sources.",
+    "allOldCurriculumObjects": "Positive exact comparison of all current curriculum objects with the same remainder of the current graph and the baseline wildlife-depth export.",
+    "allOldFlashcards": "Exact content and relative order after excluding only these two card IDs; all116 starter objects exact.",
+    "courseDate": "2026-10-12",
+    "priorLessonDates": "Unchanged; only the new lesson and four scoped sources carry2026-11-17.",
+    "foreignAfternoonJSON": "Unedited; SHA25623E6E8FC8FD6C3E1B5AD115B92036B901D0DC3613332D4EDD0DEB0C283A607C9 checked in regression.",
+    "marketing": "Untouched"
+  },
+  "addition": {
+    "courseId": "wissen-vertiefung-wild-huehner-nachwuchs",
+    "title": "Rebhuhn, Fasan und Raufußhühner: Nachwuchs und Lebensraum",
+    "category": "Wildkunde",
+    "lessonId": "auerhuhn-zehenstifte",
+    "lessonTitle": "Zehenstifte",
+    "lessonDate": "2026-11-17",
+    "paragraphWords": 167,
+    "questions": [
+      {
+        "id": "wissen-vertiefung-wild-huehner-nachwuchs-auerhuhn-zehenstifte-funktion",
+        "answers": 4,
+        "correctAnswers": 1
+      },
+      {
+        "id": "wissen-vertiefung-wild-huehner-nachwuchs-auerhuhn-zehenstifte-vergleich",
+        "answers": 4,
+        "correctAnswers": 1
+      }
+    ],
+    "flashcards": [
+      {
+        "id": "flash-wissen-vertiefung-wild-huehner-nachwuchs-auerhuhn-zehenstifte-funktion",
+        "reviewedOn": "2026-11-17",
+        "sourceScope": "lesson",
+        "courseHref": "/kurse/wissen-vertiefung-wild-huehner-nachwuchs#lesson-auerhuhn-zehenstifte"
+      },
+      {
+        "id": "flash-wissen-vertiefung-wild-huehner-nachwuchs-auerhuhn-zehenstifte-vergleich",
+        "reviewedOn": "2026-11-17",
+        "sourceScope": "lesson",
+        "courseHref": "/kurse/wissen-vertiefung-wild-huehner-nachwuchs#lesson-auerhuhn-zehenstifte"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Beim Auerhuhn kommen zur Laufbefiederung in der kalten Jahresphase seitliche hornige Zehenstifte hinzu. Die auch Balzstifte genannten Strukturen vergrößern die Auftrittsfläche und vermindern das Einsinken auf weichem Schnee; keine Monats- oder vollständige Einsinkgarantie wird behauptet.",
+        "sources": [
+          {
+            "label": "BirdLife Österreich: Auerhuhn – Zehenstifte und Vergleich mit Alpenschneehuhn",
+            "url": "https://www.birdlife.at/voegel/auerhuhn/",
+            "organization": "BirdLife Österreich; Zehenstift-Erklärung von Dr. Remo Probst",
+            "checkedOn": "2026-11-17",
+            "lessonIds": [
+              "auerhuhn-zehenstifte"
+            ],
+            "supports": "Originalabschnitte Wie erkenne ich ein Auerhuhn?, Wird häufig verwechselt mit und Haben Sie das gewusst? tatsächlich gelesen: Laufbefiederung bis zum Zehenansatz, jahreszeitlich ausgebildete seitliche hornige Zehenstifte und vermindertes Einsinken; beim Alpenschneehuhn befiederte Füße und Zehen. Keine Monats-, Größen-, Geschlechts-, Abstammungs- oder chemischen Materialbehauptungen übernommen. Institutionelle fachliche Einordnung, keine eigene experimentelle Messung."
+          },
+          {
+            "label": "NABU Baden-Württemberg: Das Auerhuhn im Porträt – Raue Gesellen",
+            "url": "https://baden-wuerttemberg.nabu.de/natur-und-artenwissen/voegel/vogelportraets/das-auerhuhn-im-portraet",
+            "organization": "NABU Baden-Württemberg",
+            "checkedOn": "2026-11-17",
+            "lessonIds": [
+              "auerhuhn-zehenstifte"
+            ],
+            "supports": "Originalabschnitt Raue Gesellen – Standhaft auch im Winter tatsächlich gelesen: seitliche Hornstifte an den Zehen vergrößern die Trittfläche. Unabhängige institutionelle Einordnung gegenüber BirdLife; keine experimentelle Replikation, Maße, Bestandszahlen oder Bilder übernommen. Die Quellenaussage zum verhinderten Einsinken wird eng als vermindertes Einsinken formuliert."
+          },
+          {
+            "label": "Naturpark Bayerischer Wald: Auerhuhn – Verwandtschaft und Spuren",
+            "url": "https://tw.naturpark-bayer-wald.de/auerhuhn",
+            "organization": "Naturpark Bayerischer Wald e. V.",
+            "checkedOn": "2026-11-17",
+            "lessonIds": [
+              "auerhuhn-zehenstifte"
+            ],
+            "supports": "Originalabschnitte Verwandtschaft und Spuren und Fährten tatsächlich gelesen: im Winter zusätzliche Hornstifte an den Zehen, größere Auftrittsfläche, jagdlicher Name Balzstifte. Eigenständiger institutioneller Text, keine experimentelle Replikation. Keine Spurmaße, sichere Artbestimmung aus einem Abdruck, Begehungsanweisung oder Fotos übernommen."
+          }
+        ]
+      },
+      {
+        "claim": "Das Alpenschneehuhn besitzt eine bis zu den Zehen reichende Befiederung, die ebenfalls vermindertes Einsinken unterstützt. Der Vergleich unterscheidet Zehenstifte und Zehenfedern als Strukturen, ohne chemische Zusammensetzung oder stammesgeschichtliche Herkunft zu behaupten.",
+        "sources": [
+          {
+            "label": "BirdLife Österreich: Auerhuhn – Zehenstifte und Vergleich mit Alpenschneehuhn",
+            "url": "https://www.birdlife.at/voegel/auerhuhn/",
+            "organization": "BirdLife Österreich; Zehenstift-Erklärung von Dr. Remo Probst",
+            "checkedOn": "2026-11-17",
+            "lessonIds": [
+              "auerhuhn-zehenstifte"
+            ],
+            "supports": "Originalabschnitte Wie erkenne ich ein Auerhuhn?, Wird häufig verwechselt mit und Haben Sie das gewusst? tatsächlich gelesen: Laufbefiederung bis zum Zehenansatz, jahreszeitlich ausgebildete seitliche hornige Zehenstifte und vermindertes Einsinken; beim Alpenschneehuhn befiederte Füße und Zehen. Keine Monats-, Größen-, Geschlechts-, Abstammungs- oder chemischen Materialbehauptungen übernommen. Institutionelle fachliche Einordnung, keine eigene experimentelle Messung."
+          },
+          {
+            "label": "Schweizerischer Nationalpark: Alpenschneehuhn – befiederte Zehen",
+            "url": "https://nationalpark.ch/flora-und-fauna/alpenschneehuhn/",
+            "organization": "Schweizerischer Nationalpark",
+            "checkedOn": "2026-11-17",
+            "lessonIds": [
+              "auerhuhn-zehenstifte"
+            ],
+            "supports": "Originalabsatz zur Befiederung der Beine bis zu den Zehen und zum verminderten Einsinken tatsächlich gelesen; zusammen mit dem BirdLife-Vergleich nur zur Abgrenzung der Zehenfedern von den Auerhuhn-Zehenstiften verwendet. Keine Kalender-, Gewichts-, Tarnungs-, Rechts- oder allgemeine Raufußhuhnbehauptung und kein Foto übernommen."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "BirdLife Österreich: Auerhuhn – Zehenstifte und Vergleich mit Alpenschneehuhn",
+        "url": "https://www.birdlife.at/voegel/auerhuhn/",
+        "organization": "BirdLife Österreich; Zehenstift-Erklärung von Dr. Remo Probst",
+        "checkedOn": "2026-11-17",
+        "lessonIds": [
+          "auerhuhn-zehenstifte"
+        ],
+        "supports": "Originalabschnitte Wie erkenne ich ein Auerhuhn?, Wird häufig verwechselt mit und Haben Sie das gewusst? tatsächlich gelesen: Laufbefiederung bis zum Zehenansatz, jahreszeitlich ausgebildete seitliche hornige Zehenstifte und vermindertes Einsinken; beim Alpenschneehuhn befiederte Füße und Zehen. Keine Monats-, Größen-, Geschlechts-, Abstammungs- oder chemischen Materialbehauptungen übernommen. Institutionelle fachliche Einordnung, keine eigene experimentelle Messung."
+      },
+      {
+        "label": "NABU Baden-Württemberg: Das Auerhuhn im Porträt – Raue Gesellen",
+        "url": "https://baden-wuerttemberg.nabu.de/natur-und-artenwissen/voegel/vogelportraets/das-auerhuhn-im-portraet",
+        "organization": "NABU Baden-Württemberg",
+        "checkedOn": "2026-11-17",
+        "lessonIds": [
+          "auerhuhn-zehenstifte"
+        ],
+        "supports": "Originalabschnitt Raue Gesellen – Standhaft auch im Winter tatsächlich gelesen: seitliche Hornstifte an den Zehen vergrößern die Trittfläche. Unabhängige institutionelle Einordnung gegenüber BirdLife; keine experimentelle Replikation, Maße, Bestandszahlen oder Bilder übernommen. Die Quellenaussage zum verhinderten Einsinken wird eng als vermindertes Einsinken formuliert."
+      },
+      {
+        "label": "Naturpark Bayerischer Wald: Auerhuhn – Verwandtschaft und Spuren",
+        "url": "https://tw.naturpark-bayer-wald.de/auerhuhn",
+        "organization": "Naturpark Bayerischer Wald e. V.",
+        "checkedOn": "2026-11-17",
+        "lessonIds": [
+          "auerhuhn-zehenstifte"
+        ],
+        "supports": "Originalabschnitte Verwandtschaft und Spuren und Fährten tatsächlich gelesen: im Winter zusätzliche Hornstifte an den Zehen, größere Auftrittsfläche, jagdlicher Name Balzstifte. Eigenständiger institutioneller Text, keine experimentelle Replikation. Keine Spurmaße, sichere Artbestimmung aus einem Abdruck, Begehungsanweisung oder Fotos übernommen."
+      },
+      {
+        "label": "Schweizerischer Nationalpark: Alpenschneehuhn – befiederte Zehen",
+        "url": "https://nationalpark.ch/flora-und-fauna/alpenschneehuhn/",
+        "organization": "Schweizerischer Nationalpark",
+        "checkedOn": "2026-11-17",
+        "lessonIds": [
+          "auerhuhn-zehenstifte"
+        ],
+        "supports": "Originalabsatz zur Befiederung der Beine bis zu den Zehen und zum verminderten Einsinken tatsächlich gelesen; zusammen mit dem BirdLife-Vergleich nur zur Abgrenzung der Zehenfedern von den Auerhuhn-Zehenstiften verwendet. Keine Kalender-, Gewichts-, Tarnungs-, Rechts- oder allgemeine Raufußhuhnbehauptung und kein Foto übernommen."
+      }
+    ]
+  },
+  "sourceProcedure": "The four named institutions publish their own original educational species accounts. BirdLife, NABU and Naturpark Bayerischer Wald independently describe capercaillie pectinations and snow support; BirdLife and the Swiss National Park separately support the Alpine ptarmigan toe-feather comparison. These are institutional expert accounts, not experiments, measurements or claimed independent experimental replications. Root confirmed separate direct reading of all four pages before implementation.",
+  "boundaries": [
+    "Only Tetrao urogallus and the explicit Lagopus muta comparison; no universal uniform Raufusshuhn foot.",
+    "Different structures, no claim that feather and horn pectination have chemically different materials or a stated developmental/evolutionary origin.",
+    "No fixed months, measurements, loading calculations, sex/age diagnosis or photos used as a species guarantee.",
+    "No guarantee against any sinking or cold injury; no field disturbance exercise, legal or hunting-release claim.",
+    "Own simplified paper comparison is explicit; no unprovided illustration is promised.",
+    "Complete explanation and visible limits precede the collapsed final source appendix."
+  ],
+  "notUsed": "Search-discovered historical or glossary wording describing pectinations as modified feathers was not adopted; the bounded text makes no origin claim.",
+  "media": {
+    "added": [],
+    "reason": "No new photograph, diagram or third-party visual was needed. Own paper exercise is clearly a learner activity."
+  },
+  "validation": {
+    "command": "Node22 --test scripts/test-capercaillie-toe-learning-nov17.cjs",
+    "passed": 7,
+    "skipped": 0,
+    "checks": [
+      "All prior raw course objects and full curriculum objects preserved",
+      "Exactly two cards with four choices and scoped source/date plus116 unchanged starters",
+      "All DACH quiz pools contain each new question exactly once",
+      "Actual static course props, subject location, Auerhuhn course crosslink and shared search",
+      "Actual course renderer puts every new paragraph and boundary before closed final sources",
+      "Private exact-lesson API denies unsigned requests and preserves four choices/date",
+      "Strict appendix helper rejects unknown tails, date/source scope drift and cannot hide prior text mutations"
+    ],
+    "historical": {
+      "command": "Node22 --test scripts/test-wildlife-depth.cjs scripts/test-marmot-hibernation-learning.cjs",
+      "passed": 16,
+      "skipped": 0,
+      "scope": "Only strict named appendix-helper composition; all original five-lesson expectations, source-domain guards, exact counts, hashes, negative tests and every old assertion retained."
+    }
+  },
+  "independentPeerReview": "Pending separate reviewer; root independently read sources before implementation. No full curriculum certification."
+}

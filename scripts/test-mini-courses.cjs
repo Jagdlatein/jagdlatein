@@ -369,39 +369,32 @@ test('Course overview static props contain every mini/detailed course once with 
   assert.ok(!JSON.stringify(overview).includes('"lessons"')); assert.ok(!JSON.stringify(overview).includes('"answers"'));
 });
 
-test('Course overview combines category, format and text filters, accepts umlaut variants and resets empty selections', () => {
-  const e = engine();
-  const overview = load('pages/kurse/index.js', { react: e.hooks });
-  const props = overview.getStaticProps().props;
-  const render = () => e.render(() => overview.default(props)); let tree = render();
-  function cards() {
-    const result = [];
-    function visit(node) { if (Array.isArray(node)) node.forEach(visit); else if (node && typeof node === 'object') { if (node.type === 'article') result.push(node); visit(node.props?.children); } }
-    visit(tree); return result;
-  }
-  function hrefs() { return cards().map(card => walk(card, node => typeof node.props?.href === 'string' && node.props.href.startsWith('/kurse/')).props.href); }
-  function change(label, value) { const parent = walk(tree, node => node.type === 'label' && words(node).startsWith(label)); assert.ok(parent, label); const field = walk(parent, node => node.type === 'input' || node.type === 'select'); field.props.onChange({ target: { value } }); tree = render(); }
-  function reset() { const button = walk(tree, node => node.type === 'button' && words(node) === 'Auswahl zurücksetzen'); assert.ok(button); button.props.onClick(); tree = render(); }
-  assert.equal(cards().length, 0);
-  assert.ok(walk(tree, node => node.type?.name === 'LearningCategoryMenu'));
-  assert.equal(walk(tree, node => node.props?.role === 'status'), null);
-  change('Lernformat', 'mini'); assert.equal(cards().length, props.miniCount);
-  change('Kategorie', 'wildkunde'); assert.deepEqual(hrefs(), props.courses.filter(course => course.format === 'mini' && course.category === 'wildkunde').map(course => course.href));
-  change('Kurse durchsuchen', 'Rehwild'); assert.deepEqual(hrefs(), ['/kurse/rehwild']);
-  reset(); change('Lernformat', 'detailed'); assert.equal(cards().length, props.detailedCount);
-  change('Kategorie', 'hundewesen'); assert.ok(cards().length >= 5); assert.deepEqual(hrefs(), props.courses.filter(course => course.format === 'detailed' && course.category === 'hundewesen').map(course => course.href)); assert.ok(hrefs().includes('/kurse/wissen-nachsuche'));
-  change('Lernformat', 'mini'); assert.equal(cards().length, 0); assert.match(words(tree), /Keine passenden Kurse gefunden/);
-  reset(); assert.equal(cards().length, 0);
-  for (const [accented, transliterated] of [['Jägersprache', 'Jaegersprache'], ['Fährten', 'Faehrten'], ['Wärmebild', 'Waermebild']]) {
-    change('Kurse durchsuchen', accented); const expected = hrefs(); assert.ok(expected.length > 0, accented);
-    change('Kurse durchsuchen', transliterated); assert.deepEqual(hrefs(), expected, transliterated);
-  }
-  change('Kurse durchsuchen', 'zzznichtvorhanden'); assert.equal(cards().length, 0); reset(); assert.equal(cards().length, 0);
+test('Course overview combines committed category and format choices; the single central search retains course names and umlaut variants', async t => {
+  const {setup,nodes}=require('./helpers/field-reader-fixture.cjs');
+  const props=load('pages/kurse/index.js').getStaticProps().props;
+  const h=setup('components/CourseDirectory.js',{}, {props,router:{asPath:'/kurse'}});t.after(()=>h.dispose());
+  h.router.push=async href=>{const url=new URL(href,'https://jagdlatein.test');h.router.asPath=href;h.router.query=Object.fromEntries(url.searchParams);return true;};
+  const cards=()=>h.nodes(node=>node.type==='article'),hrefs=()=>cards().map(card=>walk(card,node=>typeof node.props?.href==='string'&&node.props.href.startsWith('/kurse/')).props.href);
+  async function change(id,value){const choice=h.nodes(node=>node.type?.name==='MenuChoice'&&node.props.id===id)[0];assert.ok(choice,id);const button=nodes(choice.type(choice.props),node=>node.type==='button'&&node.props['data-menu-choice']===value)[0];assert.ok(button,value);button.props.onClick();await new Promise(resolve=>setImmediate(resolve));h.render();}
+  async function reset(){h.click('Auswahl zurücksetzen');await new Promise(resolve=>setImmediate(resolve));h.render();}
+  assert.equal(cards().length,0);assert.equal(h.nodes(node=>node.type?.name==='LearningCategoryMenu').length,0);assert.equal(h.nodes(node=>node.type==='input'||node.type==='select').length,0);
+  await change('course-directory-format','mini');assert.equal(cards().length,0,'A format alone still waits for an explicit category');
+  await change('course-directory-category','all');assert.equal(cards().length,props.miniCount);
+  await change('course-directory-category','wildkunde');assert.deepEqual(hrefs(),props.courses.filter(course=>course.format==='mini'&&course.category==='wildkunde').map(course=>course.href));
+  await reset();await change('course-directory-format','detailed');assert.equal(cards().length,0);
+  await change('course-directory-category','all');assert.equal(cards().length,props.detailedCount);
+  await change('course-directory-category','hundewesen');assert.ok(cards().length>=5);assert.deepEqual(hrefs(),props.courses.filter(course=>course.format==='detailed'&&course.category==='hundewesen').map(course=>course.href));assert.ok(hrefs().includes('/kurse/wissen-nachsuche'));
+  await change('course-directory-format','mini');assert.equal(cards().length,0);assert.match(words(h.tree),/keine Kurse vorhanden/);
+  await reset();assert.equal(cards().length,0);
+  const search=load('lib/learning-search.js').searchLearning;
+  assert.ok(search({query:'Rehwild',category:'wildkunde',type:'course'}).results.some(result=>result.href==='/kurse/rehwild'));
+  for(const[accented,transliterated]of[['Jägersprache','Jaegersprache'],['Fährten','Faehrten'],['Wärmebild','Waermebild']]){const expected=search({query:accented,type:'course'});assert.ok(expected.total>0,accented);const actual=search({query:transliterated,type:'course'});assert.equal(actual.total,expected.total);assert.deepEqual(actual.results.map(result=>result.id),expected.results.map(result=>result.id),transliterated);}
+  assert.equal(search({query:'zzznichtvorhanden',type:'course'}).results.length,0);
 });
 
 test('The course overview client transform excludes full curriculum and server-only course metadata imports', () => {
   const filename = path.join(root, 'pages/kurse/index.js');
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: false, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'es6' } });
-  assert.ok(code.includes('__N_SSG')); assert.ok(code.includes('LearningToolLayout'));
+  assert.ok(code.includes('__N_SSG')); assert.ok(code.includes('CourseDirectory'));
   for (const dependency of ['learning-curriculum', 'course-catalog', 'mini-course-details', 'getStaticProps']) assert.ok(!code.includes(dependency), dependency + ': excluded from client');
 });

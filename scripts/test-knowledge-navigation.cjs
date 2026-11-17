@@ -268,7 +268,7 @@ test('Every overview photo keeps its delivered image, fitting and full visible c
       .filter(tool => tool.categories.includes(slug) && tool.subcategoryOf !== slug).filter((tool, index, all) => all.findIndex(item => item.href === tool.href) === index)
       .filter(tool => !(slug === 'jagdrecht' && tool.href === '/quiz-app'))
       .map(({ href, icon, title, description, featured }) => ({
-        href: href === '/lernen/lernkarten' || href === '/lernen/fuenf-minuten' ? `${href}?kategorie=${encodeURIComponent(slug)}`
+        href: href === '/kurse' || href === '/lernen/lernkarten' || href === '/lernen/fuenf-minuten' ? `${href}?kategorie=${encodeURIComponent(slug)}`
           : href === '/quiz-app' ? `/quiz-app?topic=${encodeURIComponent(learningCategoryDetails.find(category => category.slug === slug).title)}` : href,
         icon, title, description, ...(featured ? { featured: true } : {}),
       })) : [];

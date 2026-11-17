@@ -14,8 +14,12 @@ function load(relative) {
   new Function("require", "module", "exports", code)(requireFromFile, mod, mod.exports);
   return mod.exports;
 }
-const { dogDepthModules } = load("lib/learning-dog-depth.js");
-const { dogDepthIndependentSources, dogDepthSourceReview } = load("lib/dog-depth-independent-sources.js");
+const { stripDogExtinctionAddition, sourceKeys: extinctionSourceKeys } = require('./helpers/dog-extinction-addition-nov17.cjs');
+// The new named appendix owns separate live preservation/source checks. Keep
+// every historical source, date and unreviewed-gap assertion below unchanged.
+const dogDepthModules = load("lib/learning-dog-depth.js").dogDepthModules.map(stripDogExtinctionAddition);
+const { dogDepthSourceReview } = load("lib/dog-depth-independent-sources.js");
+const dogDepthIndependentSources = Object.fromEntries(Object.entries(load("lib/dog-depth-independent-sources.js").dogDepthIndependentSources).filter(([id]) => !extinctionSourceKeys.includes(id)));
 const sourcesAddedOctober13 = new Set(["handlerBelief", "handlerKnowledge", "markerDogsTrust", "markerBlueCross", "recallDogsTrust", "recallRspca", "heatVetmed", "heatPdsa", "pantingPdsa", "firstAidZurich"]);
 const sourcesAddedOctober24 = new Set(["sniffAirflowCraven", "sniffAirflowJendrny"]);
 const sourcesAddedOctober29 = new Set(["learningProcessesMsd", "habituationAvsab", "learningOverviewOpenstax", "operantOpenstax"]);

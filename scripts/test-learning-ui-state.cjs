@@ -396,15 +396,19 @@ test('Category tree choices focus the committed heading or selected course summa
   } finally {if(previousWindow===undefined)delete global.window;else global.window=previousWindow;}
 });
 
-test('Course directory begins at categories and exposes course results only for a specific search or filter', () => {
+test('Course directory begins with one lower category chooser and shows results only after the explicit URL selection commits', async t => {
   const page=load('pages/kurse/index.js'),props=page.getStaticProps().props;
-  const s=setup('pages/kurse/index.js',props);
-  assert.equal(find(s.tree,n=>n.type==='article'),null);
-  assert.ok(find(s.tree,n=>n.type?.name==='LearningCategoryMenu'));
-  const selected=props.courses.find(c=>c.format==='detailed');
-  s.field('Kurse durchsuchen').props.onChange({target:{value:selected.title}});s.redraw();
+  const {setup:reader,nodes}=require('./helpers/field-reader-fixture.cjs');
+  const s=reader('components/CourseDirectory.js',{}, {props,router:{asPath:'/kurse'}});t.after(()=>s.dispose());
+  const requests=[];s.router.push=async href=>{requests.push(href);return true;};
+  assert.equal(find(s.tree,n=>n.type==='article'),null);assert.ok(find(s.tree,n=>n.type?.name==='PageMenu'));
+  assert.equal(find(s.tree,n=>n.type?.name==='LearningCategoryMenu'),null);assert.equal(find(s.tree,n=>n.type==='input'||n.type==='select'),null);
+  const selected=props.courses.find(c=>c.format==='detailed'),choice=find(s.tree,n=>n.type?.name==='MenuChoice'&&n.props.id==='course-directory-category');
+  nodes(choice.type(choice.props),n=>n.type==='button'&&n.props['data-menu-choice']===selected.category)[0].props.onClick();
+  await new Promise(resolve=>setImmediate(resolve));s.render();assert.equal(find(s.tree,n=>n.type==='article'),null,'Promise acceptance alone is not a URL commit');
+  s.router.asPath=requests[0];s.router.query=Object.fromEntries(new URL(requests[0],'https://jagdlatein.test').searchParams);s.render();
   assert.ok(words(s.tree).includes(selected.title));assert.ok(find(s.tree,n=>n.type==='article'));
-  s.click('Auswahl zurücksetzen');assert.equal(find(s.tree,n=>n.type==='article'),null);
+  s.click('Auswahl zurücksetzen');await new Promise(resolve=>setImmediate(resolve));s.router.asPath=requests[1];s.router.query=Object.fromEntries(new URL(requests[1],'https://jagdlatein.test').searchParams);s.render();assert.equal(find(s.tree,n=>n.type==='article'),null);
 });
 
 

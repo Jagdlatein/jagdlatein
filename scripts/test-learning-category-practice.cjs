@@ -109,7 +109,10 @@ test('Every course-card shortcut resolves to the complete actual scoped deck wit
     assert.deepEqual(deck.cards.map(card => card.id), cards.map(card => card.id));
     assert.ok(deck.cards.every(card => card.moduleId === course.id && course.lessons.some(lesson => lesson.id === card.lessonId) && card.choices.length === 4));
   }
-  assert.equal(linked, 140);
+  // The dated Auerhuhn appendix creates the next actual two-card course deck;
+  // all 140 previously advertised decks remain in the complete pool above.
+  assert.equal(project(learningModules.find(course => course.id === 'wissen-vertiefung-wild-huehner-nachwuchs')).cardCount, 2);
+  assert.equal(linked, 141);
 });
 
 test('Malformed, inherited, stale or invented card counts never advertise a deck; valid objectives and quiz remain independent', () => {

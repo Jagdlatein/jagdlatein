@@ -6,6 +6,8 @@ const { createRequire } = require('node:module');
 const root = path.resolve(__dirname, '..');
 const projectRequire = createRequire(path.join(root, 'package.json'));
 const swc = projectRequire('next/dist/build/swc');
+const { stripMarmotHibernationAddition } = require('./helpers/marmot-hibernation-addition-nov08.cjs');
+const { stripCapercaillieToeCourse } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
 const cache = new Map();
 function load(relative) {
   const filename = path.resolve(root, relative);
@@ -22,7 +24,10 @@ function load(relative) {
   return module.exports;
 }
 const { wildlifeDepthBySlug: profiles, wildlifeDepthSlugs: slugs } = load('lib/wildlife-depth.js');
-const { wildlifeDepthModules: courses } = load('lib/learning-wildlife-depth.js');
+const { wildlifeDepthModules: currentCourses } = load('lib/learning-wildlife-depth.js');
+// Keep every original five-lesson assertion intact. The two exactly named,
+// dated appendices have separate positive full-object preservation checks.
+const courses = currentCourses.map(stripCapercaillieToeCourse).map(stripMarmotHibernationAddition);
 
 test('Deepening attaches only to existing species and preserves the wider DACH catalog', () => {
   const { dachWildlifeBySlug, dachWildlife } = load('lib/dach-wildlife.js');

@@ -1,5 +1,11 @@
 const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
+const { dogExtinctionBaselineFixture, stripDogExtinctionAddition } = require('./helpers/dog-extinction-addition-nov17.cjs');
+const { novemberLearningBaselineFixture } = require('./helpers/november-learning-baseline.cjs');
+const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
+const { avianCecaBaselineFixture } = require('./helpers/avian-ceca-addition-oct29.cjs');
+const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
 const { stripDogLearningProcessesAddition } = require('./helpers/dog-learning-processes-additions-oct29.cjs');
 const { isPlantEnergyCard } = require('./helpers/plant-energy-additions-oct27.cjs');
@@ -13,7 +19,11 @@ const { createHash } = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createLoader: createLinkedProjectLoader, local, root } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createLinkedProjectLoader(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides)));
+const createLoader = overrides => createLinkedProjectLoader([
+  linkedExamBaselineFixture, practiceKnowledgeBaselineFixture, practiceMeasurementBaselineFixture,
+  forestExamBaselineFixture, novemberLearningBaselineFixture, avianCecaBaselineFixture,
+  capercaillieToeBaselineFixture, dogExtinctionBaselineFixture,
+].reduce((current, project) => project(current), overrides));
 const { isOctober26Card } = require('./helpers/learning-additions-oct26.cjs');
 const { isOctober27Card } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react');
@@ -21,7 +31,7 @@ const { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader(examKnowledgeBaselineFixture());
 const courseId = 'wissen-vertiefung-hunde-nase-spur-laut';
 const lessonId = `${courseId}-ausatemrichtung`;
-const rawCourses = load('lib/learning-dog-depth.js').dogDepthModules.map(stripDogLearningProcessesAddition);
+const rawCourses = load('lib/learning-dog-depth.js').dogDepthModules.map(stripDogExtinctionAddition).map(stripDogLearningProcessesAddition);
 const raw = rawCourses.find(course => course.id === courseId);
 const course = load('lib/learning-curriculum.js').getLearningModule(courseId);
 const lesson = course.lessons.find(item => item.id === lessonId);
@@ -162,7 +172,7 @@ test('The actual offline course reader renders the new lesson review at the exis
   const { code } = local('next/dist/build/swc').transformSync(source, { filename, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   const mod = { exports: {} }, loader = createLoader({ react: hooks });
   new Function('require', 'module', 'exports', code)(id => id === 'react' ? hooks : id.endsWith('.module.css') ? { __esModule: true, default: {} } : id.startsWith('.') ? loader(path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)) : local(id), mod, mod.exports);
-  const html = renderToStaticMarkup(mod.exports.OfflineCourse({ course, expiresAt: Date.now() + 60000, onExpired() {} }));
+  const html = renderToStaticMarkup(React.createElement(mod.exports.OfflineCourse, { course, expiresAt: Date.now() + 60000, onExpired() {} }));
   assert.ok(html.includes(lesson.paragraphs[0]));
   assert.ok(html.indexOf('Quellen und Prüfstand') > html.indexOf(lesson.paragraphs[0]));
   assert.match(html, /24\. Oktober 2026/);

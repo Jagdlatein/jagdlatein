@@ -15,6 +15,16 @@ function collectLinks(node) {
   return [...(node.props?.href ? [node] : []), ...collectLinks(node.props?.children)];
 }
 
+test('Course-directory Back retains category and format commits; unrelated query context remains one stop on that exact route only', () => {
+  const base='/kurse',wild=base+'?kategorie=wildkunde',mini=wild+'&format=mini',dog=base+'?kategorie=hundewesen&format=mini';
+  const s=setup('/lernen');s.route(base);s.route(wild);s.route(mini);s.route(dog);s.route(dog+'&ref=own-fixture');
+  assert.deepEqual(s.history,['/lernen',base,wild,mini,dog+'&ref=own-fixture']);
+  s.render().props.children[0].props.onClick();assert.equal(s.destination,mini);
+  const native=setup(base,['/lernen']);native.route(wild);native.route(mini);native.route(wild);native.render().props.children[0].props.onClick();assert.equal(native.destination,base);
+  const immediate=setup(base,['/lernen']);immediate.route(wild);immediate.navigateBeforeEffects(mini);immediate.render().props.children[0].props.onClick();assert.equal(immediate.destination,wild);
+  const other=setup('/lernen');other.route('/community?kategorie=wildkunde');other.route('/community?kategorie=hundewesen&format=mini');assert.equal(other.history.length,2);
+});
+
 test('Flashcard dock Back retains category, mode and card choices while a search clearing the card stays one stop', () => {
   const base='/lernen/lernkarten', category=`${base}?kategorie=wildkunde`, all=`${category}&modus=alle`, first=`${all}&karte=reh-eins`, next=`${all}&karte=reh-zwei`;
   const s=setup('/lernen');s.route(base);s.route(category);s.route(all);s.route(first);s.route(next);

@@ -11,6 +11,8 @@ const { fishLateralLineBaselineFixture } = require('./helpers/fish-lateral-line-
 const { novemberLearningBaselineFixture } = require('./helpers/november-learning-baseline.cjs');
 const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
 const { avianCecaBaselineFixture } = require('./helpers/avian-ceca-addition-oct29.cjs');
+const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addition-nov17.cjs');
+const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
 const test = require('node:test'), assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const fs = require('node:fs'), path = require('node:path');
@@ -43,7 +45,7 @@ function measurementBaselineFixture(overrides = {}) {
     return { ...module, lessons: module.lessons.slice(0, -1), questions: module.questions.slice(0, -2), sources: module.sources.slice(0, -3) };
   }) } };
 }
-const createLoader = overrides => createLinkedProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(forestExamBaselineFixture(measurementBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(overrides)))))));
+const createLoader = overrides => createLinkedProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(forestExamBaselineFixture(measurementBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(overrides)))))))));
 const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(fishLateralLineBaselineFixture())))))));
