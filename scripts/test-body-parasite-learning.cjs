@@ -49,7 +49,7 @@ test('Five bounded learning profiles have nineteen distinct claim blocks and ten
     assert.equal(topic.reviewedOn, '2026-10-13'); assert.ok(topic.summary && topic.limit && topic.photoContext && topic.keywords.length);
     assert.equal(topic.questions.length, 2);
     for (const question of topic.questions) {
-      const choiceCount = parasite.parasiteTopics.includes(topic) ? 4 : 3;
+      const choiceCount = 4;
       assert.equal(question.choices.length, choiceCount); assert.equal(new Set(question.choices).size, choiceCount);
       assert.ok(Number.isInteger(question.answer) && question.answer >= 0 && question.answer < 3);
       assert.ok(question.explanation.length > 65);
@@ -122,7 +122,7 @@ test('Selected content and sources appear immediately without a second layout, e
     for (const topic of collection.topics) {
       const html = renderToStaticMarkup(React.createElement(Component, {selectedId: topic.id, hideSelector: true}));
       assert.ok(html.includes(topic.title) && html.includes(topic.photo.src) && html.includes(`id="${collection.anchor}"`));
-      assert.equal((html.match(/type="radio"/g) || []).length, collection.Component === 'ParasiteLearning' ? 8 : 6);
+      assert.equal((html.match(/type="radio"/g) || []).length, 8);
       assert.equal((html.match(/<fieldset\b/g) || []).length, 2);
       assert.doesNotMatch(html, /<main\b|<h1\b|<button\b|<select\b|undefined/);
       assert.match(html, /Eigene vereinfachte Lernskizze/); assert.match(html, /13\. Oktober 2026/);

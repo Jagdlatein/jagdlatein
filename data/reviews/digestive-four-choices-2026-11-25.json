@@ -1,0 +1,143 @@
+{
+  "state": "four_exact_fourth_answer_appendices_implemented_pending_independent_review",
+  "baselineCommit": "7dc3a12193323df00d1dc4fb2672176e299655cf",
+  "checkedOn": "2026-11-25",
+  "purpose": "One meaningful additional answer per existing digestive question; no new questions, topics, teaching text, photographs or inherited review dates.",
+  "implementationScope": {"file":"lib/digestive-learning.js","existingTopics":2,"existingQuestions":4,"appendedChoices":4,"newQuestions":0,"sourceObjectsChanged":false,"mediaChanged":false,"oldReviewedOn":"2026-10-13","newReviewDateScope":"Only the four added comparison alternatives were checked on25Nov, including the deliberately true alternative under the negative fourth prompt. No old topic, fact, source or photograph date was replaced."},
+  "separateRootSourcePresentation": "Root separately owns DigestiveLearning presentation and a scoped choice-source module: map only these four new comparisons to their actually read originals under an explicit25Nov heading inside the existing final closed source appendix. The newly read Minnesota original HTML is evidence for comparison4, never represented as a successful new reading of the currently unavailable old PDF. Preserve all old source objects, fact/cycle/question mappings, old13Oct dates, photo provenance, full reading and limits. No new answer or topic lifecycle is introduced.",
+  "filesRead": ["lib/digestive-learning.js", "components/DigestiveLearning.js", "components/AnatomyExplorer.js"],
+  "preservationContract": "Keep the first three choices and their order, all prompts, answer indices0/1/1/2, explanations, factIds, photos, source objects, facts, pathways, limits, observations, keywords, search/asset entries and the13October dates completely exact. Root authorised only the four exact choices[3] appendices.",
+  "questionDirectionWarning": "schwein-mikroben asks which statement is TOO SWEEPING. Its existing correct index2 is the false universal statement. Therefore the new fourth alternative for that question must be a true, bounded statement, not another false generalisation. The other three questions ask for the correct description, so their new alternatives must be false.",
+  "sourcesActuallyRead": [
+    {
+      "id": "bzl",
+      "url": "https://www.landwirtschaft.de/tier-und-pflanze/tier/rinder/warum-koennen-rinder-von-gras-leben",
+      "title": "Warum können Rinder von Gras leben?",
+      "organisation": "Bundesinformationszentrum Landwirtschaft, BLE",
+      "independenceGroup": "BZL/BLE",
+      "readScope": "Original HTML core article read, particularly web lines147,150–154,162–168. Lists the three forestomachs and abomasum; explains microbial fermentation of structural plant material and distinguishes later enzymatic processing. The source's everyday plural stomach language is not copied as a new anatomical count claim.",
+      "excluded": "No cow volumes, calf ages, feeding/ration instructions or direct numerical extrapolation to roe deer."
+    },
+    {
+      "id": "luzern",
+      "url": "https://www.museumluzern.ch/application/files/1217/3641/6491/Lehrpersonen_Reh.pdf",
+      "title": "Das Reh – Durch Anpassung zum Erfolg, Tipps und Anregungen für Lehrpersonen",
+      "organisation": "Natur-Museum Luzern, exhibition teaching material",
+      "independenceGroup": "Naturmuseen Olten/Thurgau/Solothurn/Luzern",
+      "readScope": "Physical PDF page10 = printed8, the complete digestive paragraph from Nahrung, read as original extracted text and visually in a local Poppler PNG. Names rumen, reticulum, omasum and abomasum for roe deer; separates microbial rumen processing and later digestive juices. The related museums are one source family, never counted independently from each other.",
+      "localPdf": "sources/luzern-reh.pdf",
+      "localPng": "sources/luzern-reh-physical10.png",
+      "sha256": "AFF3A3A74A9A2AE755D984B41325B49243107389B56C17A0B290250B14587DD6",
+      "excluded": "No old survey figures, intake amounts, season guarantees, hunting rules, handling advice, or strict twice-only/linear passage claim is introduced."
+    },
+    {
+      "id": "vetMicrobes",
+      "url": "https://www.vetmeduni.ac.at/universitaet/infoservice/presseinformationen/presseinformationen-2023/die-pansenwand-im-fokus-wichtig-fuer-die-nahrungsaufnahme-der-kuh-und-vielseitige-nische-fuer-die-differenzierung-von-bakteriellen-populationen",
+      "title": "Die Pansenwand im Fokus,12January2023",
+      "organisation": "Veterinärmedizinische Universität Wien",
+      "independenceGroup": "Vetmeduni Wien",
+      "readScope": "Original university research communication read, particularly core paragraphs42–44 and the surrounding microbial-population findings. It identifies microorganisms as principal actors in rumen processing. This is the institution's explanation of its own work, not a claimed experimental replication of BZL or a substitute for reading an inaccessible underlying paper.",
+      "excluded": "No quantitative energy fractions, microbial composition predictions, acetate results, interventions or feeding recommendations."
+    },
+    {
+      "id": "uzhPig",
+      "url": "https://www.ictvet.uzh.ch/US_Schwein/html/git1.htm",
+      "title": "Anatomie des Digestitionsapparates",
+      "organisation": "University of Zurich veterinary teaching",
+      "independenceGroup": "UZH",
+      "readScope": "Original short HTML page read, especially lines6–7. It calls the pig stomach single-cavity and composite, then describes the different mucosal areas. The distinction is chamber number versus wall types; composite is not a claim of multiple stomach cavities.",
+      "excluded": "No pig ages, stomach capacities, colour-based identification guarantees, feeding behaviour or clinical claims."
+    },
+    {
+      "id": "thuenenPig",
+      "url": "https://literatur.thuenen.de/digbib_extern/bitv/dk037184.pdf",
+      "title": "Ernährung und Fütterung der Schweine, section6.1.1 Aufbau, Entwicklung und Funktion des Verdauungstraktes",
+      "organisation": "Thünen repository, Brade/Flachowsky edited swine reference work",
+      "independenceGroup": "Thünen/reference-work authors",
+      "readScope": "Physical PDF page4 = printed126, whole relevant section and Fig6.2 actually read and visually checked in a local Poppler PNG. Describes a single-cavity pig stomach and separate intestinal portions; the same stomach drawing labels distinct mucosal zones. Text directly states small-intestinal nutrient absorption.",
+      "localPdf": "sources/thuenen-pig-digestion.pdf",
+      "localPng": "sources/thuenen-pig-physical4.png",
+      "sha256": "1B2B63AB2384BF753EFAB689B10148A80D07097A842444666E18533F47185DA4",
+      "excluded": "No dimensions, volume fractions, ages, developmental curves, feed formulas, recommendations or quantitative absorption shares are reused."
+    },
+    {
+      "id": "minnesotaHtml",
+      "url": "https://open.lib.umn.edu/vetphysioapplied/chapter/overview/",
+      "title": "Digestion-related anatomy, Vet Med: Applied GI Physiology – Supplemental Notes",
+      "author": "Erin Malone DVM PhD",
+      "organisation": "University of Minnesota Open Textbook Library/Pressbooks",
+      "independenceGroup": "University of Minnesota/Erin Malone",
+      "readScope": "Actual original chapter HTML downloaded by ordinary HTTP and relevant Monogastrics/Anatomy and Digestion overview paragraphs read; author metadata checked. The small intestine is identified as a digestion/absorption site and the monogastric discussion explicitly includes pigs. Direct web-tool open403 is distinguished from the successful normal original HTML download; no full-book PDF reading is claimed.",
+      "localHtml": "sources/umn-digestion-anatomy.html",
+      "localText": "sources/umn-digestion-anatomy.txt",
+      "sha256": "0D6B1136734FE57D61037F70E8973241578132D2D12AC70A03D54CE9996BBF1C",
+      "licenceBoundary": "Book marked CC BY-NC4.0. Used only to check underlying biological facts. No book prose, figures, videos or other protected expression will be copied into the commercial product; the proposed short German alternative is independently worded.",
+      "excluded": "No disease/therapy, feeding, motility timelines, nutrient percentages, or horse/camelid specialisations are added."
+    }
+  ],
+  "notCountedAsReadToday": [
+    {"id":"agroscope","url":"https://www.agroscope.admin.ch/dam/agroscope/de/dokumente/themen/nutztiere/wiederkaeuer/faq-fistelkuehe.pdf.download.pdf/2014_Factsheet_FragenAntworten_Fistelkuh.pdf","observation":"Existing exact URL returned404 in the web tool. It is not counted toward the new independent comparisons; the old record is not edited by this proposal."},
+    {"id":"vetAnatomy","url":"https://www.vetmeduni.ac.at/fileadmin/v/z/mitteilungsblatt/zulassung/2024_2025/20250319_AV25_Skript_Diplomstudium_Veterin%C3%A4rmedizin.pdf","observation":"Web-tool PDF open did not yield readable content today. No full-script reading is claimed. BZL+Luzern independently support the exact chamber-list comparison; UZH+Thünen support the pig stomach comparison."},
+    {"id":"minnesotaPdf","url":"https://open.lib.umn.edu/vetphysioapplied/open/download?type=pdf","observation":"Web-tool full-PDF access did not yield a readable source. The actual author-attributed original HTML chapter, which was successfully downloaded and read, is the scoped reference instead."}
+  ],
+  "questions": [
+    {
+      "topicId": "wiederkaeuer-verdauung",
+      "questionId": "wiederkaeuer-kammern",
+      "questionDirection": "positive: choose the correct stomach-compartment group",
+      "unchangedAnswerIndex": 0,
+      "fourthChoice": "Pansen, Netzmagen, Dünndarm und Labmagen",
+      "newAlternativeTruth": false,
+      "whyPlausible": "Three names belong to the taught stomach system, but the intestinal segment replaces the omasum; this is more anatomically adjacent than the existing liver/lung/kidney distractor and does not duplicate it.",
+      "whyUnambiguous": "Both independent sources list the omasum with rumen, reticulum and abomasum. Replacing it with the small intestine does not give the requested group.",
+      "sourceIds": ["bzl", "luzern"],
+      "independentFamilyCount": 2,
+      "existingTeaching": ["vier-abschnitte", "nach-vormaegen"],
+      "claimLimit": "Only the taught ruminant stomach model; no new organ counts, measurements, position/scale claims or assertion that a photograph proves function."
+    },
+    {
+      "topicId": "wiederkaeuer-verdauung",
+      "questionId": "wiederkaeuer-helfer",
+      "questionDirection": "positive: choose what makes fibre-rich plant material useful in the rumen",
+      "unchangedAnswerIndex": 1,
+      "fourthChoice": "Allein durch körpereigenen Magensaft, ohne mikrobielle Gärung",
+      "newAlternativeTruth": false,
+      "whyPlausible": "Distinguishes host digestive secretions from microbial processing, rather than repeating the existing colour or once-only-transit distractors.",
+      "whyUnambiguous": "BZL and Vetmeduni independently describe microbes as key rumen processors. Host gastric juice alone without that process does not describe the taught rumen mechanism.",
+      "sourceIds": ["bzl", "vetMicrobes"],
+      "independentFamilyCount": 2,
+      "existingTeaching": ["mikroben", "wiederkaeuen", "nach-vormaegen"],
+      "claimLimit": "No blanket denial of host enzymes elsewhere, no exclusive claim about all plant substrates and no feeding, treatment or chemical measurements."
+    },
+    {
+      "topicId": "schwarzwild-verdauung",
+      "questionId": "schwein-pansen",
+      "questionDirection": "positive: choose the correct wild-boar digestive ground-plan description",
+      "unchangedAnswerIndex": 1,
+      "fourthChoice": "Ein mehrhöhliger Magen, weil seine Schleimhaut zusammengesetzt ist",
+      "newAlternativeTruth": false,
+      "whyPlausible": "Tests the actual specialist terminology confusion: different mucosal regions do not imply multiple cavities. It differs from inventing a rumen or omitting the intestine.",
+      "whyUnambiguous": "UZH explicitly calls the pig stomach single-cavity/composite and describes its mucosal zones. Independent Thünen text and Fig6.2 show a single-cavity stomach with distinct wall regions. The existing teaching already confines domestic-pig references to ground-plan comparison.",
+      "sourceIds": ["uzhPig", "thuenenPig"],
+      "independentFamilyCount": 2,
+      "existingTeaching": ["kein-wiederkaeuer", "ein-hohlraum"],
+      "claimLimit": "No extrapolation of livestock dimensions, intake or individual wild-boar findings; no new numerical claim."
+    },
+    {
+      "topicId": "schwarzwild-verdauung",
+      "questionId": "schwein-mikroben",
+      "questionDirection": "NEGATIVE: choose the statement that is too sweeping; the existing correct option is the false universal claim about absence of microbial digestion",
+      "unchangedAnswerIndex": 2,
+      "fourthChoice": "Im Dünndarm des Schweins werden Nährstoffe aufgenommen",
+      "newAlternativeTruth": true,
+      "whyPlausible": "Adds a true physiological function rather than merely repeating the existing anatomical statement that pigs have small and large intestine. The learner must still identify the unchanged false universal claim.",
+      "whyUnambiguous": "Thünen explicitly locates nutrient absorption in the small intestine. The independently authored Minnesota monogastric chapter identifies it as a digestion/absorption site and includes pigs in the model. The new wording has no only/all or quantitative guarantee.",
+      "sourceIds": ["thuenenPig", "minnesotaHtml"],
+      "independentFamilyCount": 2,
+      "existingTeaching": ["enzyme", "auch-mikroben"],
+      "claimLimit": "It is a correct alternative deliberately NOT selected for this negative question. No all-nutrients/only-site/efficiency/amount claim, no feeding recommendation."
+    }
+  ],
+  "licenceAndMedia": "No new media or licensed expression is proposed. Existing real photographs, provenance, captions and files remain untouched. The six sources check biological facts; four short German alternatives are original wording.",
+  "scopeConclusion": "All four appendices improve these exact existing checks without adding question counts or learning windows. Three new alternatives are false under their positive prompts; the fourth is true under its negative prompt. Root independently read the exact sources before authorising implementation; a further agent reviews the final files separately."
+}
