@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Source reading is documented separately. These isolated regression checks
 // verify preservation and the real learning/quiz/card/print/offline adapters.
 const test = require('node:test'), assert = require('node:assert/strict');
@@ -16,7 +18,7 @@ const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measu
 // Separate pre-existing snapshot repair: these named publications followed
 // c5a0157. Their original helpers preserve all unrelated fields and sources.
 const createLoader = overrides => createProjectLoader([
-  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
+  fishGillBaselineFixture, redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
   capercaillieToeBaselineFixture, dogExtinctionBaselineFixture, forestExamBaselineFixture,
   practiceMeasurementBaselineFixture, trackPostureBaselineFixture,
 ].reduce((current, project) => project(current), overrides));

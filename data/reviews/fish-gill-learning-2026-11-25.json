@@ -1,0 +1,108 @@
+{
+  "reviewedOn": "2026-11-25",
+  "baselineCommit": "59bbeda4e20869acc6f4a2973a90bfffaf99bd96",
+  "courseId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+  "lessonId": "kiemen-gegenstrom",
+  "scope": "Eine neue Endlektion im bestehenden Gewässer-Sauerstoffkurs, zwei eigene Vierantwortfragen und zwei daraus erzeugte Karten. Kein neuer Kurs, keine Kategorie, Route, Foto, Rechtsfreigabe oder vollständige DACH-Prüfungszertifizierung.",
+  "nonredundancy": {
+    "read": "Complete four existing lesson explanations/exercises/evidence and all16 current four-answer questions actually read. Full current curriculum/card inventory and lib/data/glossary/species/question text searched.",
+    "existing": "geloest/q1 already asks which oxygen fish use; q2–q16 concern solubility, photosynthesis/decomposition, water stratification and measurement limits. Do not duplicate q1 or create another oxygen-in-water definition question.",
+    "actualOtherMatches": [
+      "amphibienwege only names gills of most amphibian larvae.",
+      "gegenstrom is the existing duck-leg heat exchanger, not water-to-blood oxygen exchange.",
+      "kropfmilch matched the English string gill only because its source author is Gillespie; it is not a fish-gill lesson."
+    ],
+    "notFound": "No existing explanation, card or own question for fish gill lamellae, water versus blood pathways or gill countercurrent oxygen exchange.",
+    "relevanceLimit": "A small common biological mechanism in existing Natur/Gewässer learning, not a claim this exact item is prescribed in every DACH hunting examination."
+  },
+  "claims": [
+    {
+      "id": "lamellen",
+      "claim": "In the described common bony-fish model, many thin lamellae give a large exchange surface and short diffusion path; water is outside and blood within the lamellae.",
+      "sources": [
+        "evans2005",
+        "fao1993",
+        "openstax"
+      ],
+      "limits": "No exclusive gas-exchange-site or exact capillary-tube geometry claim; no measured surface area/thickness."
+    },
+    {
+      "id": "gegenstrom",
+      "claim": "Water movement between and blood movement within the lamellae are opposed in the countercurrent model, favouring the oxygen diffusion gradient; oxygen crosses the tissue from water to blood.",
+      "sources": [
+        "evans2005",
+        "fao1993"
+      ],
+      "limits": "No oxygen-extraction percentage, flow-rate/pressure/temperature value, universal fish anatomy or guaranteed individual uptake. Distinguish blood/water movement from diffusion; do not describe all transport as mixing fluids."
+    }
+  ],
+  "sources": [
+    {
+      "id": "evans2005",
+      "title": "Evans, Piermarini and Choe (2005): The Multifunctional Fish Gill",
+      "doi": "10.1152/physrev.00050.2003",
+      "url": "https://people.clas.ufl.edu/devans/files/PRVGill.pdf",
+      "authorInstitutions": "University of Florida, Yale University and Mt Desert Island Biological Laboratory / American Physiological Society",
+      "actuallyRead": "Author/title/date block; introduction printed98; II.B.1 water pathways printed99; II.B.2 gill filament anatomy printed101–102; IV.A–C printed116–117 including uncertainty about lamellar recruitment/perfusion generalisation. Physical5/20/21 (=printed101/116/117) rendered and visually read.",
+      "role": "Original-author institutional copy of independently authored peer-reviewed scientific review, not a newly repeated experiment. Core structure/countercurrent model and explicit diversity limits.",
+      "localOriginal": "work/fish-gill-audit-nov25/evans-piermarini-choe-2005.pdf",
+      "sha256": "E5B8F7C6D86C56DF2D1BA0AA879164F295D4D460DFF128DF799F5DF1203D7D94",
+      "exclusions": "No manuscript images copied, no entire81-page-read claim. Exclude evolutionary detail, ions, numbers, invasive preparations, anaesthesia, exact blood recruitment/perfusion claims and CO2 mechanism."
+    },
+    {
+      "id": "fao1993",
+      "title": "Svobodová, Lloyd, Máchová and Vykusová (1993): Water quality and fish health, EIFAC Technical Paper54,2.1Respiration",
+      "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm",
+      "bibliographyUrl": "https://www.fao.org/4/t1623e/t1623e00.htm",
+      "authorInstitutions": "Research Institute of Fish Culture and Hydrobiology, Vodnany, and Richard Lloyd / FAO EIFAC",
+      "actuallyRead": "Complete officialHTML section2.1Respiration lines3–18, alongside full title/authors/date/edited-course origin on title page lines9–39. Not just a search excerpt.",
+      "role": "Separately authored1993 original training chapter; directly explains thin lamellar barrier, oxygen diffusion and opposite water/blood flows. Its date precedes Evans2005, so this is not another host of that review. Not an experimental replication.",
+      "exclusions": "No text/figure copied; figure credited to Lloyd1992 is not a second independent source. No numeric oxygen saturation, trout spacing, recruitment guarantee, poisoning/therapy, legal chapter or management advice. FAO saysHTML is OCR; use only the clear unambiguous prose."
+    },
+    {
+      "id": "openstax",
+      "title": "OpenStax Biology2e,39.1Systems of Gas Exchange, Skin and Gills",
+      "url": "https://openstax.org/books/biology-2e/pages/39-1-systems-of-gas-exchange",
+      "authorInstitutions": "OpenStax / Rice University",
+      "actuallyRead": "Actual official chapter Skin and Gills lines39–49 including adjacent explanation; not claiming full book reading.",
+      "role": "Additional independently authored institutional textbook supports gill surface/diffusion explanation. Its NOAA-credited fish image is not used; no claim of a third experiment.",
+      "exclusions": "Do not reproduce text or images. Do not use neighbouring absolute insect circulatory statement, numerical values, simplified cross-fluid concentration comparison as a quantitative blood/water claim, or borrowed photo as new species verification."
+    }
+  ],
+  "questions": [
+    {
+      "id": "kiemen-gegenstrom-richtung",
+      "answer": 1,
+      "role": "Gegenläufige Wasser- und Blutströmung an getrennten Bahnen bestimmen; keine Wiederholung der alten Frage nach gelöstem molekularem Sauerstoff."
+    },
+    {
+      "id": "kiemen-lamellen-bau",
+      "answer": 0,
+      "role": "Viele dünne Lamellen mit Austauschfläche und Diffusionsweg verbinden. Frage und alle vier vollständigen Antwortsätze stehen im Plural."
+    }
+  ],
+  "scopePrecision": "Viele dünne Lamellen vergrössern die Austauschfläche; einzelne Lamellen werden nicht pauschal als gefalteter Bau beschrieben. Wasserstrom und Blutstrom bleiben getrennte Strömungswege; Sauerstoffdiffusion durch die Barriere ist ein dritter Vorgang. Keine Quantifizierung oder alleinige/exklusive Austauschstelle behauptet.",
+  "diagram": {
+    "type": "comparison",
+    "simultaneous": true,
+    "channels": [
+      "Wasserstrom →",
+      "← Blutstrom"
+    ],
+    "note": "Gleichzeitige gegenläufige Ströme; Diffusion gesondert; keine zeitliche Schrittreihenfolge oder massstäbliche Anatomie.",
+    "newPhotosVideosOrCopiedFigures": false,
+    "rendererCSSChanges": false
+  },
+  "preservation": "Alle vier alten Lektionen, 16 alten Fragen, sechs alten Quellen und sämtliche Kurs-/Dateimetadaten inklusive 16. Oktober 2026 bleiben als vollständige Objekte und in Reihenfolge erhalten. Neues Datum 25. November nur für neue Lektion, drei lesson-only Quellen und neue Karten. Alle 198 Altkurse und 1800 Altkarten mit 116 Startern werden positiv gegen 59bbeda verglichen, ebenso 905 alte Diagramme und deren HTML. Fremdes afternoon-JSON bleibt unverändert identisch auf beiden Vergleichsseiten, ohne es neu zu zertifizieren.",
+  "dates": {
+    "newLessonAndSourceCheck": "2026-11-25",
+    "originalCourseAndDataset": "2026-10-16",
+    "scope": "Keine automatische Datierung alter Lektionen, Quellen oder Karten."
+  },
+  "sourceRoles": "Evans2005 ist eine eigene wissenschaftliche Übersichtsarbeit; FAO1993 ein unabhängig verfasstes älteres Trainingskapitel; OpenStax eine weitere institutionelle Lehrdarstellung. Verschiedene Erklärquellen werden nicht als unabhängige Wiederholung eines Experiments ausgegeben. Kein fremder Text, Foto oder Diagramm übernommen.",
+  "excluded": "Keine Zahlen zu Sauerstoffausbeute, Gewebedicke, Lamellenrekrutierung, Temperatur oder Flussrate; keine Atmungs- oder Gesundheitsgarantie, Belüftungs-, Fang-, Manipulations-, Behandlungs- oder Rechtsanleitung. Keine Lektüre aller 81 Evans-PDF-Seiten oder des gesamten OpenStax-Buchs behauptet.",
+  "paperExercise": "Eigene Papierübung mit zwei gegenläufigen Strömungspfeilen und anders markierter Sauerstoffdiffusion; kein Tierkontakt.",
+  "evidenceWorkspace": "work/fish-gill-audit-nov25/ mit Original-PDF, PNGs der physischen Seiten 5, 20 und 21, Bestandsinventar, Vorschlag, Root-Originallektüre und unabhängiger Kandidatenprüfung.",
+  "reviewBoundary": "Autoren- und Root-Originallektüre sowie unabhängige Kandidatenprüfung liegen vor. Abschliessende unabhängige Produktgegenprüfung folgt nach Autorfreeze; keine vollständige fachliche Prüfung des übrigen Curriculums.",
+  "technicalStatus": "Zehn eigene gezielte Prüfungen bestanden mit Node 22.23.5, ohne übersprungene Fälle: gesamtes altes Raw-JSON, alle 198 Altkurse und 1800 Altkarten mit 116 Startern, 905 alte Diagramme samt gerendertem HTML, identische generische Renderer/CSS, exakt zwei neue Vierantwortfragen/Karten in CH/AT/DE sowie Kurs-, Kategorie-, Such-, Tagesfragen-, Druck- und tatsächliche Offline-Leser-Integration mit synthetischem Pack. Echte native LearningCourse-Lektionsrunden prüften alle acht Antwortwege: vier ungekennzeichnete Optionen vor der Wahl und jeweils passende Erklärung erst nach der Wahl. Nur isolierte DOM-/Router-/Fortschritts-Doubles, keine Kunden-, Konten- oder Gerätedaten. Historische Testsuiten wurden nicht geändert; Folgeprojektion bedarf separater Root-Freigabe."
+}

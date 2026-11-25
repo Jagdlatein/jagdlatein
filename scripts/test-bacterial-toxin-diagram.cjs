@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillDiagramBaseline } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Original reading aid: scope, actual renderer and unchanged older diagrams.
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
@@ -6,7 +8,7 @@ const { laterPublished, assertDiagramHistory } = require('./helpers/lesson-diagr
 const { redDeerFlehmenDiagramBaseline } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const getLessonDiagram = redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram);
+const getLessonDiagram = fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram));
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const courseId = 'wissen-ausbau-revierpraxis-lebensmittelbakterien-2026', lessonId = 'vorgebildete-toxine';
 const course = getLearningModule(courseId), lesson = course.lessons.find(item => item.id === lessonId);

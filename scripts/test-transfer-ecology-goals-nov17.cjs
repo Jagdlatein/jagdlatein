@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -9,7 +11,7 @@ const { stripWoodpeckerFootCards } = require('./helpers/woodpecker-foot-addition
 const { stripRedDeerFlehmenCards } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 
 const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659';
-const load = createLoader();
+const load = createLoader(fishGillBaselineFixture());
 const data = load('data/exam-alignment/transfer-ecology-2026-11-17.json');
 const review = load('data/reviews/transfer-ecology-goals-2026-11-17.json');
 const { projectExamLearningGoal } = load('lib/exam-learning-goal-server.js');

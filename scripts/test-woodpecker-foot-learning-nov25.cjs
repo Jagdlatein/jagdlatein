@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Real curriculum, card, search and reader integrations plus positive
 // complete-object preservation against the published f1926db baseline.
 const test = require('node:test'), assert = require('node:assert/strict');
@@ -5,7 +7,7 @@ const fs = require('node:fs'), path = require('node:path'), { execFileSync } = r
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
 const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
-const createLoader = overrides => createProjectLoader(redDeerFlehmenBaselineFixture(overrides));
+const createLoader = overrides => createProjectLoader(redDeerFlehmenBaselineFixture(fishGillBaselineFixture(overrides)));
 const { addition, newQuestionIds, newCardIds, stripWoodpeckerFootCourse, stripWoodpeckerFootDataset, stripWoodpeckerFootCards, woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 const baseline = 'f1926db0ab56f51fab3a5666dc36b65e756c29d7';
 const rawPath = 'data/learning-expansion-biology-2026-10-16.json';

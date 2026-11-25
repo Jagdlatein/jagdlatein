@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Keep the historical contract exact; the named Nov25 bird appendix has
 // positive whole-corpus/card preservation in its own live-data suite.
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
@@ -25,7 +27,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createLoader: createLinkedProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const createLoader = overrides => createLinkedProjectLoader([
-  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture, linkedExamBaselineFixture, practiceKnowledgeBaselineFixture, practiceMeasurementBaselineFixture,
+  fishGillBaselineFixture, redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture, linkedExamBaselineFixture, practiceKnowledgeBaselineFixture, practiceMeasurementBaselineFixture,
   forestExamBaselineFixture, novemberLearningBaselineFixture, avianCecaBaselineFixture,
   capercaillieToeBaselineFixture, dogExtinctionBaselineFixture,
 ].reduce((current, project) => project(current), overrides));

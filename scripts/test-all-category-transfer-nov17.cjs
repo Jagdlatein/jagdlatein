@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Keep the historical contract exact; the named Nov25 bird appendix has
 // positive whole-corpus/card preservation in its own live-data suite.
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
@@ -11,7 +13,7 @@ const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-ad
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 // Keep this exact Nov17 inventory contract; the precisely named Nov25 appendix
 // has independent positive current-curriculum and full-object preservation tests.
-const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture())));
+const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(fishGillBaselineFixture()))));
 function previousLoader() {
   const cache = new Map();
   return function read(relative) {

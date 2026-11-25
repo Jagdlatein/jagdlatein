@@ -51,6 +51,36 @@
           "url": "https://www.umweltbundesamt.de/monitoring-zur-das/handlungsfelder/wasserhaushalt/ww-i-8/indikator",
           "organization": "Umweltbundesamt",
           "supports": "Gase wie Sauerstoff lösen sich in wärmerem Wasser schlechter. Keine Übernahme einer Zeitreihe oder eines Trendwerts."
+        },
+        {
+          "label": "Evans, Piermarini und Choe (2005): The Multifunctional Fish Gill · DOI 10.1152/physrev.00050.2003",
+          "url": "https://people.clas.ufl.edu/devans/files/PRVGill.pdf",
+          "organization": "University of Florida, Yale University und Mt. Desert Island Biological Laboratory / American Physiological Society",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "kiemen-gegenstrom"
+          ],
+          "supports": "Original-Fachreview auf der institutionellen Autorenseite: II.B.2, gedruckte Seiten 101–102, sowie IV.A–C, Seiten 116–117, tatsächlich gelesen. Dünne Lamellen, Wasser zwischen und Blut innerhalb der Lamellen, Gegenstrom und unterschiedliche Fischbaupläne. Physische PDF-Seiten 5, 20 und 21 zusätzlich visuell geprüft. Keine Lektüre sämtlicher 81 PDF-Seiten oder neue experimentelle Replikation behauptet; keine Abbildung, Messzahl, invasive Methode oder universelle Rekrutierung von Lamellen übernommen."
+        },
+        {
+          "label": "Svobodová, Lloyd, Máchová und Vykusová (1993): Water quality and fish health · Abschnitt 2.1 Respiration",
+          "url": "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm",
+          "organization": "Research Institute of Fish Culture and Hydrobiology, Vodnany, und Richard Lloyd / FAO EIFAC",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "kiemen-gegenstrom"
+          ],
+          "supports": "Unabhängig verfasstes Original-Trainingskapitel: vollständiger Abschnitt 2.1 Respiration und offizieller Autoren-/Datumsblock tatsächlich gelesen. Dünne Lamellenbarriere, Sauerstoffdiffusion vom Wasser ins Blut und gegengerichtete Strömung. Kein zweiter Host des späteren Evans-Reviews und keine experimentelle Replikation. Keine Illustration, Sauerstoff-/Temperaturzahl, Rekrutierungsgarantie, Behandlung, Vergiftungserprobung oder rechtliche Aussage übernommen."
+        },
+        {
+          "label": "OpenStax Biology 2e: 39.1 Systems of Gas Exchange · Skin and Gills",
+          "url": "https://openstax.org/books/biology-2e/pages/39-1-systems-of-gas-exchange",
+          "organization": "OpenStax / Rice University",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "kiemen-gegenstrom"
+          ],
+          "supports": "Offizieller Original-Lehrtext, Abschnitt Skin and Gills, tatsächlich gelesen: grosse Kiemenaustauschfläche und Sauerstoffdiffusion in das Blut. Ergänzende unabhängige didaktische Einordnung, keine neue Messung. Kein Foto, fremdes Diagramm oder Text übernommen; keine quantitative Gleichsetzung von Sauerstoffgehalten unterschiedlicher Flüssigkeiten oder benachbarte pauschale Insektenaussage verwendet."
         }
       ],
       "lessons": [
@@ -97,6 +127,19 @@
           ],
           "takeaway": "Ort, Tiefe, Zeit, Einheit und Messverfahren machen einen Sauerstoffwert verständlich.",
           "exercise": "Ergänze ein fiktives Messprotokoll um die Angaben, die für einen Vergleich zweier Termine fehlen."
+        },
+        {
+          "id": "kiemen-gegenstrom",
+          "title": "Fischkiemen: Wasserstrom und Blutstrom",
+          "reviewedOn": "2026-11-25",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Bei vielen Knochenfischen lässt sich die Kiemenatmung als Austausch zwischen Wasser und Blut erklären. An den Kiemenfilamenten sitzen zahlreiche dünne Lamellen, auch Kiemenblättchen genannt. Zwischen ihnen strömt Wasser; innerhalb der Lamellen wird Blut geführt. Viele Lamellen vergrössern die Austauschfläche; ihr dünner Bau hält den Diffusionsweg zum Blut kurz. Wasser und Blut werden dabei nicht als ein gemeinsam gemischter Strom weitergeleitet.",
+            "Im Gegenstrommodell verlaufen Wasser- und Blutstrom an dieser Austauschfläche entgegengesetzt. So bleibt entlang der Lamelle ein Gefälle für den Sauerstoffübertritt erhalten: Sauerstoff diffundiert aus dem Wasser durch die dünne Gewebebarriere ins Blut. Das Wasser an der Kieme zu bewegen und Sauerstoff durch das Gewebe zu übertragen sind unterschiedliche Vorgänge. Das Prinzip erklärt keinen bestimmten Messwert oder festen Aufnahmeanteil.",
+            "Dieses vereinfachte Modell ist kein identischer Bauplan sämtlicher Fische. Aus einer sichtbaren Kiemenbewegung oder einem klaren Gewässerfoto lassen sich weder die Sauerstoffaufnahme des einzelnen Tieres noch seine Gesundheit sicher bestimmen. Eigene Papierübung: Zeichne Wasser und Blut als zwei getrennte Bahnen mit gegenläufigen Pfeilen; kennzeichne den Sauerstoffübertritt mit einer dritten Pfeilart."
+          ],
+          "takeaway": "Dünne Kiemenlamellen und gegenläufige Wasser- und Blutströme unterstützen den Sauerstoffübergang; sie liefern keine Messung am einzelnen Fisch.",
+          "exercise": "Zeichne ein eigenes Funktionsschema ohne Tierkontakt: zwei getrennte Bahnen, entgegengesetzte Strömungspfeile und einen anders markierten Sauerstoffübertritt. Erkläre den Unterschied zwischen Strömung und Diffusion."
         }
       ],
       "countries": [
@@ -319,6 +362,32 @@
           ],
           "answer": 3,
           "explain": "Gleiche Einheiten machen unterschiedliche Messsituationen nicht automatisch gleich; ihre Herkunft bleibt sichtbar."
+        },
+        {
+          "id": "kiemen-gegenstrom-richtung",
+          "lessonId": "kiemen-gegenstrom",
+          "q": "Wie stehen beim Gegenstromprinzip der Fischkieme Wasserbewegung und Blutströmung zueinander?",
+          "options": [
+            "Sie verlaufen an der Austauschfläche gleichgerichtet auf getrennten Bahnen.",
+            "Sie verlaufen an der Austauschfläche auf getrennten Bahnen in entgegengesetzte Richtungen.",
+            "Das Wasser wird zusammen mit dem Blut durch denselben Blutraum geleitet.",
+            "Beide Ströme wechseln ihre Richtung gemeinsam nach jedem Pumpstoss."
+          ],
+          "answer": 1,
+          "explain": "Gegenstrom bezeichnet die entgegengesetzten Strömungsrichtungen an der Austauschfläche. Sauerstoff tritt dabei durch die Gewebebarriere aus dem Wasser ins Blut über; die Ströme werden nicht zu einem gemeinsamen Gemisch."
+        },
+        {
+          "id": "kiemen-lamellen-bau",
+          "lessonId": "kiemen-gegenstrom",
+          "q": "Warum begünstigen viele dünne Kiemenlamellen den Gasaustausch?",
+          "options": [
+            "Sie bieten eine grosse Austauschfläche und einen kurzen Diffusionsweg zum Blut.",
+            "Sie sieben den gelösten Sauerstoff wie feste Nahrungsteilchen mechanisch aus.",
+            "Sie halten mit geringer Oberfläche das Diffusionsgefälle auch ohne Blutströmung aufrecht.",
+            "Sie erleichtern den Sauerstoffübertritt durch eine dicke Trennschicht und einen längeren Weg."
+          ],
+          "answer": 0,
+          "explain": "Viele dünne Lamellen vergrössern die Austauschfläche und verkürzen den Weg durch das Gewebe. Das sind Baumerkmale des vereinfachten Modells, keine Prozentangabe oder Gesundheitsbeurteilung eines Fisches."
         }
       ]
     },
@@ -2266,6 +2335,36 @@
             "https://service.destatis.de/eLearning/modul14/lm_pg_821.html",
             "https://service.destatis.de/eLearning/modul14/lm_pg_823.html"
           ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "kiemen-gegenstrom",
+      "claims": [
+        {
+          "claim": "Im beschriebenen Knochenfischmodell liegen Wasserstrom zwischen und Blutstrom innerhalb dünner Kiemenlamellen. Viele Lamellen vergrössern die Austauschfläche; ihr dünner Bau hält den Diffusionsweg kurz.",
+          "sourceUrls": [
+            "https://people.clas.ufl.edu/devans/files/PRVGill.pdf",
+            "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm",
+            "https://openstax.org/books/biology-2e/pages/39-1-systems-of-gas-exchange"
+          ],
+          "sourceRoles": {
+            "https://people.clas.ufl.edu/devans/files/PRVGill.pdf": "Original-Fachreview II.B.2: Aufbau, Bluträume, Wasserkanäle, Fläche und Diffusionsweg.",
+            "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm": "Unabhängiges Original-Trainingskapitel 2.1: dünne Lamellenbarriere und Sauerstoffübertritt aus Wasser in den Blutraum.",
+            "https://openstax.org/books/biology-2e/pages/39-1-systems-of-gas-exchange": "Ergänzender unabhängiger Lehrtext Skin and Gills: Austauschfläche und Diffusion in das Blut."
+          }
+        },
+        {
+          "claim": "Gegenstrom bezeichnet hier entgegengesetzte Wasser- und Blutströmungen an der Kiemenaustauschfläche. Das unterstützt das Gefälle für Sauerstoffdiffusion aus dem Wasser durch die Gewebebarriere ins Blut; Strömung und Diffusion sind verschiedene Vorgänge.",
+          "sourceUrls": [
+            "https://people.clas.ufl.edu/devans/files/PRVGill.pdf",
+            "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm"
+          ],
+          "sourceRoles": {
+            "https://people.clas.ufl.edu/devans/files/PRVGill.pdf": "Original-Fachreview II.B.2 und IV.A: Gegenstrom zwischen Wasser und Blut an dünnen Lamellen.",
+            "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm": "Unabhängiges Original-Trainingskapitel 2.1: entgegengesetzte Flüsse, Diffusionsgefälle und Sauerstoffübertritt."
+          }
         }
       ]
     }

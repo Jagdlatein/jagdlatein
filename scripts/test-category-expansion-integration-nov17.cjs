@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Keep the historical contract exact; the named Nov25 bird appendix has
 // positive whole-corpus/card preservation in its own live-data suite.
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
@@ -15,7 +17,7 @@ const { insectRespirationBaselineFixture } = require('./helpers/insect-respirati
 const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 // This historical release still checks its exact four appendices. New named
 // appendices have their own positive whole-object baseline against a0b078b.
-const createLoader = overrides => createProjectLoader(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(overrides))))));
+const createLoader = overrides => createProjectLoader(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(fishGillBaselineFixture(overrides)))))));
 const load = createLoader();
 const { learningCategoryDetails: categories } = load('lib/learning-categories.js');
 const { learningModules: courses } = load('lib/learning-curriculum.js');

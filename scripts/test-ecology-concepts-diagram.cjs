@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillDiagramBaseline } = require('./helpers/fish-gill-addition-nov25.cjs');
 // An original reading aid, not a photo or a claim of full exam coverage.
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
@@ -6,7 +8,7 @@ const { assertDiagramHistory, laterPublished } = require('./helpers/lesson-diagr
 const { redDeerFlehmenDiagramBaseline } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const getLessonDiagram = redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram);
+const getLessonDiagram = fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram));
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const courseId = 'wissen-lebensraeume-biotopverbund', lessonId = 'biotop-biozoenose';
 

@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Keep the historical contract exact; the named Nov25 bird appendix has
 // positive whole-corpus/card preservation in its own live-data suite.
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
@@ -16,7 +18,7 @@ const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addit
 const { capercaillieToeBaselineFixture, stripCapercaillieToeCourse } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
 // Restore only the known named appendices before the original positive hashes.
 // Each newer package keeps its own exact live-data preservation regression.
-const historicalOverrides = overrides => forestRegenerationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(overrides))))))))));
+const historicalOverrides = overrides => forestRegenerationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(fishGillBaselineFixture(overrides)))))))))));
 const createLoader = overrides => createProjectLoader(historicalOverrides(overrides));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, sourceScopes, stripMarmotHibernationAddition } = require('./helpers/marmot-hibernation-addition-nov08.cjs');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);

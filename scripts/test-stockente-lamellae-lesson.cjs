@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Exact preservation and real data/reader integration; scientific source reading
 // is recorded separately. These checks do not certify the whole curriculum.
 const test = require('node:test'), assert = require('node:assert/strict');
@@ -27,7 +29,7 @@ const { ecologyConceptBaselineFixture, stripEcologyConceptAddition } = require('
 // This separate pre-existing snapshot chain ends at 1 November. Nickhaut,
 // Schwimmlappen and Vogelblinddärme already existed then and remain untouched.
 const historicalOverrides = overrides => [
-  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
+  fishGillBaselineFixture, redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
   capercaillieToeBaselineFixture, dogExtinctionBaselineFixture, forestExamBaselineFixture,
   practiceMeasurementBaselineFixture, trackPostureBaselineFixture, alulaBaselineFixture,
   marmotHibernationBaselineFixture, forestRegenerationBaselineFixture, featherFieldsBaselineFixture,

@@ -1,3 +1,5 @@
+// This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
+const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Source reading is documented in the review. These use real curriculum adapters
 // and isolated session/access doubles, never customer records or private files.
 const test = require('node:test'), assert = require('node:assert/strict');
@@ -12,7 +14,7 @@ const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measu
 // The Nov17 publications already predated today's work. Project only their
 // explicitly named appendices for this unchanged d81efdd full-object contract.
 const createLoader = overrides => createProjectLoader([
-  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
+  fishGillBaselineFixture, redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
   capercaillieToeBaselineFixture, dogExtinctionBaselineFixture, forestExamBaselineFixture,
   practiceMeasurementBaselineFixture,
 ].reduce((current, project) => project(current), overrides));
