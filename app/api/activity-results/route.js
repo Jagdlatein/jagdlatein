@@ -1,3 +1,4 @@
+import { readLearningWriteRequestBody, assertLearningWriteRequestActive, isLearningWriteRequestBodyError } from "../../../lib/learning-write-request-body";
 import {
   requireAccountSession, getAccountDatabase, requireSameOriginJson, requireCurrentAccount,
   accountJson, accountErrorResponse, accountUnavailable,
@@ -32,7 +33,13 @@ export async function POST(req) {
     requireSameOriginJson(req);
     const session = requireAccountSession(req, "STATISTICS_UNAVAILABLE");
     let body;
-    try { body = await req.json(); } catch { body = null; }
+    try {
+      body = await readLearningWriteRequestBody(req);
+      assertLearningWriteRequestActive(req);
+    } catch (error) {
+      if (isLearningWriteRequestBodyError(error)) return accountJson({ code: error.code, message: error.message }, error.status);
+      body = null;
+    }
     const result = validateActivityResult(body);
     if (result.type === "quiz") {
       throw new ActivityResultError("Quizergebnisse werden ausschließlich aus einer abgeschlossenen Serverrunde gespeichert.");

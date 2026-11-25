@@ -1,0 +1,144 @@
+{
+  "id": "learning-write-request-reader-2026-11-25",
+  "reviewedOn": "2026-11-25",
+  "baselineCommit": "fefd757430ce4922a3c426fc809f0cbe57027ecf",
+  "scope": "One shared body reader for only course-progress POST and activity-results POST. No schema, session, authorization, live-identity, storage, SQL, quiz-scoring or client retry policy changes.",
+  "original": {
+    "sourceFiles": [
+      {
+        "path": "app/api/course-progress/route.js",
+        "sha256": "f0745206f21f8f923b288ed5bbddfc4eabfa90a12dd3998e2f130e20464fb9b8"
+      },
+      {
+        "path": "app/api/activity-results/route.js",
+        "sha256": "63afd06d613d818730a7017b1dad14f3a792ef6681dc6e49752a2caffdd5b4c6"
+      },
+      {
+        "path": "lib/course-progress-server.js",
+        "sha256": "7c134fd621195f069b4fa19f1b5e217cc53e9bb4637ee54857b547a7c8e11f78"
+      },
+      {
+        "path": "lib/activity-results-server.js",
+        "sha256": "031d57236a65cb3ddd1153d187e3bb2d0cf31d39f51ac8b8dcd4ee42fb081f10"
+      },
+      {
+        "path": "lib/course-catalog.js",
+        "sha256": "e672ac7aa3bef94df5e7307a03a8be284ed52836cfe2363ec3d53ec68d10de63"
+      }
+    ],
+    "nativePreflightCases": 9,
+    "evidence": "work/post18-security-nov25/native-preflight.json",
+    "observations": "The actual previous native JSON method accepted a pre-aborted valid request, ignored a mid-read abort until EOF, accepted an8192-byte padded valid payload, and stayed pending past an8250ms observation. Native malformed/transport errors were caught as null by both original routes.",
+    "limit": "Local native Request/ReadableStream and actual pure validators only; this is not an externally executed attack or production availability measurement."
+  },
+  "transportDecision": {
+    "maxWireBytes": 4096,
+    "readTimeoutMs": 8000,
+    "countBOMBytes": true,
+    "utf8": "Nonfatal UTF8 and removal of one initial BOM match the previous native Request.json behavior. Split multibyte input and real cross-realm Uint8Arrays remain accepted.",
+    "schemaCapJustification": {
+      "catalogEntries": 232,
+      "maxCourseIdUTF16Units": 57,
+      "maxCourseQuestions": 42,
+      "maxCanonicalBytes": 437,
+      "maxAllStringKeysAndValuesEscapedBytes": 1562,
+      "initialBOMBytes": 3,
+      "remainingBeyondWorstEscapedAndBOM": 2531,
+      "longestProgress": {
+        "courseId": "wissen-vertiefung-wildtierquerungen-erfolgskontrolle-2026",
+        "courseIdUTF16Units": 57,
+        "totalQuestions": 12,
+        "canonicalBytes": 144,
+        "allStringKeysAndValuesEscapedBytes": 694
+      },
+      "activity": [
+        {
+          "kind": "quizValidatorOnly",
+          "canonicalBytes": 437,
+          "allStringKeysAndValuesEscapedBytes": 1562
+        },
+        {
+          "kind": "ansitzPersistable",
+          "canonicalBytes": 203,
+          "allStringKeysAndValuesEscapedBytes": 923
+        }
+      ],
+      "limit": "These are actual existing schema maxima under compact canonical numbers and fullyUnicode-escaped string keys/values. Arbitrarily redundant whitespace, duplicate JSON keys or noncanonical arbitrarily long numeric representations are intentionally subject to the new wire cap; no claim that every semantically equivalent unbounded serialization still fits."
+    },
+    "validationPolicy": "Arbitrary JSON values still reach the original domain validators. Malformed JSON, missing/locked reader and arbitrary transport errors still become null, preserving each original domain-specific400 response. There is no unbounded req.json or req.text compatibility fallback.",
+    "sizePolicy": "The new wire cap deliberately also limits redundant whitespace, duplicate-key encodings and arbitrarily verbose numeric forms. It does not claim every unbounded serialization of an otherwise valid value remains accepted.",
+    "errorPolicy": "Only locally created branded transport errors are public:413 LEARNING_REQUEST_TOO_LARGE and408 LEARNING_REQUEST_ABORTED or LEARNING_REQUEST_TIMEOUT. Invocation-local ownership prevents errors from another read or status-shaped transport values from selecting a response.",
+    "abortBoundary": "Before acquisition, before/after awaited read, EOF, parsing and return; each route immediately checks again after awaiting the reader and before its unchanged validator/database entry.",
+    "cleanup": "Cancel only the acquired reader, at most once and without awaiting cleanup; clear timer, remove signal listener and attempt release. Stalled, rejected or throwing cleanup cannot replace a result.",
+    "notPromised": "The8-second timer bounds body reading only. It is not a database/workflow deadline or rollback after server-side work has begun."
+  },
+  "preservation": {
+    "completeOriginalRoutesByteExactAfterNamedImportAndBodyBlockReversal": true,
+    "originalGetHandlersUnchanged": true,
+    "validatorsAndCatalogWholeFileHashesExact": true,
+    "sameOriginSignedSessionBeforeRead": true,
+    "currentAccountChecksBeforeWrites": true,
+    "unpaidOwnAccountAccessUnchanged": true,
+    "ownerAndGenerationBindingUnchanged": true,
+    "originalCourseUpsertConflictKeyAndColumnsUnchanged": true,
+    "clientQuizResultBanUnchanged": true,
+    "ansitzCompositeEventIdDedupAnd409ConflictUnchanged": true,
+    "schemaOrSqlChanges": false,
+    "clientHookChanges": false,
+    "existingIntegrationHarnessChanges": false
+  },
+  "validation": {
+    "ownNativeContractTests": 33,
+    "requiredFiles": 6,
+    "tests": 117,
+    "passed": 117,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "node": "22.23.5",
+    "nativeCoverage": [
+      "All232current course entries at valid maximal progress in canonical and fullyUnicode-escaped key/value JSON, with initial BOM.",
+      "Maximal structurally valid activity plus actual persistable Ansitz values; quiz remains forbidden.",
+      "Native JSON decoding parity, exact4096/4097wire boundaries, dishonest header, malformed lengths, split UTF8 and cross-realm bytes.",
+      "Pre/acquisition/pending/chunk/EOF/decoding/parse/post-await aborts; actual8000ms total deadline with a dribbling chunk at7200ms.",
+      "Owned cleanup, arbitrary transport/status errors, a prior reader interruption, original400 shapes and private no-store responses.",
+      "Actual synthetic signed unpaid owners, generation/deletion gates, revocation while body pending, owner-scoped writes, schema rejection and quiz ban.",
+      "Event retry, duplicate/conflicting IDs, lost acknowledgement, transient insert failure and two-owner composite identity."
+    ],
+    "existingIntegrationFiles": [
+      "scripts/test-personal-data-access.cjs",
+      "scripts/test-private-statistics-generation.cjs",
+      "scripts/test-account-overview.cjs",
+      "scripts/test-account-generation.cjs",
+      "scripts/test-course-review-lifetime.cjs"
+    ],
+    "harnessAudit": "The existing personal-data POST suite uses real NextRequest bodies. The private-statistics suite covers GET/isolated PostgreSQL generation rights. Other rg matches mostly inject course-progress-server into unrelated routes. No plain json callback was bypassed and no old test fixture needed modification.",
+    "environment": "Required tests use the sanitized allowlisted environment and NoNet preload. App secrets/live opt-ins are not inherited; database doubles and an existing ephemeral PGlite PostgreSQL fixture are isolated from customer systems.",
+    "noLiveHttpPost": true,
+    "noActualCustomerOrProviderOrMail": true,
+    "noDeviceCheck": true,
+    "noWholeRepositoryPassClaim": true
+  },
+  "files": [
+    {
+      "path": "lib/learning-write-request-body.js",
+      "sha256": "5e6d7422f0b5e7b43a99ce5020da221c65a5b328c323ea133531d50cbb69cdd9",
+      "bytes": 3832
+    },
+    {
+      "path": "app/api/course-progress/route.js",
+      "sha256": "d082451e20ddc34381e3201e5c444ac586b7a2a28f44b00a77c6c0a362781926",
+      "bytes": 2673
+    },
+    {
+      "path": "app/api/activity-results/route.js",
+      "sha256": "ae289d1d9c0b960bdcb0bbdff344ccf5c0303d6f2b607452c2ea939d13d30044",
+      "bytes": 3148
+    },
+    {
+      "path": "scripts/test-learning-write-request-body-nov25.cjs",
+      "sha256": "6189f88afe11d0d2e9aaf25a046d33b65b9043202e71a6c7152a6f5c98ad4f09",
+      "bytes": 28069
+    }
+  ]
+}

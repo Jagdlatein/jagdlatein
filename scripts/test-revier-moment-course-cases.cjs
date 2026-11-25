@@ -50,7 +50,7 @@ test('Scoped lesson or course references retain exact existing source labels/URL
     assert.deepEqual(item.question.sourceIds, item.topic.sources.map(source => source.id));
     if (item.sourceScope === 'lesson') lessonCount++; else courseCount++;
   }
-  assert.equal(lessonCount, 19); assert.equal(courseCount, 41);
+  assert.equal(lessonCount, 31); assert.equal(courseCount, 29);
 });
 
 test('All sixty daily cases start with four choices and the topic, without the lesson heading giving a hint', () => {

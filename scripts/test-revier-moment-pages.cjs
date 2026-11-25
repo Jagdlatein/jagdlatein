@@ -64,7 +64,7 @@ test('Daily page links to the exact selected lesson and separates local repetiti
   assert.ok(html.includes(`href="${moment.practice.quizHref}"`));
   assert.doesNotMatch(html, /href="\/lernen#lernen-suche"/);
   assert.match(html, /class="header titleHeader"/);
-  assert.match(html, /<h1[^>]*>Fall des Tages<\/h1>/); assert.match(html, /Deine Entscheidung/);
+  assert.match(html, /<h1[^>]*>Reviermoment<\/h1>/); assert.match(html, /Deine Frage/);
   assert.match(html, /keine Antworten gespeichert/);
   assert.match(html, /keine Ranglistenpunkte/);
   assert.match(html, new RegExp(moment.question.reviewedOn));

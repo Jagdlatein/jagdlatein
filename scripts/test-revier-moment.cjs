@@ -109,6 +109,13 @@ test('Invalid dates, incomplete curated pools, broken answer/source mappings and
     assert.throws(() => getRevierMoment(now), /gültiges Date-Objekt/);
   }
   assert.throws(() => getRevierMoment(new Date('0000-12-01T12:00:00Z')), /Kalenderbereich/);
+  // The curated first question need not be the first item of the full pool.
+  // Keep every original mutation aimed at a genuinely selected record.
+  const selectedIndex = pool.findIndex(item => item.id === data[0].question.id);
+  assert.ok(selectedIndex >= 0);
+  const mutationPool = [pool[selectedIndex], ...pool.slice(0, selectedIndex), ...pool.slice(selectedIndex + 1)];
+  const reordered = load('lib/revier-moment-server.js', { './daily-review-pool': { getDailyReviewPool: () => mutationPool } });
+  assert.deepEqual(reordered.getRevierMoment(new Date(start)), getRevierMoment(new Date(start)), 'Pool order alone does not change the curated question');
   const invalid = [
     value => { value.length = 0; },
     value => { value.splice(0, 1); },
@@ -122,7 +129,7 @@ test('Invalid dates, incomplete curated pools, broken answer/source mappings and
     value => { value[0].reading.paragraphs[0] = 'invented'; },
   ];
   for (const mutate of invalid) {
-    const broken = structuredClone(pool); mutate(broken);
+    const broken = structuredClone(mutationPool); mutate(broken);
     const selector = load('lib/revier-moment-server.js', { './daily-review-pool': { getDailyReviewPool: () => broken } });
     assert.throws(() => selector.getRevierMoment(new Date(start)), /Fragenvorrat/);
   }

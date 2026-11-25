@@ -1,3 +1,4 @@
+import { readLearningWriteRequestBody, assertLearningWriteRequestActive, isLearningWriteRequestBodyError } from "../../../lib/learning-write-request-body";
 import {
   PROGRESS_COLUMNS, requireAccountSession, getAccountDatabase, requireCurrentAccount,
   requireSameOriginJson, validateCourseProgress,
@@ -36,8 +37,10 @@ export async function POST(req) {
     const session = requireAccountSession(req, "PROGRESS_UNAVAILABLE");
     let body;
     try {
-      body = await req.json();
-    } catch {
+      body = await readLearningWriteRequestBody(req);
+      assertLearningWriteRequestActive(req);
+    } catch (error) {
+      if (isLearningWriteRequestBodyError(error)) return accountJson({ code: error.code, message: error.message }, error.status);
       body = null;
     }
     const progress = validateCourseProgress(body);

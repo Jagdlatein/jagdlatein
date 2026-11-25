@@ -48,15 +48,15 @@ export default function RevierMoment({ moment }) {
     {reading.exercise && <p><strong>Selbst erklären: </strong>{reading.exercise}</p>}
     <Link href={moment.href} className={styles.textLink} prefetch={false} onClick={event => { if (!canInteract()) event.preventDefault(); }}>In dieser Lektion weiterlernen<AppIcon name="arrow-right" size={18} /></Link>
   </section>;
-  return <LearningToolLayout title="Fall des Tages" description="Eine Lernsituation aus unseren Kursen: vier Antworten, eine richtige Antwort und der passende Lerntext." category={category?.slug !== "jagdrecht" ? category?.slug : undefined} icon="binoculars" headingOnly searchHref="/lernen#lernen-suche" hideCommunity className={styles.page}>
+  return <LearningToolLayout title="Reviermoment" description="Eine kurze Frage mit vier Antworten. Danach folgt die Erklärung." category={category?.slug !== "jagdrecht" ? category?.slug : undefined} icon="binoculars" headingOnly searchHref="/lernen#lernen-suche" hideCommunity className={styles.page}>
     {!route.ready && <p role="status">Dein Lernfall wird geladen.</p>}
     <div data-revier-moment-reader hidden={!route.ready} inert={!route.ready} aria-hidden={!route.ready ? true : undefined} style={{ display: route.ready ? "contents" : "none" }}>
     <p className={styles.date} style={{ marginTop: 0 }}><time dateTime={moment.dateKey}>{moment.displayDate}</time> · Ohne Zeitlimit</p>
     <p className={styles.small}>Gemeinsames Lernwissen für Deutschland, Österreich und die Schweiz. Ein eigener Lernfall, keine amtliche Prüfungsfrage. Örtliches Recht und praktische Ausbildung werden dadurch nicht ersetzt.</p>
     <p className={styles.topic}>Thema {topic.title}</p>
-    <ResearchQuestionRound key={caseKey} questions={[question]} sources={topic.sources} daily title="Deine Entscheidung" showSources={false} afterAnswer={readingSection} canInteract={canInteract} />
+    <ResearchQuestionRound key={caseKey} questions={[question]} sources={topic.sources} daily title="Deine Frage" showSources={false} afterAnswer={readingSection} canInteract={canInteract} />
     {(reviewHref || quizHref) && <nav className={styles.nextSteps} aria-label="Passend weiterlernen">{reviewHref && <Link href={reviewHref} prefetch={false} onClick={event => { if (!canInteract()) event.preventDefault(); }}><AppIcon name="book" size={20} /><span>Persönlich wiederholen<small>{category.title} · Verlauf auf diesem Gerät</small></span><AppIcon name="arrow-right" size={18} /></Link>}{quizHref && <Link href={quizHref} prefetch={false} onClick={event => { if (!canInteract()) event.preventDefault(); }}><AppIcon name="trophy" size={20} /><span>Quiz mit Rangliste<small>{category.title} · mit Zeit und Punkten</small></span><AppIcon name="arrow-right" size={18} /></Link>}</nav>}
-    <p className={styles.small}>Die Auswahl umfasst 60 Lernfälle und wiederholt sich nach 60 Tagen. Es werden hier keine Antworten gespeichert und keine Ranglistenpunkte vergeben.</p>
+    <p className={styles.small}>Die Auswahl umfasst 60 Lernfragen und wiederholt sich nach 60 Tagen. Es werden hier keine Antworten gespeichert und keine Ranglistenpunkte vergeben.</p>
     <details className={styles.sources} id="reviermoment-quellen">
       <summary>Quellen und übernommener Prüfstand</summary>
       <p>{moment.sourceScope === "lesson" ? "Die Quellen sind in der zugeordneten Lektion hinterlegt." : "Die Quellen stammen aus dem zugeordneten Kurs. Es liegt keine zusätzliche Einzelzuordnung jeder Quelle zu dieser Frage vor."}</p>

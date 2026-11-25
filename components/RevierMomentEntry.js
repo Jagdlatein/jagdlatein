@@ -6,12 +6,12 @@ import styles from "../styles/RevierMoment.module.css";
 export default function RevierMomentEntry({ preview }) {
   if (!preview) return null;
   return <section className={styles.entry} aria-labelledby="home-reviermoment-title">
-    <div className={styles.entryHeading}><span className={styles.icon}><AppIcon name="binoculars" size={30} /></span><div><p className={styles.kicker}>Auch nach der Jägerprüfung</p><h2 id="home-reviermoment-title">Dein Reviermoment</h2></div></div>
-    <p className={styles.date}><time dateTime={preview.dateKey}>{preview.displayDate}</time> · Ein Fall, eine Erklärung</p>
+    <div className={styles.entryHeading}><span className={styles.icon}><AppIcon name="binoculars" size={30} /></span><div><p className={styles.kicker}>Jeden Tag etwas dazulernen</p><h2 id="home-reviermoment-title">Dein Reviermoment</h2></div></div>
+    <p className={styles.date}><time dateTime={preview.dateKey}>{preview.displayDate}</time> · Eine Frage, eine Erklärung</p>
     <p className={styles.topic}>{preview.topicTitle}</p>
     <h3 className={styles.prompt}>{preview.prompt}</h3>
-    <p className={styles.lead}>Was würdest du daraus schließen? Löse den Fall und vergleiche deine Einordnung mit der belegten Erklärung.</p>
-    <Link href="/tagesquiz" className={styles.primary}>Heutigen Fall lösen<AppIcon name="arrow-right" size={20} /></Link>
-    <p className={styles.small}>Täglich ein anderer Fall aus dem geprüften Fragenvorrat. In deinem Tempo, ohne Zeitlimit.</p>
+    <p className={styles.lead}>Wähle eine der vier Antworten. Die Erklärung hilft dir beim Lernen.</p>
+    <Link href="/tagesquiz" className={styles.primary}>Frage beantworten<AppIcon name="arrow-right" size={20} /></Link>
+    <p className={styles.small}>Täglich eine andere Frage aus den Lerninhalten – ohne Zeitlimit.</p>
   </section>;
 }

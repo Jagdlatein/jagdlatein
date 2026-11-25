@@ -159,7 +159,17 @@ test('SSR route identity preserves ordinary blind content and rejects malformed 
   assert.equal((html.match(/class="answerOption"/g) || []).length, 4); assert.doesNotMatch(html, /class="quizFeedback"|moment-deeper-title/); assert.ok(html.includes('Übernommener Prüfstand'));
 });
 
-test('All course-case data, source labels, date rules, pure grading and server access files remain exact to the released baseline', () => {
+test('Only the reviewed selection changes; complete adapter code, dates, grading and server access retain their released baseline', () => {
   const baseline = '61019897797d9fe851ff3bb25e46a5a5a534e578';
-  for (const file of ['lib/revier-moment-server.js', 'lib/revier-moment-cases-server.js', 'lib/research-question-round.js', 'lib/practice-research.js', 'lib/practice-research-server.js', 'pages/tagesquiz.js']) assert.equal(fs.readFileSync(`${repo}/${file}`, 'utf8').replace(/\r\n/g, '\n'), execFileSync('git', ['show', `${baseline}:${file}`], { cwd: repo, encoding: 'utf8', maxBuffer: 5000000 }).replace(/\r\n/g, '\n'));
+  for (const file of ['lib/revier-moment-server.js', 'lib/revier-moment-cases-server.js', 'lib/research-question-round.js', 'lib/practice-research.js', 'lib/practice-research-server.js', 'pages/tagesquiz.js']) {
+    const actual = fs.readFileSync(repo + '/' + file, 'utf8').replace(/\r\n/g, '\n');
+    const expected = execFileSync('git', ['show', baseline + ':' + file], { cwd: repo, encoding: 'utf8', maxBuffer: 5000000 }).replace(/\r\n/g, '\n');
+    if (file === 'lib/revier-moment-cases-server.js') {
+      const block = /export const REVIER_MOMENT_IDS = Object\.freeze\(\[[\s\S]*?\n\]\);/g;
+      const before = [...expected.matchAll(block)], after = [...actual.matchAll(block)];
+      assert.equal(before.length, 1); assert.equal(after.length, 1);
+      assert.equal(require('node:crypto').createHash('sha256').update(after[0][0]).digest('hex'), '3b13aa27028b612d026e5b54efd9ba183c2d396f6a3412f5cd41e8e0d6edeb06', 'Only the independently reviewed literal60-ID block is permitted');
+      assert.equal(actual.replace(after[0][0], before[0][0]), expected, 'The entire original adapter remains exact outside the reviewed selection');
+    } else assert.equal(actual, expected);
+  }
 });
