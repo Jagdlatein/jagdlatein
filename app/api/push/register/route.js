@@ -5,7 +5,7 @@ import { readRequestAccountSession } from "../../../../lib/account-access";
 import { isPayPalSandboxTestEnvironment } from "../../../../lib/test-environment";
 import { isAccountGenerationEnabled } from "../../../../lib/account-session";
 import { requireCurrentAccount, requireSameOriginJson } from "../../../../lib/course-progress-server";
-import { getPushDatabase, isPushActorError, isPushSchemaError, parsePushRegistration, pushJson, pushErrorResponse, readPushJson } from "../../../../lib/push-registration";
+import { getPushDatabase, isPushActorError, isPushSchemaError, parsePushRegistration, pushJson, pushErrorResponse, readPushJson, assertPushRequestActive } from "../../../../lib/push-registration";
 
 export async function POST(req) {
   try {
@@ -13,7 +13,9 @@ export async function POST(req) {
     const session = readRequestAccountSession(req);
     if (!session) return pushJson({ success: false, error: "Bitte anmelden." }, 401);
     requireSameOriginJson(req);
-    const registration = parsePushRegistration(await readPushJson(req));
+    const body = await readPushJson(req);
+    assertPushRequestActive(req);
+    const registration = parsePushRegistration(body);
     const database = getPushDatabase(session);
     await requireCurrentAccount(database, session);
     if (!registration.legacy) {
@@ -38,7 +40,7 @@ export async function POST(req) {
     }
     return pushJson({ success: true });
   } catch (error) {
-    if (![400, 401, 403, 409, 413, 415, 503].includes(error?.status)) console.error("Push Registrierung fehlgeschlagen.");
+    if (![400, 401, 403, 408, 409, 413, 415, 503].includes(error?.status)) console.error("Push Registrierung fehlgeschlagen.");
     return pushErrorResponse(error);
   }
 }

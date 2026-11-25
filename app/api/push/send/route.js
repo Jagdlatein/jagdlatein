@@ -8,7 +8,7 @@ import { getMessaging } from "firebase-admin/messaging";
 import { isPayPalSandboxTestEnvironment } from "../../../../lib/test-environment";
 import { requireCurrentTrialAdmin } from "../../../../lib/admin-trial-overview";
 import { requireSameOriginJson } from "../../../../lib/course-progress-server";
-import { isPushSchemaError, parsePushMessage, pushDeliveryGroups, pushMulticastPayload, pushJson, pushErrorResponse, readPushJson } from "../../../../lib/push-registration";
+import { isPushSchemaError, parsePushMessage, pushDeliveryGroups, pushMulticastPayload, pushJson, pushErrorResponse, readPushJson, assertPushRequestActive } from "../../../../lib/push-registration";
 
 const COLUMNS = "token,platform,registration_kind,account_email,updated_at";
 const PAGE_SIZE = 500, MAX_RECIPIENTS = 10000;
@@ -64,7 +64,9 @@ export async function POST(req) {
     if (!isAuthorized(req)) return pushJson({ success: false, error: "Unauthorized" }, 401);
     requireSameOriginJson(req);
     const { database } = await requireCurrentTrialAdmin(req);
-    const message = parsePushMessage(await readPushJson(req));
+    const body = await readPushJson(req);
+    assertPushRequestActive(req);
+    const message = parsePushMessage(body);
     const recipients = await readRecipients(database, message.platform);
     await requireCurrentTrialAdmin(req, { database });
     const groups = pushDeliveryGroups(recipients, message.platform);
@@ -90,7 +92,7 @@ export async function POST(req) {
     }
     return pushJson({ success: true, sent, failed, total, disabled, ...(cleanupWarning ? { warning: "Ungültige Empfänger konnten noch nicht deaktiviert werden." } : {}) });
   } catch (error) {
-    if (![400, 401, 403, 413, 415, 503].includes(error?.status)) console.error("Push Versand fehlgeschlagen.");
+    if (![400, 401, 403, 408, 413, 415, 503].includes(error?.status)) console.error("Push Versand fehlgeschlagen.");
     if (total > 0) return pushJson({ success: false, error: "Die Nachricht wurde nur teilweise versendet. Bitte vor erneutem Versand prüfen.", sent, failed, total }, [401, 403, 503].includes(error?.status) ? error.status : 500);
     return pushErrorResponse(error, "Die Nachricht konnte nicht vollständig versendet werden.");
   }

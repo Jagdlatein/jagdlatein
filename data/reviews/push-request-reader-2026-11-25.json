@@ -1,0 +1,106 @@
+{
+  "id": "push-request-reader-2026-11-25",
+  "reviewedOn": "2026-11-25",
+  "scope": "Only transport reading for the three existing register/unregister/send push endpoints; all business workflows remain separate.",
+  "actualCallers": [
+    {
+      "path": "app/api/push/register/route.js",
+      "calls": 1,
+      "maxBytes": 8192
+    },
+    {
+      "path": "app/api/push/unregister/route.js",
+      "calls": 1,
+      "maxBytes": 8192
+    },
+    {
+      "path": "app/api/push/send/route.js",
+      "calls": 1,
+      "maxBytes": 8192
+    }
+  ],
+  "defaultMaxBytes": 8192,
+  "optionalExplicit16384Cap": "Existing helper parameter only. No productive caller uses a16KiB cap, and none is introduced.",
+  "originalReproduction": {
+    "cases": 12,
+    "evidence": "work/evening-push-audit-nov25/native-observations.json",
+    "sha256": "1902b80500b5df7c9ad7cf418bd59ed6a6ecebd30f9f8c3d5bf43dac6c469dd7",
+    "limits": "Native Requests/streams and named fallback doubles only. No actual notification, provider, recipient, customer account or database; supplied transport markers are not proof of an externally exploitable leak."
+  },
+  "change": {
+    "readTimeoutMs": 8000,
+    "abortAndTimeoutStatus": 408,
+    "decoder": "Original nonfatal UTF8 and initial BOM behavior, including split-byte sequences.",
+    "limits": "Stream path counts actual raw bytes. The existing req.text fallback counts the returned string reencoded to UTF8; their intentional malformed-byte asymmetry is retained.",
+    "opaqueFallback": "The fallback promise is time/abort bounded and size-checked after resolution. It cannot provide incremental allocation control inside an opaque text implementation; real Request streams use the incrementally bounded stream path.",
+    "ownership": "An invocation-local WeakSet recognises only locally created400/413/interruption errors. Foreign stream/text/acquisition failures normalize to a neutral500. A separate private WeakSet enables408 mapping only for genuine local interruption errors; supplied403/408 error instances cannot masquerade as reader errors.",
+    "guards": "Check before body access, before/after awaited reads or fallback text, on EOF, before/after JSON parsing, and immediately after each route awaits JSON before validation or subsequent workflows.",
+    "cleanup": "Cancel only the acquired reader, at most once, without awaiting its promise. Clear timer, remove abort listener and attempt release; cleanup rejection cannot replace a result.",
+    "notPromised": "No rollback or cancellation of workflows/provider deliveries already begun; no new rate policy or general attack-prevention guarantee."
+  },
+  "preservation": {
+    "allThreeDefaultCaps8192": true,
+    "allOldRegistrationParserPrefixBytesExact": true,
+    "allOtherLibraryFunctionsExactAfterOnly408MapReversal": true,
+    "threeCompleteRoutesExactAfterOnlyGuardImportReadBoundaryAnd408LoggingListReversal": true,
+    "sendAdminDatabaseCheckBeforeBodyPreserved": true,
+    "partialDeliveryResponseUnchanged": true,
+    "platformOwnershipGenerationEligibilityGroupingPayloadProviderLogicUnchanged": true,
+    "vmFixture": "test-account-generation.cjs adds only the native setTimeout and clearTimeout globals. Reversing those two bindings restores its complete original bytes and all assertions."
+  },
+  "validation": {
+    "state": "WORKSPACE_DRAFT_OWN_TESTS_PASS_EXISTING_INTEGRATION_PENDING",
+    "ownNativeTests": 25,
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "actualTimeouts": "Native incomplete stream and opaque fallback both hit the genuine8000ms timeout in the same test; observed test duration8019.7145ms. No simulated-clock deadline claim.",
+    "routeTests": "Three post-read aborts stop before payload validation and subsequent DB/provider work; send still performs exactly one synthetic pre-body administrator check. Sandbox/session/origin/bearer/admin ordering is checked.",
+    "testedSourceMode": "Only these four explicitly named proposed push sources are read from the workspace; no old-test overlay or historical-assertion projection is used.",
+    "requiredExistingTests": [
+      "scripts/test-push-platforms.cjs",
+      "scripts/test-account-generation.cjs",
+      "scripts/test-sandbox-communications.cjs",
+      "scripts/test-native-push-preferences.cjs",
+      "scripts/test-web-push.cjs"
+    ],
+    "network": "NoNet preload; all account/provider/DB effects are explicit isolated doubles.",
+    "noLivePOST": true,
+    "noActualNotifications": true,
+    "noActualAccountsOrStorage": true,
+    "noDeviceCheck": true
+  },
+  "files": [
+    {
+      "path": "lib/push-registration.js",
+      "sha256": "5cec7935f236b4485686e16cfe0a08a16c3127322542ba755426d4807961a019",
+      "bytes": 8833
+    },
+    {
+      "path": "app/api/push/register/route.js",
+      "sha256": "49de1616282a416a721c93996a0a0c2e0463f676be5b77c49d1812c8de086106",
+      "bytes": 3071
+    },
+    {
+      "path": "app/api/push/unregister/route.js",
+      "sha256": "244a1c73a7c4a32511714c0d0915909f082030de3e3534458af7a8573c708ce0",
+      "bytes": 2172
+    },
+    {
+      "path": "app/api/push/send/route.js",
+      "sha256": "e4362814a6a8ea3dcd344de307bcee0d9a9d0576e50448e16f25a8708ad809c0",
+      "bytes": 7358
+    },
+    {
+      "path": "scripts/test-push-request-body-nov25.cjs",
+      "sha256": "975ee3d2ea9226f3809e31f4384b00218707e3708db1223630de00c9ee3a6580",
+      "bytes": 19486
+    },
+    {
+      "path": "scripts/test-account-generation.cjs",
+      "sha256": "8f0f59a19e6cf0c563f4066490f36b3d9690a063078b7592798cc6365745f282",
+      "bytes": 16428
+    }
+  ]
+}

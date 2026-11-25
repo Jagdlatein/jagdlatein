@@ -21,7 +21,7 @@ function fixture(extraEnv = {}, overrides = {}) {
   const cache = new Map();
   const context = vm.createContext({ process: { env }, Buffer, crypto: webcrypto, atob,
     TextEncoder, TextDecoder, URL, Date, Response, AbortSignal, fetch: overrides.fetch,
-    console: overrides.console || console });
+    console: overrides.console || console, setTimeout, clearTimeout });
   function load(relative) {
     const file = path.join(root, relative);
     if (file.endsWith('.json')) return JSON.parse(fs.readFileSync(file, 'utf8'));
