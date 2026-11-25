@@ -1,0 +1,47 @@
+{
+  "reviewedOn": "2026-11-25",
+  "scope": "Four explicit links from existing reviewed lesson claims to their already existing four-answer questions. No new learning facts, questions, cards, media, source records or lesson/course review dates.",
+  "baseline": "76e93fab039b7789fdd84e65849d9fa77cf79969",
+  "sourceReviews": [
+    "data/reviews/fish-gill-learning-2026-11-25.json",
+    "data/reviews/red-deer-flehmen-learning-2026-11-25.json"
+  ],
+  "bindings": [
+    {
+      "courseId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "kiemen-gegenstrom",
+      "questionId": "wissen-ausbau-gewaesser-sauerstoff-2026-kiemen-lamellen-bau",
+      "claimScope": "Many thin lamellae provide exchange area and a short diffusion route in the described bony-fish model.",
+      "sourceUrlsInExactOrder": ["https://people.clas.ufl.edu/devans/files/PRVGill.pdf", "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm", "https://openstax.org/books/biology-2e/pages/39-1-systems-of-gas-exchange"],
+      "questionSha256": "04cc33ddc2a29434944ea19d0a5d5205baf67e8dd9c0aa0f1482313ff4b3d3e0"
+    },
+    {
+      "courseId": "wissen-ausbau-gewaesser-sauerstoff-2026",
+      "lessonId": "kiemen-gegenstrom",
+      "questionId": "wissen-ausbau-gewaesser-sauerstoff-2026-kiemen-gegenstrom-richtung",
+      "claimScope": "Opposed water/blood flows remain separate from oxygen diffusion; no uptake measurement or universal fish rule.",
+      "sourceUrlsInExactOrder": ["https://people.clas.ufl.edu/devans/files/PRVGill.pdf", "https://www.fao.org/fishery/docs/CDrom/aquaculture/a0844t/docrep/009/T1623E/T1623E02.htm"],
+      "questionSha256": "54c0a952431395b724b3aca60fb42f5eeb01b3727fff14b26d53c0f01677b2bd"
+    },
+    {
+      "courseId": "wissen-rotwild-sozialverhalten",
+      "lessonId": "rot-flehmen",
+      "questionId": "wissen-rotwild-sozialverhalten-rot-flehmen-haltung",
+      "claimScope": "The described combined head/neck/mouth/upper-lip posture identifies flehmen; a raised head alone does not.",
+      "sourceUrlsInExactOrder": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC10127101/", "https://www.sdw-nrw-koeln.de/wp-content/uploads/Broschu%CC%88re-Rotwild.pdf"],
+      "questionSha256": "36a19fd02a9fa4a6d84c50c464e459f87e4c044cb16b2aa5f1dd82f7a060331c"
+    },
+    {
+      "courseId": "wissen-rotwild-sozialverhalten",
+      "lessonId": "rot-flehmen",
+      "questionId": "wissen-rotwild-sozialverhalten-rot-flehmen-sinnesrolle",
+      "claimScope": "Only the explicit flehmen/roaring function-comparison claim is linked. The separate general chemical-intake claim remains unbound.",
+      "sourceUrlsInExactOrder": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC10127101/", "https://www.vetmeduni.ac.at/fileadmin/v/fiwi/Publikationen/Populaerwissenschaftliche/Valencak_2015_Pheromone.pdf", "https://www.sdw-nrw-koeln.de/wp-content/uploads/Broschu%CC%88re-Rotwild.pdf"],
+      "questionSha256": "6a620494fb14ebe1ce35d9a3df4ee1ccbd452a609884170949952edf9b2f60cc"
+    }
+  ],
+  "sourceReadingRoles": "The underlying originals were actually read in today's fish-gill/flehmen reviews, with independent root/peer checks. This binding check does not claim new experiments, broader source rereading, legal release or complete CH/AT/DE coverage.",
+  "preservation": "All previous bindings and topic records are compared as full objects to the baseline; all 198 normalized courses and 1802 cards including 116 starters are compared in order. Practice keeps exact existing source URL order and full normalized question SHA.",
+  "validation": "Four pure-server end-to-end queries, four source-order/source-URL/question-SHA fail-closed groups, unbound generic flehmen claim, plus existing chat practice/learning/UI suites under network denial. No UI, safety, ranking, loader or schema changes.",
+  "testResults": { "files": 5, "tests": 56, "passed": 56, "failed": 0, "skipped": 0, "node": "22.23.5", "network": "denied", "dom": "existing isolated workspace jsdom" }
+}
