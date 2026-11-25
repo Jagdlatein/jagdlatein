@@ -1,9 +1,12 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationBaselineFixture } = require('./helpers/guttation-addition-nov25.cjs');
 // Bounded new learning content, real adapters and positive old-object/diagram
 // preservation. No real user, storage, network, credentials or device browser.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createGuttationProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createGuttationProjectLoader(guttationBaselineFixture(overrides));
 const { addition, newQuestionIds, newCardIds, stripFishGillCourse, stripFishGillDataset, stripFishGillCards, fishGillBaselineFixture, fishGillDiagramBaseline } = require('./helpers/fish-gill-addition-nov25.cjs');
 const baseline = '59bbeda4e20869acc6f4a2973a90bfffaf99bd96';
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
@@ -35,7 +38,7 @@ test('One named end lesson preserves the complete raw dataset and all198 old cou
   const rawPath = 'data/learning-expansion-nature-equipment-2026-10-16.json';
   assert.deepEqual(stripFishGillDataset(load(rawPath)), old(rawPath));
   assert.deepEqual(curriculum.learningModules.map(stripFishGillCourse), before.learningModules);
-  assert.deepEqual(createLoader(fishGillBaselineFixture())('lib/learning-curriculum.js').learningModules, before.learningModules);
+  assert.deepEqual(createLoader(fishGillBaselineFixture(guttationBaselineFixture()))('lib/learning-curriculum.js').learningModules, before.learningModules);
   assert.deepEqual(before.learningCounts, { modules:198, lessons:905, questions:2792 });
   assert.deepEqual(curriculum.learningCounts, { modules:198, lessons:906, questions:2794 });
   assert.equal(course.reviewedOn, '2026-10-16'); assert.equal(lesson.reviewedOn, addition.date);

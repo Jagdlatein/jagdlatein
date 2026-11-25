@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationBaselineFixture } = require('./helpers/guttation-addition-nov25.cjs');
 // This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
 const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Keep the historical contract exact; the named Nov25 bird appendix has
@@ -52,10 +54,10 @@ function measurementBaselineFixture(overrides = {}) {
     return { ...module, lessons: module.lessons.slice(0, -1), questions: module.questions.slice(0, -2), sources: module.sources.slice(0, -3) };
   }) } };
 }
-const createLoader = overrides => createLinkedProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(forestExamBaselineFixture(measurementBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(fishGillBaselineFixture(overrides)))))))))))));
+const createLoader = overrides => createLinkedProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(forestExamBaselineFixture(measurementBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(fishGillBaselineFixture(guttationBaselineFixture(overrides))))))))))))));
 const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
-const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(woodpeckerFootBaselineFixture(fishLateralLineBaselineFixture()))))))));
+const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(guttationBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(woodpeckerFootBaselineFixture(fishLateralLineBaselineFixture())))))))));
 const { getCourseBreedLink, getDogBreedKnowledgeAssignment } = load('lib/dog-breed-routing.js');
 const { learningModules } = load('lib/learning-curriculum.js');
 const { dogBreeds } = load('lib/dog-compass.js');

@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationDiagramBaseline } = require('./helpers/guttation-addition-nov25.cjs');
 // This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
 const { fishGillDiagramBaseline } = require('./helpers/fish-gill-addition-nov25.cjs');
 const test = require('node:test'), assert = require('node:assert/strict');
@@ -6,7 +8,7 @@ const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 const { redDeerFlehmenDiagramBaseline } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const load = createLoader(woodpeckerFootBaselineFixture());
-const getLessonDiagram = fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram));
+const getLessonDiagram = guttationDiagramBaseline(fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram)));
 const courseId = 'wissen-ausbau-habitat-insektenentwicklung-2026', lessonId = 'tracheen-atmung';
 
 test('The new lesson alone receives a bounded functional airway scheme, with ventilation and diffusion kept distinct', () => {

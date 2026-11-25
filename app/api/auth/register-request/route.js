@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getRegistrationDatabase, isAccountRegistrationEnabled, readRegistrationRequest,
+import { getRegistrationDatabase, isAccountRegistrationEnabled, readRegistrationRequest, assertRegistrationRequestActive,
   registrationErrorResponse, registrationUnavailable, requestAccountRegistration,
   REGISTRATION_CODE_REQUEST_MESSAGE } from "../../../../lib/account-registration";
 import { isLoginMailRecipientAllowed } from "../../../../lib/test-environment";
@@ -13,6 +13,7 @@ export async function POST(req) {
   try {
     if (!isAccountRegistrationEnabled()) throw registrationUnavailable();
     const { email } = await readRegistrationRequest(req);
+    assertRegistrationRequestActive(req);
     if (!isLoginMailRecipientAllowed(email)) return NextResponse.json({ success: true,
       message: REGISTRATION_CODE_REQUEST_MESSAGE }, { headers: { "Cache-Control": "no-store" } });
     const result = await requestAccountRegistration(getRegistrationDatabase(), email);

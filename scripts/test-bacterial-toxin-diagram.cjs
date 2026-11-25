@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationDiagramBaseline } = require('./helpers/guttation-addition-nov25.cjs');
 // This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
 const { fishGillDiagramBaseline } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Original reading aid: scope, actual renderer and unchanged older diagrams.
@@ -8,7 +10,7 @@ const { laterPublished, assertDiagramHistory } = require('./helpers/lesson-diagr
 const { redDeerFlehmenDiagramBaseline } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const getLessonDiagram = fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram));
+const getLessonDiagram = guttationDiagramBaseline(fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram)));
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const courseId = 'wissen-ausbau-revierpraxis-lebensmittelbakterien-2026', lessonId = 'vorgebildete-toxine';
 const course = getLearningModule(courseId), lesson = course.lessons.find(item => item.id === lessonId);

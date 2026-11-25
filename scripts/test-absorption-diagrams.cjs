@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationDiagramBaseline } = require('./helpers/guttation-addition-nov25.cjs');
 // This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
 const { fishGillDiagramBaseline } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Scope and preservation of two original anatomy reading aids.
@@ -8,7 +10,7 @@ const { laterPublished, assertDiagramHistory } = require('./helpers/lesson-diagr
 const { redDeerFlehmenDiagramBaseline } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const getLessonDiagram = fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram));
+const getLessonDiagram = guttationDiagramBaseline(fishGillDiagramBaseline(redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram)));
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const targets = [
   ['wissen-ausbau-biologie-verdauungsvergleich-2026', 'zotten-mikrovilli'],

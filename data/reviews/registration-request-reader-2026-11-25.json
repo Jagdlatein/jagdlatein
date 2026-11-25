@@ -1,0 +1,92 @@
+{
+  "id": "registration-request-reader-2026-11-25",
+  "reviewedOn": "2026-11-25",
+  "scope": "The publicly reachable registration code-request and registration code-verification body reader, preserving registration business workflows.",
+  "baseline": "a2034808cf4178a58483c271ebc841c09dddbce5",
+  "originalObservations": {
+    "method": "Existing real module with native Request/ReadableStream in an empty application environment, forbidden workflow dependencies, and denied fetch/http/https/net/tls.",
+    "cases": 10,
+    "reproduced": [
+      "A valid pre-aborted native Request was still accepted.",
+      "An abort during an incomplete stream remained pending and the eventual complete payload was accepted.",
+      "A valid but incomplete body remained pending after8262ms; no body-read deadline existed.",
+      "A2049-byte body waited for a stalled cancellation before returning its existing413 error."
+    ],
+    "limit": "The read-only probes reproduce transport behavior, not an actual attack, production failure, availability measurement or account/mail mutation."
+  },
+  "preserved": {
+    "maxBytes": 2048,
+    "utf8": "Strict UTF8 with initial BOM handling; no replacement of malformed bytes.",
+    "originSiteAndTypeGuards": "Original order and exact source text retained.",
+    "schema": "Exactly email for request, exactly email/code for verify; normalization and six decimal digits unchanged.",
+    "workflows": "Original database-client configuration, mail allowlist, reservation and rate limit, bcrypt, atomic code-attempt/consume RPCs, subscription resolution, session issuance, cookies and error response suffix are byte-identical.",
+    "routes": "After reverting only the imported guard name and one immediate post-read assertion, each original route is byte-identical.",
+    "fixtures": "The complete pre-existing registration test is unchanged after removing only setTimeout and clearTimeout from its VM globals.",
+    "excluded": "Push, login-code, payment, account-deletion, SQL, roles, secrets and provider settings are outside this change."
+  },
+  "change": {
+    "totalReadTimeoutMs": 8000,
+    "timeoutStatus": 408,
+    "timeoutCode": "REGISTRATION_TIMEOUT",
+    "abortStatus": 408,
+    "abortCode": "REGISTRATION_ABORTED",
+    "freshChecks": [
+      "Before reader acquisition and before every read.",
+      "Immediately after each awaited read, including EOF.",
+      "Before decoding/parsing, after parsing, before returning normalized fields.",
+      "Immediately after the route awaits the reader and before mail allowlist/database/workflow calls."
+    ],
+    "errorOwnership": "Only the invocation-local WeakSet of constructed reader errors can be propagated. Arbitrary transport errors, including supplied AccountRegistrationError instances, are normalized to the existing503 unavailable response.",
+    "cleanup": "The acquired reader receives one best-effort cancellation without awaiting its promise, a release attempt, timer cleanup, and abort-listener removal. Cleanup rejections cannot replace a result.",
+    "limits": "This guards transport until workflow entry; it does not cancel or undo a registration workflow already begun, add a new rate policy or guarantee general attack prevention."
+  },
+  "validation": {
+    "ownNativeContractTests": 21,
+    "requiredTestFiles": 5,
+    "requiredTests": 94,
+    "passed": 94,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "node": "22.23.5",
+    "methods": [
+      "A genuine8000ms timeout with native incomplete stream and never-settling cancel.",
+      "Native pre/acquisition/chunk/EOF/decoding abort cases and post-await route abort.",
+      "2048/2049 byte limits, dishonest size header, original guard/schema responses, strict UTF8/BOM boundary cases.",
+      "Throwing/rejected/stalled cancel, locked/acquisition-failing reader, arbitrary rejection reasons, timer/listener/reader ownership cleanup.",
+      "Existing isolated PostgreSQL/bcrypt registration workflow and login UI tests with all existing assertions retained."
+    ],
+    "environment": "Application secrets/live opt-ins are not inherited by required test children. NoNet preload denies external network; PostgreSQL, SMTP and providers remain isolated fixtures.",
+    "noLivePOST": true,
+    "noActualAccountsOrMail": true,
+    "noDeviceInspection": true,
+    "noProductionBehaviorClaim": true
+  },
+  "files": [
+    {
+      "path": "lib/account-registration.js",
+      "sha256": "286cbfdeb3e9be833d2ee0eb11c5a86ddc3cd58c77d9e9109a5d8094661a2ba3",
+      "bytes": 10188
+    },
+    {
+      "path": "app/api/auth/register-request/route.js",
+      "sha256": "ded0010a7661069a53779dff2c4dcae908c1db8a8424236cceebe4a62475b72b",
+      "bytes": 1296
+    },
+    {
+      "path": "app/api/auth/register-verify/route.js",
+      "sha256": "86f46334b940cabf0fb08401fe03044b9c1676f4bad390e6d4b3449b4b0e16a0",
+      "bytes": 713
+    },
+    {
+      "path": "scripts/test-account-registration.cjs",
+      "sha256": "87ce7321fa1e8443306d55de068e121d8a6240e1e9a07c9d36413f1fc671b2ba",
+      "bytes": 19190
+    },
+    {
+      "path": "scripts/test-registration-request-body-nov25.cjs",
+      "sha256": "76958709ae0ba68b522166bfc5b25b683a7cfc76cb75c9d6723e26448f3bb421",
+      "bytes": 18178
+    }
+  ]
+}

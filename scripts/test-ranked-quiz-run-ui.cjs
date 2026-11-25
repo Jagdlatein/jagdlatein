@@ -66,6 +66,13 @@ function setup() {
   } } };
   const setTimeout = (callback, delay) => { const id = ++timerId; timers.set(id, { callback, at: now + delay }); return id; };
   const clearTimeout = id => timers.delete(id);
+  // Execute the actual transport helper with the same existing synthetic clock.
+  // The component's request, round, locking and result assertions stay intact.
+  const deadlineFile = path.join(root, 'lib/quiz-request-deadline.js');
+  const deadlineModule = { exports: {} };
+  const deadlineCode = swc.transformSync(fs.readFileSync(deadlineFile, 'utf8'), { filename: deadlineFile,
+    jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } }).code;
+  new Function('module', 'exports', 'setTimeout', 'clearTimeout', deadlineCode)(deadlineModule, deadlineModule.exports, setTimeout, clearTimeout);
   const fetch = (url, options = {}) => new Promise(resolve => {
     assert.ok(/^\/api\/quiz\/(register|round(?:\/(answer|next)|\?roundId=[a-f0-9-]+)?)$/.test(url), `Unexpected synthetic request: ${url}`);
     const request = { url, options, body: options.body ? JSON.parse(options.body) : null,
@@ -84,6 +91,7 @@ function setup() {
     if (id.endsWith('/AppIcon')) return { __esModule: true, default: () => null };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     if (id.endsWith('/daily-review')) return { recordReviewAnswer() {} };
+    if (id.endsWith('/quiz-request-deadline')) return deadlineModule.exports;
     if (id.endsWith('/use-exam-profile')) return { __esModule: true, default: () => ({ ready: true, profile: null }) };
     if (id.endsWith('/exam-profile')) return { getExamProfileDetails: () => null };
     if (id.endsWith('/quiz-learning-scope')) return { isCountryQuizTopic: topic => topic === 'Recht',
@@ -158,9 +166,16 @@ test('An unanswered question still times out after 30 seconds, sends answer:null
   assert.equal(answer.body.roundId, ROUND); assert.equal(answer.body.questionId, 'synthetic-question-1');
   assert.equal(answer.body.answerId, null);
   s.advance(60000); assert.equal(s.requests.length, 3, 'A pending timeout cannot be submitted twice');
+  await s.settle();
+  assert.equal(answer.options.signal.aborted, true, 'The unanswered transport reaches its own8s deadline');
+  assert.match(s.text(), /Deine Antwort konnte gerade nicht bestätigt werden/);
+  s.click('Erneut versuchen'); const retry = s.requests.at(-1);
+  assert.equal(s.requests.length, 4); assert.deepEqual(retry.body, answer.body, 'The explicit retry retains the exact answer:null operation UUID');
   answer.respond({ success: true, round: feedback(0, s.now, true) }); await s.settle();
+  assert.doesNotMatch(s.text(), /Synthetische Erklärung/, 'The old late response cannot replace the retried operation');
+  retry.respond({ success: true, round: feedback(0, s.now, true) }); await s.settle();
   assert.match(s.text(), /Zeit abgelaufen/); s.advance(45000); await s.settle();
-  assert.equal(s.requests.length, 3); assert.match(s.text(), /Frage 1 von 2/);
+  assert.equal(s.requests.length, 4); assert.match(s.text(), /Frage 1 von 2/);
   assert.equal(s.button('Weiter').props.disabled, false); s.unmount();
 });
 

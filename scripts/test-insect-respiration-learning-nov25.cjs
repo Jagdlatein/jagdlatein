@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationBaselineFixture } = require('./helpers/guttation-addition-nov25.cjs');
 // This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
 const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Keep the historical contract exact; the named Nov25 bird appendix has
@@ -13,7 +15,7 @@ const { addition, stripInsectRespirationCourse, stripInsectRespirationDataset, s
 const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const baseline = '7b69962b0fee40db63096d512b852a4241c90fcb';
 const rawPath = 'data/learning-expansion-habitat-depth-2026-10-17.json';
-const createLoader = overrides => createProjectLoader(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(fishGillBaselineFixture(overrides))));
+const createLoader = overrides => createProjectLoader(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(fishGillBaselineFixture(guttationBaselineFixture(overrides)))));
 const load = createLoader();
 function previousLoader() {
   const cache = new Map();

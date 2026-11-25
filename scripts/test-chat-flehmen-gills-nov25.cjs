@@ -1,9 +1,12 @@
+// Keep every prior chat binding/source/answer assertion while projecting only the exact reviewed Guttation appendix.
+const { guttationBaselineFixture } = require('./helpers/guttation-addition-nov25.cjs');
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { createLoader: createGuttationProjectLoader, local, root } = require('./helpers/project-module.cjs');
+const createLoader = overrides => createGuttationProjectLoader(guttationBaselineFixture(overrides));
 const baseline = '76e93fab039b7789fdd84e65849d9fa77cf79969';
 const load = createLoader();
 const { chatPracticeBindings: bindings, chatTopicBindings: topics } = load('lib/jagdlatein-chat-bindings.js');

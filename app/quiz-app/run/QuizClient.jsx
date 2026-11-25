@@ -9,6 +9,7 @@ import { isCountryQuizTopic, quizLearningUrl } from "../../../lib/quiz-learning-
 import { recordReviewAnswer } from "../../../lib/daily-review";
 import useExamProfile from "../../../lib/use-exam-profile";
 import { getExamProfileDetails } from "../../../lib/exam-profile";
+import { withQuizRequestDeadline } from "../../../lib/quiz-request-deadline";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const timestamp = value => typeof value === "string" && Number.isFinite(Date.parse(value));
@@ -113,15 +114,20 @@ export default function QuizClient() {
     }
     if (value.phase === "complete") forgetRound();
   }
-  async function readResponse(response) {
-    let data;
-    try { data = await response.json(); } catch { throw new Error("Die Quizrunde ist gerade nicht erreichbar."); }
-    if (!response.ok || data?.success !== true) {
-      const failure = new Error(typeof data?.error === "string" && data.error.length <= 300 ? data.error : "Die Quizrunde ist gerade nicht erreichbar.");
-      failure.status = response.status;
-      throw failure;
-    }
-    return data;
+  async function readResponse(url, options) {
+    return withQuizRequestDeadline(options.signal, async (signal, assertActive) => {
+      const response = await fetch(url, { ...options, signal });
+      assertActive();
+      let data;
+      try { data = await response.json(); } catch { throw new Error("Die Quizrunde ist gerade nicht erreichbar."); }
+      assertActive();
+      if (!response.ok || data?.success !== true) {
+        const failure = new Error(typeof data?.error === "string" && data.error.length <= 300 ? data.error : "Die Quizrunde ist gerade nicht erreichbar.");
+        failure.status = response.status;
+        throw failure;
+      }
+      return data;
+    });
   }
   function failureState(stage, failure) {
     return { stage, status: failure?.status || 0 };
@@ -155,9 +161,9 @@ export default function QuizClient() {
     async function start() {
       let stage = "profile";
       try {
-        const profile = await readResponse(await fetch("/api/quiz/register", {
+        const profile = await readResponse("/api/quiz/register", {
           method: "GET", credentials: "same-origin", cache: "no-store", signal: record.controller.signal,
-        }));
+        });
         if (!live(record)) return;
         if (profile.identity === null) {
           setBusy("redirect");
@@ -170,11 +176,11 @@ export default function QuizClient() {
         setBusy("start");
         if (!startRequest.current.id) startRequest.current.id = globalThis.crypto.randomUUID();
         rememberRound(startRequest.current.id);
-        const result = await readResponse(await fetch("/api/quiz/round", {
+        const result = await readResponse("/api/quiz/round", {
           method: "POST", credentials: "same-origin", cache: "no-store", signal: record.controller.signal,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ country, topic, requestId: startRequest.current.id }),
-        }));
+        });
         if (!live(record)) return;
         if (result.round?.roundId !== startRequest.current.id) throw new Error("Die Antwort gehört nicht zu dieser Runde.");
         applyRound(result.round);
@@ -206,7 +212,7 @@ export default function QuizClient() {
         options.headers = { "Content-Type": "application/json" };
         options.body = JSON.stringify(operation.payload);
       }
-      const result = await readResponse(await fetch(url, options));
+      const result = await readResponse(url, options);
       if (!live(operation.context) || pending.current !== operation) return;
       if (result.round?.roundId !== operation.payload.roundId) throw new Error("Die Antwort gehört nicht zu dieser Runde.");
       applyRound(result.round);

@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationBaselineFixture } = require('./helpers/guttation-addition-nov25.cjs');
 // This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
 const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Source reading is documented separately. These isolated regression checks
@@ -18,7 +20,7 @@ const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measu
 // Separate pre-existing snapshot repair: these named publications followed
 // c5a0157. Their original helpers preserve all unrelated fields and sources.
 const createLoader = overrides => createProjectLoader([
-  fishGillBaselineFixture, redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
+  guttationBaselineFixture, fishGillBaselineFixture, redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
   capercaillieToeBaselineFixture, dogExtinctionBaselineFixture, forestExamBaselineFixture,
   practiceMeasurementBaselineFixture, trackPostureBaselineFixture,
 ].reduce((current, project) => project(current), overrides));

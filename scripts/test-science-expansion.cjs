@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationBaselineFixture } = require('./helpers/guttation-addition-nov25.cjs');
 // Keep the historical contract exact; the named Nov25 bird appendix has
 // positive whole-corpus/card preservation in its own live-data suite.
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
@@ -23,7 +25,7 @@ const createLoader = overrides => createLinkedProjectLoader(novemberLearningBase
 // transfer-case prerequisites. Full-corpus tests cover those twelve new search
 // entries; preserve the exact historical course/lesson assertions here.
 const load = createLoader({
-  ...examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture(woodpeckerFootBaselineFixture()))),
+  ...examKnowledgeBaselineFixture(plantEnergyBaselineFixture(guttationBaselineFixture(adiposeBaselineFixture(woodpeckerFootBaselineFixture())))),
   './exam-transfer-goals-server': { getExamTransferGoals: () => [] },
 });
 const { scienceExpansionDatasets: datasets, scienceExpansionModules: added } = load('lib/learning-science-expansion.js');

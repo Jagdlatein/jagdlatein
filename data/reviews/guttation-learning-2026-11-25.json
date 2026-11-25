@@ -1,0 +1,142 @@
+{
+  "reviewedOn": "2026-11-25",
+  "baselineCommit": "a2034808cf4178a58483c271ebc841c09dddbce5",
+  "courseId": "wissen-ausbau-oekologie-blattfunktion-2026",
+  "lessonId": "guttation",
+  "scope": "Append exactly one lesson, two own four-answer questions and two derived cards; no new category, course, route, photo, source-date update of old objects or claim of official mandatory coverage in every DACH examination.",
+  "nonredundancy": {
+    "lessons": 6,
+    "questions": 36,
+    "sources": 15,
+    "courseReviewedOn": "2026-10-16",
+    "datasetReviewedOn": "2026-10-16",
+    "lessonIds": [
+      "blattbau",
+      "photosynthese",
+      "wasserhaushalt",
+      "blattalterung",
+      "zellatmung",
+      "energie-stoffe"
+    ],
+    "exactGap": "The full existing water-balance lesson and all current leaf-function lesson titles were read. Guttation occurs only as a distractor in wasserhaushalt-q1; no existing explanation or question on hydathodes, plant-internal liquid versus condensed dew, or a paper transfer model was found in the actual data/lib search. Wurzeldruck elsewhere concerns mechanical rock-weathering pressure, not this sap-pressure mechanism.",
+    "otherCandidatesRejected": "Alula, duck-leg countercurrent, mammalian vestibular system, mycorrhiza, stomata and root hairs were already present in detail; earthworm functional groups are already outlined in the small-life tool. They were not treated as gaps."
+  },
+  "claims": [
+    {
+      "claim": "Bei der beschriebenen Guttation wird flüssiges Wasser aus dem Pflanzeninneren über Hydathoden abgegeben, häufig an Blattspitzen oder Blatträndern; der Flüssigkeitsaustritt ist von Transpiration in Dampfform zu unterscheiden.",
+      "sourceUrls": [
+        "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05a.htm",
+        "https://ipm.missouri.edu/MEG/2009/6/Guttation-A-Pressure-Relief-for-Plants/index.cfm",
+        "https://hess.copernicus.org/articles/25/2617/2021/"
+      ],
+      "sourceRoles": {
+        "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05a.htm": "Actual original HTML Stomata section, especially lines30–42: stomatal gas/water regulation, hydathodes and guttation, named examples at leaf margins and grass tips. Hydathodes are specialised water-release structures; liquid exudation is guttation; existing transpiration context.",
+        "https://ipm.missouri.edu/MEG/2009/6/Guttation-A-Pressure-Relief-for-Plants/index.cfm": "Complete original authored short text lines39–53, including hydathode exit at margins/tips, root pressure under low-transpiration conditions and solute-containing droplets. Independent institutional explanation for liquid exudation at hydathodes and root-pressure model; not a new experiment.",
+        "https://hess.copernicus.org/articles/25/2617/2021/": "Author/title/date, introduction and exact section2.2 Excluding the confusion of guttation, lines317–321. Also the entire one-page corrigendum published1July2021, which corrects Table1 abbreviations dDew/fdDew to Distillation/fdistillation; it does not alter section2.2. Actual research article separately defines plant-internal guttation versus condensed external dew and discusses root-pressure/grasses. The study excluded relevant guttation in its own dry-spell samples; this is not presented as an experimental measurement or replication of guttation."
+      }
+    },
+    {
+      "claim": "Im ausdrücklich betrachteten Guttationsmodell kann Wurzeldruck die Abgabe flüssigen Wassers bewirken; reichlich verfügbares Bodenwasser und geringe Transpiration können den Vorgang begünstigen. Daraus folgt keine universelle Nachtregel oder Guttation sämtlicher Pflanzen.",
+      "sourceUrls": [
+        "https://ipm.missouri.edu/MEG/2009/6/Guttation-A-Pressure-Relief-for-Plants/index.cfm",
+        "https://hess.copernicus.org/articles/25/2617/2021/"
+      ],
+      "sourceRoles": {
+        "https://ipm.missouri.edu/MEG/2009/6/Guttation-A-Pressure-Relief-for-Plants/index.cfm": "Complete original authored short text lines39–53, including hydathode exit at margins/tips, root pressure under low-transpiration conditions and solute-containing droplets. Independent institutional explanation for liquid exudation at hydathodes and root-pressure model; not a new experiment.",
+        "https://hess.copernicus.org/articles/25/2617/2021/": "Author/title/date, introduction and exact section2.2 Excluding the confusion of guttation, lines317–321. Also the entire one-page corrigendum published1July2021, which corrects Table1 abbreviations dDew/fdDew to Distillation/fdistillation; it does not alter section2.2. Actual research article separately defines plant-internal guttation versus condensed external dew and discusses root-pressure/grasses. The study excluded relevant guttation in its own dry-spell samples; this is not presented as an experimental measurement or replication of guttation."
+      }
+    },
+    {
+      "claim": "Tau entsteht durch Kondensation von Wasserdampf an einer genügend abgekühlten Oberfläche. Das ist eine andere Herkunft als die Abgabe pflanzeninternen flüssigen Wassers bei Guttation. Der Vergleichsfall legt die Wasserwege ausdrücklich fest, statt Tropfen allein aus einem Foto zu bestimmen.",
+      "sourceUrls": [
+        "https://hess.copernicus.org/articles/25/2617/2021/",
+        "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew"
+      ],
+      "sourceRoles": {
+        "https://hess.copernicus.org/articles/25/2617/2021/": "Author/title/date, introduction and exact section2.2 Excluding the confusion of guttation, lines317–321. Also the entire one-page corrigendum published1July2021, which corrects Table1 abbreviations dDew/fdDew to Distillation/fdistillation; it does not alter section2.2. Actual research article separately defines plant-internal guttation versus condensed external dew and discusses root-pressure/grasses. The study excluded relevant guttation in its own dry-spell samples; this is not presented as an experimental measurement or replication of guttation.",
+        "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew": "Actual official original HTML Dew / How does dew form? lines267–277, including condensation of atmospheric water vapour on cooled surfaces. Independently authored weather-service definition of dew as surface condensation, not plant secretion."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "hamburg",
+      "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05a.htm",
+      "title": "Botanik online: Gewebe – Epidermis",
+      "organization": "Universität Hamburg, historisches Botanik-online-Archiv 1996–2004",
+      "actuallyRead": "Actual original HTML Stomata section, especially lines30–42: stomatal gas/water regulation, hydathodes and guttation, named examples at leaf margins and grass tips.",
+      "supports": "Hydathodes are specialised water-release structures; liquid exudation is guttation; existing transpiration context.",
+      "exclude": "Do not repeat permanent inability to close, universal morphology, measurements, salts/trinkability, any archival image or preparation instructions. Modern Arabidopsis research conflicts with a universal non-closing claim."
+    },
+    {
+      "id": "missouri",
+      "url": "https://ipm.missouri.edu/MEG/2009/6/Guttation-A-Pressure-Relief-for-Plants/index.cfm",
+      "title": "Christopher J. Starbuck: Guttation: A Pressure Relief for Plants, 1 June2009",
+      "organization": "University of Missouri, Plant Science & Technology",
+      "actuallyRead": "Complete original authored short text lines39–53, including hydathode exit at margins/tips, root pressure under low-transpiration conditions and solute-containing droplets.",
+      "supports": "Independent institutional explanation for liquid exudation at hydathodes and root-pressure model; not a new experiment.",
+      "exclude": "No90percent figure, all-stomata-close-at-night assertion, bacterial entry, edema, treatment, fertilising/watering advice, image or generic safety claim."
+    },
+    {
+      "id": "eth2021",
+      "url": "https://hess.copernicus.org/articles/25/2617/2021/",
+      "title": "Li, Aemisegger, Riedl, Buchmann and Eugster2021: The role of dew and radiation fog inputs in the local water cycling of a temperate grassland during dry spells in central Europe",
+      "organization": "ETH Zurich / Hydrology and Earth System Sciences",
+      "doi": "10.5194/hess-25-2617-2021",
+      "actuallyRead": "Author/title/date, introduction and exact section2.2 Excluding the confusion of guttation, lines317–321. Also the entire one-page corrigendum published1July2021, which corrects Table1 abbreviations dDew/fdDew to Distillation/fdistillation; it does not alter section2.2.",
+      "corrigendum": "https://hess.copernicus.org/articles/25/2617/2021/hess-25-2617-2021-corrigendum.pdf",
+      "supports": "Actual research article separately defines plant-internal guttation versus condensed external dew and discusses root-pressure/grasses. The study excluded relevant guttation in its own dry-spell samples; this is not presented as an experimental measurement or replication of guttation.",
+      "exclude": "No isotopic values, water amounts, vegetation-management data, plant-species inference, universal visual certainty or photo copied."
+    },
+    {
+      "id": "metoffice",
+      "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew",
+      "title": "Dew – How does dew form?",
+      "organization": "UK Met Office",
+      "actuallyRead": "Actual official original HTML Dew / How does dew form? lines267–277, including condensation of atmospheric water vapour on cooled surfaces.",
+      "supports": "Independently authored weather-service definition of dew as surface condensation, not plant secretion.",
+      "exclude": "No dew-volume number, arid-region water-use advice, collection/trinking advice, photographs or artificial mandatory night/weather rule."
+    }
+  ],
+  "questions": [
+    {
+      "id": "guttation-austritt",
+      "answer": 0,
+      "role": "Neue Austrittsstruktur Hydathoden bestimmen, keine Wiederholung der alten Transpirationsdefinition."
+    },
+    {
+      "id": "guttation-tau-modell",
+      "answer": 1,
+      "role": "Pflanzeninternen Flüssigkeitsaustritt und Kondensation in einem expliziten eigenen Papiermodell zuordnen."
+    }
+  ],
+  "diagram": {
+    "type": "comparison",
+    "title": "Drei Wasserwege am Blatt",
+    "note": "Eigenes vereinfachtes Vergleichsschema. Die Kästen unterscheiden Stoffzustand und Herkunft; sie sind keine zeitliche Abfolge, keine massstäbliche Anatomiezeichnung und kein Nachweis der Herkunft eines fotografierten Tropfens.",
+    "steps": [
+      {
+        "title": "Guttation: Flüssigkeit nach aussen",
+        "text": "Flüssiges Wasser stammt aus dem Pflanzeninneren und tritt im beschriebenen Modell über Hydathoden aus."
+      },
+      {
+        "title": "Tau: Wasserdampf kondensiert",
+        "text": "Wasserdampf aus der Umgebung wird an einer genügend abgekühlten Oberfläche zu flüssigem Wasser."
+      },
+      {
+        "title": "Transpiration: Wasserdampf nach aussen",
+        "text": "Wasser wird aus der Pflanze in Dampfform an die umgebende Luft abgegeben."
+      }
+    ],
+    "rendererCSSChanges": false,
+    "newPhotosVideosOrCopiedFigures": false
+  },
+  "sourceLimits": "PMC direct article28184011/PMC5462019 showed a browser challenge; no bypass attempted and no fulltext-read claim. The indexed original abstract of Cerutti2017 contradicts universal hydathode non-closing. This prompted exclusion only; it is not needed as one of the proposed four product sources. Minnesota11.1 direct fetch403 is also not used as a product source.",
+  "notAdopted": [
+    "universell dauerhaft offene oder nicht regulierbare Hydathoden",
+    "allgemeine Nacht-/Stomataschlussregel",
+    "Trinkbarkeit, Pflanzenschutz, Bewässerung, Therapie oder Grenzwerte",
+    "Messwerte, übernommene Bilder oder diagnostische Fotozuordnung"
+  ],
+  "preservation": "Alle alten Lektionen, Fragen, Quellen, Reihenfolgen und Kurs-/Dateiprüfdaten bleiben erhalten. Nur die neue Lektion und vier darauf begrenzte Quellen tragen25November; keine vollständige Neuprüfung oder offizielle DACH-Abdeckung behauptet."
+}

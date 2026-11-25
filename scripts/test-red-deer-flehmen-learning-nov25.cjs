@@ -1,3 +1,5 @@
+// Preserve this historical view after the exact separately tested Guttation append.
+const { guttationBaselineFixture } = require('./helpers/guttation-addition-nov25.cjs');
 // This historical snapshot projects only the separately tested Nov25 fish-gill appendix.
 const { fishGillBaselineFixture } = require('./helpers/fish-gill-addition-nov25.cjs');
 // Bounded new learning content, real adapters and positive old-object/diagram
@@ -6,7 +8,7 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
-const createLoader = overrides => createProjectLoader(fishGillBaselineFixture(overrides));
+const createLoader = overrides => createProjectLoader(fishGillBaselineFixture(guttationBaselineFixture(overrides)));
 const { addition, newQuestionIds, newCardIds, cardSourceUrls, stripRedDeerFlehmenCourse, stripRedDeerFlehmenModule, stripRedDeerFlehmenCards, redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const baseline = '61019897797d9fe851ff3bb25e46a5a5a534e578';
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');

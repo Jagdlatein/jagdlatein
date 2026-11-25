@@ -39,7 +39,7 @@ function api(options = {}) {
     SUPABASE_URL: 'https://database.example.invalid', SUPABASE_SERVICE_ROLE_KEY: 'synthetic-not-a-key',
     ACCOUNT_DELETION_ENABLED: options.generation ? 'true' : 'false', ...options.env };
   const cache = new Map();
-  const context = vm.createContext({ process: { env }, Buffer, Date, URL, TextDecoder, Uint8Array, Response, console });
+  const context = vm.createContext({ process: { env }, Buffer, Date, URL, TextDecoder, Uint8Array, Response, console, setTimeout, clearTimeout });
   function load(relative) {
     const filename = path.join(root, relative);
     if (cache.has(filename)) return cache.get(filename).exports;

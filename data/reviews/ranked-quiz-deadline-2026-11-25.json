@@ -1,0 +1,45 @@
+{
+  "reviewedOn": "2026-11-25",
+  "kind": "Technical client transport review; no factual teaching or legal content changed",
+  "scope": "Ranked QuizClient profile lookup, round start, answer, next and synchronization: one bounded client request from fetch through the complete JSON response.",
+  "originalObservation": {
+    "sourceSHA256": "33abb80ddf82d0d688c1d45cea4052fd664178ab53c0827b9f59f01fc84106a0",
+    "cases": 10,
+    "method": "Actual React DOM and effects with isolated pending fetch/JSON promises at each of five stages. After300000ms of controlled component time every stage retained its busy view without an application deadline or retry state; actual unmount cancellation already worked.",
+    "limit": "Controlled component time is not a measurement of five real minutes of production traffic or a physical-device test."
+  },
+  "change": {
+    "clientRequestDeadlineMilliseconds": 8000,
+    "covers": ["fetch response headers", "complete response.json", "parent abort before or during either await"],
+    "mechanism": "Each request owns a child AbortController, a parent abort listener and a total deadline. Promise.race releases the UI even when a synthetic transport ignores cancellation. Owned timer and listener are removed on every completed path; delayed callbacks cannot affect another request.",
+    "retry": "The existing stage-specific error and explicit Erneut versuchen action remain. No automatic retry is added. Round/answer/next UUIDs and entire operation payloads are reused exactly on explicit retries.",
+    "serverLimit": "Aborting client transport is not a guarantee that an already accepted server operation was rolled back. The existing idempotent request identity is therefore preserved.",
+    "privacy": "Private abort reasons and transport failures are not displayed; existing bounded HTTP error/status handling and stage-specific public messages remain."
+  },
+  "preserved": [
+    "Server30-second question timing, scoring, completed results and idempotency",
+    "Profile readiness, explicit URL country policy, country/topic selection identities and A-B-A guards",
+    "Session storage keys and round UUID reuse",
+    "Blind questions, one-shot answer locking, manual Weiter and readable feedback",
+    "Existing authentication, paid access, cookies, origin checks, database functions and provider order",
+    "All teaching texts, sources, questions, cards and scientific review dates"
+  ],
+  "regressions": {
+    "newActualDOMTests": 17,
+    "fiveStageMatrix": "Profile/start/answer/next/sync each with pending fetch and pending JSON, deadline at7999/8000ms, explicit successful retry, exact UUID/payload, inert late data and cleaned resources.",
+    "additional": [
+      "Actual unmount while fetch or JSON is pending",
+      "A-B-A legal selection with retained old timer and retry actions",
+      "Already-aborted and active-aborted parents with private reasons",
+      "Native streamed Response headers at7999ms followed by a hanging JSON body",
+      "A completed request's retained timer cannot cancel its successor in the same selection",
+      "Successful blind round retains the exact30-second unanswered-question transition"
+    ],
+    "existingHarnessAdjustment": "One existing run-ui harness loads the actual helper with its existing synthetic timer. Its formerly unbounded60-second pending-answer case now asserts the8-second error and an explicit retry of exactly the same answer:null operation; late original feedback is rejected and all prior blind/locking/score/manual-feedback checks remain. The subsequent request count correctly includes this one explicit retry.",
+    "authorRun": "Three targeted suites:34 passed,0 failed,0 skipped,0 cancelled. Broader checks and independent review are performed separately."
+  },
+  "noProductionRequests": true,
+  "noRealAccountsOrPersonalStorage": true,
+  "noDatabaseOrScoreMutation": true,
+  "noPhysicalDeviceInspection": true
+}
