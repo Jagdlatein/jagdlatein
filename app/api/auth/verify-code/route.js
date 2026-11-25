@@ -7,6 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 import bcrypt from "bcryptjs";
 import { ACCOUNT_SESSION_MAX_AGE, JL_ACCOUNT_COOKIE, createAccountSession, isAccountSessionConfigured, isAccountGenerationEnabled, normalizeAccountEmail } from "../../../../lib/account-session";
 import { resolveSubscriptionAccess } from "../../../../lib/subscription-access";
+import { assertAuthRequestActive, AuthRequestBodyError, readAuthRequestBody } from "../../../../lib/auth-request-body";
 
 function getSupabase() {
   return createClient(process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
@@ -30,8 +31,9 @@ export async function POST(req) {
     if (!isAccountSessionConfigured()) return NextResponse.json(
       { success: false, message: "Die Anmeldung ist derzeit nicht verfügbar. Bitte später erneut versuchen." }, { status: 503 });
     let body;
-    try { body = await req.json(); } catch {
-      return NextResponse.json({ success: false, message: "Ungültige Anfrage." }, { status: 400 });
+    try { body = await readAuthRequestBody(req); assertAuthRequestActive(req); } catch (error) {
+      const controlled = error instanceof AuthRequestBodyError;
+      return NextResponse.json({ success: false, message: controlled ? error.message : "Ungültige Anfrage." }, { status: controlled ? error.status : 400 });
     }
     const supabase = getSupabase();
 

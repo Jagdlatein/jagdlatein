@@ -108,7 +108,7 @@ function context(data,changes={},options={}){
   const cookies={get(name){return name==='jl_account_session'&&storedCookie?{value:storedCookie}:undefined;},
     set(value){data.calls.cookies.push(value);if(value.name==='jl_account_session')storedCookie=value.value;}};
   const globals={process:{env},Buffer,Date:Clock,URL,Response,Request,Headers,TextEncoder,TextDecoder,Uint8Array,
-    crypto:webcrypto,atob,AbortSignal,AbortController,console,
+    crypto:webcrypto,atob,AbortSignal,AbortController,setTimeout,clearTimeout,console,
     fetch:async()=>{throw new Error('Review login test attempted a real network request');}};
   const sandbox=vm.createContext(globals);
   function load(relative){

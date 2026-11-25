@@ -8,6 +8,7 @@ import crypto from "crypto";
 import { sendLoginCode, TestLoginMailError, safeLoginMailDiagnostic } from "../../../../lib/email";
 import { isAccountSessionConfigured, normalizeAccountEmail } from "../../../../lib/account-session";
 import { isLoginMailRecipientAllowed } from "../../../../lib/test-environment";
+import { assertAuthRequestActive, AuthRequestBodyError, readAuthRequestBody } from "../../../../lib/auth-request-body";
 
 
 export async function POST(req) {
@@ -17,8 +18,9 @@ export async function POST(req) {
     if (!isAccountSessionConfigured()) return NextResponse.json(
       { success: false, message: "Die Anmeldung ist derzeit nicht verfügbar. Bitte später erneut versuchen." }, { status: 503 });
     let body;
-    try { body = await req.json(); } catch {
-      return NextResponse.json({ success: false, message: "Ungültige Anfrage." }, { status: 400 });
+    try { body = await readAuthRequestBody(req); assertAuthRequestActive(req); } catch (error) {
+      const controlled = error instanceof AuthRequestBodyError;
+      return NextResponse.json({ success: false, message: controlled ? error.message : "Ungültige Anfrage." }, { status: controlled ? error.status : 400 });
     }
 
     if (typeof body?.email !== "string") {
