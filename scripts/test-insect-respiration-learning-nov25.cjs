@@ -8,9 +8,10 @@ const fs = require('node:fs'), path = require('node:path'), { execFileSync } = r
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
 const { addition, stripInsectRespirationCourse, stripInsectRespirationDataset, stripInsectRespirationCards, insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
+const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const baseline = '7b69962b0fee40db63096d512b852a4241c90fcb';
 const rawPath = 'data/learning-expansion-habitat-depth-2026-10-17.json';
-const createLoader = overrides => createProjectLoader(woodpeckerFootBaselineFixture(overrides));
+const createLoader = overrides => createProjectLoader(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(overrides)));
 const load = createLoader();
 function previousLoader() {
   const cache = new Map();

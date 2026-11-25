@@ -5,7 +5,42 @@ const fs = require('node:fs'), path = require('node:path'), { execFileSync } = r
 const { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const { birdLegBaselineFixture, beforeBirdLegGuide } = require('./helpers/bird-leg-addition-nov01.cjs');
-const createLoader = overrides => createProjectLoader(birdLegBaselineFixture(overrides));
+const { redDeerFlehmenBaselineFixture, stripRedDeerFlehmenModule } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
+const { beforeWildlifeGuideCountsNov25 } = require('./helpers/wildlife-guide-counts-nov25.cjs');
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
+const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
+const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addition-nov17.cjs');
+const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
+const { trackPostureBaselineFixture, stripTrackPostureAddition } = require('./helpers/track-posture-addition-nov15.cjs');
+const { alulaBaselineFixture } = require('./helpers/alula-addition-nov15.cjs');
+const { marmotHibernationBaselineFixture } = require('./helpers/marmot-hibernation-addition-nov08.cjs');
+const { forestRegenerationBaselineFixture } = require('./helpers/forest-regeneration-additions-nov08.cjs');
+const { featherFieldsBaselineFixture } = require('./helpers/feather-fields-additions-nov08.cjs');
+const { broodPatchBaselineFixture } = require('./helpers/brood-patch-addition-nov08.cjs');
+const { lenticelBaselineFixture } = require('./helpers/lenticel-addition-nov08.cjs');
+const { digestionAbsorptionBaselineFixture } = require('./helpers/digestion-absorption-addition-nov08.cjs');
+const { rootAbsorptionBaselineFixture } = require('./helpers/root-absorption-additions-nov08.cjs');
+const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
+const { ecologyConceptBaselineFixture, stripEcologyConceptAddition } = require('./helpers/ecology-concepts-addition-nov08.cjs');
+// This separate pre-existing snapshot chain ends at 1 November. Nickhaut,
+// Schwimmlappen and Vogelblinddärme already existed then and remain untouched.
+const historicalOverrides = overrides => [
+  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
+  capercaillieToeBaselineFixture, dogExtinctionBaselineFixture, forestExamBaselineFixture,
+  practiceMeasurementBaselineFixture, trackPostureBaselineFixture, alulaBaselineFixture,
+  marmotHibernationBaselineFixture, forestRegenerationBaselineFixture, featherFieldsBaselineFixture,
+  broodPatchBaselineFixture, lenticelBaselineFixture, digestionAbsorptionBaselineFixture,
+  rootAbsorptionBaselineFixture, foodSporesToxinsBaselineFixture, ecologyConceptBaselineFixture,
+  birdLegBaselineFixture,
+].reduce((current, project) => project(current), overrides);
+const createLoader = overrides => createProjectLoader(historicalOverrides({
+  // The 1-November search predates the twelve Nov17 transfer cases; its
+  // course/card corpus remains the fully compared historical curriculum.
+  './exam-transfer-goals-server': { getExamTransferGoals: () => [] },
+  ...overrides,
+}));
 const { courseId, lessonId, questionId: rawQuestionId, sourceURLs, stripStockenteLamellaeAddition: strip,
   stockenteLamellaeBaselineFixture } = require('./helpers/stockente-lamellae-addition-nov01.cjs');
 const revision = '873c459ffb3ac538301bb3f467cdf8738f3e3a97', questionId = `${courseId}-${rawQuestionId}`;
@@ -34,7 +69,7 @@ const isNewCard = card => card.moduleId === courseId && card.lessonId === lesson
 const cardURLs = [sourceURLs[0], sourceURLs[2], sourceURLs[1]];
 
 test('Exactly one fourth tail lesson, one question and three narrowly scoped sources extend the full wildlife baseline', () => {
-  const raw = load('lib/learning-wildlife.js').wildlifeModules, before = old('lib/learning-wildlife.js').wildlifeModules;
+  const raw = stripRedDeerFlehmenModule(load('lib/learning-wildlife.js')).wildlifeModules.map(stripTrackPostureAddition).map(stripEcologyConceptAddition), before = old('lib/learning-wildlife.js').wildlifeModules;
   const current = raw.find(item => item.id === courseId), previous = before.find(item => item.id === courseId);
   assert.deepEqual([previous.lessons.length, previous.questions.length, previous.sources.length], [3,8,4]);
   assert.deepEqual([current.lessons.length, current.questions.length, current.sources.length], [4,9,7]);
@@ -99,7 +134,7 @@ test('All114 wildlife guide objects retain their full fields and existing course
   const guides=load('lib/wildlife-learning-guide.js'),previous=old('lib/wildlife-learning-guide.js');
   assert.deepEqual(guides.wildlifeGuideTargets,previous.wildlifeGuideTargets);
   const slugs=Object.keys(load('lib/european-wildlife-discovery.js').europeanWildlifeBySlug);assert.equal(slugs.length,114);
-  for(const slug of slugs)assert.deepEqual(beforeBirdLegGuide(guides.getWildlifeLearningGuide(slug)),previous.getWildlifeLearningGuide(slug).map(target=>target.moduleId===courseId?{...target,flashcardCount:target.flashcardCount+1}:target),slug);
+  for(const slug of slugs)assert.deepEqual(beforeBirdLegGuide(beforeWildlifeGuideCountsNov25(guides.getWildlifeLearningGuide(slug))),previous.getWildlifeLearningGuide(slug).map(target=>target.moduleId===courseId?{...target,flashcardCount:target.flashcardCount+1}:target),slug);
 });
 
 test('The actual reader keeps the entire explanation first and closes its final source panel with the new lesson date', () => {
@@ -142,7 +177,7 @@ test('The actual stored-course reader renders complete Lamellen text and its pre
 
 test('The historical helper removes only exact named fields and leaves unrelated lessons and courses visible', () => {
   assert.equal(strip({id:'other',lessons:[{id:lessonId}]}).id,'other');
-  assert.deepEqual(createLoader(stockenteLamellaeBaselineFixture())('lib/learning-curriculum.js').learningModules,old('lib/learning-curriculum.js').learningModules);
+  assert.deepEqual(createLoader(stockenteLamellaeBaselineFixture(historicalOverrides()))('lib/learning-curriculum.js').learningModules,old('lib/learning-curriculum.js').learningModules);
   const raw=load('lib/learning-wildlife.js').wildlifeModules.find(item=>item.id===courseId), extra={...raw,lessons:[...raw.lessons,{id:'unrelated-new'}],questions:[...raw.questions,{id:'unrelated-question'}],sources:[...raw.sources,{url:sourceURLs[0],lessonIds:['other']} ]};
   const output=strip(extra);assert.ok(output.lessons.some(item=>item.id==='unrelated-new'));assert.ok(output.questions.some(item=>item.id==='unrelated-question'));assert.ok(output.sources.some(item=>item.lessonIds?.[0]==='other'));
 });

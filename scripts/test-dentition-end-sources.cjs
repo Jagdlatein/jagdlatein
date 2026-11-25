@@ -1,6 +1,7 @@
 // Actual component rendering and isolated hook state only: no browser or remote calls.
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const path = require('node:path');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
@@ -219,18 +220,42 @@ test('Omitting showSources preserves real research source links and explanations
   }
 });
 
-test('The existing real daily caller still receives default sources and retains its single-answer behavior', () => {
+test('The existing mounted daily caller suppresses child sources, retains one final complete source block and its single-answer behavior', async () => {
   const moment = load('lib/revier-moment-server.js').getRevierMoment(new Date('2026-10-16T12:00:00Z'));
-  const Moment = load('components/RevierMoment.js').default;
-  const props = nodes(Moment({ moment }), node => node.type === Round)[0].props;
-  assert.equal(Object.hasOwn(props, 'showSources'), false);
-  assert.equal(props.daily, true);
-  const fixture = roundFixture(props);
-  fixture.answer();
-  assert.match(fixture.html(), /Quellen zur aktuellen Frage/);
-  assert.match(fixture.html(), /Für heute bearbeitet/);
-  assert.doesNotMatch(fixture.html(), /Runde auswerten|Nächste Frage/);
-  fixture.dispose();
+  const router = { isReady: true, query: {}, asPath: '/tagesquiz' };
+  let childProps;
+  const api = createLoader({ 'next/router': { useRouter: () => router },
+    'next/link': { __esModule: true, default: ({ href, prefetch, children, ...props }) => React.createElement('a', { href, ...props }, children) },
+    './LearningToolLayout': { __esModule: true, default: ({ title, children }) => React.createElement('main', null, React.createElement('h1', null, title), children) },
+    './ResearchQuestionRound': { __esModule: true, default: props => { childProps = props; return React.createElement(Round, props); } },
+  });
+  const Moment = api('components/RevierMoment.js').default;
+  const html = renderToStaticMarkup(React.createElement(Moment, { moment }));
+  assert.equal(childProps.showSources, false); assert.equal(childProps.daily, true); assert.equal(typeof childProps.canInteract, 'function');
+  assert.doesNotMatch(html, /Quellen zur aktuellen Frage|Für heute bearbeitet/);
+  const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || path.join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
+  const dom = new JSDOM('<!doctype html><div id="root"></div>', { url: 'https://jagdlatein.invalid/tagesquiz' }), globals = new Map();
+  for (const [key, value] of Object.entries({ window: dom.window, document: dom.window.document, navigator: dom.window.navigator, IS_REACT_ACT_ENVIRONMENT: true })) {
+    globals.set(key, Object.getOwnPropertyDescriptor(globalThis, key)); Object.defineProperty(globalThis, key, { configurable: true, writable: true, value });
+  }
+  dom.window.Storage.prototype.getItem = dom.window.Storage.prototype.setItem = () => { throw Error('No personal storage permitted'); };
+  const host = document.getElementById('root'), reactRoot = local('react-dom/client').createRoot(host);
+  try {
+    await React.act(async () => { reactRoot.render(React.createElement(Moment, { moment })); });
+    assert.equal(host.querySelector('[role="status"] h4'), null); assert.equal(childProps.showSources, false);
+    const answer = moment.question.options.find(option => moment.question.correctIds.includes(option.id));
+    const button = [...host.querySelectorAll('[aria-label="Eine Antwort wählen"] button')].find(node => node.textContent === answer.text);
+    assert.ok(button); await React.act(async () => button.click());
+    assert.match(host.textContent, /Für heute bearbeitet/); assert.ok(host.textContent.includes(moment.question.explanation));
+    assert.doesNotMatch(host.textContent, /Quellen zur aktuellen Frage|Runde auswerten|Nächste Frage/);
+    const sourceBlocks = host.querySelectorAll('#reviermoment-quellen'); assert.equal(sourceBlocks.length, 1);
+    const sources = sourceBlocks[0]; assert.equal(sources.open, false); assert.equal(sources.parentElement.lastElementChild, sources);
+    assert.deepEqual([...sources.querySelectorAll('a')].map(link => link.getAttribute('href')), moment.topic.sources.map(source => source.url));
+    for (const source of moment.topic.sources) assert.ok(sources.textContent.includes(source.title));
+  } finally {
+    await React.act(async () => reactRoot.unmount()); dom.window.close();
+    for (const [key, descriptor] of globals) descriptor ? Object.defineProperty(globalThis, key, descriptor) : delete globalThis[key];
+  }
 });
 
 test('Bird, withheld and unsupported dentition paths retain their original content and do not acquire a round', () => {

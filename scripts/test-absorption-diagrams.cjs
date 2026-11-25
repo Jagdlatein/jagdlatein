@@ -3,9 +3,10 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { laterPublished, assertDiagramHistory } = require('./helpers/lesson-diagram-history-nov25.cjs');
+const { redDeerFlehmenDiagramBaseline } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const { getLessonDiagram } = load('lib/lesson-diagrams.js');
+const getLessonDiagram = redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram);
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const targets = [
   ['wissen-ausbau-biologie-verdauungsvergleich-2026', 'zotten-mikrovilli'],
@@ -56,6 +57,9 @@ test('Historical diagram guards reject unapproved null-to-object gains, changed 
   assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'changed' }), 'wissen-spuren-systematisch', 'auftrittsformen'));
   assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'unapproved sibling' }), 'wissen-ausbau-habitat-insektenentwicklung-2026', 'tracheen-atmung-other'));
   assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'unapproved sibling' }), 'wissen-ausbau-biologie-vogelkoerper-2026', 'spechtfuss-kletterhaltung-other'));
+  assert.throws(() => redDeerFlehmenDiagramBaseline(() => ({ title: 'changed' }))('wissen-rotwild-sozialverhalten', 'rot-flehmen'));
+  assert.throws(() => assertDiagramHistory('absorption', () => null, redDeerFlehmenDiagramBaseline(() => ({ title: 'unapproved sibling' })), 'wissen-rotwild-sozialverhalten', 'rot-flehmen-other'));
+  assert.throws(() => assertDiagramHistory('absorption', () => ({ title: 'old' }), redDeerFlehmenDiagramBaseline(() => ({ title: 'changed old' })), 'wissen-rotwild-sozialverhalten', 'rot-brunft'));
 });
 
 test('A synthetic expiring offline pack keeps both diagrams and their exact lesson evidence and dates', () => {

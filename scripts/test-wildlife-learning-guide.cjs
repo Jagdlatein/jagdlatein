@@ -126,6 +126,70 @@ test('Every species opens a real scoped card deck, with group foundations explic
   for (const slug of [undefined, '', 'erfunden', '__proto__']) assert.deepEqual(studyLinks(slug), []);
 });
 
+test('All22 guide targets and114 species counts match the actual route selection, including previously hidden species decks', () => {
+  const cards = load('lib/learning-flashcards.js').getFlashcards();
+  const { readFlashcardSelection, matchesFlashcardSelection } = load('lib/flashcard-selection.js');
+  const checked = new Set();
+  assert.equal(Object.keys(targets).length, 22);
+  assert.equal(inventory.length, 114);
+  for (const species of inventory) {
+    for (const target of guide(species.slug)) {
+      const query = new URLSearchParams({ kurs: target.moduleId, ...(target.lessonId ? { lektion: target.lessonId } : {}), modus: 'alle' });
+      const selection = readFlashcardSelection(query);
+      assert.ok(selection && !selection.invalid, species.slug);
+      const selected = cards.filter(card => matchesFlashcardSelection(card, selection));
+      assert.equal(target.flashcardCount, selected.length, `${species.slug}: ${target.moduleId}/${target.lessonId || ''}`);
+      checked.add(`${target.moduleId}/${target.lessonId || ''}`);
+    }
+  }
+  assert.equal(checked.size, Object.keys(targets).length);
+  for (const slug of ['rotwild', 'rebhuhn', 'fasan', 'auerhuhn', 'birkhuhn']) {
+    const target = guide(slug).find(item => item.flashcardCount > 0);
+    assert.ok(target && target.scope === 'species', slug);
+    const link = studyLinks(slug).find(item => item.kind === 'cards');
+    const selection = readFlashcardSelection(new URL(link.href, 'https://test.invalid').searchParams);
+    assert.equal(selection.courseId, target.moduleId, slug);
+    assert.equal(selection.lessonId, target.lessonId || '', slug);
+    assert.equal(link.count, cards.filter(card => matchesFlashcardSelection(card, selection)).length, slug);
+    assert.equal(link.title, 'Lernkarten zur Art', slug);
+  }
+});
+
+test('The count repair preserves every original target, label, route, selection rule and dependency byte outside its metadata block', () => {
+  const { execFileSync } = require('node:child_process');
+  const relative = 'lib/wildlife-learning-guide.js';
+  const current = fs.readFileSync(path.join(root, relative), 'utf8').replaceAll('\r\n', '\n');
+  const previous = execFileSync('git', ['show', `61019897797d9fe851ff3bb25e46a5a5a534e578:${relative}`], { cwd: root, encoding: 'utf8' });
+  const metadata = /const flashcardCounts = \{[\s\S]*?\n\};/;
+  assert.ok(metadata.test(current) && metadata.test(previous));
+  assert.equal(current.replace(metadata, ''), previous.replace(metadata, ''));
+  const counts = source => new Map([...source.match(metadata)[0].matchAll(/(\w+): (\d+)/g)].map(([, key, value]) => [key, Number(value)]));
+  const oldCounts = counts(previous), newCounts = counts(current);
+  assert.deepEqual([...newCounts].filter(([key, value]) => value !== (oldCounts.get(key) || 0)), [['alpine', 6], ['birdBody', 41], ['chickens', 2], ['red', 2]]);
+  for (const [key, value] of oldCounts) if (!['alpine', 'birdBody'].includes(key)) assert.equal(newCounts.get(key), value, key);
+});
+
+test('The named historical count fixture projects only four exact current target counts and preserves unrelated future fields', () => {
+  const { beforeWildlifeGuideCountsNov25, projectGuideCountSource610, projectPublishedGuideCounts686 } = require('./helpers/wildlife-guide-counts-nov25.cjs');
+  const { execFileSync } = require('node:child_process');
+  const source = fs.readFileSync(path.join(root, 'lib/wildlife-learning-guide.js'), 'utf8');
+  const prior = execFileSync('git', ['show', '61019897797d9fe851ff3bb25e46a5a5a534e578:lib/wildlife-learning-guide.js'], { cwd: root, encoding: 'utf8' });
+  assert.equal(projectGuideCountSource610(source), prior);
+  const unrelated = { moduleId: 'another-course', lessonId: 'another-lesson', flashcardCount: 77, futureField: { keep: true } };
+  const sameCourseOtherLesson = { moduleId: targets.birdBody.moduleId, lessonId: 'future-lesson', flashcardCount: 77 };
+  const input = [...guide('rotwild'), ...guide('auerhuhn'), ...guide('gamswild'), unrelated, sameCourseOtherLesson];
+  const original = structuredClone(input), result = beforeWildlifeGuideCountsNov25(input);
+  assert.deepEqual(input, original);
+  assert.equal(result.at(-2), unrelated); assert.equal(result.at(-1), sameCourseOtherLesson);
+  for (const [index, entry] of input.entries()) {
+    assert.deepEqual({ ...result[index], flashcardCount: null }, { ...entry, flashcardCount: null });
+  }
+  assert.throws(() => beforeWildlifeGuideCountsNov25([{ ...guide('gamswild').find(item => item.moduleId === targets.alpine.moduleId), flashcardCount: 7 }]));
+  assert.throws(() => projectGuideCountSource610(source.replace('birdBody: 41', 'birdBody: 42')));
+  assert.throws(() => projectGuideCountSource610(source.replace('genetics: 13', 'genetics: 14')));
+  assert.throws(() => projectPublishedGuideCounts686(source));
+});
+
 test('Browser guide keeps its own metadata small and does not import complete course or quiz datasets', () => {
   assert.ok(Buffer.byteLength(fs.readFileSync(path.join(root, 'lib/wildlife-learning-guide.js'))) < 20000);
   for (const filename of guideDependencies) assert.doesNotMatch(filename, /learning-curriculum|learning-wildlife\.js|learning-wildlife-depth|mini-course-details|learning-expansion-|european-wildlife-expansion|wildlife-depth\.js/);

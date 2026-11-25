@@ -98,16 +98,22 @@ test('Daily research case keeps visible answer order stable and grades the origi
     explanation: 'Eine synthetische Erklärung.', sourceIds: ['fixture-source'] };
   const props = { daily: true, questions: [question], sources: [{ id: 'fixture-source', title: 'Testquelle', url: 'https://example.org/source' }] };
   let state;
-  const Page = load('components/ResearchQuestionRound.js', { react: { ...React, useRef: () => ({ current: null }), useEffect() {},
-    useReducer(reducer, initial, init) { state ||= init(initial); return [state, event => { state = reducer(state, event); }]; } } }).default;
-  let tree = Page(props), first = renderToStaticMarkup(tree);
-  tree = Page(props); assert.equal(renderToStaticMarkup(tree), first);
+  const slots = [], effects = [], cleanups = new Map(); let cursor = 0, dirty = false;
+  const Page = load('components/ResearchQuestionRound.js', { react: { ...React,
+    useRef(initial) { const index = cursor++; return slots[index] ||= { current: initial }; },
+    useEffect(callback, dependencies) { const index = cursor++, previous = slots[index]; if (!previous || dependencies.some((value, i) => !Object.is(value, previous.dependencies[i]))) { slots[index] = { dependencies }; effects.push({ index, callback }); } },
+    useReducer(reducer, initial, init) { cursor++; state ||= init(initial); return [state, event => { const next = reducer(state, event); dirty ||= next !== state; state = next; }]; },
+  } }).default;
+  function render() { let tree; for (let pass = 0; pass < 8; pass++) { cursor = 0; dirty = false; tree = Page(props); for (const { index, callback } of effects.splice(0)) { cleanups.get(index)?.(); const cleanup = callback(); if (cleanup) cleanups.set(index, cleanup); } if (!dirty) return tree; } throw Error('Research effects did not settle'); }
+  let tree = render(), first = renderToStaticMarkup(tree);
+  tree = render(); assert.equal(renderToStaticMarkup(tree), first);
   const answers = () => findAll(tree, node => node.type === 'button' && /answerOption/.test(node.props.className || ''));
   assert.deepEqual(answers().map(words).sort(), question.options.map(option => option.text).sort());
-  const correct = answers().find(node => words(node) === 'Antwort c'); correct.props.onClick(); tree = Page(props);
+  const correct = answers().find(node => words(node) === 'Antwort c'); correct.props.onClick(); tree = render();
   assert.equal(state.answers.fixture.correct, true); assert.deepEqual(state.answers.fixture.selectedIds, ['c']);
   assert.match(words(tree), /Für heute bearbeitet/);
   assert.ok(answers().every(node => node.props.disabled));
+  for (const cleanup of cleanups.values()) cleanup();
 });
 
 test('Detailed course runs preserve correct IDs, feedback and review history through a fresh practice round', () => {

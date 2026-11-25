@@ -4,9 +4,22 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const { trackPostureBaselineFixture } = require('./helpers/track-posture-addition-nov15.cjs');
+const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
+const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
+const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addition-nov17.cjs');
+const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
 // Keep this published Alula snapshot exact while the separately tested
 // Wildspuren appendix retains its own full-current positive object comparison.
-const createLoader = overrides => createProjectLoader(trackPostureBaselineFixture(overrides));
+// Separate pre-existing snapshot repair: these named publications followed
+// c5a0157. Their original helpers preserve all unrelated fields and sources.
+const createLoader = overrides => createProjectLoader([
+  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
+  capercaillieToeBaselineFixture, dogExtinctionBaselineFixture, forestExamBaselineFixture,
+  practiceMeasurementBaselineFixture, trackPostureBaselineFixture,
+].reduce((current, project) => project(current), overrides));
 const { courseId, lessonId, questionIds, sourceURLs, stripAlulaAddition, stripAlulaDataset, alulaBaselineFixture } = require('./helpers/alula-addition-nov15.cjs');
 const revision = 'c5a015713b2fc7181af09f1dfca23bc57be53730';
 const rawPath = 'data/learning-expansion-wildlife-dogs-2026-10-16.json';

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "auerhuhn-baum",
+    "file": "/lernen/videos-2026-11-25/auerhuhn-baum.mp4",
+    "poster": "/lernen/videos-2026-11-25/auerhuhn-baum-vorschau.jpg",
+    "title": "Auerhahn auf einem Ast",
+    "species": "Tetrao urogallus",
+    "sourceTitle": "Capercaille Tetrao urogallus",
+    "author": "gailhampshire",
+    "source": "https://commons.wikimedia.org/wiki/File:Capercaille_Tetrao_urogallus.webm",
+    "originalSource": "https://www.flickr.com/photos/gails_pictures/49692866678/",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceDateAsListed": "2020-03-24",
+    "sourceLocation": "Nahe Nethybridge, Schottland",
+    "reviewedOn": "2026-11-25",
+    "originalBytes": 34347522,
+    "originalSha1": "43e61ed91b4160fdd1b3727be53a2e2418e96721",
+    "originalSha256": "e2ec6cc8bb6c6b64f9e4c3f97d1361ba191b576b1978ce0a8bc1cd6c20deeacb",
+    "bytes": 6091131,
+    "sha256": "eb56b5eaa782b9a608406fba9930aaf7e0016ba5292bea662999953daf0f4c64",
+    "posterBytes": 180693,
+    "posterSha256": "63a92a55f02b8f27e0eafeee30a17ece42722b1fe9457bb15eadb9b0a7bbca85",
+    "width": 1280,
+    "height": 720,
+    "videoCodec": "h264",
+    "pixelFormat": "yuv420p",
+    "fps": 30,
+    "frames": 590,
+    "durationSeconds": 19.666666666666668,
+    "audioTracks": 0,
+    "posterAtSeconds": 3,
+    "questionsAtSeconds": [
+      3,
+      10,
+      15
+    ],
+    "questionFrameIndices": [
+      90,
+      300,
+      450
+    ],
+    "modifications": "Verkleinert auf1280x720 und als H264/yuv420p neu kodiert; vollständige590Bildfolge ohne Zuschnitt oder zusätzliche Schnitte. Millisekunden-Zeitstempel auf die ursprünglichen30Bilder/s vereinheitlicht, Videoanfang0.007s auf0 normalisiert; maximale relative Abweichung0.000333s. Originalton entfernt. Vorschau ist ein Standbild der finalenMP4. Film und Vorschau CC BY2.0.",
+    "visibleLimits": "Äste verdecken Körperteile; keine Zehenanordnung, exakten Altersjahre, Diagnose, erfolgreiche Paarung, erfundener DACH-Aufnahmeort oder lokale Jagderlaubnis aus der Aufnahme. Keine Hörprüfung; bewusst stumme Fassung."
+  }
+]

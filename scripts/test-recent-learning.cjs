@@ -1,5 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const path = require('node:path');
 const { createLoader, local } = require('./helpers/project-module.cjs');
 const load = createLoader();
 const { getRecentLearningModules } = load('lib/recent-learning.js');
@@ -23,11 +24,15 @@ test('Recent courses prefer the latest actual addition date, diversify ties, and
   assert.equal(JSON.stringify(rows), original);
 });
 
-test('The overview exposes three quiet dated links; category roots show branches and selection exposes only the chosen knowledge', () => {
+test('The overview exposes three quiet dated links; category roots show branches and selection exposes only the chosen knowledge', async () => {
   const React = local('react');
   const { renderToStaticMarkup } = local('react-dom/server');
-  let route = { query: {}, asPath: '/lernen' };
-  const pageLoad = createLoader({ 'next/router': { useRouter: () => route }, 'next/head': () => null });
+  let route = { isReady: true, query: {}, asPath: '/lernen' };
+  const pageLoad = createLoader({ 'next/router': { useRouter: () => route }, 'next/head': () => null,
+    'next/link': { __esModule: true, default: ({ href, prefetch, scroll, children, ...props }) => React.createElement('a', { href, ...props }, children) },
+    'next/image': { __esModule: true, default: ({ priority, fill, ...props }) => React.createElement('img', props) },
+    './LearningToolLayout': { __esModule: true, default: ({ children }) => React.createElement('main', null, children) },
+  });
   const { getLearningOverviewData } = pageLoad('lib/learning-overview-server.js');
   const Component = pageLoad('components/LearningOverview.js').default;
   const data = getLearningOverviewData();
@@ -42,22 +47,50 @@ test('The overview exposes three quiet dated links; category roots show branches
   }
   assert.ok(html.indexOf('learning-categories-heading') < html.indexOf('learning-recent-heading'));
   assert.ok(html.indexOf('all-search-title') < html.indexOf('learning-recent-heading'));
-  for (const slug of ['wildkunde', 'wald-pflanzen', 'landwirtschaft-lebensraeume']) {
+  const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || path.join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
+  const dom = new JSDOM('<!doctype html><div id="root"></div>', { url: 'https://jagdlatein.invalid/lernen' }), globals = new Map();
+  for (const [key, value] of Object.entries({ window: dom.window, document: dom.window.document, navigator: dom.window.navigator, IS_REACT_ACT_ENVIRONMENT: true })) {
+    globals.set(key, Object.getOwnPropertyDescriptor(globalThis, key)); Object.defineProperty(globalThis, key, { configurable: true, writable: true, value });
+  }
+  dom.window.Storage.prototype.getItem = dom.window.Storage.prototype.setItem = () => { throw Error('No personal storage permitted'); };
+  const host = document.getElementById('root'), reactRoot = local('react-dom/client').createRoot(host);
+  const label = pageLoad('lib/learning-navigation-labels.js').getLearningNavigationLabel;
+  async function renderSelection(category, href) {
+    const url = new URL(href, 'https://jagdlatein.invalid');
+    route = { isReady: true, query: Object.fromEntries(url.searchParams), asPath: href };
+    dom.window.history.replaceState({}, '', href);
+    await React.act(async () => { reactRoot.render(React.createElement(Component, { data: category })); });
+    return host.innerHTML;
+  }
+  try { for (const slug of ['wildkunde', 'wald-pflanzen', 'landwirtschaft-lebensraeume']) {
     const category = getLearningOverviewData(slug);
-    route = { query: {}, asPath: `/lernen/${slug}` };
-    const rendered = renderToStaticMarkup(React.createElement(Component, { data: category }));
+    const rendered = await renderSelection(category, `/lernen/${slug}`);
     assert.ok(!rendered.includes('learning-recent-heading'));
     assert.ok(rendered.includes('Unterkategorien'));
     assert.doesNotMatch(rendered, /href="\/kurse\//, 'A category root no longer dumps every course');
     for (const group of category.topicGroups) {
       assert.ok(rendered.includes(`/lernen/${slug}?bereich=${group.id}#learning-modules`));
-      route = { query: { bereich: group.id }, asPath: `/lernen/${slug}?bereich=${group.id}` };
-      const selected = renderToStaticMarkup(React.createElement(Component, { data: category }));
+      const selected = await renderSelection(category, `/lernen/${slug}?bereich=${group.id}#learning-modules`);
       assert.ok(!selected.includes('learning-recent-heading'));
-      const visibleIds = [...selected.matchAll(/&amp;kurs=([^"#]+)#learning-modules/g)].map(match => match[1]);
+      const courseDetails = [...host.querySelectorAll('#learning-modules .courseList > li > details[name="learning-topic-course"]')];
+      const visibleIds = courseDetails.map(detail => {
+        const matches = category.modules.filter(module => group.moduleIds.includes(module.id) && label(module) === detail.querySelector('summary').textContent);
+        assert.equal(matches.length, 1, 'Each selected course retains its exact unambiguous keyword label');
+        return matches[0].id;
+      });
       assert.deepEqual(visibleIds, group.moduleIds, 'No other branch leaks into a selected topic');
-      assert.doesNotMatch(selected, /href="\/kurse\//);
+      for (let index = 0; index < courseDetails.length; index++) {
+        const detail = courseDetails[index], module = category.modules.find(item => item.id === visibleIds[index]);
+        assert.equal(detail.open, false, 'Course content opens only after its explicit native summary selection');
+        await React.act(async () => detail.querySelector('summary').click()); assert.equal(detail.open, true);
+        assert.deepEqual([...detail.querySelectorAll('.lessonLinks a')].map(link => link.getAttribute('href')), module.topics.map(topic => topic.href));
+        const allowed = new Set([...module.topics.map(topic => topic.href), module.practice?.quizHref, module.practice?.cardHref].filter(Boolean));
+        assert.ok([...detail.querySelectorAll('a')].every(link => allowed.has(link.getAttribute('href'))), 'All content and practice links belong to this exact course');
+      }
     }
+  } } finally {
+    await React.act(async () => reactRoot.unmount()); dom.window.close();
+    for (const [key, descriptor] of globals) descriptor ? Object.defineProperty(globalThis, key, descriptor) : delete globalThis[key];
   }
 });
 

@@ -1,5 +1,6 @@
 // Concrete scene data and preservation checks; source reading and frame review
 // are documented separately. This is not biological or media authenticity certification.
+const { withoutAuerhuhnNov25Cases, withoutAuerhuhnNov25Paths } = require('./helpers/auerhuhn-video-addition-nov25.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
@@ -52,7 +53,7 @@ test('The five original video objects, all fifteen old questions and their order
     ...load('lib/wildlife-video-expansion-linked-2026-11-01.js').wildlifeVideoLinkedExpansionNov01Cases,
     ...load('lib/wildlife-video-expansion-field-2026-11-01.js').wildlifeVideoFieldExpansionNov01Cases];
   assert.deepEqual(later.map(item => item.id), ['maeusebussard-flug', 'fasan-sandbad', 'ringeltaube-ast', 'wildkaninchen-park', 'damwild-dyrehaven', 'blaesshuhn-bled', 'muffelwild-granat', 'graugans-dresden', 'steinwild-ljubljana', 'reiherente-petrosawodsk']);
-  const priorFlightCases = withoutFlightNov15Cases(withoutMammalNov15Cases(wildlifeVideoCases));
+  const priorFlightCases = withoutFlightNov15Cases(withoutMammalNov15Cases(withoutAuerhuhnNov25Cases(wildlifeVideoCases)));
   assert.deepEqual(wildlifeVideoCases.slice(0, 11), [...old, ...added]);
   assert.deepEqual(priorFlightCases.slice(11), later);
   assert.equal(priorFlightCases.length, 11 + later.length);

@@ -164,14 +164,23 @@ test('SSR order is stable, correct positions vary and changed seeds never alter 
   assert.ok(positions.size >= 4);
 });
 
-test('Actual UI submits original IDs, reveals explanations only after answering and supports every question format', () => {
+test('Actual UI submits original IDs, reveals explanations only after answering and supports every question format', async () => {
+  let JSDOM;
+  try { ({ JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || 'jsdom')); }
+  catch (error) { throw new Error('Set JAGDLATEIN_TEST_DOM to the existing isolated DOM test module.', { cause: error }); }
   for (const format of ['single', 'multiple', 'sequence']) {
     const question = data.questions.find(item => item.format === format);
-    let state;
-    const Page = load('components/ResearchQuestionRound.js', { react: { ...React, useRef: () => ({ current: null }), useEffect() {}, useReducer(reducer, arg, init) { state ||= init(arg); return [state, event => { state = reducer(state, event); }]; } } }).default;
+    const dom = new JSDOM('<div id="root"></div>', { url: 'https://isolated.invalid/', pretendToBeVisual: true });
+    const globals = ['window', 'document', 'navigator', 'HTMLElement', 'Event', 'MouseEvent', 'IS_REACT_ACT_ENVIRONMENT'];
+    const saved = globals.map(key => [key, Object.getOwnPropertyDescriptor(global, key)]);
+    for (const key of globals) Object.defineProperty(global, key, { configurable: true, writable: true, value: key === 'IS_REACT_ACT_ENVIRONMENT' ? true : dom.window[key] });
+    const Page = load('components/ResearchQuestionRound.js').default;
     const props = { questions: [question], sources: data.topics.find(topic => topic.id === question.topicId).sources };
-    const render = () => renderToStaticMarkup(React.createElement(Page, props));
-    const before = render();
+    const host = dom.window.document.getElementById('root'), reactRoot = pr('react-dom/client').createRoot(host);
+    const act = callback => React.act(async () => callback());
+    try {
+    await act(() => reactRoot.render(React.createElement(Page, props)));
+    const before = host.innerHTML;
     assert.ok(before.includes(question.prompt));
     assert.ok(!before.includes(question.explanation));
     assert.match(before, /Weiß ich noch nicht/);
@@ -179,27 +188,33 @@ test('Actual UI submits original IDs, reveals explanations only after answering 
     if (format === 'sequence') assert.equal((before.match(/<select/g) || []).length, question.options.length);
     if (format === 'single') {
       const answerText = question.options.find(option => option.id === question.correctIds[0]).text;
-      nodes(Page(props), node => node.type === 'button' && text(node) === answerText)[0].props.onClick();
+      const button = [...host.querySelectorAll('button')].find(node => node.textContent === answerText);
+      assert.ok(button); await act(() => button.click());
     } else if (format === 'multiple') {
       for (const id of question.correctIds) {
         const optionText = question.options.find(option => option.id === id).text;
-        const label = nodes(Page(props), node => node.type === 'label' && text(node) === optionText)[0];
-        nodes(label, node => node.type === 'input')[0].props.onChange();
+        const label = [...host.querySelectorAll('label')].find(node => node.textContent === optionText);
+        assert.ok(label); await act(() => label.querySelector('input').click());
       }
     } else {
       for (const [position, id] of question.expectedOrder.entries()) {
-        nodes(Page(props), node => node.type === 'select')[position].props.onChange({ target: { value: id } });
+        const select = host.querySelectorAll('select')[position];
+        assert.ok(select); await act(() => { select.value = id; select.dispatchEvent(new dom.window.Event('change', { bubbles: true })); });
       }
     }
     if (format !== 'single') {
-      const submit = nodes(Page(props), node => node.type === 'button' && text(node) === 'Antwort prüfen')[0];
-      assert.equal(submit.props.disabled, false);
-      submit.props.onClick();
+      const submit = [...host.querySelectorAll('button')].find(node => node.textContent === 'Antwort prüfen');
+      assert.ok(submit); assert.equal(submit.disabled, false);
+      await act(() => submit.click());
     }
-    const after = render();
+    const after = host.innerHTML;
     assert.ok(after.includes(question.explanation.replaceAll('&', '&amp;')));
     assert.match(after, /Richtig eingeordnet/);
     assert.match(after, /Runde auswerten/);
     assert.match(after, /disabled/);
+    } finally {
+      await act(() => reactRoot.unmount()); dom.window.close();
+      for (const [key, descriptor] of saved) if (descriptor) Object.defineProperty(global, key, descriptor); else delete global[key];
+    }
   }
 });

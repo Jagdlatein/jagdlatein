@@ -24,13 +24,15 @@ export function WildlifeGallery({ pictures, deferCredits = false, excludeSources
 
 export function LearningDiagram({ media, lessonSpecific = false }) {
   if (!media?.diagram) return null;
-  return <aside className={`${styles.diagram}${lessonSpecific ? ` ${styles.lessonDiagram}` : ""}`} aria-label={media.diagram.title}>
+  const comparison = media.diagram.type === "comparison";
+  const StepList = comparison ? "ul" : "ol";
+  return <aside className={`${styles.diagram}${lessonSpecific ? ` ${styles.lessonDiagram}` : ""}${comparison ? ` ${styles.comparison}` : ""}`} aria-label={media.diagram.title}>
     <div className={styles.diagramHeading}><AppIcon name={media.icon} size={28} /><h3>{media.diagram.title}</h3></div>
     {media.diagram.note && <p className={styles.diagramNote}>{media.diagram.note}</p>}
-    <ol className={styles.steps}>{media.diagram.steps.map((step, index) => <li key={step.title}>
-      <span className={styles.stepNumber}>{index + 1}</span>
+    <StepList className={styles.steps}>{media.diagram.steps.map((step, index) => <li key={step.title}>
+      {!comparison && <span className={styles.stepNumber}>{index + 1}</span>}
       <div><h4>{step.title}</h4><p>{step.text}</p></div>
-    </li>)}</ol>
+    </li>)}</StepList>
   </aside>;
 }
 

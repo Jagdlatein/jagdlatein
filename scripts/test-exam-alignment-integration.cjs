@@ -69,7 +69,15 @@ function ssr(profile, options = {}) {
 function preparationHtml(markup) {
   const heading = markup.indexOf('id="exam-plan-regional-exam"');
   if (heading < 0) return '';
-  return markup.slice(markup.lastIndexOf('<section', heading), markup.indexOf('</section>', heading) + '</section>'.length);
+  const start = markup.lastIndexOf('<section', heading);
+  let depth = 0;
+  // Subject sections are nested. Inspect the complete regional preparation,
+  // rather than stopping at its first inner subject's closing tag.
+  for (const tag of markup.slice(start).matchAll(/<\/?section\b[^>]*>/g)) {
+    depth += tag[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) return markup.slice(start, start + tag.index + tag[0].length);
+  }
+  throw new Error('Unclosed regional preparation section');
 }
 
 test('The build-time adapter projects exactly all51 canonical profiles with bounded presentation fields and no fallback record', () => {
@@ -224,7 +232,11 @@ test('Actual SSR for every selected profile renders only its preparation and kee
     if (region.status === 'partial') assert.match(preparation, /Prüfungsrahmen noch im Abgleich/);
     if (region.status === 'special') assert.match(preparation, /Besonderer Prüfungsrahmen/);
     if (region.status === 'confirmed') for (const format of region.formats) assert.ok(preparation.includes(escaped(format.label)));
-    assert.doesNotMatch(preparation, /https:\/\/|Originalquellen|Abschnittsabgleich|<details/);
+    assert.doesNotMatch(preparation, /https:\/\/|Originalquellen|Abschnittsabgleich/);
+    const selfChecks = [...preparation.matchAll(/<details\b([^>]*)><summary>Selbstkontrolle<\/summary>/g)];
+    assert.equal(selfChecks.length, (region.subjectAreas || []).flatMap(area => area.goals).length, `${key(region)}: each detailed goal retains its self-check`);
+    assert.equal((preparation.match(/<details\b/g) || []).length, selfChecks.length, `${key(region)}: no inline source disclosure or additional selection window`);
+    for (const [, attributes] of selfChecks) assert.doesNotMatch(attributes, /\sopen(?:\s|=|$)/, `${key(region)}: self-check starts closed`);
     const sourceStart = markup.indexOf('id="exam-plan-sources"'); assert.ok(sourceStart > markup.indexOf('Praxis und örtliche Vorgaben'));
     const opening = markup.slice(markup.lastIndexOf('<details', sourceStart), markup.indexOf('>', sourceStart) + 1); assert.doesNotMatch(opening, /\sopen(?:\s|=|>)/);
     for (const source of region.sources) { assert.ok(markup.indexOf(escaped(source.title), sourceStart) > sourceStart); assert.ok(markup.indexOf(escaped(source.url), sourceStart) > sourceStart); }
@@ -236,7 +248,8 @@ test('Actual SSR for every selected profile renders only its preparation and kee
 
 test('SSG passes the compact projection, keeps existing data compatible and erases all build-only banks from its client transform', () => {
   const props = load('pages/lernen/pruefungsplan.js').getStaticProps().props;
-  assert.deepEqual(props.examAlignment, getAlignment()); assert.deepEqual(props.data, getExamStudyPlanData());
+  const expectedPage = load('lib/exam-study-plan-page-props.js').projectExamStudyPlanPageProps({ examAlignment: getAlignment(), data: getExamStudyPlanData() });
+  assert.deepEqual(props.examAlignment, expectedPage.examAlignment); assert.deepEqual(props.data, expectedPage.data);
   const filename = path.join(root, 'pages/lernen/pruefungsplan.js');
   const { code } = local('next/dist/build/swc').transformSync(fs.readFileSync(filename, 'utf8'), { filename, isPageFile: true, disableNextSsg: false, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   assert.match(code, /__N_SSG/); assert.doesNotMatch(code, /exam-alignment-server|exam-study-plan-server|regional-law-data|learning-curriculum|oral-exam-trainer|data\/exam-alignment/);

@@ -3,9 +3,10 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { assertDiagramHistory, laterPublished } = require('./helpers/lesson-diagram-history-nov25.cjs');
+const { redDeerFlehmenDiagramBaseline } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
-const { getLessonDiagram } = load('lib/lesson-diagrams.js');
+const getLessonDiagram = redDeerFlehmenDiagramBaseline(load('lib/lesson-diagrams.js').getLessonDiagram);
 const { learningModules, getLearningModule } = load('lib/learning-curriculum.js');
 const targets = [
   ['wissen-vertiefung-wild-alpine-winterstrategien', 'aufwaermphasen'],

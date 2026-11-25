@@ -20,7 +20,7 @@ test('Server-prepared summaries resolve original scenes and exact courses withou
   const dogs = load('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
   const links = load('lib/learning-video-links.js').learningVideoLinks;
   const modules = load('lib/learning-curriculum.js').learningModules;
-  assert.equal(videos.length, 29);
+  assert.equal(videos.length, 30);
   assert.equal(videos.length, wildlife.length + dogs.length);
   assert.equal(new Set(videos.map(item => item.id)).size, videos.length);
   const keys = ['id', 'group', 'title', 'subject', 'duration', 'tags', 'href', 'poster', 'credit', 'focus', 'concepts', 'courses'].sort();
@@ -43,6 +43,7 @@ test('Server-prepared summaries resolve original scenes and exact courses withou
         'wild-muffelwild-granat|wissen-ausbau-jaegersprache':'/kurse/wissen-ausbau-jaegersprache#lesson-kopfschmuck',
         'wild-steinwild-ljubljana|wissen-gams-steinbock':'/kurse/wissen-gams-steinbock#lesson-berg-merkmale',
         'wild-reiherente-petrosawodsk|wissen-federwild-beobachtung':'/kurse/wissen-federwild-beobachtung#lesson-vogel-merkmale',
+        'wild-auerhuhn-baum|wissen-federwild-beobachtung':'/kurse/wissen-federwild-beobachtung#lesson-vogel-merkmale',
         'wild-stockente-flugstart|wissen-ausbau-federaufbau-funktion-2026':'/kurse/wissen-ausbau-federaufbau-funktion-2026#lesson-alula',
         'wild-graugans-landung|wissen-vertiefung-wild-wasservoegel-jahreslauf':'/kurse/wissen-vertiefung-wild-wasservoegel-jahreslauf#lesson-familien',
         'wild-murmeltier-klausenpass|wissen-vertiefung-wild-alpine-winterstrategien':'/kurse/wissen-vertiefung-wild-alpine-winterstrategien#lesson-protokoll',

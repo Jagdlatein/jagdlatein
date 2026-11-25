@@ -36,3 +36,5 @@
 .breedGrid small { color: #6e6249; margin-top: 8px; font-size: 12px; }
 .breedGrid a { color: #796021; text-decoration: underline; }
 @media (max-width: 600px) { .steps, .breedGrid { grid-template-columns: minmax(0, 1fr); } .diagram { padding: 16px; } .steps li { padding: 16px; } .cover figcaption { padding: 14px 16px; } .breeds { padding: 18px; } .breedGrid img { height: 240px; } }
+.lessonDiagram.comparison .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 600px) { .lessonDiagram.comparison .steps { grid-template-columns: minmax(0, 1fr); } }

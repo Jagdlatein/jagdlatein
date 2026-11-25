@@ -1,6 +1,7 @@
 // Keep the historical contract exact; the named Nov25 bird appendix has
 // positive whole-corpus/card preservation in its own live-data suite.
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
+const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
@@ -49,7 +50,7 @@ function measurementBaselineFixture(overrides = {}) {
     return { ...module, lessons: module.lessons.slice(0, -1), questions: module.questions.slice(0, -2), sources: module.sources.slice(0, -3) };
   }) } };
 }
-const createLoader = overrides => createLinkedProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(forestExamBaselineFixture(measurementBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(overrides)))))))))));
+const createLoader = overrides => createLinkedProjectLoader(avianCecaBaselineFixture(novemberLearningBaselineFixture(forestExamBaselineFixture(measurementBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture(overrides))))))))))));
 const { stripFeatherGrowthAddition, isFeatherGrowthCard } = require('./helpers/learning-additions-oct27.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 const load = createLoader(examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture(flightFeatherBaselineFixture(firearmTermsBaselineFixture(digestiveIgnitionBaselineFixture(woodpeckerFootBaselineFixture(fishLateralLineBaselineFixture()))))))));

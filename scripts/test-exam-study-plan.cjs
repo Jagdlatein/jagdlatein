@@ -212,10 +212,10 @@ test('Reusable summaries read the account target once and only link to its law a
 
 test('The SSG page passes only the compact projection and the client transform excludes all legal banks and answer fields', () => {
   const page = load('pages/lernen/pruefungsplan.js');
-  assert.deepEqual(page.getStaticProps().props.data, data);
+  assert.deepEqual(page.getStaticProps().props.data, load('lib/exam-study-plan-page-props.js').projectExamStudyPlanPageProps({ data }).data);
   const filename = path.join(root, 'pages/lernen/pruefungsplan.js');
   const { code } = local('next/dist/build/swc').transformSync(fs.readFileSync(filename, 'utf8'), { filename, isPageFile: true, disableNextSsg: false, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
-  assert.match(code, /__N_SSG/); assert.doesNotMatch(code, /exam-study-plan-server|regional-law-data|officialText|correctIndex/);
+  assert.match(code, /__N_SSG/); assert.doesNotMatch(code, /exam-study-plan-server|exam-study-plan-page-props|regional-law-data|officialText|correctIndex/);
   const source = fs.readFileSync(path.join(root, 'components/ExamStudyPlan.js'), 'utf8');
   assert.doesNotMatch(source, /fetch\(|localStorage|window\.location|router\.push|regional-law-data|exam-study-plan-server/);
 });

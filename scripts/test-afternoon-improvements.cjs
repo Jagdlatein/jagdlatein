@@ -12,19 +12,20 @@ const React = pr('react');
 const { renderToStaticMarkup } = pr('react-dom/server');
 const swc = pr('next/dist/build/swc');
 const sharp = pr('sharp');
-function load(relative, cache = new Map()) {
+function load(relative, cache = new Map(), options = {}) {
   const filename = path.join(root, relative);
   if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
   if (cache.has(filename)) return cache.get(filename);
   const mod = { exports: {} };
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   function resolve(id) {
+    if (Object.hasOwn(options.overrides || {}, id)) return options.overrides[id];
     if (id === 'next/link') return ({ href, children, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/head') return ({ children }) => children;
     if (id === 'next/image') return ({ priority, fill, ...props }) => React.createElement('img', props);
     if (id === 'next/router') return { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen', replace: async () => true }) };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
-    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js')), cache);
+    if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : id + '.js')), cache, options);
     return pr(id);
   }
   new Function('require', 'module', 'exports', code)(resolve, mod, mod.exports);
@@ -206,13 +207,42 @@ test('The five added real photos decode with exact size, checksum, provenance an
   }
 });
 
-test('The two foldable portrait quizzes have independent accessible section IDs and keep variable dental totals explicit', () => {
+test('The two explicitly selected portrait quizzes have independent accessible section IDs and keep variable dental totals explicit', async () => {
   const species = load('lib/european-wildlife.js').europeanWildlifeBySlug.kegelrobbe;
-  const html = renderToStaticMarkup(React.createElement(load('components/EuropeanWildlifePortrait.js').default, { species }));
-  assert.match(html, /id="artencheck-kegelrobbe"/);
-  assert.match(html, /id="gebisscheck-kegelrobbe"/);
-  assert.match(html, /Grundform: 34 Zähne/);
-  assert.match(html, /35 beziehungsweise 36/);
-  assert.equal((html.match(/id="gebiss-title"/g) || []).length, 1);
-  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || path.join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
+  const dom = new JSDOM('<!doctype html><div id="root"></div>', { url: 'https://jagdlatein.invalid/wildkunde/kegelrobbe' });
+  const globals = new Map();
+  for (const [key, value] of Object.entries({ window: dom.window, document: dom.window.document, navigator: dom.window.navigator, IS_REACT_ACT_ENVIRONMENT: true })) {
+    globals.set(key, Object.getOwnPropertyDescriptor(globalThis, key)); Object.defineProperty(globalThis, key, { configurable: true, writable: true, value });
+  }
+  dom.window.Storage.prototype.getItem = dom.window.Storage.prototype.setItem = () => { throw Error('No personal storage permitted'); };
+  const host = document.getElementById('root'), reactRoot = pr('react-dom/client').createRoot(host);
+  const Component = load('components/EuropeanWildlifePortrait.js', new Map(), { overrides: {
+    './LearningToolLayout': { __esModule: true, default: ({ title, children }) => React.createElement('main', null, React.createElement('h1', null, title), children) },
+    './PageMenu': { __esModule: true, default: ({ children }) => React.createElement('nav', null, children), openPageMenu() {}, closePageMenu() {}, resetPageMenuPosition() {} },
+    '../hooks/useSelectionPageStart': { __esModule: true, default: () => ({ focusSelection() {}, cancelSelectionFocus() {} }) },
+  } }).default;
+  const choose = async id => {
+    const link = host.querySelector(`a[href="#${id}"]`); assert.ok(link, `Actual portrait topic link ${id}`);
+    await React.act(async () => {
+      const changed = new Promise(resolve => dom.window.addEventListener('hashchange', resolve, { once: true }));
+      link.click(); await changed;
+    });
+    assert.equal(dom.window.location.hash, `#${id}`);
+  };
+  try {
+    await React.act(async () => { reactRoot.render(React.createElement(Component, { species })); });
+    assert.equal(host.querySelector('#artencheck-kegelrobbe,#gebisscheck-kegelrobbe'), null, 'Bare portrait keeps its single topic selection');
+    await choose('portrait-grundlagen'); await choose('artencheck-kegelrobbe');
+    assert.equal(host.querySelectorAll('#artencheck-kegelrobbe').length, 1); assert.equal(host.querySelector('#gebisscheck-kegelrobbe'), null);
+    assert.equal(host.querySelectorAll('h1').length, 1);
+    await choose('arten-themenbaum'); await choose('portrait-koerperbau'); await choose('gebiss');
+    const html = host.innerHTML;
+    assert.match(html, /id="gebisscheck-kegelrobbe"/); assert.equal(host.querySelector('#artencheck-kegelrobbe'), null);
+    assert.match(html, /Grundform: 34 Zähne/); assert.match(html, /35 beziehungsweise 36/);
+    assert.equal((html.match(/id="gebiss-title"/g) || []).length, 1); assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  } finally {
+    await React.act(async () => reactRoot.unmount()); dom.window.close();
+    for (const [key, descriptor] of globals) descriptor ? Object.defineProperty(globalThis, key, descriptor) : delete globalThis[key];
+  }
 });

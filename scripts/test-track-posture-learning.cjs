@@ -1,7 +1,21 @@
 // Source reading is documented in the review. These use real curriculum adapters
 // and isolated session/access doubles, never customer records or private files.
 const test = require('node:test'), assert = require('node:assert/strict');
-const { createLoader, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, local } = require('./helpers/project-module.cjs');
+const { redDeerFlehmenBaselineFixture, stripRedDeerFlehmenModule } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
+const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
+const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addition-nov17.cjs');
+const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
+// The Nov17 publications already predated today's work. Project only their
+// explicitly named appendices for this unchanged d81efdd full-object contract.
+const createLoader = overrides => createProjectLoader([
+  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture,
+  capercaillieToeBaselineFixture, dogExtinctionBaselineFixture, forestExamBaselineFixture,
+  practiceMeasurementBaselineFixture,
+].reduce((current, project) => project(current), overrides));
 const { courseId, lessonId, questionIds, sourceURLs, waldwissenURL, stripTrackPostureAddition, trackPostureBaselineFixture, createPublishedLoader } = require('./helpers/track-posture-addition-nov15.cjs');
 const old = createPublishedLoader('d81efdd66f3639cb0184316a714d1e88626c3537');
 // Compare the actual published curriculum; unrelated local afternoon work must
@@ -16,7 +30,7 @@ const addedCards = cards.filter(item => item.moduleId === courseId && item.lesso
 const lessonURLs = [...sourceURLs, waldwissenURL];
 
 test('One tail lesson, three questions and two scoped sources preserve every previous raw wildlife object and field order', () => {
-  const raw = load('lib/learning-wildlife.js').wildlifeModules, previous = old('lib/learning-wildlife.js').wildlifeModules;
+  const raw = stripRedDeerFlehmenModule(load('lib/learning-wildlife.js')).wildlifeModules, previous = old('lib/learning-wildlife.js').wildlifeModules;
   assert.equal(JSON.stringify(raw.map(stripTrackPostureAddition)), JSON.stringify(previous));
   assert.deepEqual(course.lessons.slice(0, -1), before.lessons); assert.deepEqual(course.questions.slice(0, -3), before.questions); assert.deepEqual(course.sources.slice(0, -2), before.sources);
   assert.deepEqual([before.lessons.length, before.questions.length, before.sources.length], [3, 8, 4]);

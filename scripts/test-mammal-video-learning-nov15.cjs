@@ -1,5 +1,6 @@
 // Independent binary, preservation and actual-reader integration checks.
 // Public curriculum reads only; no browser/account storage is accessed.
+const { withoutAuerhuhnNov25Cases, withoutAuerhuhnNov25Paths } = require('./helpers/auerhuhn-video-addition-nov25.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -117,14 +118,14 @@ test('All 23 published wildlife cases / 65 questions and 4 dog cases / 8 questio
   const old = publishedLoader(), before = old('lib/wildlife-video-cases.js').wildlifeVideoCases, dogs = old('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons;
   assert.equal(before.length, 23); assert.equal(before.flatMap(item => item.questions).length, 65); assert.equal(dogs.length, 4); assert.equal(dogs.flatMap(item => item.questions).length, 8);
   const current = load('lib/wildlife-video-cases.js');
-  assert.deepEqual(current.wildlifeVideoCases.filter(item => !ids.includes(item.id)), before); assert.deepEqual(current.wildlifeVideoCases.slice(0, 23), before);
+  assert.deepEqual(withoutAuerhuhnNov25Cases(current.wildlifeVideoCases).filter(item => !ids.includes(item.id)), before); assert.deepEqual(current.wildlifeVideoCases.slice(0, 23), before);
   assert.deepEqual(load('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons, dogs);
-  assert.equal(current.wildlifeVideoCases.length, 25); assert.equal(current.wildlifeVideoQuestionCount, 71);
+  assert.equal(current.wildlifeVideoCases.length, 26); assert.equal(current.wildlifeVideoQuestionCount, 74);
 });
 
 test('Only the 3 approved foot-course appends and their exact bounded discovery notes change existing lightweight metadata', () => {
   const old = publishedLoader(), links = load('lib/learning-video-links.js').learningVideoLinks, previousLinks = old('lib/learning-video-links.js').learningVideoLinks;
-  assert.deepEqual(links.filter(item => !ids.includes(item.id)), previousLinks.map(item => Object.hasOwn(addedConcepts, item.id) ? { ...item, moduleIds: [...item.moduleIds, course] } : item));
+  assert.deepEqual(withoutAuerhuhnNov25Cases(links).filter(item => !ids.includes(item.id)), previousLinks.map(item => Object.hasOwn(addedConcepts, item.id) ? { ...item, moduleIds: [...item.moduleIds, course] } : item));
   const before = old('lib/learning-video-discovery.js'), after = load('lib/learning-video-discovery.js');
   const oldCases = [...old('lib/wildlife-video-cases.js').wildlifeVideoCases, ...old('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons];
   for (const scene of oldCases) {
@@ -208,7 +209,7 @@ test('Real curriculum, species, course anchors, library and global search retain
 test('The public allowlist grows by only 4 new media and 2 source documents, while lesson pages and nearby files stay protected', async () => {
   const before = publishedLoader()('lib/media-experience-asset-paths.js'), after = load('lib/media-experience-asset-paths.js');
   const media = ids.flatMap(id => [`${directory}/${id}.mp4`, `${directory}/${id}-vorschau.jpg`]), docs = [`${directory}/mediennachweise.json`, `${directory}/MEDIEN-LIZENZEN.md`];
-  assert.deepEqual(after.mediaExperienceAssetPaths.filter(value => !media.includes(value)), before.mediaExperienceAssetPaths); assert.deepEqual(after.mediaExperienceDocumentationPaths.filter(value => !docs.includes(value)), before.mediaExperienceDocumentationPaths);
+  assert.deepEqual(withoutAuerhuhnNov25Paths(after.mediaExperienceAssetPaths).filter(value => !media.includes(value)), before.mediaExperienceAssetPaths); assert.deepEqual(withoutAuerhuhnNov25Paths(after.mediaExperienceDocumentationPaths).filter(value => !docs.includes(value)), before.mediaExperienceDocumentationPaths);
   const middleware = load('middleware.js').middleware, request = value => { const nextUrl = new URL(value, 'https://jagdlatein.de'); return { nextUrl, url: nextUrl.href, cookies: { get() { return undefined; } } }; };
   for (const value of [...media, ...docs]) { const response = await middleware(request(value)); assert.equal(response.headers.get('x-middleware-next'), '1', value); assert.equal(response.headers.get('location'), null); }
   for (const value of [directory, `${directory}/answers.json`, `${directory}/mediennachweise.json/extra`, `${directory}/fischotter-fellpflege-original.webm`, '/lernen/wildtier-videofaelle?eintrag=murmeltier-klausenpass', `/kurse/${course}`]) { const response = await middleware(request(value)); assert.equal(new URL(response.headers.get('location')).pathname, '/preise', value); }

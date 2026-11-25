@@ -1,6 +1,7 @@
 // Keep the historical contract exact; the named Nov25 bird appendix has
 // positive whole-corpus/card preservation in its own live-data suite.
 const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
+const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { dogExtinctionBaselineFixture, stripDogExtinctionAddition } = require('./helpers/dog-extinction-addition-nov17.cjs');
@@ -24,7 +25,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createLoader: createLinkedProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const createLoader = overrides => createLinkedProjectLoader([
-  woodpeckerFootBaselineFixture, insectRespirationBaselineFixture, linkedExamBaselineFixture, practiceKnowledgeBaselineFixture, practiceMeasurementBaselineFixture,
+  redDeerFlehmenBaselineFixture, woodpeckerFootBaselineFixture, insectRespirationBaselineFixture, linkedExamBaselineFixture, practiceKnowledgeBaselineFixture, practiceMeasurementBaselineFixture,
   forestExamBaselineFixture, novemberLearningBaselineFixture, avianCecaBaselineFixture,
   capercaillieToeBaselineFixture, dogExtinctionBaselineFixture,
 ].reduce((current, project) => project(current), overrides));

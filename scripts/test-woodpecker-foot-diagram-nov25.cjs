@@ -1,8 +1,9 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
-const load = createLoader(), { getLessonDiagram } = load('lib/lesson-diagrams.js');
+const load = createLoader(redDeerFlehmenBaselineFixture()), { getLessonDiagram } = load('lib/lesson-diagrams.js');
 const courseId = 'wissen-ausbau-biologie-vogelkoerper-2026', lessonId = 'spechtfuss-kletterhaltung';
 
 test('Only the named lesson gains a bounded four-toed comparison, and every former diagram remains exactly preserved', () => {

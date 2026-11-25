@@ -3,7 +3,9 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
+const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
+const createLoader = overrides => createProjectLoader(redDeerFlehmenBaselineFixture(overrides));
 const { addition, newQuestionIds, newCardIds, stripWoodpeckerFootCourse, stripWoodpeckerFootDataset, stripWoodpeckerFootCards, woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 const baseline = 'f1926db0ab56f51fab3a5666dc36b65e756c29d7';
 const rawPath = 'data/learning-expansion-biology-2026-10-16.json';

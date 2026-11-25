@@ -12,6 +12,7 @@ const { getLessonReviewDate } = load('lib/learning-review-date.js');
 const stamp = item => ({ dateKey: '2026-11-08', displayDate: '8. November 2026', ...item });
 function component() {
   return createLoader({
+    'next/router': { useRouter: () => ({ isReady: true, pathname: '/tagesquiz', asPath: '/tagesquiz', query: {} }) },
     'next/link': ({ children, href, prefetch, ...props }) => React.createElement('a', { href, ...props }, children),
     './LearningToolLayout': { __esModule: true, default: ({ children }) => React.createElement('main', null, children) },
   })('components/RevierMoment.js').default;
@@ -59,7 +60,7 @@ test('All sixty daily cases start with four choices and the topic, without the l
     try {
       const document = dom.window.document, main = document.querySelector('main'), source = document.querySelector('#reviermoment-quellen');
       assert.equal(document.querySelectorAll('.answerOptions button').length, 4); assert.equal(document.querySelectorAll('input[type="checkbox"],select').length, 0);
-      assert.equal(document.querySelectorAll('details').length, 1); assert.equal(source.open, false); assert.equal(main.lastElementChild, source);
+      assert.equal(document.querySelectorAll('details').length, 1); assert.equal(source.open, false); assert.equal(main.lastElementChild, source.parentElement); assert.equal(source.parentElement.lastElementChild, source);
       assert.equal(document.querySelector('img,video,figure,audio,iframe'), null);
       assert.equal(document.querySelector('.topic').textContent, `Thema ${item.topic.title}`);
       assert.ok(document.querySelector('.topic').compareDocumentPosition(document.querySelector('#revierwissen-tagesfall')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING);
@@ -121,7 +122,7 @@ test('Actual hydration, answer/skip and day/case remount keep four choices, curr
     const skip = [...dom.window.document.querySelectorAll('button')].find(button => button.textContent === 'Weiß ich noch nicht');
     await React.act(async () => skip.click()); assert.ok(dom.window.document.querySelector('.quizFeedback').textContent.includes(next.question.explanation)); assert.equal(dom.window.document.querySelectorAll('details').length, 1);
     const nextReading = dom.window.document.querySelector('section[aria-labelledby="moment-deeper-title"]'); assert.ok(nextReading); for (const paragraph of next.reading.paragraphs) assert.ok(nextReading.textContent.includes(paragraph)); assert.equal(nextReading.querySelector('a').getAttribute('href'), next.href);
-    const main = dom.window.document.querySelector('main'); assert.equal(main.lastElementChild.id, 'reviermoment-quellen');
+    const main = dom.window.document.querySelector('main'); assert.equal(main.lastElementChild.lastElementChild.id, 'reviermoment-quellen');
     await React.act(async () => reactRoot.unmount()); reactRoot = null; await React.act(async () => oldButton.click()); assert.equal(container.textContent, '');
     assert.equal(warnings.length, 0);
   } finally {
@@ -151,7 +152,7 @@ test('All sixty actual answered readers reveal every literal paragraph, takeaway
       for (const paragraph of item.reading.paragraphs) assert.ok(reading.textContent.includes(paragraph));
       for (const key of ['takeaway', 'exercise']) if (item.reading[key]) assert.ok(reading.textContent.includes(item.reading[key]));
       assert.equal(reading.querySelector('a').getAttribute('href'), item.href);
-      assert.equal(document.querySelectorAll('details').length, 1); assert.equal(document.querySelector('main').lastElementChild.id, 'reviermoment-quellen');
+      assert.equal(document.querySelectorAll('details').length, 1); assert.equal(document.querySelector('main').lastElementChild.lastElementChild.id, 'reviermoment-quellen');
     }
   } finally {
     if (reactRoot) await React.act(async () => reactRoot.unmount()); dom.window.close();
@@ -165,6 +166,19 @@ test('Three-format research reducer and original research catalogs are untouched
   const html = renderToStaticMarkup(React.createElement(Round, { questions: [cases[0].question], sources: cases[0].topic.sources, afterAnswer: React.createElement('p', null, 'Synthetic daily-only reading') }));
   assert.doesNotMatch(html, /Synthetic daily-only reading/);
   const source = fs.readFileSync(path.join(root, 'components/ResearchQuestionRound.js'), 'utf8').replaceAll('\r\n', '\n');
-  const withoutOptionalDailyNode = source.replace(', afterAnswer })', ' })').replace('      {daily && result ? afterAnswer : null}\n', '');
+  // Project only the new named optional owner/lifetime boundary. The historical
+  // three-format reducer and all previous rendering remain an exact source check.
+  let withoutOwner = source;
+  const ownerAdditions = [
+    ['const allowInteraction = () => true;\nfunction ownedResearchRoundReducer(state, event) {\n  return event.isCurrent && !event.isCurrent() ? state : researchRoundReducer(state, event);\n}\n\n', ''],
+    [', canInteract = allowInteraction })', ' })'],
+    ['useReducer(ownedResearchRoundReducer, questions, createResearchRound)', 'useReducer(researchRoundReducer, questions, createResearchRound)'],
+    ['  const mounted = useRef(false);\n  const canAct = () => mounted.current && canInteract();\n  useEffect(() => {\n    mounted.current = true;\n    return () => { mounted.current = false; focusAfterMove.current = false; };\n  }, []);\n', ''],
+    ['      if (canAct()) heading.current?.focus();', '      heading.current?.focus();'],
+    ['    if (!canAct()) return;\n', ''],
+    [', ...extra, isCurrent: canAct });', ', ...extra });'],
+  ];
+  for (const [addition, original] of ownerAdditions) { assert.equal(withoutOwner.split(addition).length - 1, 1, addition); withoutOwner = withoutOwner.replace(addition, original); }
+  const withoutOptionalDailyNode = withoutOwner.replace(', afterAnswer })', ' })').replace('      {daily && result ? afterAnswer : null}\n', '');
   assert.equal(withoutOptionalDailyNode, execFileSync('git', ['show', 'f1fa75548e5c3686c1024eed99a16014e2446407:components/ResearchQuestionRound.js'], { cwd: root, encoding: 'utf8' }).replaceAll('\r\n', '\n'));
 });

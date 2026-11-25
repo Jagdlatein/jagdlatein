@@ -82,12 +82,12 @@ function openAnatomyQuiz(app) {
 }
 
 // Counts already present in 603ba099, before the Wildjahr-photo-only changes.
-test('All 101 questions have valid answers, substantial feedback and stable IDs', () => {
-  assert.equal(videos.wildlifeVideoQuestionCount, 71);
+test('All 104 questions have valid answers, substantial feedback and stable IDs', () => {
+  assert.equal(videos.wildlifeVideoQuestionCount, 74);
   assert.equal(anatomy.anatomyQuestions.length, 6);
   assert.equal(observation.observationQuestionCount, 24);
   const collections = [videos.wildlifeVideoCases.flatMap(item => item.questions), anatomy.anatomyQuestions, observation.observationCases.flatMap(item => item.stages)];
-  assert.equal(collections.flat().length, 101);
+  assert.equal(collections.flat().length, 104);
   for (const collection of collections) for (const item of collection) {
     assert.ok(Number.isInteger(item.answer)); assert.ok(item.answer >= 0 && item.answer < item.choices.length);
     assert.ok(item.explanation.length >= 90); assert.equal(new Set(item.choices).size, item.choices.length);
@@ -97,7 +97,7 @@ test('All 101 questions have valid answers, substantial feedback and stable IDs'
 
 test('Real local WebM/JPEG/GLB assets have correct file signatures and documented licenses', () => {
   const { mediaExperienceAssetPaths } = load('lib/media-experience-asset-paths.js');
-  assert.equal(mediaExperienceAssetPaths.length, 56); assert.equal(new Set(mediaExperienceAssetPaths).size, 56);
+  assert.equal(mediaExperienceAssetPaths.length, 58); assert.equal(new Set(mediaExperienceAssetPaths).size, 58);
   for (const asset of mediaExperienceAssetPaths) {
     const full = path.join(root, 'public', asset); assert.ok(fs.existsSync(full), asset); const data = fs.readFileSync(full);
     if (asset.endsWith('.mp4')) assert.equal(data.subarray(4, 8).toString(), 'ftyp');
@@ -111,8 +111,8 @@ test('Real local WebM/JPEG/GLB assets have correct file signatures and documente
   }
 });
 
-test('All thirty-six catalog entries deep-link to a valid content ID without answer keys', () => {
-  const { mediaSearchEntries } = load('lib/media-search-entries.js'); assert.equal(mediaSearchEntries.length, 36);
+test('All thirty-seven catalog entries deep-link to a valid content ID without answer keys', () => {
+  const { mediaSearchEntries } = load('lib/media-search-entries.js'); assert.equal(mediaSearchEntries.length, 37);
   for (const id of ['stockente-flugstart', 'graugans-landung', 'murmeltier-klausenpass', 'fischotter-fellpflege']) {
     assert.equal(mediaSearchEntries.filter(entry => entry.id === `video-${id}`).length, 1, id);
   }
@@ -136,8 +136,8 @@ test('Every video question explains a wrong answer; text alternative and duplica
       if (index < item.questions.length - 1) { const next = app.button('Nächste Frage').props.onClick; next(); next(); app.redraw(); assert.ok(app.content().includes(item.questions[index + 1].question)); staleAnswer(); app.redraw(); }
     }
   }
-  assert.match(app.content(), /71 von 71 Fragen beantwortet · 0 richtig/);
-  app.click('Alle Videofälle neu beginnen'); assert.match(app.content(), /0 von 71 Fragen beantwortet/);
+  assert.match(app.content(), /74 von 74 Fragen beantwortet · 0 richtig/);
+  app.click('Alle Videofälle neu beginnen'); assert.match(app.content(), /0 von 74 Fragen beantwortet/);
 });
 
 test('Observation reveals exactly one stage, rejects stale events and explains all wrong choices', () => {
@@ -199,7 +199,7 @@ test('Direct search links select valid content and unknown observation IDs never
   } finally { global.window = previousWindow; }
 });
 
-test('All 101 correct choices receive explanations and correct completion scores', () => {
+test('All 104 correct choices receive explanations and correct completion scores', () => {
   const videoApp = setup('components/WildlifeVideoCases.js');
   for (const item of videos.wildlifeVideoCases) {
     videoApp.click(item.title); videoApp.click('Textfassung gelesen – Fragen öffnen');
@@ -208,7 +208,7 @@ test('All 101 correct choices receive explanations and correct completion scores
       if (index < item.questions.length - 1) videoApp.click('Nächste Frage');
     }
   }
-  assert.match(videoApp.content(), /71 von 71 Fragen beantwortet · 71 richtig/);
+  assert.match(videoApp.content(), /74 von 74 Fragen beantwortet · 74 richtig/);
   const observationApp = setup('components/ObservationWorkshop.js');
   for (const item of observation.observationCases) {
     observationApp.choose(item.id);

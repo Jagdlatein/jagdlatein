@@ -63,76 +63,119 @@ test('Next client compilation excludes the complete curriculum and its scenario 
   }
 });
 
-test('Moving question data to static props preserves every visible round, explanation and final result exactly', () => {
-  for (const slug of slugs) {
-    const source = fs.readFileSync(path.join(root, pagePath(slug)), 'utf8');
-    // Reconstruct the former module-level array boundary. The rendering code
-    // is shared so this comparison isolates the data-loading change itself.
-    const previous = source
-      .replace(/export function getStaticProps\(\) \{\s*return \{ props: \{ scenarios: getPracticeScenarios\("([^"]+)"\) \} \};\s*\}/,
-        'const scenarios = getPracticeScenarios("$1");')
-      .replace(/export default function (\w+)\(\{ scenarios \}\)/, 'export default function $1()');
-    assert.notEqual(previous, source, slug);
-    let stateIndex = 0; let currentState;
-    const hooks = { ...React, useState: () => [currentState[stateIndex++], () => {}], useRef: initial => ({ current: initial }), useEffect() {} };
-    const current = load(pagePath(slug), { ...overrides, react: hooks });
-    const legacy = load(pagePath(slug), { ...overrides, react: hooks }, { source: previous });
-    const props = current.getStaticProps().props;
-    for (let index = 0; index <= 25; index++) {
-      currentState = [index, 23, index < 25 ? true : null, true];
-      stateIndex = 0; const before = renderToStaticMarkup(React.createElement(legacy.default));
-      stateIndex = 0; const after = renderToStaticMarkup(React.createElement(current.default, props));
-      assert.equal(after, before, `${slug}: ${index < 25 ? 'question ' + (index + 1) : 'result'}`);
-      if (index < 25) {
-        const escapedExplanation = renderToStaticMarkup(React.createElement(React.Fragment, null, props.scenarios[index].explanation));
-        assert.ok(after.includes(escapedExplanation), `${slug}: the complete explanation remains visible`);
-      }
-    }
-  }
-});
-
-function find(node, predicate) {
-  if (Array.isArray(node)) { for (const child of node) { const found = find(child, predicate); if (found) return found; } return null; }
-  if (!node || typeof node !== 'object') return null;
-  return predicate(node) ? node : find(node.props?.children, predicate);
-}
-
-test('Static-data practice pages retain answer locking, ten-second feedback and all 25 score transitions', () => {
+const propsOf = node => node[Object.keys(node).find(key => key.startsWith('__reactProps'))];
+function clock() {
   const originals = { setTimeout: global.setTimeout, clearTimeout: global.clearTimeout };
   const timers = new Map(); let timerId = 0;
-  global.setTimeout = (callback, delay) => { const id = ++timerId; timers.set(id, { callback, delay }); return id; };
-  global.clearTimeout = id => timers.delete(id);
+  // Own only the actual practice feedback timers. DOM/React scheduling keeps
+  // real timers, so mounting child components cannot be simulated away.
+  global.setTimeout = (callback, delay, ...args) => {
+    if (delay !== 10000) return originals.setTimeout(callback, delay, ...args);
+    const id = { practiceTimer: ++timerId }; timers.set(id, { callback, delay }); return id;
+  };
+  global.clearTimeout = id => { if (!timers.delete(id)) originals.clearTimeout(id); };
+  return { timers, restore() { Object.assign(global, originals); } };
+}
+async function mountedPage(slug, paired = false) {
+  const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || path.join(process.env.TEMP, 'jagdlatein-page-menu-dom/node_modules/jsdom'));
+  const dom = new JSDOM('<!doctype html><div id="current"></div><div id="legacy"></div>', { url: `https://jagdlatein.invalid/jagdpraxis/${slug}` });
+  const globals = new Map();
+  for (const [key, value] of Object.entries({ window: dom.window, document: dom.window.document, navigator: dom.window.navigator, IS_REACT_ACT_ENVIRONMENT: true })) {
+    globals.set(key, Object.getOwnPropertyDescriptor(global, key)); Object.defineProperty(global, key, { configurable: true, writable: true, value });
+  }
+  dom.window.Storage.prototype.getItem = dom.window.Storage.prototype.setItem = () => { throw Error('No personal storage permitted'); };
+  const current = load(pagePath(slug), overrides), props = current.getStaticProps().props;
+  const createRoot = pr('react-dom/client').createRoot, currentHost = document.getElementById('current'), currentRoot = createRoot(currentHost);
+  let legacyRoot;
+  if (paired) {
+    const source = fs.readFileSync(path.join(root, pagePath(slug)), 'utf8');
+    const previous = source.replace(/export function getStaticProps\(\) \{\s*return \{ props: \{ scenarios: getPracticeScenarios\("([^"]+)"\) \} \};\s*\}/,
+      'const scenarios = getPracticeScenarios("$1");').replace(/export default function (\w+)\(\{ scenarios \}\)/, 'export default function $1()');
+    assert.notEqual(previous, source, slug);
+    const legacy = load(pagePath(slug), overrides, { source: previous });
+    legacyRoot = createRoot(document.getElementById('legacy'));
+    await React.act(async () => { currentRoot.render(React.createElement(current.default, props)); legacyRoot.render(React.createElement(legacy.default)); });
+  } else await React.act(async () => currentRoot.render(React.createElement(current.default, props)));
+  const nested = slug === 'trefferzonen', hosts = paired ? [currentHost, document.getElementById('legacy')] : [currentHost];
+  if (nested) await React.act(async () => { for (const host of hosts) host.querySelector('details.learningCases > summary').click(); });
+  const round = host => nested ? host.querySelector('section[aria-label="Wissen & Sicherheit"]') : host;
+  function answer(host, index) {
+    const label = nested ? props.scenarios[index].correct ? 'Stimmt' : 'Stimmt nicht' : props.scenarios[index].correct ? 'Aussage stimmt' : 'Aussage stimmt nicht';
+    const found = [...round(host).querySelectorAll('button')].find(node => node.textContent.trim() === label);
+    assert.ok(found, `${slug}: actual answer ${index + 1}`); return found;
+  }
+  async function advance(timers) {
+    await React.act(async () => {
+      if (nested) for (const host of hosts) {
+        const next = [...round(host).querySelectorAll('button')].find(node => ['Weiter', 'Runde auswerten'].includes(node.textContent.trim()));
+        assert.ok(next); next.click();
+      } else for (const [id, timer] of [...timers]) { timers.delete(id); assert.equal(timer.delay, 10000); timer.callback(); }
+    });
+  }
+  return { dom, hosts, props, nested, round, answer, advance, async close() {
+    await React.act(async () => { currentRoot.unmount(); legacyRoot?.unmount(); }); dom.window.close();
+    for (const [key, descriptor] of globals) descriptor ? Object.defineProperty(global, key, descriptor) : delete global[key];
+  } };
+}
+
+test('Moving question data to static props preserves every genuinely mounted round, explanation and final result exactly', async () => {
+  const c = clock();
   try {
     for (const slug of slugs) {
-      const slots = []; const effects = []; let cursor = 0;
-      const hooks = { ...React,
-        useState(initial) { const index = cursor++; if (!(index in slots)) slots[index] = initial; return [slots[index], value => { slots[index] = typeof value === 'function' ? value(slots[index]) : value; }]; },
-        useRef(initial) { const index = cursor++; if (!(index in slots)) slots[index] = { current: initial }; return slots[index]; },
-        useEffect(fn, deps) { const index = cursor++; if (!(index in slots)) { slots[index] = { deps }; effects.push(() => { slots[index].cleanup = fn(); }); } },
-      };
-      const page = load(pagePath(slug), { ...overrides, react: hooks });
-      const props = page.getStaticProps().props;
-      const render = () => { cursor = 0; const tree = page.default(props); while (effects.length) effects.shift()(); return tree; };
-      let tree = render(); let stale;
-      for (let index = 0; index < 25; index++) {
-        const label = props.scenarios[index].correct ? 'Aussage stimmt' : 'Aussage stimmt nicht';
-        const answer = find(tree, node => node.props?.text === label);
-        assert.ok(answer, `${slug}: answer ${index + 1}`);
-        stale?.props.onClick();
-        answer.props.onClick(); answer.props.onClick();
-        tree = render();
-        assert.equal(timers.size, 1, `${slug}: duplicate answers do not add timers`);
-        assert.ok(find(tree, node => node.props?.isCorrect === true && node.props.scenario === props.scenarios[index]), `${slug}: feedback follows the supplied question`);
-        const [id, timer] = timers.entries().next().value;
-        assert.equal(timer.delay, 10000);
-        timers.delete(id); timer.callback();
-        stale = answer; tree = render();
-      }
-      const score = find(tree, node => node.type?.name === 'ScoreBox');
-      assert.ok(score, `${slug}: final score`);
-      assert.equal(score.props.score, 25); assert.equal(score.props.max, 25);
-      for (const slot of slots) slot?.cleanup?.();
-      assert.equal(timers.size, 0);
+      const f = await mountedPage(slug, true);
+      try {
+        for (let index = 0; index < 25; index++) {
+          const [after, before] = f.hosts.map(host => f.round(host));
+          assert.equal(after.innerHTML, before.innerHTML, `${slug}: blind question ${index + 1}`);
+          await React.act(async () => f.hosts.forEach(host => f.answer(host, index).click()));
+          assert.equal(after.innerHTML, before.innerHTML, `${slug}: answered question ${index + 1}`);
+          assert.ok(after.textContent.includes(f.props.scenarios[index].explanation), `${slug}: the complete explanation remains visible`);
+          if (f.props.scenarios[index].source?.startsWith('https://')) assert.ok([...after.querySelectorAll('a')].some(link => link.getAttribute('href') === f.props.scenarios[index].source), `${slug}: original source stays attached to the explanation`);
+          await f.advance(c.timers);
+        }
+        assert.equal(f.round(f.hosts[0]).innerHTML, f.round(f.hosts[1]).innerHTML, `${slug}: final result`);
+      } finally { await f.close(); }
+      assert.equal(c.timers.size, 0);
     }
-  } finally { Object.assign(global, originals); }
+  } finally { c.restore(); }
+});
+
+test('Static-data pages retain real answer locking, 25 score transitions and their timed or explicitly manual feedback contract', async () => {
+  const c = clock();
+  try {
+    for (const slug of slugs) {
+      const f = await mountedPage(slug);
+      let stale;
+      try {
+        const host = f.hosts[0];
+        let targetState;
+        if (f.nested) {
+          assert.ok(host.querySelector('#scheiben-minispiel')); assert.ok(host.querySelector('details.learningCases'));
+          assert.equal(host.querySelector('details.learningCases').open, true, 'The explicit existing summary opened the learning round');
+          const start = [...host.querySelectorAll('#scheiben-minispiel button')].find(node => node.textContent.includes('Runde starten'));
+          assert.ok(start); await React.act(async () => start.click());
+          const board = host.querySelector('#scheiben-minispiel [role="button"]');
+          assert.equal(board.getAttribute('aria-disabled'), 'false');
+          await React.act(async () => board.click()); assert.match(board.getAttribute('aria-label'), /Schuss 2 von 10/);
+          targetState = host.querySelector('#scheiben-minispiel').innerHTML;
+        }
+        for (let index = 0; index < 25; index++) {
+          const answer = f.answer(host, index), handler = propsOf(answer).onClick;
+          assert.equal(f.round(host).querySelector('[role="status"]'), null, `${slug}: the new question starts blind`);
+          assert.equal(answer.disabled, false);
+          await React.act(async () => { stale?.(); answer.click(); handler(); });
+          assert.equal(c.timers.size, f.nested ? 0 : 1, `${slug}: duplicate answers cannot add timers`);
+          assert.ok(f.round(host).textContent.includes(f.props.scenarios[index].explanation), `${slug}: feedback follows its supplied question`);
+          assert.equal(answer.disabled, true, `${slug}: chosen answer is locked`);
+          await f.advance(c.timers); stale = handler;
+        }
+        assert.match(f.round(host).textContent, f.nested ? /25 von 25 Aussagen richtig eingeordnet/ : /Punktestand: 25 \/ 25/);
+        const final = f.round(host).innerHTML;
+        await React.act(async () => stale()); assert.equal(f.round(host).innerHTML, final, 'A previous question cannot alter the result');
+        if (f.nested) assert.equal(host.querySelector('#scheiben-minispiel').innerHTML, targetState, 'Twenty-five learning answers do not reset or answer the separately mounted game');
+      } finally { await f.close(); }
+      if (stale) await React.act(async () => stale());
+      assert.equal(c.timers.size, 0, `${slug}: unmount clears its owned feedback timers`);
+    }
+  } finally { c.restore(); }
 });

@@ -1,5 +1,6 @@
 // Exact metadata, integration and historical preservation checks. Physical
 // container/decode work and visual scene review are documented separately.
+const { withoutAuerhuhnNov25Cases, withoutAuerhuhnNov25Paths } = require('./helpers/auerhuhn-video-addition-nov25.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -81,7 +82,7 @@ test('Two exact new scenes retain their documented source, existing species/cour
 test('All nineteen prior video objects, their 53 questions and ordering remain exact against Git 6cb07b1', () => {
   assert.equal(oldWild.length, 15); assert.equal(oldDogs.length, 4);
   assert.equal([...oldWild, ...oldDogs].flatMap(item => item.questions).length, 53);
-  assert.deepEqual(withoutFlightNov15Cases(withoutMammalNov15Cases(wildlifeVideoCases)).filter(item => !ids.has(item.id) && !['muffelwild-granat', 'graugans-dresden', 'steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)), oldWild);
+  assert.deepEqual(withoutFlightNov15Cases(withoutMammalNov15Cases(withoutAuerhuhnNov25Cases(wildlifeVideoCases))).filter(item => !ids.has(item.id) && !['muffelwild-granat', 'graugans-dresden', 'steinwild-ljubljana', 'reiherente-petrosawodsk'].includes(item.id)), oldWild);
   assert.deepEqual(wildlifeVideoCases.slice(0, oldWild.length), oldWild);
   assert.deepEqual(huntingDogVideoLessons, oldDogs);
 });
@@ -133,7 +134,7 @@ test('The combined directory and exact reciprocal links include only the two new
   const { getWildlifeVideoLinks, getCourseVideoLinks, learningVideoLinks } = load('lib/learning-video-links.js');
   const { searchLearning } = load('lib/learning-search.js');
   const library = getLearningVideoLibrary();
-  assert.equal(wildlifeVideoCases.length, 25); assert.equal(wildlifeVideoQuestionCount, 71); assert.equal(library.length, 29);
+  assert.equal(wildlifeVideoCases.length, 26); assert.equal(wildlifeVideoQuestionCount, 74); assert.equal(library.length, 30);
   assert.deepEqual(wildlifeVideoCases.filter(item => ids.has(item.id)), added);
   for (const item of added) {
     const url = new URL(item.course, 'https://jagdlatein.invalid');

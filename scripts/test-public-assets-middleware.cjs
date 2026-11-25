@@ -93,7 +93,7 @@ test('Every published learning image path is exact, unique and backed by a real 
   assert.ok(learningImagePaths.every(pathname => fs.existsSync(path.join(root, 'public', pathname))));
 });
 
-test('Only the fourteen exact media attribution documents are public; neighboring files and learning access remain guarded', async () => {
+test('Only the sixteen exact media attribution documents are public; neighboring files and learning access remain guarded', async () => {
   const { mediaExperienceDocumentationPaths } = load('lib/media-experience-asset-paths.js');
   assert.deepEqual(Array.from(mediaExperienceDocumentationPaths), [
     '/lernen/videos-2026-10-26/mediennachweise.json',
@@ -110,6 +110,8 @@ test('Only the fourteen exact media attribution documents are public; neighborin
     '/lernen/videos-2026-11-15/MEDIEN-LIZENZEN.md',
     '/lernen/videos-saeugetiere-2026-11-15/mediennachweise.json',
     '/lernen/videos-saeugetiere-2026-11-15/MEDIEN-LIZENZEN.md',
+    '/lernen/videos-2026-11-25/mediennachweise.json',
+    '/lernen/videos-2026-11-25/MEDIEN-LIZENZEN.md',
   ]);
   for (const pathname of mediaExperienceDocumentationPaths) {
     assert.ok(fs.existsSync(path.join(root, 'public', pathname)));
@@ -123,6 +125,11 @@ test('Only the fourteen exact media attribution documents are public; neighborin
     }
   }
   for (const pathname of [
+    '/lernen/videos-2026-11-25/private.json',
+    '/lernen/videos-2026-11-25/loesungen.json',
+    '/lernen/videos-2026-11-25/mediennachweise.json/extra',
+    '/lernen/videos-2026-11-25/original.webm',
+    '/lernen/videos-2026-11-25',
     '/lernen/videos-2026-10-26/private.json',
     '/lernen/videos-2026-10-26/mediennachweise.json.bak',
     '/lernen/videos-2026-10-26/mediennachweise.json/private',

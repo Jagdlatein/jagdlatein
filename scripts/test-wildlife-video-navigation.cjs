@@ -65,8 +65,8 @@ function answer(h, item, index = questionNumber(h) - 1) {
 
 // These checks preserve authored content and event behavior; they do not assert
 // a new factual review or physical device playback.
-test('All twenty-five direct scenes retain exact media, transcripts, observations, licenses and seventy-one explanations with one lower picker', t => {
-  assert.equal(cases.length, 25); assert.equal(wildlifeVideoQuestionCount, 71);
+test('All twenty-six direct scenes retain exact media, transcripts, observations, licenses and seventy-four explanations with one lower picker', t => {
+  assert.equal(cases.length, 26); assert.equal(wildlifeVideoQuestionCount, 74);
   const h = fixture(t);
   for (const item of cases) {
     history(h, { eintrag: item.id });
@@ -100,7 +100,7 @@ test('All twenty-five direct scenes retain exact media, transcripts, observation
       if (index < item.questions.length - 1) { const next = button(h, 'Nächste Frage').props.onClick; next(); next(); h.render(); }
     }
   }
-  assert.equal(answered(h), wildlifeVideoQuestionCount); assert.match(text(menu(h)), /71 von 71 Fragen beantwortet · 0 richtig/);
+  assert.equal(answered(h), wildlifeVideoQuestionCount); assert.match(text(menu(h)), /74 von 74 Fragen beantwortet · 0 richtig/);
   assert.equal(h.calls.length, 0, 'Existing URLs and local quiz steps add no synthetic navigation');
 });
 

@@ -3,18 +3,29 @@ import { answerOrder, newAnswerSeed } from "../lib/answer-order";
 import { canGradeResearchQuestion, createResearchRound, currentResearchQuestion, researchRoundReducer } from "../lib/research-question-round";
 import styles from "../styles/ResearchForPractice.module.css";
 
-export default function ResearchQuestionRound({ questions, sources, daily = false, title, sectionId, notice, showSources = true, afterAnswer }) {
-  const [state, dispatch] = useReducer(researchRoundReducer, questions, createResearchRound);
+const allowInteraction = () => true;
+function ownedResearchRoundReducer(state, event) {
+  return event.isCurrent && !event.isCurrent() ? state : researchRoundReducer(state, event);
+}
+
+export default function ResearchQuestionRound({ questions, sources, daily = false, title, sectionId, notice, showSources = true, afterAnswer, canInteract = allowInteraction }) {
+  const [state, dispatch] = useReducer(ownedResearchRoundReducer, questions, createResearchRound);
   const question = currentResearchQuestion(state);
   const heading = useRef(null);
   const focusAfterMove = useRef(false);
+  const mounted = useRef(false);
+  const canAct = () => mounted.current && canInteract();
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; focusAfterMove.current = false; };
+  }, []);
   useEffect(() => {
     dispatch({ type: "freshen", generation: 0, seed: newAnswerSeed() });
   }, []);
   useEffect(() => {
     if (focusAfterMove.current) {
       focusAfterMove.current = false;
-      heading.current?.focus();
+      if (canAct()) heading.current?.focus();
     }
   }, [state.index, state.generation, state.finished]);
   if (!question || (daily && questions.length !== 1)) return null;
@@ -23,8 +34,9 @@ export default function ResearchQuestionRound({ questions, sources, daily = fals
   const needsReview = state.ids.filter(id => !state.answers[id]?.correct);
   const sourceById = new Map(sources.map(source => [source.id, source]));
   function send(type, extra = {}) {
+    if (!canAct()) return;
     if (["next", "continue", "retry", "restart"].includes(type)) focusAfterMove.current = true;
-    dispatch({ type, generation: state.generation, questionId: question.id, ...extra });
+    dispatch({ type, generation: state.generation, questionId: question.id, ...extra, isCurrent: canAct });
   }
   function next() {
     send("next");

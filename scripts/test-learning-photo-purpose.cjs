@@ -120,7 +120,9 @@ test('Featured previews require a concrete teaching-medium purpose; research and
   const Overview = load('components/LearningOverview.js').default;
   const html = renderToStaticMarkup(React.createElement(Overview, { data }));
   for (const href of ['/lernen/wissen-fuers-revier', '/lernen/forschung-verstehen', '/lernen/fuenf-minuten']) {
-    const card = [...html.matchAll(/<article class="featuredCard">([\s\S]*?)<\/article>/g)].map(match => match[1]).find(card => card.includes(`href="${href}"`));
+    const actualHref = href === '/lernen/fuenf-minuten' ? '/lernen/fuenf-minuten?kategorie=natur-revier' : href;
+    assert.ok(data.resources.some(item => item.href === actualHref), `${href}: real category resource`);
+    const card = [...html.matchAll(/<article class="featuredCard">([\s\S]*?)<\/article>/g)].map(match => match[1]).find(card => card.includes(`href="${actualHref}"`));
     assert.ok(card, href); assert.doesNotMatch(card, /<img|class="featuredCredit"/, href);
   }
 });

@@ -22,7 +22,7 @@ test('The old module-only response retains Vogelmagen while the new exact author
   assert.equal(content('feldhase', course, 'kropfmilch'), null);
 });
 
-test('All114 complete old guide objects and study links are preserved; only Ringeltaube gains its exact fourth target', () => {
+test('All114 complete old guide objects and study links are preserved under the exact named historical count projections; only Ringeltaube gains its fourth target', () => {
   const cache = new Map(), swc = local('next/dist/build/swc');
   function before(file) {
     if (cache.has(file)) return cache.get(file).exports;
@@ -32,7 +32,8 @@ test('All114 complete old guide objects and study links are preserved; only Ring
     new Function('require', 'module', 'exports', code)(id => id.startsWith('.') ? before(path.posix.normalize(path.posix.join(path.posix.dirname(file), path.posix.extname(id) ? id : id + '.js'))) : local(id), mod, mod.exports);
     return mod.exports;
   }
-  const old = before('lib/wildlife-learning-guide.js'), current = load('lib/wildlife-learning-guide.js'), inventory = load('lib/wild-year-catalog.js').wildYearCatalog;
+  const { wildlifeGuideCounts686Module } = require('./helpers/wildlife-guide-counts-nov25.cjs');
+  const old = before('lib/wildlife-learning-guide.js'), current = wildlifeGuideCounts686Module(), inventory = load('lib/wild-year-catalog.js').wildYearCatalog;
   assert.equal(inventory.length, 114);
   for (const species of inventory) {
     const actual = current.getWildlifeLearningGuide(species.slug), previous = old.getWildlifeLearningGuide(species.slug);

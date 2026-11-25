@@ -7,10 +7,11 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
+const { redDeerFlehmenBaselineFixture } = require('./helpers/red-deer-flehmen-addition-nov25.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 // Keep this exact Nov17 inventory contract; the precisely named Nov25 appendix
 // has independent positive current-curriculum and full-object preservation tests.
-const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture()));
+const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(redDeerFlehmenBaselineFixture())));
 function previousLoader() {
   const cache = new Map();
   return function read(relative) {
@@ -106,11 +107,20 @@ test('Self-control criteria remain behind a closed native disclosure for all48 g
   }
 });
 
-test('The complete live search keeps every former result object and relative order, adding exactly the twelve named task entries', () => {
+test('The complete live search keeps every former result object and relative order, adding the twelve named tasks and one exact separately reviewed video', () => {
   const collect = api => { const first = api.searchLearning(), results = [...first.results]; for (let page = 2; page <= first.pages; page++) results.push(...api.searchLearning({ page }).results); return results; };
   const previous = collect(old('lib/learning-search.js')), current = collect(load('lib/learning-search.js'));
   const ids = new Set(additions.map(item => `exam-transfer:${item.goal.id}`));
-  assert.equal(current.length, previous.length + 12); assert.deepEqual(current.filter(item => !ids.has(item.id)), previous);
+  // A course remains one result when a lesson is appended; the separately
+  // reviewed Auerhuhn film adds exactly this one new media result.
+  const video = {
+    id: 'entry:/lernen/wildtier-videofaelle?eintrag=auerhuhn-baum:video-auerhuhn-baum',
+    title: 'Auerhahn auf einem Ast',
+    description: 'Auerhuhn – Tetrao urogallus: Originalvideo mit drei erklärten Beobachtungsfragen. Stumme Aufnahme aus Schottland; weder Balzerfolg noch örtlicher Jagdstatus werden daraus bestimmt.',
+    href: '/lernen/wildtier-videofaelle?eintrag=auerhuhn-baum', type: 'entry', categories: ['wildkunde', 'jagdpraxis'],
+  };
+  assert.deepEqual(current.filter(item => item.id === video.id), [video]);
+  assert.equal(current.length, previous.length + 12 + 1); assert.deepEqual(current.filter(item => !ids.has(item.id) && item.id !== video.id), previous);
   assert.deepEqual(new Set(current.filter(item => ids.has(item.id)).map(item => item.id)), ids);
 });
 

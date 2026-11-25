@@ -1,5 +1,6 @@
 // Independent binary, preservation and actual-reader integration checks.
 // Public curriculum reads only; no browser/account storage is accessed.
+const { withoutAuerhuhnNov25Cases, withoutAuerhuhnNov25Paths } = require('./helpers/auerhuhn-video-addition-nov25.cjs');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -103,11 +104,11 @@ test('Flight scenes retain all21 existing full wild objects/59 questions and all
   assert.equal(beforeWild.length, 21); assert.equal(beforeWild.flatMap(item => item.questions).length, 59);
   assert.equal(beforeDogs.length, 4); assert.equal(beforeDogs.flatMap(item => item.questions).length, 8);
   const now = load('lib/wildlife-video-cases.js');
-  assert.deepEqual(withoutMammalNov15Cases(now.wildlifeVideoCases).filter(item => !ids.includes(item.id)), beforeWild);
+  assert.deepEqual(withoutMammalNov15Cases(withoutAuerhuhnNov25Cases(now.wildlifeVideoCases)).filter(item => !ids.includes(item.id)), beforeWild);
   assert.deepEqual(now.wildlifeVideoCases.slice(0, 21), beforeWild);
   assert.deepEqual(load('lib/hunting-dog-video-lessons.js').huntingDogVideoLessons, beforeDogs);
-  assert.deepEqual(beforeMammalNov15Links(load('lib/learning-video-links.js').learningVideoLinks).filter(item => !ids.includes(item.id)), old('lib/learning-video-links.js').learningVideoLinks);
-  assert.equal(withoutMammalNov15Cases(now.wildlifeVideoCases).flatMap(item => item.questions).length, 65);
+  assert.deepEqual(beforeMammalNov15Links(withoutAuerhuhnNov25Cases(load('lib/learning-video-links.js').learningVideoLinks)).filter(item => !ids.includes(item.id)), old('lib/learning-video-links.js').learningVideoLinks);
+  assert.equal(withoutMammalNov15Cases(withoutAuerhuhnNov25Cases(now.wildlifeVideoCases)).flatMap(item => item.questions).length, 65);
 });
 
 test('Actual new MP4 bytes contain every recorded frame, valid timestamps, H264/yuv420p and the preserved display aspect', () => {
@@ -203,8 +204,8 @@ test('Only the exact new films/posters and attribution documents extend public a
   const old = publishedLoader()('lib/media-experience-asset-paths.js'), current = load('lib/media-experience-asset-paths.js');
   const media = ids.flatMap(id => [`${directory}/${id}.mp4`, `${directory}/${id}-vorschau.jpg`]);
   const documents = [`${directory}/mediennachweise.json`, `${directory}/MEDIEN-LIZENZEN.md`];
-  assert.deepEqual(withoutMammalNov15Paths(current.mediaExperienceAssetPaths).filter(value => !media.includes(value)), old.mediaExperienceAssetPaths);
-  assert.deepEqual(withoutMammalNov15Paths(current.mediaExperienceDocumentationPaths).filter(value => !documents.includes(value)), old.mediaExperienceDocumentationPaths);
+  assert.deepEqual(withoutMammalNov15Paths(withoutAuerhuhnNov25Paths(current.mediaExperienceAssetPaths)).filter(value => !media.includes(value)), old.mediaExperienceAssetPaths);
+  assert.deepEqual(withoutMammalNov15Paths(withoutAuerhuhnNov25Paths(current.mediaExperienceDocumentationPaths)).filter(value => !documents.includes(value)), old.mediaExperienceDocumentationPaths);
   for (const value of media) assert.ok(current.mediaExperienceAssetPaths.includes(value));
   for (const value of documents) assert.ok(current.mediaExperienceDocumentationPaths.includes(value));
   const middleware = load('middleware.js').middleware;

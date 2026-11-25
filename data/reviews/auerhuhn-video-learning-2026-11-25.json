@@ -1,0 +1,53 @@
+{
+  "reviewedOn": "2026-11-25",
+  "baseline": "61019897797d9fe851ff3bb25e46a5a5a534e578",
+  "scope": "One new real Auerhuhn video case in the existing Wildtier-Videofälle/library, three own positive four-answer observation questions, exact reciprocal portrait/course/search links and source credits. No new course, category or route.",
+  "id": "auerhuhn-baum",
+  "original": {
+    "title": "Capercaille Tetrao urogallus",
+    "author": "gailhampshire",
+    "source": "https://commons.wikimedia.org/wiki/File:Capercaille_Tetrao_urogallus.webm",
+    "originalUpload": "https://www.flickr.com/photos/gails_pictures/49692866678/",
+    "sourceDateAsListed": "2020-03-24",
+    "dateBoundary": "Date listed by the source and Flickr upload; not a newly independently established camera timestamp.",
+    "sourceLocation": "Near Nethybridge, Scotland. Not a DACH recording.",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "bytes": 34347522,
+    "sha1": "43e61ed91b4160fdd1b3727be53a2e2418e96721",
+    "actuallyRead": "Root and an independent reviewer read the Commons original description/license; the original Flickr object/profile name and licence were also positively read. The separate Creative Commons deed explains commercial reuse, attribution, title/source/licence and changes. This is media provenance, not a second biological experiment."
+  },
+  "claimSourceMatrix": [
+    {
+      "claim": "The source names Tetrao urogallus; the observed dark body/brownish folded wing, pale strong bill and red area above the eye fit a male Auerhuhn.",
+      "visibleEvidence": "Actual original contact frames plus final MP4 frames90/300 at3/10seconds.",
+      "independentSources": ["BfN/Christopher König: Beschreibung, https://www.bfn.de/artenportraits/tetrao-urogallus", "BirdLife Österreich: Wie erkenne ich ein Auerhuhn?, https://www.birdlife.at/voegel/auerhuhn/"],
+      "boundary": "Feature combination and source identification; no age, weight, complete health diagnosis or exact colour measurement. No source photographs or audio copied."
+    },
+    {
+      "claim": "The longer tail points down in the later side view and is not spread as a broad upright wheel at that moment.",
+      "visibleEvidence": "Final MP4 frame450 at15seconds, independently visually inspected.",
+      "sourceRole": "The observation is from the actual recording. BirdLife's species-shape comparison helps distinguish a broadly rounded Auerhahn tail from the Birkhahn lyre; it does not prove a complete display sequence in this clip.",
+      "boundary": "Momentary position and species-level form kept separate. No successful mating, precise intent, full display/territorial diagnosis or legal hunting status inferred."
+    },
+    {
+      "claim": "Branches partially cover the animal.",
+      "visibleEvidence": "Original contact and all three final question frames.",
+      "boundary": "No complete foot contact, toe arrangement, exact dimensions or hidden body part reconstructed."
+    }
+  ],
+  "unusedSource": "A fresh Vogelwarte article URL returned the general bird-species index. Its search excerpt is not counted as an actually read original article or a new content approval.",
+  "finalMedia": {
+    "file": "/lernen/videos-2026-11-25/auerhuhn-baum.mp4",
+    "bytes": 6091131,
+    "sha256": "eb56b5eaa782b9a608406fba9930aaf7e0016ba5292bea662999953daf0f4c64",
+    "video": "H264/yuv420p,1280x720,1:1pixels,30frames/s,590fully decoded frames,19.666667seconds,MP4faststart",
+    "changes": "All original video frames retained in order, no crop/additional cuts. Original millisecond-rounded timestamps normalised to nominal30fps after removing0.007s initial video offset; maximum relative timestamp difference0.000333seconds. Original audio removed and the silent version clearly labelled. JPEGposter taken from this same finalMP4 at3seconds.",
+    "technicalBoundary": "Earlier passthrough/remux trials had incomplete sample durations and remain only outside the repository. Only the complete finalCFRfile and its freshly extracted images are published. Technical full decoding is not a claimed human continuous playback, audio audition or device test."
+  },
+  "questions": {"ownNewQuestions": 3, "choicesEach": 4, "ids": ["kopfmerkmale", "gefiederkontrast", "schwanzhaltung"], "atSeconds": [3,10,15], "frameIndices": [90,300,450], "answerIndices": [1,2,0], "reveal": "Neutral until deliberate answer; transcript and final source block initially closed. Four actual DOM answer paths across all three questions verify12answer branches."},
+  "integration": {"existingPortrait": "auerhuhn", "primaryCourse": "wissen-federwild-beobachtung", "primaryLesson": "vogel-merkmale", "discoveryBoundary": "Lightweight search/catalog rows carry no question text, explanations, answers or full lessons.", "accessBoundary": "Only2exact media paths and2exact attribution documents added to the existing allowlist. Lesson routes, neighbouring arbitraryJSON and original/intermediate files stay guarded."},
+  "preservation": "All25baseline wildlife cases/71questions, all4dog scenes/8questions, their ordering/full objects and all existing lightweight links/discovery entries checked positively against baselineGit. Existing review dates remain exact. No curriculum question count artificially increased for this separate video collection.",
+  "evidenceOutsideRepo": ["work/auerhuhn-video-nov25/preflight.json", "work/auerhuhn-video-nov25/independent-source-visual-review.json", "work/auerhuhn-video-nov25/proposal.json"],
+  "overallLimit": "One precisely documented video case and scoped biology comparison. No official DACHexamcatalogue, complete exam coverage, new legal release or full-corpus recertification claimed."
+}

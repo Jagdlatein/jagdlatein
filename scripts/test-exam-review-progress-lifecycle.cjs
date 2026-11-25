@@ -93,12 +93,19 @@ function links(node) { return [...node.querySelectorAll('a')].map(anchor => anch
 
 test('Actual plan SSR is storage-free and its loading markup hydrates without mismatches', async t => {
   const saved = Object.getOwnPropertyDescriptor(globalThis, 'window');
+  const savedStorage = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
   let html;
   try {
-    Object.defineProperty(globalThis, 'window', { configurable: true, get() { throw Error('SSR accessed browser storage'); } });
+    // SSR has no browser. A harmless typeof-window origin check must not be
+    // mistaken for an actual storage access by an artificial window getter.
+    Object.defineProperty(globalThis, 'window', { configurable: true, value: undefined });
+    Object.defineProperty(globalThis, 'localStorage', { configurable: true, get() { throw Error('SSR accessed browser storage'); } });
     const Plan = planLoader()('components/ExamStudyPlan.js').default;
     html = local('react-dom/server').renderToString(React.createElement(Plan, { data, reviewCatalog: catalogA }));
-  } finally { saved ? Object.defineProperty(globalThis, 'window', saved) : delete globalThis.window; }
+  } finally {
+    saved ? Object.defineProperty(globalThis, 'window', saved) : delete globalThis.window;
+    savedStorage ? Object.defineProperty(globalThis, 'localStorage', savedStorage) : delete globalThis.localStorage;
+  }
   assert.match(html, /Dein lokaler Wiederholungsstand wird geladen/);
   assert.doesNotMatch(html, /Zuletzt falsch<\/dt>/);
   const h = await fixture(t, { html }), recoverable = [];

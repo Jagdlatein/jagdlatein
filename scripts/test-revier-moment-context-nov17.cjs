@@ -12,6 +12,7 @@ const { categoryPracticeLinks } = load('lib/learning-category-practice-server.js
 const { QUESTIONS } = load('data/questions-full.js');
 const { quizLearningPool } = load('lib/quiz-learning-scope.js');
 const ui = createLoader({
+  'next/router': { useRouter: () => ({ isReady: true, pathname: '/tagesquiz', asPath: '/tagesquiz', query: {} }) },
   'next/link': { __esModule: true, default: ({ href, prefetch, children, ...props }) => React.createElement('a', { href, ...props }, children) },
   './LearningToolLayout': { __esModule: true, default: ({ category, children }) => React.createElement('main', { 'data-layout-category': category }, children) },
 });

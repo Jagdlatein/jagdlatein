@@ -1,0 +1,76 @@
+{
+  "reviewedOn": "2026-11-25",
+  "baselineCommit": "61019897797d9fe851ff3bb25e46a5a5a534e578",
+  "courseId": "wissen-rotwild-sozialverhalten",
+  "lessonId": "rot-flehmen",
+  "scope": "Eine vollständige neue Endlektion mit zwei eigenen Vierantwortfragen und zwei tatsächlich erzeugten Lernkarten im vorhandenen Rotwildkurs. Kein neuer Kurs, keine Kategorie, Route, Rechtsfreigabe oder gesamte DACH-Prüfungszertifizierung.",
+  "nonredundancy": "Aktuelle 198 Kurse mit 904 Lektionen, 2790 Fragen, 1798 Karten sowie Glossarexport und lib/data/pages einschliesslich Artenwissen auf flehm/vomeronasal/jacobson geprüft. Kein bestehender Lernblock oder entsprechende Frage/Karte gefunden. rot-brunft erklärt Konkurrenz, Rufe und Beobachtungsgrenzen, nicht Flehmen als benanntes Verhalten. Der separate Formantenkurs bleibt für die akustische Erzeugung zuständig; der Hundeschnüffelkurs behandelt einen anderen Vorgang.",
+  "claims": [
+    {
+      "id": "haltung",
+      "claim": "Das beschriebene Flehmen beim Rothirsch verbindet angehobenes Haupt, gestreckten Hals, geöffnetes Maul und zurückgezogene Oberlippe. Ein angehobener Kopf allein ersetzt dieses Verhaltensmuster nicht.",
+      "sourceIds": ["fieldStudy", "sdw"],
+      "boundary": "Keine feste Dauer, Winkelzahl, Häufigkeit, Monatsgrenze oder Zuordnung aus einem ungeprüften Foto."
+    },
+    {
+      "id": "chemische-hinweise",
+      "claim": "Flehmen wird beim Rotwild im Brunftkontext mit der Aufnahme chemischer Hinweise beschrieben, unter anderem im Zusammenhang mit dem Harn weiblicher Tiere.",
+      "sourceIds": ["fieldStudy", "valencak", "sdw"],
+      "boundary": "Beobachtete Haltung und fachliche Funktionsdeutung sind getrennt. Keine neue experimentelle Bestätigung innerer Leitungswege, keine Drüsen-, Hormon-, Gesundheits- oder Fertilitätsaussage."
+    },
+    {
+      "id": "funktionsvergleich",
+      "claim": "Flehmen als Aufnahme chemischer Hinweise und Röhren als Erzeugung einer hörbaren Lautäusserung sind unterschiedliche Funktionen. Der Vergleich behauptet keine feste zeitliche Abfolge und keinen individuellen inneren Zustand.",
+      "sourceIds": ["fieldStudy", "valencak", "sdw"],
+      "boundary": "Keine gegenseitige Ausschliesslichkeit sämtlicher Verhaltensanteile, keine aus einem geöffneten Maul allein abgeleitete Handlung."
+    }
+  ],
+  "sources": [
+    {
+      "id": "fieldStudy",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10127101/",
+      "doi": "10.1186/s40850-021-00083-9",
+      "title": "de la Peña und andere (2021): The dark-ventral-patch of male red deer, a sexual signal that conveys the degree of involvement in rutting behavior",
+      "organization": "Universitäten Córdoba und Extremadura / CSIC",
+      "actuallyRead": "Original-Volltextseite: Autoren-/Datumsblock, Tabelle 5 mit Verhaltensdefinitionen, Methoden Study area und Behavioral observations (Webzeilen 325–354) sowie Diskussion 312–321 einschliesslich Stichprobengrenzen tatsächlich gelesen. Kein blosses Abstract und keine Volllektüre sämtlicher statistischer Herleitungen behauptet. Root hat die einschlägigen Originalabschnitte selbst zusätzlich gelesen.",
+      "role": "Direkte Verhaltensbeobachtung und Definition an Iberischem Rotwild; die chemische Funktion ist fachliche Einordnung im Diskussionsabschnitt, kein dortiger Stofftransportversuch. Unabhängig von den beiden DACH-Erklärungsquellen.",
+      "excluded": "Keine Fleck-/Rang-/Alter-/Endenzahl-/Erfolgsprädiktion, Raten, Beobachtungszeiten, Klima- oder Fortpflanzungswerte. Eine zitierte Schwarzschwanzhirsch-Arbeit wird nicht zum Rothirsch-Nachweis einer garantierten Abfolge nach dem Flehmen. Keine Abbildung oder Textpassage übernommen."
+    },
+    {
+      "id": "valencak",
+      "url": "https://www.vetmeduni.ac.at/fileadmin/v/fiwi/Publikationen/Populaerwissenschaftliche/Valencak_2015_Pheromone.pdf",
+      "title": "Valencak (2015): Pheromone und chemische Kommunikation, WEIDWERK 6/2015, S. 8–10",
+      "organization": "Veterinärmedizinische Universität Wien, FIWI",
+      "actuallyRead": "Vollständigen dreiseitigen Original-PDF-Text gelesen; für den Produktumfang besonders PDF-Seite 3, gedruckte Seite 10, Rotwildabschnitt und Flehmen-Bildunterschrift. Diese Originalseite lokal gerendert und tatsächlich visuell angesehen; Root las Text und Original-PNG ebenfalls selbst.",
+      "role": "Eigene DACH-Facherklärung zur chemischen Informationsaufnahme beim Flehmen. Keine unabhängige experimentelle Wiederholung der Verhaltensstudie.",
+      "excluded": "Keine Organ-/Kanalwege, Drüsen-, Hormon-, Menschen-/Reptilien-, Evolutions-, Schwellenwert- oder allgemeine Pheromon-/Pflanzenbehauptung übernommen. Keine Quelle oder Abbildung kopiert."
+    },
+    {
+      "id": "sdw",
+      "url": "https://www.sdw-nrw-koeln.de/wp-content/uploads/Broschu%CC%88re-Rotwild.pdf",
+      "title": "Wiebke Dallmeyer-Böhm: Rotwild – Familienportrait unseres größten Säugetieres",
+      "organization": "Freundeskreis Haus des Waldes e.V., Gut Leidenhausen",
+      "actuallyRead": "Originaltitel und Autorenschaft sowie PDF-Seite 6, gedruckte Seiten 10–11 (Lauschen, Äugen, Windaufnehmen und Lautäusserungen), und PDF-Seite 12, gedruckte Seiten 22–23 (Paarungsverhalten), tatsächlich gelesen. Beide Originaldoppelseiten lokal gerendert und visuell angesehen. Root las dieselben Text-/PNG-Stellen selbst.",
+      "role": "Unabhängige DACH-Beobachtungs-/Lehrerklärung ausdrücklich zum Rotwild: Lippenhaltung, chemische Düfte und Röhren als Lautäusserung. Kein Steinbockübertrag und keine kontrollierte Sinnesorganstudie. Zwei Dateiversionen dieser Broschüre zählen nicht als unabhängige Quellen.",
+      "excluded": "Keine benachbarten Sichtfeld-/Farb-, Zeit-/Kalender-/Zyklus-, Alters-/Bestands-, Drüsen-, Rechts- oder allgemeinen Störungsbehauptungen übernommen. Keine Fotos verwendet."
+    }
+  ],
+  "unusedReadings": "Goldau betrifft ausdrücklich Alpensteinbock und ist keine zweite Rothirschbeobachtung. Die Sika-Originalarbeit wurde nur auf den zuerst zugänglichen zwei Seiten gelesen; spätere Ergebnisabrufe liefen in einen Timeout. Der alte Reproduktions-PDF-Link führte auf eine allgemeine Verlagsseite, die Saiga-PMC-Seite auf eine Browserprüfung. Keine dieser Seiten wird als gelesener Produkt-Kernbeleg oder Volltext ausgegeben; Zugangsschranken wurden nicht umgangen.",
+  "questions": [
+    { "id": "rot-flehmen-haltung", "role": "Das konkrete Kopf-/Maul-/Lippenmuster mit dem prüfungsrelevanten Begriff Flehmen verbinden.", "answer": 0 },
+    { "id": "rot-flehmen-sinnesrolle", "role": "Chemische Informationsaufnahme von akustischer Signalabgabe unterscheiden, ohne eine starre Abfolge zu behaupten.", "answer": 2 }
+  ],
+  "paperExercise": "Eigene Gegenüberstellung von beobachtbarer Haltung und Funktion. Kein Sammeln von Harnproben, Anlocken, Bedrängen oder Manipulieren von Tieren.",
+  "diagram": {
+    "type": "comparison",
+    "title": "Flehmen und Röhren: zwei Funktionen",
+    "scope": "Eigenes unnummeriertes Funktionsschema mit zwei Textspalten; auf schmalen Ansichten untereinander. Keine zeitliche Reihenfolge oder innere Anatomiezeichnung. Der bestehende Diagrammweg sowie dieselben vollständigen Titel-/Textpunkte für Offline- und Druckdarstellung bleiben nutzbar.",
+    "newPhotosVideosOrCopiedFigures": false,
+    "historicalBoundary": "Nur der ausdrücklich benannte neue comparison-Typ erhält UL statt OL und keine Schrittzahlen. Alte Diagrammdaten und ihr bisheriges HTML/CSS werden positiv vollständig gegen 6101989 verglichen. Keine Änderung des Offline-Schemas oder der Speicherung."
+  },
+  "preservation": "Alle drei alten Rotwildlektionen, acht alten Fragen, vier alten Quellen und Kursmetadaten bleiben exakt in Reihenfolge erhalten. Vollobjektvergleiche aller 198 alten Kurse und 1798 alten Karten einschliesslich 116 Starter gegen 6101989; nur das namentlich geprüfte neue Appendix wird abgezogen. Fremdes Nachmittag-JSON liegt auf beiden Vergleichsseiten identisch vor und wird dadurch nicht neu zertifiziert.",
+  "dates": "Neue Lektion und drei ausschliesslich auf rot-flehmen begrenzte Quellen: 25. November 2026. Alter übernommener Kursstand: 4. Oktober 2026, unverändert. Neue Karten übernehmen nur das neue Lektionsdatum, alte Karten behalten ihren Stand.",
+  "evidenceWorkspace": "work/flehmen-audit-nov25/ mit Original-PDFs/PNG und vorherigem read-only Vorschlag. Keine neue Medienlizenz nötig, da kein fremdes Lehrbild übernommen wird.",
+  "technicalStatus": "Neun gezielte Prüfungen bestanden mit Node 22.23.5, ohne übersprungene Fälle: vollständige alte Wildkunde-Exporte, alle 198 Altkurse und 1798 Altkarten mit 116 Startern, zwei neue Vierantwortfragen in allen drei Länderpools, Quellenscope, Suche/Kurs/Karten/Druck, echter synthetischer Offlinepack und dessen gerenderter Leser sowie alle 904 alten Diagrammdaten und ihr gerendertes HTML. Die neue Karte-/Tagesfallquellenreihenfolge folgt exakt dem bestehenden Evidence-Adapter: Beobachtungsarbeit, SDW, Vetmeduni; Kursquellen behalten ihre dokumentierte Reihenfolge Beobachtungsarbeit, Vetmeduni, SDW. Kein Produktadapter wurde dafür geändert.",
+  "reviewBoundary": "Autorenprüfung und Root-Originallektüre liegen vor; die unabhängige fachliche Gegenprüfung folgt nach dem Freeze. Keine vollständige fachliche Zertifizierung des übrigen Inhalts oder visuelle Geräteprüfung."
+}

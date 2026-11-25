@@ -14,6 +14,7 @@ function load(relative, overrides = {}, cache = new Map()) {
   const mod = { exports: {} };
   new Function('require', 'module', 'exports', code)(id => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
+    if (id === 'next/router') return { useRouter: () => ({ isReady: true, pathname: '/tagesquiz', asPath: '/tagesquiz', query: {} }) };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     if (id === 'next/link') return ({ href, children, prefetch, ...props }) => React.createElement('a', { href, ...props }, children);
     if (id === 'next/image') return ({ priority, ...props }) => React.createElement('img', props);
@@ -56,7 +57,7 @@ test('The protected daily page sends one case with no-store and preserves its or
 });
 
 test('Daily page links to the exact selected lesson and separates local repetition from server-ranked rounds', () => {
-  const Page = load('components/RevierMoment.js', { 'next/router': { useRouter: () => ({ query: {} }) } }).default;
+  const Page = load('components/RevierMoment.js', { 'next/router': { useRouter: () => ({ isReady: true, pathname: '/tagesquiz', asPath: '/tagesquiz', query: {} }) } }).default;
   const html = renderToStaticMarkup(React.createElement(Page, { moment }));
   assert.ok(!html.includes(`href="${moment.href}"`), 'Full reading and its link follow only after answer or skip');
   assert.ok(html.includes(`href="${moment.practice.reviewHref}"`));
