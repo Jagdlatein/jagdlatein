@@ -8,10 +8,16 @@ const base = '/lernen/lernkarten?kategorie=wildkunde&karte=test-reh';
 const initial = { category: 'wildkunde', query: '', mode: 'pending', cardId: 'test-reh' };
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 const tick = async () => { for (let i = 0; i < 10; i++) await Promise.resolve(); };
+function routeQuery(href) {
+  const params = new URL(href, 'https://jagdlatein.de').searchParams;
+  return Object.fromEntries([...new Set(params.keys())].map(key => {
+    const values = params.getAll(key); return [key, values.length === 1 ? values[0] : values];
+  }));
+}
 function harness() {
   let desired = { ...initial }, nextTimer = 0;
   const calls = [], commits = [], errors = [], restores = [], timers = new Map();
-  const router = { isReady: true, asPath: base };
+  const router = { isReady: true, asPath: base, get query() { return routeQuery(this.asPath); } };
   for (const kind of ['push', 'replace']) router[kind] = href => { const task = deferred(); calls.push({ kind, href, task }); return task.promise; };
   const sync = createFlashcardURLSync({ getRouter: () => router, getState: () => desired, getContext: () => ({ categories }), onCommit: href => commits.push(href), onError: (...args) => errors.push(args), onRestore: state => { desired = state; restores.push(state); }, setTimer(fn) { const id = ++nextTimer; timers.set(id, fn); return id; }, clearTimer(id) { timers.delete(id); } });
   return { sync, calls, commits, errors, restores, timers, router,

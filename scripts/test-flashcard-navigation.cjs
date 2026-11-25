@@ -14,6 +14,12 @@ const state = { category: 'wildkunde', query: 'Gams', mode: 'all', cardId: 'flas
 const deferred = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 const tick = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
 function clock() { let id = 0; const tasks = new Map(); return { setTimer(fn) { tasks.set(++id, fn); return id; }, clearTimer(key) { tasks.delete(key); }, flush() { const pending = [...tasks.values()]; tasks.clear(); pending.forEach(fn => fn()); }, get size() { return tasks.size; } }; }
+function routeQuery(href) {
+  const params = new URL(href, 'https://jagdlatein.de').searchParams;
+  return Object.fromEntries([...new Set(params.keys())].map(key => {
+    const values = params.getAll(key); return [key, values.length === 1 ? values[0] : values];
+  }));
+}
 
 test('Browsing URL contains only navigation fields and preserves exact scoped/other parameters', () => {
   const scoped = { courseId: 'beispiel-kurs', lessonId: 'beispiel-lektion' };
@@ -41,7 +47,7 @@ test('Every actual card ID survives a complete browsing URL round trip', () => {
 test('Serialized shallow changes acknowledge old URLs without rolling back newer typing', async () => {
   const timer = clock(), calls = [], restored = [];
   let latest = { ...state, query: 'G' };
-  const router = { isReady: true, asPath: '/lernen/lernkarten', replace(href, as, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
+  const router = { isReady: true, asPath: '/lernen/lernkarten', get query() { return routeQuery(this.asPath); }, replace(href, as, options) { const task = deferred(); calls.push({ href, options, task }); return task.promise; } };
   const sync = synchronizer({ getRouter: () => router, getState: () => latest, getContext: () => ({ categories }), onRestore: next => restored.push(next), ...timer });
   sync.schedule(); timer.flush(); await tick();
   latest = { ...latest, query: 'Ga' }; sync.schedule(); timer.flush();
@@ -58,12 +64,14 @@ test('Serialized shallow changes acknowledge old URLs without rolling back newer
 test('Back cancels delayed typing and old completions cannot restore stale state; external navigation suspends writes', async () => {
   const timer = clock(), calls = [];
   let latest = { ...state }, restored;
-  const router = { isReady: true, asPath: '/lernen/lernkarten', replace(href) { const task = deferred(); calls.push({ href, task }); return task.promise; } };
+  const router = { isReady: true, asPath: '/lernen/lernkarten', get query() { return routeQuery(this.asPath); }, replace(href) { const task = deferred(); calls.push({ href, task }); return task.promise; } };
   const sync = synchronizer({ getRouter: () => router, getState: () => latest, getContext: () => ({ categories }), onRestore(next) { latest = next; restored = next; }, ...timer });
   sync.schedule(); assert.equal(timer.size, 1);
-  sync.restore('/lernen/lernkarten?q=Reh&karte=flash-reh'); timer.flush(); await tick(); assert.equal(calls.length, 0); assert.equal(restored.query, 'Reh');
+  router.asPath = '/lernen/lernkarten?q=Reh&karte=flash-reh';
+  sync.restore(router.asPath); timer.flush(); await tick(); assert.equal(calls.length, 0); assert.equal(restored.query, 'Reh');
   latest = { ...state }; const savedVersion = sync.version(); sync.flush(); await tick();
-  sync.restore('/lernen/lernkarten?q=Hund&karte=flash-hund');
+  router.asPath = '/lernen/lernkarten?q=Hund&karte=flash-hund';
+  sync.restore(router.asPath);
   router.asPath = calls[0].href; sync.route(router.asPath); calls[0].task.resolve(true); await tick();
   assert.equal(latest.query, 'Hund'); assert.equal(sync.isCurrent(savedVersion), false);
   assert.equal(new URL(calls[1].href, 'https://jagdlatein.de').searchParams.get('q'), 'Hund');

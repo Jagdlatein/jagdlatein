@@ -9,7 +9,7 @@ import MenuChoice from "./MenuChoice";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { FLASHCARD_STORAGE_KEY, parseFlashcardReview, rateFlashcardReview, getDueCards } from "../lib/flashcard-review";
 import { flashcardSelectionQuery, matchesFlashcardSelection } from "../lib/flashcard-selection";
-import { createFlashcardURLSync, flashcardNavigationURL, flashcardRouterURL, readFlashcardNavigation, flashcardRouteIsReady, flashcardOrigin } from "../lib/flashcard-navigation";
+import { createFlashcardURLSync, flashcardNavigationURL, flashcardRouterURL, readFlashcardNavigation, flashcardRouteIsReady, flashcardRouteOriginIsCurrent, flashcardOrigin } from "../lib/flashcard-navigation";
 import { isLearningReviewDate } from "../lib/learning-review-date";
 import styles from "../styles/LearningFlashcards.module.css";
 
@@ -69,6 +69,7 @@ function cardIdentity(value) {
 export default function LearningFlashcards({ cards = [], categories = [], selection = null, totalCount = cards.length, loading = false, incomplete = false, loadError = "", onReload }) {
   const router = useRouter();
   const href = flashcardRouterURL(router);
+  const routeOriginReady = flashcardRouteOriginIsCurrent(router);
   const routeReady = flashcardRouteIsReady(router, categories, selection);
   const navigation = readFlashcardNavigation(router.query, categories, selection);
   const { category, query, mode, cardId: currentId } = navigation;
@@ -208,21 +209,21 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const unknownCard = routeReady && !waitingForCard && currentId && !current;
   const choices = getAnswerChoices(current);
   const cardKey = current ? JSON.stringify([scope, category, query, mode, cardIdentity(current), repeatRound]) : null;
-  if (round.current !== cardKey) { round.current = cardKey; generation.current++; ratingApplied.current = null; }
+  if (routeOriginReady && round.current !== cardKey) { round.current = cardKey; generation.current++; ratingApplied.current = null; }
   const answerShown = cardKey !== null && openAnswer?.key === cardKey;
   const selectedChoice = answerShown ? openAnswer.choice : null;
   const choiceFeedbackShown = Boolean(choices && answerShown);
   useEffect(() => {
-    if (answerRef.current && answerRef.current.key !== cardKey) {
+    if (routeOriginReady && answerRef.current && answerRef.current.key !== cardKey) {
       answerRef.current = null;
       setOpenAnswerState(null);
     }
-  }, [cardKey]);
+  }, [cardKey, routeOriginReady]);
   useEffect(() => {
-    if (choiceFeedbackShown) feedbackRef.current?.focus();
+    if (choiceFeedbackShown && live()) feedbackRef.current?.focus();
   }, [choiceFeedbackShown, cardKey]);
   useEffect(() => {
-    if (!mounted.current || !selectionFocusRequested.current || !committedFocus.current || waitingForCard || !routeReady || syncRef.current.busy()) return;
+    if (!live() || !selectionFocusRequested.current || !committedFocus.current || waitingForCard || !routeReady || syncRef.current.busy()) return;
     selectionFocusRequested.current = false;
     committedFocus.current = null;
     focusSelection(headingRef.current);
@@ -235,7 +236,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
   const printHref = { pathname: "/lernen/lernkarten-drucken", query: printQuery };
 
   function live(requireValid = true) {
-    return mounted.current && generation.current === token && origin.current === renderOrigin && flashcardOrigin(routerRef.current) === renderOrigin && syncRef.current.available() && routerRef.current.isReady !== false && (!requireValid || flashcardRouteIsReady(routerRef.current, contextRef.current.categories, contextRef.current.selection));
+    return mounted.current && generation.current === token && origin.current === renderOrigin && flashcardOrigin(routerRef.current) === renderOrigin && flashcardRouteOriginIsCurrent(routerRef.current) && syncRef.current.available() && (!requireValid || flashcardRouteIsReady(routerRef.current, contextRef.current.categories, contextRef.current.selection));
   }
   function updateNavigation(next, delay = 0, method = "push") {
     navigationRef.current = next;
@@ -258,6 +259,12 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     changeFilter("category", value);
   }
   function rememberBeforeLeaving(event, href) {
+    // An invalid scoped deck has no current card to flush. Its one explicit
+    // escape is an ordinary Next link, bound to this mounted complete address.
+    if (selection?.invalid && href === "/lernen/lernkarten?kategorie=all") {
+      if (!live(false) || syncRef.current.busy()) event?.preventDefault();
+      return;
+    }
     if (!live()) { event?.preventDefault(); return; }
     const modified = event?.metaKey || event?.ctrlKey || event?.shiftKey || event?.altKey || event?.button > 0;
     // Flush the draft without attaching an unrelated old card to a new search.
@@ -269,6 +276,8 @@ export default function LearningFlashcards({ cards = [], categories = [], select
       pathname: href.pathname,
       query: { ...flashcardSelectionQuery(selection), ...(!selection && desired.category ? { kategorie: desired.category } : {}), ...(desired.query.trim() ? { q: desired.query.trim() } : {}), ...(desired.mode === "all" ? { modus: "alle" } : {}), ...(target?.id ? { karte: target.id } : {}) },
     } : href;
+    const sourceHref = flashcardRouterURL(routerRef.current);
+    const targetSourceHref = flashcardNavigationURL(sourceHref, navigationRef.current, contextRef.current.categories, contextRef.current.selection);
     const pending = syncRef.current.flush();
     if (modified || event?.defaultPrevented || typeof routerRef.current.push !== "function") return;
     event?.preventDefault();
@@ -279,7 +288,7 @@ export default function LearningFlashcards({ cards = [], categories = [], select
     const bounded = Promise.race([pending.then(value => value !== false), new Promise(resolve => { timeout = window.setTimeout(() => resolve(false), 500); })]);
     // Save the current history entry before Next starts the course/print route.
     bounded.then(saved => {
-      if (!mounted.current || leaving.current !== ticket || !syncRef.current.isCurrent(version)) return;
+      if (!mounted.current || leaving.current !== ticket || !syncRef.current.isCurrent(version) || !flashcardRouteOriginIsCurrent(routerRef.current) || ![sourceHref, targetSourceHref].includes(flashcardRouterURL(routerRef.current))) return;
       if (!saved) {
         // A hung shallow router must not trap a real link. Before the ordinary
         // browser navigation, preserve this entry with Next's history key intact.
@@ -351,26 +360,26 @@ export default function LearningFlashcards({ cards = [], categories = [], select
 
   return <LearningToolLayout title="Lernkarten" description="Wildwissen mit Frage und Antwort wiederholen, auf diesem Gerät vormerken oder als Lernkarten ausdrucken." icon="book" category={{ href: "/lernen", title: "Lernbereich" }} headingOnly searchHref="#lernkarten-suche" hideCommunity className={styles.page}>
     <FlashcardSelectionNotice selection={selection} onNavigate={rememberBeforeLeaving} />
-    {choosingCategory ? <MenuChoice id="lernkarten-kategorien" label="Kategorie wählen" disabled={router.isReady === false} onChange={event => selectCategory(event.target.value)}>
+    {choosingCategory ? <MenuChoice id="lernkarten-kategorien" label="Kategorie wählen" disabled={!routeOriginReady} onChange={event => selectCategory(event.target.value)}>
       {categories.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
       <option value="all">Alle Kategorien</option>
     </MenuChoice> : !selection && <label className={`${styles.field} ${styles.categorySwitch}`}>
       Kategorie
-      <select aria-label="Kategorie" value={category} disabled={router.isReady === false} onChange={event => selectCategory(event.target.value)}>
+      <select aria-label="Kategorie" value={category} disabled={!routeOriginReady} onChange={event => selectCategory(event.target.value)}>
         <option value="all">Alle Kategorien</option>
         {categories.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
       </select>
     </label>}
     <PageMenu title="Lernkarten suchen und filtern"><form className={`${styles.filters} ${styles.scopedFilters}`} id="lernkarten-suche" onSubmit={event => { event.preventDefault(); if (!live(false)) return; showSelection(); }}>
-      <label className={styles.field}>Karten suchen<div className={styles.searchInput}><AppIcon name="search" size={21} /><input type="search" value={draftQuery} onChange={event => changeFilter("query", event.target.value.slice(0, 160))} placeholder="Zum Beispiel Gams, Hund oder Wald" autoComplete="off" enterKeyHint="search" /></div></label>
-      <label className={styles.mode}><input type="checkbox" checked={mode === "pending"} disabled={choosingCategory} onChange={event => changeFilter("mode", event.target.checked ? "pending" : "all")} />Nur offene und fällige Karten</label>
-      <button type="submit" className={styles.textButton}>Karten anzeigen</button>
+      <label className={styles.field}>Karten suchen<div className={styles.searchInput}><AppIcon name="search" size={21} /><input type="search" value={draftQuery} disabled={!routeOriginReady} onChange={event => changeFilter("query", event.target.value.slice(0, 160))} placeholder="Zum Beispiel Gams, Hund oder Wald" autoComplete="off" enterKeyHint="search" /></div></label>
+      <label className={styles.mode}><input type="checkbox" checked={mode === "pending"} disabled={choosingCategory || !routeOriginReady} onChange={event => changeFilter("mode", event.target.checked ? "pending" : "all")} />Nur offene und fällige Karten</label>
+      <button type="submit" disabled={!routeOriginReady} className={styles.textButton}>Karten anzeigen</button>
     </form></PageMenu>
     {!choosingCategory && <div className={styles.summary}>
       <p>{incomplete ? `${cards.length} von ${totalCount} Karten geladen` : `${available.length} ${available.length === 1 ? "Karte" : "Karten"}${mode === "pending" ? " offen oder fällig" : " in deiner Auswahl"}`}{rated > 0 ? ` · ${rated} in dieser Sitzung bewertet` : ""}</p>
     </div>}
     <PageMenu title="Lernkarten drucken und speichern"><nav className={`${styles.exportLinks} ${styles.cardExports}`} aria-label="Lernkarten drucken und speichern">{!selection?.invalid && <Link href={printHref} aria-label="Diese Auswahl drucken" onClick={event => rememberBeforeLeaving(event, printHref)}><AppIcon name="book" size={21} />Drucken</Link>}<a href="/lernen/lernkarten/jagdlatein-lernkarten.pdf" download aria-label="Starterset als PDF">PDF-Starterset</a></nav></PageMenu>
-    <div className={styles.status} role="status" aria-live="polite">{loadError || (loading && !choosingCategory ? (current ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : "Weitere Lernkarten werden geladen.") : message)}{loadError && onReload && <button className={styles.textButton} type="button" onClick={onReload}>Erneut laden</button>}</div>
+    <div className={styles.status} role="status" aria-live="polite">{loadError || (loading && !choosingCategory ? (current ? "Weitere Lernkarten werden geladen. Du kannst die erste Karte schon beantworten." : "Weitere Lernkarten werden geladen.") : message)}{loadError && onReload && <button className={styles.textButton} type="button" disabled={!routeOriginReady} onClick={() => { if (live(false)) onReload(); }}>Erneut laden</button>}</div>
     {current ? <article className={styles.card} aria-labelledby="lernkarten-frage" key={current.id}>
       <div className={styles.cardTop}><span><AppIcon name={current.categoryId} size={22} />{current.categoryTitle}</span><span>Lernkarte</span></div>
       <h2 id="lernkarten-frage" ref={headingRef} tabIndex={-1}>{current.question}</h2>

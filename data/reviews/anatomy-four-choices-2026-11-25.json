@@ -1,0 +1,119 @@
+{
+  "state":"six_exact_fourth_answer_appendices_implemented_pending_independent_review",
+  "baselineCommit":"5d231d94a652d0685708326f1faa6b5c22008d96",
+  "checkedOn":"2026-11-25",
+  "dataFile":"lib/anatomy-explorer.js",
+  "implementationScope":{"existingQuestions":6,"appendedChoices":6,"newQuestions":0,"newModels":0,"sourceObjectsChanged":false,"mediaChanged":false,"oldProvenanceDate":"2026-10-04","newDateScope":"25Nov applies only to the six added comparison alternatives and their separate source mapping; no whole-model or whole-corpus review date is replaced."},
+  "separateRootPresentation":"Root separately owns lib/anatomy-choice-sources.js and the last closed source section of AnatomyExplorer: add exact per-question comparison sources under a scoped25Nov label while preserving the old4Oct text, original sources, model limits and current model/round/unmount behaviour. No extra window or new model-loading capability is introduced.",
+  "rootSourceAccessBoundary":"Root independently read the anatomical/taxonomic originals and exact taggedv4.1.0 Google documentation (blob2648e19ca0a9d8dad4bc81ebd7285ed45f4e71fb). Root's fresh Smithsonian Forelimb attempts timed out or returned403/request verification. Root read the verbatim original successfully delivered author web-tool excerpt instead, with that access provenance explicitly labelled. No fresh Root HTTP200, bypass, screenshot or independent second specimen identification is claimed.",
+  "originalToolExcerpt":"work/anatomy-four-choices-nov25/smithsonian-forelimb-delivered-webtool-excerpt.txt (SHA256 D255783DE8A11D1032FCCFE5953C3B509FF33126A32DFC7F7E7EB90B21C72673)",
+  "actualInventory":"inventory.json:6questions,2permodel,each3choices;3originallocalCC0GLBs/9features;actualparsedGLBscontain0animations/0skins. This is a binary/data check, not a new visual or device review.",
+  "preservationContract":"Append exactly one false choice[3] to each named existing question, as specifically authorised by Root. Keep ids/modelIds, positive question wording, first3choices/order, correct indices1/0/1/2/1/2, explanations, all3models/9features/orbits/assetpaths, curator labels and allold provenance/date records exact. No new course, question, model, image, film or anatomy assertion is added.",
+  "primaryProvenanceBoundary":"The Smithsonian original EO404749 collection record alone establishes the identity, cast medium and explicit scale limitations of this particular collection. Independent second sources below support taxonomic, anatomical or technical interpretation; they are NOT represented as a second physical identification or independent digitisation of the same unique specimen. Two Smithsonian URLs/sections remain one institutional family.",
+  "sourcesActuallyRead":[
+    {
+      "id":"smithsonianRecord",
+      "url":"https://3d.si.edu/object/3d/white-tailed-deer-forelimb:9395b925-4132-468c-a974-745abec177b4",
+      "title":"White-tailed Deer: Forelimb, collection EO404749, nmnheducation_15006160",
+      "organisation":"Smithsonian Institution",
+      "independenceGroup":"Smithsonian",
+      "readScope":"Entire original HTML object record read25Nov, especially Notes, Scientific Name, Taxonomy and rights. Notes explicitly cover skull and forelimb casts, possible different specimens and lack of common scale. Scientific name is Odocoileus virginianus; metadata/media public-domain status is explicit. Object-specific physical dimensions and raw counts are not copied to teaching.",
+      "role":"Unique primary collection provenance, not a general vision measurement or recreated living-tissue study.",
+      "accessLimit":"The separate skull landing URL initially returned500, so it is not claimed as newly read. The successfully read curator collection record itself expressly includes both skull and forelimb casts and has the same local manifest record ID. No blocked access was bypassed."
+    },
+    {
+      "id":"smithsonianSkull",
+      "url":"https://naturalhistory.si.edu/education/teaching-resources/featured-collections/how-read-mammal-skull",
+      "title":"How to Read a Mammal Skull",
+      "organisation":"Smithsonian National Museum of Natural History",
+      "independenceGroup":"Smithsonian",
+      "readScope":"Original Skull Basics, Eyes and Teeth sections actually read. They locate bony orbits in the skull and name the front-to-back tooth-row gap a diastema. Broader tendencies about orbit size, activity patterns or distance judgement are not treated as measurements of this animal.",
+      "role":"Anatomical interpretation of a skull; same Smithsonian family as the collection record, never counted independently from it."
+    },
+    {
+      "id":"adwDama",
+      "url":"https://animaldiversity.org/accounts/Dama_dama/",
+      "title":"Dama dama (fallow deer), Aarti Dharmani",
+      "organisation":"Animal Diversity Web, academic species account",
+      "independenceGroup":"ADW",
+      "readScope":"Original scientific classification and species heading actually read: Dama/dama/fallow deer, within Cervidae. The new wrong species alternative is a different named taxon from the museum's Odocoileus virginianus. Old source subspecies treatment, dimensions, ranges, phenology and behavioural generalisations are excluded.",
+      "role":"Independent taxonomy/context only; does not relabel or independently identify EO404749."
+    },
+    {
+      "id":"openstaxRetina",
+      "url":"https://openstax.org/books/anatomy-and-physiology-2e/pages/14-1-sensory-perception",
+      "title":"Anatomy and Physiology2e,14.1 Sensory Perception, Vision",
+      "organisation":"OpenStax, Rice University",
+      "independenceGroup":"OpenStax/Rice",
+      "readScope":"Actual original Vision/Retina paragraphs around web lines181–185 and193–194 read. They distinguish the eye's neural retina and light-responsive receptor cells from surrounding structures. Only that structure/function distinction is used; the textbook's human-specific fovea, cone classes, numerical physiology and clinical applications are not transferred to deer.",
+      "role":"Independent anatomical/physiological context for why an empty bony orbit is not a direct retinal-function observation. The absence of a function measurement in this particular cast follows from its actual data/provenance, not from a newly performed eye test."
+    },
+    {
+      "id":"utepGlossary",
+      "url":"https://www.utep.edu/leb/keys/glossary.htm",
+      "title":"Mammal Glossary",
+      "organisation":"University of Texas at El Paso, Laboratory for Environmental Biology",
+      "independenceGroup":"UTEP",
+      "readScope":"Original full alveolar/diastema entries actually read. A tooth alveolus is its socket/cavity, whereas a diastema is a gap between teeth. No clinical assessment of a particular tooth or diagnosis of missing teeth is taken.",
+      "role":"Independent direct terminology contrast against the Smithsonian's gap definition."
+    },
+    {
+      "id":"modelViewer410",
+      "url":"https://github.com/google/model-viewer/blob/v4.1.0/packages/modelviewer.dev/data/docs.json",
+      "displayUrl":"https://modelviewer.dev/examples/stagingandcameras/",
+      "title":"model-viewer4.1.0 original documentation data:src,camera-controls,camera-orbit,availableAnimations,currentTime",
+      "organisation":"Google model-viewer maintainers",
+      "independenceGroup":"Google/model-viewer",
+      "readScope":"Exact taggedv4.1.0 original docs fetched through the GitHub connector and selected entries fully read. The camera-orbit entry describes camera angle/radius and window-relative framing; animation entries refer to animations present in the loaded model. The official staging/camera example text was also read. Local actual GLB JSON chunks were independently parsed and contain no animation or skin entries.",
+      "localEvidence":"model-viewer-v4.1.0-docs-excerpt.json and inventory.json",
+      "role":"Independent technical interpretation of existing viewer operations, not a second museum provenance source or a claim that every glTF model must be static. No source code, source figures or new renderer is added to the product."
+    }
+  ],
+  "questions":[
+    {
+      "questionId":"art","modelId":"schaedel","questionDirection":"positive: identify the species explicitly assigned by the collection","unchangedAnswerIndex":1,"fourthChoice":"Damhirsch","newAlternativeTruth":false,
+      "comparison":"Dama dama is not the curator-assigned Odocoileus virginianus. The candidate is a familiar other cervid without using antler form or a photograph to invent a new identification.",
+      "sourceIds":["smithsonianRecord","adwDama"],"independentFamilyCount":2,
+      "existingTeaching":"All3model scientificName fields and the main museum boundary name the North American white-tailed deer, not a native roe/red deer. The old full explanation remains exact.",
+      "limit":"No new origin/range/age assertion; do not claim the independent species account inspected these particular casts."
+    },
+    {
+      "questionId":"auge","modelId":"schaedel","questionDirection":"positive: distinguish direct bony observation from a living-eye property","unchangedAnswerIndex":0,"fourthChoice":"Die Lichtempfindlichkeit der Netzhaut","newAlternativeTruth":false,
+      "comparison":"The cast shows orbit location. A retinal light-response property is not directly visible in that bony shape, just as the old choices already exclude exact acuity and eye colour.",
+      "sourceIds":["smithsonianSkull","openstaxRetina"],"independentFamilyCount":2,
+      "existingTeaching":"augenhoehle already explicitly limits inference from the skull to individual vision; nasenraum also distinguishes bone from missing mucosal soft tissue.",
+      "limit":"No value for sensitivity, no claim of poor/good vision in this animal, no human foveal anatomy or numbers transferred to deer."
+    },
+    {
+      "questionId":"luecke","modelId":"unterkiefer","questionDirection":"positive: choose the name of the tooth-free interval, not the socket of a tooth","unchangedAnswerIndex":1,"fourthChoice":"Ein Zahnfach (Alveole)","newAlternativeTruth":false,
+      "comparison":"Diastema denotes the interval between tooth groups in this teaching example; an alveolus is the socket associated with an individual tooth. This is a plausible neighbouring anatomical term, distinct from the old horn-pedicle/ear-canal distractors.",
+      "sourceIds":["smithsonianSkull","utepGlossary"],"independentFamilyCount":2,
+      "existingTeaching":"diastema already calls the gap a normal structural feature rather than automatic tooth loss. The original definition/explanation and model camera remain untouched.",
+      "limit":"No dental-age judgement, disease conclusion, fracture interpretation or claim that every apparent gap is a normal diastema."
+    },
+    {
+      "questionId":"weichteil","modelId":"unterkiefer","questionDirection":"positive: identify an actual limitation of this bone cast","unchangedAnswerIndex":2,"fourthChoice":"Fehlende Muskeln werden beim Drehen automatisch ergänzt","newAlternativeTruth":false,
+      "comparison":"The recorded object is a bone cast, and camera-orbit changes the view of the loaded data. In the actual unchanged cast files/component there is no source of reconstructed missing musculature. This is a bounded inference about these exact models, not a general ban on anatomical software having additional layers.",
+      "sourceIds":["smithsonianRecord","modelViewer410"],"independentFamilyCount":2,
+      "existingTeaching":"kieferast already says muscles/cartilage are not shown, and the old question explanation explicitly lists missing living soft-tissue structures.",
+      "limit":"Do not claim model-viewer certifies biological completeness or that all3Dsoftware cannot reconstruct tissue. No new model or reconstruction is proposed."
+    },
+    {
+      "questionId":"groessen","modelId":"vorderlauf","questionDirection":"positive: choose whether these views are a valid same-scale comparison","unchangedAnswerIndex":1,"fourthChoice":"Ja, wenn beide Modelle ihr Ansichtsfenster ganz ausfüllen","newAlternativeTruth":false,
+      "comparison":"The curator expressly warns that skull/forelimb may be from different specimens and are not to common scale. Camera framing is based on each loaded model and window; equal viewport filling does not overturn that warning.",
+      "sourceIds":["smithsonianRecord","modelViewer410"],"independentFamilyCount":2,
+      "existingTeaching":"massstab and the original question explanation already separate displayed size from bodily size. This fourth option checks the actual fit-to-window misunderstanding without changing model units.",
+      "limit":"No physical size, conversion factor or altered GLB scale; no claim that metric geometry is impossible in the file format."
+    },
+    {
+      "questionId":"scan","modelId":"vorderlauf","questionDirection":"positive: identify the actual digital teaching medium","unchangedAnswerIndex":2,"fourthChoice":"Eine Filmaufnahme eines lebenden Vorderlaufs","newAlternativeTruth":false,
+      "comparison":"The collection identifies scanned physical casts. The tool loads those exactGLB3Dassets and exposes camera orbit; the local source files have no animation data. A change of viewpoint is not a recorded motion sequence of a living limb.",
+      "sourceIds":["smithsonianRecord","modelViewer410"],"independentFamilyCount":2,
+      "existingTeaching":"The existing Vorderlauf description explains the arranged cast parts and explicitly says their spacing is not live joint movement. The old scan explanation already rules out reconstructing missing tissue/movement.",
+      "limit":"No walking sequence, muscle-force measurement, live scan or medical-imaging claim; only this static cast model's documented identity is contrasted with film."
+    }
+  ],
+  "licenceScope":"No new images, models, videos or third-party teaching figures. Existing3GLBs remain byte-identical and CC0 with their current curator attributions/4October records. Proposed short German answer phrases are original editorial wording. Documentation excerpts are solely local audit evidence, not new product content.",
+  "reviewBoundary":"Root approved the six exact appended alternatives after the separate source review. A further independent reviewer checks the final files. That does not relabel any source proof as independently replicated museum identification.",
+  "productEdit":"Only the six new choices[3] in lib/anatomy-explorer.js. No other product file edited by this author."
+}

@@ -31,7 +31,11 @@ test('Anatomy initially renders only its chosen model knowledge, provenance and 
   const s = setup();
   assert.equal(s.quiz().props.open, false);
   assert.ok(s.text().includes(s.data.anatomyModels[0].description));
-  for (const question of s.data.anatomyQuestions) assert.ok(!s.text().includes(question.question));
+  for (const question of s.data.anatomyQuestions) assert.ok(!words(s.quiz()).includes(question.question));
+  assert.equal(find(s.quiz(), node => node.props?.['aria-labelledby'] === 'anatomie-fragen'), null);
+  const sources = find(s.tree, node => node.type === 'details' && words(find(node, child => child.type === 'summary')) === 'Fachliche Quellen und Modellnachweise');
+  assert.ok(sources && !sources.props.open);
+  for (const question of s.data.anatomyQuestions.filter(item => item.modelId === s.data.anatomyModels[0].id)) assert.ok(words(sources).includes(question.question));
   assert.ok(s.text().includes('Weißwedelhirsches')); assert.ok(s.text().includes('Fachliche Quellen und Modellnachweise'));
 });
 

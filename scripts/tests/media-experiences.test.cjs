@@ -179,9 +179,14 @@ test('The anatomy selector opens real-photo digestion content directly and retai
   assert.ok(panel); assert.equal(panel.props.selectedId, 'schwarzwild-verdauung'); assert.equal(panel.props.hideSelector, true);
   chooseMenu(app.tree, 'anatomy-entry-select', anatomy.anatomyModels[0].id); app.redraw();
   assert.equal(find(app.tree, node => node.type?.name === 'DigestiveLearning'), null);
-  assert.ok(!app.content().includes(anatomy.anatomyQuestions[0].question));
+  const quizPanel = () => find(app.tree, node => node.type === 'section' && node.props['aria-labelledby'] === 'anatomie-fragen');
+  assert.equal(quizPanel(), null, 'A closed quiz has no rendered question/answer panel');
+  const sourcePanel = find(app.tree, node => node.type === 'details' && text(find(node, child => child.type === 'summary')) === 'Fachliche Quellen und Modellnachweise');
+  assert.ok(sourcePanel && !sourcePanel.props.open, 'Comparison citations stay in the separately closed source section');
+  assert.ok(text(sourcePanel).includes(anatomy.anatomyQuestions[0].question), 'The source mapping may identify a question without opening its quiz');
   openAnatomyQuiz(app);
-  assert.ok(app.content().includes(anatomy.anatomyQuestions[0].question));
+  assert.ok(quizPanel());
+  assert.ok(text(quizPanel()).includes(anatomy.anatomyQuestions[0].question));
 });
 
 test('Direct search links select valid content and unknown observation IDs never substitute another case', () => {

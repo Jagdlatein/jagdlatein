@@ -367,7 +367,8 @@ test('Expanded cards preserve the active category, typed search and quiz feedbac
   const pending = deferred(); const b = browser(() => pending.promise);
   const h = hookHarness({ ...baseProps, deck: makeDeck(addChoices(seedCards)) }); const e = engine();
   const router = { query: {}, isReady: true, asPath: '/lernen/lernkarten' };
-  const commit = href => { const url = new URL(href, 'https://jagdlatein.de'); router.asPath = url.pathname + url.search + url.hash; router.query = Object.fromEntries(url.searchParams); return Promise.resolve(true); };
+  global.window.location = { pathname: '/lernen/lernkarten', search: '', hash: '' };
+  const commit = href => { const url = new URL(href, 'https://jagdlatein.de'); router.asPath = url.pathname + url.search + url.hash; router.query = Object.fromEntries(url.searchParams); Object.assign(global.window.location, { pathname: url.pathname, search: url.search, hash: url.hash }); return Promise.resolve(true); };
   router.push = commit; router.replace = commit;
   const UI = load('components/LearningFlashcards.js', { react: e.hooks, 'next/router': { useRouter: () => router } }).default;
   let tree;

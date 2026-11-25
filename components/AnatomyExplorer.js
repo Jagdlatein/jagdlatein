@@ -8,6 +8,7 @@ import PageMenu, { closePageMenu, openPageMenu } from "./PageMenu";
 import MenuChoice from "./MenuChoice";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { anatomyModels, anatomyQuestions, anatomySources } from "../lib/anatomy-explorer";
+import { anatomyChoiceCheckedOn, getAnatomyChoiceSources } from "../lib/anatomy-choice-sources";
 import styles from "../styles/LearningExperience.module.css";
 import mediaStyles from "../styles/LearningMediaExperiences.module.css";
 
@@ -83,6 +84,7 @@ export default function AnatomyExplorer() {
   const renderGeneration = generation.current;
   // Keep the original catalog's explicit modelId association.
   const questions = model ? anatomyQuestions.filter(item => item.modelId === modelId) : [];
+  const choicesReviewed = new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${anatomyChoiceCheckedOn}T00:00:00Z`));
   const question = questions[questionIndex];
   const selected = question ? answers[question.id] : undefined;
   const answeredCount = questions.filter(item => answers[item.id] !== undefined).length;
@@ -256,7 +258,7 @@ export default function AnatomyExplorer() {
         {answeredCount === questions.length && <p className={styles.note} role="status">Runde abgeschlossen: {correct} von {questions.length} richtig. Du kannst jede Erklärung wieder aufrufen.</p>}
       </section>}
     </details>}
-    <details className={styles.sources}><summary>Fachliche Quellen und Modellnachweise</summary><ul>{anatomySources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul><p>Fachlich geprüft am 4. Oktober 2026. Anatomische Grundstrukturen werden erläutert; keine Altersbestimmung, medizinische Diagnose oder Übertragung exakter Größen auf heimische Wildarten.</p><p>3D-Anzeige: Google model-viewer 4.1.0, lokal bereitgestellt. <a href="/lernen/anatomie/MODEL-VIEWER-LICENSE.txt">Paketlizenz</a> · <a href="/lernen/anatomie/MODEL-VIEWER-NOTICES.txt">Weitere Lizenzhinweise</a></p></details>
+    <details key={`sources-${model.id}`} className={styles.sources}><summary>Fachliche Quellen und Modellnachweise</summary><ul>{anatomySources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul><p>Fachlich geprüft am 4. Oktober 2026. Anatomische Grundstrukturen werden erläutert; keine Altersbestimmung, medizinische Diagnose oder Übertragung exakter Größen auf heimische Wildarten.</p><h3>Ergänzte Antwortauswahl</h3><p>Die ergänzten Antwortvergleiche dieser Modellfragen wurden am {choicesReviewed} geprüft. Die Sammlung belegt das konkrete Objekt. Die weiteren Quellen erläutern die anatomischen oder technischen Unterschiede; sie sind keine zweite Bestimmung derselben Abgüsse.</p><ul>{questions.map(item => <li key={item.id}><strong>{item.question}</strong><ul>{getAnatomyChoiceSources(item.id).map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul></li>)}</ul><p>3D-Anzeige: Google model-viewer 4.1.0, lokal bereitgestellt. <a href="/lernen/anatomie/MODEL-VIEWER-LICENSE.txt">Paketlizenz</a> · <a href="/lernen/anatomie/MODEL-VIEWER-NOTICES.txt">Weitere Lizenzhinweise</a></p></details>
     </>}
     </div>}
   </LearningToolLayout>;
