@@ -75,6 +75,7 @@ function tracksLawSelection(path) {
 const toolSelectionFields = {
   "/kurse": ["kategorie", "format"],
   "/lernen/tierstimmen": ["stimme"],
+  "/lernen/fotodetektiv": ["ansicht", "art"],
   "/lernen/videos": ["bereich"],
   "/lernen/spurenwerkstatt": ["eintrag", "ansicht"],
   "/lernen/wildbret-stuecke": ["eintrag", "ansicht"],
@@ -89,7 +90,7 @@ const toolSelectionFields = {
   "/lernen/wildjahr": ["art", "monat"],
   "/lernen/wildtier-videofaelle": ["eintrag"],
   "/lernen/pruefungsgespraech": ["kategorie", "eintrag"],
-  "/lernen/pruefungsplan": ["kategorie", "stand"],
+  "/lernen/pruefungsplan": ["kategorie", "stand", "lernziel"],
   "/lernen/hundetraining-tagebuch": ["eintrag"],
   "/lernen/anatomie": ["bereich", "thema", "eintrag"],
   "/lernen/kiefer-3d": ["art", "vergleich"],

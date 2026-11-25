@@ -17,7 +17,9 @@ const context = vm.createContext({ process: { env: { JL_SESSION_SECRET: 'isolate
 function load(relative) {
   const filename = path.join(root, relative);
   if (cache.has(filename)) return cache.get(filename).exports;
-  if (filename.endsWith('.json')) return JSON.parse(fs.readFileSync(filename, 'utf8'));
+  // Real bundled JSON shares the module's realm. Parsing in the host realm
+  // incorrectly fails the application's deliberate plain-record validation.
+  if (filename.endsWith('.json')) return vm.runInContext(`JSON.parse(${JSON.stringify(fs.readFileSync(filename, 'utf8'))})`, context);
   const { code } = swc.transformSync(fs.readFileSync(filename, 'utf8'), { filename, disableNextSsg: true,
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022' }, module: { type: 'commonjs' } });
   const mod = { exports: {} }; cache.set(filename, mod);

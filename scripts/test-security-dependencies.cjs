@@ -24,8 +24,8 @@ function atLeast(version, minimum) {
     (parts[0] > required[0] || parts[0] === required[0] && (parts[1] > required[1] || parts[1] === required[1] && parts[2] >= required[2]));
 }
 
-test('Installed and locked Next/Nodemailer are pinned to the reviewed fixes; unrelated runtime versions remain selected', () => {
-  for (const [name, version] of [['next', '15.5.28'], ['nodemailer', '10.1.4']]) {
+test('Installed and locked Next/XML/Nodemailer are pinned to the reviewed fixes; unrelated runtime versions remain selected', () => {
+  for (const [name, version] of [['next', '15.5.29'], ['fast-xml-parser', '5.12.1'], ['nodemailer', '10.1.4']]) {
     assert.equal(manifest.dependencies[name], version);
     assert.equal(lock.packages[''].dependencies[name], version);
     assert.equal(lock.packages['node_modules/' + name].version, version);
@@ -34,6 +34,27 @@ test('Installed and locked Next/Nodemailer are pinned to the reviewed fixes; unr
   assert.equal(manifest.dependencies['@vercel/functions'], '3.10.1');
   assert.equal(manifest.dependencies.react, '19.3.0');
   assert.equal(manifest.dependencies['react-dom'], '19.3.0');
+  assert.equal(manifest.dependencies['firebase-admin'], '^14.4.0');
+  assert.equal(Object.hasOwn(manifest.dependencies, '@opentelemetry/api'), false);
+  assert.equal(Object.hasOwn(manifest.overrides, 'google-gax'), false);
+  assert.equal(Object.hasOwn(manifest.overrides, 'glob'), false);
+  for (const name of ['glob', 'rimraf', 'minimatch']) {
+    assert.equal(Object.keys(lock.packages).some(key => key.endsWith('/node_modules/' + name) || key === 'node_modules/' + name), false, name);
+  }
+});
+
+test('The installed Firestore graph loads its mandatory telemetry dependency without initializing a Firebase app', () => {
+  const apps = local('firebase-admin/app');
+  const before = apps.getApps().slice();
+  const firestore = local('firebase-admin/firestore');
+  const messaging = local('firebase-admin/messaging');
+  assert.equal(typeof firestore.getFirestore, 'function');
+  assert.equal(typeof messaging.getMessaging, 'function');
+  const firestoreMetadata = installed('@google-cloud/firestore');
+  const fromFirestore = createRequire(firestoreMetadata.file);
+  const telemetry = fromFirestore('@opentelemetry/api');
+  assert.equal(typeof telemetry.trace.getTracer, 'function');
+  assert.deepEqual(apps.getApps(), before);
 });
 
 test('Next resolves the patched Sharp and its actual native image path still handles a tiny isolated in-memory PNG', async () => {

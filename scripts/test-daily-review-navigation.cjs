@@ -44,7 +44,8 @@ async function fixture(t,{query={},ready=true,history=seededHistory()}={}){
  const Component=createLoader({'next/router':{useRouter:()=>router},'next/head':()=>null,'next/link':({href,children,...props})=>React.createElement('a',{href,...props},children)})('components/DailyReview.js').default;
  let mounted=local('react-dom/client').createRoot(document.getElementById('root'));
  const render=()=>React.act(async()=>{mounted.render(React.createElement(Component,{pool:catalog}));await settle();});
- async function route(nextQuery,hash='',nextReady=true){router.query=nextQuery;router.asPath=address(nextQuery,hash);router.isReady=nextReady;dom.window.history.replaceState(null,'',router.asPath);document.getElementById('jl-page-menu').setAttribute('data-page-menu-route',base+(dom.window.location.search||''));await render();}
+ function rawRoute(nextQuery,hash='',nextReady=true){router.query=nextQuery;router.asPath=address(nextQuery,hash);router.isReady=nextReady;dom.window.history.replaceState(null,'',router.asPath);document.getElementById('jl-page-menu').setAttribute('data-page-menu-route',base+(dom.window.location.search||''));}
+ async function route(nextQuery,hash='',nextReady=true){rawRoute(nextQuery,hash,nextReady);await render();}
  async function answer(index=requests.length-1,status=200,body){const request=requests[index];assert.ok(request);const ids=new URL(request.url,'https://example.invalid').searchParams.get('ids').split(',');await React.act(async()=>{request.resolve({ok:status>=200&&status<300,status,json:async()=>body||{questions:ids.map(id=>questions.find(question=>question.id===id)).reverse()}});await settle();});}
  async function choose(id,value){const control=choice(id,value);assert.ok(control);await React.act(async()=>{control.click();await settle();});}
  async function click(label){const control=[...document.querySelectorAll('button')].find(button=>button.textContent===label);assert.ok(control,label);await React.act(async()=>{control.click();await settle();});}
@@ -52,7 +53,7 @@ async function fixture(t,{query={},ready=true,history=seededHistory()}={}){
  const text=()=>document.getElementById('root').textContent;
  t.after(async()=>{if(mounted)await React.act(async()=>mounted.unmount());dom.window.close();for(const[key,value]of saved){if(value)Object.defineProperty(globalThis,key,value);else delete globalThis[key];}});
  await route(query,'',ready);
- return{dom,router,records,writes,reads,navigation,requests,focuses,scrolls,render,route,answer,choose,click,ids,text,async unmount(){if(mounted){await React.act(async()=>mounted.unmount());mounted=null;}},button(label){return[...document.querySelectorAll('button')].find(button=>button.textContent===label);}};
+ return{dom,router,records,writes,reads,navigation,requests,focuses,scrolls,render,rawRoute,route,answer,choose,click,ids,text,async unmount(){if(mounted){await React.act(async()=>mounted.unmount());mounted=null;}},button(label){return[...document.querySelectorAll('button')].find(button=>button.textContent===label);}};
 }
 
 test('Bare entry keeps the original mixed selection and places only canonical controls in the actual existing lower menu',async t=>{
@@ -158,4 +159,100 @@ test('A late old question response and old selection handler cannot overwrite th
  await React.act(async()=>{select({target:{value:'faellig'}});await settle();});assert.equal(h.navigation.length,0);
  const currentSelect=callback(choice('review-mode','gemischt'));await h.choose('review-mode','faellig');assert.equal(h.navigation.length,1);
  await h.unmount();await React.act(async()=>{h.navigation[0].reject(new Error('Synthetic navigation after unmount'));select({target:{value:'faellig'}});currentSelect({target:{value:'gemischt'}});await settle();});assert.equal(h.navigation.length,1);assert.equal(h.writes.length,0);
+});
+
+test('Selection callbacks reject raw URL, query and readiness changes before the next render, including in-place query mutation',async t=>{
+ const h=await fixture(t,{query:{modus:'gemischt',kategorie:'wildkunde'}});await h.answer();
+ const original={modus:'gemischt',kategorie:'wildkunde'};
+ const changes=[
+  ['selection',()=>h.rawRoute({modus:'gemischt',kategorie:'hundewesen',quelle:'synthetic-history'},'other-anchor')],
+  ['in-place',()=>{h.router.query.kategorie='hundewesen';}],
+  ['context',()=>h.rawRoute({...original,quelle:'context-only'})],
+  ['hash',()=>h.rawRoute(original,'hash-only')],
+  ['readiness',()=>{h.router.isReady=false;}],
+ ];
+ for(const [kind,change] of changes){
+  await h.route({...original});
+  await React.act(async()=>{await new Promise(resolve=>setTimeout(resolve,1));});
+  const oldMode=callback(choice('review-mode','fehler')),oldCurrent=callback(choice('review-mode','gemischt')),oldCategory=callback(choice('review-category','hundewesen'));
+  const before={navigation:h.navigation.length,requests:h.requests.length,writes:h.writes.length,focuses:h.focuses.length,scrolls:h.scrolls.length,text:h.text()};
+  const queryObject=h.router.query;change();if(kind==='in-place')assert.equal(h.router.query,queryObject);
+  await React.act(async()=>{oldMode();oldCurrent();oldCategory();await settle();});
+  assert.deepEqual({navigation:h.navigation.length,requests:h.requests.length,writes:h.writes.length,focuses:h.focuses.length,scrolls:h.scrolls.length,text:h.text()},before);
+  // Once a departure has been observed, returning to identical bytes cannot
+  // revive handlers from the abandoned render before React commits again.
+  h.rawRoute({...original});
+  await React.act(async()=>{oldMode();oldCurrent();oldCategory();await settle();});
+  assert.equal(h.navigation.length,before.navigation);
+  assert.equal(h.writes.length,0);
+ }
+ await h.route({...original});await h.choose('review-mode','fehler');assert.equal(h.navigation.length,1,'The current rendered choice still navigates');
+ const attempt=h.navigation[0];await h.route(attempt.href.query,attempt.href.hash);await React.act(async()=>{attempt.resolve(true);await settle();});await h.answer();assert.equal(chosen('review-mode'),'fehler');
+});
+
+test('A raw route committed before render prevents every late push outcome from repainting, opening or focusing its former selection',async t=>{
+ const h=await fixture(t,{query:{modus:'gemischt',kategorie:'wildkunde'}});await h.answer();
+ const original={modus:'gemischt',kategorie:'wildkunde'};
+ for(const outcome of ['accepted','false','failure','cancelled']){
+  await h.route({...original});await h.choose('review-mode','fehler');
+  const attempt=h.navigation.at(-1);
+  await React.act(async()=>{await new Promise(resolve=>setTimeout(resolve,1));});
+  document.querySelector('nav details').open=false;
+  const before={requests:h.requests.length,writes:h.writes.length,focuses:h.focuses.length,scrolls:h.scrolls.length,text:h.text()};
+  h.rawRoute({...original,quelle:`raw-${outcome}`},'new-context');
+  await React.act(async()=>{
+   if(outcome==='failure')attempt.reject(new Error('Synthetic failed route after raw change'));
+   else if(outcome==='cancelled')attempt.reject(Object.assign(new Error('Synthetic cancelled route after raw change'),{cancelled:true}));
+   else attempt.resolve(outcome==='accepted');
+   await settle();
+  });
+  assert.deepEqual({requests:h.requests.length,writes:h.writes.length,focuses:h.focuses.length,scrolls:h.scrolls.length,text:h.text()},before);
+  assert.equal(document.querySelector('nav details').open,false);
+  assert.equal(document.querySelector('[role="alert"]'),null);
+  assert.equal(h.button('Antwort a').disabled,true,'Only the new committed render releases the former pending view');
+  await h.render();
+  assert.equal(h.button('Antwort a').disabled,false);
+  assert.equal(chosen('review-mode'),'gemischt');
+  assert.equal(chosen('review-category'),'wildkunde');
+  assert.equal(h.requests.length,before.requests,'Context-only history keeps the existing round');
+ }
+ assert.equal(h.writes.length,0);
+});
+
+test('Browser-only departures and incomplete browser/router commits block old menu, answer and removal actions without changing the round history',async t=>{
+ const original={modus:'gemischt',kategorie:'wildkunde'},h=await fixture(t,{query:original});await h.answer();
+ const mode=callback(choice('review-mode','fehler')),answer=callback(h.button('Antwort a')),remove=callback(h.button('Wiederholungsverlauf entfernen'));
+ const bytes=h.records.get(review.REVIEW_STORAGE_KEY),counts={navigation:h.navigation.length,requests:h.requests.length,writes:h.writes.length,focuses:h.focuses.length};
+ h.dom.window.history.replaceState(null,'','#browser-before-router');
+ await React.act(async()=>{mode();answer();remove();await settle();});
+ assert.deepEqual({navigation:h.navigation.length,requests:h.requests.length,writes:h.writes.length,focuses:h.focuses.length},counts);assert.equal(h.records.get(review.REVIEW_STORAGE_KEY),bytes);
+ await h.render();assert.equal(h.focuses.length,counts.focuses,'An incomplete browser commit cannot move the reading focus');await React.act(async()=>{callback(choice('review-mode','fehler'))();callback(h.button('Antwort a'))();callback(h.button('Wiederholungsverlauf entfernen'))();await settle();});
+ assert.equal(h.navigation.length,counts.navigation);assert.equal(h.writes.length,0);assert.equal(h.records.get(review.REVIEW_STORAGE_KEY),bytes);
+ await h.route({...original});await h.choose('review-mode','fehler');assert.equal(h.navigation.length,counts.navigation+1);
+ const pending=h.navigation.at(-1);await h.route(pending.href.query,pending.href.hash);await React.act(async()=>{pending.resolve(true);await settle();});
+ await h.answer();await h.click('Antwort a');assert.equal(h.writes.length,1,'A current committed answer remains functional');
+});
+
+test('Delayed invalid-selection help cannot open or focus the lower menu after a raw departure or unmount; current help still works',async t=>{
+ const h=await fixture(t,{query:{modus:'gemischt',kategorie:'wildkunde'}});await h.answer();
+ const jobs=[],originalTimeout=globalThis.setTimeout;
+ try{
+  globalThis.setTimeout=(action,delay,...args)=>{
+   if(delay===0&&String(action).includes('review-selection')){const job={action,args};jobs.push(job);return job;}
+   return originalTimeout(action,delay,...args);
+  };
+  await h.route({modus:'unknown-mode'});
+ }finally{globalThis.setTimeout=originalTimeout;}
+ assert.equal(jobs.length,1,'Hold only the actual invalid-selection help callback');
+ const menu=document.querySelector('nav details');menu.open=false;
+ const before={focuses:h.focuses.length,scrolls:h.scrolls.length,requests:h.requests.length,writes:h.writes.length};
+ h.rawRoute({modus:'gemischt',kategorie:'hundewesen'},'new-raw-context');
+ await React.act(async()=>{jobs[0].action(...jobs[0].args);await settle();});
+ assert.equal(menu.open,false);assert.deepEqual({focuses:h.focuses.length,scrolls:h.scrolls.length,requests:h.requests.length,writes:h.writes.length},before);
+ await h.render();await h.answer();
+ await h.route({modus:'unknown-mode'});await React.act(async()=>{await new Promise(resolve=>setTimeout(resolve,1));});
+ assert.equal(menu.open,true,'Current invalid selection still offers the existing lower help');
+ menu.open=false;await h.unmount();const focuses=h.focuses.length;
+ await React.act(async()=>{jobs[0].action(...jobs[0].args);await settle();});
+ assert.equal(menu.open,false);assert.equal(h.focuses.length,focuses);assert.equal(h.writes.length,0);
 });

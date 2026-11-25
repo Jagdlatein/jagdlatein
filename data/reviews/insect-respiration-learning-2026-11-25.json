@@ -1,0 +1,68 @@
+{
+  "reviewedOn": "2026-11-25",
+  "baselineCommit": "7b69962b0fee40db63096d512b852a4241c90fcb",
+  "scope": "Eine neue Schlusslektion im bestehenden Insektenkurs mit zwei eigenen Vierantwortfragen und zwei tatsächlich erzeugten Karten. Keine neue Kategorie oder Route. Die fünf bisherigen Lektionen, 34 Fragen und zehn Quellen sowie sämtliche übrigen Kurse bleiben unverändert. Keine vollständige fachliche Zertifizierung des Altbestands.",
+  "moduleId": "wissen-ausbau-habitat-insektenentwicklung-2026",
+  "lessonId": "tracheen-atmung",
+  "productFile": "data/learning-expansion-habitat-depth-2026-10-17.json",
+  "wordCount": 185,
+  "claims": [
+    {
+      "id": "luftweg",
+      "claim": "Im benannten offenen Tracheensystem eines landlebenden Insekts verbinden Stigmen die Aussenluft mit einem verzweigten inneren Röhrensystem. Feinste Endverzweigungen reichen nahe an die Gewebezellen; Sauerstoff gelangt dort durch Diffusion zu den Zellen.",
+      "sourceIds": ["ncsu", "msstate"],
+      "boundary": "Kein allgemeiner Bauplan aller aquatischen Larven, keine feste Stigmenzahl, kein kopiertes Mikrobild. Keine Aussage, das Tracheolenröhrchen selbst sei eine ganze Zelle."
+    },
+    {
+      "id": "ventilation-diffusion",
+      "claim": "Luftbewegung durch Ventilation und zellnaher Gasaustausch durch Diffusion sind verschiedene Schritte. Im Heuschrecken-Grundmodell können Körper-/Hinterleibsbewegungen durch Volumenänderung den Lufttransport unterstützen; Stigmen können geöffnet und geschlossen werden.",
+      "sourceIds": ["ncsu", "msstate"],
+      "boundary": "Keine Atemrate, Menge, Körpergrössengrenze oder universelle Gleichsetzung sichtbarer Körperbewegung mit bestimmter Atemleistung. Ventilation ersetzt nicht den zellnahen Diffusionsvorgang."
+    }
+  ],
+  "sources": [
+    {
+      "id": "ncsu",
+      "title": "Respiratory System – ENT 425 General Entomology",
+      "url": "https://genent.cals.ncsu.edu/bug-bytes/respiratory-system/",
+      "organization": "North Carolina State University, Department of Entomology",
+      "actuallyRead": "Vollständigen direkten Originallehrtext gelesen; besonders Atemöffnungen, verzweigter Luftweg, feinste Enden am Gewebe und Diffusion sowie den abschliessenden Ventilationsabsatz. Root hat den konkreten Originaltext ebenfalls selbst gelesen.",
+      "role": "Eigenes institutionelles Lehrmaterial zur Grundstruktur und Funktion, unabhängig von Mississippi State.",
+      "excluded": "Keine Zellstoffwechselreaktion, Stigmenzahl, quantitative Körpergrössengrenze, Taenidien-Mikrostruktur oder einheitliche Aquatik-Anpassung. Keine ausnahmslose Hämolymph-/Sauerstoffträgerregel."
+    },
+    {
+      "id": "msstate",
+      "title": "What are Insects Like on the Inside? Vol. 7, No. 16, 2021",
+      "author": "Blake Layton, Extension Entomology Specialist",
+      "url": "https://extension.msstate.edu/newsletters/bugs-eye-view/2021/what-are-insects-the-inside-vol-7-no-16",
+      "organization": "Mississippi State University Extension Service",
+      "actuallyRead": "Vollständigen direkten Originalfachtext gelesen, besonders die Absätze zu Stigmen, Tracheen/Tracheolen und unterstützenden Körperbewegungen. Die Heuschrecke wird als Beispiel genannt. Root hat die betreffenden Originalabschnitte ebenfalls selbst gelesen.",
+      "role": "Unabhängig verfasste institutionelle Fachinformation und beschriebenes Raupenbeispiel. Keine unabhängige Wiederholung eines Röntgenexperiments.",
+      "excluded": "Kein tropisches Raupenfoto, keine Stigmenzahl oder Ringstruktur sämtlicher Tracheolen, keine ausnahmslose Blut-/Sauerstoffträgerbehauptung übernommen."
+    }
+  ],
+  "supplementaryReadingNotUsedForProductClaims": [
+    {
+      "title": "Westneat und andere 2003: Tracheal respiration in insects visualized with synchrotron x-ray imaging",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12543973/",
+      "doi": "10.1126/science.1078008",
+      "actuallyRead": "Agent las den vollständigen Originalabstract direkt. Root las den vollständig indexierten amtlichen PubMed-Originalabstract, nachdem die Direktansicht bei ihm nur Footer beziehungsweise Formatfehler lieferte. Kein vollständiger Methoden-/Ergebnistext behauptet.",
+      "boundary": "Die Arbeit beobachtet spezielle Kompressions-/Ausdehnungszyklen in Kopf/Thorax untersuchter Käfer, Grillen und Ameisen. Das ist kein unabhängiger Nachweis für Hinterleibspumpen der Heuschrecke. Deshalb weder Produkt-Claimquelle noch allgemeine Artregel."
+    },
+    {
+      "title": "Atemsystem an lebenden Insekten erforscht, 23. Januar 2003",
+      "url": "https://www.uni-kiel.de/de/detailansicht/news/atemsystem-an-lebenden-insekten-erforscht",
+      "organization": "Christian-Albrechts-Universität zu Kiel, Zoologisches Institut / Oliver Betz",
+      "actuallyRead": "Relevante vollständige Originalmitteilung direkt gelesen; Root las den Originaltext ebenfalls.",
+      "boundary": "Beteiligte Forschungsgruppe derselben Westneat-Studie, keine zweite unabhängige Replikation. Keine Volumen-, Zeit-, Menschenleistungs- oder evolutive Schlussfolgerung übernommen."
+    }
+  ],
+  "exercise": "Eigenes vereinfachtes Papiermodell mit getrennten Pfeilen für Atemluftbewegung und Sauerstoffübertritt; keine Tiere fangen, öffnen oder an ihren Atemöffnungen manipulieren. Das zusätzliche digitale Funktionsschema ersetzt die eigene Zeichenaufgabe nicht.",
+  "questionIds": ["tracheen-luftweg", "tracheen-ventilation"],
+  "questionRoles": ["Äussere Öffnung, innerer Luftweg und Gewebe räumlich ordnen", "Lufttransport durch Ventilation vom Diffusionsvorgang unterscheiden"],
+  "dates": "Nur neue Lektion reviewedOn 25.11.2026 und zwei neue Quellen checkedOn 25.11.2026. Kurs-/Dateidatum 17.10.2026, alte Lektionsdaten und alle alten Kartenprüfstände bleiben unverändert.",
+  "crossCheck": "Bestehende Heuschrecken-Nymphenlektion, Insektenentwicklung, Buchdrucker-Brutbild, Säuger-/Vogel-Trachea-Erklärungen sowie Teich-/Kleintierthemen auf Dopplung oder Widerspruch gelesen. Kein vorhandener Insekten-Tracheen-Grundtext gefunden; keine bestätigte Alttextkorrektur erforderlich.",
+  "media": "Keine neuen Fotos, Videos, fremden Lehrbilder oder Medienkosten. Root ergänzt in lib/lesson-diagrams.js ein eigenes Funktionsschema ausschliesslich für tracheen-atmung: Stigma, verzweigter Luftweg/Luftbewegung, Tracheolen und Gewebe/Diffusion. Es muss sichtbar als vereinfachtes, nicht massstäbliches Schema und nicht als anatomisches Foto erkennbar bleiben. Dieselben zwei Kernquellen tragen den engen Inhalt; keine Kopie ihrer Abbildungen. Root besitzt Diagrammdatei und Diagrammtests, ein anderer Agent prüft das finale Schema unabhängig. Eine eigene Papierskizze wird weiterhin vom Lernenden erstellt.",
+  "preservation": "Enges benanntes Appendix mit eigenem striktem Historical-Helper; positive vollständige Kurs-/Kartenvergleiche gegen den produktiven Ausgangscommit. Fremdes afternoon-JSON und marketing bleiben unangetastet.",
+  "reviewBoundary": "Struktur-, Integrations- und Bestandsvergleiche ersetzen keine fachliche Gegenprüfung. Root-Fachlektüre liegt vor. Der unabhängige Praxisagent hat Originalquellen, Text, Fragen/Karten und eigenen positiven Altobjektvergleich bereits geprüft und keinen Textblocker gemeldet; der endgültige externe Bericht und die separate Schemafreigabe folgen nach den jeweiligen Freezes."
+}

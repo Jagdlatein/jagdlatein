@@ -2,6 +2,7 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { assertDiagramHistory, laterPublished } = require('./helpers/lesson-diagram-history-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const { getLessonDiagram } = load('lib/lesson-diagrams.js');
@@ -34,14 +35,12 @@ test('Every diagram that existed at 98fc900 retains its complete original value'
   const oldSource = execFileSync('git', ['show', '98fc900a6825bfa1c1c7f3520814eb954e4498f5:lib/lesson-diagrams.js'], { cwd: root, encoding: 'utf8' });
   const { code } = local('next/dist/build/swc').transformSync(oldSource, { filename: 'lesson-diagrams.js', jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
   const prior = { exports: {} }; new Function('module', 'exports', code)(prior, prior.exports);
+  const seen = new Set();
   for (const item of learningModules) for (const lesson of item.lessons) {
-    if (item.id === courseId && lesson.id === lessonId) continue;
-    if (item.id === 'wissen-ausbau-biologie-verdauungsvergleich-2026' && lesson.id === 'zotten-mikrovilli') continue;
-    if (item.id === 'wissen-pruefung-bodenwasser-wurzelraum-2026' && lesson.id === 'wurzelhaare') continue;
-    if (item.id === 'wissen-vertiefung-wild-alpine-winterstrategien' && lesson.id === 'aufwaermphasen') continue;
-    if (item.id === 'wissen-ausbau-waldverjuengung-verbiss' && lesson.id === 'stockausschlag-wurzelbrut') continue;
-    assert.deepEqual(getLessonDiagram(item.id, lesson.id), prior.exports.getLessonDiagram(item.id, lesson.id), `${item.id}/${lesson.id}`);
+    const kind = assertDiagramHistory('ecology', prior.exports.getLessonDiagram, getLessonDiagram, item.id, lesson.id);
+    if (kind === 'published-addition') seen.add(`${item.id}/${lesson.id}`);
   }
+  assert.deepEqual([...seen].sort(), [...laterPublished.ecology].sort());
 });
 
 test('A synthetic expiring offline pack preserves the comparison and its exact lesson evidence', () => {

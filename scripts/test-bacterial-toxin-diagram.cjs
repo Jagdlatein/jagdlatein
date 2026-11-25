@@ -2,6 +2,7 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { laterPublished, assertDiagramHistory } = require('./helpers/lesson-diagram-history-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const { getLessonDiagram } = load('lib/lesson-diagrams.js');
@@ -34,15 +35,12 @@ test('Every pre-existing course lesson retains its exact old diagram and unrelat
   const oldSource = execFileSync('git', ['show', '0d9e2f5f161800455808996c1ace0ef56951bdf5:lib/lesson-diagrams.js'], { cwd: root, encoding: 'utf8' });
   const { code } = local('next/dist/build/swc').transformSync(oldSource, { filename: 'lesson-diagrams.js', jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
   const prior = { exports: {} }; new Function('module', 'exports', code)(prior, prior.exports);
+  const seen = new Set();
   for (const item of learningModules) for (const part of item.lessons) {
-    if (item.id === courseId && part.id === lessonId) continue;
-    if (item.id === 'wissen-lebensraeume-biotopverbund' && part.id === 'biotop-biozoenose') continue;
-    if (item.id === 'wissen-ausbau-biologie-verdauungsvergleich-2026' && part.id === 'zotten-mikrovilli') continue;
-    if (item.id === 'wissen-pruefung-bodenwasser-wurzelraum-2026' && part.id === 'wurzelhaare') continue;
-    if (item.id === 'wissen-vertiefung-wild-alpine-winterstrategien' && part.id === 'aufwaermphasen') continue;
-    if (item.id === 'wissen-ausbau-waldverjuengung-verbiss' && part.id === 'stockausschlag-wurzelbrut') continue;
-    assert.deepEqual(getLessonDiagram(item.id, part.id), prior.exports.getLessonDiagram(item.id, part.id), `${item.id}/${part.id}`);
+    const kind = assertDiagramHistory('toxin', prior.exports.getLessonDiagram, getLessonDiagram, item.id, part.id);
+    if (kind === 'published-addition') seen.add(`${item.id}/${part.id}`);
   }
+  assert.deepEqual([...seen].sort(), [...laterPublished.toxin].sort());
 });
 
 test('An isolated expiring offline pack preserves the same original comparison and lesson-specific evidence', () => {

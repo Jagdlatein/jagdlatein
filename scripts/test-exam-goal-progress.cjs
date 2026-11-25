@@ -238,7 +238,7 @@ test('The complete real plan shares one mark per common/regional goal, counts th
   const router = { isReady: true, query: {}, asPath: '/lernen/pruefungsplan', push() { throw new Error('Only explicit topic actions may navigate'); } };
   const progress = { phase: 'ready', summary: { total: { answered: 0, due: 0, mistakes: 0 }, byCategory: {} } };
   const menu = ({ children }) => React.createElement('aside', {}, children), wrap = value => ({ __esModule: true, default: value });
-  const s = await fixture(t, { component: 'components/ExamStudyPlan.js', loadAccount: true, profile: CH,
+  const s = await fixture(t, { component: 'components/ExamStudyPlan.js', url: 'https://example.invalid/lernen/pruefungsplan', loadAccount: true, profile: CH,
     props: { data: load('lib/exam-study-plan-server.js').getExamStudyPlanData(), examBlueprint: blueprint, examAlignment: alignment },
     overrides: { 'next/router': { useRouter: () => router }, './PageMenu': { ...wrap(menu), closePageMenu() {}, openPageMenu() {} }, '../lib/use-exam-review-progress': wrap(() => progress) },
   });
@@ -261,7 +261,8 @@ test('The complete real plan shares one mark per common/regional goal, counts th
   assert.equal(s.container.querySelector('#exam-plan-sources').open, false);
   assert.ok(s.container.textContent.indexOf('Meine Selbstkontrolle') < s.container.textContent.indexOf('Originalquellen und Prüfungsunterlagen'));
   const storedBeforeReading = s.writes.length;
-  router.query = { kategorie: 'wildkunde' }; router.asPath = '/lernen/pruefungsplan?kategorie=wildkunde'; await s.render();
+  router.query = { kategorie: 'wildkunde' }; router.asPath = '/lernen/pruefungsplan?kategorie=wildkunde';
+  s.location.href = 'https://example.invalid' + router.asPath; s.location.search = '?kategorie=wildkunde'; await s.render();
   assert.equal(allControls().length, 11, 'Four selected common goals plus seven unchanged regional goals'); assert.deepEqual(counts(), [53, 1, 1]); assert.equal(s.writes.length, storedBeforeReading);
   await s.select('exam-plan-country', 'AT'); await s.select('exam-plan-region', 'NOE'); const { task } = await s.submit(); await s.respond(1, AT); await task;
   assert.deepEqual(counts(), [52, 0, 0]); assert.equal(allControls()[0].value, 'offen');

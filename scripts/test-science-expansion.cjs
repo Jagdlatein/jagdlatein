@@ -5,6 +5,7 @@ const { plantEnergyBaselineFixture } = require('./helpers/plant-energy-additions
 const { adiposeBaselineFixture } = require('./helpers/adipose-learning-additions-oct27.cjs');
 const { novemberLearningBaselineFixture } = require('./helpers/november-learning-baseline.cjs');
 const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
 // Structure, integration and concrete editorial regressions. Source reading is
 // separately recorded in data/reviews/; these checks are not scientific review.
@@ -14,7 +15,7 @@ const { createLoader: createLinkedProjectLoader } = require('./helpers/project-m
 // The published c5a015 HEAD already contained seven later Nov01/Nov08 science
 // questions beyond this 576+8 snapshot. Their separate regressions retain the
 // live content; project only those precisely named appendices here.
-const createLoader = overrides => createLinkedProjectLoader(novemberLearningBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(overrides))))));
+const createLoader = overrides => createLinkedProjectLoader(novemberLearningBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(insectRespirationBaselineFixture(overrides)))))));
 // This intentionally narrowed science snapshot does not include the current
 // transfer-case prerequisites. Full-corpus tests cover those twelve new search
 // entries; preserve the exact historical course/lesson assertions here.

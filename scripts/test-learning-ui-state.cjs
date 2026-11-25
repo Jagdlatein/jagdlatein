@@ -51,6 +51,11 @@ function choiceField(choice) {
 }
 function setup(relative, props = {}, exportName = 'default', expose = '', overrides = {}) {
   const videoCase = relative === 'components/WildlifeVideoCases.js';
+  const photo = relative === 'components/PhotoDetective.js';
+  if (photo) {
+    const router = { isReady: true, query: {}, asPath: '/lernen/fotodetektiv', async push(href) { const url = new URL(href, 'https://jagdlatein.test'); router.query = Object.fromEntries(url.searchParams); router.asPath = href; return true; } };
+    overrides = { ...overrides, 'next/router': { useRouter: () => router }, './PageMenu': { __esModule: true, default: ({ children }) => React.createElement('aside', null, children), openPageMenu() {}, closePageMenu() {} } };
+  }
   if (videoCase) {
     const query = Object.fromEntries(new URLSearchParams(global.window?.location?.search || ''));
     const router = { isReady: true, query, asPath: '/lernen/wildtier-videofaelle' + (global.window?.location?.search || ''), push: async href => { router.query = href.query; router.asPath = href.pathname + '#' + href.hash; return true; } };
@@ -61,13 +66,13 @@ function setup(relative, props = {}, exportName = 'default', expose = '', overri
   }
   const e = engine(), Component = load(relative, { react: e.hooks, ...overrides }, expose)[exportName];
   let currentProps = props, tree;
-  function render() { tree = e.render(() => Component(currentProps)); }
+  function render() { tree = e.render(() => Component(currentProps)); if (photo) { e.flush(); if (e.needsRender()) tree = e.render(() => Component(currentProps)); } }
   render();
   if (videoCase) e.flush();
   if (relative === 'components/HabitatWorkshop.js') { e.flush(); render(); e.flush(); render(); }
   return { get tree() { return tree; }, redraw: render, commit() { if (e.needsRender()) render(); }, flush() { e.flush(); render(); }, flushCommitted() { e.flush(); if (e.needsRender()) render(); }, unmount() { e.unmount(); }, setProps(next) { currentProps = next; render(); },
     button(label) { const button = find(tree, node => node.type === 'button' && words(node).trim() === label); assert.ok(button, `Missing button: ${label}`); return button; },
-    click(label) { const button = this.button(label); assert.ok(!button.props.disabled, `Disabled button: ${label}`); button.props.onClick(); render(); },
+    click(label) { if (photo && ['Merkmale entdecken', 'Wissen testen'].includes(label)) { const field = this.field('Lernweise'); field.props.onChange({ target: { value: label === 'Merkmale entdecken' ? 'merkmale' : 'quiz' } }); render(); if (label === 'Merkmale entdecken') { this.field('Wildart').props.onChange({ target: { value: 'gams' } }); render(); } return; } const button = this.button(label); assert.ok(!button.props.disabled, `Disabled button: ${label}`); button.props.onClick(); render(); },
     field(label) { const choice = find(tree, node => node.type?.name === 'MenuChoice' && node.props.label === label); if (choice) return choiceField(choice); const holder = find(tree, node => node.type === 'label' && words(node).startsWith(label)); assert.ok(holder, label); return find(holder, node => ['input', 'select', 'textarea'].includes(node.type)); },
   };
 }

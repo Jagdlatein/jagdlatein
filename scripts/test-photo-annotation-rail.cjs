@@ -26,10 +26,12 @@ function load(relative, hooks = React, cache = new Map()) {
     jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' } });
   new Function('require', 'module', 'exports', code)(id => {
     if (id === 'react') return hooks;
+    if (id === 'next/router') return { useRouter: () => hooks.photoRouter };
     if (id === 'next/image') return { __esModule: true, default: props => React.createElement('img', props) };
     if (id === 'next/link') return { __esModule: true, default: ({ children, ...props }) => React.createElement('a', props, children) };
     if (id === './AppIcon') return { __esModule: true, default: () => null };
     if (id === './LearningToolLayout') return { __esModule: true, default: ({ children }) => React.createElement('main', null, children) };
+    if (id === './PageMenu') return { __esModule: true, default: ({ children }) => React.createElement('aside', null, children), closePageMenu() {}, openPageMenu() {} };
     if (id === './LearningPhoto') return { LearningPhotoCredit: () => null };
     if (id.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) };
     if (id.startsWith('.')) return load(path.relative(root, path.resolve(path.dirname(filename), path.extname(id) ? id : `${id}.js`)), hooks, cache);
@@ -39,22 +41,26 @@ function load(relative, hooks = React, cache = new Map()) {
 }
 const rounds = load('lib/photo-detective.js').photoDetectiveRounds;
 function setup() {
-  const slots = []; let cursor = 0, tree;
+  const slots = [], effects = [], cleanups = []; let cursor = 0, tree;
+  const router = { isReady: true, asPath: '/lernen/fotodetektiv', query: {}, async push(href) { const url = new URL(href, 'https://jagdlatein.test'); router.asPath = href; router.query = Object.fromEntries(url.searchParams); return true; } };
   const hooks = { ...React,
+    photoRouter: router,
     useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial };
       return [slots[i].value, value => slots[i].value = typeof value === 'function' ? value(slots[i].value) : value]; },
     useRef(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: { current: initial } }; return slots[i].value; },
+    useEffect(fn, deps) { const i = cursor++; if (!slots[i] || deps.some((value, index) => value !== slots[i].deps[index])) { slots[i] = { deps }; effects.push(() => { cleanups[i]?.(); cleanups[i] = fn(); }); } },
   };
   const Page = load('components/PhotoDetective.js', hooks).default;
-  function render() { cursor = 0; tree = Page(); return tree; }
+  function render() { for (let pass = 0; pass < 8; pass++) { cursor = 0; tree = Page(); const pending = effects.splice(0); if (!pending.length) return tree; pending.forEach(fn => fn()); } throw new Error('Photo fixture did not settle'); }
+  function pick(id, value) { const choice = nodes(tree, node => node.type?.name === 'MenuChoice' && node.props.id === id)[0]; assert.ok(choice, id); const button = nodes(choice.type(choice.props), node => node.type === 'button' && node.props['data-menu-choice'] === value)[0]; assert.ok(button, value); button.props.onClick(); render(); }
   render();
   return { render, get tree() { return tree; },
     button(label) { const button = nodes(tree, node => node.type === 'button' && text(node).trim() === label)[0]; assert.ok(button, `Missing button: ${label}`); return button; },
-    click(label) { const button = this.button(label); assert.ok(!button.props.disabled); button.props.onClick(); render(); return button; },
+    click(label) { if (label === 'Merkmale entdecken') { pick('photo-detective-view', 'merkmale'); pick('photo-detective-species', rounds[0].id); return; } const button = this.button(label); assert.ok(!button.props.disabled); button.props.onClick(); render(); return button; },
     photo() { const entry = nodes(tree, node => node.type?.name === 'PhotoEvidence')[0]; assert.ok(entry); return entry.type(entry.props); },
     details() { const entry = nodes(tree, node => node.type?.name === 'EvidenceDetails')[0]; return entry?.type(entry.props) || null; },
     marker(index) { const button = nodes(this.photo(), node => node.type === 'button' && node.props['aria-label']?.startsWith(`Merkmal ${index + 1}:`))[0]; assert.ok(button); return button; },
-    chooseSpecies(id) { const select = nodes(tree, node => node.type === 'select' && node.props.id === 'photo-species')[0]; assert.ok(select); select.props.onChange({ target: { value: id } }); render(); },
+    chooseSpecies(id) { pick('photo-detective-species', id); },
   };
 }
 

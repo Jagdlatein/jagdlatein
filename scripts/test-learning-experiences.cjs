@@ -55,9 +55,14 @@ function text(node) {
 }
 function setup(relative, exportName = 'default', expose = '', props = {}) {
   const audio = relative === 'components/AnimalSounds.js';
-  const e = engine(audio);
+  const photo = relative === 'components/PhotoDetective.js';
+  const e = engine(audio || photo);
   const overrides = { react: e.hooks };
   if (audio) overrides['next/router'] = { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/tierstimmen' }) };
+  if (photo) {
+    overrides['next/router'] = { useRouter: () => ({ isReady: true, query: {}, asPath: '/lernen/fotodetektiv' }) };
+    overrides['./PageMenu'] = { __esModule: true, default: ({ children }) => React.createElement('aside', null, children), closePageMenu() {}, openPageMenu() {} };
+  }
   const Component = load(relative, overrides, expose)[exportName];
   const render = () => { let next; for (let pass = 0; pass < 4; pass++) { next = e.render(() => Component(props)); if (!e.flush()) return next; } throw new Error('Audio fixture did not settle'); }; let tree = render();
   return { get tree() { return tree; }, redraw() { tree = render(); }, html() { return renderToStaticMarkup(tree); },

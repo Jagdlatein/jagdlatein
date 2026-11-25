@@ -3,6 +3,7 @@ const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-o
 const { dogExtinctionBaselineFixture, stripDogExtinctionAddition } = require('./helpers/dog-extinction-addition-nov17.cjs');
 const { novemberLearningBaselineFixture } = require('./helpers/november-learning-baseline.cjs');
 const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
 const { avianCecaBaselineFixture } = require('./helpers/avian-ceca-addition-oct29.cjs');
 const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
@@ -20,7 +21,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createLoader: createLinkedProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const createLoader = overrides => createLinkedProjectLoader([
-  linkedExamBaselineFixture, practiceKnowledgeBaselineFixture, practiceMeasurementBaselineFixture,
+  insectRespirationBaselineFixture, linkedExamBaselineFixture, practiceKnowledgeBaselineFixture, practiceMeasurementBaselineFixture,
   forestExamBaselineFixture, novemberLearningBaselineFixture, avianCecaBaselineFixture,
   capercaillieToeBaselineFixture, dogExtinctionBaselineFixture,
 ].reduce((current, project) => project(current), overrides));

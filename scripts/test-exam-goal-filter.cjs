@@ -143,3 +143,130 @@ test('Switching the category keeps the displayed status; resetting only status r
   const second = await h.change('exam-plan-state', 'alle'); assert.deepEqual(second.request.href.query, { kategorie: 'wildkunde', quelle: 'suche' }, 'An uncommitted category never leaks into the next choice');
   await h.route(second.request.href.query, second.request.href.hash); await h.finish(second.request); const menuCount = h.menus.length; await h.finish(first.request, new Error('Superseded'), true); assert.equal(h.menus.length, menuCount); assert.equal(h.selected('exam-plan-topic'), 'wildkunde'); assert.equal(h.selected('exam-plan-state'), 'alle'); assert.equal(h.writes.length, 0);
 });
+
+test('An exact public task deep link opens one complete goal with only its closed source subset and no extra regional task', async t => {
+  const h = await fixture(t, { query: { kategorie: 'wildkunde', lernziel: wild.id } });
+  assert.equal(h.selected('exam-plan-goal'), wild.id); assert.deepEqual(h.goals(), [wild.title]);
+  assert.ok(h.text().includes(wild.task)); assert.ok(!h.text().includes(dog.task)); assert.ok(!h.text().includes(regional.task));
+  assert.equal(document.querySelector('details.goalSelfCheck').open, false);
+  const sources = document.getElementById('exam-plan-sources'); assert.equal(sources.open, false);
+  assert.ok(sources.textContent.includes('Quelle Wildmerkmale')); assert.ok(!sources.textContent.includes('Quelle Hundeaufgabe'));
+  assert.ok(h.choice('exam-plan-goal', wild.id)); assert.equal(h.choice('exam-plan-goal', dog.id), null);
+  assert.equal(h.writes.length, 0);
+});
+
+test('Invalid empty repeated unknown regional or cross-category task fields never substitute another goal', async t => {
+  const h = await fixture(t);
+  for (const value of ['', 'missing-goal', [wild.id], [wild.id, dog.id], dog.id, regional.id, '//outside.invalid']) {
+    await h.route({ kategorie: 'wildkunde', lernziel: value }); await h.timers();
+    assert.equal(h.selected('exam-plan-goal'), ''); assert.deepEqual(h.goals(), []);
+    assert.match(h.text(), /Diese Aufgabe ist in diesem Lerngebiet nicht verfügbar/); assert.equal(h.menus.at(-1), 'exam-plan-goal');
+  }
+  const operation = await h.change('exam-plan-goal', 'alle'); assert.deepEqual(operation.request.href.query, { kategorie: 'wildkunde' });
+  await h.route(operation.request.href.query, operation.request.href.hash); await h.finish(operation.request);
+  assert.ok(h.goals().includes(wild.title)); assert.equal(h.writes.length, 0);
+});
+
+test('Task choice is a real push: full current content remains pending and only the actual commit opens the single task at page top', async t => {
+  const h = await fixture(t, { query: { quelle: 'suche', q: 'Wildmerkmale' } });
+  const before = h.text(), focuses = h.focuses.length;
+  const operation = await h.change('exam-plan-goal', wild.id);
+  assert.deepEqual(operation.request.href, { pathname: base, query: { quelle: 'suche', q: 'Wildmerkmale', lernziel: wild.id }, hash: 'exam-plan-learning' });
+  assert.deepEqual(operation.request.options, { shallow: true, scroll: false }); assert.equal(h.text(), before);
+  await h.finish(operation.request); assert.equal(h.text(), before); assert.equal(h.focuses.length, focuses);
+  await h.route(operation.request.href.query, operation.request.href.hash);
+  assert.deepEqual(h.goals(), [wild.title]); assert.equal(document.activeElement.id, 'page-start'); assert.equal(h.scrolls.at(-1).top, 0);
+  assert.equal(h.writes.length, 0);
+});
+
+test('Task failures preserve the committed task and cancellations never display a false navigation error', async t => {
+  const h = await fixture(t, { query: { lernziel: wild.id } });
+  for (const kind of ['false', 'reject', 'cancel']) {
+    const operation = await h.change('exam-plan-goal', dog.id);
+    await h.finish(operation.request, kind === 'false' ? false : Object.assign(new Error('Synthetic task push'), kind === 'cancel' ? { cancelled: true } : {}), kind !== 'false');
+    assert.deepEqual(h.goals(), [wild.title]); assert.equal(Boolean(document.querySelector('[role="alert"]')), kind !== 'cancel');
+  }
+  assert.equal(h.writes.length, 0);
+});
+
+test('Category changes clear only the task selection, while status and all-tasks choices preserve the appropriate context', async t => {
+  const h = await fixture(t, { query: { kategorie: 'wildkunde', lernziel: wild.id, stand: 'offen', quelle: 'suche', q: 'Wildmerkmale' } });
+  const first = await h.change('exam-plan-topic', 'hundewesen');
+  assert.deepEqual(first.request.href.query, { kategorie: 'hundewesen', stand: 'offen', quelle: 'suche', q: 'Wildmerkmale' });
+  await h.finish(first.request, false);
+  const second = await h.change('exam-plan-state', 'ueben');
+  assert.deepEqual(second.request.href.query, { kategorie: 'wildkunde', lernziel: wild.id, stand: 'ueben', quelle: 'suche', q: 'Wildmerkmale' });
+  await h.finish(second.request, false);
+  const third = await h.change('exam-plan-goal', 'alle');
+  assert.deepEqual(third.request.href.query, { kategorie: 'wildkunde', stand: 'offen', quelle: 'suche', q: 'Wildmerkmale' });
+  await h.route(third.request.href.query, third.request.href.hash); await h.finish(third.request);
+  assert.equal(h.selected('exam-plan-goal'), 'alle'); assert.equal(h.writes.length, 0);
+});
+
+test('History restores exact tasks, and neither A-B-A nor unmount can revive an old task handler', async t => {
+  const h = await fixture(t, { query: { lernziel: wild.id } });
+  const old = nativeProps(h.choice('exam-plan-goal', dog.id)).onClick;
+  await h.route({ lernziel: dog.id }); assert.deepEqual(h.goals(), [dog.title]);
+  await h.route({ lernziel: wild.id }); assert.deepEqual(h.goals(), [wild.title]);
+  await h.change('exam-plan-goal', dog.id, old); assert.equal(h.navigation.length, 0);
+  const current = nativeProps(h.choice('exam-plan-goal', dog.id)).onClick;
+  await h.unmount(); await h.change('exam-plan-goal', dog.id, current); assert.equal(h.navigation.length, 0); assert.equal(h.writes.length, 0);
+});
+
+test('Browser-only and in-place query changes block stale task actions before React renders and cannot trigger stale focus', async t => {
+  const h = await fixture(t, { query: { lernziel: wild.id } });
+  const old = nativeProps(h.choice('exam-plan-goal', dog.id)).onClick;
+  const focuses = h.focuses.length; h.dom.window.history.replaceState(null, '', '#external-before-render');
+  await h.change('exam-plan-goal', dog.id, old); assert.equal(h.navigation.length, 0); assert.equal(h.focuses.length, focuses);
+  h.dom.window.history.replaceState(null, '', h.router.asPath); await h.change('exam-plan-goal', dog.id, old); assert.equal(h.navigation.length, 0);
+  await h.render(); const next = nativeProps(h.choice('exam-plan-goal', dog.id)).onClick;
+  h.router.query.lernziel = dog.id; await h.change('exam-plan-goal', dog.id, next); assert.equal(h.navigation.length, 0); assert.equal(h.writes.length, 0);
+});
+
+test('A focused task keeps its current marking control until selection is reapplied without marking or revealing another goal', async t => {
+  const h = await fixture(t, { query: { lernziel: wild.id, stand: 'ueben' }, marks: { [wild.id]: 'ueben', [dog.id]: 'ueben' } });
+  const control = document.querySelector('select[aria-label="Wildmerkmale: Mein Stand"]');
+  await React.act(async () => nativeProps(control).onChange({ target: { value: 'erklaert' } }));
+  assert.deepEqual(h.goals(), [wild.title]); assert.match(h.text(), /Stand geändert/); assert.equal(h.writes.length, 1);
+  await h.change('exam-plan-goal', wild.id); assert.deepEqual(h.goals(), []); assert.equal(h.writes.length, 1);
+  assert.ok(!h.text().includes(dog.task)); assert.ok(!h.text().includes(regional.task));
+});
+
+test('An incomplete browser/router commit hides task content until actual route, query and hash agree', async t => {
+  const h = await fixture(t, { query: { lernziel: wild.id } });
+  h.router.query = { lernziel: dog.id }; h.router.asPath = address(h.router.query); await h.render();
+  assert.deepEqual(h.goals(), []); assert.match(h.text(), /Deine Lerngebiete werden geladen/);
+  h.dom.window.history.replaceState(null, '', h.router.asPath); await h.render(); assert.deepEqual(h.goals(), [dog.title]);
+  h.dom.window.history.replaceState(null, '', '/lernen/pruefungsplan-anders?lernziel=' + dog.id); await h.render(); assert.deepEqual(h.goals(), []);
+  await h.route({ lernziel: wild.id }, 'committed'); assert.deepEqual(h.goals(), [wild.title]);
+  h.dom.window.history.replaceState(null, '', '#incomplete-hash'); await h.render(); assert.deepEqual(h.goals(), []);
+  await h.route({ lernziel: dog.id }, 'complete-hash'); assert.deepEqual(h.goals(), [dog.title]); assert.equal(h.writes.length, 0);
+});
+
+test('An accepted push remains pending until URL commit, so reselecting the visible task issues a newer superseding choice', async t => {
+  const h = await fixture(t, { query: { lernziel: wild.id } });
+  const first = await h.change('exam-plan-goal', dog.id); await h.finish(first.request, true);
+  assert.deepEqual(h.goals(), [wild.title]); const focuses = h.focuses.length;
+  const second = await h.change('exam-plan-goal', wild.id);
+  assert.equal(h.navigation.length, 2); assert.equal(second.request.href.query.lernziel, wild.id); assert.equal(h.focuses.length, focuses);
+  await h.finish(second.request, true); assert.deepEqual(h.goals(), [wild.title]); assert.equal(h.focuses.length, focuses);
+  await h.route(second.request.href.query, second.request.href.hash); assert.deepEqual(h.goals(), [wild.title]); assert.equal(h.focuses.length, focuses + 1);
+  const count = h.navigation.length; await h.change('exam-plan-goal', wild.id); assert.equal(h.navigation.length, count, 'The settled current task needs no extra history entry');
+  assert.equal(h.writes.length, 0);
+});
+
+test('Browser-only departure blocks retained marks and resets before repaint, during incomplete commits and after unmount', async t => {
+  const h = await fixture(t, { query: { lernziel: wild.id }, marks: { [wild.id]: 'ueben', [dog.id]: 'erklaert' } });
+  const control = () => document.querySelector('select[aria-label="Wildmerkmale: Mein Stand"]');
+  const reset = () => [...document.querySelectorAll('button')].find(node => node.textContent === 'Diesen Stand zurücksetzen');
+  const oldMark = nativeProps(control()).onChange, oldReset = nativeProps(reset()).onClick, initial = JSON.stringify([...h.values]);
+  h.dom.window.history.replaceState(null, '', '#browser-before-router');
+  await React.act(async () => { oldMark({ target: { value: 'erklaert' } }); oldReset(); await settle(); });
+  assert.equal(h.writes.length, 0); assert.equal(JSON.stringify([...h.values]), initial);
+  await h.render(); assert.equal(reset().disabled, true); await React.act(async () => nativeProps(reset()).onClick());
+  assert.equal(h.writes.length, 0); assert.deepEqual(h.goals(), []);
+  await h.route({ lernziel: wild.id }); assert.equal(control().value, 'ueben');
+  await React.act(async () => nativeProps(control()).onChange({ target: { value: 'erklaert' } })); assert.equal(h.writes.length, 1);
+  const currentReset = nativeProps(reset()).onClick; await React.act(async () => currentReset()); assert.equal(h.writes.length, 2);
+  await h.unmount(); await React.act(async () => { oldReset(); currentReset(); }); assert.equal(h.writes.length, 2);
+});

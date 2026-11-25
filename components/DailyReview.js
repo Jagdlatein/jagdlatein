@@ -12,6 +12,22 @@ import { unpackDailyReviewCatalog } from "../lib/daily-review-catalog";
 import { reviewReadingParagraphs, requestDailyReviewQuestions } from "../lib/daily-review-reading";
 import styles from "../styles/LearningExperience.module.css";
 
+const browserAddress = () => {
+  const location = typeof window === "undefined" ? null : window.location;
+  return typeof location?.href === "string" ? location.href : typeof location?.pathname === "string" ? `${location.pathname}${location.search || ""}${location.hash || ""}` : null;
+};
+function reviewAddressMatches(router) {
+  if (browserAddress() === null) return true;
+  try {
+    if (typeof router.asPath !== "string" || !router.asPath.startsWith("/") || router.asPath.startsWith("//")) return false;
+    const route = new URL(router.asPath, "https://jagdlatein.invalid"), browser = new URL(browserAddress(), "https://jagdlatein.invalid");
+    const identity = query => JSON.stringify(Object.keys(query).sort().map(key => [key, Array.isArray(query[key]) ? query[key] : [query[key]]]));
+    const fromURL = Object.fromEntries([...new Set(route.searchParams.keys())].map(key => [key, route.searchParams.getAll(key)]));
+    return route.pathname === "/lernen/fuenf-minuten" && browser.pathname === route.pathname && browser.search === route.search && browser.hash === route.hash
+      && identity(router.query) === identity(fromURL);
+  } catch { return false; }
+}
+
 export default function DailyReview({ pool: suppliedPool, catalog }) {
   const pool = useMemo(() => Array.isArray(suppliedPool) ? suppliedPool : unpackDailyReviewCatalog(catalog), [suppliedPool, catalog]);
   const router = useRouter(), ready = router.isReady === true;
@@ -26,7 +42,7 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
   if (valid && mode !== "gemischt") returnParams.set("modus", mode);
   if (valid && category) returnParams.set("kategorie", category);
   const returnPath = `/lernen/fuenf-minuten${returnParams.size ? `?${returnParams}` : ""}`;
-  const viewKey = JSON.stringify([ready, router.asPath, router.query]);
+  const viewKey = JSON.stringify([ready, router.asPath, router.query, browserAddress()]);
   const view = useRef({ key: viewKey });
   if (view.current.key !== viewKey) view.current = { key: viewKey };
   const origin = view.current;
@@ -34,12 +50,13 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
   const mounted = useRef(false), navigation = useRef(0), pending = useRef(null), content = useRef(null);
   const [working, setWorking] = useState(false), [navigationError, setNavigationError] = useState("");
   const currentSelection = useRef(selectionKey); currentSelection.current = selectionKey;
-  const isCurrent = () => {
-    if (view.current !== origin || !valid || pending.current !== null) return false;
-    const liveKey = JSON.stringify([router.isReady === true, router.asPath, router.query]);
-    if (liveKey !== viewKey) { view.current = { key: liveKey }; return false; }
+  const isViewCurrent = () => {
+    if (!mounted.current || view.current !== origin) return false;
+    const liveKey = JSON.stringify([router.isReady === true, router.asPath, router.query, browserAddress()]);
+    if (liveKey !== viewKey || !reviewAddressMatches(router)) { view.current = { key: liveKey }; return false; }
     return true;
   };
+  const isCurrent = () => valid && pending.current === null && isViewCurrent();
   function focusContent() {
     const target = content.current?.querySelector?.("#review-question-title") || content.current;
     focusSelection(target);
@@ -52,11 +69,12 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
     if (pending.current && pending.current.origin !== origin) { pending.current = null; navigation.current++; setWorking(false); }
     setNavigationError("");
     if (!ready) return;
-    if (!valid) { const timer = setTimeout(() => openPageMenu("review-selection"), 0); return () => clearTimeout(timer); }
+    if (!isViewCurrent()) return;
+    if (!valid) { const timer = setTimeout(() => { if (isViewCurrent()) openPageMenu("review-selection"); }, 0); return () => clearTimeout(timer); }
     closePageMenu(); focusContent();
   }, [viewKey]);
   async function select(nextMode, nextCategory) {
-    if (!ready || !mounted.current || view.current !== origin || !["gemischt", "faellig", "fehler"].includes(nextMode) || typeof nextCategory !== "string" || nextCategory && !available.some(item => item.slug === nextCategory)) return;
+    if (!ready || !isViewCurrent() || !["gemischt", "faellig", "fehler"].includes(nextMode) || typeof nextCategory !== "string" || nextCategory && !available.some(item => item.slug === nextCategory)) return;
     cancelSelectionFocus();
     setNavigationError("");
     const target = JSON.stringify([nextMode, nextCategory]);
@@ -65,17 +83,21 @@ export default function DailyReview({ pool: suppliedPool, catalog }) {
     const query = { ...router.query, modus: nextMode }; delete query.kategorie;
     if (nextCategory) query.kategorie = nextCategory;
     let waitForCommit = false;
+    const ownsNavigation = () => navigation.current === ticket && pending.current?.ticket === ticket && isViewCurrent();
     function failed() {
-      if (!mounted.current || navigation.current !== ticket || view.current !== origin) return;
+      if (!ownsNavigation()) return;
       setNavigationError("Die Runde konnte nicht geöffnet werden. Bitte wähle sie erneut."); openPageMenu("review-selection");
     }
     try {
       const accepted = await router.push({ pathname: "/lernen/fuenf-minuten", query, hash: "review-question-title" }, undefined, { shallow: true, scroll: false });
+      if (!ownsNavigation()) return;
       if (accepted === false) failed();
-      else if (mounted.current && navigation.current === ticket && currentSelection.current === target) { closePageMenu(); focusContent(); }
+      else if (currentSelection.current === target) { closePageMenu(); focusContent(); }
       else waitForCommit = true;
     } catch (error) { if (!error?.cancelled) failed(); }
-    finally { if (!waitForCommit && pending.current?.ticket === ticket) { pending.current = null; if (mounted.current) setWorking(false); } }
+    // A raw route may commit before React renders it. Its next effect releases
+    // the old pending operation; an old continuation must not repaint or focus it.
+    finally { if (!waitForCommit && ownsNavigation()) { pending.current = null; setWorking(false); } }
   }
   return <LearningToolLayout title="Deine fünf Minuten Wissen" icon="book" category="pruefung-sprache" headingOnly>
     <PageMenu title="Kurze Runde" openInitially={ready && !valid} initialFocusId="review-selection">

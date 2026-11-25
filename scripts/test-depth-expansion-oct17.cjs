@@ -6,6 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createLoader, root } = require('./helpers/project-module.cjs');
 const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
 const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxins-additions-nov08.cjs');
 // Keep this historical snapshot exact; the positive Nov17 suite checks the
@@ -16,7 +17,7 @@ const { foodSporesToxinsBaselineFixture } = require('./helpers/food-spores-toxin
 // current transfer cases. Their real search entries have separate full-corpus
 // coverage; keep this older course/lesson discovery fixture independent.
 const load = createLoader({
-  ...foodSporesToxinsBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture())),
+  ...foodSporesToxinsBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(insectRespirationBaselineFixture()))),
   './exam-transfer-goals-server': { getExamTransferGoals: () => [] },
 });
 const { depthExpansionDatasets: datasets, depthExpansionModules: added } = load('lib/learning-expansion-oct17.js');

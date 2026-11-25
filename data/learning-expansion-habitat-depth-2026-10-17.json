@@ -2781,6 +2781,26 @@
             "buchdrucker-brutbild"
           ],
           "supports": "Originalautor und Publikation Bündnerwald75(3),16–23 sowie Onlineergänzung tatsächlich geprüft. Abschnitte Holz- und Rindenbrüter sowie Buchdrucker gelesen: Muttergänge zur Eiablage, seitlicher Larvenfrass; konkret beim Buchdrucker längsverlaufende Muttergänge und quer abzweigende Larvengänge. Nicht als zweiter unabhängiger Beleg neben WSL Waldschutz gezählt. Keine Zahlen, Flugzeiten, Vermehrungs- oder Schadprognosen übernommen."
+        },
+        {
+          "label": "NC State: Respiratory System, ENT 425",
+          "url": "https://genent.cals.ncsu.edu/bug-bytes/respiratory-system/",
+          "organization": "North Carolina State University, Department of Entomology",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "tracheen-atmung"
+          ],
+          "supports": "Originallehrtext vollständig tatsächlich gelesen: Stigmen, verzweigtes Tracheensystem, feinste Enden am Gewebe, Diffusion und unterstützende aktive Ventilation. Keine Stigmenzahl, Grössengrenze, allgemeine Hämolymphregel, aquatische Universalstruktur oder Abbildung übernommen. Tracheolen als Endverzweigungen bezeichnet, nicht die vereinfachende Gleichsetzung des Röhrchens mit einer ganzen Zelle."
+        },
+        {
+          "label": "Layton / Mississippi State (2021): What are Insects Like on the Inside?",
+          "url": "https://extension.msstate.edu/newsletters/bugs-eye-view/2021/what-are-insects-the-inside-vol-7-no-16",
+          "organization": "Blake Layton, Extension Entomology Specialist, Mississippi State University Extension Service",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "tracheen-atmung"
+          ],
+          "supports": "Unabhängig verfassten Originalfachtext vollständig tatsächlich gelesen, besonders Absätze zu Stigmen, Tracheen/Tracheolen und Luftbewegung; Heuschrecken als Beispiel genannt. Keine fremde Raupenaufnahme, Anzahl, Ringstruktur sämtlicher Tracheolen oder ausnahmslose Blut-/Sauerstoffträgerbehauptung übernommen. Fachliche Einordnung, keine unabhängige Wiederholung der Westneat-Studie."
         }
       ],
       "lessons": [
@@ -2840,6 +2860,20 @@
           ],
           "takeaway": "Beim Buchdrucker legt das Weibchen Eier am längsgerichteten Muttergang ab; Larven erzeugen seitlich abgehende Frassgänge. Das Brutbild ist eine Lebensspur, keine Garantie einer aktuell besetzten Brut.",
           "exercise": "Zeichne ein eigenes vereinfachtes Schema aus Muttergang und Larvengängen und erkläre den Zusammenhang mit Eiablage und Larvenfrass. Trenne die Spur vom aktuellen Besatz."
+        },
+        {
+          "id": "tracheen-atmung",
+          "title": "Tracheenatmung",
+          "reviewedOn": "2026-11-25",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Stigmen sind Atemöffnungen an der Körperoberfläche. Sie verbinden die Aussenluft mit einem inneren, verzweigten Röhrensystem: den Tracheen. Dessen feinste Endverzweigungen, die Tracheolen, reichen nahe an die Gewebezellen. Dort gelangt Sauerstoff durch Diffusion aus dem Atemsystem zu den Zellen. Das hier betrachtete landlebende Insektenmodell, etwa die Heuschrecke, besitzt somit keine kleine Säugerlunge.",
+            "Luftbewegung und zellnaher Gasaustausch sind verbundene, aber unterschiedliche Schritte. Bei der Ventilation wird Luft im Röhrensystem bewegt. Körperbewegungen können sie unterstützen: Beim Heuschreckenmodell verändern Hinterleibsbewegungen das Körpervolumen und fördern dadurch den Lufttransport. Stigmen können geöffnet und geschlossen werden. Diffusion bleibt für den Gasaustausch an den feinsten Verzweigungen wichtig; eine Pumpbewegung ersetzt diesen Vorgang nicht.",
+            "Der beschriebene Aufbau gilt für das benannte landlebende Modell mit offenem Tracheensystem. Er ist kein vollständiger Bauplan sämtlicher wasserlebender Insektenlarven. Auch aus einer sichtbaren Hinterleibsbewegung oder einem einzelnen Foto lässt sich keine bestimmte Atemleistung berechnen. Art, Lebensphase und Aktivität müssen beim Vergleich beachtet werden.",
+            "Eigene Papierübung: Zeichne Aussenluft, Stigma, Tracheenverzweigung und Gewebe als vereinfachten Weg. Markiere den Sauerstoffübertritt am Gewebe getrennt von der Luftbewegung in den Röhren. Für diese Funktionsskizze wird kein Tier gefangen, geöffnet oder an seinen Atemöffnungen manipuliert."
+          ],
+          "takeaway": "Stigmen öffnen den Zugang zum Tracheensystem. Ventilation bewegt Atemluft; Diffusion ermöglicht den Gasaustausch nahe am Gewebe.",
+          "exercise": "Zeichne den Luftweg im landlebenden Tracheenmodell und unterscheide die Bewegung der Atemluft vom Gasaustausch am Gewebe. Die Aufgabe bleibt eine eigene Papierskizze."
         }
       ],
       "questions": [
@@ -3284,6 +3318,32 @@
           ],
           "answer": 2,
           "explain": "Typisch sind längsgerichtete Muttergänge und seitlich abzweigende Larvengänge. Das ist das beschriebene Buchdrucker-Beispiel; andere Borkenkäfer können andere Muster bilden. Ein altes Gangbild belegt für sich keinen aktuellen Besatz."
+        },
+        {
+          "id": "tracheen-luftweg",
+          "lessonId": "tracheen-atmung",
+          "q": "Welchen Weg nimmt Atemluft im beschriebenen offenen Tracheensystem eines landlebenden Insekts?",
+          "options": [
+            "Durch Stigmen in verzweigte Tracheen und feinste Endverzweigungen nahe am Gewebe.",
+            "Durch Stigmen unmittelbar in die Hämolymphe, die den gesamten weiteren Luftweg übernimmt.",
+            "Durch eine einzelne Luftröhre in den Darm, der die Atemluft an das Gewebe weiterleitet.",
+            "Über eine Lunge in einen Blutkreislauf, der den Sauerstoff anschliessend im Körper verteilt."
+          ],
+          "answer": 0,
+          "explain": "Im benannten Landinsektenmodell verbinden Stigmen die Aussenluft mit den verzweigten Tracheen. An deren feinsten Enden gelangt Sauerstoff durch Diffusion zu den Gewebezellen. Das ist kein Säugerlungenweg."
+        },
+        {
+          "id": "tracheen-ventilation",
+          "lessonId": "tracheen-atmung",
+          "q": "Wie unterscheiden sich Ventilation und Diffusion im Tracheensystem des beschriebenen Landinsektenmodells?",
+          "options": [
+            "Ventilation bezeichnet den passiven Gasübertritt am Gewebe, Diffusion ausschliesslich die aktive Hinterleibsbewegung.",
+            "Beide Begriffe bezeichnen nur dieselbe sichtbare Körperbewegung, unabhängig vom Gasaustausch.",
+            "Ventilation bewegt Luft im Röhrensystem; Diffusion ermöglicht den Gasaustausch nahe am Gewebe.",
+            "Ventilation ersetzt die Diffusion vollständig, sobald sich der Hinterleib bewegt."
+          ],
+          "answer": 2,
+          "explain": "Ventilation und Diffusion erfüllen verschiedene Aufgaben. Hinterleibsbewegungen können die Luft im Tracheensystem bewegen; der Sauerstoffübertritt nahe an den Gewebezellen bleibt ein Diffusionsvorgang. Der Vergleich betrifft das benannte landlebende Grundmodell."
         }
       ]
     }
@@ -3653,6 +3713,26 @@
             "https://waldschutz.wsl.ch/de/wald/krankheiten-schaedlinge-stoerungen/waldschaedlinge/der-buchdrucker/",
             "https://www.lwf.bayern.de/mam/cms04/service/dateien/ph_borkenkaefer-2025-bf_rz_bf.pdf#page=21",
             "https://www.waldwissen.net/de/waldwirtschaft/schadensmanagement/insekten/wichtige-borkenkaeferarten-und-ihre-oekologische-bedeutung"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-habitat-insektenentwicklung-2026",
+      "lessonId": "tracheen-atmung",
+      "claims": [
+        {
+          "claim": "Im beschriebenen offenen Tracheensystem eines landlebenden Insekts verbinden Stigmen die Aussenluft mit verzweigten Tracheen. Feinste Endverzweigungen reichen nahe ans Gewebe; Sauerstoff gelangt durch Diffusion zu den Zellen. Das ist kein Säugerlungenmodell und keine Universalbeschreibung sämtlicher aquatischer Larven.",
+          "sourceUrls": [
+            "https://genent.cals.ncsu.edu/bug-bytes/respiratory-system/",
+            "https://extension.msstate.edu/newsletters/bugs-eye-view/2021/what-are-insects-the-inside-vol-7-no-16"
+          ]
+        },
+        {
+          "claim": "Luftbewegung durch Ventilation und Gasaustausch durch Diffusion sind unterschiedliche Schritte. Beim benannten Heuschrecken-Grundmodell können Hinterleibsbewegungen durch Volumenänderung den Lufttransport unterstützen; Stigmen können geöffnet und geschlossen werden. Daraus folgen weder feste Leistungswerte noch eine individuelle Atembeurteilung aus einem Foto oder einer Bewegung.",
+          "sourceUrls": [
+            "https://genent.cals.ncsu.edu/bug-bytes/respiratory-system/",
+            "https://extension.msstate.edu/newsletters/bugs-eye-view/2021/what-are-insects-the-inside-vol-7-no-16"
           ]
         }
       ]

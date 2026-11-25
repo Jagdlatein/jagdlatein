@@ -8,11 +8,12 @@ const nativeProps = node => node?.[Object.keys(node).find(key => key.startsWith(
 const event = () => ({ preventDefault() {} });
 const deferred = () => { let resolve, reject; const promise = new Promise((a, b) => { resolve = a; reject = b; }); return { promise, resolve, reject }; };
 async function fixture(t, options = {}) {
-  const dom = new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>', { url: 'https://example.invalid/pruefungsziel' });
+  const initialURL = new URL(options.url || 'https://example.invalid/pruefungsziel');
+  const dom = new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>', { url: initialURL.href });
   for (const [key, value] of Object.entries(options.values || {})) dom.window.localStorage.setItem(key, value);
   const calls = [], navigations = [], writes = [], reads = [], scrolls = [], timers = new Map(), descriptors = new Map();
   let currentProps = options.props || {}, timerId = 0, disposed = false, closed = false, failNavigation = options.failNavigation || false, parentLive = true, probe = 0, layoutAction;
-  const location = { href: 'https://example.invalid/pruefungsziel', pathname: '/pruefungsziel', search: '', hash: '', replace(href) { navigations.push(href); if (failNavigation) throw new Error('Isolated blocked navigation'); } };
+  const location = { href: initialURL.href, pathname: initialURL.pathname, search: initialURL.search, hash: initialURL.hash, replace(href) { navigations.push(href); if (failNavigation) throw new Error('Isolated blocked navigation'); } };
   dom.window.scrollTo = value => scrolls.push(value);
   const storage = dom.window.localStorage, get = storage.getItem.bind(storage), set = storage.setItem.bind(storage);
   const storageDouble = { getItem(key) { reads.push(key); if (options.denyStorage) throw new Error('Isolated storage denial'); return get(key); }, setItem(key, value) { writes.push([key, value]); if (options.denyStorage) throw new Error('Isolated storage denial'); return set(key, value); }, removeItem(key) { writes.push([key, null]); if (options.denyStorage) throw new Error('Isolated storage denial'); return storage.removeItem(key); } };

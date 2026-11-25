@@ -96,6 +96,9 @@ test('Handlers captured from disabled completion controls cannot restart after t
 test('A raw URL change before redraw blocks adoption and releases only its own pending request for a fresh retry',async t=>{
   const{h,wrong}=await completed(t),old=handler(h.button('Diese Fehler üben'));await h.click('Diese Fehler üben');
   h.router.asPath+='#quellen';await h.respond(1);assert.match(h.text(),/6 von 8 richtig/);assert.equal(h.seeds.length,1);
+  // Router-ahead rejection is intentional. Complete the actual browser commit
+  // before the new rendered handler may retry this same reading selection.
+  h.dom.window.history.replaceState(null,'',h.router.asPath);
   await h.render();await h.act(old);assert.equal(h.requests.length,2);await h.click('Diese Fehler üben');assert.deepEqual(h.ids(),[...wrong]);await h.respond(2);assert.match(h.text(),/Frage 1 von 2/);
 });
 

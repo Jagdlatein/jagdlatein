@@ -32,8 +32,9 @@ function restoreGoalSelfCheckSource(source) {
 function restoreTransferSearchSource(source) {
   let normalized = source.replaceAll('\r\n', '\n');
   const extraImport = 'import { getExamTransferGoals } from "./exam-transfer-goals-server";\n';
-  const extraEntries = '  ...getExamTransferGoals().map(({ slug, goal }) => ({ id: `exam-transfer:${goal.id}`, title: goal.title, description: goal.task,\n    href: `/lernen/pruefungsplan?kategorie=${encodeURIComponent(slug)}#exam-plan-learning`, type: "practice", categories: [slug], countries: ["DE", "AT", "CH"],\n    aliases: ["Prüfungsfall", "Prüfungslernziel"], text: [goal.task, goal.caseText, goal.followUp].join(" ") })),\n';
-  for (const addition of [extraImport, extraEntries]) { assert.equal(normalized.split(addition).length, 2); normalized = normalized.replace(addition, ''); }
+  const focusImport = 'import { examPlanGoalHref } from "./exam-goal-focus";\n';
+  const extraEntries = '  ...getExamTransferGoals().map(({ slug, goal }) => ({ id: `exam-transfer:${goal.id}`, title: goal.title, description: goal.task,\n    href: examPlanGoalHref(slug, goal.id), type: "practice", categories: [slug], countries: ["DE", "AT", "CH"],\n    aliases: ["Prüfungsfall", "Prüfungslernziel"], text: [goal.task, goal.caseText, goal.followUp].join(" ") })),\n';
+  for (const addition of [extraImport, focusImport, extraEntries]) { assert.equal(normalized.split(addition).length, 2); normalized = normalized.replace(addition, ''); }
   return normalized;
 }
 module.exports = { assertPreservedBaseBlueprint, restoreGoalSelfCheckSource, restoreTransferSearchSource };

@@ -4,8 +4,11 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
 const { cases, stripForestExamCourse, stripForestExamDataset, forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { insectRespirationBaselineFixture, stripInsectRespirationDataset } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const baseline = 'b9ed55f832c73b5cb7805759ed0b0809267e7e20';
-const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), flashcards = load('lib/learning-flashcards.js');
+// Keep this historical four-question appendix comparison exact; the single
+// Nov25 tail has independent live-data, full-preservation and integration tests.
+const load = createLoader(insectRespirationBaselineFixture()), curriculum = load('lib/learning-curriculum.js'), flashcards = load('lib/learning-flashcards.js');
 const cards = flashcards.getFlashcards();
 function old(relative) {
   const source = execFileSync('git', ['show', `${baseline}:${relative}`], { cwd: root, encoding: 'utf8', maxBuffer: 20000000 });
@@ -22,11 +25,11 @@ test('Only the exact two lesson/question/source appendices differ from the compl
   const rawNature = load('lib/learning-expansion-nature.js').natureExpansionModules;
   assert.deepEqual(rawNature.map(stripForestExamCourse), oldNature.natureExpansionModules);
   const rawHabitat = JSON.parse(fs.readFileSync(path.join(root, 'data/learning-expansion-habitat-depth-2026-10-17.json'), 'utf8'));
-  assert.deepEqual(stripForestExamDataset(rawHabitat), oldHabitat);
+  assert.deepEqual(stripForestExamDataset(stripInsectRespirationDataset(rawHabitat)), oldHabitat);
   assert.equal(rawHabitat.reviewedOn, '2026-10-17');
   const before = beforeCurriculum.learningModules;
   assert.deepEqual(curriculum.learningModules.map(stripForestExamCourse), before);
-  assert.deepEqual(createLoader(forestExamBaselineFixture())('lib/learning-curriculum.js').learningModules, before);
+  assert.deepEqual(createLoader(forestExamBaselineFixture(insectRespirationBaselineFixture()))('lib/learning-curriculum.js').learningModules, before);
   assert.equal(curriculum.learningCounts.modules, beforeCurriculum.learningCounts.modules);
   assert.equal(curriculum.learningCounts.lessons, beforeCurriculum.learningCounts.lessons + 2);
   assert.equal(curriculum.learningCounts.questions, beforeCurriculum.learningCounts.questions + 4);

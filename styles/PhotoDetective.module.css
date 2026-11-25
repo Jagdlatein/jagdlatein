@@ -36,7 +36,7 @@
 .marker:hover { background: #f3e8cb; }
 .markerActive { background: #eaf1e4; color: #315b36; border-bottom-color: #315b36; }
 .marker:focus-visible { outline: 3px solid #315b36; outline-offset: -4px; }
-.answerGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.answerGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .answer { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; padding: 16px 12px; min-height: 60px; border: 1px solid #d5bc78; border-radius: 12px; background: #fffaf0; color: #564322; font-weight: 750 !important; }
 .answer:hover:not(:disabled) { background: #f7e8ba; }
 .answer:disabled { cursor: default; opacity: 1; }

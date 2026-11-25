@@ -7,7 +7,8 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const { createLoader, root, local } = require('./helpers/project-module.cjs');
-const load = createLoader(), revision = 'a0b078b800c5eafd2a31fa5c6a95c0ee3718132c';
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
+const load = createLoader(insectRespirationBaselineFixture()), revision = 'a0b078b800c5eafd2a31fa5c6a95c0ee3718132c';
 function previousLoader() {
   const cache = new Map();
   return function read(relative) {

@@ -3,6 +3,7 @@ const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const { forestExamBaselineFixture, stripForestExamCourse } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
 const { alulaBaselineFixture } = require('./helpers/alula-addition-nov15.cjs');
 const { trackPostureBaselineFixture } = require('./helpers/track-posture-addition-nov15.cjs');
@@ -12,7 +13,7 @@ const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-a
 const { courseId, lessonIds, questionIds, sourceURLs: urls, sourceScopes, originalParagraph, correctedParagraph, stripForestRegenerationAddition, forestRegenerationBaselineFixture } = require('./helpers/forest-regeneration-additions-nov08.cjs');
 // Project only the exactly named later appendices before all Nov08 snapshots;
 // their full positive b9ed55f preservation check is a separate live-data suite.
-const historicalOverrides = overrides => marmotHibernationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(overrides)))))));
+const historicalOverrides = overrides => marmotHibernationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(overrides))))))));
 const createLoader = overrides => createProjectLoader(historicalOverrides(overrides));
 const load = createLoader(), rawModules = load('lib/learning-expansion-nature.js').natureExpansionModules.map(stripForestExamCourse);
 const raw = rawModules.find(item => item.id === courseId), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);

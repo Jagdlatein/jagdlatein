@@ -2,6 +2,7 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { laterPublished, assertDiagramHistory } = require('./helpers/lesson-diagram-history-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const { getLessonDiagram } = load('lib/lesson-diagrams.js');
@@ -10,7 +11,6 @@ const targets = [
   ['wissen-ausbau-biologie-verdauungsvergleich-2026', 'zotten-mikrovilli'],
   ['wissen-pruefung-bodenwasser-wurzelraum-2026', 'wurzelhaare'],
 ];
-const isNew = (course, lesson) => targets.some(([a,b]) => a === course && b === lesson);
 
 test('Animal and plant diagrams distinguish organ, tissue or cell levels without invented size, timing or species data', () => {
   const animal = getLessonDiagram(...targets[0]), plant = getLessonDiagram(...targets[1]);
@@ -42,12 +42,19 @@ test('Every diagram that existed at e6b1d55 remains exactly the same', () => {
   const source = execFileSync('git', ['show', 'e6b1d550d550e14a5571fa4caf43284758fe0c37:lib/lesson-diagrams.js'], { cwd: root, encoding: 'utf8' });
   const { code } = local('next/dist/build/swc').transformSync(source, { filename: 'lesson-diagrams.js', jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
   const prior = { exports: {} }; new Function('module','exports',code)(prior,prior.exports);
+  const seen = new Set();
   for (const course of learningModules) for (const lesson of course.lessons) {
-    if (isNew(course.id,lesson.id)) continue;
-    if (course.id === 'wissen-vertiefung-wild-alpine-winterstrategien' && lesson.id === 'aufwaermphasen') continue;
-    if (course.id === 'wissen-ausbau-waldverjuengung-verbiss' && lesson.id === 'stockausschlag-wurzelbrut') continue;
-    assert.deepEqual(getLessonDiagram(course.id,lesson.id), prior.exports.getLessonDiagram(course.id,lesson.id), `${course.id}/${lesson.id}`);
+    const kind = assertDiagramHistory('absorption', prior.exports.getLessonDiagram, getLessonDiagram, course.id, lesson.id);
+    if (kind === 'published-addition') seen.add(`${course.id}/${lesson.id}`);
   }
+  assert.deepEqual([...seen].sort(), [...laterPublished.absorption].sort());
+});
+
+test('Historical diagram guards reject unapproved null-to-object gains, changed old objects and drift of named published additions', () => {
+  assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'unapproved' }), 'unrelated-course', 'unrelated-lesson'));
+  assert.throws(() => assertDiagramHistory('absorption', () => ({ title: 'original' }), () => ({ title: 'changed' }), 'old-course', 'old-lesson'));
+  assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'changed' }), 'wissen-spuren-systematisch', 'auftrittsformen'));
+  assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'unapproved sibling' }), 'wissen-ausbau-habitat-insektenentwicklung-2026', 'tracheen-atmung-other'));
 });
 
 test('A synthetic expiring offline pack keeps both diagrams and their exact lesson evidence and dates', () => {

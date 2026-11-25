@@ -4,6 +4,7 @@ const fs = require('node:fs'), path = require('node:path'), { createHash } = req
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const { forestRegenerationBaselineFixture } = require('./helpers/forest-regeneration-additions-nov08.cjs');
 const { forestExamBaselineFixture } = require('./helpers/forest-exam-additions-nov17.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const { practiceMeasurementBaselineFixture } = require('./helpers/practice-measurement-additions-nov17.cjs');
 const { alulaBaselineFixture } = require('./helpers/alula-addition-nov15.cjs');
 const { trackPostureBaselineFixture } = require('./helpers/track-posture-addition-nov15.cjs');
@@ -11,7 +12,7 @@ const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addit
 const { capercaillieToeBaselineFixture, stripCapercaillieToeCourse } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
 // Restore only the known named appendices before the original positive hashes.
 // Each newer package keeps its own exact live-data preservation regression.
-const historicalOverrides = overrides => forestRegenerationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(overrides)))))));
+const historicalOverrides = overrides => forestRegenerationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(overrides))))))));
 const createLoader = overrides => createProjectLoader(historicalOverrides(overrides));
 const { courseId, lessonIds, questionIds, sourceURLs: urls, sourceScopes, stripMarmotHibernationAddition } = require('./helpers/marmot-hibernation-addition-nov08.cjs');
 const load = createLoader(), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);

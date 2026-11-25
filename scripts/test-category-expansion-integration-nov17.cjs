@@ -8,9 +8,10 @@ const { execFileSync } = require('node:child_process');
 const { createLoader: createProjectLoader, local, root } = require('./helpers/project-module.cjs');
 const { dogExtinctionBaselineFixture } = require('./helpers/dog-extinction-addition-nov17.cjs');
 const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-addition-nov17.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 // This historical release still checks its exact four appendices. New named
 // appendices have their own positive whole-object baseline against a0b078b.
-const createLoader = overrides => createProjectLoader(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(overrides)));
+const createLoader = overrides => createProjectLoader(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(overrides))));
 const load = createLoader();
 const { learningCategoryDetails: categories } = load('lib/learning-categories.js');
 const { learningModules: courses } = load('lib/learning-curriculum.js');

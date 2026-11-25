@@ -571,6 +571,39 @@ test('Exam plan Back keeps learning-state choices without saving every unrelated
   for (const instance of [s, reset, immediate, other]) instance.unmount();
 });
 
+test('Exam plan Back keeps exact task choices and all-task return while unrelated context remains within one stop', () => {
+  const base = '/lernen/pruefungsplan', group = `${base}?kategorie=wildkunde#exam-plan-learning`;
+  const first = `${base}?kategorie=wildkunde&lernziel=wild-verdauungswege-transfer#exam-plan-learning`;
+  const second = `${base}?kategorie=wildkunde&lernziel=wildkoerper#exam-plan-learning`;
+  const history = setup(group, ['/lernen']); history.route(first); history.route(second);
+  history.route(`${base}?q=Verdauung&quelle=suche&kategorie=wildkunde&lernziel=wildkoerper#exam-plan-learning`);
+  assert.equal(history.history.length, 4); history.render().props.children[0].props.onClick(); assert.equal(history.destination, first);
+  const reset = setup(first, ['/lernen']); reset.route(group); reset.render().props.children[0].props.onClick(); assert.equal(reset.destination, first);
+  const native = setup(group, ['/lernen']); native.route(first); native.route(second); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, group);
+  const immediate = setup(first, ['/lernen']); immediate.navigateBeforeEffects(second);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
+  const unrelated = setup('/lernen/anderes', ['/lernen']); unrelated.route('/lernen/anderes?lernziel=one'); unrelated.route('/lernen/anderes?lernziel=two');
+  assert.equal(unrelated.history.length, 2);
+  for (const instance of [history, reset, native, immediate, unrelated]) instance.unmount();
+});
+
+test('Photo detective Back follows committed learning view and photograph while search context stays in the current photo stop', () => {
+  const base = '/lernen/fotodetektiv', explore = `${base}?ansicht=merkmale#fotodetektiv-title`;
+  const first = `${base}?ansicht=merkmale&art=gams#fotodetektiv-title`, second = `${base}?ansicht=merkmale&art=steinbock#fotodetektiv-title`;
+  const history = setup(base, ['/lernen']); history.route(explore); history.route(first); history.route(second);
+  history.route(`${base}?q=Horn&quelle=suche&ansicht=merkmale&art=steinbock#fotodetektiv-title`);
+  assert.equal(history.history.length, 5); history.render().props.children[0].props.onClick(); assert.equal(history.destination, first);
+  const quiz = setup(first, ['/lernen']); quiz.route(`${base}?ansicht=quiz#fotodetektiv-title`);
+  quiz.render().props.children[0].props.onClick(); assert.equal(quiz.destination, first);
+  const native = setup(explore, ['/lernen']); native.route(first); native.route(second); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, explore);
+  const immediate = setup(first, ['/lernen']); immediate.navigateBeforeEffects(second); immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, first);
+  const other = setup('/lernen/anderes', ['/lernen']); other.route('/lernen/anderes?ansicht=merkmale&art=gams'); other.route('/lernen/anderes?ansicht=merkmale&art=steinbock');
+  assert.equal(other.history.length, 2, 'Photograph selection is specific to its real route');
+  for (const instance of [history, quiz, native, immediate, other]) instance.unmount();
+});
+
 test('Dog journal Back follows exercise reading while search context, native Back and immediate Back retain their correct stop', () => {
   const base = '/lernen/hundetraining-tagebuch';
   const first = base + '?eintrag=pflege#exercise-title';

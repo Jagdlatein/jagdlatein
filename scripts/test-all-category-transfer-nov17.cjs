@@ -3,8 +3,11 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
-const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader();
+// Keep this exact Nov17 inventory contract; the precisely named Nov25 appendix
+// has independent positive current-curriculum and full-object preservation tests.
+const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader(insectRespirationBaselineFixture());
 function previousLoader() {
   const cache = new Map();
   return function read(relative) {

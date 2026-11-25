@@ -2,6 +2,7 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
+const { assertDiagramHistory, laterPublished } = require('./helpers/lesson-diagram-history-nov25.cjs');
 const load = createLoader(), React = local('react');
 const { renderToStaticMarkup } = local('react-dom/server');
 const { getLessonDiagram } = load('lib/lesson-diagrams.js');
@@ -36,12 +37,14 @@ test('Every existing diagram is preserved exactly against the published d5bb4f0 
   const { code } = local('next/dist/build/swc').transformSync(source, { filename: 'lesson-diagrams.js', jsc: { parser: { syntax: 'ecmascript' }, target: 'es2022' }, module: { type: 'commonjs' } });
   const prior = { exports: {} }; new Function('module', 'exports', code)(prior, prior.exports);
   let existingCount = 0;
+  const seen = new Set();
   for (const course of learningModules) for (const lesson of course.lessons) {
     const before = prior.exports.getLessonDiagram(course.id, lesson.id);
-    if (isNew(course.id, lesson.id)) { assert.equal(before, null); continue; }
     if (before) existingCount++;
-    assert.deepEqual(getLessonDiagram(course.id, lesson.id), before, `${course.id}/${lesson.id}`);
+    const kind = assertDiagramHistory('winterForest', prior.exports.getLessonDiagram, getLessonDiagram, course.id, lesson.id);
+    if (kind === 'published-addition') seen.add(`${course.id}/${lesson.id}`);
   }
+  assert.deepEqual([...seen].sort(), [...laterPublished.winterForest].sort());
   assert.equal(existingCount, 9);
 });
 
