@@ -1,0 +1,16 @@
+.example { margin: 24px 0; padding: 22px; border: 1px solid #d9c99d; border-radius: 16px; background: #fbf7ec; color: #304638; }
+.example h3 { margin: 0 0 12px; font-size: clamp(22px, 3vw, 27px); line-height: 1.4; }
+.example p { line-height: 1.7; overflow-wrap: anywhere; }
+.comparison { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+.comparison figure { margin: 0; min-width: 0; }
+.comparison svg { display: block; width: 100%; height: auto; max-width: 480px; margin: 0 auto; }
+.comparison figcaption { margin-top: 10px; color: #625b48; font-size: 15px; line-height: 1.65; }
+.comparison ul { padding-left: 22px; margin: 18px 0 0; }
+.comparison li { margin: 14px 0; line-height: 1.65; }
+.comparison strong, .comparison span { display: block; }
+.control { display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid #a7b7a7; border-radius: 12px; background: #fffdf7; cursor: pointer; font-size: 18px; font-weight: 700; min-height: 52px; }
+.control input { width: 24px; height: 24px; flex-shrink: 0; accent-color: #2b4738; }
+.control input:focus-visible { outline: 3px solid #94621c; outline-offset: 4px; }
+.reading { min-height: 4.5em; padding: 14px; border-radius: 10px; background: #f0eddd; }
+@media (max-width: 700px) { .comparison { grid-template-columns: minmax(0, 1fr); } .example { padding: 16px; } .reading { min-height: 0; } }
+@media print { .control { display: none; } .comparison { grid-template-columns: minmax(0, 1fr); } .comparison svg { max-width: 300px; } }

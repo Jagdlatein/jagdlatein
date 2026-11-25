@@ -1,3 +1,6 @@
+// Keep the historical contract exact; the named Nov25 bird appendix has
+// positive whole-corpus/card preservation in its own live-data suite.
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 // Independent whole-category integration checks against the actual maintained
 // readers and question/card pools; no account or browser storage is accessed.
 const test = require('node:test');
@@ -11,7 +14,7 @@ const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-a
 const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 // This historical release still checks its exact four appendices. New named
 // appendices have their own positive whole-object baseline against a0b078b.
-const createLoader = overrides => createProjectLoader(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(overrides))));
+const createLoader = overrides => createProjectLoader(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(overrides)))));
 const load = createLoader();
 const { learningCategoryDetails: categories } = load('lib/learning-categories.js');
 const { learningModules: courses } = load('lib/learning-curriculum.js');

@@ -55,6 +55,7 @@ test('Historical diagram guards reject unapproved null-to-object gains, changed 
   assert.throws(() => assertDiagramHistory('absorption', () => ({ title: 'original' }), () => ({ title: 'changed' }), 'old-course', 'old-lesson'));
   assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'changed' }), 'wissen-spuren-systematisch', 'auftrittsformen'));
   assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'unapproved sibling' }), 'wissen-ausbau-habitat-insektenentwicklung-2026', 'tracheen-atmung-other'));
+  assert.throws(() => assertDiagramHistory('absorption', () => null, () => ({ title: 'unapproved sibling' }), 'wissen-ausbau-biologie-vogelkoerper-2026', 'spechtfuss-kletterhaltung-other'));
 });
 
 test('A synthetic expiring offline pack keeps both diagrams and their exact lesson evidence and dates', () => {

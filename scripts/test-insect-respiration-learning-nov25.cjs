@@ -1,12 +1,16 @@
+// Keep the historical contract exact; the named Nov25 bird appendix has
+// positive whole-corpus/card preservation in its own live-data suite.
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 // Real curriculum/card/reader integrations plus positive preservation against
 // the actually published baseline. No browser, account or customer storage.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { createLoader, root, local } = require('./helpers/project-module.cjs');
+const { createLoader: createProjectLoader, root, local } = require('./helpers/project-module.cjs');
 const { addition, stripInsectRespirationCourse, stripInsectRespirationDataset, stripInsectRespirationCards, insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
 const baseline = '7b69962b0fee40db63096d512b852a4241c90fcb';
 const rawPath = 'data/learning-expansion-habitat-depth-2026-10-17.json';
+const createLoader = overrides => createProjectLoader(woodpeckerFootBaselineFixture(overrides));
 const load = createLoader();
 function previousLoader() {
   const cache = new Map();

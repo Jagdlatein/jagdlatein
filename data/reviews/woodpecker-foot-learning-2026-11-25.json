@@ -1,0 +1,117 @@
+{
+  "reviewedOn": "2026-11-25",
+  "baselineCommit": "f1926db0ab56f51fab3a5666dc36b65e756c29d7",
+  "courseId": "wissen-ausbau-biologie-vogelkoerper-2026",
+  "lessonId": "spechtfuss-kletterhaltung",
+  "scope": "Ein begrenztes anatomisch-funktionelles Vergleichsmodell als Endlektion eines vorhandenen Vogelkörperkurses. Keine amtliche Prüfungsfrage oder vollständige Prüfungsabdeckung behauptet.",
+  "nonredundancy": "Aktuellen vollständigen Kurskorpus und lib/data einschliesslich Fragen, Porträts und Medienbeschriftungen gelesen durchsucht. Vogelbein erklärt Knie/Sprunggelenk, Schwimmlappen die Hautlappen des Blässhuhns, Syrinx das mechanische Spechttrommeln, Steuerfedern die Flugfunktion des Schwanzes. Keine bestehende Zehenstellungs-/Specht-Kletterfunktionslektion gefunden.",
+  "relatedLessons": [
+    {
+      "courseId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "vogelbein"
+    },
+    {
+      "courseId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "schwimmlappen"
+    },
+    {
+      "courseId": "wissen-ausbau-federaufbau-funktion-2026",
+      "lessonId": "steuerfedern"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+      "title": "Bock und Miller (1959): The Scansorial Foot of the Woodpeckers",
+      "organization": "Walter J. Bock und Waldron DeWitt Miller / American Museum of Natural History",
+      "actuallyRead": true,
+      "role": "Originalarbeit, American Museum Novitates1931: Grundanordnung und funktionelle Kletterstellung getrennt gelesen; besonders Druckseiten14–19 und30, einschliesslich eigener Beobachtungen am damaligen Modell Dendrocopos villosus. Relevante Originalseiten visuell geprüft. Anatomische Vergleichsdarstellung, keine universelle Art-, Kraft- oder Evolutionsbehauptung; Stanford ist nur Scan-Host. Keine Bildübernahme oder Manipulationsanleitung.",
+      "excluded": "Keine vollständige 46-Seiten-Lektüre behauptet, keine Messwerte/Winkel/Kraftanteile, universelle Evolutionsgeschichte, Tiermanipulation oder Abbildungsübernahme."
+    },
+    {
+      "url": "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers",
+      "title": "BTO: Picidae – Woodpeckers",
+      "organization": "British Trust for Ornithology",
+      "actuallyRead": true,
+      "role": "Vollständige kurze Originalseite direkt gelesen: Zwei-vorn-zwei-hinten-Grundschema, seitwärts bewegliche Zehe und zusätzliche Schwanzstütze. Unabhängig redigierte Erklärung, keine experimentelle Wiederholung. Zu pauschale All-Aussagen werden nicht übernommen; der Lerntext bleibt beim ausdrücklich vierzehigen Vergleichsmodell.",
+      "excluded": "Keine Übernahme der zu pauschalen All-Aussagen über sämtliche Spechte und Höhlenbau; kein Veröffentlichungsdatum aus einem Fussbereich erfunden."
+    },
+    {
+      "url": "https://www.vogelwarte.ch/de/entdecken/spechte/",
+      "title": "Schweizerische Vogelwarte: Spechte – Leben in der Vertikalen",
+      "organization": "Schweizerische Vogelwarte",
+      "actuallyRead": true,
+      "role": "Abschnitt Anatomie und Grauspecht-Bildunterschrift tatsächlich gelesen: bewegliche äussere Zehe, kräftige Zehen und Krallen, Stützschwanz. Die Bildunterschrift beschreibt eine Drehung nach oben und ist für sich kein Nachweis eines exakten seitlichen Winkels. Unabhängige DACH-Facherklärung, keine experimentelle Replikation; die ausdrücklich genannte Wendehals-Ausnahme verhindert eine All-Arten-Aussage. Kein Foto oder Video übernommen.",
+      "excluded": "Keine Bilder/Audio/Video übernommen, keine Datierung oder Messung aus der Bildbeschriftung erfunden; Aufwärtsbewegung nicht als exakter seitlicher Winkel ausgegeben."
+    }
+  ],
+  "originalPaperReadScope": "Titelseite/Vorwort/Einleitung und ausgewählte Originalabschnitte gelesen; Schwerpunkt gedruckte Seiten 14–19 sowie 30. Gedruckte Seiten 14, 15, 16, 17, 18, 19 und 30 zusätzlich visuell geprüft. Figur 3 ist ein Präparatevergleich, keine frei lebende fotografierte Bewegung; Figuren werden nicht übernommen. Stanford ist Scan-Host, keine vierte unabhängige Quelle.",
+  "originalPageEvidence": "Chat-Workspace work/bird-foot-audit-nov25/bock-miller-1959.pdf und bock-page-{14,15,16,17,18,19,30}.png; ursprüngliches rein lesendes Scope-Audit knowledge-gap-audit.json.",
+  "claims": [
+    {
+      "claim": "Das ausdrücklich vierzehige zygodactyle Vergleichsmodell hat zwei nach vorn und zwei nach hinten gerichtete Zehen. Es ist von einem Drei-vorn-eine-hinten-Schema zu unterscheiden und keine starre Bewegungsregel sämtlicher Spechtarten.",
+      "sourceUrls": [
+        "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+        "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers"
+      ],
+      "sourceRoles": {
+        "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf": "Druckseite30 definiert zygodactyl und anisodactyl anhand der Zehenanordnung; die art- und haltungsbezogenen Grenzen folgen auch aus den Originalvergleichen. Keine Ziffern-Merkaufgabe, keine universelle Evolutionsgeschichte.",
+        "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers": "Der Fussabsatz erklärt das Zwei-vorn-zwei-hinten-Schema anschaulich. Die zu weit gefasste All-Aussage wird auf das ausdrücklich vierzehige Lernmodell eingegrenzt."
+      }
+    },
+    {
+      "claim": "Grundschema und funktionelle Haltung sind zu unterscheiden: Die bewegliche äussere Zehe kann beim Klettern seitwärts gerichtet werden. Eine einzelne Haltung ist kein sicherer Art- oder Leistungsnachweis.",
+      "sourceUrls": [
+        "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+        "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers",
+        "https://www.vogelwarte.ch/de/entdecken/spechte/"
+      ],
+      "sourceRoles": {
+        "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf": "Druckseiten15–17 beschreiben und illustrieren am damaligen Dendrocopos-villosus-Modell die seitliche Stellung der vierten Zehe im Unterschied zum Präparate-Grundschema. Keine Übernahme exakter Winkel, Manipulationsschritte oder pauschaler Artenübertragung.",
+        "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers": "Der Fussabsatz bestätigt unabhängig, dass eine hintere Zehe auch seitwärts gebogen werden kann. Keine eigene experimentelle Wiederholung.",
+        "https://www.vogelwarte.ch/de/entdecken/spechte/": "Anatomie und Grauspecht-Bildunterschrift bestätigen die Beweglichkeit der äusseren Zehe. Die dort genannte Drehung nach oben wird nicht als unabhängiger Nachweis eines exakten seitlichen Winkels ausgegeben."
+      }
+    },
+    {
+      "claim": "Kräftige gekrümmte Krallen helfen beim Halt an Borke; der Stützschwanz kann zusätzlich am Stamm abstützen. Das Zusammenspiel wird ohne Kraftanteile, Leistungsmessung oder identischen Bau aller Spechtarten erklärt.",
+      "sourceUrls": [
+        "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+        "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers",
+        "https://www.vogelwarte.ch/de/entdecken/spechte/"
+      ],
+      "sourceRoles": {
+        "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf": "Druckseiten15–18 beschreiben Krallen und Schwanzstütze sowie ihr Zusammenwirken. Die historische Kraftzerlegung und vergleichende Evolutionsdeutung werden nicht als Produktbehauptung übernommen.",
+        "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers": "Der Fussabsatz verbindet die kletternden Füsse mit zusätzlicher Stütze durch den steifen Schwanz. Pauschale All-Aussagen werden nicht übernommen.",
+        "https://www.vogelwarte.ch/de/entdecken/spechte/": "Anatomie erklärt kräftige Zehen, Krallen und Stützschwanz zusammen; die Grauspecht-Beschriftung veranschaulicht die Funktionen. Die Wendehals-Ausnahme bleibt Grund für die sichtbare Grenze gegen eine All-Arten-Regel."
+      }
+    }
+  ],
+  "limits": [
+    "Ausdrücklich vierzehiges Grundmodell; keine identische Fussform oder starre Zwei-vorn-zwei-hinten-Haltung sämtlicher Spechte.",
+    "Grundschema und momentane funktionelle Haltung unterscheiden.",
+    "Keine Art-/Gesundheits-/Verletzungs-/Leistungsdiagnose aus einer Haltung.",
+    "Keine Zahlen, Kraftanteile, Evolutionsgarantie, Behandlung oder Fang-/Manipulationsanleitung.",
+    "Nur eigene schriftliche Papierübung; keine neue bezahlte oder unlizenzierte Lehrmedien."
+  ],
+  "questions": [
+    {
+      "id": "spechtfuss-grundschema",
+      "lessonId": "spechtfuss-kletterhaltung",
+      "fourAnswers": true,
+      "role": "Anatomisches Grundschema verständlich zuordnen, keine Zehenziffern-Merkaufgabe."
+    },
+    {
+      "id": "spechtfuss-bewegliche-haltung",
+      "lessonId": "spechtfuss-kletterhaltung",
+      "fourAnswers": true,
+      "role": "Angewandter Vergleich: funktionelle Bewegung von einem starren Schema unterscheiden; keine Ferndiagnose."
+    }
+  ],
+  "preservation": "Nur eine datierte Endlektion, zwei eigene Fragen, drei genau lektionsgebundene Quellen und ein zugehöriger abschliessender Evidenceblock. Alte Kursmetadaten/Datumswerte, zehn alte Lektionen, vierzig alte Fragen, 25 alte Quellen, übrige Kurssätze und Karten bleiben vollständig gleich; positiver Vergleich gegen f1926db im gezielten Test.",
+  "media": {
+    "newPhotos": false,
+    "newVideos": false,
+    "originalPaperIllustrationsReused": false
+  },
+  "reviewStatus": "Eigene Quellenprüfung abgeschlossen; unabhängige Root-Gegenprüfung und technische Prüfungen separat. Keine vollständige fachliche Zertifizierung des Gesamtkorpus."
+}

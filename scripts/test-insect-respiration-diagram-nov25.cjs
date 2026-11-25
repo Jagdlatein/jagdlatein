@@ -1,7 +1,8 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const { createLoader, local, root } = require('./helpers/project-module.cjs');
-const load = createLoader(), { getLessonDiagram } = load('lib/lesson-diagrams.js');
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
+const load = createLoader(woodpeckerFootBaselineFixture()), { getLessonDiagram } = load('lib/lesson-diagrams.js');
 const courseId = 'wissen-ausbau-habitat-insektenentwicklung-2026', lessonId = 'tracheen-atmung';
 
 test('The new lesson alone receives a bounded functional airway scheme, with ventilation and diffusion kept distinct', () => {

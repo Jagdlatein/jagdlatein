@@ -1,3 +1,6 @@
+// Keep the historical contract exact; the named Nov25 bird appendix has
+// positive whole-corpus/card preservation in its own live-data suite.
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 // Independent whole-object and UI integration checks. Only isolated progress
 // stores are used; no real browser, account or personal learning data is read.
 const test = require('node:test'), assert = require('node:assert/strict');
@@ -7,7 +10,7 @@ const { insectRespirationBaselineFixture } = require('./helpers/insect-respirati
 const React = local('react'), { renderToStaticMarkup } = local('react-dom/server');
 // Keep this exact Nov17 inventory contract; the precisely named Nov25 appendix
 // has independent positive current-curriculum and full-object preservation tests.
-const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader(insectRespirationBaselineFixture());
+const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659', load = createLoader(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture()));
 function previousLoader() {
   const cache = new Map();
   return function read(relative) {

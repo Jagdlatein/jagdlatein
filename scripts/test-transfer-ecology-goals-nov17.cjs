@@ -5,6 +5,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { createLoader, root, local } = require('./helpers/project-module.cjs');
 const { stripInsectRespirationCards } = require('./helpers/insect-respiration-addition-nov25.cjs');
+const { stripWoodpeckerFootCards } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 
 const revision = '69e4417ffc881e88432dfc04e3e444f1b1357659';
 const load = createLoader();
@@ -113,9 +114,9 @@ test('Lesson-scoped digital decks inherit actual four-answer cards, full explana
       assert.deepEqual(plainCard, before.find(item => item.id === card.id));
     }
   }
-  // The separately reviewed Nov25 appendix adds exactly its two scoped cards;
+  // The separately reviewed Nov25 appendices each add two exact scoped cards;
   // every historical card remains a complete positive object comparison.
-  assert.deepEqual(stripInsectRespirationCards(getFlashcards()), before);
+  assert.deepEqual(stripInsectRespirationCards(stripWoodpeckerFootCards(getFlashcards())), before);
 });
 
 test('Each editorial daily-case candidate reuses one actual existing four-answer question and its complete reading, never a new question', () => {

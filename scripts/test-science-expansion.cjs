@@ -1,3 +1,6 @@
+// Keep the historical contract exact; the named Nov25 bird appendix has
+// positive whole-corpus/card preservation in its own live-data suite.
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 const { practiceKnowledgeBaselineFixture } = require('./helpers/practice-knowledge-additions-oct29.cjs');
 const { linkedExamBaselineFixture } = require('./helpers/linked-exam-additions-oct29.cjs');
 const { examKnowledgeBaselineFixture } = require('./helpers/exam-knowledge-additions-oct29.cjs');
@@ -15,12 +18,12 @@ const { createLoader: createLinkedProjectLoader } = require('./helpers/project-m
 // The published c5a015 HEAD already contained seven later Nov01/Nov08 science
 // questions beyond this 576+8 snapshot. Their separate regressions retain the
 // live content; project only those precisely named appendices here.
-const createLoader = overrides => createLinkedProjectLoader(novemberLearningBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(insectRespirationBaselineFixture(overrides)))))));
+const createLoader = overrides => createLinkedProjectLoader(novemberLearningBaselineFixture(practiceKnowledgeBaselineFixture(linkedExamBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(overrides))))))));
 // This intentionally narrowed science snapshot does not include the current
 // transfer-case prerequisites. Full-corpus tests cover those twelve new search
 // entries; preserve the exact historical course/lesson assertions here.
 const load = createLoader({
-  ...examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture())),
+  ...examKnowledgeBaselineFixture(plantEnergyBaselineFixture(adiposeBaselineFixture(woodpeckerFootBaselineFixture()))),
   './exam-transfer-goals-server': { getExamTransferGoals: () => [] },
 });
 const { scienceExpansionDatasets: datasets, scienceExpansionModules: added } = load('lib/learning-science-expansion.js');

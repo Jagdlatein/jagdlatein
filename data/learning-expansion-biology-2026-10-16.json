@@ -1619,6 +1619,36 @@
           "lessonIds": [
             "vogelbein"
           ]
+        },
+        {
+          "label": "Bock und Miller (1959): The Scansorial Foot of the Woodpeckers",
+          "url": "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+          "organization": "Walter J. Bock und Waldron DeWitt Miller / American Museum of Natural History",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "spechtfuss-kletterhaltung"
+          ],
+          "supports": "Originalarbeit, American Museum Novitates Nr. 1931: Grundanordnung und funktionelle Kletterstellung getrennt gelesen; besonders Druckseiten14–19 und30, einschliesslich eigener Beobachtungen am damaligen Modell Dendrocopos villosus. Relevante Originalseiten visuell geprüft. Anatomische Vergleichsdarstellung, keine universelle Art-, Kraft- oder Evolutionsbehauptung; Stanford ist nur Scan-Host. Keine Bildübernahme oder Manipulationsanleitung."
+        },
+        {
+          "label": "BTO: Picidae – Woodpeckers",
+          "url": "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers",
+          "organization": "British Trust for Ornithology",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "spechtfuss-kletterhaltung"
+          ],
+          "supports": "Vollständige kurze Originalseite direkt gelesen: Zwei-vorn-zwei-hinten-Grundschema, seitwärts bewegliche Zehe und zusätzliche Schwanzstütze. Unabhängig redigierte Erklärung, keine experimentelle Wiederholung. Zu pauschale All-Aussagen werden nicht übernommen; der Lerntext bleibt beim ausdrücklich vierzehigen Vergleichsmodell."
+        },
+        {
+          "label": "Schweizerische Vogelwarte: Spechte – Leben in der Vertikalen",
+          "url": "https://www.vogelwarte.ch/de/entdecken/spechte/",
+          "organization": "Schweizerische Vogelwarte",
+          "checkedOn": "2026-11-25",
+          "lessonIds": [
+            "spechtfuss-kletterhaltung"
+          ],
+          "supports": "Abschnitt Anatomie und Grauspecht-Bildunterschrift tatsächlich gelesen: bewegliche äussere Zehe, kräftige Zehen und Krallen, Stützschwanz. Die Bildunterschrift beschreibt eine Drehung nach oben und ist für sich kein Nachweis eines exakten seitlichen Winkels. Unabhängige DACH-Facherklärung, keine experimentelle Replikation; die ausdrücklich genannte Wendehals-Ausnahme verhindert eine All-Arten-Aussage. Kein Foto oder Video übernommen."
         }
       ],
       "lessons": [
@@ -1741,6 +1771,19 @@
           ],
           "takeaway": "Der auffällige untere Knick ist das Sprunggelenk; das Knie liegt höher und ist häufig vom Gefieder verdeckt.",
           "exercise": "Eigene Papierübung: Ordne Körper, meist verdecktes Knie, Sprunggelenk und Zehen in dieser Reihenfolge. Markiere an einer vorhandenen Vogelaufnahme nur die tatsächlich einsehbaren Abschnitte; ergänze keine Knochenmaße."
+        },
+        {
+          "id": "spechtfuss-kletterhaltung",
+          "title": "Spechtfuss: Grundschema und Kletterhaltung",
+          "reviewedOn": "2026-11-25",
+          "flashcardExpansion": true,
+          "paragraphs": [
+            "Am ausdrücklich vierzehigen Spechtfuss lässt sich eine besondere Zehenanordnung erklären: Zwei Zehen weisen nach vorn, zwei nach hinten. Diese Grundanordnung heisst zygodactyl. Sie unterscheidet sich von einer Dreiergruppe nach vorn mit einer einzelnen Hinterzehe. Eine solche Skizze beschreibt ein Grundschema und ist keine starre Schablone für jede Bewegung.",
+            "Beim Klettern kann die äussere Zehe seitwärts gerichtet werden. Deshalb muss die momentane Haltung nicht wie ein unverändertes Zwei-vorn-zwei-hinten-Schema aussehen. Zum Halt tragen auch kräftige, gekrümmte Krallen bei, die an der Borke greifen. Der Stützschwanz kann zusätzlich am Stamm anliegen und den Vogel abstützen. Zehenstellung, Krallen und Schwanz wirken dabei zusammen.",
+            "Beschrieben ist ein vierzehiges Vergleichsmodell, keine identische Fussform sämtlicher Spechtarten. Für andere Arten oder Bewegungen darfst du das Schema nicht ungeprüft übernehmen. Ein einzelnes Fussbild beweist weder eine sichere Artzuordnung noch eine bestimmte Halteleistung. Eigenes Papierbeispiel: Zeichne zuerst das Grundschema, daneben eine vereinfachte Kletterhaltung mit seitwärts gerichteter äusserer Zehe und abstützendem Schwanz. Dafür wird kein Vogel gefangen oder an Zehen oder Schwanz manipuliert."
+          ],
+          "takeaway": "Zwei Vorder- und zwei Hinterzehen beschreiben das vierzehige Grundschema; die bewegliche äussere Zehe kann beim Klettern seitwärts weisen. Krallen und Stützschwanz helfen beim Halt.",
+          "exercise": "Eigene Papierübung: Vergleiche das vierzehige Grundschema mit einer vereinfachten Kletterhaltung. Markiere die bewegliche äussere Zehe, Krallen und abstützenden Schwanz getrennt; behandle die Skizze nicht als Art- oder Leistungsnachweis."
         }
       ],
       "questions": [
@@ -2263,6 +2306,32 @@
           ],
           "answer": 0,
           "explain": "Der sichtbare untere Knick entspricht dem Sprung- beziehungsweise Fersengelenk. Das Knie liegt weiter oben und bleibt häufig unter dem Gefieder verborgen. Unterhalb des Sprunggelenks folgt ein Fußabschnitt zu den Zehen; die äußere Kontur ist keine vollständige Skelettansicht."
+        },
+        {
+          "id": "spechtfuss-grundschema",
+          "lessonId": "spechtfuss-kletterhaltung",
+          "q": "Welche Anordnung beschreibt das hier erklärte vierzehige, zygodactyle Grundschema eines Spechtfusses?",
+          "options": [
+            "Drei Zehen weisen nach vorn, eine nach hinten.",
+            "Zwei Zehen weisen nach vorn, zwei nach hinten.",
+            "Alle vier Zehen weisen nach vorn.",
+            "Eine Zehe weist nach vorn, drei nach hinten."
+          ],
+          "answer": 1,
+          "explain": "Zwei nach vorn und zwei nach hinten gerichtete Zehen bilden das ausdrücklich vierzehige zygodactyle Grundschema. Es ist keine für jede Bewegung unveränderliche Haltung und keine Regel über sämtliche Spechtarten."
+        },
+        {
+          "id": "spechtfuss-bewegliche-haltung",
+          "lessonId": "spechtfuss-kletterhaltung",
+          "q": "Eine vereinfachte Kletterzeichnung zeigt die äussere Spechtzehe seitwärts. Welche Erklärung passt zum beschriebenen Grundschema?",
+          "options": [
+            "Zygodactyl bezeichnet ausschliesslich die seitwärts gerichtete Kletterhaltung.",
+            "Die Seitenstellung gehört zwingend zu einem Grundschema mit drei Vorderzehen und einer Hinterzehe.",
+            "Bauplan und Haltung sind zu unterscheiden: Die bewegliche äussere Zehe kann beim Klettern seitwärts weisen.",
+            "Die Seitenstellung allein ermöglicht die sichere Zuordnung zu einer bestimmten Spechtart."
+          ],
+          "answer": 2,
+          "explain": "Die äussere Zehe ist beweglich. Ihre momentane Kletterstellung kann deshalb vom einfachen Zwei-vorn-zwei-hinten-Grundschema abweichen. Das allein bestimmt weder eine andere Zehenzahl noch eine bestimmte Art. Krallen und Stützschwanz wirken am Halt mit."
         }
       ]
     },
@@ -4943,6 +5012,49 @@
             "https://vivo.colostate.edu/hbooks/pathphys/digestion/smallgut/anatomy.html": "Abschnitt zur Oberflächenvergrößerung und anschließende Erklärung des brush border; keine dortigen Flächenwerte übernommen.",
             "https://histology.leeds.ac.uk/home/digestive/small_intestine/": "Structure erklärt die vergrößerte Aufnahmefläche. Menschliche Darmmaße, Abbildungen und klinische Folgetexte nicht übernommen.",
             "https://e-learn.anatomy.uzh.ch/anatomie/Histologie/histo_HTML/histo_A_Epithel/epithel_07.html": "Öffentliche Originalbeschreibung nennt Oberflächenvergrößerung und den lichtmikroskopischen Bürstensaum. Die eigene Skizze ist keine Kopie des TEM-Bilds und keine Messung."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-biologie-vogelkoerper-2026",
+      "lessonId": "spechtfuss-kletterhaltung",
+      "claims": [
+        {
+          "claim": "Das ausdrücklich vierzehige zygodactyle Vergleichsmodell hat zwei nach vorn und zwei nach hinten gerichtete Zehen. Es ist von einem Drei-vorn-eine-hinten-Schema zu unterscheiden und keine starre Bewegungsregel sämtlicher Spechtarten.",
+          "sourceUrls": [
+            "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+            "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers"
+          ],
+          "sourceRoles": {
+            "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf": "Druckseite30 definiert zygodactyl und anisodactyl anhand der Zehenanordnung; die art- und haltungsbezogenen Grenzen folgen auch aus den Originalvergleichen. Keine Ziffern-Merkaufgabe, keine universelle Evolutionsgeschichte.",
+            "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers": "Der Fussabsatz erklärt das Zwei-vorn-zwei-hinten-Schema anschaulich. Die zu weit gefasste All-Aussage wird auf das ausdrücklich vierzehige Lernmodell eingegrenzt."
+          }
+        },
+        {
+          "claim": "Grundschema und funktionelle Haltung sind zu unterscheiden: Die bewegliche äussere Zehe kann beim Klettern seitwärts gerichtet werden. Eine einzelne Haltung ist kein sicherer Art- oder Leistungsnachweis.",
+          "sourceUrls": [
+            "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+            "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers",
+            "https://www.vogelwarte.ch/de/entdecken/spechte/"
+          ],
+          "sourceRoles": {
+            "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf": "Druckseiten15–17 beschreiben und illustrieren am damaligen Dendrocopos-villosus-Modell die seitliche Stellung der vierten Zehe im Unterschied zum Präparate-Grundschema. Keine Übernahme exakter Winkel, Manipulationsschritte oder pauschaler Artenübertragung.",
+            "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers": "Der Fussabsatz bestätigt unabhängig, dass eine hintere Zehe auch seitwärts gebogen werden kann. Keine eigene experimentelle Wiederholung.",
+            "https://www.vogelwarte.ch/de/entdecken/spechte/": "Anatomie und Grauspecht-Bildunterschrift bestätigen die Beweglichkeit der äusseren Zehe. Die dort genannte Drehung nach oben wird nicht als unabhängiger Nachweis eines exakten seitlichen Winkels ausgegeben."
+          }
+        },
+        {
+          "claim": "Kräftige gekrümmte Krallen helfen beim Halt an Borke; der Stützschwanz kann zusätzlich am Stamm abstützen. Das Zusammenspiel wird ohne Kraftanteile, Leistungsmessung oder identischen Bau aller Spechtarten erklärt.",
+          "sourceUrls": [
+            "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf",
+            "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers",
+            "https://www.vogelwarte.ch/de/entdecken/spechte/"
+          ],
+          "sourceRoles": {
+            "https://bdml.stanford.edu/twiki/pub/Main/PerchingPapers/BockAndMiller.pdf": "Druckseiten15–18 beschreiben Krallen und Schwanzstütze sowie ihr Zusammenwirken. Die historische Kraftzerlegung und vergleichende Evolutionsdeutung werden nicht als Produktbehauptung übernommen.",
+            "https://www.bto.org/learn/about-birds/bird-families/picidae-woodpeckers": "Der Fussabsatz verbindet die kletternden Füsse mit zusätzlicher Stütze durch den steifen Schwanz. Pauschale All-Aussagen werden nicht übernommen.",
+            "https://www.vogelwarte.ch/de/entdecken/spechte/": "Anatomie erklärt kräftige Zehen, Krallen und Stützschwanz zusammen; die Grauspecht-Beschriftung veranschaulicht die Funktionen. Die Wendehals-Ausnahme bleibt Grund für die sichtbare Grenze gegen eine All-Arten-Regel."
           }
         }
       ]

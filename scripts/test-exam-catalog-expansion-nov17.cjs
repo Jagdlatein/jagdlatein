@@ -1,3 +1,6 @@
+// Keep the historical contract exact; the named Nov25 bird appendix has
+// positive whole-corpus/card preservation in its own live-data suite.
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 // Whole-object positive preservation against the last actually delivered commit.
 // The foreign pre-existing afternoon dataset is read unchanged in BOTH loaders.
 const test = require('node:test');
@@ -8,7 +11,7 @@ const { execFileSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
 const { createLoader, root, local } = require('./helpers/project-module.cjs');
 const { insectRespirationBaselineFixture } = require('./helpers/insect-respiration-addition-nov25.cjs');
-const load = createLoader(insectRespirationBaselineFixture()), revision = 'a0b078b800c5eafd2a31fa5c6a95c0ee3718132c';
+const load = createLoader(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture())), revision = 'a0b078b800c5eafd2a31fa5c6a95c0ee3718132c';
 function previousLoader() {
   const cache = new Map();
   return function read(relative) {

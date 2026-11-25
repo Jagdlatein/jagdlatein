@@ -1,3 +1,6 @@
+// Keep the historical contract exact; the named Nov25 bird appendix has
+// positive whole-corpus/card preservation in its own live-data suite.
+const { woodpeckerFootBaselineFixture } = require('./helpers/woodpecker-foot-addition-nov25.cjs');
 // Exact forest-learning preservation and integration checks; no scientific certification.
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), { createHash } = require('node:crypto');
@@ -13,7 +16,7 @@ const { capercaillieToeBaselineFixture } = require('./helpers/capercaillie-toe-a
 const { courseId, lessonIds, questionIds, sourceURLs: urls, sourceScopes, originalParagraph, correctedParagraph, stripForestRegenerationAddition, forestRegenerationBaselineFixture } = require('./helpers/forest-regeneration-additions-nov08.cjs');
 // Project only the exactly named later appendices before all Nov08 snapshots;
 // their full positive b9ed55f preservation check is a separate live-data suite.
-const historicalOverrides = overrides => marmotHibernationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(overrides))))))));
+const historicalOverrides = overrides => marmotHibernationBaselineFixture(trackPostureBaselineFixture(alulaBaselineFixture(practiceMeasurementBaselineFixture(forestExamBaselineFixture(dogExtinctionBaselineFixture(capercaillieToeBaselineFixture(insectRespirationBaselineFixture(woodpeckerFootBaselineFixture(overrides)))))))));
 const createLoader = overrides => createProjectLoader(historicalOverrides(overrides));
 const load = createLoader(), rawModules = load('lib/learning-expansion-nature.js').natureExpansionModules.map(stripForestExamCourse);
 const raw = rawModules.find(item => item.id === courseId), curriculum = load('lib/learning-curriculum.js'), course = curriculum.getLearningModule(courseId);

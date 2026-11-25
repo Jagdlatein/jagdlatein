@@ -39,6 +39,7 @@ const laterPublished = Object.freeze({
   ]),
 });
 const currentAppendix = 'wissen-ausbau-habitat-insektenentwicklung-2026/tracheen-atmung';
+const woodpeckerAppendix = 'wissen-ausbau-biologie-vogelkoerper-2026/spechtfuss-kletterhaltung';
 let releasedGetter;
 function getReleasedDiagram(courseId, lessonId) {
   if (!releasedGetter) {
@@ -52,9 +53,11 @@ function getReleasedDiagram(courseId, lessonId) {
 function assertDiagramHistory(kind, historicalGetter, actualGetter, courseId, lessonId) {
   assert.ok(Object.hasOwn(laterPublished, kind));
   const key = `${courseId}/${lessonId}`;
-  // This single new target has its own positive diagram, renderer, offline and
-  // all-prior-diagram checks in test-insect-respiration-diagram-nov25.cjs.
-  if (key === currentAppendix) return 'current-appendix';
+  // Each exact target has its own positive diagram, renderer, offline and
+  // full-prior-diagram checks; no unknown sibling may use this projection.
+  // The later exact bird target has its own positive renderer/offline/native
+  // control checks and complete 903-prior-diagram comparison against f1926db.
+  if (key === currentAppendix || key === woodpeckerAppendix) return 'current-appendix';
   const prior = historicalGetter(courseId, lessonId), actual = actualGetter(courseId, lessonId);
   if (laterPublished[kind].includes(key)) {
     assert.equal(prior, null, `Expected historical absence: ${key}`);
