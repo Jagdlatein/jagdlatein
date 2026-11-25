@@ -31,6 +31,48 @@ function walk(node, predicate, results = []) {
   else if (node && typeof node === 'object') { if (predicate(node)) results.push(node); walk(node.props?.children, predicate, results); }
   return results;
 }
+// These two historical tree-reading tests need a committed component, rather
+// than useState alone. Keep hook slots per component and run effects only after
+// its render. Native DOM/real unmount coverage lives in the lifecycle suites.
+function committedHooks(onState = () => {}) {
+  const instances = new Map();
+  let active;
+  function slot(initial) {
+    assert.ok(active, 'Hooks must run within an isolated component render');
+    const index = active.cursor++;
+    if (!active.slots[index]) active.slots[index] = { value: initial() };
+    return active.slots[index];
+  }
+  const hooks = { ...React,
+    useState(initial) {
+      const state = slot(() => typeof initial === 'function' ? initial() : initial);
+      onState(state.value);
+      return [state.value, update => { state.value = typeof update === 'function' ? update(state.value) : update; onState(state.value); }];
+    },
+    useRef(initial) { return slot(() => ({ current: initial })).value; },
+    useEffect(effect, dependencies) {
+      const state = slot(() => ({ committed: false, dependencies: undefined, cleanup: undefined })).value;
+      if (!state.committed || dependencies === undefined || state.dependencies?.length !== dependencies.length || dependencies.some((value, index) => !Object.is(value, state.dependencies[index]))) {
+        active.effects.push(() => { state.cleanup?.(); state.cleanup = effect(); state.dependencies = dependencies?.slice(); state.committed = true; });
+      }
+    },
+  };
+  return { hooks,
+    render(Component, props) {
+      if (!instances.has(Component)) instances.set(Component, { slots: [], cursor: 0, effects: [] });
+      const instance = instances.get(Component), previous = active;
+      instance.cursor = 0; instance.effects = []; active = instance;
+      let tree;
+      try { tree = Component(props); } finally { active = previous; }
+      for (const effect of instance.effects) effect();
+      return tree;
+    },
+    unmount() {
+      for (const instance of instances.values()) for (const state of instance.slots) if (state.value?.committed) { state.value.cleanup?.(); state.value.committed = false; }
+      instances.clear();
+    },
+  };
+}
 const digestive = load('lib/digestive-learning.js');
 const parasite = load('lib/parasite-learning.js');
 const collections = [
@@ -138,34 +180,36 @@ test('Selected content and sources appear immediately without a second layout, e
 test('Every radio answer reveals the correct explanation immediately and can be revised without submitting', () => {
   for (const {Component: name, topics} of collections) for (const topic of topics) for (const question of topic.questions) {
     let answers = {};
-    const hooks = {...React, useState(initial) { return typeof initial === 'object' ? [answers, update => { answers = typeof update === 'function' ? update(answers) : update; }] : [initial, () => {}]; }};
-    const Component = load(`components/${name}.js`, {react: hooks}).default;
-    const tree = Component({selectedId: topic.id, hideSelector: true});
+    const fixture = committedHooks(value => { if (value && typeof value === 'object') answers = value; });
+    const Component = load(`components/${name}.js`, {react: fixture.hooks}).default;
+    const tree = fixture.render(Component, {selectedId: topic.id, hideSelector: true});
     const content = walk(tree, node => node.type?.name === 'Content')[0]; assert.ok(content);
+    const renderContent = () => fixture.render(content.type, content.props);
     function choose(index) {
-      const rendered = content.type(content.props);
+      const rendered = renderContent();
       const radio = walk(rendered, node => node.type === 'input' && node.props.name === question.id)[index]; assert.ok(radio);
       radio.props.onChange();
-      return renderToStaticMarkup(content.type(content.props));
+      return renderToStaticMarkup(renderContent());
     }
-    assert.doesNotMatch(renderToStaticMarkup(content.type(content.props)), /role="status"/);
+    assert.doesNotMatch(renderToStaticMarkup(renderContent()), /role="status"/);
     const wrong = choose((question.answer + 1) % 3);
     assert.match(wrong, /Passend ist:/); assert.ok(wrong.includes(question.explanation));
     const correct = choose(question.answer);
     assert.match(correct, /Das passt\./); assert.ok(correct.includes(question.explanation));
     assert.equal(answers[question.id], question.answer);
+    fixture.unmount();
   }
 });
 
 test('Digestive learning keeps all teaching and limits visible while the last closed source block retains each fact, diagram, quiz and photograph attribution', () => {
-  const hooks = { ...React, useState: initial => [initial, () => {}] };
-  const Component = load('components/DigestiveLearning.js', { react: hooks }).default;
+  const fixture = committedHooks();
+  const Component = load('components/DigestiveLearning.js', { react: fixture.hooks }).default;
   const words = node => Array.isArray(node) ? node.map(words).join(' ') : node == null || typeof node === 'boolean' ? '' : typeof node === 'object' ? words(node.props?.children) : String(node);
   const hrefs = node => [...renderToStaticMarkup(node).matchAll(/href="([^"]+)"/g)].map(match => match[1].replaceAll('&amp;', '&'));
   for (const topic of digestive.digestiveTopics) {
-    const tree = Component({ selectedId: topic.id, hideSelector: true });
+    const tree = fixture.render(Component, { selectedId: topic.id, hideSelector: true });
     const content = walk(tree, node => node.type?.name === 'Content')[0];
-    const article = content.type(content.props);
+    const article = fixture.render(content.type, content.props);
     const children = React.Children.toArray(article.props.children);
     const evidence = children.at(-1);
     assert.equal(evidence.type, 'details'); assert.ok(!evidence.props.open, 'All supplemental sources start closed');
@@ -189,6 +233,7 @@ test('Digestive learning keeps all teaching and limits visible while the last cl
     for (const text of [topic.photo.author, topic.photo.license, topic.photo.modifications]) assert.ok(evidenceText.includes(text));
     assert.ok(evidenceLinks.includes(topic.photo.sourceUrl)); assert.ok(evidenceLinks.includes(topic.photo.licenseUrl));
     for (const id of new Set([...topic.facts.flatMap(fact => fact.sourceIds), ...topic.pathway.sourceIds])) assert.ok(evidenceText.includes(digestive.digestiveSources[id].scope));
+    fixture.unmount();
   }
 });
 

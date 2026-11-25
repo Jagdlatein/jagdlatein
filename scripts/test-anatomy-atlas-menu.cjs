@@ -16,10 +16,17 @@ function text(node) {
 function setup(file, query = {}) {
   const previousWindow = global.window;
   const slots = [], effects = [], replacements = [], methods = [], focus = [], scroll = [];
-  let cursor = 0, dirty = false, tree, closeCount = 0;
+  let cursor = 0, dirty = false, tree, closeCount = 0, pendingAnatomy = null;
+  const anatomy = file.includes('Anatomy');
+  function address(query, hash = '') {
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(query)) for (const item of Array.isArray(value) ? value : [value]) params.append(key, item);
+    return `/lernen/anatomie${params.size ? `?${params}` : ''}${hash ? `#${hash}` : ''}`;
+  }
   const router = { isReady: true, pathname: file.includes('Anatomy') ? '/lernen/anatomie' : '/lernen/wildtier-details', query,
     replace(...args) { methods.push('replace'); replacements.push(args); router.query = args[0].query; return Promise.resolve(true); },
-    push(...args) { methods.push('push'); replacements.push(args); router.query = args[0].query; return Promise.resolve(true); } };
+    push(...args) { methods.push('push'); replacements.push(args); if (anatomy) pendingAnatomy = args[0]; else router.query = args[0].query; return Promise.resolve(true); } };
+  if (anatomy) router.asPath = address(query);
   const hooks = { ...React,
     useState(initial) {
       const i = cursor++; slots[i] ||= { value: typeof initial === 'function' ? initial() : initial };
@@ -38,8 +45,17 @@ function setup(file, query = {}) {
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router },
     './PageMenu': { __esModule: true, default: PageMenu, closePageMenu() { closeCount++; }, openPageMenu() {} } });
   const Component = load(file).default;
-  global.window = { location: { search: `?${new URLSearchParams(query)}` } };
+  global.window = { location: { search: `?${new URLSearchParams(query)}` }, addEventListener() {}, removeEventListener() {} };
+  function adopt(query, hash = '') {
+    router.query = query;
+    if (!anatomy) return;
+    router.asPath = address(query, hash);
+    const url = new URL(router.asPath, 'https://jagdlatein.test');
+    Object.assign(window.location, { pathname: url.pathname, search: url.search, hash: url.hash });
+  }
+  if (anatomy) adopt(query);
   function flush() {
+    if (pendingAnatomy) { const target = pendingAnatomy; pendingAnatomy = null; adopt(target.query, target.hash); }
     let passes = 0;
     do {
       cursor = 0; dirty = false; tree = Component();
@@ -56,7 +72,7 @@ function setup(file, query = {}) {
     menu() { return nodes(tree, node => node.type === PageMenu)[0]; },
     bodyText() { return text(React.Children.toArray(tree.props.children).filter(node => node?.type !== PageMenu)); },
     choose(id, redraw = true) { const result = nodes(this.menu(), node => node.type?.name === 'MenuChoice')[0].props.onChange({ target: { value: id } }); if (redraw) flush(); return result; },
-    route(query) { router.query = query; flush(); }, flush,
+    route(query) { pendingAnatomy = null; adopt(query); flush(); }, flush,
     close() { for (const slot of slots) slot?.cleanup?.(); global.window = previousWindow; },
   };
 }

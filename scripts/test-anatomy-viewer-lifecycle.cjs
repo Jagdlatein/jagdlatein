@@ -37,6 +37,7 @@ function fixture(t, { query = {} } = {}) {
   }
   global.window = {
     customElements: { get: name => registered && name === 'model-viewer' ? function InertModelViewer() {} : undefined },
+    addEventListener() {}, removeEventListener() {},
     location: { pathname, search: '', hash: '', href: '' },
     setTimeout(callback, delay) { const id = ++timerId; timers.set(id, { callback, delay }); return id; },
     clearTimeout(id) { timers.delete(id); },

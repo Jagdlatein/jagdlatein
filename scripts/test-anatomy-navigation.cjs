@@ -23,9 +23,13 @@ function address(query, hash = '') {
 }
 function environment(t) {
   const previousWindow = global.window, harnesses = [];
-  global.window = { location: { search: '?eintrag=vorderlauf', hash: '#unrelated-device-state' } };
+  global.window = { location: { pathname: base, search: '', hash: '' }, addEventListener() {}, removeEventListener() {} };
   t.after(() => { for (const h of harnesses.reverse()) h.dispose(); global.window = previousWindow; });
   return { harnesses };
+}
+function adoptBrowser(href) {
+  const url = new URL(href, 'https://jagdlatein.test');
+  Object.assign(window.location, { pathname: url.pathname, search: url.search, hash: url.hash, href: url.href });
 }
 function fixture(env, query = { eintrag: 'schaedel' }, options = {}) {
   const slots = [], effects = [], cleanups = [], calls = [], focus = [], scroll = [];
@@ -49,8 +53,9 @@ function fixture(env, query = { eintrag: 'schaedel' }, options = {}) {
     },
   };
   const router = { isReady: options.ready !== false, pathname: base, asPath: address(query), query: { ...query }, async push(href, as, pushOptions) {
-    calls.push({ href, as, options: pushOptions }); router.query = href.query; router.asPath = address(href.query, href.hash); return true;
+    calls.push({ href, as, options: pushOptions }); router.query = href.query; router.asPath = address(href.query, href.hash); adoptBrowser(router.asPath); return true;
   }, ...options.router };
+  adoptBrowser(router.asPath);
   function PageMenu({ children }) { return React.createElement('aside', null, children); }
   const Component = createLoader({ react: hooks, 'next/router': { useRouter: () => router },
     './LearningToolLayout': { __esModule: true, default: ({ children }) => React.createElement('main', null, children) },
@@ -71,7 +76,7 @@ function fixture(env, query = { eintrag: 'schaedel' }, options = {}) {
   }
   function dispose() { if (disposed) return; disposed = true; cleanups.forEach(callback => callback?.()); for (const ref of refs.keys()) ref.current = null; }
   const h = { router, calls, focus, scroll, menu: menuState, get tree() { return tree; }, get writesAfterDispose() { return writesAfterDispose; }, render,
-    nodes: predicate => nodes(tree, predicate), navigate(nextQuery) { router.query = nextQuery; render(); }, dispose };
+    nodes: predicate => nodes(tree, predicate), navigate(nextQuery) { router.query = nextQuery; adoptBrowser(router.asPath); render(); }, dispose };
   env.harnesses.push(h); render(); return h;
 }
 function history(h, query, hash = '') { h.router.asPath = address(query, hash); h.navigate(query); }
@@ -119,8 +124,10 @@ test('All three original museum URLs preserve every model, structure, exact ques
     assert.ok(text(modelPanel(h)).includes(model.description)); assert.ok(text(modelPanel(h)).includes(model.size));
     assert.match(text(h.tree), /Weißwedelhirsches.*kein Reh oder Rotwild/);
     assert.match(text(h.tree), /verschiedenen Exemplaren.*nicht maßstabsgleich/);
-    assert.ok(nodes(modelPanel(h), node => node.props?.href === model.source).length);
-    assert.ok(nodes(modelPanel(h), node => node.props?.href === 'https://creativecommons.org/publicdomain/zero/1.0/').length);
+    const provenance = h.nodes(node => node.type === 'details' && text(node.props.children[0]) === 'Fachliche Quellen und Modellnachweise')[0];
+    assert.ok(provenance && !provenance.props.open);
+    assert.ok(nodes(provenance, node => node.props?.href === model.source).length);
+    assert.ok(nodes(provenance, node => node.props?.href === 'https://creativecommons.org/publicdomain/zero/1.0/').length);
     for (const feature of model.features) { fire(h, feature.title); assert.ok(text(modelPanel(h)).includes(feature.explanation)); }
     assert.match(text(modelPanel(h)), /keine automatische Messung/);
     const currentQuestions = questions.filter(question => question.modelId === model.id);
@@ -175,8 +182,10 @@ test('Unready and explicitly invalid, empty, repeated or contradictory URL field
   for (const query of invalid) {
     const bad = fixture(env, query);
     assert.equal(modelPanel(bad), undefined, JSON.stringify(query)); assert.equal(digestive(bad), undefined);
-    assert.equal(selector(bad).props.value, ''); assert.equal(menu(bad).props.openInitially, true);
-    assert.match(text(bad.tree), /Dieses Thema ist nicht verfügbar/);
+    const coherent = Object.values(query).every(value => typeof value === 'string' || Array.isArray(value) && value.length > 1 && value.every(item => typeof item === 'string'));
+    assert.equal(selector(bad).props.value, ''); assert.equal(menu(bad).props.openInitially, coherent);
+    assert.equal(selector(bad).props.disabled, !coherent, 'An impossible typed/null/single-array query is pending; a coherent invalid URL stays repairable');
+    assert.match(text(bad.tree), coherent ? /Dieses Thema ist nicht verfügbar/ : /gewählte Thema wird geladen/);
     history(bad, { eintrag: 'schaedel' }); await new Promise(resolve => setTimeout(resolve, 1)); assert.equal(bad.menu.opened, 0);
   }
   const departed = fixture(env, { eintrag: 'missing' }); departed.dispose(); await new Promise(resolve => setTimeout(resolve, 1));
@@ -248,6 +257,9 @@ test('Hash/context commits preserve answers and question index but retire old se
     const count = h.calls.length; await oldSelect({ target: { value: 'unterkiefer' } }); oldAnswer(); oldToggle({ currentTarget: { open: false } }); h.render();
     assert.equal(h.calls.length, count); assert.equal(text(quiz(h)), before);
   }
+  // The query-only/raw-only visits above intentionally split identity. Adopt
+  // their final actual browser address before invoking a fresh current action.
+  adoptBrowser(h.router.asPath); h.render();
   fire(h, currentQuestions[1].choices[currentQuestions[1].answer]); assert.match(text(quiz(h)), /2 beantwortet · 2 richtig/);
 });
 

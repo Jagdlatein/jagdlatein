@@ -11,6 +11,23 @@ function text(node) {
   return typeof node === 'object' ? text(node.props?.children) : String(node);
 }
 function setup(file, initialQuery = {}, options = {}) {
+  const anatomy = file === 'components/AnatomyExplorer.js';
+  const previousWindow = global.window;
+  function address(query, hash = '') {
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(query || {})) for (const item of Array.isArray(value) ? value : [value]) params.append(key, item);
+    return `/lernen/anatomie${params.size ? `?${params}` : ''}${hash ? `#${hash}` : ''}`;
+  }
+  let ownedWindow;
+  if (anatomy && previousWindow) {
+    ownedWindow = { ...previousWindow, location: {}, addEventListener() {}, removeEventListener() {} };
+    global.window = ownedWindow;
+  }
+  function adoptBrowser(href) {
+    if (!ownedWindow) return;
+    const url = new URL(href, 'https://jagdlatein.test');
+    Object.assign(ownedWindow.location, { pathname: url.pathname, search: url.search, hash: url.hash, href: url.href });
+  }
   const slots = [], calls = [], cleanups = []; let cursor = 0, effects = [], changed = false, tree;
   const hooks = { ...React,
     useState(initial) { const i = cursor++; if (!slots[i]) slots[i] = { value: typeof initial === 'function' ? initial() : initial }; return [slots[i].value, input => { const next = typeof input === 'function' ? input(slots[i].value) : input; changed ||= !Object.is(next, slots[i].value); slots[i].value = next; }]; },
@@ -19,7 +36,8 @@ function setup(file, initialQuery = {}, options = {}) {
   };
   function PageMenu({ children }) { return React.createElement('aside', { 'data-page-menu': true }, children); }
   const menu = { closed: 0, opened: 0 };
-  const router = { isReady: options.ready !== false, query: { ...initialQuery }, push: async (href, as, options) => { calls.push({ href, options }); router.query = href.query; if (router.asPath !== undefined) router.asPath = `${href.pathname}${href.hash ? `#${href.hash}` : ''}`; return true; }, ...options.router };
+  const router = { isReady: options.ready !== false, query: { ...initialQuery }, push: async (href, as, options) => { calls.push({ href, options }); router.query = href.query; if (anatomy) { router.asPath = address(href.query, href.hash); adoptBrowser(router.asPath); } else if (router.asPath !== undefined) router.asPath = `${href.pathname}${href.hash ? `#${href.hash}` : ''}`; return true; }, ...options.router };
+  if (anatomy) { router.asPath ??= address(router.query); adoptBrowser(router.asPath); }
   const load = createLoader({ react: hooks, 'next/router': { useRouter: () => router }, './LearningToolLayout': { __esModule: true, default: ({ children }) => React.createElement('main', null, children) }, './PageMenu': { __esModule: true, default: PageMenu, openPageMenu: () => { menu.opened++; }, closePageMenu: () => { menu.closed++; } } });
   const Component = load(file).default;
   function render() {
@@ -28,10 +46,10 @@ function setup(file, initialQuery = {}, options = {}) {
   }
   render();
   return { get tree() { return tree; }, render, router, calls, menu, load, nodes: predicate => nodes(tree, predicate),
-    navigate(query) { router.query = query; render(); },
+    navigate(query) { router.query = query; if (anatomy) { router.asPath = address(query); adoptBrowser(router.asPath); } render(); },
     input(value) { nodes(tree, node => node.type === 'input' && node.props.type === 'search')[0].props.onChange({ target: { value } }); render(); },
     click(label) { const button = nodes(tree, node => node.type === 'button' && text(node) === label)[0]; if (!button) throw new Error('Missing button: ' + label); button.props.onClick(); render(); },
-    dispose() { cleanups.forEach(fn => fn?.()); },
+    dispose() { cleanups.forEach(fn => fn?.()); if (ownedWindow && global.window === ownedWindow) global.window = previousWindow; },
   };
 }
 module.exports = { setup, nodes, text };

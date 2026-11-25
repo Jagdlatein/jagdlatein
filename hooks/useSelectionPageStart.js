@@ -33,8 +33,8 @@ export default function useSelectionPageStart(scope, enabled = true) {
     return cancelSelectionFocus;
   }, [scope, enabled]);
 
-  function focusSelection(target, { anchor = false } = {}) {
-    const current = () => mounted.current && active.current.scope === scope && active.current.enabled;
+  function focusSelection(target, { anchor = false, isCurrent = () => true } = {}) {
+    const current = () => mounted.current && active.current.scope === scope && active.current.enabled && isCurrent();
     if (!current()) return false;
     cancelSelectionFocus();
     if (anchor) {

@@ -9,6 +9,7 @@ import MenuChoice from "./MenuChoice";
 import useSelectionPageStart from "../hooks/useSelectionPageStart";
 import { anatomyModels, anatomyQuestions, anatomySources } from "../lib/anatomy-explorer";
 import { anatomyChoiceCheckedOn, getAnatomyChoiceSources } from "../lib/anatomy-choice-sources";
+import { anatomyRoute } from "../lib/anatomy-navigation";
 import styles from "../styles/LearningExperience.module.css";
 import mediaStyles from "../styles/LearningMediaExperiences.module.css";
 
@@ -32,8 +33,15 @@ function newView(key, previous) {
 
 export default function AnatomyExplorer() {
   const router = useRouter();
-  const ready = router.isReady === true;
-  const selection = ready ? readSelection(router.query) : null;
+  const route = anatomyRoute(router);
+  const ready = route.ready;
+  const requestedSelection = ready ? readSelection(router.query) : null;
+  // A temporary address mismatch or an invalid target is not a committed
+  // replacement of the learner's model, camera or local practice.
+  const confirmedSelection = useRef(null);
+  if (requestedSelection) confirmedSelection.current = requestedSelection;
+  const selection = confirmedSelection.current;
+  const visible = ready && Boolean(requestedSelection);
   const section = selection?.section;
   const model = selection?.model;
   const modelId = model?.id;
@@ -41,6 +49,7 @@ export default function AnatomyExplorer() {
   const selectionKey = selection ? section + ":" + selection.id : ready ? "invalid" : "unready";
   const [stored, setView] = useState(() => newView(selectionKey));
   const [navigationError, setNavigationError] = useState("");
+  const [, refreshLocation] = useState(0);
   const mounted = useRef(false);
   const contentTarget = useRef(null);
   const quizTarget = useRef(null);
@@ -48,11 +57,11 @@ export default function AnatomyExplorer() {
   const focusedOrigin = useRef(null);
   const request = useRef(0);
   const pending = useRef(null);
-  const viewKey = JSON.stringify([ready, router.asPath, router.query]);
+  const viewKey = route.origin;
   const currentOrigin = useRef({ key: viewKey });
   if (currentOrigin.current.key !== viewKey) currentOrigin.current = { key: viewKey };
   const origin = currentOrigin.current;
-  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, ready);
+  const { focusSelection, cancelSelectionFocus } = useSelectionPageStart(origin, visible);
   const modelScope = useRef({ key: selectionKey });
   const viewer = useRef(null);
   const attemptRef = useRef({});
@@ -90,7 +99,12 @@ export default function AnatomyExplorer() {
   const answeredCount = questions.filter(item => answers[item.id] !== undefined).length;
   const correct = questions.filter(item => answers[item.id] === item.answer).length;
   const feature = model?.features.find(item => item.id === featureId);
-  function canAct() { return mounted.current && ready && !!selection && currentOrigin.current === origin && modelScope.current === scope; }
+  function isCurrentRoute() {
+    if (!mounted.current || !ready || currentOrigin.current !== origin) return false;
+    const current = anatomyRoute(router);
+    return current.ready && current.origin === viewKey;
+  }
+  function canAct() { return isCurrentRoute() && visible && modelScope.current === scope; }
   function canUseAttempt() { return canAct() && attemptRef.current === attempt; }
   function changeView(patch) {
     if (!canAct()) return;
@@ -98,18 +112,23 @@ export default function AnatomyExplorer() {
   }
   function updateStatus(value) { if (canUseAttempt()) { statusRef.current = value; changeView({ status: value }); } }
   function focusContent() {
+    if (!canAct()) return;
     const anchor = (router.asPath || "").split("#")[1] === "anatomie-fragen" && !!model;
-    focusSelection(anchor ? quizTarget.current : contentTarget.current, { anchor });
+    focusSelection(anchor ? quizTarget.current : contentTarget.current, { anchor, isCurrent: canAct });
   }
   useEffect(() => {
     mounted.current = true;
-    return () => { mounted.current = false; request.current++; pending.current = null; frameRequest.current = null; };
+    const browserWindow = typeof window === "undefined" ? null : window;
+    const refresh = () => { if (mounted.current) refreshLocation(value => value + 1); };
+    browserWindow?.addEventListener("popstate", refresh);
+    browserWindow?.addEventListener("hashchange", refresh);
+    return () => { mounted.current = false; request.current++; pending.current = null; frameRequest.current = null; browserWindow?.removeEventListener("popstate", refresh); browserWindow?.removeEventListener("hashchange", refresh); };
   }, []);
   useEffect(() => {
     if (!ready) return;
     setNavigationError("");
-    if (!selection) {
-      const timer = setTimeout(() => { if (mounted.current && currentOrigin.current === origin) openPageMenu("anatomy-entry-select"); }, 0);
+    if (!requestedSelection) {
+      const timer = setTimeout(() => { if (isCurrentRoute()) openPageMenu("anatomy-entry-select"); }, 0);
       return () => clearTimeout(timer);
     }
     if (focusedOrigin.current === origin) return;
@@ -121,21 +140,21 @@ export default function AnatomyExplorer() {
   }, [ready, origin, quizOpen]);
 
   async function selectEntry(id) {
-    if (!mounted.current || !ready || currentOrigin.current !== origin) return;
+    if (!isCurrentRoute()) return;
     const digestive = digestiveTopics.some(item => item.id === id);
     if (!digestive && !anatomyModels.some(item => item.id === id)) return;
     cancelSelectionFocus();
     setNavigationError("");
-    if (selection?.id === id && pending.current === null) { closePageMenu(); focusContent(); return; }
+    if (requestedSelection?.id === id && pending.current === null) { closePageMenu(); focusContent(); return; }
     const ticket = ++request.current;
     pending.current = ticket;
     const { bereich, thema, eintrag, ...context } = router.query;
     try {
       const accepted = await router.push({ pathname: "/lernen/anatomie", query: { ...context, ...(digestive ? { bereich: "verdauung", thema: id } : { eintrag: id }) },
         hash: digestive ? "anatomie-verdauung" : "anatomie-modell" }, undefined, { shallow: true, scroll: false });
-      if (accepted !== false && mounted.current && request.current === ticket && currentOrigin.current === origin && selection?.id === id) { closePageMenu(); focusContent(); }
+      if (accepted !== false && isCurrentRoute() && request.current === ticket && requestedSelection?.id === id) { closePageMenu(); focusContent(); }
     } catch (error) {
-      if (error?.cancelled || !mounted.current || request.current !== ticket || currentOrigin.current !== origin) return;
+      if (error?.cancelled || !isCurrentRoute() || request.current !== ticket) return;
       setNavigationError("Das Thema konnte nicht geöffnet werden. Bitte wähle es erneut."); openPageMenu("anatomy-entry-select");
     } finally { if (pending.current === ticket) pending.current = null; }
   }
@@ -229,12 +248,13 @@ export default function AnatomyExplorer() {
   }
 
   return <LearningToolLayout title="Wildkörper verstehen" description="Körperbau und Verdauung an echten Präparatfotos und Museumsscans vergleichen." icon="cube" category="wildkunde" headingOnly>
-    <PageMenu title="Körperbau – Thema wählen" openInitially={ready && !selection} initialFocusId="anatomy-entry-select">
-      <MenuChoice label="Körperbau erkunden" id="anatomy-entry-select" value={selection?.id || ""} disabled={!ready} aria-controls={section === "verdauung" ? "anatomie-verdauung" : "anatomie-modell"} onChange={event => selectEntry(event.target.value)}><option value="" disabled>Thema wählen</option><optgroup label="Verdauung verstehen">{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup><optgroup label="Museumsscans drehen">{anatomyModels.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></MenuChoice>
-      {navigationError && <p className={styles.note} role="alert">{navigationError}</p>}
+    <PageMenu title="Körperbau – Thema wählen" openInitially={ready && !requestedSelection} initialFocusId="anatomy-entry-select">
+      <MenuChoice label="Körperbau erkunden" id="anatomy-entry-select" value={requestedSelection?.id || ""} disabled={!ready} aria-controls={section === "verdauung" ? "anatomie-verdauung" : "anatomie-modell"} onChange={event => selectEntry(event.target.value)}><option value="" disabled>Thema wählen</option><optgroup label="Verdauung verstehen">{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup><optgroup label="Museumsscans drehen">{anatomyModels.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</optgroup></MenuChoice>
+      {navigationError && ready && <p className={styles.note} role="alert">{navigationError}</p>}
     </PageMenu>
-    {!selection ? <p className={styles.note}>{ready ? "Dieses Thema ist nicht verfügbar. Wähle unten im Menü ein Thema." : "Das gewählte Thema wird geladen."}</p> : <div ref={contentTarget} tabIndex={-1} aria-label={section === "verdauung" ? digestiveTopics.find(item => item.id === digestiveId)?.title : model.title}>
-    {section === "verdauung" ? <DigestiveLearning key={digestiveId} selectedId={digestiveId} onSelect={selectEntry} hideSelector /> : <>
+    {!visible && <p className={styles.note} role="status">{ready ? "Dieses Thema ist nicht verfügbar. Wähle unten im Menü ein Thema." : "Das gewählte Thema wird geladen."}</p>}
+    {selection && <div ref={contentTarget} tabIndex={-1} hidden={!visible} inert={!visible} aria-hidden={!visible ? true : undefined} style={!visible ? { display: "none" } : undefined} aria-label={section === "verdauung" ? digestiveTopics.find(item => item.id === digestiveId)?.title : model.title}>
+    {section === "verdauung" ? <DigestiveLearning key={digestiveId} selectedId={digestiveId} onSelect={selectEntry} canAnswer={canAct} hideSelector /> : <>
     <section className={styles.note}><strong>Ein klar benanntes Vergleichsbeispiel</strong><p>Alle Modelle zeigen Abgüsse des <strong>nordamerikanischen Weißwedelhirsches (Odocoileus virginianus)</strong> aus der Smithsonian-Lehrsammlung EO404749. Sie stellen kein Reh oder Rotwild dar. Schädel und Vorderlauf können aus verschiedenen Exemplaren stammen und sind nicht maßstabsgleich. Keine KI-Modelle.</p></section>
     <section className={styles.panel} aria-labelledby="anatomie-modell">
       <h2 id="anatomie-modell">Das Modell erkunden</h2>
@@ -246,7 +266,7 @@ export default function AnatomyExplorer() {
         {status === "error" && <button className={styles.secondary} type="button" onClick={retryViewer}>Laden erneut vorbereiten</button>}
         <div className={styles.actions}><button className={styles.secondary} type="button" disabled={status !== "loaded"} onClick={() => rotate(-30)}>Nach links drehen</button><button className={styles.secondary} type="button" disabled={status !== "loaded"} onClick={() => rotate(30)}>Nach rechts drehen</button><button className={styles.secondary} type="button" onClick={() => changeCamera(defaultOrbit, null)}>Ansicht zurücksetzen</button></div>
       </>}
-      <p className={styles.muted}>Scan: Smithsonian Institution · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noreferrer">CC0</a> · Unveränderte GLB-Datei · <a href={model.source} target="_blank" rel="noreferrer">Sammlung und Originalmodell</a></p>
+
       <div className={styles.gridThree}>{model.features.map(item => <button type="button" key={item.id} className={styles.choice} aria-pressed={item.id === featureId} onClick={() => changeCamera(item.orbit, item.id)}>{item.title}</button>)}</div>
       {feature && <div className={styles.feedback} role="status"><h3>{feature.title}</h3><p>{feature.explanation}</p><p className={styles.muted}>Die Kamera zeigt eine Betrachtungsrichtung. Die Erklärung benennt die Struktur; sie ist keine automatische Messung.</p></div>}
     </section>
@@ -258,7 +278,7 @@ export default function AnatomyExplorer() {
         {answeredCount === questions.length && <p className={styles.note} role="status">Runde abgeschlossen: {correct} von {questions.length} richtig. Du kannst jede Erklärung wieder aufrufen.</p>}
       </section>}
     </details>}
-    <details key={`sources-${model.id}`} className={styles.sources}><summary>Fachliche Quellen und Modellnachweise</summary><ul>{anatomySources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul><p>Fachlich geprüft am 4. Oktober 2026. Anatomische Grundstrukturen werden erläutert; keine Altersbestimmung, medizinische Diagnose oder Übertragung exakter Größen auf heimische Wildarten.</p><h3>Ergänzte Antwortauswahl</h3><p>Die ergänzten Antwortvergleiche dieser Modellfragen wurden am {choicesReviewed} geprüft. Die Sammlung belegt das konkrete Objekt. Die weiteren Quellen erläutern die anatomischen oder technischen Unterschiede; sie sind keine zweite Bestimmung derselben Abgüsse.</p><ul>{questions.map(item => <li key={item.id}><strong>{item.question}</strong><ul>{getAnatomyChoiceSources(item.id).map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul></li>)}</ul><p>3D-Anzeige: Google model-viewer 4.1.0, lokal bereitgestellt. <a href="/lernen/anatomie/MODEL-VIEWER-LICENSE.txt">Paketlizenz</a> · <a href="/lernen/anatomie/MODEL-VIEWER-NOTICES.txt">Weitere Lizenzhinweise</a></p></details>
+    <details key={`sources-${model.id}`} className={styles.sources}><summary>Fachliche Quellen und Modellnachweise</summary><ul>{anatomySources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul><p>Fachlich geprüft am 4. Oktober 2026. Anatomische Grundstrukturen werden erläutert; keine Altersbestimmung, medizinische Diagnose oder Übertragung exakter Größen auf heimische Wildarten.</p><h3>Ergänzte Antwortauswahl</h3><p>Die ergänzten Antwortvergleiche dieser Modellfragen wurden am {choicesReviewed} geprüft. Die Sammlung belegt das konkrete Objekt. Die weiteren Quellen erläutern die anatomischen oder technischen Unterschiede; sie sind keine zweite Bestimmung derselben Abgüsse.</p><ul>{questions.map(item => <li key={item.id}><strong>{item.question}</strong><ul>{getAnatomyChoiceSources(item.id).map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a></li>)}</ul></li>)}</ul><h3>Modell, Herkunft und Lizenz</h3><p className={styles.muted}>Scan: Smithsonian Institution · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noreferrer">CC0</a> · Unveränderte GLB-Datei · <a href={model.source} target="_blank" rel="noreferrer">Sammlung und Originalmodell</a></p><p>3D-Anzeige: Google model-viewer 4.1.0, lokal bereitgestellt. <a href="/lernen/anatomie/MODEL-VIEWER-LICENSE.txt">Paketlizenz</a> · <a href="/lernen/anatomie/MODEL-VIEWER-NOTICES.txt">Weitere Lizenzhinweise</a></p></details>
     </>}
     </div>}
   </LearningToolLayout>;

@@ -139,6 +139,16 @@ test('Fourth-choice double clicks and stale correct handlers cannot grade twice;
 
 test('Unready or invalid model selections cannot display a substitute museum question or request optional3D resources', async () => {
   const f = await fixture();
-  try { await f.route('unterkiefer', false); assert.equal(f.quiz, undefined); assert.equal(f.area, undefined); await f.route('unknown'); assert.equal(f.quiz, undefined); assert.equal(f.area, undefined); assert.equal(f.host.querySelector('model-viewer'), null); assert.equal(f.requests.length, 0); }
+  try {
+    const confirmed = f.quiz;
+    for (const [id, ready] of [['unterkiefer', false], ['unknown', true]]) {
+      await f.route(id, ready);
+      assert.equal(f.quiz === confirmed, true, 'The previously confirmed quiz is retained, never replaced by the unconfirmed target');
+      assert.equal(Boolean(f.quiz.closest('[hidden][inert][aria-hidden="true"]')), true, 'Retained practice is unavailable visually, to assistive technology and to native interaction');
+      assert.equal(f.quiz.closest('[hidden]').style.display, 'none');
+      assert.equal(f.area === undefined, true, 'A closed optional quiz does not invent an answered question panel');
+      assert.equal(f.host.querySelector('model-viewer') === null, true); assert.equal(f.requests.length, 0);
+    }
+  }
   finally { await f.dispose(); }
 });

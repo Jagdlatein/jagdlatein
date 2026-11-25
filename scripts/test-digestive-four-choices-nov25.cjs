@@ -60,7 +60,7 @@ test('The dated comparison review retains three false positive-prompt alternativ
   for (const topic of current.digestiveTopics) assert.equal(topic.reviewedOn, '2026-10-13');
 });
 
-async function fixture(topicId = 'wiederkaeuer-verdauung') {
+async function fixture(topicId = 'wiederkaeuer-verdauung', initialReady = true) {
   const url = id => `/lernen/anatomie?bereich=verdauung&thema=${id}#anatomie-verdauung`;
   const dom = new JSDOM('<!doctype html><html><body><div id="test-root"></div></body></html>', { url: 'https://jagdlatein.test' + url(topicId) });
   const { window } = dom, saved = new Map(), frames = new Map(); let frame = 0;
@@ -70,7 +70,7 @@ async function fixture(topicId = 'wiederkaeuer-verdauung') {
   for (const [key, value] of Object.entries({ window, document: window.document, navigator: window.navigator, HTMLElement: window.HTMLElement, IS_REACT_ACT_ENVIRONMENT: true })) {
     saved.set(key, Object.getOwnPropertyDescriptor(global, key)); Object.defineProperty(global, key, { configurable: true, writable: true, value });
   }
-  const router = { isReady: true, asPath: url(topicId), query: { bereich: 'verdauung', thema: topicId } }, requests = [];
+  const router = { isReady: initialReady, asPath: url(topicId), query: { bereich: 'verdauung', thema: topicId } }, requests = [];
   router.push = async (...args) => { requests.push(args); return true; };
   const innerLoad = createLoader({
     'next/router': { useRouter: () => router },
@@ -85,7 +85,7 @@ async function fixture(topicId = 'wiederkaeuer-verdauung') {
   const f = { window, host, router, requests,
     get article() { return host.querySelector('#anatomie-verdauung'); },
     field(questionId) { return [...this.article.querySelectorAll('fieldset')].find(field => field.querySelector('input')?.name === questionId); },
-    handler(input) { return input[Object.keys(input).find(key => key.startsWith('__reactProps'))].onChange; },
+    handler(input, eventName = 'onChange') { return input[Object.keys(input).find(key => key.startsWith('__reactProps'))][eventName]; },
     async select(questionId, index) { const input = this.field(questionId).querySelectorAll('input[type="radio"]')[index]; assert.ok(input); await React.act(async () => input.dispatchEvent(new window.MouseEvent('click', { bubbles: true }))); },
     async route(id, ready = true) { router.asPath = url(id); router.query = { bereich: 'verdauung', thema: id }; router.isReady = ready; window.history.replaceState(null, '', router.asPath); await render(); },
     async unmount() { if (unmounted) return; unmounted = true; await React.act(async () => root.unmount()); assert.equal(frames.size, 0); },
@@ -139,10 +139,52 @@ test('Actual digestive child replacement and unmount retain independent answers;
   } finally { await f.dispose(); }
 });
 
-test('Unready and invalid anatomy selections cannot substitute a digestive quiz; direct child SSR also keeps all four added alternatives blind', async () => {
+test('Unready or invalid URLs cannot expose or operate the retained reader; rollback preserves its answers and sources, while initial invalid entry stays empty and a real topic commit starts blind', async () => {
+  const first = current.digestiveTopics[0], second = current.digestiveTopics[1], [answered, unanswered] = first.questions;
   const f = await fixture();
-  try { await f.route('schwarzwild-verdauung', false); assert.equal(f.article, null); await f.route('unknown'); assert.equal(f.article, null); assert.equal(f.requests.length, 0); }
-  finally { await f.dispose(); }
+  try {
+    await f.select(answered.id, answered.answer);
+    const article = f.article, source = article.lastElementChild; source.open = true;
+    const oldAnswer = f.handler(f.field(unanswered.id).querySelectorAll('input')[3]);
+    const oldMenu = f.handler(f.host.querySelector(`[data-menu-choice="${second.id}"]`), 'onClick');
+    function assertRetainedAndHidden() {
+      assert.ok(f.article === article, 'A temporary invalid/unready target keeps the same confirmed reader');
+      const owner = f.article.parentElement;
+      assert.equal(owner.hidden, true); assert.equal(owner.hasAttribute('inert'), true);
+      assert.equal(owner.getAttribute('aria-hidden'), 'true'); assert.equal(owner.style.display, 'none');
+      assert.equal(f.field(unanswered.id).querySelectorAll('[role="status"]').length, 0);
+      assert.equal(f.field(answered.id).querySelectorAll('input')[answered.answer].checked, true);
+      assert.ok(f.article.lastElementChild === source); assert.equal(source.open, true);
+    }
+    await f.route(second.id, false); assertRetainedAndHidden();
+    const unreadyAnswer = f.handler(f.field(unanswered.id).querySelectorAll('input')[3]);
+    const unreadyMenu = f.handler(f.host.querySelector(`[data-menu-choice="${second.id}"]`), 'onClick');
+    await React.act(async () => { oldAnswer(); unreadyAnswer(); oldMenu(); unreadyMenu(); });
+    assertRetainedAndHidden(); assert.equal(f.requests.length, 0);
+    await f.route('unknown'); assertRetainedAndHidden();
+    const invalidAnswer = f.handler(f.field(unanswered.id).querySelectorAll('input')[3]);
+    await React.act(async () => { oldAnswer(); invalidAnswer(); oldMenu(); });
+    assertRetainedAndHidden(); assert.equal(f.requests.length, 0);
+    // A ready-invalid page may deliberately offer a fresh recovery menu. The
+    // old learning/menu handlers never gain that new origin's authority.
+    await f.route(first.id);
+    assert.ok(f.article === article); assert.equal(f.article.parentElement.hidden, false);
+    assert.equal(f.article.parentElement.hasAttribute('inert'), false); assert.equal(f.article.parentElement.hasAttribute('aria-hidden'), false);
+    assert.equal(f.article.parentElement.style.display, ''); assert.equal(source.open, true);
+    assert.equal(f.field(answered.id).querySelectorAll('input')[answered.answer].checked, true);
+    await React.act(async () => { oldAnswer(); unreadyAnswer(); invalidAnswer(); oldMenu(); });
+    assert.equal(f.field(unanswered.id).querySelectorAll('[role="status"]').length, 0); assert.equal(f.requests.length, 0);
+    await f.select(unanswered.id, unanswered.answer); assert.ok(Boolean(f.field(unanswered.id).querySelector('[role="status"]')));
+    await f.route(second.id);
+    assert.ok(f.article !== article); assert.equal(f.article.parentElement.hidden, false);
+    assert.equal(f.article.querySelectorAll('[role="status"]').length, 0); assert.equal(f.article.querySelectorAll('input:checked').length, 0);
+    assert.equal(f.article.lastElementChild.open, false); assert.equal(f.requests.length, 0);
+  } finally { await f.dispose(); }
+  for (const [id, ready] of [[first.id, false], ['unknown', true]]) {
+    const initial = await fixture(id, ready);
+    try { assert.equal(Boolean(initial.article), false); assert.equal(initial.requests.length, 0); }
+    finally { await initial.dispose(); }
+  }
   const Component = load('components/DigestiveLearning.js').default;
   for (const topic of current.digestiveTopics) {
     const html = renderToStaticMarkup(React.createElement(Component, { selectedId: topic.id, hideSelector: true })), dom = new JSDOM(html);

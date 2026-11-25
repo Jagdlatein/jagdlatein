@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { digestiveSources, digestiveTopics, getDigestiveTopic } from "../lib/digestive-learning";
 import { digestiveChoiceCheckedOn, getDigestiveChoiceSources } from "../lib/digestive-choice-sources";
@@ -8,8 +8,29 @@ import styles from "../styles/DigestiveLearning.module.css";
 function SourceLinks({ ids }) {
   return <span className={styles.sourceLinks}>{[...new Set(ids)].map(id => <a key={id} href={digestiveSources[id].url} target="_blank" rel="noopener noreferrer">{digestiveSources[id].organization}</a>)}</span>;
 }
-function Content({ topic }) {
+const allowAnswer = () => true;
+
+function useCurrentAction(topicId, canAnswer) {
+  const mounted = useRef(false);
+  const currentScope = useRef({ topicId });
+  if (currentScope.current.topicId !== topicId) currentScope.current = { topicId };
+  const scope = currentScope.current;
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; };
+  }, []);
+  // Keep the predicate captured by this render: an old callback must not adopt
+  // the permissions of a later URL origin when the topic itself stays mounted.
+  return () => mounted.current && currentScope.current === scope && canAnswer();
+}
+
+function Content({ topic, canAnswer }) {
   const [answers, setAnswers] = useState({});
+  const canAct = useCurrentAction(topic.id, canAnswer);
+  function answer(questionId, index) {
+    if (!canAct()) return;
+    setAnswers(current => canAct() ? { ...current, [questionId]: index } : current);
+  }
   const sourceIds = [...new Set([...topic.facts.flatMap(item => item.sourceIds), ...topic.pathway.sourceIds])];
   const reviewed = new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${topic.reviewedOn}T00:00:00Z`));
   const choicesReviewed = new Intl.DateTimeFormat("de-CH", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${digestiveChoiceCheckedOn}T00:00:00Z`));
@@ -22,7 +43,7 @@ function Content({ topic }) {
     <section className={styles.pathway} aria-labelledby="verdauung-pathway"><h3 id="verdauung-pathway">{topic.pathway.title}</h3><ol className={styles.steps}>{topic.pathway.steps.map(step => <li key={step.title}><strong>{step.title}</strong><span>{step.text}</span></li>)}</ol><p className={styles.caption}>{topic.pathway.note}</p></section>
     <div className={styles.facts}><section><h3>Im Bild betrachten</h3><p>{topic.observation}</p></section><section><h3>Grenzen der Ansicht</h3><p>{topic.limit}</p></section></div>
     <h3>Das Verständnis prüfen</h3><p className={shared.muted}>Eigene Lernfragen. Wähle zuerst eine Antwort. Danach erscheint die Erklärung.</p>
-    {topic.questions.map(question => <fieldset key={question.id} className={styles.question}><legend>{question.prompt}</legend>{question.choices.map((choice, index) => <label key={choice}><input type="radio" name={question.id} checked={answers[question.id] === index} onChange={() => setAnswers(current => ({ ...current, [question.id]: index }))} />{choice}</label>)}{answers[question.id] !== undefined && <div className={styles.feedback} role="status"><strong>{answers[question.id] === question.answer ? "Das passt." : `Passend ist: ${question.choices[question.answer]}`}</strong><p>{question.explanation}</p></div>}</fieldset>)}
+    {topic.questions.map(question => <fieldset key={question.id} className={styles.question}><legend>{question.prompt}</legend>{question.choices.map((choice, index) => <label key={choice}><input type="radio" name={question.id} checked={answers[question.id] === index} onChange={() => answer(question.id, index)} />{choice}</label>)}{answers[question.id] !== undefined && <div className={styles.feedback} role="status"><strong>{answers[question.id] === question.answer ? "Das passt." : `Passend ist: ${question.choices[question.answer]}`}</strong><p>{question.explanation}</p></div>}</fieldset>)}
     <details className={shared.sources}><summary>Fachquellen und Prüfstand</summary><p>Diese Einheit wurde am {reviewed} inhaltlich abgeglichen. Bildnachweise belegen das fotografierte Motiv; Fachquellen erklären den Bauplan. Nutztier-Vergleichswerte werden nicht als Messwerte heimischer Wildtiere ausgegeben.</p>
       <h3>Belege zu den Wissensabschnitten</h3><ul>{topic.facts.map(item => <li key={item.id}><strong>{item.title}</strong><SourceLinks ids={item.sourceIds} /></li>)}</ul>
       <h3>Belege zur Lernskizze</h3><p>{topic.pathway.title}</p><SourceLinks ids={topic.pathway.sourceIds} />
@@ -33,9 +54,15 @@ function Content({ topic }) {
     </details>
   </article>;
 }
-export default function DigestiveLearning({ selectedId, onSelect, hideSelector = false }) {
+export default function DigestiveLearning({ selectedId, onSelect, hideSelector = false, canAnswer = allowAnswer }) {
   const [selected, setSelected] = useState(digestiveTopics[0].id);
   const topic = getDigestiveTopic(selectedId ?? selected);
-  function choose(id) { if (!digestiveTopics.some(item => item.id === id)) return; setSelected(id); onSelect?.(id); }
-  return <>{!hideSelector && <section className={`${shared.panel} ${styles.selector}`} aria-label="Verdauungsthema auswählen"><label className={shared.field}>Bauplan<select value={topic.id} onChange={event => choose(event.target.value)}>{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label></section>}<Content key={topic.id} topic={topic} /></>;
+  const canAct = useCurrentAction(topic.id, canAnswer);
+  function choose(id) {
+    if (!canAct() || !digestiveTopics.some(item => item.id === id)) return;
+    setSelected(current => canAct() ? id : current);
+    if (!canAct()) return;
+    onSelect?.(id);
+  }
+  return <>{!hideSelector && <section className={`${shared.panel} ${styles.selector}`} aria-label="Verdauungsthema auswählen"><label className={shared.field}>Bauplan<select value={topic.id} onChange={event => { if (canAct()) choose(event.target.value); }}>{digestiveTopics.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label></section>}<Content key={topic.id} topic={topic} canAnswer={canAnswer} /></>;
 }
