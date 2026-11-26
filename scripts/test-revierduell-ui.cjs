@@ -6,6 +6,7 @@ const { createRoot } = local('react-dom/client');
 const { JSDOM } = require(process.env.JAGDLATEIN_TEST_DOM || 'jsdom');
 const seed = 'isolated_ui_seed', revision = '0123456789abcdef';
 const highscoreKey = 'jagdlatein-revierduell-highscore-v1';
+const topics = createLoader()('lib/learning-categories.js').learningCategoryDetails.filter(item => item.slug !== 'jagdrecht').map((item, index) => ({ slug: item.slug, title: item.title, count: 7 + index }));
 const questions = Array.from({ length: 7 }, (_, i) => ({
   id: `fixture-${i}`, categorySlug: `thema-${i}`, courseTitle: `Lernkontext ${i + 1}`,
   prompt: `Isolierte Testfrage ${i + 1}?`, options: ['a', 'b', 'c', 'd'].map(id => ({ id, text: `Antwort ${id.toUpperCase()}` })),
@@ -21,7 +22,7 @@ async function harness({ path = `/revierduell?duell=${seed}&v=${revision}`, read
   const descriptors = new Map();
   const assign = (key, value) => { descriptors.set(key, Object.getOwnPropertyDescriptor(globalThis, key)); Object.defineProperty(globalThis, key, { configurable: true, writable: true, value }); };
   let time = 1000, timerId = 0, blocked = false, currentConsent = consent || { known: false, enabled: false, accountKey: null, consentVersion: null };
-  const timers = new Map(), subscribers = new Set(), events = [], pushes = [], scrolls = [], writes = [];
+  const timers = new Map(), subscribers = new Set(), events = [], pushes = [], pushCalls = [], scrolls = [], writes = [];
   for (const key of ['window', 'document', 'navigator', 'HTMLElement', 'Node', 'Event', 'KeyboardEvent']) assign(key, dom.window[key]);
   assign('IS_REACT_ACT_ENVIRONMENT', true);
   const originalPerformance = globalThis.performance;
@@ -29,6 +30,7 @@ async function harness({ path = `/revierduell?duell=${seed}&v=${revision}`, read
   assign('setInterval', (callback, delay) => { assert.equal(delay, 250); const id = ++timerId; timers.set(id, callback); return id; });
   assign('clearInterval', id => timers.delete(id));
   dom.window.HTMLElement.prototype.scrollIntoView = function(options) { scrolls.push({ id: this.id, options }); };
+  dom.window.scrollTo = options => scrolls.push({ window: true, options });
   if (storage) Object.defineProperty(dom.window, 'localStorage', { configurable: true, get: () => storage });
   const storageObject = dom.window.localStorage;
   if (!storage && storageObject) {
@@ -36,10 +38,10 @@ async function harness({ path = `/revierduell?duell=${seed}&v=${revision}`, read
     Object.defineProperty(storageObject, 'setItem', { configurable: true, value: (key, value) => { writes.push([key, value]); original(key, value); } });
   }
   const queryFor = raw => { const query = {}; for (const [key, value] of new URL(raw, 'https://jagdlatein.de').searchParams) query[key] = Object.hasOwn(query, key) ? [...(Array.isArray(query[key]) ? query[key] : [query[key]]), value] : value; return query; };
-  const router = { isReady: ready, asPath: path, pathname: '/revierduell', query: queryFor(path), push: async value => { pushes.push(value); return false; } };
+  const router = { isReady: ready, asPath: path, pathname: '/revierduell', query: queryFor(path), push: async (value, as, options) => { pushes.push(value); pushCalls.push({ value, as, options }); return false; } };
   const engine = createLoader()('lib/revierduell.js');
-  const requestSelection = query => ({ seedQuery: engine.normaliseDuellSeed(query.duell), targetQuery: engine.parseDuellTarget(query.ziel), revisionQuery: engine.normaliseDuellRevision(query.v) });
-  let props = { seed, revision, target: null, questions, unavailable: false, analyticsEnabled, requestSelection: requestSelection(router.query), initialRawPath: path.split('#')[0], ...overrides };
+  const requestSelection = query => ({ seedQuery: engine.normaliseDuellSeed(query.duell), targetQuery: engine.parseDuellTarget(query.ziel), revisionQuery: engine.normaliseDuellRevision(query.v), topicQuery: engine.normaliseDuellTopic(query.thema) });
+  let props = { seed, revision, target: null, topic: engine.normaliseDuellTopic(router.query.thema), topics, questions, unavailable: false, analyticsEnabled, requestSelection: requestSelection(router.query), initialRawPath: path.split('#')[0], ...overrides };
   const load = createLoader({
     'next/router': { useRouter: () => router },
     'next/link': { __esModule: true, default: ({ children, href, prefetch, ...other }) => React.createElement('a', { href, 'data-prefetch': String(prefetch), ...other }, children) },
@@ -56,11 +58,20 @@ async function harness({ path = `/revierduell?duell=${seed}&v=${revision}`, read
   const key = async (value, options = {}, target = dom.window) => act(() => target.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: value, bubbles: true, cancelable: true, ...options })));
   const settle = async fn => act(fn);
   const setPath = raw => { dom.window.history.replaceState(null, '', raw); router.asPath = raw; router.query = queryFor(raw); };
+  const changeTopic = value => act(() => { const select = dom.window.document.getElementById('revierduell-topic'); assert.ok(select); select.value = value; select.dispatchEvent(new dom.window.Event('change', { bubbles: true })); });
+  const commit = async (raw, extra = {}) => { dom.window.history.pushState(null, '', raw); router.asPath = raw; router.query = queryFor(raw); await render({ initialRawPath: raw.split('#')[0], requestSelection: requestSelection(router.query), ...extra }); };
+  const traverse = async (direction, extra = {}) => act(async () => {
+    await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => { dom.window.removeEventListener('popstate', moved); reject(Error('Synthetic history did not move')); }, 2000);
+      const moved = () => { clearTimeout(timer); const raw = dom.window.location.pathname + dom.window.location.search + dom.window.location.hash; router.asPath = raw; router.query = queryFor(raw); props = { ...props, initialRawPath: raw.split('#')[0], requestSelection: requestSelection(router.query), ...extra }; root.render(React.createElement(Component, props)); resolve(); };
+      dom.window.addEventListener('popstate', moved, { once: true }); dom.window.history[direction]();
+    });
+  });
   const answerButtons = () => [...dom.window.document.querySelectorAll('[role="group"] button')];
   const finish = async () => { if (button('Duell starten')) await click(button('Duell starten')); for (let i = 0; i < 7; i++) { await key('1'); await key('Enter'); } assert.ok(dom.window.document.getElementById('revierduell-result')); };
   const close = async () => { await act(() => root.unmount()); dom.window.close(); for (const [key, descriptor] of descriptors) if (descriptor) Object.defineProperty(globalThis, key, descriptor); else delete globalThis[key]; };
   await render();
-  return { dom, router, render, act, settle, text, button, click, key, setPath, answerButtons, finish, close, events, pushes, scrolls, timers, writes,
+  return { dom, router, render, act, settle, text, button, click, key, setPath, changeTopic, commit, traverse, answerButtons, finish, close, events, pushes, pushCalls, scrolls, timers, writes,
     setTime: value => { time = value; }, time: () => time,
     tick: () => act(() => { for (const callback of [...timers.values()]) callback(); }),
     consent: value => act(() => { currentConsent = value; for (const callback of subscribers) callback(); }),
@@ -274,4 +285,101 @@ test('Revierduell DOM: anonymous or migration-disabled analytics emit nothing ev
   for (const options of [{ analyticsEnabled: false, consent: { known: true, enabled: true, accountKey: 'fixture', consentVersion: 'v1' } }, { analyticsEnabled: true, consent: { known: true, enabled: true, accountKey: null, consentVersion: 'v1' } }]) {
     const h = await harness(options); try { await h.finish(); assert.equal(h.events.length, 0); } finally { await h.close(); }
   }
+});
+
+test('Revierduell DOM: one simple topic select follows existing categories and reports the actual supplied pool size', async () => {
+  const h = await harness();
+  try {
+    const select = h.dom.window.document.getElementById('revierduell-topic');
+    assert.equal(h.dom.window.document.querySelectorAll('select').length, 1);
+    assert.equal(h.dom.window.document.querySelector('label[for="revierduell-topic"]').textContent, 'Thema');
+    assert.deepEqual([...select.options].map(option => [option.value, option.textContent]), [['', 'Gemischt'], ...topics.map(item => [item.slug, item.title])]);
+    assert.ok(select.closest('[data-usage-private]')); assert.equal(select.getAttribute('aria-describedby'), 'revierduell-topic-count');
+    assert.match(h.dom.window.document.getElementById('revierduell-topic-count').textContent, new RegExp(`${topics.reduce((sum, item) => sum + item.count, 0)} Fragen verfügbar`));
+    assert.equal(h.dom.window.document.activeElement.id, 'revierduell-intro'); assert.deepEqual(h.scrolls.at(-1), { window: true, options: { top: 0, left: 0, behavior: 'auto' } });
+    const stale = reactHandler(select, 'onChange'); await h.click(h.button('Duell starten'));
+    assert.equal(h.dom.window.document.querySelector('select'), null); await h.act(() => stale({ target: { value: 'wildkunde' } })); assert.equal(h.pushes.length, 0);
+  } finally { await h.close(); }
+});
+
+test('Revierduell DOM: topic navigation keeps context, waits for the actual SSR commit and starts only on request', async () => {
+  const path = `/revierduell?duell=${seed}&ziel=0&v=${revision}&ref=guide&ref=second#overview`, h = await harness({ path, overrides: { target: 0 } });
+  try {
+    const push = deferred(), calls = []; h.router.push = (value, as, options) => { h.pushes.push(value); calls.push({ value, as, options }); return push.promise; };
+    const oldSelect = reactHandler(h.dom.window.document.getElementById('revierduell-topic'), 'onChange'), oldStart = reactHandler(h.button('Duell starten')), previousScrolls = h.scrolls.length;
+    await h.changeTopic('wildkunde'); assert.equal(h.pushes.length, 1);
+    const url = new URL(h.pushes[0], 'https://jagdlatein.de'); assert.match(url.searchParams.get('duell'), /^d1_[a-f0-9]{32}$/); assert.equal(url.searchParams.get('thema'), 'wildkunde'); assert.equal(url.searchParams.has('ziel'), false); assert.equal(url.searchParams.has('v'), false); assert.deepEqual(url.searchParams.getAll('ref'), ['guide', 'second']); assert.equal(url.hash, '#overview'); assert.deepEqual(calls[0].options, { scroll: false });
+    assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, ''); assert.equal(h.dom.window.document.getElementById('revierduell-topic').disabled, true); assert.match(h.text(), /0 Punkte schlagen/); assert.equal(h.scrolls.length, previousScrolls);
+    await h.settle(() => push.resolve(true)); await h.act(() => { oldStart(); oldSelect({ target: { value: 'hundewesen' } }); });
+    assert.equal(h.pushes.length, 1); assert.equal(h.dom.window.document.getElementById('revierduell-question'), null); assert.equal(h.button('Duell starten').disabled, true);
+    const themed = questions.map(question => ({ ...question, categorySlug: 'wildkunde' }));
+    await h.commit(h.pushes[0], { seed: url.searchParams.get('duell'), revision: 'fedcba9876543210', topic: 'wildkunde', target: null, questions: themed });
+    assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, 'wildkunde'); assert.match(h.dom.window.document.getElementById('revierduell-topic-count').textContent, /7 Fragen verfügbar/); assert.ok(!h.button('Duell starten').disabled); assert.equal(h.dom.window.document.getElementById('revierduell-question'), null); assert.equal(h.dom.window.document.activeElement.id, 'revierduell-intro'); assert.deepEqual(h.scrolls.at(-1), { window: true, options: { top: 0, left: 0, behavior: 'auto' } });
+    await h.act(() => oldSelect({ target: { value: 'hundewesen' } })); assert.equal(h.pushes.length, 1);
+    await h.finish(); assert.equal(h.dom.window.document.querySelectorAll('select').length, 1); assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, 'wildkunde');
+    let copied; Object.defineProperty(h.dom.window.navigator, 'clipboard', { configurable: true, value: { writeText: async value => { copied = value; } } });
+    await h.click(h.button('Link kopieren')); const shared = new URL(copied); assert.equal(shared.searchParams.get('thema'), 'wildkunde'); assert.equal(shared.searchParams.get('v'), 'fedcba9876543210'); assert.equal(shared.searchParams.get('duell'), url.searchParams.get('duell')); assert.equal(shared.searchParams.get('ziel'), '8330');
+    h.router.push = async value => { h.pushes.push(value); return false; }; await h.click(h.button('Neue Runde')); const next = new URL(h.pushes.at(-1), 'https://jagdlatein.de'); assert.equal(next.searchParams.get('thema'), 'wildkunde'); assert.notEqual(next.searchParams.get('duell'), url.searchParams.get('duell')); assert.deepEqual(next.searchParams.getAll('ref'), ['guide', 'second']); assert.equal(next.searchParams.has('ziel'), false); assert.equal(next.searchParams.has('v'), false);
+  } finally { await h.close(); }
+});
+
+test('Revierduell DOM: topic changes and Gemischt remain distinct real history entries with ready rounds on back and forward', async () => {
+  const h = await harness();
+  try {
+    h.router.push = async value => { h.pushes.push(value); return true; };
+    await h.changeTopic('wildkunde'); const topicPath = h.pushes[0], topicSeed = new URL(topicPath, 'https://jagdlatein.de').searchParams.get('duell');
+    const themed = questions.map(question => ({ ...question, categorySlug: 'wildkunde' })), topicProps = { seed: topicSeed, topic: 'wildkunde', revision: '1111111111111111', target: null, questions: themed };
+    await h.commit(topicPath, topicProps); await h.finish(); await h.changeTopic(''); const mixedPath = h.pushes[1], mixedSeed = new URL(mixedPath, 'https://jagdlatein.de').searchParams.get('duell');
+    assert.equal(new URL(mixedPath, 'https://jagdlatein.de').searchParams.has('thema'), false);
+    const mixedProps = { seed: mixedSeed, topic: null, revision, target: null, questions };
+    await h.commit(mixedPath, mixedProps); assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, '');
+    await h.traverse('back', topicProps); assert.equal(h.router.asPath, topicPath); assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, 'wildkunde'); assert.ok(h.button('Duell starten')); assert.equal(h.dom.window.document.getElementById('revierduell-result'), null);
+    await h.traverse('forward', mixedProps); assert.equal(h.router.asPath, mixedPath); assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, ''); assert.ok(h.button('Duell starten')); assert.equal(h.dom.window.document.activeElement.id, 'revierduell-intro');
+  } finally { await h.close(); }
+});
+
+test('Revierduell DOM: failed or cancelled topic push leaves current selection, challenge and round usable', async () => {
+  const h = await harness({ path: `/revierduell?duell=${seed}&ziel=0&v=${revision}`, overrides: { target: 0 } });
+  try {
+    const before = h.scrolls.length; await h.changeTopic('wildkunde'); assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, ''); assert.equal(h.dom.window.document.getElementById('revierduell-topic').disabled, false); assert.match(h.text(), /neue Runde konnte nicht geladen/); assert.match(h.text(), /0 Punkte schlagen/); assert.equal(h.scrolls.length, before);
+    await h.changeTopic(''); assert.equal(h.pushes.length, 1, 'choosing the committed topic does not create a round');
+    h.router.push = async value => { h.pushes.push(value); throw Error('rejected topic'); }; await h.changeTopic('hundewesen'); assert.equal(h.pushes.length, 2); assert.match(h.text(), /Bitte versuche es erneut/); assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, '');
+    await h.click(h.button('Duell starten')); assert.match(h.text(), /Frage 1 von 7/);
+  } finally { await h.close(); }
+});
+
+test('Revierduell DOM: stale topic callbacks after raw-origin drift or unmount never navigate', async () => {
+  const h = await harness(); let closed = false;
+  try {
+    const oldSelect = reactHandler(h.dom.window.document.getElementById('revierduell-topic'), 'onChange'); h.setPath(`/revierduell?duell=${seed}&v=${revision}&context=changed`);
+    await h.act(() => oldSelect({ target: { value: 'wildkunde' } })); assert.equal(h.pushes.length, 0);
+    await h.render({ initialRawPath: h.router.asPath, requestSelection: h.selection() }); const currentSelect = reactHandler(h.dom.window.document.getElementById('revierduell-topic'), 'onChange');
+    await h.close(); closed = true; await h.settle(() => currentSelect({ target: { value: 'hundewesen' } })); assert.equal(h.pushes.length, 0);
+  } finally { if (!closed) await h.close(); }
+});
+
+test('Revierduell DOM: late topic rejection cannot replace committed content; metadata revision invalidates old controls', async () => {
+  const h = await harness();
+  try {
+    const push = deferred(); h.router.push = value => { h.pushes.push(value); return push.promise; }; await h.changeTopic('wildkunde');
+    const path = h.pushes[0], nextSeed = new URL(path, 'https://jagdlatein.de').searchParams.get('duell'); await h.commit(path, { seed: nextSeed, topic: 'wildkunde', target: null, questions: questions.map(question => ({ ...question, categorySlug: 'wildkunde' })) });
+    await h.settle(() => push.reject(Error('stale rejection'))); assert.doesNotMatch(h.text(), /konnte nicht geladen/); assert.equal(h.dom.window.document.getElementById('revierduell-topic').disabled, false);
+    await h.click(h.button('Duell starten')); const oldAnswer = reactHandler(h.answerButtons()[0]);
+    await h.render({ topics: topics.map(item => item.slug === 'wildkunde' ? { ...item, count: 19 } : item) }); assert.ok(h.button('Duell starten')); assert.match(h.dom.window.document.getElementById('revierduell-topic-count').textContent, /19 Fragen verfügbar/);
+    await h.act(() => oldAnswer()); assert.equal(h.dom.window.document.getElementById('revierduell-question'), null);
+  } finally { await h.close(); }
+});
+
+test('Revierduell DOM: invalid or undersized categories cannot navigate or manufacture a question count', async () => {
+  const limited = topics.map(item => item.slug === 'wildkunde' ? { ...item, count: 6 } : item), h = await harness({ overrides: { topics: limited } });
+  try {
+    const select = h.dom.window.document.getElementById('revierduell-topic'), handler = reactHandler(select, 'onChange'); assert.equal(select.querySelector('option[value="wildkunde"]').disabled, true); assert.equal(select.querySelector('option[value="jagdrecht"]'), null);
+    for (const value of ['jagdrecht', 'unknown', ['wildkunde'], 'wildkunde']) await h.act(() => handler({ target: { value } })); assert.equal(h.pushes.length, 0); assert.equal(select.value, '');
+  } finally { await h.close(); }
+});
+
+test('Revierduell page identity includes the chosen topic and supplied topic metadata', () => {
+  const Page = createLoader({ '../lib/revierduell-server': { getDuellPageProps: () => { throw Error('No server or bank needed for identity'); } } })('pages/revierduell.js').default;
+  const props = { seed, revision, target: null, initialRawPath: '/revierduell', topic: null, topics };
+  const key = Page(props).key; assert.notEqual(Page({ ...props, topic: 'wildkunde' }).key, key); assert.notEqual(Page({ ...props, topics: topics.map(item => ({ ...item, count: item.count + 1 })) }).key, key); assert.equal(Page({ ...props, linkNotice: 'unchanged owner' }).key, key);
 });

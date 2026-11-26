@@ -4,7 +4,7 @@ import Link from "next/link";
 import LearningToolLayout from "./LearningToolLayout";
 import AppIcon from "./AppIcon";
 import { duellRoute } from "../lib/revierduell-navigation";
-import { DUELL_QUESTION_COUNT, DUELL_QUESTION_MS, DUELL_HIGHSCORE_KEY, createDuellSeed, createDuellState, duellReducer, duellRemainingMs, duellRank, compareDuellTarget, duellChallengeUrl, parseDuellHighscore, isDuellScore } from "../lib/revierduell";
+import { DUELL_QUESTION_COUNT, DUELL_QUESTION_MS, DUELL_HIGHSCORE_KEY, createDuellSeed, createDuellState, duellReducer, duellRemainingMs, duellRank, compareDuellTarget, duellChallengeUrl, parseDuellHighscore, isDuellScore, normaliseDuellTopic } from "../lib/revierduell";
 import { emitDuellAnalytics } from "../lib/revierduell-analytics";
 import { usagePreferenceClient } from "../lib/usage-analytics";
 import styles from "../styles/RevierDuell.module.css";
@@ -24,13 +24,21 @@ function Sources({ questions }) {
   </details>;
 }
 
-function DuellRound({ seed, revision, target, questions, analyticsEnabled, ownerIdentity, ownerCurrent, navigationBusy, navigationPending, onNewRound }) {
+function TopicSelect({ topic, topics = [], disabled, onChange }) {
+  const available = topics.filter(item => item && normaliseDuellTopic(item.slug) && typeof item.title === "string" && Number.isSafeInteger(item.count) && item.count >= 0);
+  const count = topic ? available.find(item => item.slug === topic)?.count : available.reduce((sum, item) => sum + item.count, 0);
+  return <div className={styles.topicField}><label htmlFor="revierduell-topic">Thema</label><select id="revierduell-topic" value={topic || ""} disabled={disabled} onChange={event => onChange(event.target.value)} aria-describedby="revierduell-topic-count">
+    <option value="">Gemischt</option>{available.map(item => <option key={item.slug} value={item.slug} disabled={item.count < DUELL_QUESTION_COUNT}>{item.title}</option>)}
+  </select><p className={styles.small} id="revierduell-topic-count">{Number.isSafeInteger(count) ? `${number(count)} Fragen verfügbar · 7 je Runde` : "Wähle ein Thema für deine nächste Runde."}</p></div>;
+}
+
+function DuellRound({ seed, revision, target, topic = null, topics = [], questions, analyticsEnabled, ownerIdentity, ownerCurrent, navigationBusy, navigationPending, onNewRound, onTopicChange }) {
   const [state, dispatch] = useReducer(ownedReducer, questions, createDuellState);
   const [now, setNow] = useState(0), [best, setBest] = useState(null), [storageUnavailable, setStorageUnavailable] = useState(false);
   const [shareNotice, setShareNotice] = useState(""), [shareBusy, setShareBusy] = useState(false), [manualUrl, setManualUrl] = useState("");
   const mounted = useRef(false), currentState = useRef(state), sharing = useRef(null), serial = useRef(0);
   const viewPhase = useRef(null), seenEvents = useRef(new Set()), savedResults = useRef(new WeakSet());
-  const questionHeading = useRef(null), feedbackHeading = useRef(null), resultHeading = useRef(null);
+  const readyHeading = useRef(null), questionHeading = useRef(null), feedbackHeading = useRef(null), resultHeading = useRef(null);
   currentState.current = state;
   const context = () => mounted.current && ownerCurrent();
   const current = captured => context() && currentState.current === captured;
@@ -123,14 +131,17 @@ function DuellRound({ seed, revision, target, questions, analyticsEnabled, owner
   }, [state, ownerCurrent, navigationBusy]);
   useEffect(() => {
     if (!current(state)) return;
-    const node = state.phase === "asking" ? questionHeading.current : state.phase === "feedback" ? feedbackHeading.current : state.phase === "finished" ? resultHeading.current : null;
-    if (node) { node.focus(); node.scrollIntoView?.({ block: "start", behavior: "auto" }); }
+    const node = state.phase === "ready" ? readyHeading.current : state.phase === "asking" ? questionHeading.current : state.phase === "feedback" ? feedbackHeading.current : state.phase === "finished" ? resultHeading.current : null;
+    if (node) {
+      if (state.phase === "ready") { node.focus({ preventScroll: true }); window.scrollTo?.({ top: 0, left: 0, behavior: "auto" }); }
+      else { node.focus(); node.scrollIntoView?.({ block: "start", behavior: "auto" }); }
+    }
   }, [state.phase, state.index, state.generation, ownerCurrent]);
 
   async function share(copyOnly = false) {
     const captured = state;
     if (!canAct(captured) || captured.phase !== "finished" || sharing.current) return;
-    const url = duellChallengeUrl({ seed, score: captured.score, revision }), ticket = { serial: ++serial.current };
+    const url = duellChallengeUrl({ seed, score: captured.score, revision, topic }), ticket = { serial: ++serial.current };
     sharing.current = ticket; setShareBusy(true); setShareNotice(""); setManualUrl(url);
     const stillCurrent = () => current(captured) && !navigationPending() && sharing.current === ticket;
     try {
@@ -148,13 +159,15 @@ function DuellRound({ seed, revision, target, questions, analyticsEnabled, owner
   }
 
   return <>
-    {state.phase === "ready" ? <section className={styles.card} aria-labelledby="revierduell-intro"><p className={styles.kicker}>Eine kleine Runde Jagdwissen</p><h2 id="revierduell-intro">Sieben Fragen. Deine Spur zählt.</h2><p>Du hast 12 Sekunden je Frage. Nach jeder Antwort kannst du die Erklärung in Ruhe lesen.</p>
+    {state.phase === "ready" ? <section className={styles.card} aria-labelledby="revierduell-intro"><p className={styles.kicker}>Eine kleine Runde Jagdwissen</p><h2 id="revierduell-intro" tabIndex={-1} ref={readyHeading}>Sieben Fragen. Deine Spur zählt.</h2><p>Du hast 12 Sekunden je Frage. Nach jeder Antwort kannst du die Erklärung in Ruhe lesen.</p>
+      <TopicSelect topic={topic} topics={topics} disabled={navigationBusy} onChange={value => { if (canAct(state) && state.phase === "ready") onTopicChange(value); }} />
       <ul className={styles.facts}><li><strong>7</strong> Fragen</li><li><strong>12 s</strong> je Frage</li><li><strong>4</strong> Antworten</li></ul>
       {validTarget !== null && <p className={styles.challenge} data-duell-target>Deine Challenge: <strong>{number(validTarget)} Punkte</strong> schlagen. Die geteilte Punktzahl ist unverbindlich.</p>}
       <p className={styles.small}>Richtig: 500 Punkte, dazu 35 pro voller Restsekunde und 90 je vorheriger richtiger Antwort in Serie. Falsch oder Zeitablauf beendet die Serie.</p>
       <button type="button" className={styles.primary} onClick={() => send("start")} disabled={navigationBusy}>Duell starten<AppIcon name="arrow-right" size={20} /></button>
       {best !== null && <p className={styles.small}>Dein Bestwert auf diesem Gerät: <strong>{number(best)} Punkte</strong></p>}
     </section> : state.phase === "finished" ? <section className={styles.card} aria-labelledby="revierduell-result"><p className={styles.kicker}>Dein Ergebnis</p><h2 id="revierduell-result" tabIndex={-1} ref={resultHeading}>{duellRank(state.correctCount).label}</h2><p className={styles.score}>{number(state.score)} <span>Punkte</span></p><p><strong>{state.correctCount} von {DUELL_QUESTION_COUNT}</strong> Antworten richtig. Dein Spielrang beschreibt nur diese Runde, keine Prüfungsreife.</p>
+      <TopicSelect topic={topic} topics={topics} disabled={navigationBusy || shareBusy} onChange={value => { if (canAct(state) && state.phase === "finished") onTopicChange(value); }} />
       {validTarget !== null && <p className={styles.challenge} role="status">{compareDuellTarget(state.score, validTarget) === "won" ? "Challenge gewonnen!" : compareDuellTarget(state.score, validTarget) === "tied" ? "Punktgleich!" : "Challenge-Ziel verfehlt."} Ziel: {number(validTarget)} Punkte. Der Vergleich ist unverbindlich.</p>}
       {best !== null && <p>Bestwert auf diesem Gerät: <strong>{number(best)} Punkte</strong></p>}
       <div className={styles.actions}><button type="button" className={styles.primary} disabled={shareBusy || navigationBusy} onClick={() => share(false)}>Challenge teilen</button><button type="button" className={styles.secondary} disabled={shareBusy || navigationBusy} onClick={() => share(true)}>Link kopieren</button></div>
@@ -179,7 +192,7 @@ export default function RevierDuell(props) {
   const router = useRouter(), route = duellRoute(router, props);
   const [, refresh] = useState(0), [navigationBusy, setNavigationBusy] = useState(false), [navigationNotice, setNavigationNotice] = useState("");
   const mounted = useRef(false), origin = useRef(null), pending = useRef(null);
-  const signature = JSON.stringify([props.seed, props.revision, props.target, props.questions, props.unavailable]);
+  const signature = JSON.stringify([props.seed, props.revision, props.target, props.topic, props.topics, props.questions, props.unavailable]);
   const ownerKey = route.origin + signature;
   if (origin.current?.key !== ownerKey) origin.current = { key: ownerKey };
   const owner = origin.current;
@@ -187,20 +200,33 @@ export default function RevierDuell(props) {
   const navigationPending = useCallback(() => pending.current !== null, []);
   useEffect(() => { mounted.current = true; const invalidate = () => { origin.current = null; refresh(value => value + 1); }; window.addEventListener("popstate", invalidate); window.addEventListener("hashchange", invalidate); return () => { mounted.current = false; pending.current = null; window.removeEventListener("popstate", invalidate); window.removeEventListener("hashchange", invalidate); }; }, []);
   useEffect(() => { pending.current = null; setNavigationBusy(false); setNavigationNotice(""); }, [owner]);
-  async function newRound() {
+  async function newRound(nextTopic = props.topic ?? null) {
     if (!mounted.current || !ownerCurrent() || pending.current) return;
+    if (nextTopic !== null && (!normaliseDuellTopic(nextTopic) || !props.topics?.some(item => item.slug === nextTopic && Number.isSafeInteger(item.count) && item.count >= DUELL_QUESTION_COUNT))) return;
     let seed; try { seed = createDuellSeed(window.crypto); } catch { setNavigationNotice("Eine sichere neue Runde ist hier nicht verfügbar. Bitte lade die Seite erneut."); return; }
+    const url = new URL(router.asPath, "https://jagdlatein.invalid");
+    for (const key of ["duell", "ziel", "v", "thema"]) url.searchParams.delete(key);
+    url.searchParams.set("duell", seed);
+    if (nextTopic) url.searchParams.set("thema", nextTopic);
     const ticket = {}; pending.current = ticket; setNavigationBusy(true); setNavigationNotice("");
-    try { const result = await router.push(`/revierduell?duell=${encodeURIComponent(seed)}`); if (result === false) throw Error("Navigation cancelled"); }
+    let committed = false;
+    try { const result = await router.push(url.pathname + url.search + url.hash, undefined, { scroll: false }); if (result === false) throw Error("Navigation cancelled"); committed = true; }
     catch { if (mounted.current && ownerCurrent() && pending.current === ticket) setNavigationNotice("Die neue Runde konnte nicht geladen werden. Bitte versuche es erneut."); }
-    finally { if (mounted.current && ownerCurrent() && pending.current === ticket) { pending.current = null; setNavigationBusy(false); } }
+    finally { if (!committed && mounted.current && ownerCurrent() && pending.current === ticket) { pending.current = null; setNavigationBusy(false); } }
+  }
+  function changeTopic(value) {
+    if (value !== "" && !normaliseDuellTopic(value)) return;
+    const topic = value || null;
+    if (topic === (props.topic ?? null)) return;
+    void newRound(topic);
   }
   return <LearningToolLayout title="Jagdlatein Revierduell" description="Sieben Fragen, zwölf Sekunden und eine gemeinsame Challenge." icon="trophy" headingOnly hideCommunity className={styles.page}>
     <p className={styles.intro}>Allgemeines Jagd- und Naturwissen für CH, Österreich und Deutschland. Ein Spiel, keine amtliche Prüfung oder Anleitung für eine praktische Jagdentscheidung.</p>
     {!route.ready && <p role="status">Dein Revierduell wird vorbereitet.</p>}
     <div data-revierduell-reader data-usage-private hidden={!route.ready} inert={!route.ready} aria-hidden={!route.ready ? true : undefined} style={{ display: route.ready ? "contents" : "none" }}>
       {props.linkNotice && <p role="status" className={styles.small}>{props.linkNotice}</p>}
-      {props.unavailable ? <section className={styles.card}><h2>Diese Challenge ist nicht mehr verfügbar.</h2><p>Die Fragen wurden überarbeitet. Eine neue Runde beginnt mit dem aktuellen Stand und ohne alte Zielpunktzahl.</p><button type="button" className={styles.primary} disabled={navigationBusy} onClick={newRound}>{navigationBusy ? "Neue Runde wird geladen …" : "Neue Runde starten"}</button><Link href="/quiz-app" prefetch={false} className={styles.quizLink}>Zum vollständigen Quiz</Link></section> : <DuellRound key={signature} {...props} ownerIdentity={owner} ownerCurrent={ownerCurrent} navigationBusy={navigationBusy} navigationPending={navigationPending} onNewRound={newRound} />}
+      {props.unavailable ? <section className={styles.card}><h2>Diese Challenge ist nicht mehr verfügbar.</h2><p>Die Fragen wurden überarbeitet. Eine neue Runde beginnt mit dem aktuellen Stand und ohne alte Zielpunktzahl.</p><button type="button" className={styles.primary} disabled={navigationBusy} onClick={() => newRound()}>{navigationBusy ? "Neue Runde wird geladen …" : "Neue Runde starten"}</button><Link href="/quiz-app" prefetch={false} className={styles.quizLink}>Zum vollständigen Quiz</Link></section> : <DuellRound key={signature} {...props} ownerIdentity={owner} ownerCurrent={ownerCurrent} navigationBusy={navigationBusy} navigationPending={navigationPending} onNewRound={newRound} onTopicChange={changeTopic} />}
+      {navigationBusy && <p role="status" className={styles.small}>Neue Runde wird geladen …</p>}
       {navigationNotice && <p role="status" className={styles.small}>{navigationNotice}</p>}
     </div>
   </LearningToolLayout>;

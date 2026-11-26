@@ -157,3 +157,63 @@ test('Only a bounded canonical integer is accepted from local highscore storage'
   for (const value of [null, {}, 42, '', 'null', 'NaN', '8331', '-5', '1e3', '0042', '"42"', '{"score":42}', '<script>', '4\n']) assert.equal(engine.parseDuellHighscore(value), null);
   assert.equal(engine.DUELL_HIGHSCORE_KEY, 'jagdlatein-revierduell-highscore-v1');
 });
+
+const topicCatalogue = createLoader()('lib/revierduell-topics.js');
+const topicBank = topicCatalogue.DUELL_TOPIC_SLUGS.flatMap((categorySlug, group) => Array.from({ length: 10 }, (_, number) => ({
+  id: `thematic-${group}-${number}`, categorySlug, prompt: `Synthetische Themenfrage ${group}/${number}?`,
+  options: ['a','b','c','d'].map(id => ({ id, text: `Themenantwort ${id}` })), correctIds: ['b'], explanation: 'Synthetische Themenerklärung.',
+})));
+
+test('Topic choices use exactly the existing11 nonlegal category labels and accept scalar exact slugs only', () => {
+  const categories = createLoader()('lib/learning-categories.js').learningCategoryDetails.filter(category => category.slug !== 'jagdrecht');
+  assert.deepEqual(topicCatalogue.DUELL_TOPICS, categories.map(({slug,title}) => ({slug,title})));
+  assert.equal(topicCatalogue.DUELL_TOPIC_SLUGS.length,11); assert.equal(new Set(topicCatalogue.DUELL_TOPIC_SLUGS).size,11);
+  for(const slug of topicCatalogue.DUELL_TOPIC_SLUGS) assert.equal(engine.normaliseDuellTopic(slug),slug);
+  for(const value of [undefined,null,'',[],['wildkunde'],{},1,'jagdrecht','Wildkunde',' wildkunde','wildkunde ','wildkunde\n','unknown','__proto__','constructor']) assert.equal(engine.normaliseDuellTopic(value),null);
+});
+
+test('Every topic reproducibly selects seven unique questions in that category with canonical answer order and copied arrays', () => {
+  const before = JSON.stringify(topicBank); frozen(topicBank);
+  for(const slug of topicCatalogue.DUELL_TOPIC_SLUGS) {
+    const first = engine.createDuellRound(topicBank,'topic-seed',slug),second=engine.createDuellRound(topicBank,'topic-seed',slug);
+    assert.deepEqual(first,second); assert.equal(first.length,7); assert.equal(new Set(first.map(q=>q.id)).size,7); assert.ok(first.every(q=>q.categorySlug===slug));
+    const reordered=[...topicBank].reverse().map(q=>({...q,options:[...q.options].reverse()})); assert.deepEqual(engine.createDuellRound(reordered,'topic-seed',slug),second);
+    for(const q of first) { assert.equal(q.options.length,4); assert.equal(new Set(q.options.map(a=>a.id)).size,4); assert.deepEqual(q.correctIds,['b']); }
+    first[0].options[0].text='round-only';first[0].correctIds[0]='changed';assert.notEqual(second[0].options[0].text,'round-only');assert.deepEqual(second[0].correctIds,['b']);
+  }
+  assert.equal(JSON.stringify(topicBank),before);
+});
+
+test('Invalid topics preserve the mixed seven-category algorithm; an undersized valid topic fails closed', () => {
+  const mixed=engine.createDuellRound(topicBank,'same-seed'); assert.equal(new Set(mixed.map(q=>q.categorySlug)).size,7);
+  for(const topic of [null,undefined,'',[],['wildkunde'],'unknown','jagdrecht']) assert.deepEqual(engine.createDuellRound(topicBank,'same-seed',topic),mixed);
+  const small=topicBank.filter(q=>q.categorySlug!=='wildkunde'||Number(q.id.split('-').at(-1))<6);
+  assert.throws(()=>engine.createDuellRound(small,'same-seed','wildkunde'),/TOPIC_NEEDS_SEVEN_QUESTIONS/);
+  assert.equal(engine.createDuellRound(small,'same-seed').length,7);
+  const only=topicBank.filter(q=>q.categorySlug==='wildkunde'); assert.equal(engine.createDuellRound(only,'same-seed','wildkunde').length,7); assert.throws(()=>engine.createDuellRound(only,'same-seed'),/SEVEN_CATEGORIES/);
+});
+
+test('Topic seeds vary question selection and answer placement across all ten synthetic candidates', () => {
+  const signatures=new Set(),seen=new Set(),orders=new Set();
+  for(let i=0;i<100;i++){const round=engine.createDuellRound(topicBank,'topic-variation-'+i,'wildkunde');signatures.add(round.map(q=>q.id+':'+q.options.map(a=>a.id).join('')).join('|'));for(const q of round){seen.add(q.id);orders.add(q.options.map(a=>a.id).join(''));}}
+  assert.ok(signatures.size>=95);assert.equal(seen.size,10);assert.ok(orders.size>=16);
+});
+
+test('The scoped stream pins the exact synthetic topic seed, question sequence and answer orders', () => {
+  assert.deepEqual(engine.createDuellRound(topicBank,'topic-seed','wildkunde').map(q=>({id:q.id,order:q.options.map(a=>a.id).join('')})),[
+    {id:'thematic-0-5',order:'bcda'},{id:'thematic-0-9',order:'dcba'},{id:'thematic-0-0',order:'dabc'},
+    {id:'thematic-0-3',order:'dcab'},{id:'thematic-0-1',order:'cadb'},{id:'thematic-0-2',order:'dacb'},{id:'thematic-0-8',order:'bacd'},
+  ]);
+});
+
+test('Topic challenge URLs preserve the chosen scope and zero score while invalid scopes remain mixed', () => {
+  const base={seed:'theme-share',score:0,revision:'0123456789abcdef'};
+  for(const topic of topicCatalogue.DUELL_TOPIC_SLUGS){const url=new URL(engine.duellChallengeUrl({...base,topic}));assert.equal(url.searchParams.get('thema'),topic);assert.equal(url.searchParams.get('ziel'),'0');assert.equal(url.searchParams.get('v'),base.revision);assert.equal(url.searchParams.get('utm_source'),'revierduell');assert.equal([...url.searchParams.keys()].length,7);}
+  for(const topic of [null,undefined,'',[],['wildkunde'],'jagdrecht','unknown'])assert.equal(new URL(engine.duellChallengeUrl({...base,topic})).searchParams.has('thema'),false);
+});
+
+test('A themed round retains the unchanged8330 maximum and manual seven-feedback lifecycle', () => {
+  let state=send(engine.createDuellState(engine.createDuellRound(topicBank,'themed-score','wildkunde')),'start',{now:50});
+  for(let i=0;i<7;i++){state=answer(state);assert.equal(state.phase,'feedback');assert.equal(state.answers[i].points,920+90*i);state=send(state,'next',{now:50});}
+  assert.equal(state.phase,'finished');assert.equal(state.score,8330);assert.equal(state.correctCount,7);assert.equal(send(state,'restart').generation,1);
+});

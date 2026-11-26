@@ -73,7 +73,7 @@ function tracksLawSelection(path) {
   return /^\/jagdrecht\/(?:ch|de|at)$/.test(path.split(/[?#]/)[0]);
 }
 const toolSelectionFields = {
-  "/revierduell": ["duell", "ziel", "v"],
+  "/revierduell": ["duell", "ziel", "v", "thema"],
   "/kurse": ["kategorie", "format"],
   "/lernen/tierstimmen": ["stimme"],
   "/lernen/fotodetektiv": ["ansicht", "art"],

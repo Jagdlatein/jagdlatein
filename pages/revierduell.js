@@ -2,7 +2,7 @@ import RevierDuell from "../components/RevierDuell";
 import { getDuellPageProps } from "../lib/revierduell-server";
 
 export default function RevierDuellPage(props) {
-  return <RevierDuell key={JSON.stringify([props.seed, props.target, props.revision, props.initialRawPath])} {...props} />;
+  return <RevierDuell key={JSON.stringify([props.seed, props.target, props.revision, props.topic, props.topics, props.initialRawPath])} {...props} />;
 }
 
 export function getServerSideProps(context) {

@@ -724,3 +724,17 @@ test('Revierduell Back retains committed seed, target and revision while UTM edi
   assert.equal(neighbour.history.length, 2);
   for (const instance of [s, native, immediate, neighbour]) instance.unmount();
 });
+
+test('Revierduell topic choices are scoped Back steps with native and immediate history preserved', () => {
+  const base = '/revierduell?duell=fixed', wild = `${base}&thema=wildkunde`, dog = `${base}&thema=hundewesen`;
+  const s = setup(base, ['/']); s.route(wild); s.route(dog); s.route(`${dog}&utm_source=revierduell`);
+  assert.deepEqual(s.history, ['/', base, wild, `${dog}&utm_source=revierduell`]);
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, wild);
+  const native = setup(base, ['/']); native.route(wild); native.route(dog); native.route(wild);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
+  const immediate = setup(base, ['/']); immediate.route(wild); immediate.navigateBeforeEffects(dog);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, wild);
+  const unrelated = setup('/lernen'); unrelated.route('/revierduell/unterseite?thema=wildkunde'); unrelated.route('/revierduell/unterseite?thema=hundewesen');
+  assert.equal(unrelated.history.length, 2);
+  for (const instance of [s, native, immediate, unrelated]) instance.unmount();
+});

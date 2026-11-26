@@ -2,16 +2,50 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const {createLoader,local,root}=require('./helpers/project-module.cjs');
 const load=createLoader(),server=load('lib/revierduell-server.js'),engine=load('lib/revierduell.js');
 const secure={getRandomValues(bytes){bytes.fill(17);return bytes;}};
-test('The57fixed references project original neutral questions with provenance and no full reading/private extras',()=>{
- const pool=load('lib/daily-review-pool.js').getDailyReviewPool(),bank=server.getDuellBank();assert.equal(bank.length,57);assert.equal(new Set(bank.map(q=>q.id)).size,57);assert.equal(new Set(bank.map(q=>q.prompt.trim().toLocaleLowerCase('de'))).size,57);assert.equal(new Set(bank.map(q=>q.categorySlug)).size,11);
+test('The reviewed reference bank projects original neutral questions with provenance and no full reading/private extras',()=>{
+ const references=load('data/revierduell-question-ids-v1.json'),pool=load('lib/daily-review-pool.js').getDailyReviewPool(),bank=server.getDuellBank();assert.ok(bank.length>=57);assert.equal(bank.length,references.length);assert.equal(new Set(bank.map(q=>q.id)).size,bank.length);assert.equal(new Set(bank.map(q=>q.prompt.trim().toLocaleLowerCase('de'))).size,bank.length);assert.equal(new Set(bank.map(q=>q.categorySlug)).size,11);
  for(const q of bank){const original=pool.find(item=>item.id===q.id);assert.equal(q.prompt,original.q);assert.deepEqual(q.options,original.answers);assert.deepEqual(q.correctIds,original.correct);assert.equal(q.explanation,original.explain);assert.equal(q.href,original.href);assert.equal(q.courseTitle,original.courseTitle);assert.equal(q.sourceScope,original.sourceScope);assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(q.reviewedOn));assert.equal(q.options.length,4);assert.equal(q.correctIds.length,1);assert.notEqual(q.categorySlug,'jagdrecht');assert.ok(q.sources.every(s=>/^https:\/\//.test(s.url)));assert.equal(Object.hasOwn(q,'reading'),false);}
  for(const id of ['wissen-federwild-beobachtung-vogel-lamellen-funktion','wissen-vertiefung-jagdhunderassen-pointer-setter-1','wissen-ausbau-biologie-hundesinne-2026-sehen-q4'])assert.equal(bank.some(q=>q.id===id),false);
  const altered=structuredClone(pool);for(const row of altered){row.privateAccount='SyntheticPrivateMarker';row.answers.forEach(a=>a.privateAccount='SyntheticPrivateMarker');}
  const projected=createLoader({'./daily-review-pool':{getDailyReviewPool:()=>altered}})('lib/revierduell-server.js').getDuellBank();assert.doesNotMatch(JSON.stringify(projected),/SyntheticPrivateMarker|"reading"|"paragraphs"/);
 });
-test('Actual57-question bank reproduces exact seven-category rounds and answer order',()=>{
+test('The actual reference bank reproduces exact seven-category rounds and answer order',()=>{
  for(let i=0;i<60;i++){const query={duell:'test_'+i},a=server.getDuellPageProps(query),b=server.getDuellPageProps(query);assert.deepEqual(a,b);assert.equal(a.questions.length,7);assert.equal(new Set(a.questions.map(q=>q.categorySlug)).size,7);assert.equal(new Set(a.questions.map(q=>q.id)).size,7);}
  const bank=server.getDuellBank(),rev=server.duellBankRevision(bank),copy=structuredClone(bank);copy[0].explanation+=' Synthetic test correction.';assert.notEqual(server.duellBankRevision(copy),rev);assert.match(rev,/^[a-f0-9]{16}$/);
+});
+
+test('All11 topic summaries reuse existing labels/counts and supply seven distinct same-topic questions',()=>{
+ const catalogue=load('lib/revierduell-topics.js'),bank=server.getDuellBank(),base=server.getDuellPageProps({duell:'topics'});
+ assert.equal(base.topic,null);assert.equal(base.requestSelection.topicQuery,null);assert.deepEqual(base.topics,catalogue.DUELL_TOPICS.map(topic=>({...topic,count:bank.filter(q=>q.categorySlug===topic.slug).length})));
+ assert.ok(base.topics.every(topic=>topic.count>=7));assert.equal(base.topics.length,11);assert.equal(base.topics.reduce((count,topic)=>count+topic.count,0),bank.length);
+ for(const {slug} of catalogue.DUELL_TOPICS)for(let i=0;i<12;i++){const query={duell:'topic_'+i,thema:slug},a=server.getDuellPageProps(query),b=server.getDuellPageProps(query);assert.deepEqual(a,b);assert.equal(a.topic,slug);assert.equal(a.requestSelection.topicQuery,slug);assert.equal(a.questions.length,7);assert.equal(new Set(a.questions.map(q=>q.id)).size,7);assert.ok(a.questions.every(q=>q.categorySlug===slug));assert.equal(a.revision,server.duellBankRevision(bank,slug));}
+});
+
+test('Theme-bound revisions reject copied mixed/other-topic targets and preserve matching-topic zero',()=>{
+ const mixed=server.getDuellPageProps({duell:'scope'}),wild=server.getDuellPageProps({duell:'scope',thema:'wildkunde'}),dogs=server.getDuellPageProps({duell:'scope',thema:'hundewesen'});
+ assert.notEqual(mixed.revision,wild.revision);assert.notEqual(wild.revision,dogs.revision);
+ for(const query of [{duell:'scope',thema:'wildkunde',v:mixed.revision,ziel:'8000'},{duell:'scope',thema:'hundewesen',v:wild.revision,ziel:'8000'},{duell:'scope',v:wild.revision,ziel:'8000'}]){const p=server.getDuellPageProps(query);assert.equal(p.unavailable,true);assert.equal(p.target,null);assert.deepEqual(p.questions,[]);assert.equal(p.topics.length,11);}
+ const good=server.getDuellPageProps({duell:'scope',thema:'wildkunde',v:wild.revision,ziel:'0'});assert.equal(good.target,0);assert.equal(good.unavailable,false);assert.deepEqual(good.questions,wild.questions);
+ for(const thema of [undefined,null,'',[],['wildkunde'],['wildkunde','hundewesen'],'unknown','jagdrecht','Wildkunde',' wildkunde']){const p=server.getDuellPageProps({duell:'scope',thema});assert.equal(p.topic,null);assert.equal(p.requestSelection.topicQuery,null);assert.equal(p.revision,mixed.revision);assert.deepEqual(p.questions,mixed.questions);}
+ const fresh=server.getDuellPageProps({thema:'wildkunde',ziel:'500',v:dogs.revision},secure);assert.equal(fresh.topic,'wildkunde');assert.equal(fresh.target,null);assert.equal(fresh.unavailable,false);assert.ok(fresh.questions.every(q=>q.categorySlug==='wildkunde'));
+});
+
+test('The reviewed bank fails closed for duplicate/missing references, non-DACH/legal records or a category with fewer than seven questions',()=>{
+ const refs=load('data/revierduell-question-ids-v1.json'),pool=load('lib/daily-review-pool.js').getDailyReviewPool(),bank=server.getDuellBank();
+ const withRefs=references=>createLoader({'../data/revierduell-question-ids-v1.json':references})('lib/revierduell-server.js');
+ for(const refsBad of [null,[],refs.slice(0,56),[...refs,refs[0]],[...refs.slice(1),'not-a-maintained-id']])assert.throws(()=>withRefs(refsBad).getDuellBank(),/REVIEWED_BANK_UNAVAILABLE/);
+ const wild=bank.filter(q=>q.categorySlug==='wildkunde').map(q=>q.id),thin=refs.filter(id=>!wild.includes(id)||wild.indexOf(id)<6);assert.throws(()=>withRefs(thin).getDuellBank(),/REVIEWED_BANK_UNAVAILABLE/);
+ for(const change of [row=>{row.category='jagdrecht';},row=>{row.q=pool.find(q=>q.id===refs[1]).q;}]){const changed=structuredClone(pool),row=changed.find(q=>q.id===refs[0]);change(row);assert.throws(()=>createLoader({'./daily-review-pool':{getDailyReviewPool:()=>changed}})('lib/revierduell-server.js').getDuellBank(),/REVIEWED_BANK_UNAVAILABLE/);}
+ const courses=structuredClone(load('lib/learning-curriculum.js').learningModules),question=courses.flatMap(course=>course.questions).find(q=>q.id===refs[0]);question.countries=['CH','DE'];assert.throws(()=>createLoader({'./learning-curriculum':{learningModules:courses}})('lib/revierduell-server.js').getDuellBank(),/REVIEWED_BANK_UNAVAILABLE/);
+});
+
+test('Route ownership includes normalized topic plus exact raw query/SSR identity',()=>{
+ const route=load('lib/revierduell-navigation.js').duellRoute;
+ const path='/revierduell?duell=topic&thema=wildkunde',query={duell:'topic',thema:'wildkunde'},selection={seedQuery:'topic',targetQuery:null,revisionQuery:null,topicQuery:'wildkunde'};
+ const router={isReady:true,asPath:path,query};assert.equal(route(router,{initialRawPath:path,requestSelection:selection}).ready,true);
+ assert.equal(route(router,{initialRawPath:path,requestSelection:{...selection,topicQuery:null}}).ready,false);
+ assert.equal(route({...router,query:{...query,thema:['wildkunde']}},{initialRawPath:path,requestSelection:selection}).ready,false);
+ for(const raw of ['/revierduell?duell=topic&thema=','/revierduell?duell=topic&thema=unknown','/revierduell?duell=topic&thema=wildkunde&thema=hundewesen']){const values={duell:'topic'};for(const [key,value]of new URL(raw,'https://example.invalid').searchParams)if(key==='thema')values[key]=Object.hasOwn(values,key)?[].concat(values[key],value):value;assert.equal(route({isReady:true,asPath:raw,query:values},{initialRawPath:raw,requestSelection:{...selection,topicQuery:null}}).ready,true);}
 });
 test('Secure missing/invalid seeds discard target scores instead of attaching them to unrelated questions',()=>{
  for(const seed of [undefined,'','bad seed','x'.repeat(65),['a','b'],null]){const p=server.getDuellPageProps({duell:seed,ziel:'500'},secure);assert.equal(p.seed,'d1_'+ '11'.repeat(16));assert.equal(p.target,null);assert.equal(p.questions.length,7);assert.ok(p.linkNotice);}
