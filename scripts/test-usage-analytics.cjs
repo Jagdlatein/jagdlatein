@@ -291,7 +291,7 @@ test('A real stalled ReadableStream reports the deadline even when cancel comple
   await assert.rejects(reading, error => error.status === 408); assert.equal(canceled, 1); assert.equal(g.timers.size, 0);
 });
 test('Migration uses the exact shared catalog, no account FKs, fixed retention and service-only RPC signatures', () => {
-  const sql = fs.readFileSync(require('node:path').join(root, 'supabase/migrations/20261108120000_usage_analytics.sql'), 'utf8');
+  const sql = ['20261108120000_usage_analytics.sql', '20261126090000_revierduell_usage_events.sql'].map(file => fs.readFileSync(require('node:path').join(root, 'supabase/migrations', file), 'utf8')).join('\n');
   for (const key of [...Object.keys(pure.USAGE_PAGES), ...pure.USAGE_EVENTS]) assert.ok(sql.includes(`'${key}'`));
   assert.doesNotMatch(sql, /REFERENCES\s+(?:public\.)?userprofile/i); assert.match(sql, /FOR NO KEY UPDATE/); assert.match(sql, /previous_at IS DISTINCT FROM p_expected_changed_at/); assert.match(sql, /interval '1 microsecond'/); assert.match(sql, /today-399/); assert.match(sql, /interval '48 hours'/); assert.match(sql, /Europe\/Zurich/);
   assert.match(sql, /set_usage_analytics_preference\(text,uuid,boolean,timestamptz\)/); assert.match(sql, /TO service_role/);

@@ -63,6 +63,7 @@ function hasServerPageGuard(pathname) {
 
 const PUBLIC_PATHS = [
   "/",
+  "/revierduell",
   "/news",
   "/community",
   "/login",

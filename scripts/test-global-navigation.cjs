@@ -709,3 +709,18 @@ test('One shared Jagdlatein logo opens the chat on the same page shell, includin
   }
   assert.equal(setup('/lernen/jagdlatein-chat').tree.props.children[4].props.href, '#jagdlatein-chat-question');
 });
+
+test('Revierduell Back retains committed seed, target and revision while UTM edits remain one stop on this exact page', () => {
+  const base = '/revierduell', first = `${base}?duell=first`, target = `${first}&ziel=500`, version = `${target}&v=1234567890abcdef`;
+  const s = setup(base, ['/']); s.route(first); s.route(target); s.route(version);
+  s.route(`${version}&utm_source=revierduell&utm_medium=share`);
+  assert.deepEqual(s.history, ['/', base, first, target, `${version}&utm_source=revierduell&utm_medium=share`]);
+  s.render().props.children[0].props.onClick(); assert.equal(s.destination, target);
+  const native = setup(base, ['/']); native.route(first); native.route(target); native.route(first);
+  native.render().props.children[0].props.onClick(); assert.equal(native.destination, base);
+  const immediate = setup(first, ['/']); immediate.route(target); immediate.navigateBeforeEffects(version);
+  immediate.render().props.children[0].props.onClick(); assert.equal(immediate.destination, target);
+  const neighbour = setup('/lernen'); neighbour.route('/revierduell/private?duell=first'); neighbour.route('/revierduell/private?duell=second&ziel=100');
+  assert.equal(neighbour.history.length, 2);
+  for (const instance of [s, native, immediate, neighbour]) instance.unmount();
+});

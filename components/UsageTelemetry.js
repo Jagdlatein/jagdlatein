@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { usagePageForPath, usageBrowserAllowed, usagePrivacyAllows, usagePreferenceClient, USAGE_PREFERENCE_EVENT, USAGE_LOCAL_PREFERENCE } from "../lib/usage-analytics";
+import { REVIERDUELL_ANALYTICS_EVENT, readDuellAnalyticsEvent } from "../lib/revierduell-analytics";
 
 let activeLease = 0;
 
@@ -50,6 +51,11 @@ export default function UsageTelemetry({ pathname = null }) {
       if (kind) add(kind);
     };
     const play = event => { if (event.isTrusted !== false && event.target?.tagName === "VIDEO" && !privateTarget(event.target)) add("video_play"); };
+    const duell = event => {
+      if (pathname !== "/revierduell" || window.location?.pathname !== "/revierduell" || !valid()) return;
+      const name = readDuellAnalyticsEvent(event);
+      if (name) add(name);
+    };
     const changed = () => {
       const state = usagePreferenceClient.getSnapshot();
       if (!state.enabled || !valid()) { cancel(); lastView = null; return; }
@@ -64,12 +70,14 @@ export default function UsageTelemetry({ pathname = null }) {
     const unsubscribe = usagePreferenceClient.subscribe(changed);
     document.addEventListener("click", click, true); document.addEventListener("play", play, true);
     window.addEventListener("pagehide", flush); window.addEventListener(USAGE_PREFERENCE_EVENT, preferenceEvent);
+    window.addEventListener(REVIERDUELL_ANALYTICS_EVENT, duell);
     window.addEventListener("storage", storage); window.addEventListener("jagdlatein-logout", logout); window.addEventListener("jagdlatein-account-deleted", logout);
     void usagePreferenceClient.load({ isCurrent: valid, owner });
     return () => {
       live = false; cancel(); unsubscribe();
       document.removeEventListener("click", click, true); document.removeEventListener("play", play, true);
       window.removeEventListener("pagehide", flush); window.removeEventListener(USAGE_PREFERENCE_EVENT, preferenceEvent);
+      window.removeEventListener(REVIERDUELL_ANALYTICS_EVENT, duell);
       window.removeEventListener("storage", storage); window.removeEventListener("jagdlatein-logout", logout); window.removeEventListener("jagdlatein-account-deleted", logout);
       usagePreferenceClient.stop({ owner });
     };

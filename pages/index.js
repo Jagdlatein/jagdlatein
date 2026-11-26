@@ -243,6 +243,7 @@ export default function Home({ loggedIn = false, initialNews, revierMoment }) {
 
           <HomeKnowledgeNavigation />
           <RevierMomentEntry preview={revierMoment} />
+          <p><Link href="/revierduell" prefetch={false}>Revierduell spielen · 7 Fragen, eine Challenge</Link></p>
 
           <CommunityInvite />
           <HomeNews initialNews={initialNews} />
