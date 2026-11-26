@@ -7,6 +7,7 @@ import { duellRoute } from "../lib/revierduell-navigation";
 import { DUELL_QUESTION_COUNT, DUELL_QUESTION_MS, DUELL_HIGHSCORE_KEY, createDuellSeed, createDuellState, duellReducer, duellRemainingMs, duellRank, compareDuellTarget, duellChallengeUrl, parseDuellHighscore, isDuellScore, normaliseDuellTopic } from "../lib/revierduell";
 import { emitDuellAnalytics } from "../lib/revierduell-analytics";
 import { usagePreferenceClient } from "../lib/usage-analytics";
+import { createDuellReview, duellReviewReducer } from "../lib/revierduell-review";
 import styles from "../styles/RevierDuell.module.css";
 
 const clock = () => typeof performance !== "undefined" ? performance.now() : NaN;
@@ -36,14 +37,20 @@ function DuellRound({ seed, revision, target, topic = null, topics = [], questio
   const [state, dispatch] = useReducer(ownedReducer, questions, createDuellState);
   const [now, setNow] = useState(0), [best, setBest] = useState(null), [storageUnavailable, setStorageUnavailable] = useState(false);
   const [shareNotice, setShareNotice] = useState(""), [shareBusy, setShareBusy] = useState(false), [manualUrl, setManualUrl] = useState("");
+  const [review, setReview] = useState(null);
   const mounted = useRef(false), currentState = useRef(state), sharing = useRef(null), serial = useRef(0);
+  const interaction = useRef({}), activeReview = useRef(null), reviewOwner = useRef(null), reviewSerial = useRef(0), returnFocus = useRef(false);
+  const interactionOwner = interaction.current;
   const viewPhase = useRef(null), seenEvents = useRef(new Set()), savedResults = useRef(new WeakSet());
   const readyHeading = useRef(null), questionHeading = useRef(null), feedbackHeading = useRef(null), resultHeading = useRef(null);
+  const reviewHeading = useRef(null), reviewFeedbackHeading = useRef(null);
   currentState.current = state;
   const context = () => mounted.current && ownerCurrent();
   const current = captured => context() && currentState.current === captured;
-  const canAct = captured => current(captured) && !navigationPending() && sharing.current === null;
+  const canAct = captured => current(captured) && interaction.current === interactionOwner && activeReview.current === null && !navigationPending() && sharing.current === null;
+  const reviewCurrent = captured => captured !== null && current(state) && interaction.current === interactionOwner && activeReview.current === captured && reviewOwner.current === ownerIdentity && !navigationPending() && sharing.current === null;
   const question = state.questions[state.index], answer = state.answers[state.index];
+  const reviewQuestion = review?.questions[review.index], failureCount = state.phase === "finished" ? state.answers.filter(value => !value.correct).length : 0;
   const remaining = duellRemainingMs(state, now);
   const validTarget = isDuellScore(target) ? target : null;
 
@@ -64,8 +71,30 @@ function DuellRound({ seed, revision, target, topic = null, topics = [], questio
     setNow(time);
     dispatch({ type, generation: captured.generation, index: captured.index, now: time, ...extra, isCurrent: () => canAct(captured) });
   }
+  function startReview() {
+    if (!canAct(state) || state.phase !== "finished" || reviewSerial.current >= Number.MAX_SAFE_INTEGER) return;
+    const next = createDuellReview(state.questions, state.answers, reviewSerial.current + 1);
+    if (!next) return;
+    reviewSerial.current = next.generation; interaction.current = {}; reviewOwner.current = ownerIdentity; activeReview.current = next; returnFocus.current = false; setReview(next);
+  }
+  function stopReview(captured = review) {
+    if (!reviewCurrent(captured)) return;
+    interaction.current = {}; activeReview.current = null; reviewOwner.current = null; returnFocus.current = true; setReview(null);
+  }
+  function sendReview(type, extra = {}) {
+    const captured = review;
+    if (!reviewCurrent(captured)) return;
+    const next = duellReviewReducer(captured, { type, generation: captured.generation, index: captured.index, ...extra, isCurrent: () => reviewCurrent(captured) });
+    if (next === captured) return;
+    if (next.phase === "finished") { stopReview(captured); return; }
+    activeReview.current = next; setReview(next);
+  }
 
-  useEffect(() => { mounted.current = true; return () => { mounted.current = false; sharing.current = null; serial.current++; }; }, []);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; sharing.current = null; serial.current++; activeReview.current = null; reviewOwner.current = null; interaction.current = {}; }; }, []);
+  useEffect(() => {
+    if (!context()) return;
+    if (activeReview.current && reviewOwner.current !== ownerIdentity) { interaction.current = {}; activeReview.current = null; reviewOwner.current = null; returnFocus.current = false; setReview(null); }
+  }, [ownerIdentity]);
   useEffect(() => {
     const announce = () => {
       const consent = usagePreferenceClient.getSnapshot();
@@ -137,6 +166,25 @@ function DuellRound({ seed, revision, target, topic = null, topics = [], questio
       else { node.focus(); node.scrollIntoView?.({ block: "start", behavior: "auto" }); }
     }
   }, [state.phase, state.index, state.generation, ownerCurrent]);
+  useEffect(() => {
+    if (review && reviewCurrent(review)) {
+      const node = review.phase === "asking" ? reviewHeading.current : reviewFeedbackHeading.current;
+      node?.focus(); node?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    } else if (!review && returnFocus.current && current(state) && !navigationPending()) {
+      returnFocus.current = false; resultHeading.current?.focus(); resultHeading.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    }
+  }, [review, ownerCurrent]);
+  useEffect(() => {
+    if (!review) return;
+    const handler = event => {
+      if (!reviewCurrent(review) || event.repeat || event.defaultPrevented || event.ctrlKey || event.altKey || event.metaKey) return;
+      const target = event.target;
+      if (target?.isContentEditable || target?.closest?.('input,textarea,select,[contenteditable="true"],[role="dialog"],dialog') || target?.closest?.('a,button,summary') && !target?.closest?.('[data-duell-review]')) return;
+      if (review.phase === "asking" && /^[1-4]$/.test(event.key)) { event.preventDefault(); sendReview("answer", { optionId: reviewQuestion.options[Number(event.key) - 1].id }); }
+      else if (review.phase === "feedback" && event.key === "Enter" && !target?.closest?.("a,button,summary")) { event.preventDefault(); sendReview("next"); }
+    };
+    window.addEventListener("keydown", handler); return () => window.removeEventListener("keydown", handler);
+  }, [review, ownerCurrent, navigationBusy]);
 
   async function share(copyOnly = false) {
     const captured = state;
@@ -159,7 +207,12 @@ function DuellRound({ seed, revision, target, topic = null, topics = [], questio
   }
 
   return <>
-    {state.phase === "ready" ? <section className={styles.card} aria-labelledby="revierduell-intro"><p className={styles.kicker}>Eine kleine Runde Jagdwissen</p><h2 id="revierduell-intro" tabIndex={-1} ref={readyHeading}>Sieben Fragen. Deine Spur zählt.</h2><p>Du hast 12 Sekunden je Frage. Nach jeder Antwort kannst du die Erklärung in Ruhe lesen.</p>
+    {review ? <section className={styles.card} data-duell-review aria-labelledby="revierduell-review-question"><p className={styles.kicker}>Fehler ohne Zeitdruck üben</p><p className={styles.reviewProgress}>Frage {review.index + 1} von {review.questions.length} · Dein Duellergebnis bleibt erhalten.</p>
+      <p className={styles.context}>{reviewQuestion.courseTitle}</p><h2 id="revierduell-review-question" tabIndex={-1} ref={reviewHeading}>{reviewQuestion.prompt}</h2><p className={styles.small}>Wähle eine Antwort. Danach kannst du die Erklärung in Ruhe lesen.</p>
+      <div className={styles.options} role="group" aria-label="Eine Antwort zur Wiederholung wählen">{reviewQuestion.options.map((option, index) => { const right = review.phase === "feedback" && reviewQuestion.correctIds.includes(option.id), chosen = review.phase === "feedback" && review.selectedId === option.id; return <button type="button" key={option.id} disabled={review.phase !== "asking" || navigationBusy} className={`${styles.option}${right ? ` ${styles.correct}` : chosen ? ` ${styles.wrong}` : ""}`} onClick={() => sendReview("answer", { optionId: option.id })}><span className={styles.optionNumber} aria-hidden="true">{index + 1}</span><span>{option.text}{right && <strong>{chosen ? "Deine richtige Antwort" : "Richtige Antwort"}</strong>}{chosen && !right && <strong>Deine Antwort</strong>}</span></button>; })}</div>
+      {review.phase === "feedback" && <div className={styles.feedback}><h3 tabIndex={-1} ref={reviewFeedbackHeading} role="status">{reviewQuestion.correctIds.includes(review.selectedId) ? "Richtig!" : "Die richtige Antwort ist markiert."}</h3><p>{reviewQuestion.explanation}</p>{lessonLink(reviewQuestion.href) && <Link href={reviewQuestion.href} prefetch={false} onClick={event => { if (!reviewCurrent(review)) event.preventDefault(); }}>In der passenden Lektion weiterlernen</Link>}<button type="button" className={styles.primary} disabled={navigationBusy} onClick={() => sendReview("next")}>{review.index + 1 === review.questions.length ? "Zur Auswertung" : "Nächster Fehler"}<AppIcon name="arrow-right" size={20} /></button></div>}
+      <button type="button" className={styles.textButton} disabled={navigationBusy} onClick={() => stopReview()}>Üben beenden</button>
+    </section> : state.phase === "ready" ? <section className={styles.card} aria-labelledby="revierduell-intro"><p className={styles.kicker}>Eine kleine Runde Jagdwissen</p><h2 id="revierduell-intro" tabIndex={-1} ref={readyHeading}>Sieben Fragen. Deine Spur zählt.</h2><p>Du hast 12 Sekunden je Frage. Nach jeder Antwort kannst du die Erklärung in Ruhe lesen.</p>
       <TopicSelect topic={topic} topics={topics} disabled={navigationBusy} onChange={value => { if (canAct(state) && state.phase === "ready") onTopicChange(value); }} />
       <ul className={styles.facts}><li><strong>7</strong> Fragen</li><li><strong>12 s</strong> je Frage</li><li><strong>4</strong> Antworten</li></ul>
       {validTarget !== null && <p className={styles.challenge} data-duell-target>Deine Challenge: <strong>{number(validTarget)} Punkte</strong> schlagen. Die geteilte Punktzahl ist unverbindlich.</p>}
@@ -168,6 +221,7 @@ function DuellRound({ seed, revision, target, topic = null, topics = [], questio
       {best !== null && <p className={styles.small}>Dein Bestwert auf diesem Gerät: <strong>{number(best)} Punkte</strong></p>}
     </section> : state.phase === "finished" ? <section className={styles.card} aria-labelledby="revierduell-result"><p className={styles.kicker}>Dein Ergebnis</p><h2 id="revierduell-result" tabIndex={-1} ref={resultHeading}>{duellRank(state.correctCount).label}</h2><p className={styles.score}>{number(state.score)} <span>Punkte</span></p><p><strong>{state.correctCount} von {DUELL_QUESTION_COUNT}</strong> Antworten richtig. Dein Spielrang beschreibt nur diese Runde, keine Prüfungsreife.</p>
       <TopicSelect topic={topic} topics={topics} disabled={navigationBusy || shareBusy} onChange={value => { if (canAct(state) && state.phase === "finished") onTopicChange(value); }} />
+      {failureCount > 0 && <button type="button" className={styles.secondary} disabled={navigationBusy || shareBusy} onClick={startReview}>Fehler ohne Zeitdruck üben ({failureCount})</button>}
       {validTarget !== null && <p className={styles.challenge} role="status">{compareDuellTarget(state.score, validTarget) === "won" ? "Challenge gewonnen!" : compareDuellTarget(state.score, validTarget) === "tied" ? "Punktgleich!" : "Challenge-Ziel verfehlt."} Ziel: {number(validTarget)} Punkte. Der Vergleich ist unverbindlich.</p>}
       {best !== null && <p>Bestwert auf diesem Gerät: <strong>{number(best)} Punkte</strong></p>}
       <div className={styles.actions}><button type="button" className={styles.primary} disabled={shareBusy || navigationBusy} onClick={() => share(false)}>Challenge teilen</button><button type="button" className={styles.secondary} disabled={shareBusy || navigationBusy} onClick={() => share(true)}>Link kopieren</button></div>

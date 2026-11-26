@@ -79,6 +79,16 @@ async function harness({ path = `/revierduell?duell=${seed}&v=${revision}`, read
   };
 }
 
+async function finishMixed(h, wrong = [1], timeouts = [4]) {
+  await h.click(h.button('Duell starten'));
+  for (let index = 0; index < 7; index++) {
+    if (timeouts.includes(index)) { h.setTime(h.time() + 12000); await h.tick(); }
+    else await h.key(wrong.includes(index) ? '2' : '1');
+    await h.key('Enter');
+  }
+  assert.ok(h.dom.window.document.getElementById('revierduell-result'));
+}
+
 test('Revierduell DOM: seven questions, four answers, manual feedback, sources last and unchanged inherited dates', async () => {
   const h = await harness({ path: `/revierduell?duell=${seed}&ziel=0&v=${revision}`, overrides: { target: 0 } });
   try {
@@ -382,4 +392,91 @@ test('Revierduell page identity includes the chosen topic and supplied topic met
   const Page = createLoader({ '../lib/revierduell-server': { getDuellPageProps: () => { throw Error('No server or bank needed for identity'); } } })('pages/revierduell.js').default;
   const props = { seed, revision, target: null, initialRawPath: '/revierduell', topic: null, topics };
   const key = Page(props).key; assert.notEqual(Page({ ...props, topic: 'wildkunde' }).key, key); assert.notEqual(Page({ ...props, topics: topics.map(item => ({ ...item, count: item.count + 1 })) }).key, key); assert.equal(Page({ ...props, linkNotice: 'unchanged owner' }).key, key);
+});
+
+test('Revierduell review DOM: only original wrong and timeout questions, blind choices, untimed manual explanations and unchanged result', async () => {
+  let stored = null; const writes = [], h = await harness({ path: `/revierduell?duell=${seed}&ziel=0&v=${revision}&thema=wildkunde`, overrides: { topic: 'wildkunde', target: 0 }, analyticsEnabled: true, consent: { known: true, enabled: true, accountKey: 'isolated-account', consentVersion: 'v1' }, storage: { getItem: () => stored, setItem: (key, value) => { writes.push([key, value]); stored = value; } } });
+  try {
+    await finishMixed(h); const originalScore = h.dom.window.document.querySelector('.score').textContent, originalEvents = h.events.map(event => event.name), originalQuestions = JSON.stringify(h.props().questions), originalWrites = [...writes];
+    assert.equal(h.button('Fehler ohne Zeitdruck üben (2)').disabled, false); await h.click(h.button('Fehler ohne Zeitdruck üben (2)'));
+    const card = () => h.dom.window.document.querySelector('[data-duell-review]');
+    assert.equal(h.dom.window.document.getElementById('revierduell-result'), null); assert.equal(h.dom.window.document.querySelector('[role="timer"]'), null); assert.equal(h.dom.window.document.querySelector('.score'), null); assert.equal(h.dom.window.document.querySelector('select'), null); assert.equal(h.timers.size, 0);
+    assert.equal(h.dom.window.document.activeElement.id, 'revierduell-review-question'); assert.equal(h.dom.window.document.getElementById('revierduell-review-question').textContent, questions[1].prompt); assert.equal(h.answerButtons().length, 4); assert.deepEqual(h.answerButtons().map(button => button.textContent), ['1Antwort A', '2Antwort B', '3Antwort C', '4Antwort D']); assert.doesNotMatch(card().textContent, /Deine Antwort|Richtige Antwort|Unveränderte Erklärung/);
+    const details = h.dom.window.document.getElementById('revierduell-quellen'); assert.equal(details.open, false); assert.equal(details.querySelectorAll('section').length, 7); assert.equal(h.dom.window.document.querySelector('[data-revierduell-reader]').lastElementChild, details);
+    h.setTime(h.time() + 1000000); await h.tick(); await h.act(() => h.dom.window.dispatchEvent(new h.dom.window.Event('focus'))); assert.equal(h.dom.window.document.getElementById('revierduell-review-question').textContent, questions[1].prompt);
+    await h.key('2'); assert.match(card().textContent, /Deine Antwort/); assert.match(card().textContent, /Richtige Antwort/); assert.ok(h.answerButtons().every(button => button.disabled)); assert.match(card().textContent, /Unveränderte Erklärung 2\./); const lesson = card().querySelector(`a[href="${questions[1].href}"]`); assert.equal(lesson.dataset.prefetch, 'false'); assert.equal(h.dom.window.document.activeElement.tagName, 'H3');
+    h.setTime(h.time() + 1000000); await h.tick(); assert.equal(h.dom.window.document.getElementById('revierduell-review-question').textContent, questions[1].prompt); await h.key('Enter');
+    assert.equal(h.dom.window.document.getElementById('revierduell-review-question').textContent, questions[4].prompt); assert.doesNotMatch(card().textContent, /Deine Antwort|Richtige Antwort|Unveränderte Erklärung/); await h.key('1'); assert.match(card().textContent, /Deine richtige Antwort/); assert.match(card().textContent, /Unveränderte Erklärung 5\./); await h.click(h.button('Zur Auswertung'));
+    assert.ok(h.dom.window.document.getElementById('revierduell-result')); assert.equal(h.dom.window.document.querySelector('.score').textContent, originalScore); assert.match(h.text(), /5 von 7/); assert.match(h.text(), /Challenge gewonnen/); assert.equal(h.dom.window.document.getElementById('revierduell-topic').value, 'wildkunde'); assert.deepEqual(writes, originalWrites); assert.equal(stored, originalWrites[0][1]); assert.deepEqual(h.events.map(event => event.name), originalEvents); assert.equal(JSON.stringify(h.props().questions), originalQuestions); assert.equal(h.dom.window.document.activeElement.id, 'revierduell-result'); assert.equal(details.open, false);
+    let copied; Object.defineProperty(h.dom.window.navigator, 'clipboard', { configurable: true, value: { writeText: async value => { copied = value; } } }); await h.click(h.button('Link kopieren')); const challenge = new URL(copied); assert.equal(challenge.searchParams.get('ziel'), stored); assert.equal(challenge.searchParams.get('duell'), seed); assert.equal(challenge.searchParams.get('thema'), 'wildkunde'); assert.equal(challenge.searchParams.get('v'), revision); assert.deepEqual(h.events.map(event => event.name), [...originalEvents, 'revierduell_copy']); assert.deepEqual(writes, originalWrites);
+  } finally { await h.close(); }
+});
+
+test('Revierduell review DOM: perfect rounds expose no error-practice button', async () => {
+  const h = await harness(); try { await h.finish(); assert.equal([...h.dom.window.document.querySelectorAll('button')].some(button => button.textContent.startsWith('Fehler ohne Zeitdruck üben')), false); assert.equal(h.dom.window.document.querySelector('[data-duell-review]'), null); } finally { await h.close(); }
+});
+
+test('Revierduell review DOM: interaction tickets block retained result actions before commit and after returning', async () => {
+  const h = await harness();
+  try {
+    await finishMixed(h); let shares = 0, copies = 0; Object.defineProperty(h.dom.window.navigator, 'share', { configurable: true, value: async () => shares++ }); Object.defineProperty(h.dom.window.navigator, 'clipboard', { configurable: true, value: { writeText: async () => copies++ } });
+    const oldReview = reactHandler(h.button('Fehler ohne Zeitdruck üben (2)')), oldShare = reactHandler(h.button('Challenge teilen')), oldCopy = reactHandler(h.button('Link kopieren')), oldNew = reactHandler(h.button('Neue Runde')), oldRestart = reactHandler(h.button('Diese Runde nochmals')), oldSelect = reactHandler(h.dom.window.document.getElementById('revierduell-topic'), 'onChange');
+    const oldResultActions = () => { oldReview(); oldShare(); oldCopy(); oldNew(); oldRestart(); oldSelect({ target: { value: 'wildkunde' } }); };
+    await h.act(() => { oldReview(); oldResultActions(); }); assert.ok(h.dom.window.document.querySelector('[data-duell-review]')); assert.equal(h.pushes.length, 0); assert.equal(shares, 0); assert.equal(copies, 0);
+    const oldCancel = reactHandler(h.button('Üben beenden')); await h.act(() => { oldCancel(); oldResultActions(); }); assert.ok(h.dom.window.document.getElementById('revierduell-result')); assert.equal(h.dom.window.document.querySelector('[data-duell-review]'), null); assert.equal(h.pushes.length, 0); assert.equal(shares, 0); assert.equal(copies, 0);
+    await h.act(() => oldResultActions()); assert.ok(h.dom.window.document.getElementById('revierduell-result')); assert.equal(h.pushes.length, 0); assert.equal(shares, 0); assert.equal(copies, 0);
+    await h.click(h.button('Fehler ohne Zeitdruck üben (2)')); await h.act(() => oldCancel()); assert.ok(h.dom.window.document.querySelector('[data-duell-review]')); await h.click(h.button('Üben beenden')); await h.click(h.button('Link kopieren')); assert.equal(copies, 1, 'newly rendered result controls remain usable');
+  } finally { await h.close(); }
+});
+
+test('Revierduell review DOM: old review answer, Next and Cancel cannot cross feedback, question or session boundaries', async () => {
+  const h = await harness();
+  try {
+    await finishMixed(h); await h.click(h.button('Fehler ohne Zeitdruck üben (2)')); const oldAnswer = reactHandler(h.answerButtons()[0]), askingCancel = reactHandler(h.button('Üben beenden'));
+    await h.act(() => { oldAnswer(); oldAnswer(); askingCancel(); }); assert.ok(h.button('Nächster Fehler')); assert.match(h.text(), /Unveränderte Erklärung 2/);
+    const next = reactHandler(h.button('Nächster Fehler')), feedbackCancel = reactHandler(h.button('Üben beenden')); await h.act(() => { next(); next(); feedbackCancel(); oldAnswer(); });
+    assert.equal(h.dom.window.document.getElementById('revierduell-review-question').textContent, questions[4].prompt); assert.ok(h.answerButtons().every(button => !button.disabled)); assert.doesNotMatch(h.dom.window.document.querySelector('[data-duell-review]').textContent, /Unveränderte Erklärung/);
+    const secondCancel = reactHandler(h.button('Üben beenden')); await h.click(h.button('Üben beenden')); await h.click(h.button('Fehler ohne Zeitdruck üben (2)')); await h.act(() => { secondCancel(); next(); feedbackCancel(); oldAnswer(); }); assert.equal(h.dom.window.document.getElementById('revierduell-review-question').textContent, questions[1].prompt); assert.ok(h.answerButtons().every(button => !button.disabled));
+  } finally { await h.close(); }
+});
+
+test('Revierduell review DOM: pending share and clipboard keep practice blocked until their current completion', async () => {
+  for (const mode of ['share', 'copy']) {
+    const h = await harness();
+    try {
+      await finishMixed(h); const pending = deferred(), review = reactHandler(h.button('Fehler ohne Zeitdruck üben (2)'));
+      Object.defineProperty(h.dom.window.navigator, mode === 'share' ? 'share' : 'clipboard', { configurable: true, value: mode === 'share' ? () => pending.promise : { writeText: () => pending.promise } });
+      await h.click(h.button(mode === 'share' ? 'Challenge teilen' : 'Link kopieren')); await h.act(() => review()); assert.equal(h.dom.window.document.querySelector('[data-duell-review]'), null); assert.equal(h.button('Fehler ohne Zeitdruck üben (2)').disabled, true);
+      await h.settle(() => pending.resolve()); await h.click(h.button('Fehler ohne Zeitdruck üben (2)')); assert.ok(h.dom.window.document.querySelector('[data-duell-review]'));
+    } finally { await h.close(); }
+  }
+});
+
+test('Revierduell review DOM: pending navigation blocks practice and a committed new round rejects old review entry', async () => {
+  const h = await harness();
+  try {
+    await finishMixed(h); const review = reactHandler(h.button('Fehler ohne Zeitdruck üben (2)')), pending = deferred(); h.router.push = value => { h.pushes.push(value); return pending.promise; }; await h.click(h.button('Neue Runde')); await h.act(() => review()); assert.equal(h.dom.window.document.querySelector('[data-duell-review]'), null);
+    await h.settle(() => pending.resolve(true)); await h.act(() => review()); assert.equal(h.dom.window.document.querySelector('[data-duell-review]'), null);
+    const next = h.pushes[0]; await h.commit(next, { seed: new URL(next, 'https://jagdlatein.de').searchParams.get('duell'), target: null }); await h.act(() => review()); assert.ok(h.button('Duell starten')); assert.equal(h.dom.window.document.querySelector('[data-duell-review]'), null);
+  } finally { await h.close(); }
+});
+
+test('Revierduell review DOM: raw-origin, SSR replacement and unmount stop retained review actions and lesson links', async () => {
+  const h = await harness(); let closed = false;
+  try {
+    await finishMixed(h); await h.click(h.button('Fehler ohne Zeitdruck üben (2)')); await h.key('1'); const next = reactHandler(h.button('Nächster Fehler')), cancel = reactHandler(h.button('Üben beenden')), link = reactHandler(h.dom.window.document.querySelector('[data-duell-review] a')); let prevented = 0;
+    h.setPath(`/revierduell?duell=${seed}&v=${revision}&origin=changed`); await h.act(() => { next(); cancel(); link({ preventDefault: () => prevented++ }); }); assert.equal(prevented, 1); assert.match(h.dom.window.document.querySelector('[data-duell-review]').textContent, /Unveränderte Erklärung 2/);
+    await h.render({ initialRawPath: h.router.asPath, requestSelection: h.selection() }); assert.ok(h.dom.window.document.getElementById('revierduell-result')); assert.equal(h.dom.window.document.querySelector('[data-duell-review]'), null);
+    await h.click(h.button('Fehler ohne Zeitdruck üben (2)')); await h.key('1'); const unmountNext = reactHandler(h.button('Nächster Fehler')), unmountCancel = reactHandler(h.button('Üben beenden')); await h.close(); closed = true; await h.settle(() => { unmountNext(); unmountCancel(); next(); cancel(); }); assert.equal(h.pushes.length, 0);
+  } finally { if (!closed) await h.close(); }
+  const replacement = await harness();
+  try { await finishMixed(replacement); await replacement.click(replacement.button('Fehler ohne Zeitdruck üben (2)')); const oldAnswer = reactHandler(replacement.answerButtons()[0]), oldCancel = reactHandler(replacement.button('Üben beenden')); await replacement.render({ questions: questions.map((question, index) => index === 0 ? { ...question, prompt: 'Neu übernommene Frage?' } : question) }); await replacement.act(() => { oldAnswer(); oldCancel(); }); assert.ok(replacement.button('Duell starten')); assert.equal(replacement.dom.window.document.querySelector('[data-duell-review]'), null); } finally { await replacement.close(); }
+});
+
+test('Revierduell review DOM: practice keyboard ignores repeat, modifiers and editing; consent changes cannot record practice answers', async () => {
+  const consent = { known: true, enabled: true, accountKey: 'isolated-account', consentVersion: 'v1' }, h = await harness({ analyticsEnabled: true, consent });
+  try {
+    await finishMixed(h); const scored = h.events.filter(event => !event.name.endsWith('_view')).map(event => event.name); await h.click(h.button('Fehler ohne Zeitdruck üben (2)')); await h.key('1', { repeat: true }); await h.key('1', { ctrlKey: true }); await h.key('1', { altKey: true }); await h.key('1', { metaKey: true }); const input = h.dom.window.document.createElement('input'); h.dom.window.document.body.append(input); await h.key('1', {}, input); input.remove(); assert.ok(h.answerButtons().every(button => !button.disabled));
+    await h.consent({ ...consent, enabled: false }); await h.key('1'); await h.key('Enter'); await h.consent(consent); await h.key('1'); await h.key('Enter'); assert.ok(h.dom.window.document.getElementById('revierduell-result')); assert.deepEqual(h.events.filter(event => !event.name.endsWith('_view')).map(event => event.name), scored);
+  } finally { await h.close(); }
 });
