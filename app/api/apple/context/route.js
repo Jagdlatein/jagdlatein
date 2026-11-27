@@ -3,6 +3,7 @@ import { requireAccountSession, requireCurrentAccount, getAccountDatabase, accou
 import { AppleSubscriptionError, appleSubscriptionConfig, createAppleApiClient, ensureAppleAccountToken,
   appleErrorResponse } from "../../../../lib/apple-subscriptions";
 import { appleReviewPolicy } from "../../../../lib/apple-review-policy";
+import { currentAccountPayPalCheckout } from "../../../../lib/paypal-checkout";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,16 +27,34 @@ export async function GET(request) {
     const appAccountToken = await ensureAppleAccountToken(database, session.email, session.accountGeneration);
     // Lazy import avoids a cycle with the combined PayPal/Apple access resolver.
     const { resolveSubscriptionAccess } = await import("../../../../lib/subscription-access");
-    const access = await resolveSubscriptionAccess(database, session.email, {
+    let access = await resolveSubscriptionAccess(database, session.email, {
       legacyPaid: profile.is_premium === true && profile.is_admin !== true,
       reviewPolicy,
     });
-    const paid = access.paid === true || profile.is_admin === true;
+    let paid = access.paid === true || profile.is_admin === true;
+    let existingPayPal = false;
+    if (!paid) {
+      const checkout = await currentAccountPayPalCheckout({ database, session });
+      if (!checkout || typeof checkout.activated !== "boolean" ||
+          !(checkout.subscriptionId === null && checkout.status === null ||
+            typeof checkout.subscriptionId === "string" && /^I-[A-Z0-9]{6,64}$/i.test(checkout.subscriptionId) &&
+            ["APPROVAL_PENDING", "APPROVED", "ACTIVE", "SUSPENDED", "CANCELLED", "EXPIRED"].includes(checkout.status)) ||
+          checkout.activated && !checkout.subscriptionId) throw accountUnavailable();
+      existingPayPal = ["APPROVED", "ACTIVE", "SUSPENDED"].includes(checkout.status);
+      if (checkout.activated) {
+        access = await resolveSubscriptionAccess(database, session.email, {
+          legacyPaid: profile.is_premium === true && profile.is_admin !== true, reviewPolicy,
+        });
+        paid = access.paid === true || profile.is_admin === true;
+        if (!paid) throw accountUnavailable();
+      }
+    }
+    await requireCurrentAccount(database, session);
     // Website/native destination stays Production even when the privately bound
     // review account verifies an Apple Sandbox purchase on this backend.
     return accountJson({ enabled: true, environment: config.environment, productIds: config.productIds,
       appAccountToken, email: session.email, paid, accessType: access.accessType,
-      accessProvider: profile.is_admin ? "admin" : access.source, purchaseAllowed: !paid });
+      accessProvider: profile.is_admin ? "admin" : access.source, purchaseAllowed: !paid && !existingPayPal });
   } catch (error) {
     return error instanceof AppleSubscriptionError ? appleErrorResponse(error) : accountErrorResponse(error);
   }

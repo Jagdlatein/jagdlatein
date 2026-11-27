@@ -29,6 +29,111 @@ function accessDate(value) {
   return new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Berlin", timeZoneName: "short" }).format(new Date(value));
 }
 
+const ACCOUNT_KEY = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+async function recoveryRequest(url, options, controller, isCurrent) {
+  let timer, cancel;
+  const stopped = () => Object.assign(new Error("Anfrage abgebrochen."), { code: "ABORTED" });
+  try {
+    if (!isCurrent() || controller.signal.aborted) throw stopped();
+    const cancellation = new Promise((_, reject) => {
+      cancel = () => reject(stopped());
+      controller.signal.addEventListener("abort", cancel, { once: true });
+    });
+    return await Promise.race([
+      cancellation,
+      (async () => {
+        const response = await fetch(url, { cache: "no-store", credentials: "same-origin", ...options, signal: controller.signal });
+        if (!isCurrent() || controller.signal.aborted) throw stopped();
+        if ([401, 403, 409].includes(response.status)) throw Object.assign(new Error("Bitte das Konto erneut prüfen."), { status: response.status });
+        const data = await response.json();
+        if (!response.ok) throw new Error("Die Abo-Prüfung ist nicht verfügbar.");
+        return data;
+      })(),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => { reject(new Error("Die Abo-Prüfung hat zu lange gedauert.")); controller.abort(); }, 18000);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+    if (cancel) controller.signal.removeEventListener("abort", cancel);
+  }
+}
+
+export function PayPalCheckoutRecovery({ accountKey, accountEmail, onReload, isCurrent = () => true }) {
+  const [pending, setPending] = useState(false);
+  const [blocked, setBlocked] = useState(false);
+  const [message, setMessage] = useState("");
+  const mounted = useRef(false), request = useRef(null), retired = useRef(false);
+  const key = JSON.stringify([accountKey, accountEmail]);
+  const ownerRef = useRef({ key });
+  if (ownerRef.current.key !== key) ownerRef.current = { key };
+  const owner = ownerRef.current;
+  const active = () => mounted.current && !retired.current && ownerRef.current === owner && isCurrent();
+  useEffect(() => {
+    mounted.current = true;
+    retired.current = false;
+    setPending(false); setBlocked(false); setMessage("");
+    return () => {
+      mounted.current = false;
+      const previous = request.current;
+      request.current = null;
+      previous?.controller.abort();
+    };
+  }, [owner]);
+
+  async function check() {
+    if (!active() || request.current || !ACCOUNT_KEY.test(accountKey || "") || typeof accountEmail !== "string" || !accountEmail) return;
+    const ticket = { owner, controller: new AbortController() };
+    request.current = ticket;
+    const current = () => active() && request.current === ticket;
+    setPending(true); setMessage("");
+    try {
+      const checkout = await recoveryRequest("/api/paypal/checkout-status", {
+        method: "POST", headers: { "Content-Type": "application/json", "X-Jagdlatein-Account-Key": accountKey }, body: "{}",
+      }, ticket.controller, current);
+      if (!current()) return;
+      if (!ACCOUNT_KEY.test(checkout?.accountKey || "") || typeof checkout?.accountEmail !== "string" || !checkout.accountEmail) throw new Error("Die Abo-Prüfung ist nicht verfügbar.");
+      if (checkout.accountKey !== accountKey || checkout.accountEmail !== accountEmail) {
+        throw Object.assign(new Error("Das Konto hat sich geändert."), { status: 409 });
+      }
+      if (typeof checkout.activated !== "boolean" || !(checkout.subscriptionId === null && checkout.status === null ||
+          typeof checkout.subscriptionId === "string" && /^I-[A-Z0-9]{6,64}$/i.test(checkout.subscriptionId) &&
+          ["APPROVAL_PENDING", "APPROVED", "ACTIVE", "SUSPENDED", "CANCELLED", "EXPIRED"].includes(checkout.status)) ||
+          checkout.activated && !checkout.subscriptionId) throw new Error("Die Abo-Prüfung ist nicht verfügbar.");
+      const access = await recoveryRequest("/api/auth/status", {}, ticket.controller, current);
+      if (!current()) return;
+      if (access?.loggedIn !== true || access.email !== accountEmail || typeof access.paid !== "boolean" || typeof access.admin !== "boolean") {
+        throw Object.assign(new Error("Bitte das Konto erneut prüfen."), { status: 409 });
+      }
+      setMessage(access.paid || access.admin ? "Dein Zugang ist bestätigt. Dein Konto wird aktualisiert …"
+        : checkout.status === "SUSPENDED" ? "Dein PayPal-Abo ist weiter pausiert. Verwalte es bei PayPal. Dein Konto wird aktualisiert …"
+        : "Dein vorhandenes Abo wurde geprüft. Dein Konto wird aktualisiert …");
+      onReload?.();
+    } catch (error) {
+      if (!current()) return;
+      const changed = [401, 403, 409].includes(error.status);
+      setMessage(changed
+        ? "Deine Anmeldung hat sich geändert. Lade dein Konto neu und prüfe dein Abo erneut."
+        : "Dein vorhandenes Abo konnte noch nicht geprüft werden. Bitte erneut versuchen. Es wurde kein neues Abo gestartet.");
+      if (changed) {
+        request.current = null;
+        retired.current = true;
+        ticket.controller.abort();
+        setPending(false); setBlocked(true);
+        onReload?.();
+      }
+    } finally {
+      if (current()) { request.current = null; setPending(false); }
+    }
+  }
+
+  return <>
+    <button type="button" className={styles.button} disabled={pending || blocked} onClick={check}>{pending ? "Abo wird geprüft …" : "Vorhandenes Abo prüfen"}</button>
+    {message && <p role="status" aria-live="polite">{message}</p>}
+  </>;
+}
+
 function AccountDeletion({ accountKey, accountEmail, onDeleted, onReload, isCurrent = () => true }) {
   const [available, setAvailable] = useState(false);
   const [reauthentication, setReauthentication] = useState(true);
@@ -232,7 +337,8 @@ export default function AccountPage({ courses = [] } = {}) {
             <h2 id="account-checkout">{paypalPaused ? "Dein PayPal-Abo ist pausiert" : paypalPending ? "Dein Abo ist noch nicht freigeschaltet" : "Dein Konto ist bereit"}</h2>
             <p>Du bist als <strong>{account.email}</strong> angemeldet. {paypalPending || paypalPaused ? "Prüfe zuerst dein vorhandenes Abo. Ein weiterer Kauf ist dafür nicht nötig." : "Wähle jetzt dein Monatsabo und bestätige es beim Zahlungsanbieter."}</p>
             {!(paypalPending || paypalPaused) && <p className={styles.muted}>Den Preis und eine mögliche Probezeit siehst du vor der Bestätigung. In der iPhone-/iPad-App öffnet sich die Apple-Aboübersicht, auf der Website und unter Android der PayPal-Abschluss.</p>}
-            <a href="/preise" className={styles.button}>{paypalPending || paypalPaused ? "Vorhandenes Abo prüfen" : "Abo auswählen und bestätigen"}</a>
+            {paypalPending || paypalPaused ? <PayPalCheckoutRecovery key={`paypal-recovery-${currentDeletionIdentity.version}`} accountKey={account.accountKey} accountEmail={account.email} isCurrent={() => deletionIdentity.current === currentDeletionIdentity && !accountDeleted} onReload={reload} />
+              : <a href="/preise" className={styles.button}>Abo auswählen und bestätigen</a>}
             <p><Link href="/hilfe#abo" className={styles.helpLink}>Hilfe zum Abo</Link></p>
           </section> : <section id="abo-und-zugang" className={`${styles.card} ${styles.accessCard}`} aria-labelledby="account-access">
             <p className={styles.accessBadge}>{account.admin ? "Adminzugang aktiv" : courtesy ? "Befristeter Lernzugang aktiv" : trial ? "Testzugang aktiv" : "Lernzugang aktiv"}</p>
