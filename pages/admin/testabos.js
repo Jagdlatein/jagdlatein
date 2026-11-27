@@ -265,8 +265,8 @@ function SubscriptionRow({ item }) {
     <details className={styles.rowDetails}>
       <summary>Abo-Details</summary>
       <dl className={styles.dates}>
-        <div><dt>Testabo begonnen</dt><dd>{overviewDate(item.trialStartedAt)}</dd></div>
-        <div><dt>Kostenlos bis</dt><dd>{overviewDate(item.trialUntil)}</dd></div>
+        <div><dt>Testabo begonnen</dt><dd>{item.trialStartedAt === null && item.trialUntil === null ? "Keine Probezeit gespeichert" : overviewDate(item.trialStartedAt)}</dd></div>
+        <div><dt>Kostenlos bis</dt><dd>{item.trialStartedAt === null && item.trialUntil === null ? "Keine Probezeit gespeichert" : overviewDate(item.trialUntil)}</dd></div>
         <div><dt>Reguläres Abo bestätigt</dt><dd>{overviewDate(item.firstRegularAt)}</dd></div>
         <div><dt>Zugang bestätigt bis</dt><dd>{overviewDate(item.accessUntil)}</dd></div>
       </dl>
@@ -286,7 +286,7 @@ export default function TrialOverviewPage({ testEnvironment = false }) {
         <div><p className={styles.eyebrow}>Betreiberübersicht</p><h2 id="trial-overview-heading">Aktive Abos</h2></div>
         {!denied && <button type="button" className={accountStyles.secondaryButton} onClick={overview.reload} disabled={overview.loading}>Aktualisieren</button>}
       </div>
-      <p className={styles.intro}>Nur Testabos und Folgeabos mit aktuell bestätigtem Zugang: Apple · iPhone/iPad, PayPal · Android/Website. Eine ausgeschaltete Verlängerung blendet einen noch laufenden Zugang nicht aus.</p>
+      <p className={styles.intro}>Gespeicherte aktive Abos: bezahlter Zugang, Test und Zahlungsfrist. Apple · iPhone/iPad, PayPal · Android/Website. Eine ausgeschaltete Verlängerung blendet einen noch laufenden Zugang nicht aus.</p>
       {!denied && <div className={styles.controls}>
         <label>E-Mail-Adresse suchen<input type="search" inputMode="email" value={overview.query} onChange={event => overview.search(event.target.value)} placeholder="Vollständige E-Mail-Adresse" maxLength={320} autoComplete="off" autoCapitalize="none" spellCheck={false} /></label>
         <label>Umgebung<select value={overview.environment} onChange={event => overview.chooseEnvironment(event.target.value)} disabled={testEnvironment}>{!testEnvironment && <option value="live">Live · echte Kunden</option>}<option value="sandbox">Test · Sandbox / TestFlight</option></select></label>

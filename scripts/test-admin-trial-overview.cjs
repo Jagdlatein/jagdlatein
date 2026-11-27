@@ -376,7 +376,9 @@ test('Actual Supabase query encoding retains alias child limits without replacin
   assert.equal(appleSource.searchParams.get('limit'), '101'); assert.equal(appleSource.searchParams.get('trial.limit'), '1');
   assert.equal(appleSource.searchParams.get('trial.is_trial'), 'eq.true');
   assert.equal(appleSource.searchParams.get('trial.order'), 'purchased_at.asc');
-  assert.ok(appleSource.searchParams.get('select').includes('trial:apple_subscription_transactions!inner('));
+  assert.ok(appleSource.searchParams.get('select').includes('trial:apple_subscription_transactions('));
+  assert.ok(!appleSource.searchParams.get('select').includes('trial:apple_subscription_transactions!inner('));
+  assert.ok(appleSource.searchParams.get('select').includes('owner:apple_account_tokens!inner('));
   const paypalPayments = captured.find(url => url.searchParams.get('select').includes('regular:paypal'));
   assert.equal(paypalPayments.searchParams.get('regular.limit'), '21'); assert.equal(paypalPayments.searchParams.get('limit'), '1');
   assert.equal(paypalPayments.searchParams.get('regular.period_until'), 'not.is.null');
