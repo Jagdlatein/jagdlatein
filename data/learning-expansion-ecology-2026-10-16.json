@@ -63,7 +63,9 @@
           "url": "https://www.lwf.bayern.de/mam/cms04/forsttechnik-holz/dateien/w75_das_holz_der_eiche-eigenschaften_und_verwendung_bf_gesch.pdf",
           "organization": "Bayerische Landesanstalt für Wald und Forstwirtschaft / Holzforschung München",
           "checkedOn": "2026-10-24",
-          "lessonIds": ["gefaessverteilung"],
+          "lessonIds": [
+            "gefaessverteilung"
+          ],
           "supports": "Fachbeschreibung von Stiel- und Traubeneiche: ringporiger Aufbau mit großen Frühholzgefäßen und deutlich kleineren Spätholzgefäßen. Originalbeitrag und dessen Waldwissen-Spiegel sind ein Nachweis, keine zwei unabhängigen Quellen. Keine Abbildungen, Kennwerte oder Verwendungshinweise übernommen."
         },
         {
@@ -71,7 +73,9 @@
           "url": "https://api.pageplace.de/preview/DT0400.9783481029913_A28848045/preview-9783481029913_A28848045.pdf",
           "organization": "Mathias Rehbein / Verlagsgesellschaft Rudolf Müller",
           "checkedOn": "2026-10-24",
-          "lessonIds": ["gefaessverteilung"],
+          "lessonIds": [
+            "gefaessverteilung"
+          ],
           "supports": "Eigenständig verfasstes holzanatomisches Fachkapitel: Größen- und Verteilungsmuster der Gefäße, ringporige Eiche und gleichmäßigerer zerstreutporiger Grundtyp. Fachliche Erklärung, keine unabhängige experimentelle Wiederholung. Keine Text- oder Abbildungsübernahme und keine Holzschutzanleitung."
         },
         {
@@ -79,7 +83,9 @@
           "url": "https://www.wald.rlp.de/nutzen/holz/oeko-rohstoff",
           "organization": "Landesforsten Rheinland-Pfalz",
           "checkedOn": "2026-10-24",
-          "lessonIds": ["gefaessverteilung"],
+          "lessonIds": [
+            "gefaessverteilung"
+          ],
           "supports": "Unabhängige institutionelle Erläuterung zu ringporigen und zerstreutporigen Laubhölzern sowie den Beispielen Eiche und Birke. Ausschließlich der Abschnitt Laubholzaufbau wird zum neuen Grundmuster herangezogen; keine Übernahme benachbarter Chemie-, Zahlen- oder Nutzungsaussagen."
         },
         {
@@ -87,7 +93,9 @@
           "url": "https://www.waldwissen.net/de/waldwirtschaft/waldbau/standortskunde/die-birke-unkraut-oder-alternative",
           "organization": "Wald und Holz NRW / Norbert Tennhoff",
           "checkedOn": "2026-10-24",
-          "lessonIds": ["gefaessverteilung"],
+          "lessonIds": [
+            "gefaessverteilung"
+          ],
           "supports": "Eigenständiger Fachbeitrag von Wald und Holz NRW: Sandbirke als zerstreutporiges Beispiel. Originalartikel 2020, Onlinefassung vom 29. Juni 2021; keine Studie zur Gefäßgrößenverteilung und keine zusätzlichen Kennwerte oder Bewirtschaftungshinweise übernommen."
         },
         {
@@ -95,7 +103,9 @@
           "url": "https://www-archiv.fdm.uni-hamburg.de/b-online/d05/05c.htm",
           "organization": "Universität Hamburg, historisches Botanik-online-Archiv / Peter von Sengbusch",
           "checkedOn": "2026-11-08",
-          "lessonIds": ["lentizellen"],
+          "lessonIds": [
+            "lentizellen"
+          ],
           "supports": "Tatsächlich gelesener Hochschullehrtext im Archiv 1996–2004: besondere Zellgruppen im Korkgewebe, sichtbares Holunderbeispiel und Gasaustausch zwischen Atmosphäre und stoffwechselaktiven Geweben unterhalb der Rinde. Historische fachliche Erklärung, keine neue Messung. Keine Abbildungen oder pauschal vollständige Gasdichtheit übernommen."
         },
         {
@@ -103,7 +113,9 @@
           "url": "https://mmegias.webs2.uvigo.es/02-english/1-vegetal/v-imagenes-grandes/proteccion_peridermis.php",
           "organization": "Universidade de Vigo, Department of Functional Biology and Health Sciences",
           "checkedOn": "2026-11-08",
-          "lessonIds": ["lentizellen"],
+          "lessonIds": [
+            "lentizellen"
+          ],
           "supports": "Unabhängiger Hochschul-Histologieatlas, Seitenstand 23. Januar 2026: Periderm, benanntes Sambucus-nigra-Präparat und Lentizellen als Gaswege. Eigenständige fachliche Darstellung, keine experimentelle Replikation. Keine Mikroaufnahme, Detailaussage zu Zwischenzellräumen oder allgemeine Artbestimmungsregel übernommen."
         },
         {
@@ -111,7 +123,9 @@
           "url": "https://boku.ac.at/universitaetsleitung/rektorat/stabsstellen/oeffentlichkeitsarbeit/themen/presseaussendungen/presseaussendungen-2025/24042025-baumrinde-als-co2-aktivistin",
           "organization": "BOKU University / Institut für Botanik",
           "checkedOn": "2026-11-08",
-          "lessonIds": ["lentizellen"],
+          "lessonIds": [
+            "lentizellen"
+          ],
           "supports": "Tatsächlich gelesener institutioneller Bericht eigener Forschung: Gasaustauschkammer an äußerer Rinde und Rolle der Lentizellen bei den benannten Esche-, Zürgelbaum- und Ginkgo-Untersuchungen. Ergänzende Funktionsbestätigung, kein gelesener Originalvolltext und keine unabhängige Wiederholung der Lehrquellen. Keine Messwerte, Photosyntheseaussagen oder Übertragung spezieller Ergebnisse auf Holunder übernommen."
         }
       ],
@@ -815,6 +829,36 @@
             "guttation"
           ],
           "supports": "Independently authored weather-service definition of dew as surface condensation, not plant secretion. No dew-volume number, arid-region water-use advice, collection/trinking advice, photographs or artificial mandatory night/weather rule."
+        },
+        {
+          "label": "Jin, Zimmermann, Polle und Fischer (2015): Auxin is a long-range signal that acts independently of ethylene signaling on leaf abscission in Populus",
+          "url": "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full",
+          "organization": "Umeå Plant Science Centre / SLU und Georg-August-Universität Göttingen; Frontiers in Plant Science",
+          "checkedOn": "2026-11-27",
+          "lessonIds": [
+            "blattabwurf"
+          ],
+          "supports": "Originalarbeit: Methods Plant Material and Growth Conditions sowie Results An Auxin Response Maximum Precedes the Formation of an Abscission Zone und Figure1-Legende tatsächlich gelesen. Anatomische Beobachtung der Abtrennungszone im Versuchsmodell mit Hybrid-Pappeln; Hauptversuche T89=Populus tremula×P.tremuloides, weitere GH3::GUS-Hintergründe P.×canescens für benannte Auxin-/Inhibitorversuche. Keine pauschale Zuordnung aller Figuren zu P.×canescens. Keine Hormone, Chemie, Messwerte, Protokolle, Zeiten, Schutzschichten oder Übertragung auf sämtliche Pflanzen."
+        },
+        {
+          "label": "The Open University: Surviving the winter –1.4.1 Deciduous trees",
+          "url": "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1",
+          "organization": "The Open University / OpenLearn",
+          "checkedOn": "2026-11-27",
+          "lessonIds": [
+            "blattabwurf"
+          ],
+          "supports": "Unabhängiger eigener Hochschullehrtext: letzter Absatz und Figure12-Legende tatsächlich gelesen. Abtrennungszone am Übergang Blattstiel–Spross und Ablösungsschicht im Ahornbeispiel. Keine Abbildung, Hormone, Schutz-/Korkschicht, pauschale Nährstoffrückgewinnung, Winter-Energiebilanz oder allgemeiner Zeitplan übernommen; kein neues Experiment und keine Wiederholung der Jin-Arbeit."
+        },
+        {
+          "label": "Lew Feldman / UC Berkeley (2021): Why do leaves change color in the fall? –Vortragstranskript, Abschnitt zur Abszission",
+          "url": "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/",
+          "organization": "University of California, Berkeley / UC Botanical Garden",
+          "checkedOn": "2026-11-27",
+          "lessonIds": [
+            "blattabwurf"
+          ],
+          "supports": "Unabhängiger eigener Fachvortrag des Pflanzenbiologen Lew Feldman: Sprecherzuordnung sowie Absätze ab The final step in the senescence process und direkt folgend tatsächlich gelesen. Abszission als Blattablösung und Lockerung der Verbindung zum Spross. Keine Schutzschicht, Chemie/Hormone, Datums-/Klimaregel, Fotos oder Tonaufnahme übernommen; kein anatomisches Experiment und keine unabhängige Replikation von Jin2015."
         }
       ],
       "lessons": [
@@ -900,6 +944,20 @@
           "takeaway": "Guttation gibt flüssiges Wasser aus der Pflanze ab; Tau entsteht durch Kondensation von Wasserdampf an ihrer Oberfläche.",
           "exercise": "Unterscheide in einem eigenen Pfeilmodell den Flüssigkeitsaustritt über Hydathoden, Tau aus Wasserdampf und die Abgabe von Wasserdampf bei Transpiration.",
           "reviewedOn": "2026-11-25",
+          "flashcardExpansion": true
+        },
+        {
+          "id": "blattabwurf",
+          "title": "Blattabwurf",
+          "paragraphs": [
+            "Beim kontrollierten Blattabwurf, der Abszission, wird ein Blatt vom Spross getrennt. Der hier betrachtete Laubbaum-Bauplan besitzt dafür eine Abtrennungszone am Übergang vom Blattstiel zum Spross. Dort lässt der Zusammenhalt von Zellen nach. So wird das Ablösen an einer begrenzten Stelle möglich.",
+            "Blattalterung und Blattabwurf sind im herbstlichen Blattwechsel miteinander verknüpft. Die bereits erklärte Veränderung von Blattbestandteilen ist nicht die räumliche Ablösung vom Zweig. Unterscheide deshalb, was im Blatt geschieht und an welcher Stelle sich das ganze Blatt vom Spross trennt. Ein Farbwechsel allein erklärt diese Trennstelle nicht.",
+            "Betrachtet wird hier der beschriebene Laubbaum-Bauplan. Daraus folgt kein für alle Pflanzen gleicher Ablauf und kein fester Abwurftermin. Ein loses Blatt am Boden belegt den inneren Trennvorgang allein noch nicht.",
+            "Eigene Papierübung: Zeichne einen Spross mit Blattstiel und Blattspreite. Markiere am Blattstielansatz die Abtrennungszone und zeichne dort einen Trennstrich ein. Beschrifte die Blattspreite getrennt davon. Deine vereinfachte Lernzeichnung stellt den Zusammenhang dar; sie ist kein mikroskopisches Messbild."
+          ],
+          "takeaway": "Beim beschriebenen Blattabwurf löst sich das Blatt an einer Abtrennungszone am Blattstielansatz vom Spross.",
+          "exercise": "Markiere die Abtrennungszone in deiner eigenen Lernzeichnung und unterscheide die Ablösung von der zuvor erklärten Blattalterung.",
+          "reviewedOn": "2026-11-27",
           "flashcardExpansion": true
         }
       ],
@@ -1397,6 +1455,19 @@
           ],
           "answer": 1,
           "explain": "Im ausdrücklich beschriebenen Modell stammt A als Guttationsflüssigkeit aus der Pflanze. B entsteht durch Kondensation ausserhalb der Pflanze und ist Tau. Diese Zuordnung nutzt die bekannten Wasserwege des Modells, nicht allein ein Tropfenfoto."
+        },
+        {
+          "id": "blattabwurf-abtrennungszone",
+          "lessonId": "blattabwurf",
+          "q": "Wie löst sich im beschriebenen Laubbaum-Modell ein Blatt beim kontrollierten Blattabwurf vom Spross?",
+          "options": [
+            "Durch Ablösung an einer Abtrennungszone am Blattstielansatz.",
+            "Durch Verdunstung von Wasser durch die Spaltöffnungen.",
+            "Durch Zellteilungen des Kambiums, die den Stamm verdicken.",
+            "Durch den Abbau grüner Blattfarbstoffe allein."
+          ],
+          "answer": 0,
+          "explain": "Beim beschriebenen Blattabwurf wird das Blatt an der Abtrennungszone vom Spross gelöst. Wasserverdunstung, Stammverdickung und Farbänderung bezeichnen andere Vorgänge. Die Aufgabe beschreibt ausdrücklich diesen Bauplan und keinen für alle Pflanzen gleichen Abwurfkalender."
         }
       ]
     },
@@ -4151,6 +4222,38 @@
           "sourceRoles": {
             "https://hess.copernicus.org/articles/25/2617/2021/": "Author/title/date, introduction and exact section2.2 Excluding the confusion of guttation, lines317–321. Also the entire one-page corrigendum published1July2021, which corrects Table1 abbreviations dDew/fdDew to Distillation/fdistillation; it does not alter section2.2. Actual research article separately defines plant-internal guttation versus condensed external dew and discusses root-pressure/grasses. The study excluded relevant guttation in its own dry-spell samples; this is not presented as an experimental measurement or replication of guttation.",
             "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/temperature/dew": "Actual official original HTML Dew / How does dew form? lines267–277, including condensation of atmospheric water vapour on cooled surfaces. Independently authored weather-service definition of dew as surface condensation, not plant secretion."
+          }
+        }
+      ]
+    },
+    {
+      "moduleId": "wissen-ausbau-oekologie-blattfunktion-2026",
+      "lessonId": "blattabwurf",
+      "claims": [
+        {
+          "claim": "Im beschriebenen Laubbaum-Modell wird ein Blatt bei der Abszission an einer Abtrennungszone am Übergang zwischen Blattstiel und Spross gelöst.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full",
+            "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1",
+            "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/"
+          ],
+          "sourceRoles": {
+            "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full": "Originalarbeit: Methods Plant Material and Growth Conditions sowie Results An Auxin Response Maximum Precedes the Formation of an Abscission Zone und Figure1-Legende tatsächlich gelesen. Anatomische Beobachtung der Abtrennungszone im Versuchsmodell mit Hybrid-Pappeln; Hauptversuche T89=Populus tremula×P.tremuloides, weitere GH3::GUS-Hintergründe P.×canescens für benannte Auxin-/Inhibitorversuche. Keine pauschale Zuordnung aller Figuren zu P.×canescens. Keine Hormone, Chemie, Messwerte, Protokolle, Zeiten, Schutzschichten oder Übertragung auf sämtliche Pflanzen.",
+            "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1": "Unabhängiger eigener Hochschullehrtext: letzter Absatz und Figure12-Legende tatsächlich gelesen. Abtrennungszone am Übergang Blattstiel–Spross und Ablösungsschicht im Ahornbeispiel. Keine Abbildung, Hormone, Schutz-/Korkschicht, pauschale Nährstoffrückgewinnung, Winter-Energiebilanz oder allgemeiner Zeitplan übernommen; kein neues Experiment und keine Wiederholung der Jin-Arbeit.",
+            "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/": "Unabhängiger eigener Fachvortrag des Pflanzenbiologen Lew Feldman: Sprecherzuordnung sowie Absätze ab The final step in the senescence process und direkt folgend tatsächlich gelesen. Abszission als Blattablösung und Lockerung der Verbindung zum Spross. Keine Schutzschicht, Chemie/Hormone, Datums-/Klimaregel, Fotos oder Tonaufnahme übernommen; kein anatomisches Experiment und keine unabhängige Replikation von Jin2015."
+          }
+        },
+        {
+          "claim": "Bei der beschriebenen Abtrennung wird die Verbindung örtlich gelockert; die eigentliche Ablösung vom Spross ist von der schon behandelten Blattalterung und Farbänderung zu unterscheiden. Die Lehrzeichnung ist ein ausdrücklich vereinfachtes eigenes Schema und kein mikroskopischer Befund.",
+          "sourceUrls": [
+            "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full",
+            "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1",
+            "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/"
+          ],
+          "sourceRoles": {
+            "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full": "Originalarbeit: Methods Plant Material and Growth Conditions sowie Results An Auxin Response Maximum Precedes the Formation of an Abscission Zone und Figure1-Legende tatsächlich gelesen. Anatomische Beobachtung der Abtrennungszone im Versuchsmodell mit Hybrid-Pappeln; Hauptversuche T89=Populus tremula×P.tremuloides, weitere GH3::GUS-Hintergründe P.×canescens für benannte Auxin-/Inhibitorversuche. Keine pauschale Zuordnung aller Figuren zu P.×canescens. Keine Hormone, Chemie, Messwerte, Protokolle, Zeiten, Schutzschichten oder Übertragung auf sämtliche Pflanzen.",
+            "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1": "Unabhängiger eigener Hochschullehrtext: letzter Absatz und Figure12-Legende tatsächlich gelesen. Abtrennungszone am Übergang Blattstiel–Spross und Ablösungsschicht im Ahornbeispiel. Keine Abbildung, Hormone, Schutz-/Korkschicht, pauschale Nährstoffrückgewinnung, Winter-Energiebilanz oder allgemeiner Zeitplan übernommen; kein neues Experiment und keine Wiederholung der Jin-Arbeit.",
+            "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/": "Unabhängiger eigener Fachvortrag des Pflanzenbiologen Lew Feldman: Sprecherzuordnung sowie Absätze ab The final step in the senescence process und direkt folgend tatsächlich gelesen. Abszission als Blattablösung und Lockerung der Verbindung zum Spross. Keine Schutzschicht, Chemie/Hormone, Datums-/Klimaregel, Fotos oder Tonaufnahme übernommen; kein anatomisches Experiment und keine unabhängige Replikation von Jin2015."
           }
         }
       ]

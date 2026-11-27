@@ -1,5 +1,6 @@
 // Project only the exact, separately tested Guttation appendix from old views.
 const assert=require('node:assert/strict');
+const {stripLeafCourse,stripLeafDataset,stripLeafCards}=require('./leaf-abscission-addition-nov27.cjs');
 const {createHash}=require('node:crypto');
 // Fixed reviewed complete new-object hashes; never derive expected values from live inputs.
 const expectedHashes=Object.freeze({
@@ -26,6 +27,7 @@ const expectedDiagram={type:'comparison',title:'Drei Wasserwege am Blatt',note:'
 ]};
 const expectedSourceSets=[[addition.urls[0],addition.urls[1],addition.urls[2]],[addition.urls[1],addition.urls[2]],[addition.urls[2],addition.urls[3]]];
 function stripGuttationCourse(course){
+ course=stripLeafCourse(course);
  if(course?.id!==addition.courseId||!course.lessons.some(item=>item.id===addition.lessonId))return course;
  assert.deepEqual([course.lessons.length,course.questions.length,course.sources.length],[7,38,19]);
  assert.deepEqual(course.lessons.map(item=>item.id),['blattbau','photosynthese','wasserhaushalt','blattalterung','zellatmung','energie-stoffe',addition.lessonId]);
@@ -41,12 +43,14 @@ function stripGuttationCourse(course){
  return {...course,lessons:course.lessons.slice(0,-1),questions:course.questions.slice(0,-2),sources:course.sources.slice(0,-4)};
 }
 function stripGuttationDataset(data){
+ data=stripLeafDataset(data);
  if(!data?.modules?.some(item=>item.id===addition.courseId&&item.lessons.some(lesson=>lesson.id===addition.lessonId)))return data;
  const records=data.evidence.filter(item=>item.moduleId===addition.courseId&&item.lessonId===addition.lessonId);assert.equal(records.length,1);assertExact(records[0],expectedHashes.evidence,'Complete named raw evidence including claim text and source roles');assert.equal(records.length,1);assert.equal(data.evidence.at(-1),records[0]);assert.equal(records[0].claims.length,3);assert.deepEqual(records[0].claims.map(item=>item.sourceUrls),expectedSourceSets);
  for(const claim of records[0].claims){assert.ok(claim.claim);assert.deepEqual(Object.keys(claim.sourceRoles),claim.sourceUrls);assert.ok(Object.values(claim.sourceRoles).every(role=>typeof role==='string'&&role.length>30));}
  return {...data,modules:data.modules.map(stripGuttationCourse),evidence:data.evidence.slice(0,-1)};
 }
 function guttationBaselineFixture(overrides={}){const key='../data/learning-expansion-ecology-2026-10-16.json',dataset=Object.hasOwn(overrides,key)?overrides[key]:require('../../data/learning-expansion-ecology-2026-10-16.json');return {...overrides,[key]:stripGuttationDataset(dataset)};}
-function stripGuttationCards(cards){const extra=cards.filter(item=>newCardIds.includes(item.id));if(!extra.length)return cards;assertExact(extra,expectedHashes.cards,'Both complete derived cards including prompt/answer/explanation/context/source labels');assert.deepEqual(extra.map(item=>item.id),newCardIds);assert.ok(extra.every(item=>item.moduleId===addition.courseId&&item.lessonId===addition.lessonId&&item.reviewedOn===addition.date&&item.sourceScope==='lesson'&&JSON.stringify(item.sources.map(source=>source.url))===JSON.stringify(addition.urls)));return cards.filter(item=>!newCardIds.includes(item.id));}
+function stripGuttationCards(cards){
+ cards=stripLeafCards(cards);const extra=cards.filter(item=>newCardIds.includes(item.id));if(!extra.length)return cards;assertExact(extra,expectedHashes.cards,'Both complete derived cards including prompt/answer/explanation/context/source labels');assert.deepEqual(extra.map(item=>item.id),newCardIds);assert.ok(extra.every(item=>item.moduleId===addition.courseId&&item.lessonId===addition.lessonId&&item.reviewedOn===addition.date&&item.sourceScope==='lesson'&&JSON.stringify(item.sources.map(source=>source.url))===JSON.stringify(addition.urls)));return cards.filter(item=>!newCardIds.includes(item.id));}
 function guttationDiagramBaseline(getDiagram){return(courseId,lessonId)=>{const current=getDiagram(courseId,lessonId);if(courseId!==addition.courseId||lessonId!==addition.lessonId)return current;assert.deepEqual(current,expectedDiagram);return null;};}
 module.exports={expectedHashes,addition,newQuestionIds,newCardIds,expectedDiagram,expectedSourceSets,stripGuttationCourse,stripGuttationDataset,guttationBaselineFixture,stripGuttationCards,guttationDiagramBaseline};

@@ -1,5 +1,6 @@
 // Actual React DOM/effects. All fetches, session data and clocks are isolated.
 const test = require('node:test'), assert = require('node:assert/strict');
+const { createLoader } = require('./helpers/project-module.cjs');
 const fs = require('node:fs'), path = require('node:path'), crypto = require('node:crypto');
 const { createRequire } = require('node:module');
 const root = path.resolve(__dirname, '..'), local = createRequire(path.join(root, 'package.json'));
@@ -56,6 +57,7 @@ async function fixture(t, query = 'topic=Jagdpraxis') {
     if (id.endsWith('/daily-review')) return { recordReviewAnswer() { throw Error('Unexpected personal review write'); } };
     if (id.endsWith('/use-exam-profile')) return wrap(() => ({ ready: true, profile: { country: 'CH', region: 'ZH' } }));
     if (id.endsWith('/exam-profile')) return { getExamProfileDetails: () => ({ country: { code: 'CH' } }) };
+    if (id.endsWith('/quiz-feedback-learning-link')) return createLoader()('lib/quiz-feedback-learning-link.js');
     if (id.endsWith('/quiz-request-deadline')) return deadline;
     if (id.endsWith('/quiz-learning-scope')) return { isCountryQuizTopic: topic => topic === 'Recht', quizLearningUrl: (url, country, topic) => url + '?' + new URLSearchParams({ country, topic }) };
     if (id.endsWith('.module.css')) return wrap(new Proxy({}, { get: (_, key) => String(key) }));

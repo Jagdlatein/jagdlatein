@@ -10,6 +10,7 @@ import { recordReviewAnswer } from "../../../lib/daily-review";
 import useExamProfile from "../../../lib/use-exam-profile";
 import { getExamProfileDetails } from "../../../lib/exam-profile";
 import { withQuizRequestDeadline } from "../../../lib/quiz-request-deadline";
+import { quizFeedbackLearningHref } from "../../../lib/quiz-feedback-learning-link";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const timestamp = value => typeof value === "string" && Number.isFinite(Date.parse(value));
@@ -109,7 +110,7 @@ export default function QuizClient() {
     setSeconds(value.phase === "asking" ? remainingSeconds() : 0);
     setError(null);
     setBusy(null);
-    if (value.phase === "feedback" && value.feedback.learningHref?.startsWith("/kurse/wissen-")) {
+    if (value.phase === "feedback" && quizFeedbackLearningHref(value.feedback.learningHref)?.startsWith("/kurse/wissen-")) {
       recordReviewAnswer(value.feedback.questionId, value.feedback.correct, `${value.roundId}:${value.feedback.questionId}:${value.feedback.answeredAt}`, Date.parse(value.feedback.answeredAt));
     }
     if (value.phase === "complete") forgetRound();
@@ -324,6 +325,7 @@ export default function QuizClient() {
 
   const question = round.question;
   const feedback = round.phase === "feedback" ? round.feedback : null;
+  const learningHref = quizFeedbackLearningHref(feedback?.learningHref);
   const locked = round.phase !== "asking" || !!busy || !!error || !!pending.current;
   return <main className={styles.main}><div className={styles.wrap}>
     <header className={styles.header}><p className={styles.eyebrow}>{isCountryQuizTopic(topic) ? `${{ DE: "Deutschland", AT: "Österreich", CH: "Schweiz" }[country]} · Recht` : topic === "Alle" ? "Alle Lernbereiche" : topic}</p><h1><AppIcon name="quiz" size={34} />Jagdquiz mit Rangliste</h1></header>
@@ -347,7 +349,7 @@ export default function QuizClient() {
         {/^\d{4}-\d{2}-\d{2}$/.test(feedback.sourceCheckedAt || "") && <p style={{ margin: "8px 0", fontSize: 14 }}>Quellenabgleich: {feedback.sourceCheckedAt.split("-").reverse().join(".")}</p>}
         {feedback.sourceScope && <p style={{ margin: "8px 0", fontSize: 14 }}>{feedback.sourceScope}</p>}
       </div>}
-      {!feedback.source && /^\/kurse\/[a-z0-9-]+$/.test(feedback.learningHref || "") && <p style={{ margin: "8px 0" }}><Link href={feedback.learningHref}>Lerneinheit und zugehörige Quellen öffnen</Link></p>}
+      {!feedback.source && learningHref && <p style={{ margin: "8px 0" }}><Link href={learningHref}>{learningHref.includes("#lesson-") ? "Passende Lektion nachlesen" : "Lerneinheit und zugehörige Quellen öffnen"}</Link></p>}
       <p style={{ margin: "8px 0" }}><Link href="/lernen">Im Lernwissen nachlesen</Link></p>
       <button type="button" disabled={!!busy || !!error} onClick={() => next(round)} className={styles.primary}>{round.index === round.total - 1 ? "Ergebnis anzeigen" : "Weiter"}</button>
       <p className={styles.note}>{busy === "next" || busy === "sync" ? "Quizrunde wird geladen …" : "Lies in Ruhe nach. Die nächste Antwortzeit beginnt erst mit Weiter."}</p>

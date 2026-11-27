@@ -2,7 +2,9 @@
 // Source reading is documented separately; no real accounts, network or device.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {execFileSync}=require('node:child_process'),{createHash}=require('node:crypto');
-const {createLoader,root,local}=require('./helpers/project-module.cjs');
+const {createLoader:baseCreateLoader,root,local}=require('./helpers/project-module.cjs');
+const {leafBaselineFixture}=require('./helpers/leaf-abscission-addition-nov27.cjs');
+function createLoader(overrides={}){const fixtures=leafBaselineFixture(overrides),read=baseCreateLoader(fixtures);return relative=>path.resolve(root,relative)===path.join(root,'data/learning-expansion-ecology-2026-10-16.json')?fixtures['../data/learning-expansion-ecology-2026-10-16.json']:read(relative);}
 const {addition,newQuestionIds,newCardIds,expectedDiagram,expectedSourceSets,stripGuttationCourse,stripGuttationDataset,guttationBaselineFixture,stripGuttationCards,guttationDiagramBaseline}=require('./helpers/guttation-addition-nov25.cjs');
 const baseline='a2034808cf4178a58483c271ebc841c09dddbce5';
 const React=local('react'),{renderToStaticMarkup}=local('react-dom/server');

@@ -1,0 +1,91 @@
+{
+  "state": "NARROW_LEAF_ABSCISSION_SOURCE_REVIEW",
+  "reviewedOn": "2026-11-27",
+  "baselineCommit": "17f1e676bb100caaf6350259819f5d57c1a11ec8",
+  "moduleId": "wissen-ausbau-oekologie-blattfunktion-2026",
+  "lessonId": "blattabwurf",
+  "scope": "Nur die neue154-Wörter-Lektion Blattabwurf, ihre eigene Frage und die daraus abgeleitete Karte. Keine vollständige Neuprüfung bestehender Kurse oder des gesamten Prüfungsstoffs.",
+  "wordCount": 154,
+  "claims": [
+    {
+      "claim": "Im beschriebenen Laubbaum-Modell wird ein Blatt bei der Abszission an einer Abtrennungszone am Übergang zwischen Blattstiel und Spross gelöst.",
+      "sourceUrls": [
+        "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full",
+        "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1",
+        "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/"
+      ],
+      "sourceRoles": {
+        "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full": "Originalarbeit: Methods Plant Material and Growth Conditions sowie Results An Auxin Response Maximum Precedes the Formation of an Abscission Zone und Figure1-Legende tatsächlich gelesen. Anatomische Beobachtung der Abtrennungszone im Versuchsmodell mit Hybrid-Pappeln; Hauptversuche T89=Populus tremula×P.tremuloides, weitere GH3::GUS-Hintergründe P.×canescens für benannte Auxin-/Inhibitorversuche. Keine pauschale Zuordnung aller Figuren zu P.×canescens. Keine Hormone, Chemie, Messwerte, Protokolle, Zeiten, Schutzschichten oder Übertragung auf sämtliche Pflanzen.",
+        "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1": "Unabhängiger eigener Hochschullehrtext: letzter Absatz und Figure12-Legende tatsächlich gelesen. Abtrennungszone am Übergang Blattstiel–Spross und Ablösungsschicht im Ahornbeispiel. Keine Abbildung, Hormone, Schutz-/Korkschicht, pauschale Nährstoffrückgewinnung, Winter-Energiebilanz oder allgemeiner Zeitplan übernommen; kein neues Experiment und keine Wiederholung der Jin-Arbeit.",
+        "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/": "Unabhängiger eigener Fachvortrag des Pflanzenbiologen Lew Feldman: Sprecherzuordnung sowie Absätze ab The final step in the senescence process und direkt folgend tatsächlich gelesen. Abszission als Blattablösung und Lockerung der Verbindung zum Spross. Keine Schutzschicht, Chemie/Hormone, Datums-/Klimaregel, Fotos oder Tonaufnahme übernommen; kein anatomisches Experiment und keine unabhängige Replikation von Jin2015."
+      }
+    },
+    {
+      "claim": "Bei der beschriebenen Abtrennung wird die Verbindung örtlich gelockert; die eigentliche Ablösung vom Spross ist von der schon behandelten Blattalterung und Farbänderung zu unterscheiden. Die Lehrzeichnung ist ein ausdrücklich vereinfachtes eigenes Schema und kein mikroskopischer Befund.",
+      "sourceUrls": [
+        "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full",
+        "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1",
+        "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/"
+      ],
+      "sourceRoles": {
+        "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full": "Originalarbeit: Methods Plant Material and Growth Conditions sowie Results An Auxin Response Maximum Precedes the Formation of an Abscission Zone und Figure1-Legende tatsächlich gelesen. Anatomische Beobachtung der Abtrennungszone im Versuchsmodell mit Hybrid-Pappeln; Hauptversuche T89=Populus tremula×P.tremuloides, weitere GH3::GUS-Hintergründe P.×canescens für benannte Auxin-/Inhibitorversuche. Keine pauschale Zuordnung aller Figuren zu P.×canescens. Keine Hormone, Chemie, Messwerte, Protokolle, Zeiten, Schutzschichten oder Übertragung auf sämtliche Pflanzen.",
+        "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1": "Unabhängiger eigener Hochschullehrtext: letzter Absatz und Figure12-Legende tatsächlich gelesen. Abtrennungszone am Übergang Blattstiel–Spross und Ablösungsschicht im Ahornbeispiel. Keine Abbildung, Hormone, Schutz-/Korkschicht, pauschale Nährstoffrückgewinnung, Winter-Energiebilanz oder allgemeiner Zeitplan übernommen; kein neues Experiment und keine Wiederholung der Jin-Arbeit.",
+        "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/": "Unabhängiger eigener Fachvortrag des Pflanzenbiologen Lew Feldman: Sprecherzuordnung sowie Absätze ab The final step in the senescence process und direkt folgend tatsächlich gelesen. Abszission als Blattablösung und Lockerung der Verbindung zum Spross. Keine Schutzschicht, Chemie/Hormone, Datums-/Klimaregel, Fotos oder Tonaufnahme übernommen; kein anatomisches Experiment und keine unabhängige Replikation von Jin2015."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2015.00634/full",
+      "title": "Auxin is a long-range signal that acts independently of ethylene signaling on leaf abscission in Populus",
+      "organization": "Umeå Plant Science Centre/Swedish University of Agricultural Sciences and Georg-August University Göttingen; Frontiers in Plant Science6:634",
+      "actuallyRead": "Abstract and Introduction; cell adhesion/separation context; Materials and Methods — Plant Material and Growth Conditions; Results — An Auxin Response Maximum Precedes the Formation of an Abscission Zone; Figure1 legend; Discussion only as context for the authors own limits; no hormonal model imported",
+      "readOn": "2026-11-27",
+      "supports": "Own anatomical observation of development of abscission zones at the leaf attachment in the experimental hybrid-Populus system; provides a concrete research example behind the simple location/separation model.",
+      "exclude": "Figure1/main experiments T89 hybrid aspen=Populus tremula×P.tremuloides. GH3::GUS Populus×canescens background is used for auxin/inhibitor experiments, especially Figures2/4. Never label all figures as P.×canescens, pure P.tremula or all native trees. No time/temperature/light/dose/percentage or instruction is transferred. Do not present another institutional explanation as an independent replication.",
+      "role": "Original research, full publisher HTML actually read in the relevant sections"
+    },
+    {
+      "url": "https://www.open.edu/openlearn/mod/oucontent/view.php?id=2284&section=1.4.1",
+      "title": "Surviving the winter —1.4.1 Deciduous trees",
+      "organization": "The Open University, OpenLearn",
+      "actuallyRead": "Final paragraph of1.4.1 at the petiole/stem junction; Figure12 caption: Acer sp. petiole-base section and detachment layer",
+      "readOn": "2026-11-27",
+      "supports": "Locates the leaf abscission zone where petiole meets stem and describes the zone as where leaf detachment takes place; provides an independently authored teaching context with Acer example.",
+      "exclude": "No universal nutrient recovery, respiratory balance, hormonal calendar, protective layer, cork/waterproof/pathogen or image claim is taken into the candidate. Figure12 not copied.",
+      "role": "Independent university-authored explanatory teaching text, not a new experiment"
+    },
+    {
+      "url": "https://news.berkeley.edu/2021/12/03/berkeley-talks-transcript-why-do-leaves-change-color-in-the-fall/",
+      "title": "Berkeley Talks transcript: Why do leaves change color in the fall?",
+      "organization": "University of California, Berkeley",
+      "actuallyRead": "Introduction identifying speaker, lines67–68 in the inspected extraction; Paragraph beginning The final step in the senescence process and the immediately following paragraph, lines132–134",
+      "readOn": "2026-11-27",
+      "supports": "Distinguishes the actual separation of leaf from stem as abscission and describes weakening of the leaf/stem joining; cross-checks the simple separation/location account.",
+      "exclude": "No cork/protection, sugars/antifreeze, foliar pigment hypotheses, climate/geographic dates, photos or audio copied. Transcript is not an anatomical experiment or an independent replication of Jin2015.",
+      "role": "Original university-hosted expert lecture transcript, independent scientific explanation"
+    }
+  ],
+  "independentReview": {
+    "exactFrozenDatasetSha256": "9e8873a925e2045761e688c6422d457153a1b829692ef0f6ab34aa3cbafa4381",
+    "rootReadExactSourcesAndWords": true,
+    "reviewerReadExactSourcesAndWords": true,
+    "reviewerEvidence": "work/leaf-abscission-nov27/final-data-independent-review.json",
+    "originalFigure1VisuallyInspectedByIndependentReviewer": true,
+    "openUniversityFigure12": "Absatz und Legende gelesen; separater Bildabruf beim unabhängigen Reviewer403, kein Bild kopiert."
+  },
+  "sourceLimits": "Die Originalarbeit2015 liefert konkrete anatomische Beobachtungen an Hybrid-Pappeln. Hauptversuche/Figure1:T89=Populus tremula×P.tremuloides; GH3::GUS/P.×canescens gehört zu benannten Auxin-/Inhibitorversuchen, insbesondereFigures2/4. Die Open-University- und Berkeley-Lehrtexte sind unabhängig verfasste Einordnungen und keine experimentellen Replikationen. Die PMC-Spiegelseite lieferte beim Autor Browserprüfung statt Volltext; gelesen wurde die frei zugängliche Originalverlagsseite. Kein Umgehen von Zugangsschutz.",
+  "preserved": "Bestehende7 Lektionen/38 Fragen/19 Quellen und alle alten Prüfdaten bleiben unverändert. Kursdatum16.Oktober2026; Pflanzenatmung/Energie27.Oktober, letzte Guttation25.November. Kein Nährstoffrücktransport dupliziert. Neue Quellen ausschliesslich lessonIds:[blattabwurf]; Nachweise gesammelt unten, Modellgrenzen direkt im Text.",
+  "contentLimits": [
+    "Kein Hormonschema, keine Chemie, Schutz- oder Korkschicht.",
+    "Keine Messwerte, Protokolle, festen Zeiten oder pauschale Regel für alle Pflanzen.",
+    "Keine Foto-, Video- oder fremde Diagrammdatei übernommen. Eigene Papierübung ist eine vereinfachte Lernzeichnung, kein mikroskopischer Befund.",
+    "Struktur-/Integrationstests sind keine fachliche Zertifizierung."
+  ],
+  "media": {
+    "newPhotosVideosOrCopiedFigures": false,
+    "newDiagramAsset": false,
+    "ownPaperExercise": true
+  },
+  "dataFile": "data/learning-expansion-ecology-2026-10-16.json"
+}

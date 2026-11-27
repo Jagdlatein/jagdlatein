@@ -58,20 +58,21 @@ test('All detailed questions link to existing lessons, courses and country notes
   const existing = learningModules.filter(module => !addedIds.has(module.id));
   // Count the complete named groups against fixed editorial inventories, rather
   // than deriving a desired total from the same actual array being checked.
-  // Since the original84-course snapshot: five reviewed standalone courses and
-  // the dog-airflow, two learning-process, seed-mast, species-relations and
-  // roe-casting appendices add exactly5 courses,12 lessons and23 questions.
+  // Fixed inventory of the14 named groups at17f1e67 (27 November 2026).
+  // Since the29 October74dfb34 inventory,14 recorded lesson appendices and
+  //22 questions extend five existing groups; the89 course IDs/order remain.
+  // These are repository inventories, not a new factual or source review.
   const existingGroups = [
-    ['lib/learning-wildlife.js', 'wildlifeModules', 8, 25, 66],
-    ['lib/learning-practice.js', 'practiceModules', 16, 48, 128],
-    ['lib/learning-expansion-nature.js', 'natureExpansionModules', 12, 73, 146],
+    ['lib/learning-wildlife.js', 'wildlifeModules', 8, 30, 74],
+    ['lib/learning-practice.js', 'practiceModules', 16, 50, 132],
+    ['lib/learning-expansion-nature.js', 'natureExpansionModules', 12, 76, 150],
     ['lib/learning-expansion-practice.js', 'practiceExpansionModules', 12, 72, 144],
     ['lib/learning-expansion-care.js', 'careExpansionModules', 12, 72, 144],
     ['lib/learning-deepening-nature.js', 'natureDeepeningModules', 4, 25, 34],
     ['lib/learning-deepening-practice.js', 'practiceDeepeningModules', 5, 36, 44],
     ['lib/learning-deepening-care.js', 'careDeepeningModules', 4, 24, 32],
-    ['lib/learning-dog-depth.js', 'dogDepthModules', 5, 32, 63],
-    ['lib/learning-wildlife-depth.js', 'wildlifeDepthModules', 6, 30, 60],
+    ['lib/learning-dog-depth.js', 'dogDepthModules', 5, 33, 65],
+    ['lib/learning-wildlife-depth.js', 'wildlifeDepthModules', 6, 33, 64],
     ['lib/learning-growth-oct18.js', 'dogGeneticsModules', 2, 2, 6],
     ['lib/learning-growth-oct18.js', 'redDeerVoiceModules', 1, 1, 2],
     ['lib/learning-growth-oct18.js', 'beaverIncisorModules', 1, 2, 3],
@@ -86,7 +87,7 @@ test('All detailed questions link to existing lessons, courses and country notes
     groupedIds.push(...group.map(module => module.id));
     expectedExisting.modules += modules; expectedExisting.lessons += lessons; expectedExisting.questions += questions;
   }
-  assert.deepEqual(expectedExisting, { modules: 89, lessons: 443, questions: 873 });
+  assert.deepEqual(expectedExisting, { modules: 89, lessons: 457, questions: 895 });
   assert.equal(new Set(groupedIds).size, expectedExisting.modules);
   assert.deepEqual(existing.map(module => module.id), groupedIds);
   assert.equal(courses.length, learningModules.length + miniCourses.length); assert.equal(miniCourses.length, 34); assert.equal(existing.length, expectedExisting.modules);
