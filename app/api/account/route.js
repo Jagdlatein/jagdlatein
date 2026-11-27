@@ -31,6 +31,7 @@ export async function GET(req) {
     if (isAccountGenerationEnabled()) await requireCurrentAccount(database, session);
     return accountJson({ account: {
       email: session.email,
+      accountKey: isAccountGenerationEnabled() ? session.accountGeneration : null,
       paid: subscription.paid,
       paidUntil: subscription.paidUntil,
       accessType: subscription.accessType || "none",

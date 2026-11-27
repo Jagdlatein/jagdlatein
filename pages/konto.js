@@ -29,7 +29,7 @@ function accessDate(value) {
   return new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Berlin", timeZoneName: "short" }).format(new Date(value));
 }
 
-function AccountDeletion({ onDeleted, isCurrent = () => true }) {
+function AccountDeletion({ accountKey, accountEmail, onDeleted, onReload, isCurrent = () => true }) {
   const [available, setAvailable] = useState(false);
   const [reauthentication, setReauthentication] = useState(true);
   const [reviewReauthentication, setReviewReauthentication] = useState(false);
@@ -39,29 +39,68 @@ function AccountDeletion({ onDeleted, isCurrent = () => true }) {
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState("");
   const [deleted, setDeleted] = useState(false);
+  const [accountBinding, setAccountBinding] = useState(null);
+  const [identityChanged, setIdentityChanged] = useState(false);
   const busy = useRef(false);
   const mounted = useRef(false);
-  const active = () => mounted.current && isCurrent();
+  const binding = useRef(null), deletedRef = useRef(false), formSession = useRef({});
+  const draft = useRef({ confirmation: "", acknowledged: false, revision: 0 });
+  const currentForm = formSession.current, draftRevision = draft.current.revision;
+  const ownerKey = JSON.stringify([accountKey, accountEmail]), ownerRef = useRef({ key: ownerKey });
+  if (ownerRef.current.key !== ownerKey) ownerRef.current = { key: ownerKey };
+  const owner = ownerRef.current;
+  const active = () => mounted.current && ownerRef.current === owner && isCurrent();
+  const bound = () => active() && !deletedRef.current && accountBinding !== null && binding.current === accountBinding &&
+    accountBinding.accountKey === accountKey && accountBinding.accountEmail === accountEmail;
+  const editable = () => bound() && formSession.current === currentForm && open && !busy.current && !reauthentication;
 
-  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  function clearConfirmation() {
+    formSession.current = {};
+    draft.current = { confirmation: "", acknowledged: false, revision: draft.current.revision + 1 };
+    setConfirmation(""); setAcknowledged(false); setOpen(false);
+  }
+
+  function rejectIdentity(text, reload = false) {
+    if (!active()) return;
+    binding.current = null; setAccountBinding(null); setIdentityChanged(true); setAvailable(true);
+    clearConfirmation(); setReauthentication(true);
+    setMessage(text || "Deine Anmeldung hat sich geändert. Bitte lade dein Konto neu und bestätige die Löschung erneut.");
+    if (reload) onReload?.();
+  }
+
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; binding.current = null; formSession.current = {}; }; }, []);
 
   useEffect(() => {
     const controller = new AbortController();
+    binding.current = null; setAccountBinding(null); setAvailable(false); setIdentityChanged(false);
+    clearConfirmation(); setMessage("");
     fetch("/api/account/delete", { cache: "no-store", credentials: "same-origin", signal: controller.signal })
       .then(async response => {
         const data = await response.json();
-        if (!controller.signal.aborted && response.ok && data.enabled === true) {
+        if (!controller.signal.aborted && active() && response.ok && data.enabled === true) {
+          const validKey = typeof accountKey === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(accountKey);
+          if (!validKey || data.accountKey !== accountKey || data.accountEmail !== accountEmail) {
+            const otherIdentity = typeof data.accountKey === "string" && data.accountKey !== accountKey || typeof data.accountEmail === "string" && data.accountEmail !== accountEmail;
+            rejectIdentity("Die Kontodaten haben sich geändert. Bitte lade dein Konto neu und bestätige die Löschung erneut.", otherIdentity);
+            return;
+          }
+          // The overview supplies the target. A capability response can confirm
+          // that target, never replace it with another signed-in account.
+          const confirmed = { accountKey, accountEmail };
+          binding.current = confirmed; setAccountBinding(confirmed);
           setAvailable(true);
           setReauthentication(data.requiresReauthentication !== false);
           setReviewReauthentication(data.reauthenticationMethod === "review-password");
         }
       }).catch(() => {});
     return () => controller.abort();
-  }, []);
+  }, [owner]);
 
   async function submitDeletion(event) {
     event.preventDefault();
-    if (!active() || busy.current || confirmation !== "KONTO LÖSCHEN" || !acknowledged) return;
+    if (!editable() || draft.current.revision !== draftRevision || draft.current.confirmation !== "KONTO LÖSCHEN" || !draft.current.acknowledged) return;
+    const confirmed = accountBinding;
+    const payload = { confirmation: draft.current.confirmation, acknowledgeSubscriptions: draft.current.acknowledged };
     busy.current = true;
     setPending(true);
     setMessage("");
@@ -69,17 +108,26 @@ function AccountDeletion({ onDeleted, isCurrent = () => true }) {
       stopUsageAnalytics();
       const response = await fetch("/api/account/delete", {
         method: "DELETE", credentials: "same-origin",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ confirmation, acknowledgeSubscriptions: acknowledged }),
+        headers: { "Content-Type": "application/json", "X-Jagdlatein-Delete-Account": confirmed.accountKey },
+        body: JSON.stringify(payload),
       });
       if (!active()) return;
       const result = await response.json();
       if (!active()) return;
       if (!response.ok || result.deleted !== true) {
-        if (result.code === "DELETION_REAUTH_REQUIRED") setReauthentication(true);
+        if (result.code === "DELETION_ACCOUNT_CHANGED" || response.status === 409) {
+          rejectIdentity(result.message, true);
+          return;
+        }
+        if (result.code === "DELETION_REAUTH_REQUIRED") { clearConfirmation(); setOpen(true); setReauthentication(true); }
         setMessage(result.message || "Dein Konto konnte nicht gelöscht werden. Bitte erneut versuchen.");
         return;
       }
+      if (result.accountKey !== confirmed.accountKey) {
+        rejectIdentity("Die Löschbestätigung konnte diesem Konto nicht zugeordnet werden. Bitte lade dein Konto neu.", true);
+        return;
+      }
+      deletedRef.current = true; binding.current = null; formSession.current = {};
       setDeleted(true);
       onDeleted();
       const pushCleanup = await Promise.all([cleanupWebPushForAccountChange({localOnly:true,isCurrent:active}), cleanupNativePushForAccountChange({localOnly:true,isCurrent:active})]);
@@ -107,10 +155,16 @@ function AccountDeletion({ onDeleted, isCurrent = () => true }) {
     {message && <p role="status">{message}</p>}
     <Link href="/" className={styles.button}>Zur Startseite</Link>
   </section>;
+  if (identityChanged) return <section className={styles.card} aria-labelledby="account-delete-changed">
+    <h2 id="account-delete-changed">Kontodaten erneut laden</h2>
+    <p role="alert">{message}</p>
+    <button type="button" className={styles.secondaryButton} disabled={pending} onClick={() => { if (active() && !busy.current) onReload?.(); }}>Kontodaten neu laden</button>
+  </section>;
+  if (!bound()) return null;
   return <section className={styles.card} aria-labelledby="account-delete">
     <h2 id="account-delete">Konto löschen</h2>
     <p className={styles.muted}>Lösche dein Konto dauerhaft, einschließlich Lernfortschritten, Quiz-Auswertungen und eigenen Community-Inhalten. Dieser Schritt kann nicht rückgängig gemacht werden.</p>
-    {!open ? <button type="button" className={styles.secondaryButton} onClick={() => setOpen(true)}>Kontolöschung vorbereiten</button> : <>
+    {!open ? <button type="button" className={styles.secondaryButton} onClick={() => { if (!bound() || busy.current || formSession.current !== currentForm) return; clearConfirmation(); setOpen(true); setMessage(""); }}>Kontolöschung vorbereiten</button> : <>
       <div className={styles.notice}>
         <p><strong>Laufende Abos separat kündigen:</strong> Eine Kontolöschung kündigt dein Abo bei Apple oder PayPal nicht. Öffne vor der Löschung die Abo-Verwaltung des Anbieters. Deine Kaufbindungen und Transaktionsdaten werden aus den aktiven Jagdlatein-Kontotabellen gelöscht; Zahlungsbelege beim Anbieter oder in der getrennten Buchführung werden dadurch nicht gelöscht.</p>
         <p>Nach der Löschung kannst du ein noch laufendes Abo nicht mehr für dieses Konto nutzen. Der lokale Lernrucksack wird auf diesem Gerät geleert.</p>
@@ -120,16 +174,16 @@ function AccountDeletion({ onDeleted, isCurrent = () => true }) {
         <Link href={`${reviewReauthentication ? "/review-login" : "/login"}?reauth=1&next=%2Fkonto%3Fdelete%3D1`} className={styles.button}>Anmeldung erneut bestätigen</Link>
       </> : <form onSubmit={submitDeletion} aria-busy={pending}>
         <label style={{ display: "block", margin: "20px 0 16px", lineHeight: 1.6 }}>Zur Bestätigung <strong>KONTO LÖSCHEN</strong> eingeben
-          <input value={confirmation} disabled={pending} onChange={event => setConfirmation(event.target.value)} autoComplete="off" autoCapitalize="characters" spellCheck={false} maxLength={40} required
+          <input value={confirmation} disabled={pending} onChange={event => { if (!editable()) return; draft.current = { ...draft.current, confirmation: event.target.value, revision: draft.current.revision + 1 }; setConfirmation(event.target.value); }} autoComplete="off" autoCapitalize="characters" spellCheck={false} maxLength={40} required
             style={{ display: "block", width: "100%", minHeight: 48, marginTop: 8, padding: "10px 12px", border: "1px solid var(--jl-border)", borderRadius: 12, font: "inherit" }} />
         </label>
         <label style={{ display: "flex", alignItems: "flex-start", gap: 10, lineHeight: 1.6, marginBottom: 20 }}>
-          <input type="checkbox" checked={acknowledged} disabled={pending} onChange={event => setAcknowledged(event.target.checked)} required style={{ width: 20, height: 20, marginTop: 3, flexShrink: 0 }} />
+          <input type="checkbox" checked={acknowledged} disabled={pending} onChange={event => { if (!editable()) return; draft.current = { ...draft.current, acknowledged: event.target.checked, revision: draft.current.revision + 1 }; setAcknowledged(event.target.checked); }} required style={{ width: 20, height: 20, marginTop: 3, flexShrink: 0 }} />
           Ich verstehe, dass laufende Abos separat gekündigt werden müssen und die Kontolöschung dauerhaft ist.
         </label>
         <div className={styles.actions}>
           <button type="submit" className={styles.secondaryButton} disabled={pending || confirmation !== "KONTO LÖSCHEN" || !acknowledged}>{pending ? "Konto wird gelöscht …" : "Konto endgültig löschen"}</button>
-          <button type="button" className={styles.secondaryButton} disabled={pending} onClick={() => { setOpen(false); setConfirmation(""); setAcknowledged(false); setMessage(""); }}>Abbrechen</button>
+          <button type="button" className={styles.secondaryButton} disabled={pending} onClick={() => { if (!editable()) return; clearConfirmation(); setMessage(""); }}>Abbrechen</button>
         </div>
       </form>}
       {message && <p role="alert">{message}</p>}
@@ -257,7 +311,7 @@ export default function AccountPage({ courses = [] } = {}) {
             </div>
           </section>
           </>}
-          <AccountDeletion key={currentDeletionIdentity.version} isCurrent={() => deletionIdentity.current === currentDeletionIdentity} onDeleted={() => setDeletedAccount(account)} />
+          <AccountDeletion key={currentDeletionIdentity.version} accountKey={account.accountKey} accountEmail={account.email} isCurrent={() => deletionIdentity.current === currentDeletionIdentity} onReload={reload} onDeleted={() => setDeletedAccount(account)} />
         </>
       )}
     </AccountLayout>

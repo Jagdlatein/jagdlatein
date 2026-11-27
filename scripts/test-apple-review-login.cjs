@@ -431,7 +431,7 @@ test('Policy expiry, disable and credential rotation during live database reads 
       return query;
     };
     const request=new NextRequest('https://jagdlatein.de/api/account/delete',{method:'DELETE',
-      headers:{origin:'https://jagdlatein.de','content-type':'application/json',cookie:`jl_account_session=${token}`},
+      headers:{origin:'https://jagdlatein.de','content-type':'application/json','x-jagdlatein-delete-account':GENERATION,cookie:`jl_account_session=${token}`},
       body:JSON.stringify({confirmation:'KONTO LÖSCHEN',acknowledgeSubscriptions:true})});
     const response=await ctx.load('app/api/account/delete/route.js').DELETE(request);
     assert.equal(response.status,401,change);assert.equal(profileReads,2,change);

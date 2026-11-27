@@ -170,11 +170,11 @@ async function fixture(overrides = {}) {
   const request = (origin,body,cookie=sessionToken) => ({ url:'https://jagdlatein.test/api/paypal/confirm-subscription',
     headers:new Headers({origin,'content-type':'application/json'}), cookies:{get:name => name === sessions.JL_ACCOUNT_COOKIE && cookie ? {value:cookie} : undefined}, json:async()=>body });
   return { state, database, load, helper, initialRow, refresh: (nowMs = NOW) => helper.refreshVerifiedSubscription(ID, { database, nowMs }),
-    webhook: (type, resource = { id: ID }, headers = true) => load('app/api/paypal/webhook/route.js').POST({
+    webhook: (type, resource = { id: ID }, headers = true) => load('app/api/paypal/webhook/route.js').POST(new Request('https://jagdlatein.test/api/paypal/webhook', { method: 'POST',
       headers: new Headers(headers ? { 'paypal-transmission-id': 'fake-transmission', 'paypal-transmission-time': iso(NOW),
         'paypal-cert-url': 'https://api.sandbox.paypal.com/fake-cert', 'paypal-transmission-sig': 'fake-signature', 'paypal-auth-algo': 'SHA256withRSA' } : {}),
-      text: async () => JSON.stringify({ id: 'WH-SANDBOX1234', event_type: type, resource }),
-    }),
+      body: JSON.stringify({ id: 'WH-SANDBOX1234', event_type: type, resource }),
+    })),
     confirm: (origin = 'https://jagdlatein.test',body={subscriptionId:ID},cookie=sessionToken) => load('app/api/paypal/confirm-subscription/route.js').POST(request(origin,body,cookie)),
     create: (body={},cookie=sessionToken) => load('app/api/paypal/create-subscription/route.js').POST(request('https://jagdlatein.test',body,cookie)),
     recover: (body={},cookie=sessionToken) => load('app/api/paypal/checkout-status/route.js').POST(request('https://jagdlatein.test',body,cookie)),

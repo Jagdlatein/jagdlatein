@@ -75,7 +75,8 @@ function api(options = {}) {
   });
   const route = load('app/api/account/delete/route.js');
   function request(overrides = {}) {
-    const headers = { origin: 'https://app.example.invalid', 'content-type': 'application/json', ...overrides.headers };
+    const headers = { origin: 'https://app.example.invalid', 'content-type': 'application/json',
+      'x-jagdlatein-delete-account': options.wrongGeneration ? OTHER_GENERATION : GENERATION, ...overrides.headers };
     for (const [key, value] of Object.entries(headers)) if (value === null) delete headers[key];
     const body = overrides.body ?? JSON.stringify({ confirmation: 'KONTO LÖSCHEN', acknowledgeSubscriptions: true });
     const req = new Request('https://app.example.invalid/api/account/delete', { method: 'DELETE', headers, body });
@@ -224,6 +225,24 @@ test('Unsigned and old authenticated sessions cannot reach a deletion RPC', asyn
   }
 });
 
+test('Missing or foreign confirmation account key is rejected before database or retention access', async () => {
+  for (const key of [null, '', 'invalid', OTHER_GENERATION]) {
+    const ctx = api();
+    const response = await ctx.route.DELETE(ctx.request({ headers: { 'x-jagdlatein-delete-account': key } }));
+    assert.equal(response.status, 409);
+    assert.equal((await response.json()).code, 'DELETION_ACCOUNT_CHANGED');
+    assert.equal(ctx.database.calls, 0); assert.equal(ctx.database.rpcCalls, 0);
+  }
+});
+
+test('Deletion capability reports only the current signed account and generation for confirmation', async () => {
+  await fixture(); const ctx = api();
+  const response = await ctx.route.GET(ctx.request()), body = await response.json();
+  assert.equal(response.status, 200); assert.equal(body.accountKey, GENERATION);
+  assert.equal(body.accountEmail, EMAIL); assert.equal(body.enabled, true);
+  assert.equal(ctx.database.rpcCalls, 0); assert.match(response.headers.get('cache-control'), /private, no-store/);
+});
+
 test('Body must contain exactly the typed confirmation and explicit subscription acknowledgement', async () => {
   const values = [{},{ confirmation: 'KONTO LÖSCHEN', acknowledgeSubscriptions: false },
     { confirmation: 'konto löschen', acknowledgeSubscriptions: true },
@@ -248,7 +267,7 @@ test('Successful API deletion atomically removes personal data, preserves other 
   const otherApple = await seedApple(OTHER,OTHER_GENERATION,'2234567890','2234567891');
   const dependencies = await seedDeletionDependencies(); const ctx = api();
   const response = await ctx.route.DELETE(ctx.request());
-  assert.equal(response.status, 200); assert.deepEqual(await response.json(), { deleted: true });
+  assert.equal(response.status, 200); assert.deepEqual(await response.json(), { deleted: true, accountKey: GENERATION });
   const cookies = response.headers.get('set-cookie');
   for (const name of ['jl_account_session','jl_session','jl_paid','jl_email','jl_admin']) assert.ok(cookies.includes(`${name}=;`));
   assert.match(cookies, /Max-Age=0/); assert.match(cookies, /HttpOnly/); assert.match(cookies, /Secure/);

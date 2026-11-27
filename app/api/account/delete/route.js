@@ -6,7 +6,7 @@ import { JL_ACCOUNT_COOKIE } from "../../../../lib/account-session";
 import {
   AccountDeletionError, isAccountDeletionEnabled, deletionUnavailable,
   requiresDeletionReauthentication, requireDeletionReauthentication,
-  requireDeletionOrigin, readDeletionConfirmation, deleteCurrentAccount,
+  requireDeletionOrigin, requireDeletionAccount, readDeletionConfirmation, deleteCurrentAccount,
 } from "../../../../lib/account-deletion";
 
 export const runtime = "nodejs";
@@ -25,7 +25,8 @@ export async function GET(req) {
     if (!isAccountDeletionEnabled()) return accountJson({ enabled: false });
     const database = getAccountDatabase("ACCOUNT_UNAVAILABLE", session);
     await requireCurrentAccount(database, session);
-    return accountJson({ enabled: true, requiresReauthentication: requiresDeletionReauthentication(session),
+    return accountJson({ enabled: true, accountKey: session.accountGeneration, accountEmail: session.email,
+      requiresReauthentication: requiresDeletionReauthentication(session),
       ...(session.authenticationMethod === "review-password" ? { reauthenticationMethod: "review-password" } : {}) });
   } catch (error) { return errorResponse(error); }
 }
@@ -35,12 +36,13 @@ export async function DELETE(req) {
     requireDeletionOrigin(req);
     if (!isAccountDeletionEnabled()) throw deletionUnavailable();
     const session = requireAccountSession(req);
+    requireDeletionAccount(req, session);
     requireDeletionReauthentication(session);
     await readDeletionConfirmation(req);
     const database = getAccountDatabase("ACCOUNT_UNAVAILABLE", session);
     await requireCurrentAccount(database, session);
     await deleteCurrentAccount(database, session);
-    const response = accountJson({ deleted: true });
+    const response = accountJson({ deleted: true, accountKey: session.accountGeneration });
     for (const name of [JL_ACCOUNT_COOKIE, "jl_session", "jl_paid", "jl_email", "jl_admin"]) {
       response.headers.append("Set-Cookie", `${name}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0${process.env.NODE_ENV === "production" ? "; Secure" : ""}`);
     }

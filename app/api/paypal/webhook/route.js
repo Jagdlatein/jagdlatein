@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 
 import { verifyPaypalWebhook } from "./_base";
 import { accessFromSubscriptions, applyVerifiedPaypalEvent } from "../../../../lib/subscription-access";
+import { assertPayPalWebhookRequestActive, PayPalWebhookBodyError, readPayPalWebhookBody } from "../../../../lib/paypal-webhook-body";
 
 const subscriptionEvents = new Set([
   "BILLING.SUBSCRIPTION.ACTIVATED", "BILLING.SUBSCRIPTION.UPDATED",
@@ -15,12 +16,15 @@ function json(data, status = 200) {
 }
 
 export async function POST(req) {
-  const rawBody = await req.text();
-  if (rawBody.length > 1024 * 1024) return json({ error: "payload too large" }, 413);
+  let rawBody;
+  try { rawBody = await readPayPalWebhookBody(req); }
+  catch (error) { return json({ error: error instanceof PayPalWebhookBodyError ? error.message : "invalid body" }, error instanceof PayPalWebhookBodyError ? error.status : 400); }
   let parsed;
   try { parsed = JSON.parse(rawBody); }
   catch { return json({ error: "invalid json" }, 400); }
   if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return json({ error: "invalid event" }, 400);
+  try { assertPayPalWebhookRequestActive(req); }
+  catch (error) { return json({ error: error instanceof PayPalWebhookBodyError ? error.message : "invalid body" }, error instanceof PayPalWebhookBodyError ? error.status : 400); }
   try {
     const event = await verifyPaypalWebhook(req, rawBody);
     if (!event) return json({ error: "invalid signature" }, 401);
