@@ -108,11 +108,13 @@ export default function useAdminOverview(testEnvironment = false) {
     if (initial) start(initial, { preset: "30" });
     const revoked = () => deny(401);
     const stopVisible = onVisibleReturn(() => {
-      // Recheck on an actual visible return, not a timer. An unconfirmed edit
-      // must not be silently applied and a pending read must not be duplicated.
-      if (scope.mounted && !scope.blocked && !scope.request && scope.data && scope.filters && overviewContext(scope.draft) === overviewContext(scope.filters)) {
-        start({ ...scope.filters }, { preset: scope.preset || "custom" });
-      }
+      // A pending read may belong to the session before the app was hidden.
+      // Replace its owner too. Editing a filter already cancels that read, so
+      // an unapplied draft without a current request is never applied here.
+      if (!scope.mounted || scope.blocked || prop.current !== scope.sandboxOnly) return;
+      const filters = scope.request ? scope.draft : scope.data && scope.filters &&
+        overviewContext(scope.draft) === overviewContext(scope.filters) ? scope.filters : null;
+      if (filters) start({ ...filters }, { preset: scope.preset || "custom" });
     });
     if (typeof window !== "undefined") {
       window.addEventListener?.("jagdlatein-account-deleted", revoked);

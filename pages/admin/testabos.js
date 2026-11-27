@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import AccountLayout from "../../components/AccountLayout";
 import { getPaidPageProps } from "../../lib/account-access";
 import { isPayPalSandboxTestEnvironment } from "../../lib/test-environment";
+import { onVisibleReturn } from "../../lib/visible-return";
 import accountStyles from "../../styles/Account.module.css";
 import styles from "../../styles/TrialOverview.module.css";
 
@@ -53,130 +54,189 @@ export function validTrialOverview(value) {
 }
 
 export async function requestTrialOverview(url, options, controller, timeout = REQUEST_TIMEOUT) {
-  let timer;
+  let timer, cancel;
   try {
+    if (controller.signal.aborted) throw Object.assign(new Error("Anfrage abgebrochen."), { code: "ABORTED" });
+    const cancellation = new Promise((_, reject) => {
+      cancel = () => reject(Object.assign(new Error("Anfrage abgebrochen."), { code: "ABORTED" }));
+      controller.signal.addEventListener("abort", cancel, { once: true });
+    });
     return await Promise.race([
+      cancellation,
       (async () => {
         const response = await fetch(url, { cache: "no-store", credentials: "same-origin", ...options, signal: controller.signal });
+        if ([401, 403].includes(response.status)) throw Object.assign(new Error("Die Übersicht ist nicht verfügbar."), { status: response.status });
         const data = await response.json();
         if (!response.ok) throw Object.assign(new Error("Die Übersicht ist gerade nicht erreichbar."), { status: response.status, code: data?.code });
         return data;
       })(),
       new Promise((_, reject) => {
         timer = setTimeout(() => {
-          controller.abort();
           reject(Object.assign(new Error("Die Anfrage hat zu lange gedauert."), { status: 504, code: "REQUEST_TIMEOUT" }));
+          controller.abort();
         }, timeout);
       }),
     ]);
   } finally {
     clearTimeout(timer);
+    if (cancel) controller.signal.removeEventListener("abort", cancel);
   }
 }
 
 export function useTrialOverview(testEnvironment = false) {
-  const [query, setQuery] = useState("");
-  const [environment, setEnvironment] = useState(testEnvironment ? "sandbox" : "live");
-  const [offset, setOffset] = useState(0);
-  const [revision, setRevision] = useState(0);
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [notifications, setNotifications] = useState(null);
-  const [mailPending, setMailPending] = useState(false);
-  const [mailMessage, setMailMessage] = useState("");
-  const mailRequest = useRef(null);
-  const mailBusy = useRef(false);
-  const notificationVersion = useRef(0);
-  const loadVersion = useRef(0);
-  const currentLoad = useRef(null);
+  const sandboxOnly = testEnvironment === true;
+  const initial = { query: "", environment: sandboxOnly ? "sandbox" : "live", offset: 0 };
+  const [state, setState] = useState({ ...initial, data: null, error: null, loading: true, notifications: null, mailPending: false, mailMessage: "" });
+  const runtime = useRef({ mounted: false, blocked: false, owner: {}, lifetime: null, selection: initial, sandboxOnly, request: null, mail: null, snapshot: null, notifications: null });
+  const prop = useRef(sandboxOnly);
+  prop.current = sandboxOnly;
+  const scope = runtime.current;
+  const owner = scope.owner;
+  const sameLifetime = () => scope.mounted && prop.current === sandboxOnly && scope.sandboxOnly === sandboxOnly;
+  const canAct = () => sameLifetime() && !scope.blocked && scope.owner === owner;
 
-  useEffect(() => () => { mailRequest.current?.abort(); mailRequest.current = null; }, []);
+  function invalidate() {
+    const read = scope.request, mail = scope.mail;
+    // Revoke ownership before aborting: fetch/json need not honour AbortSignal,
+    // and their old catch/finally handlers must not affect the next request.
+    scope.owner = {};
+    scope.request = null;
+    scope.mail = null;
+    scope.snapshot = null;
+    scope.notifications = null;
+    if (read) { clearTimeout(read.timer); read.controller.abort(); }
+    mail?.controller.abort();
+  }
 
-  useEffect(() => {
+  function deny(status = 401) {
+    if (!sameLifetime()) return;
+    scope.blocked = true;
+    invalidate();
+    setState(previous => ({ ...previous, data: null, notifications: null, mailPending: false, mailMessage: "", loading: false, error: { status } }));
+  }
+
+  function startRead(selection, { immediate = false, revalidate = false } = {}) {
+    if (!sameLifetime() || scope.blocked || sandboxOnly && selection.environment !== "sandbox") return;
+    invalidate();
+    scope.selection = { ...selection };
+    const incomplete = Boolean(selection.query.trim() && !normalizedOverviewQuery(selection.query));
+    setState(previous => ({ ...previous, ...selection, data: null, notifications: null, error: null, loading: !incomplete || revalidate, mailPending: false, mailMessage: "" }));
+    if (incomplete && !revalidate) return;
     const controller = new AbortController();
-    let current = true;
-    const version = ++loadVersion.current;
-    currentLoad.current = controller;
-    const currentRequest = () => current && loadVersion.current === version;
-    const notificationAtStart = notificationVersion.current;
-    setLoading(true);
-    setData(null);
-    setError(null);
-    if (query.trim() && !normalizedOverviewQuery(query)) {
-      setLoading(false);
-      return () => { current = false; controller.abort(); };
-    }
-    const timer = setTimeout(async () => {
+    const ticket = { owner: scope.owner, controller, timer: null };
+    scope.request = ticket;
+    const currentRequest = () => sameLifetime() && !scope.blocked && scope.owner === ticket.owner && scope.request === ticket;
+    ticket.timer = setTimeout(async () => {
+      if (!currentRequest()) return;
       try {
-        const params = new URLSearchParams({ environment, q: normalizedOverviewQuery(query), offset: String(offset), limit: String(PAGE_SIZE) });
+        const params = new URLSearchParams({ environment: selection.environment, q: normalizedOverviewQuery(selection.query), offset: String(selection.offset), limit: String(PAGE_SIZE) });
         const result = await requestTrialOverview(`/api/admin/trials?${params}`, {}, controller);
-        if (!validTrialOverview(result) || result.offset !== offset || result.items.some(item => item.environment !== (environment === "live" ? "Production" : "Sandbox"))) {
+        if (!currentRequest() || controller.signal.aborted) return;
+        if (!validTrialOverview(result) || result.offset !== selection.offset || result.items.some(item => item.environment !== (selection.environment === "live" ? "Production" : "Sandbox"))) {
           throw Object.assign(new Error("Die Übersicht konnte nicht gelesen werden."), { code: "INVALID_RESPONSE" });
         }
-        if (!currentRequest() || controller.signal.aborted) return;
-        setData(result);
-        if (notificationVersion.current === notificationAtStart) setNotifications(result.notifications);
+        // An incomplete search remains an edit. A visible return still checks
+        // permission, but must not display an unfiltered replacement list.
+        const data = incomplete ? null : result;
+        scope.snapshot = { owner: ticket.owner, data };
+        scope.notifications = result.notifications;
+        setState(previous => ({ ...previous, data, notifications: result.notifications }));
       } catch (failure) {
         if (currentRequest()) {
-          if ([401, 403].includes(failure.status)) setNotifications(null);
-          setError({ status: failure.status || 503, code: failure.code || "UNAVAILABLE" });
+          if ([401, 403].includes(failure.status)) deny(failure.status);
+          else setState(previous => ({ ...previous, error: { status: failure.status || 503, code: failure.code || "UNAVAILABLE" } }));
         }
       } finally {
-        if (currentRequest()) setLoading(false);
+        if (currentRequest()) {
+          scope.request = null;
+          setState(previous => ({ ...previous, loading: false }));
+        }
       }
-    }, query.trim() ? 300 : 0);
-    return () => { current = false; clearTimeout(timer); controller.abort(); };
-  }, [query, environment, offset, revision]);
+    }, immediate || !selection.query.trim() ? 0 : 300);
+  }
+
+  useEffect(() => {
+    const lifetime = {};
+    scope.lifetime = lifetime;
+    scope.mounted = true;
+    scope.blocked = false;
+    scope.sandboxOnly = sandboxOnly;
+    const selection = { ...scope.selection };
+    if (sandboxOnly && selection.environment !== "sandbox") { selection.environment = "sandbox"; selection.offset = 0; }
+    startRead(selection);
+    const currentLifetime = () => sameLifetime() && scope.lifetime === lifetime;
+    const revoked = () => { if (currentLifetime()) deny(401); };
+    const stopVisible = onVisibleReturn(() => {
+      if (currentLifetime() && !scope.blocked) startRead({ ...scope.selection }, { immediate: true, revalidate: true });
+    });
+    if (typeof window !== "undefined") {
+      window.addEventListener?.("jagdlatein-account-deleted", revoked);
+      window.addEventListener?.("jagdlatein-logout", revoked);
+    }
+    return () => {
+      if (scope.lifetime === lifetime) {
+        scope.mounted = false;
+        scope.blocked = true;
+        invalidate();
+      }
+      stopVisible();
+      if (typeof window !== "undefined") {
+        window.removeEventListener?.("jagdlatein-account-deleted", revoked);
+        window.removeEventListener?.("jagdlatein-logout", revoked);
+      }
+    };
+  }, [sandboxOnly]);
 
   async function checkNotifications() {
-    if (mailBusy.current) return;
+    if (!canAct() || scope.request || scope.mail || scope.snapshot?.owner !== owner || !scope.notifications?.configured) return;
     const controller = new AbortController();
-    mailRequest.current = controller;
-    mailBusy.current = true;
-    notificationVersion.current += 1;
-    setMailPending(true);
-    setMailMessage("");
+    const ticket = { owner, snapshot: scope.snapshot, controller };
+    scope.mail = ticket;
+    const currentMail = () => canAct() && scope.mail === ticket && scope.snapshot === ticket.snapshot;
+    setState(previous => ({ ...previous, mailPending: true, mailMessage: "" }));
     try {
       const result = await requestTrialOverview("/api/admin/trials", {
         method: "POST", headers: { "Content-Type": "application/json" }, body: "{}",
       }, controller, 45000);
-      if (!validNotifications(result.notifications) || !result.delivery || !Number.isSafeInteger(result.delivery.processed)) throw new Error("Ungültige Antwort");
-      if (mailRequest.current !== controller) return;
-      setNotifications(result.notifications);
+      if (!currentMail() || controller.signal.aborted) return;
+      if (!validNotifications(result.notifications) || !result.delivery || !["processed", "sent", "retry"].every(key => Number.isSafeInteger(result.delivery[key]) && result.delivery[key] >= 0)) throw new Error("Ungültige Antwort");
+      scope.notifications = result.notifications;
       const sent = count(result.delivery.sent);
       const retry = count(result.delivery.retry);
-      setMailMessage(result.delivery.retry > 0
+      const mailMessage = result.delivery.retry > 0
         ? `${sent} E-Mails versendet. ${retry} Benachrichtigungen warten auf einen weiteren Versandversuch.`
-        : result.delivery.sent > 0 ? `${sent} E-Mails versendet.` : "Benachrichtigungen geprüft. Keine weitere E-Mail versendet.");
+        : result.delivery.sent > 0 ? `${sent} E-Mails versendet.` : "Benachrichtigungen geprüft. Keine weitere E-Mail versendet.";
+      setState(previous => ({ ...previous, notifications: result.notifications, mailMessage }));
     } catch (failure) {
-      if (mailRequest.current !== controller) return;
+      if (!currentMail()) return;
       if ([401, 403].includes(failure.status)) {
-        loadVersion.current += 1;
-        currentLoad.current?.abort();
-        setLoading(false);
-        setData(null);
-        setNotifications(null);
-        setError({ status: failure.status });
+        deny(failure.status);
+        return;
       }
-      setMailMessage("Die E-Mail-Prüfung konnte nicht abgeschlossen werden. Die Aboübersicht bleibt davon unabhängig. Bitte später erneut prüfen.");
+      setState(previous => ({ ...previous, mailMessage: "Die E-Mail-Prüfung konnte nicht abgeschlossen werden. Die Aboübersicht bleibt davon unabhängig. Bitte später erneut prüfen." }));
     } finally {
-      if (mailRequest.current === controller) {
-        mailRequest.current = null;
-        mailBusy.current = false;
-        setMailPending(false);
+      if (currentMail()) {
+        scope.mail = null;
+        setState(previous => ({ ...previous, mailPending: false }));
       }
     }
   }
 
   return {
-    query, environment, offset, data, error, loading, notifications, mailPending, mailMessage,
-    incompleteSearch: Boolean(query.trim() && !normalizedOverviewQuery(query)),
-    search(value) { setQuery(value.slice(0, 320)); setOffset(0); },
-    chooseEnvironment(value) { if (!["live", "sandbox"].includes(value) || (testEnvironment && value !== "sandbox")) return; setEnvironment(value); setOffset(0); },
-    reload() { setRevision(value => value + 1); },
-    previous() { setOffset(value => Math.max(0, value - PAGE_SIZE)); },
-    next() { if (data?.hasMore && !loading) setOffset(value => value + PAGE_SIZE); },
+    ...state,
+    data: sameLifetime() && !scope.blocked && scope.snapshot?.owner === owner && scope.snapshot.data === state.data ? state.data : null,
+    notifications: sameLifetime() && !scope.blocked && scope.snapshot?.owner === owner && scope.notifications === state.notifications ? state.notifications : null,
+    mailPending: sameLifetime() && !scope.blocked && scope.mail?.owner === owner && state.mailPending,
+    mailMessage: sameLifetime() && !scope.blocked && scope.snapshot?.owner === owner ? state.mailMessage : "",
+    incompleteSearch: Boolean(state.query.trim() && !normalizedOverviewQuery(state.query)),
+    search(value) { if (canAct() && typeof value === "string") startRead({ ...scope.selection, query: value.slice(0, 320), offset: 0 }); },
+    chooseEnvironment(value) {
+      if (!canAct() || !["live", "sandbox"].includes(value) || sandboxOnly && value !== "sandbox") return;
+      startRead({ ...scope.selection, environment: value, offset: 0 });
+    },
+    reload() { if (canAct()) startRead({ ...scope.selection }); },
+    previous() { if (canAct() && !scope.request && scope.snapshot?.data) startRead({ ...scope.selection, offset: Math.max(0, scope.selection.offset - PAGE_SIZE) }); },
+    next() { if (canAct() && !scope.request && scope.snapshot?.data?.hasMore) startRead({ ...scope.selection, offset: scope.selection.offset + PAGE_SIZE }); },
     checkNotifications,
   };
 }

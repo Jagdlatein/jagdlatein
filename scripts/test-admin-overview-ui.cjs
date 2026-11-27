@@ -226,3 +226,66 @@ test('An actual populated server-rendered chart has scalar accessible titles wit
   const html = local('react-dom/server').renderToStaticMarkup(React.createElement(Component));
   assert.match(html, /<title>01\.11\.2026: 3<\/title>/); assert.equal(warnings.length, 0);
 });
+
+async function returnToVisibleOverview(h) {
+  await h.act(() => {
+    Object.defineProperty(h.dom.window.document, 'visibilityState', { configurable: true, value: 'hidden' });
+    h.dom.window.document.dispatchEvent(new h.dom.window.Event('visibilitychange'));
+    h.dom.window.dispatchEvent(new h.dom.window.Event('blur'));
+  });
+  await h.act(() => {
+    Object.defineProperty(h.dom.window.document, 'visibilityState', { configurable: true, value: 'visible' });
+    h.dom.window.document.dispatchEvent(new h.dom.window.Event('visibilitychange'));
+    h.dom.window.dispatchEvent(new h.dom.window.Event('focus'));
+    h.dom.window.dispatchEvent(new h.dom.window.PageTransitionEvent('pageshow', { persisted: true }));
+  });
+}
+
+test('Visible return replaces an initial pending read; its former success cannot outrun a fresh permission denial', async t => {
+  t.mock.method(Date, 'now', () => Date.parse('2026-11-27T06:25:00Z'));
+  const h = await fixture(t), stale = h.current;
+  await returnToVisibleOverview(h);
+  assert.equal(h.calls.length, 2, 'Overlapping return events cause one fresh GET');
+  assert.equal(h.calls[0].options.signal.aborted, true);
+  assert.deepEqual(expected(h.calls[1]), expected(h.calls[0]));
+  assert.equal(h.current.data, null); assert.equal(h.current.canExport, false);
+  await h.respond(0);
+  assert.equal(h.current.data, null); assert.equal(h.current.loading, true);
+  assert.equal(h.timers.size, 1, 'Only the fresh read keeps its deadline');
+  await h.respond(1, {}, 403);
+  assert.equal(h.current.denied, true); assert.equal(h.current.error.status, 403);
+  assert.equal(stale.currentSnapshot(), null); assert.equal(stale.apply(), false);
+  assert.equal(h.current.canExport, false); assert.equal(h.downloads.length, 0);
+  assert.equal(h.calls.length, 2); assert.equal(h.timers.size, 0); assert.equal(h.scrolls.length, 0);
+});
+
+test('Return during a selected-period read preserves its accepted filters and adopts only the new response without focus', async t => {
+  t.mock.method(Date, 'now', () => Date.parse('2026-11-27T06:25:00Z'));
+  const h = await fixture(t); await h.respond(0); await h.choose(7);
+  const selected = expected(h.calls[1]), stale = h.current;
+  await returnToVisibleOverview(h);
+  assert.equal(h.calls.length, 3); assert.equal(h.calls[1].options.signal.aborted, true);
+  assert.deepEqual(expected(h.calls[2]), selected); assert.equal(h.current.preset, '7');
+  await h.respond(1); assert.equal(h.current.data, null); assert.equal(h.current.canExport, false);
+  await h.respond(2, payload(selected, [section('usage', { metrics: [{ key: 'views', label: 'Seitenaufrufe', value: 58, format: 'count' }] })]));
+  assert.equal(h.current.data.sections[0].metrics[0].value, 58);
+  assert.deepEqual(h.current.currentSnapshot().filters, selected);
+  assert.equal(h.current.canExport, true); assert.equal(stale.currentSnapshot(), null);
+  assert.equal(stale.reload(), false); assert.equal(h.calls.length, 3); assert.equal(h.scrolls.length, 0);
+});
+
+test('Visible return never applies an unconfirmed date edit or restores its former private snapshot', async t => {
+  t.mock.method(Date, 'now', () => Date.parse('2026-11-27T06:25:00Z'));
+  const h = await fixture(t); await h.respond(0);
+  const from = new Date(Date.parse(h.current.draft.from + 'T00:00:00Z') + 86400000).toISOString().slice(0, 10);
+  await h.call('change', 'from', from);
+  const draft = { ...h.current.draft };
+  await returnToVisibleOverview(h);
+  assert.equal(h.calls.length, 1); assert.deepEqual(h.current.draft, draft);
+  assert.equal(h.current.data, null); assert.equal(h.current.canExport, false);
+  assert.equal(h.current.currentSnapshot(), null); assert.equal(h.scrolls.length, 0);
+  await h.call('apply'); assert.equal(h.calls.length, 2);
+  assert.deepEqual(expected(h.calls[1]), draft);
+  await h.respond(1, {}, 403); assert.equal(h.current.denied, true);
+  assert.equal(h.current.data, null); assert.equal(h.current.canExport, false);
+});

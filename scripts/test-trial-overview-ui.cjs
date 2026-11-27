@@ -5,6 +5,7 @@ const path = require('node:path');
 const { createRequire } = require('node:module');
 const root = path.resolve(__dirname, '..');
 const pr = createRequire(path.join(root, 'package.json'));
+const { createLoader } = require('./helpers/project-module.cjs');
 const filename = path.join(root, 'pages/admin/testabos.js');
 const { code } = pr('next/dist/build/swc').transformSync(fs.readFileSync(filename, 'utf8'), {
   filename, disableNextSsg: true, jsc: { parser: { syntax: 'ecmascript', jsx: true }, target: 'es2022', transform: { react: { runtime: 'automatic' } } }, module: { type: 'commonjs' },
@@ -34,6 +35,7 @@ function harness(fetch, { sandbox = false, serverResult = { props: {} } } = {}) 
       : id.endsWith('/AccountLayout') ? { default: ({ children }) => children }
       : id.endsWith('/account-access') ? { getPaidPageProps: async (ctx, opts) => { guards.push([ctx, opts]); return serverResult; } }
       : id.endsWith('/test-environment') ? { isPayPalSandboxTestEnvironment: () => sandbox }
+      : id.endsWith('/visible-return') ? createLoader()('lib/visible-return.js')
       : id.endsWith('.css') ? {} : pr(id), mod, mod.exports,
     (...args) => { calls.push(args); return fetch(...args); },
     (fn, delay) => { timers.set(++sequence, { fn, dueAt: now + delay }); return sequence; },
@@ -146,11 +148,16 @@ test('Email check posts only empty JSON, prevents duplicate requests and does no
   assert.equal(h.render().data, shown); assert.equal(h.render().mailPending, false); assert.match(h.render().mailMessage, /E-Mail-Prüfung konnte nicht/); h.unmount();
 });
 
-test('A mail access denial invalidates an overlapping overview request and all private displayed data', async () => {
+test('Mail waits for a confirmed overview; a subsequent mail access denial clears all private displayed data', async () => {
   const overview = deferred();
   const h = harness((url, opts) => opts.method === 'POST' ? Promise.resolve(response({ code: 'FORBIDDEN' }, 403)) : overview.promise);
   h.render(); h.advance(); await flush(); await h.render().checkNotifications(); await flush();
-  assert.equal(h.calls[0][1].signal.aborted, true); assert.equal(h.render().error.status, 403);
+  assert.equal(h.calls.length, 1, 'no POST before a fresh successful overview GET');
+  assert.equal(h.render().mailPending, false);
+  overview.resolve(response(body())); await flush();
+  assert.equal(h.render().data.items.length, 1);
+  await h.render().checkNotifications(); await flush();
+  assert.equal(h.calls[1][1].signal.aborted, true); assert.equal(h.render().error.status, 403);
   overview.resolve(response(body())); await flush();
   assert.equal(h.render().data, null); assert.equal(h.render().error.status, 403); assert.equal(h.render().notifications, null); h.unmount();
 });
