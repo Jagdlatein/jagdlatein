@@ -179,7 +179,9 @@ test('Unknown sections render dashes, currency decimals stay exact, and charts h
   const html = h.dom.window.document.body.textContent; assert.doesNotMatch(html, /999/); assert.match(html, /Noch nicht erfasst/); assert.match(html, /10\.005 CHF/); assert.match(html, /2\.50 EUR/);
   assert.ok(h.dom.window.document.querySelector('svg[role=img]')); assert.equal(h.dom.window.document.querySelectorAll('figure details tbody tr').length, 2); assert.match(h.dom.window.document.querySelector('figure details').textContent, /—/);
   assert.equal(h.dom.window.document.querySelectorAll('dialog,iframe').length, 0);
-  assert.equal(h.dom.window.document.querySelector('a[href="/admin/testabos"]').textContent, 'Aktive Testabos ansehen');
+  assert.equal(h.dom.window.document.querySelector('a[href="/admin/testabos"]').textContent, 'Aktive Abos ansehen');
+  assert.equal(h.dom.window.document.querySelector('#admin-subscriptions details').open, false);
+  assert.equal(h.dom.window.document.querySelector('#admin-subscriptions details summary').textContent, 'Details');
 });
 
 test('CSV is BOM/semicolon/CRLF, formula-safe and exact; stale filter and denied handlers cannot download', async t => {

@@ -32,6 +32,26 @@ function Series({ section }) {
 
 function Section({ section }) {
   const ready = section.status === "ready";
+  if (section.id === "subscriptions") {
+    const primary = new Set(["paid", "trial", "coveredAccounts", "review"]);
+    const summary = section.metrics.filter(metric => primary.has(metric.key));
+    const more = section.metrics.filter(metric => !primary.has(metric.key));
+    return <section id="admin-subscriptions" className={styles.panel} aria-labelledby="admin-subscriptions-title">
+      <div className={styles.sectionHeading}><h3 id="admin-subscriptions-title">Abos</h3>{!ready && <span className={styles.badge}>{statusLabels[section.status]}</span>}</div>
+      {summary.length > 0 && <dl className={styles.metrics}>{summary.map(metric => <div key={metric.key}><dt>{metric.label}</dt><dd>{ready ? overviewNumber(metric.value, metric.format) : "—"}</dd>{metric.note && <p>{metric.note}</p>}</div>)}</dl>}
+      <p className={styles.note}>Anbieterzugang umfasst bezahlte Zeit, Test und Zahlungsfrist. Werte nicht addieren.</p>
+      <p className={styles.sectionLink}><Link href="/admin/testabos">Aktive Abos ansehen</Link></p>
+      <details className={styles.seriesDetails}>
+        <summary>Details</summary>
+        {section.note && <p className={styles.note}>{section.note}</p>}
+        {more.length > 0 && <dl className={styles.metrics}>{more.map(metric => <div key={metric.key}><dt>{metric.label}</dt><dd>{ready ? overviewNumber(metric.value, metric.format) : "—"}</dd>{metric.note && <p>{metric.note}</p>}</div>)}</dl>}
+        {ready && <>
+          <Series section={section} />
+          {section.rows.length > 0 && <div className={styles.tableWrap}><table><caption className={styles.srOnly}>{section.title}</caption><thead><tr>{section.columns.map(column => <th key={column.key} scope="col">{column.label}</th>)}</tr></thead><tbody>{section.rows.map((row, index) => <tr key={index}>{section.columns.map((column, cell) => cell === 0 ? <th scope="row" key={column.key}>{overviewCell(row[column.key], column, row)}</th> : <td key={column.key}>{overviewCell(row[column.key], column, row)}</td>)}</tr>)}</tbody></table></div>}
+        </>}
+      </details>
+    </section>;
+  }
   return <section id={`admin-${section.id}`} className={styles.panel} aria-labelledby={`admin-${section.id}-title`}>
     <div className={styles.sectionHeading}><h3 id={`admin-${section.id}-title`}>{labels[section.id]}</h3>{!ready && <span className={styles.badge}>{statusLabels[section.status]}</span>}</div>
     {section.note && <p className={styles.note}>{section.note}</p>}

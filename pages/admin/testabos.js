@@ -256,16 +256,22 @@ function SubscriptionRow({ item }) {
     <div className={styles.identity}>
       <h3>{item.email}</h3>
       <span className={styles.provider}>{item.provider === "apple" ? "Apple · iPhone / iPad" : "PayPal · Android / Website"}</span>
-      <span className={`${styles.stage} ${styles[item.stage] || ""}`}>{stages[item.stage]}</span>
       <p className={styles.renewal}>{item.renewal === true ? "Verlängerung eingeschaltet" : item.renewal === false ? "Keine automatische Verlängerung" : "Verlängerung noch nicht bestätigt"}</p>
     </div>
-    <dl className={styles.dates}>
-      <div><dt>Testabo begonnen</dt><dd>{overviewDate(item.trialStartedAt)}</dd></div>
-      <div><dt>Kostenlos bis</dt><dd>{overviewDate(item.trialUntil)}</dd></div>
-      <div><dt>Reguläres Abo bestätigt</dt><dd>{overviewDate(item.firstRegularAt)}</dd></div>
-      <div><dt>Zugang bestätigt bis</dt><dd>{overviewDate(item.accessUntil)}</dd></div>
-    </dl>
-    <p className={styles.verified}>Zuletzt vom Anbieter bestätigt: {overviewDate(item.verifiedAt)}</p>
+    <div className={styles.access}>
+      <span className={`${styles.stage} ${styles[item.stage] || ""}`}>{stages[item.stage]}</span>
+      <p>Zugang bis <strong>{overviewDate(item.accessUntil)}</strong></p>
+    </div>
+    <details className={styles.rowDetails}>
+      <summary>Abo-Details</summary>
+      <dl className={styles.dates}>
+        <div><dt>Testabo begonnen</dt><dd>{overviewDate(item.trialStartedAt)}</dd></div>
+        <div><dt>Kostenlos bis</dt><dd>{overviewDate(item.trialUntil)}</dd></div>
+        <div><dt>Reguläres Abo bestätigt</dt><dd>{overviewDate(item.firstRegularAt)}</dd></div>
+        <div><dt>Zugang bestätigt bis</dt><dd>{overviewDate(item.accessUntil)}</dd></div>
+      </dl>
+      <p className={styles.verified}>Zuletzt vom Anbieter bestätigt: {overviewDate(item.verifiedAt)}</p>
+    </details>
   </article>;
 }
 
@@ -298,14 +304,15 @@ export default function TrialOverviewPage({ testEnvironment = false }) {
         {(overview.data.windowLimited || overview.data.olderRecordsAvailable) && <p className={styles.environment}>Diese Ansicht prüft bis zu {overview.data.windowLimit} aktuelle Aboeinträge. Ältere aktive Abos können fehlen. Suche mit einer vollständigen E-Mail-Adresse gezielt nach einem Konto.</p>}
       </>}
     </section>
-    {!denied && <section className={styles.panel} aria-labelledby="trial-notification-heading">
-      <div className={styles.heading}><h2 id="trial-notification-heading">E-Mail bei neuen Testabos</h2><button type="button" className={accountStyles.secondaryButton} onClick={overview.checkNotifications} disabled={overview.mailPending || !notification?.configured}>{overview.mailPending ? "Wird geprüft …" : "Benachrichtigungen prüfen"}</button></div>
+    {!denied && <details className={`${styles.panel} ${styles.notifications}`} aria-labelledby="trial-notification-heading">
+      <summary id="trial-notification-heading">E-Mail bei neuen Testabos</summary>
+      <div className={styles.heading}><button type="button" className={accountStyles.secondaryButton} onClick={overview.checkNotifications} disabled={overview.mailPending || !notification?.configured}>{overview.mailPending ? "Wird geprüft …" : "Benachrichtigungen prüfen"}</button></div>
       {!notification ? <p className={styles.intro}>Der E-Mail-Status wird mit der Übersicht geladen.</p> : notification.configured ? <>
         <p className={styles.intro}>Benachrichtigungen an <strong>{notification.recipient}</strong>{notification.enabledSince ? ` für neue bestätigte Kunden-Testabos seit ${overviewDate(notification.enabledSince)}` : ""}. Nur Live-Abos lösen E-Mails aus. Sandbox- und TestFlight-Käufe lösen keine Betreiber-E-Mail aus.</p>
         <dl className={styles.mailCounts}><div><dt>Versendet</dt><dd>{count(notification.sentCount)}</dd></div><div><dt>Warten auf Versand</dt><dd>{count(notification.pendingCount)}</dd></div></dl>
         <p className={styles.verified}>Ein offener Versand ändert den Lernzugang nicht. „Benachrichtigungen prüfen“ versucht offene Benachrichtigungen erneut zu senden.</p>
       </> : <p className={styles.notice}>Der E-Mail-Versand ist noch nicht vollständig eingerichtet. Die Aboübersicht funktioniert unabhängig davon.</p>}
       {overview.mailMessage && <p className={styles.result} role="status">{overview.mailMessage}</p>}
-    </section>}
+    </details>}
   </AccountLayout>;
 }
